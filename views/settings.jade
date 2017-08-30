@@ -40,11 +40,11 @@ block content
                             .col-lg-10
                               .radio
                                 label
-                                  input#optionsRadios1(name='sslRadios', type='radio', checked='', value='YES')
+                                  input#optionsRadios1(name='sslRadios', type='radio', checked=ccSSL == 'YES', value='YES')
                                   |            TLS/SSL
                               .radio
                                 label
-                                  input#optionsRadios2(name='sslRadios', type='radio', value='NO')
+                                  input#optionsRadios2(name='sslRadios', type='radio', checked=ccSSL == 'No', value='NO')
                                   |            Non-SSL
                         .form-group
                             label.col-lg-2.control-label(for='disabledInput') Cert name
