@@ -55,8 +55,6 @@ router.get('/badgesActive', badges.badgesActive);
 router.get('/badgesInactive', badges.badgesInactive);
 
 
-
-
 // Routes for EVENTS
 // show events list
 router.get('/events', events.eventsHome);
@@ -94,10 +92,6 @@ router.get('/userDelete/:userName', users.userGetOneForDelete);
 router.post('/userDelete/:userName', users.userDeleteOne);
 
 
-
-
-
-
 // Routes for VERIFY (records of scans through the verify app)
 // show events list
 router.get('/verifyRecords', verify.verifyHome);
@@ -120,6 +114,22 @@ router.get('/musterDetail/:musterID', mustering.musterGetOne);
 //router.post('/musterDetail/:badgeID', mustering.verifySearch);
 // Drill down into the records for a particular badge 
 router.get('/musterLive/:musterID', mustering.musterLive);
+router.get('/musterPoints', mustering.musterPointHome);
+router.get('/musterPointModify/:pointID', mustering.musterPointGetForModify);
+
+
+//the muster zone add screen
+router.get('/musterPointAdd', mustering.musterPointAdd);
+//post the muster zone after is was added
+router.post('/musterPointAdd', mustering.musterPointPostDatabase);
+//gets the list of available devices that can be selected for the zone
+router.get('/devicePointAdd/:pointID', mustering.deviceListForPoint);
+//Posts the selected device to the zone record
+router.get('/musterPointAddDevice/:AuthCode/:pointID', mustering.deviceAddForPoint )
+
+
+
+
 router.get('/evacuationHome', evacuation.evacuationHome);
 router.post('/evacuationHome', evacuation.evacuationCSV);
 

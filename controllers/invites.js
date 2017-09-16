@@ -152,7 +152,7 @@ exports.inviteListsAddforEvent = function(req, res) {
             if(err) { console.log('event query bad'+err); callback(true); connection.end(); return; }
           
             connection.end();
-            res.render('inviteListsAdd', { title: 'Command Center - Invite lists Change', username: req.session.username, eventID : req.params.eventID, invitationListID : req.params.invitationListID, eventName : req.params.eventName, results });
+            res.render('inviteListsAdd', { title: 'Command Center', username: req.session.username, eventID : req.params.eventID, invitationListID : req.params.invitationListID, eventName : req.params.eventName, results });
           });
         } 
       });

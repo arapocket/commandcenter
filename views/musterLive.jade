@@ -4,30 +4,39 @@ block content
             include navbar
 
             head
+                style.
+                  #map {
+                  height: 600px;
+                  width: 100%;
+                  }
+
             //-    meta(http-equiv='refresh', content='10')
-            h3 Muster in progress
+            h3 Ara Muster in progress
             
 
             .progress.progress-striped.active
-                if overallProgRound > '20'
+                
+                .progress-bar.progress-bar-success(style='width: #{overallProgress}')
                     | #{overallProgress}
-                if overallProgRound > '20'
-                    .progress-bar.progress-bar-danger(style='width: #{overallProgress}')
-                if overallProgRound > '21'
-                    .progress-bar.progress-bar-warning(style='width: #{overallProgress}')
+              
             br
 
            
 
             .row
-                .col-md-6.col-sm-6.col-xs-12
-                        .well
-                            h4 Remain unaccounted [#{missingCount}]
+                .col-md-3.col-sm-3.col-xs-12
+                        .col-md-6.col-sm-6.col-xs-12
+                        .panel.panel-danger
+                          .panel-heading
+                            h3.panel-title Remain Unaccounted
+                          .panel-body
+                            | #{missingCount}
+
                         div
                             table#pickle.table.table-hover.table-striped.table-bordered
                                 thead
                                     tr
-                                        th Badge Id
+                                        th Badge ID
                                         th First Name
                                         th Last Name
                                 tbody
@@ -36,58 +45,85 @@ block content
                                         td=resEvac.iClassNumber
                                         td=resEvac.FirstName
                                         td=resEvac.LastName
+                .col-md-9.col-sm-9.col-xs-12
+                    #map
+                    var ara = 12;  
+                    script.
+                      function initMap() {
+                      console.log("here " + "#{resz2[0].PointID}");
+                      var center = {lat: 34.0259013, lng: -118.3755216};
+                      var map = new google.maps.Map(document.getElementById('map'), {
+                      zoom: 18,
+                      center: center,
+                      mapTypeId: google.maps.MapTypeId.HYBRID
+                      });
+                      var araString = '<div id="content">'+
+                      '<div id="siteNotice">'+
+                      '</div>'+
+                      '<h1 id="firstHeading" class="firstHeading">Ara</h1>'+
+                      '<div id="bodyContent">'+
+                      '<p><b>Checked In</b></p>'+  
+                      '</div>'+
+                      '</div>';
+                      var archieString = '<div id="content">'+
+                      '<div id="siteNotice">'+
+                      '</div>'+
+                      '<h1 id="firstHeading" class="firstHeading">Archie</h1>'+
+                      '<div id="bodyContent">'+
+                      '<p><b>Checked In</b></p>'+  
+                      '</div>'+
+                      '</div>';
+                      var philString = '<div id="content">'+
+                      '<div id="siteNotice">'+
+                      '</div>'+
+                      '<h1 id="firstHeading" class="firstHeading">Phil</h1>'+
+                      '<div id="bodyContent">'+
+                      '<p><b>????</b></p>'+  
+                      '</div>'+
+                      '</div>';
+
+                      var araWindow = new google.maps.InfoWindow({
+                      content: araString
+                      });
+                      var archieWindow = new google.maps.InfoWindow({
+                      content: archieString
+                      });
+                      var philWindow = new google.maps.InfoWindow({
+                      content: philString
+                      });
+                      for (var i = 0 ; i < #{resz2}.length ; i++){
+
+                        //- var markpoint = new google.maps.Marker({
+                        //- position: {lat: i.Lat, lng: i.Lng},
+                        //- map: map
+                        //- })
+
+                        };
+
+                      var araMarker = new google.maps.Marker({
+                      position: ara,
+                      map: map,
+                      title: 'Ara'
+                      });
+                      var archieMarker = new google.maps.Marker({
+                      position: archie,
+                      map: map,
+                      title: 'Archie'
+                      });
+                      var philMarker = new google.maps.Marker({
+                      position: phil,
+                      map: map,
+                      title: 'Phil'
+                      });      
+                      araWindow.open(map, araMarker);
+                      archieWindow.open(map, archieMarker);
+                      philWindow.open(map, philMarker);
+                      }
+                    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAyfHUvqcdI0dWYtOXoVHPpBlH0QAQ9srI&callback=initMap')
 
 
-                .col-md-3.col-sm-6.col-xs-12   
-                    .panel.panel-default
-                      .panel-body
-                        h2 Zone 1
-                   
-                    .progress.progress-striped.active
-                        | #{progress[0].progress1}               
-                        .progress-bar.progress-bar-danger(style='width: #{progress[0].progress1}') 
-                    br
-                    .panel.panel-default
-                      .panel-body
-                        h2 Zone 2
-                
-                    .progress.progress-striped.active
-                        | #{progress[1].progress2}
-                        .progress-bar.progress-bar-warning(style='width: #{progress[1].progress2}')   
-                    br
-                    .panel.panel-default
-                      .panel-body
-                        h2 Zone 3
-                    
-                    .progress.progress-striped.active
-                        | #{progress[2].progress3}
-                        .progress-bar.progress-bar-danger(style='width: #{progress[2].progress3}') 
 
-                .col-md-3.col-sm-6.col-xs-12   
-                    .panel.panel-default
-                      .panel-body
-                        h2 Zone 4
-                    
-                    .progress.progress-striped.active
-                        | 
-                        .progress-bar.progress-bar-success(style='width: #{progress[3].progress4}') 
-                    br
-                    .panel.panel-default
-                      .panel-body
-                        h2 Zone 5
-                    
-                    .progress.progress-striped.active
-                        | #{progress[4].progress5}
-                        .progress-bar.progress-bar-danger(style='width: #{progress[4].progress5}')   
-                    br
-                    .panel.panel-default
-                      .panel-body
-                        h2 Zone 6
-                   
-                    .progress.progress-striped.active
-                        | #{progress[5].progress6}
-                        .progress-bar.progress-bar-warning(style='width: #{progress[5].progress6}')
-               
+
 
             br
             br    

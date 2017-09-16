@@ -12,7 +12,7 @@ block content
             .row
                 
                 .col-md-4.col-sm-6.col-xs-12
-                  form.form-horizontal
+                  form.form-signin(class="form-horizontal", method="post")
                     fieldset
                         .well
                           | Import from CSV file
@@ -22,20 +22,23 @@ block content
                           |       
                           .col-lg-10
                             input#inputEmail.form-control(type='text', name='directorySource', placeholder='')
-
-                        |     
+                        |      
                         .form-group
-                          label.col-lg-2.control-label(for='inputPassword') File
-                          |      
+                          label.col-lg-2.control-label(type='directory', for='fileName') Filename
                           .col-lg-10
-                            input(type='file', name='fileName')
+                            input#inputcomment.form-control(type='file', name='fileName')
+                        
+                        .form-group
+                          label.col-lg-2.control-label(type='text', for='fileNameEntered') OR Enter
+                          .col-lg-10
+                            input#inputcomment.form-control(type='text', name='fileNameEntered')
                         
                         .form-group
                           .col-lg-10.col-lg-offset-2
                             button.btn.btn-default(type='reset') Cancel
                             |         
                             button.btn.btn-primary(type='submit') Process file now
-                 
+             
                 .col-md-4.col-sm-6.col-xs-12
               
                   form.form-horizontal
@@ -90,8 +93,11 @@ block content
                             |         
                             button.btn.btn-primary(type='submit') Submit
 
+
+
+
               h5(style="color: #CC3300;") #{sess.error}
-              h5(style="color: #00CC99;") #{sess.success}
+              p.text-success #{sess.success}
               
               include footer
 

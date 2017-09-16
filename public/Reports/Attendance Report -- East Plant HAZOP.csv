@@ -1,7 +1,6 @@
-Last Name,First Name,Employee ID,Attendance Date,Email,Time In,Time Out,Badge ID,Identifier,
-
-Fitch,Robert,90800,2017-06-01,,03:00,03:30,47442,
-Wilson,Beverly,129428,2017-06-01,,03:00,03:30,31772,
-Thompson,William,140968,2017-06-01,,03:05,03:35,48700,
-Walden,Michael,,2017-06-01,,03:05,03:35,37075,
-
+Last Name,First Name,Employee ID,Attendance Date,Email,Time In,Time Out,Badge ID,Identifier
+,,,,,,,,
+Fitch,Robert,90800,6/1/2017,dJones@abc.com,3:00,3:30,47442,
+Wilson,Beverly,129428,6/1/2017,rgales@abc.com,3:00,3:30,31772,
+Thompson,William,140968,6/1/2017,rfernandes@abc.com,3:05,3:35,48700,
+Walden,Michael,,6/1/2017,jhu@abc.com,3:05,3:35,37075,

@@ -59,7 +59,9 @@ module.exports.writeAttendanceReport = function(connection, eventID, callback) {
               var eventName = "";
               if(results.length > 0){
                 var eventName = results[0].EventName;
-                var title='Attendance Report -- '+eventName;
+                //pb 2017.09.15 remove slashes as they can be added to event name on the device (although not on command center)
+                var cleanName = eventName.replace(/\//g, "-");
+                var title='Attendance Report -- '+cleanName;
                 var appPath = path.normalize(__dirname+'/..');
                 var rptPath = path.normalize(appPath+'/public/reports/');
                 //fs.open('./'+title+'.csv', 'wx', (err) => {

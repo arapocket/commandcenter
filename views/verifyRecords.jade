@@ -14,11 +14,9 @@ block content
                             th
                             th Employee ID
                             th Badge ID
-                            th Scan Date
-                            th Scan Time
+                            th Scan Date/Time
                             th Contractor
                             th Device ID
-                            th Operator ID
                             
                     tbody
                         -each result in results
@@ -28,10 +26,8 @@ block content
                                         br
                                     td=result.EmpID
                                     td=result.BadgeID
-                                    td=result.ScanDate
-                                    td=result.ScanTime
+                                    td=result.ScanDateTime
                                     td=result.Contractor
-                                    td=result.ClientSWID
                                     td=result.MobSSOperator
 
                 script.

@@ -222,7 +222,13 @@ module.exports.sweeper = function(callback){
 			                    ////////////////////////////////////////////////////////////////
 			                    // Remove the .jpg extension from the imageName, if it exists //
 			                    ////////////////////////////////////////////////////////////////
-                     			var sqlJPG = "UPDATE people SET imageName = REPLACE(imageName, '.JPG', '')"
+                     			/**
+		                       * Need to do this for .jpg and .JPG and .jpeg and .JPEG
+		                       */
+		                      
+		                        var sqlJPG = "update people set imageName = replace(replace(replace(replace(imageName,'.jpg',''),'.JPG',''), '.jpeg', ''), '.JPEG', '')"
+
+                     			//var sqlJPG = "UPDATE people SET imageName = REPLACE(imageName, '.JPG', '')"
 			                    query = connection.query(sqlJPG, function(err, result) {
 
 			                   		if (err) { console.log('couldnt remove the .jpg extensions '+err);}

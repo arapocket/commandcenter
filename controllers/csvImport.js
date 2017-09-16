@@ -130,10 +130,16 @@ exports.inFile = function(csvFileName, fileExtension, callback) {
                          * REVERSED this 7/9/17 -- \n alone wasnt working properly.  There seems to be some inconsistency here.
                          * Needs to be MONITORED.  Possible that git changes line endings on .csv files?  it certianly sends warnings that
                          * it is checning line endings.  Notes on this can be found in Evernote.
+                         * LATEST 2017.09.05 -- row delimiters vary based on machien file was generated on:
+                         * windows machine \r\n
+                         * Linux \n  (appears to be the LLU problem)
+                         * Apple \r  (e.g. csv macintosh filetype option when saving in Excel)
+                         * Wordpad (possibly also \r)
+                         * There may be a way to prgrammatically autodetect this
                          */
                         
                           //Process for export source OTHER
-                              strSQL = strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE people FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (empID, LastName, FirstName, title, iClassNumber, imageName) SET  updateTime ="+_updateTime;
+                          strSQL = strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE people FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (empID, LastName, FirstName, title, iClassNumber, imageName) SET  updateTime ="+_updateTime;
 
                         }
   
