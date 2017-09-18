@@ -8,12 +8,16 @@ var datetime = require('./datetime');
 var muster = require('../models/muster');
 var evacuation = require('../models/evacuation');
 var db = require('../models/db');
+var writeReport = require('./writeReport');
+
 
 
 
 // handler for processing csv file ingest submit request
 module.exports.musterHome = function(req, res) {
 	sess=req.session;
+  console.log('i get to muster home')
+
     // don't let nameless people view the dashboard, redirect them back to the homepage
     if (typeof sess.username == 'undefined') res.redirect('/');
     else {
@@ -27,6 +31,7 @@ module.exports.musterHome = function(req, res) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
             console.log('here is the connnection '+reslt.threadId);
+
 
             // Mustering Phase 1 resuses EVENTS. mustermaster table unused as of 5.2.3
             var _sqlQ = "SELECT * FROM events where EventsType='mustering'";
@@ -45,17 +50,142 @@ module.exports.musterHome = function(req, res) {
             });
           }
       });
-        //res.render('cardholders', { title: 'Command Center 360 - ' });
     }
 };
-
-
-
 
 ////////////////////////////////////////////////////////////
 // Gets the card scans associated with this muster event  //
 ////////////////////////////////////////////////////////////
+module.exports.musterGetOneForEdit = function(req,res) {
 
+ sess=req.session;
+    // don't let nameless people view the dashboard, redirect them back to the homepage
+    if (typeof sess.username == 'undefined') res.redirect('/');
+    else {
+
+  //get a connection using the common handler in models/db.js
+    db.createConnection(function(err,reslt){  
+        if (err) {
+          console.log('Error while performing common connect query: ' + err);
+          callback(err, null);
+        }else{
+          //process the i/o after successful connect.  Connection object returned in callback
+          var connection = reslt;
+
+          var strSQL = 'SELECT * FROM events WHERE EventID='+req.params.musterID;
+          
+          var query = connection.query(strSQL, function(err, result) {
+
+             if (err) {
+                console.log(err)
+                connection.end();
+                //sess.error = 'There was a problem updating the mobss database: '+err;
+                res.render('musterHome', { title: 'Command Center'});
+              } else {
+                console.log('here is the event name ' + result[0].EventName);
+                console.log('here are the comments ' + result[0].Comments);
+                var displayDate = datetime.syncGetDateOnlyInDisplayFormat(result[0].EventDateTime);
+                var displayTime = datetime.syncGetTimeInDisplayFormat(result[0].EventDateTime);
+               
+                console.log('display date is as follows : ' + displayDate);
+                console.log('display time is as follows : ' + displayTime);
+                connection.end();
+                res.render('musterModify', { title: 'Command Center', result, displayDate : displayDate, displayTime : displayTime });
+
+                
+            };
+            });//feb--end of connection.query
+        }
+      });
+  }
+
+}; // end of handler
+
+/////////////////////////////////////////////////////////////////////
+// update the database with the modifications to the muster record //
+/////////////////////////////////////////////////////////////////////
+exports.musterUpdateOne = function(req, res) {
+  sess=req.session;
+    var name = req.query.name;
+
+ //get a connection using the common handler in models/db.js
+    db.createConnection(function(err,reslt){  
+        if (err) {
+          console.log('Error while performing common connect query: ' + err);
+          callback(err, null);
+        }else{
+          //process the i/o after successful connect.  Connection object returned in callback
+          var connection = reslt;
+
+          var buildEventQuery = (function() {
+                    var updateEvent = function(field1, field2, field3, field4, field5,field6,field7,field8) {
+    
+                      var _eventName = field1;
+                      var _dateTime = field2;
+                      var _locationName = field3;
+                      var _sponsorName = field4;
+              
+                      var _latitude= field7;
+                      var _longitude= field8;
+
+                      var _comments = field5;
+                      //var _updateTime = new Date();
+                      var _d = new Date();
+                      var _t = _d.getTime(); 
+                      var _updateTime = _t;
+                      var _eventID = field6;
+                      console.log('here is locationname  '+_locationName);
+                      
+                      //var _qFields = '(EventName, EventDateTime, EventLocationName, EventSponsorName, DurationInMins, Latitude, Longitude, RecordStatus, Comments, updateTime, EventsType)';
+                      //var _qValues = '("'+_eventName+'", "'+_dateTime+'", "'+_locationName+'", "'+_sponsorName+'", "'+_duration+'", "'+_latitude+'", "'+_longitude+'", "'+_recordStatus+'", "'+_comments+'", "'+_updateTime+'", "'+_eventsType+'")';                                                      
+                      var _qUpdates = 'EventName="'+_eventName+'", EventDateTime="'+_dateTime+'"'+', EventLocationName="'+_locationName+'"'+', EventSponsorName="'+_sponsorName+'"'+', Latitude="'+_latitude+'"'+', Longitude="'+_longitude+'"'+', Comments="'+_comments+'"'+', updateTime="'+_updateTime+'"';
+                      var parmQuery3 = 'UPDATE events SET '+_qUpdates+' WHERE EventID='+_eventID;
+                      //console.log('parmQuery3= '+parmQuery3);
+                      return parmQuery3;
+               };
+               return {updateEvent : updateEvent};
+              })();//feb--end of revealing module
+
+ 
+              var _eventDateTime = req.body.eventDate + ' ' + req.body.eventTime;
+              //var _eventDateTime = datetime.syncFormatDateStringForDB(eventDateTime);
+
+              //feb--set the duration field in minutes based on the user input
+              var _durationInMinutes = '';
+                                    console.log('here is locationname outside  '+req.body.location);
+
+              
+
+              var strSQL = buildEventQuery.updateEvent(req.body.musterName, _eventDateTime, req.body.location, req.body.musterCaptain, req.body.comments, req.params.musterID, req.body.lat, req.body.lng);
+              console.log('update strSQL= '+ strSQL);  
+
+              var query = connection.query(strSQL, function(err, result) {
+
+                 if (err) {
+                    console.log(err)
+                    sess.error = 'There was a problem updating the mobss database: '+err;
+                    connection.end();
+                    res.render('musterModify', { title: 'Command Center'});
+                  } else {
+                    //console.log(err)
+                           
+                    connection.end();
+
+                    //res.render('musterHome', { title: 'Command Center'});
+                    res.status(301).redirect('/musterHome');
+
+
+                                  
+                };
+                });//feb--end of connection.query
+        }
+    });
+   // res.render('/events', { title: 'Command Center 360 - Event List'});
+};
+
+////////////////////////////////////////////////////////////
+// Gets the card scans associated with this muster event  //
+////////////////////////////////////////////////////////////
 module.exports.musterGetOne = function(req,res) {
 
  sess=req.session;
@@ -84,7 +214,7 @@ module.exports.musterGetOne = function(req,res) {
               
               console.log('full set of muster results are: ' + JSON.stringify(result));
               var musterID=req.params.musterID;
-              var musterName="test";
+              var musterName="No muster records yet";
               if(result.length>0){
                 musterID = result[0].EventID;
                 musterName = result[0].EventName;
@@ -112,11 +242,15 @@ exports.musterAdd = function(req, res) {
     else {
 
     var name = req.query.name;
+    var defaultLat = process.env.LAT 
+    var defaultLng = process.env.LNG 
+    console.log("default lat " +defaultLat)
+
     // show the mustering screen if msuter is enabled in the environment variables
     if (process.env.MUSTER == "ON"){
-      res.render('musterAdd', { title: 'Command Center'});            
+      res.render('musterAdd', { title: 'Command Center',defaultLat : defaultLat, defaultLng : defaultLng});            
     }else{
-      res.render('disabled', { title: 'Command Center', username: req.session.username});
+      res.render('disabled', { title: 'Command Center', username: req.session.username });
     }
  };
 };
@@ -139,15 +273,15 @@ exports.musterPostDatabase = function(req,res) {
           var connection = reslt;
 
           var buildEventQuery = (function() {
-                      var insertEvent = function(field1, field2, field3, field4, field5,field6,field7) {
+                      var insertEvent = function(field1, field2, field3, field4, field5,field6,field7, field8, field9) {
               
                       var _eventName = field1;
                       var _dateTime = field2;
                       var _locationName = field3;
                       var _sponsorName = field4;
                       var _duration = field5;
-                      var _latitude= null;
-                      var _longitude= null;
+                      var _latitude= field8;
+                      var _longitude= field9;
                       var _recordStatus=null;
                       var _invitationListID =0;
 
@@ -184,7 +318,7 @@ exports.musterPostDatabase = function(req,res) {
 
               console.log('duration in minutes ' + _durationInMinutes);
 
-              var strSQL = buildEventQuery.insertEvent(req.body.musterName, _eventDateTime, req.body.Location, req.body.musterCaptain, _durationInMinutes, req.body.comments, _eventType);
+              var strSQL = buildEventQuery.insertEvent(req.body.musterName, _eventDateTime, req.body.Location, req.body.musterCaptain, _durationInMinutes, req.body.comments, _eventType, req.body.lat, req.body.lng);
               console.log('POST strSQL= '+ strSQL);  
               var query = connection.query(strSQL, function(err, result) {
                 
@@ -290,98 +424,133 @@ exports.musterLive= function(req, res) {
      * 3. Get the evactuation list and biuld an array for those who dont have yet have attendance records
      *
      */
-    muster.getMusterRecords(req.params.musterID, function(err, resz1){ 
-    if (err) {
-      console.log('Error while performing query: ' + err);
-    }
-    else {
-        // Get the muster counts per device
-        muster.getMusterCounts(req.params.musterID, function(err, resz2){ 
-        if (err) {
-          console.log('Error while performing query: ' + err);
-        }
-        else {
+    if (process.env.MUSTER == "ON"){
 
-         
-        evacuation.getEvacuationList(function(err, resEvacs){ 
-         if (err) {
-          console.log('Error while performing get evac records: ' + err);
+      muster.getMusterRecords(req.params.musterID, function(err, resz1){ 
+      if (err) {
+        console.log('Error while performing query: ' + err);
+      }
+      else {
+          // Get the muster counts per device
+          muster.getMusterCounts(req.params.musterID, function(err, resz2){ 
+          if (err) {
+            console.log('Error while performing query: ' + err);
           }
           else {
 
-          // loop through the evac array and remove entry if badgeId record exists in the muster array 
-          console.log('whats the array length  ' + JSON.stringify(resEvacs.length));
-          //console.log('whats the array value  ' + JSON.stringify(resEvacs[0].iClassNumber));
-          var origEvacLength = resEvacs.length;
-          var resEvacDisplay = resEvacs
-          var resTotalScanned = resz1.length
-          
-          
-          // attn: Have to deal with the case where the  there are two attendance records for the event that 
-          // have the same iClassNumber.  if splice from the array when first match is found, then
-          // It remove from the array
-          for (var i=0; i < resEvacs.length; i++) {
+           
+          evacuation.getEvacuationList(function(err, resEvacs){ 
+           if (err) {
+            console.log('Error while performing get evac records: ' + err);
+            }
+            else {
+
+            // loop through the evac array and remove entry if badgeId record exists in the muster array 
+            console.log('whats the array length  ' + JSON.stringify(resEvacs.length));
+            //console.log('whats the array value  ' + JSON.stringify(resEvacs[0].iClassNumber));
+            var origEvacLength = resEvacs.length;
+            var resEvacDisplay = resEvacs
+            var resTotalScanned = resz1.length
             
-            console.log('whats the array value  ' + JSON.stringify(resEvacs[i].iClassNumber)); 
-            console.log('whats the muster array length  ' + JSON.stringify(resz1.length)); 
             
-            for (var j=0; j < resz1.length; j++) {
-                var intOfString = parseInt(resz1[j].iClassNumber); 
-                console.log('the two values '+ intOfString + ' '+resEvacs[i].iClassNumber);
-                if (intOfString==resEvacs[i].iClassNumber) {
-                  console.log('ever getting here?? ') 
-                  resEvacs.splice(i,1);
+            // attn: Have to deal with the case where the  there are two attendance records for the event that 
+            // have the same iClassNumber.  if splice from the array when first match is found, then
+            // It remove from the array
+            // for (var i=0; i < resEvacs.length; i++) {
+              
+            //   console.log('whats the array value  ' + JSON.stringify(resEvacs[i].iClassNumber)); 
+            //   console.log('whats the muster array length  ' + JSON.stringify(resz1.length)); 
+              
+            //   for (var j=0; j < resz1.length; j++) {
+            //       var intOfString = parseInt(resz1[j].iClassNumber); 
+            //       console.log('Evacs index '+ i);
+            //       if (intOfString==resEvacs[i].iClassNumber) {
+            //         console.log('ever getting here?? ') 
+            //         resEvacDisplay.splice(i,1);
+                    
+            //   }
                   
+            //   }
+            // }
+            // Loop through the muster records and remove them from the evac array
+            for (var i=0; i < resz1.length; i++) {
+              
+              
+              for (var j=0; j < resEvacDisplay.length; j++) {
+                  var intOfString = parseInt(resz1[i].iClassNumber); 
+                  console.log('Evacs index '+ i);
+                  if (intOfString==resEvacDisplay[j].iClassNumber) {
+                    console.log('ever getting here?? ') 
+                    //delete reEvacsDisplay[i]
+                    resEvacDisplay.splice(j,1);
+                    
+              }
+                  
+              }
             }
-                
+        
+            // to assist making the progress bars variable, carry both a number and the number+% in array
+
+            var progress = [{
+                statusPicture1:'status_Red.png',
+                progress1 : '16%'
+                },
+                {statusPicture2:'status_Orange.png',
+                progress2 : '66%'
+                },
+                {statusPicture3:'status_Red.png',
+                progress3 : '6%'
+                },
+                {statusPicture4:'status_Green.png',
+                progress4 : '100%'
+                },
+                {statusPicture5:'status_Red.png',
+                progress5 : '36%'
+                },
+                {statusPicture6:'status_Orange.png',
+                progress6 : '76%'
+                }];
+
+            var missingCount = resEvacs.length;
+            var overallProg = (origEvacLength - missingCount) / origEvacLength * 100;
+            var overallProgRound = overallProg.toFixed(0);
+            var overallProgress = overallProg.toFixed(0)+'%';
+            statusBar="danger";
+            var musterLat = process.env.LAT
+            var musterLng = process.env.LNG
+            //User the lat/lng from the event or, if blank, use the environmental default settings  
+            muster.getOneMusterRecord(req.params.musterID, function(err, resMusterRecord){ 
+             if (err) {
+              console.log('Error while performing get muster record: ' + err);
+              }
+              else {
+               
+               //atn: logic here to use the muster(event) GPS fields rather than the environmental variables
+               if (resMusterRecord[0].Latitude !=="" && resMusterRecord[0].Longitude !==""){
+                  console.log("Changing Lat/Lng");
+
+                  musterLat = resMusterRecord[0].Latitude
+                  musterLng = resMusterRecord[0].Longitude
+
+                }        
+
+            // show the mustering live screen
+              res.render('musterLive', { title: 'Command Center', statusBar : statusBar, overallProgress : overallProgress, overallProgRound : overallProgRound, missingCount : missingCount, progress : progress, username: req.session.username, resz1 : resz1, resz2 : resz2, resEvacDisplay : resEvacDisplay, resTotalScanned, musterLat, musterLng});
             }
+            });
           }
-      
-          // to assist making the progress bars variable, carry both a number and the number+% in array
-
-          var progress = [{
-              statusPicture1:'status_Red.png',
-              progress1 : '16%'
-              },
-              {statusPicture2:'status_Orange.png',
-              progress2 : '66%'
-              },
-              {statusPicture3:'status_Red.png',
-              progress3 : '6%'
-              },
-              {statusPicture4:'status_Green.png',
-              progress4 : '100%'
-              },
-              {statusPicture5:'status_Red.png',
-              progress5 : '36%'
-              },
-              {statusPicture6:'status_Orange.png',
-              progress6 : '76%'
-              }];
-
-          console.log('AGAIN');
-          var missingCount = resEvacs.length;
-          var overallProg = (origEvacLength - missingCount) / origEvacLength * 100;
-          console.log('overall progress is '+overallProg)
-          var overallProgRound = overallProg.toFixed(0);
-          var overallProgress = overallProg.toFixed(0)+'%';
-          statusBar="danger";
-
-          // show the mustering screen if msuter is enabled in the environment variables
-          if (process.env.MUSTER == "ON"){
-            res.render('musterLive', { title: 'Command Center - Live Muster', statusBar : statusBar, overallProgress : overallProgress, overallProgRound : overallProgRound, missingCount : missingCount, progress : progress, username: req.session.username, resz1 : resz1, resz2 : resz2, resEvacs : resEvacs, resTotalScanned});
-          }else{
-            res.render('disabled', { title: 'Command Center', username: req.session.username});
-          }
+          });  //end of evac
         }
-      });  //end of evac
-     }
-   });
-    } // if else first get muster
-  });
-      }
-     
-    }; //end of handler
+        });
+       } // if else first get muster
+      });
+    
+    }else{
+      //mustering is disabled in the environmental variables so show disabled screen
+      res.render('disabled', { title: 'Command Center', username: req.session.username});
+    }   
+}  
+}; //end of handler
 
 
 ///////////////////////////////////////////////////////////////
@@ -649,14 +818,16 @@ exports.deviceListForPoint = function(req, res) {
         //res.render('cardholders', { title: 'Command Center 360 - ' });
     }
 };
+
+
 //////////////////////////////////////////////////////////////////////////
 // Post the device to the zone after it has been selected from the list //
+// Used for both Add and Modify of Muster Point                         //
 //////////////////////////////////////////////////////////////////////////
 exports.deviceAddForPoint = function(req, res) {
 
   sess=req.session;
     var name = req.query.name;
-  console.log('here are the PARAMS for the UPDATE '+req.params.AuthCode+' '+req.params.pointID);
 
  //get a connection using the common handler in models/db.js
     db.createConnection(function(err,reslt){  
@@ -680,7 +851,6 @@ exports.deviceAddForPoint = function(req, res) {
           //if (req.params.InvitationListID ==" " || req.params.InvitationListID ==undefined){_invitationListID = 0}else{_invitationListID = req.params.InvitationListID}
 
               var strSQL = 'UPDATE musterpoint SET DeviceAuthCode="'+_authCode+'" WHERE PointID="'+req.params.pointID+'"';
-              console.log('update musterpoint strSQL= '+ strSQL);  
 
               var query = connection.query(strSQL, function(err, result) {
 
@@ -764,7 +934,7 @@ exports.musterPointUpdateOne = function(req,res) {
                 var _region = field5;
                 var _campus= field6;
                 var _building=field7;
-                var _Location=field8;
+                var _location=field8;
                 var _warden=field9
                 //set the deviceAuthCode to "0" for now.  Device can be associated with zone from a list after the NEXT button is pressed 
                 var _deviceAuthCode =field10;
@@ -772,17 +942,17 @@ exports.musterPointUpdateOne = function(req,res) {
                
                 
                 var _qFields = '(PointID, lat, lng, Description, Region, Campus, Building, Location, Warden , DeviceAuthCode)';
-                var _qValues = '("'+_pointID+'", "'+_lat+'", "'+_lng+'", "'+_description+'", "'+_region+'", "'+_campus+'", "'+_building+'", "'+_Location+'", "'+_warden+'", "'+_deviceAuthCode+'")';                                                      
+                var _qValues = '("'+_pointID+'", "'+_lat+'", "'+_lng+'", "'+_description+'", "'+_region+'", "'+_campus+'", "'+_building+'", "'+_location+'", "'+_warden+'", "'+_deviceAuthCode+'")';                                                      
                 var _qUpdates = 'PointID="'+_pointID+'", Lat="'+_lat+'"'+', Lng="'+_lng+'"'+', Description="'+_description+'"'+', Region="'+_region+'"'+', Campus="'+_campus+'"'+', Building="'+_building+'"'+', Location="'+_location+'"'+', Warden="'+_warden+'"';
                 var parmQuery = "UPDATE musterpoint SET "+_qUpdates+" WHERE PointID='"+_pointID+"'";
                 //console.log('parmQuery3= '+parmQuery3);
                 return parmQuery;
                };
-               return {insertZone : insertZone};
+               return {updatePoint : updatePoint};
               })();//feb--end of revealing module
             
 
-              var strSQL = buildPointQuery.insertZone(req.body.pointID, req.body.lat, req.body.lng, req.body.description, req.body.region, req.body.campus, req.body.building, req.body.location,req.body.warden);
+              var strSQL = buildPointQuery.updatePoint(req.body.pointID, req.body.lat, req.body.lng, req.body.description, req.body.region, req.body.campus, req.body.building, req.body.location,req.body.warden, req.body.deviceAuthCode);
               console.log('POST strSQL= '+ strSQL);  
               var query = connection.query(strSQL, function(err, result) {
                 
@@ -793,7 +963,12 @@ exports.musterPointUpdateOne = function(req,res) {
                     res.render('musterPoints', { title: 'Command Center'});
                   } else {
                    
-                   var invitationListID = '';
+                    //Go to the device list screen
+                    connection.end();
+                    res.status(301).redirect('/devicePointChange/'+req.params.pointID+'/'+req.body.deviceAuthCode);
+
+
+                    /*var invitationListID = '';
                     var strSQL1 =  "SELECT InvitationListID from events where EventID="+req.params.eventID;
                       connection.query(strSQL1, function(err, rows) {
                            if (err) {
@@ -809,9 +984,9 @@ exports.musterPointUpdateOne = function(req,res) {
                               }
                             //REgardless of result of InvitationListID lookup, we are heading for the list change screen
                             connection.end();
-                            res.status(301).redirect('/inviteListsChange/'+req.params.eventID+'/'+req.body.eventName+'/'+invitationListID);
+                            res.status(301).redirect('/devicePointChange/'+req.params.eventID+'/'+req.body.eventName+'/'+invitationListID);
 
-                            });
+                            });*/
                   }
               });//feb--end of connection.query
         }
@@ -819,8 +994,12 @@ exports.musterPointUpdateOne = function(req,res) {
 
 }; //feb--end of post handler
 
-// handler for processing csv file ingest submit request
-exports.musterPointChangeforEvent = function(req, res) {
+
+////////////////////////////////////////////////////////////////////////////////////
+// Show the list of available devices so that user can change the one associated  //
+// with this muster point                                                         //
+////////////////////////////////////////////////////////////////////////////////////
+exports.deviceChangeForMusterPoint = function(req, res) {
 
   sess=req.session;
   sess.rptError =null;
@@ -839,17 +1018,33 @@ exports.musterPointChangeforEvent = function(req, res) {
           var connection = reslt;
 
 
-          var _sqlQ = "SELECT * FROM deviceheader";
+          var _sqlQ = "SELECT * FROM deviceheader WHERE CurrentStatus = '1'";
           connection.query(_sqlQ, function(err, results) {
             //connection.release();
             if(err) { console.log('event query bad'+err); callback(true); connection.end(); return; }
           
             connection.end();
-            res.render('musterPointDeviceChange', { title: 'Command Center', username: req.session.username, pointID : req.params.pointID, deviceAuthCode : req.params.deviceAuthCode, results });
+            res.render('devicePointChange', { title: 'Command Center', username: req.session.username, pointID : req.params.pointID, deviceAuthCode : req.params.deviceAuthCode, results });
           });
         } 
       });
 
         //res.render('cardholders', { title: 'Command Center 360 - ' });
     }
+};
+
+// Handler for the attendance report.  This is 
+// handler displaying the attendance records for a particular event
+exports.writeMusteringRpt = function(req, res) {
+  console.error('im in the write handler: '+ JSON.stringify(req.body));
+  sess=req.session;
+  var eventID = req.params.eventID;
+
+
+  writeReport.writeReport('Mustering', eventID, function(err,reslt){  
+          
+          res.status(301).redirect('/musterDetail/'+eventID);
+
+  });
+ 
 };

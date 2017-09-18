@@ -110,12 +110,22 @@ router.post('/musterAdd', mustering.musterPostDatabase);
 
 // Drill down into the records for a particular badge 
 router.get('/musterDetail/:musterID', mustering.musterGetOne);
+router.post('/musterDetail/:eventID', mustering.writeMusteringRpt);
+
+router.get('/musterModify/:musterID', mustering.musterGetOneForEdit);
+router.post('/musterModify/:musterID', mustering.musterUpdateOne);
+
 // Display the search result for drill down 
 //router.post('/musterDetail/:badgeID', mustering.verifySearch);
 // Drill down into the records for a particular badge 
 router.get('/musterLive/:musterID', mustering.musterLive);
 router.get('/musterPoints', mustering.musterPointHome);
 router.get('/musterPointModify/:pointID', mustering.musterPointGetForModify);
+router.post('/musterPointModify/:pointID', mustering.musterPointUpdateOne);
+//attn: delete processing for muster point
+//router.get('/musterPointModify/:pointID', mustering.musterPointDelete);
+
+
 
 
 //the muster zone add screen
@@ -124,8 +134,12 @@ router.get('/musterPointAdd', mustering.musterPointAdd);
 router.post('/musterPointAdd', mustering.musterPointPostDatabase);
 //gets the list of available devices that can be selected for the zone
 router.get('/devicePointAdd/:pointID', mustering.deviceListForPoint);
-//Posts the selected device to the zone record
+router.get('/devicePointChange/:pointID/:authCode', mustering.deviceChangeForMusterPoint);
+
+//Posts the selected device to the muster point record
 router.get('/musterPointAddDevice/:AuthCode/:pointID', mustering.deviceAddForPoint )
+router.post('/musterPointAddDevice/:AuthCode/:pointID', mustering.deviceAddForPoint )
+
 
 
 

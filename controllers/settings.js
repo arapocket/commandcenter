@@ -52,6 +52,9 @@ exports.settingsHome = function(req, res) {
     var pictureDir = process.env.PICTURE_DIR;
     
     var muster = process.env.MUSTER;
+    var latitude = process.env.LAT;
+    var longitude = process.env.LNG;
+
 
     var certName = process.env.CERT_NAME;
     var certPass = process.env.CERT_PASSPHRASE;
@@ -74,7 +77,7 @@ exports.settingsHome = function(req, res) {
 console.log('sess.userType = '+sess.userType);
 
  if (sess.userType == '2'){
-    res.render('settings', { title: 'Command Center' + name, username: sess.username, version, env, dbHost, dbName, dbUser, dbPass, ccSSL, port, infileDis, infileLocal, exportSource, certName, certPass, sweep, sweepDir, pictureDir, muster, emailHost, emailPort, emailSecure, emailUser, emailPass, emailFrom });
+    res.render('settings', { title: 'Command Center' + name, username: sess.username, version, env, dbHost, dbName, dbUser, dbPass, ccSSL, port, infileDis, infileLocal, exportSource, certName, certPass, sweep, sweepDir, pictureDir, muster, latitude, longitude, emailHost, emailPort, emailSecure, emailUser, emailPass, emailFrom });
     } else {
     res.render('Unauthorized', { title: 'Command Center'});
     }
@@ -136,6 +139,12 @@ exports.settingsUpdate = function(req, res) {
         },
         {
         value: 'MUSTER='+req.body.musterRadios
+        },
+        {
+        value: 'LAT='+req.body.latitude
+        },
+        {
+        value: 'LNG='+req.body.longitude
         },
         {
         value: 'CERT_NAME='+req.body.certNameSet

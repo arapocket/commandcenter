@@ -8,34 +8,38 @@ block content
             div
                 form.form-horizontal(method='post')
                     fieldset
-                        legend Enter muster details
+                        legend Edit muster details
                         .form-group
                             label.col-lg-2.control-label(for='inputEmail') Muster name
                             .col-lg-10
-                                input#inputEmail.form-control(type='text', placeholder='', name='musterName')
+                                input#inputEmail.form-control(type='text', placeholder='', name='musterName', value=result[0].EventName, required='')
                         .form-group
                             label.col-lg-2.control-label(for='inputPassword') Event date
                             .col-lg-10
-                                input#datepicker.form-control(type='date', placeholder='', name='eventDate')
+                                input#datepicker.form-control(type='date', placeholder='', name='eventDate', value=displayDate)
                             label.col-lg-2.control-label(for='inputPassword') Event time
                             .col-lg-10
-                                input#timepicker.form-control(type='time', placeholder='', name='eventTime')
+                                input#timepicker.form-control(type='time', placeholder='', name='eventTime', value=displayTime)
+                            
                             label.col-lg-2.control-label(for='inputPassword') Location
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', placeholder='', name='Location')
+                                input#inputPassword.form-control(type='text', name='location', value=result[0].EventLocationName)
+                            
                             label.col-lg-2.control-label(for='inputPassword') GPS (Lat)
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', placeholder='', name='lat', value=defaultLat)
+                                input#inputPassword.form-control(type='text', placeholder='', name='lat', value=result[0].Latitude)
                             label.col-lg-2.control-label(for='inputPassword') GPS (Lng)
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', placeholder='', name='lng', value=defaultLng)
+                                input#inputPassword.form-control(type='text', placeholder='', name='lng', value=result[0].Longitude)
+                           
                             label.col-lg-2.control-label(for='inputPassword') Muster Captain
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', name='musterCaptain')
+                                input#inputPassword.form-control(type='text', name='musterCaptain', value=result[0].EventSponsorName)
+                        
                         .form-group
                             label.col-lg-2.control-label(for='textArea') Comments
                             .col-lg-10
-                                textarea#textArea.form-control(rows='3', name='comments')
+                                textarea#textArea.form-control(rows='3', name='comments')=result[0].Comments ? result[0].Comments : ''
                           
                         .form-group
                           .col-lg-10.col-lg-offset-2

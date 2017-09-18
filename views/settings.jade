@@ -127,6 +127,15 @@ block content
                                   input#optionsRadios4(name='musterRadios', type='radio', checked=muster == 'OFF', value='OFF')
                                   |            OFF
                         .form-group
+                            label.col-lg-2.control-label(for='inputPassword') Latitude
+                            .col-lg-10
+                                input#inputPassword.form-control(type='text',name='latitude', required='', value=latitude)  
+                            label.col-lg-2.control-label(for='inputPassword') Longitude
+                            .col-lg-10
+                                input#inputPassword.form-control(type='text', name='longitude', value=longitude)
+
+
+                        .form-group
                             label.col-lg-2.control-label(for='inputPassword') Email host
                             .col-lg-10
                                 input#inputPassword.form-control(type='text',name='emailHost', required='', value=emailHost)  

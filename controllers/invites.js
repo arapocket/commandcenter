@@ -78,7 +78,7 @@ exports.inviteListsforEvent = function(req, res) {
           
 	          connection.end();
             var eventRelatedListing  = 1;
-	          res.render('inviteLists', { title: 'Command Center - Invite lists', username: req.session.username, eventID : req.params.eventID, results, eventRelatedListing });
+	          res.render('inviteLists', { title: 'Command Center', username: req.session.username, eventID : req.params.eventID, results, eventRelatedListing });
           });
         } 
       });

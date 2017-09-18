@@ -11,13 +11,13 @@ block content
                   }
 
             //-    meta(http-equiv='refresh', content='10')
-            h3 Ara Muster in progress
+            h3 Live muster -- Counted: #{resTotalScanned} 
             
 
             .progress.progress-striped.active
                 
                 .progress-bar.progress-bar-success(style='width: #{overallProgress}')
-                    | #{overallProgress}
+                    |  #{overallProgress}
               
             br
 
@@ -25,99 +25,76 @@ block content
 
             .row
                 .col-md-3.col-sm-3.col-xs-12
-                        .col-md-6.col-sm-6.col-xs-12
+                        //-.col-md-6.col-sm-6.col-xs-12
                         .panel.panel-danger
                           .panel-heading
                             h3.panel-title Remain Unaccounted
                           .panel-body
                             | #{missingCount}
-
+                        //-p.text-danger Unaccounted List
                         div
                             table#pickle.table.table-hover.table-striped.table-bordered
                                 thead
-                                    tr
+                                    tr.danger
                                         th Badge ID
                                         th First Name
                                         th Last Name
                                 tbody
-                                -each resEvac in resEvacs
-                                    tr
+                                -each resEvac in resEvacDisplay
+                                    tr.danger
                                         td=resEvac.iClassNumber
                                         td=resEvac.FirstName
                                         td=resEvac.LastName
                 .col-md-9.col-sm-9.col-xs-12
                     #map
-                    var ara = 12;  
                     script.
                       function initMap() {
-                      console.log("here " + "#{resz2[0].PointID}");
-                      var center = {lat: 34.0259013, lng: -118.3755216};
+                      var data = !{JSON.stringify(resz2)};
+                      var centerLat = !{musterLat}
+                      var centerLng = !{musterLng}
+
+                      // PARAMETERIZE the map center so that customer can set this up when they 
+                      // define a muster
+                      //var center = {lat: 34.0259013, lng: -118.3755216};
+                      var center = {lat: centerLat, lng: centerLng};
+
                       var map = new google.maps.Map(document.getElementById('map'), {
                       zoom: 18,
                       center: center,
                       mapTypeId: google.maps.MapTypeId.HYBRID
                       });
-                      var araString = '<div id="content">'+
-                      '<div id="siteNotice">'+
-                      '</div>'+
-                      '<h1 id="firstHeading" class="firstHeading">Ara</h1>'+
-                      '<div id="bodyContent">'+
-                      '<p><b>Checked In</b></p>'+  
-                      '</div>'+
-                      '</div>';
-                      var archieString = '<div id="content">'+
-                      '<div id="siteNotice">'+
-                      '</div>'+
-                      '<h1 id="firstHeading" class="firstHeading">Archie</h1>'+
-                      '<div id="bodyContent">'+
-                      '<p><b>Checked In</b></p>'+  
-                      '</div>'+
-                      '</div>';
-                      var philString = '<div id="content">'+
-                      '<div id="siteNotice">'+
-                      '</div>'+
-                      '<h1 id="firstHeading" class="firstHeading">Phil</h1>'+
-                      '<div id="bodyContent">'+
-                      '<p><b>????</b></p>'+  
-                      '</div>'+
-                      '</div>';
 
-                      var araWindow = new google.maps.InfoWindow({
-                      content: araString
-                      });
-                      var archieWindow = new google.maps.InfoWindow({
-                      content: archieString
-                      });
-                      var philWindow = new google.maps.InfoWindow({
-                      content: philString
-                      });
-                      for (var i = 0 ; i < #{resz2}.length ; i++){
+                      //Loop through the array containing all the muster points and associated counts                     
+                      for (i = 0 ; i < data.length ; i++){
+                        var lat = data[i].Lat;
+                        var lng = data[i].Lng;
+                        var count = data[i].count;
+                        var pointID = data[i].PointID;
 
-                        //- var markpoint = new google.maps.Marker({
-                        //- position: {lat: i.Lat, lng: i.Lng},
-                        //- map: map
-                        //- })
 
-                        };
-
-                      var araMarker = new google.maps.Marker({
-                      position: ara,
-                      map: map,
-                      title: 'Ara'
-                      });
-                      var archieMarker = new google.maps.Marker({
-                      position: archie,
-                      map: map,
-                      title: 'Archie'
-                      });
-                      var philMarker = new google.maps.Marker({
-                      position: phil,
-                      map: map,
-                      title: 'Phil'
-                      });      
-                      araWindow.open(map, araMarker);
-                      archieWindow.open(map, archieMarker);
-                      philWindow.open(map, philMarker);
+                        //VARIABLES showing the data.PointID and data.Count for each element of the
+                        //resz2 array should be inserted here.   Presumably this should be inside the loop
+                        var windowString = '<div id="content">'+
+                        '<div id="siteNotice">'+
+                        '</div>'+
+                        '<h5 id="firstHeading" class="firstHeading" style="color:#404040">'+data[i].PointID+'</h5>'+
+                        '<div id="bodyContent">'+
+                        '<p style="color:#339966;">Counted: '+data[i].count+'</p>'+  
+                        '</div>'+
+                        '</div>';
+                        
+                        var markerWindow = new google.maps.InfoWindow({
+                        content: windowString
+                          });
+                        
+                        var marker = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: map,
+                        title: 'count'
+                        });
+                        
+                        markerWindow.open(map, marker);                        
+                        }
                       }
                     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAyfHUvqcdI0dWYtOXoVHPpBlH0QAQ9srI&callback=initMap')
 

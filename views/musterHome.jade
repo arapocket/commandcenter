@@ -22,7 +22,9 @@ block content
                                     td
                                         a(href="/musterLive/#{result.EventID}") Live |
                                         br
-                                        a(href="/musterDetail/#{result.EventID}") Detail
+                                        a(href="/musterDetail/#{result.EventID}") Detail |
+                                        br
+                                        a(href="/musterModify/#{result.EventID}") Edit
                                     td=result.EventID
                                     td=result.EventName
                                     td=result.EventDateTime

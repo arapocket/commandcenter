@@ -72,6 +72,12 @@ module.exports.syncGetDateInDisplayFormat = function (dateParm) {
   return formatForDisplay;
 };
 
+module.exports.syncGetDateOnlyInDisplayFormat = function (dateParm) {
+  var dt = datetime.create(dateParm);
+  var formatForDisplay = dt.format('Y-m-d');
+  return formatForDisplay;
+};
+
 //feb--returns the current time in screen time format --:-- --
 module.exports.syncGetTimeInDisplayFormat = function (timeParm) {
   var dt = datetime.create(timeParm);

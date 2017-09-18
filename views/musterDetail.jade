@@ -10,27 +10,32 @@ block content
         form.form-vertical(method='post')
                                 
                             
-        br 
-        div
-            table#pickle.table.table-hover.table-striped.table-bordered
-                    thead
-                        tr
-                            th Badge ID
-                            th Last Name
-                            th First Name
-                            th Device
-                            th In time 
-                            th Out time                    
-                    tbody
-                        -each result in results
+            br 
+            div
+                table#pickle.table.table-hover.table-striped.table-bordered
+                        thead
                             tr
-                                    td=result.iClassNumber
-                                    td=result.LastName
-                                    td=result.FirstName
-                                    td=result.MobSSOperator
-                                    td=result.InTIme
-                                    td=result.OutTIme
-                                    
+                                th Badge ID
+                                th Last Name
+                                th First Name
+                                th Device
+                                th In time 
+                                th Out time                    
+                        tbody
+                            -each result in results
+                                tr
+                                        td=result.iClassNumber
+                                        td=result.LastName
+                                        td=result.FirstName
+                                        td=result.MobSSOperator
+                                        td=result.InTIme
+                                        td=result.OutTIme
+                
+            .row
+                .col-md-4.col-sm-6.col-xs-12
+                    p.text-danger #{sess.rptError}
+                    p.text-success #{sess.rptSuccess}
+                    button.btn.btn-lg.btn-primary(type="submit") Generate report now                        
                                    
             script.
                     $(document).ready(function() {

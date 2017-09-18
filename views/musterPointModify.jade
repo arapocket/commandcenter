@@ -8,7 +8,7 @@ block content
             div
                 form.form-horizontal(method='post')
                     fieldset
-                        legend Add Muster Point
+                        legend Modify Muster Point
                         .form-group
                             label.col-lg-2.control-label(for='inputEmail') Muster point ID
                             .col-lg-10
@@ -16,14 +16,15 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='inputPassword') Lat
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', placeholder='', value=result[0].Lat,name='lat')
+                                input#inputPassword.form-control(type='text', placeholder='', value=result[0].lat,name='lat')
                             label.col-lg-2.control-label(for='inputPassword') Long
                             .col-lg-10
-                                input#inputPassword.form-control(type='text', value=result[0].Lng,placeholder='', name='lng')
+                                input#inputPassword.form-control(type='text', value=result[0].lng,placeholder='', name='lng')
+                       
                         .form-group
                             label.col-lg-2.control-label(for='textArea') Description
                             .col-lg-10
-                                textarea#textArea.form-control(rows='3', name='description', value=result[0].Description,)
+                                textarea#textArea.form-control(rows='3', name='description')=result[0].Description ? result[0].Description : ''
                         .form-group
                             label.col-lg-2.control-label(for='inputPassword') Region
                             .col-lg-10
@@ -43,7 +44,7 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='disabledInput') Device Associated
                             .col-lg-10
-                                input#disabledInput.form-control(disabled='', name='description', value=result[0].DeviceAuthCode)
+                                input#disabledInput.form-control(disabled='', name='deviceAuthCode', value=result[0].DeviceAuthCode)
                             
                         .form-group
                           .col-lg-10.col-lg-offset-2
