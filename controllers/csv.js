@@ -9,13 +9,14 @@ var empBadge = require('../models/empBadge');
 var people = require('../models/people');
 var csvImport = require('./csvImport');
 var csvImportInsert = require('./csvImportInsert');
+//PB 2017.09.28 detect line endings and adjust infile syntax accordingly
+var crlf = require('crlf-helper');
 
 
 
-
-
-// feb ------HANDLER
-// feb -- handler for showing the csv ingest page
+//////////////////////////////////////////////////////////////////////////////
+//  Handler for showing csv ingest page                                     //  
+//////////////////////////////////////////////////////////////////////////////
 exports.csvHome = function(req, res) {
   sess=req.session;
   sess.success = null;
@@ -37,10 +38,9 @@ exports.csvHome = function(req, res) {
     };
 };
 
-
-// feb ------HANDLER
-// handler for processing csv file through INFILE MySQL functionality
-// first clearing and then creating records for people, accesslevels and empbadge
+//////////////////////////////////////////////////////////////////////////////
+//  Handler for processing csv file through INFILE the cardholder csv file ///  
+//////////////////////////////////////////////////////////////////////////////
 exports.csvIngest = function(req, res) {
   sess = req.session;
   sess.error = null;
@@ -111,7 +111,7 @@ exports.csvIngest = function(req, res) {
 
 
 	//First check that this is a valid directory and filename
-  //addded this line to see what stats can be attained ftom the fs module
+  //added this line to see what stats can be attained ftom the fs module
   fs.stat(csvFileName, function(error, stats) { console.log(stats); });
   fs.readFile(csvFileName, {
   //fs.readFile(req.body.fileName, {
@@ -121,6 +121,15 @@ exports.csvIngest = function(req, res) {
           sess.error = 'File not found -- "'+csvFileName+'" -- Please check directory and file name.';
           res.render('csv', { title: 'Command Center', username: sess.username, success: sess.success });
           } else {
+
+            //###### Mon Oct 2 05:55:01 PDT 2017
+            //PB 2017.09.28 detect line endings and adjust infile syntax accordingly
+            // Need to change this read to just get the first line of the file if possible
+            var text = fs.readFileSync(csvFileName,'utf8')
+
+            var lineEnding = crlf.getLineEnding(text);
+            console.log("This is the CR?LF? for this file -- "+lineEnding);
+            // CRLF
   
             // Call handler for clearing and creating records for the 3 files
             // passing as variable the screen inputted directory and filename for the csv
@@ -165,7 +174,11 @@ exports.csvIngest = function(req, res) {
                 }else{
                   // this should be the most common pathway -- Infile is enabled and the data
                   // source allows for it
-                  csvImport.inFile(csvFileName, fileExtension, function(err, res2){ 
+                  
+                  //PB 2017.09.28 detect line endings and adjust infile syntax accordingly
+                  //added LineEnding parameter
+
+                  csvImport.inFile(csvFileName, fileExtension, lineEnding, function(err, res2){ 
                       if (err) {
                         console.log('Error while performing INFILE proessing: ' + err);
                         res.render('csv', { title: 'Command Center', username: sess.username, success: sess.success });

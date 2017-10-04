@@ -9,13 +9,16 @@ var db = require('../models/db');
 var inviteList = require('../models/inviteList');
 var csvImportInsert = require('./csvImportInsert');
 var csvImportInsertS2 = require('./csvImportInsertS2');
+//PB 2017.09.28 detect line endings and adjust infile syntax accordingly
+var crlf = require('crlf-helper');
+
 
 
 
 //////////////////////////////////////////////////////
 //  Handler for importing the cardholder csv file   //
 //////////////////////////////////////////////////////
-exports.inFile = function(csvFileName, fileExtension, callback) {
+exports.inFile = function(csvFileName, fileExtension, lineEnding, callback) {
   sess.success = null;
   sess.error = null;
   var strSQL = "";
@@ -100,51 +103,69 @@ exports.inFile = function(csvFileName, fileExtension, callback) {
                     var _d = new Date();
                     var _t = _d.getTime(); 
                     var _updateTime = _t;
+                    
+
+                  //###### Mon Oct 2 14:03:20 PDT 2017
+                  //Set the line terminator for the INFILE statement based on the lineEnding parameter
+                  var termBy = '\r\n'
+                  if (lineEnding=="CRLF") {
+                    termBy = '\r\n'
+                    } else if (lineEnding=="LF"){
+                      termBy = '\n'
+                      } else if (lineEnding=="CR"){
+                        termBy = '\r'
+                          }else{
+                          console.log("The file does not have supported line endings.  Detected line ending is: " +lineEnding)
+                          }
                   
                   /**
-                         * Condition INFILE statement based on incoming file format.
-                         * Currently choices are AMAG(comma delim, encosed quote) or 
-                         * regular CSV (commma delim)... [S2 requires INSERT processing]
-                         * Quote in enclosure must be escaped
-                         * Also added ImageName to people query and EXPIRY DATE processing to Empbadge table
-                         */
-                        var exSrc = process.env.EXPORT_SOURCE;
+                   * Condition INFILE statement based on incoming file format.
+                   * Currently choices are AMAG(comma delim, encosed quote) or 
+                   * regular CSV (commma delim)... [S2 requires INSERT processing]
+                   * Quote in enclosure must be escaped
+                   * Also added ImageName to people query and EXPIRY DATE processing to Empbadge table
+                   */
+                    var exSrc = process.env.EXPORT_SOURCE;
 
-                        switch (exSrc)
-                        {
-                          case "AMAG":
-                              strSQL = strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE people FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' (LastName, FirstName, @var1, @dummy, @dummy, @var2, @dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy,@dummy, @dummy,@dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy, imageName ) SET iClassNumber = CONCAT(@var2, @var1), EmpID = CONCAT(@var2, @var1), updateTime ="+_updateTime;
+                    switch (exSrc)
+                    {
+                      case "AMAG":
+                          strSQL = strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE people FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '"+termBy+"' (LastName, FirstName, @var1, @dummy, @dummy, @var2, @dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy,@dummy, @dummy,@dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy, imageName ) SET iClassNumber = CONCAT(@var2, @var1), EmpID = CONCAT(@var2, @var1), updateTime ="+_updateTime;
 
-                              break;
+                          break;
+                      
+                      case "ACM":
+                          strSQL = strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE people FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '"+termBy+"' IGNORE 1 LINES (@var1, @var2, @dummy, @dummy, @dummy, @dummy, @dummy, FirstName, LastName, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, EmailAddr, Title, @dummy, Division, SiteLocation, Building, @dummy, @dummy, iClassNumber ) SET imageName=@var1, EmpID= @var2, Identifier1=@var2, updateTime ="+_updateTime;
                           
-                          case "ACM":
-                              strSQL = strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE people FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (@var1, @var2, @dummy, @dummy, @dummy, @dummy, @dummy, FirstName, LastName, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, EmailAddr, Title, @dummy, Division, SiteLocation, Building, @dummy, @dummy, iClassNumber ) SET imageName=@var1, EmpID= @var2, Identifier1=@var2, updateTime ="+_updateTime;
+                          break;
 
-                              break;
-
-                          default: 
-                          /**
-                         * \r\n doesnt work for certain files, possibly files opened, saved or created in notepad.
-                         * Change to \n, which seems to wor for all file types tested
-                         * This change was percolated 6/20/17 into the other two tables below and Beckenbauer
-                         * REVERSED this 7/9/17 -- \n alone wasnt working properly.  There seems to be some inconsistency here.
-                         * Needs to be MONITORED.  Possible that git changes line endings on .csv files?  it certianly sends warnings that
-                         * it is checning line endings.  Notes on this can be found in Evernote.
-                         * LATEST 2017.09.05 -- row delimiters vary based on machien file was generated on:
-                         * windows machine \r\n
-                         * Linux \n  (appears to be the LLU problem)
-                         * Apple \r  (e.g. csv macintosh filetype option when saving in Excel)
-                         * Wordpad (possibly also \r)
-                         * There may be a way to prgrammatically autodetect this
-                         */
-                        
-                          //Process for export source OTHER
-                          strSQL = strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE people FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (empID, LastName, FirstName, title, iClassNumber, imageName) SET  updateTime ="+_updateTime;
-
-                        }
+                      default: 
+                      /**
+                     * \r\n doesnt work for certain files, possibly files opened, saved or created in notepad.
+                     * Change to \n, which seems to wor for all file types tested
+                     * This change was percolated 6/20/17 into the other two tables below and Beckenbauer
+                     * REVERSED this 7/9/17 -- \n alone wasnt working properly.  There seems to be some inconsistency here.
+                     * Needs to be MONITORED.  Possible that git changes line endings on .csv files?  it certianly sends warnings that
+                     * it is checning line endings.  Notes on this can be found in Evernote.
+                     * LATEST 2017.09.05 -- row delimiters vary based on machien file was generated on:
+                     * windows machine \r\n
+                     * Linux \n  (appears to be the LLU problem)
+                     * Apple \r  (e.g. csv macintosh filetype option when saving in Excel)
+                     * Wordpad (possibly also \r)
+                     * There may be a way to prgrammatically autodetect this
+                     * ACM (BCBS) export file seems to produce \n only
+                     * 
+                     * ###### Mon Oct 2 12:47:48 PDT 2017
+                     * Cr, LF, and CRLF, which are are all valid csv line endings based on the OS (Win v Unix) and the specific package used
+                     * to save the file.  hence, we now detect the line ending and adjust the INFILE TERMINATED BY syntax accordingly
+                     */
+                    
+                      //Process for export source DEFAULT mobss file format
+                      strSQL = strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE people FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '"+termBy+"' IGNORE 1 LINES (empID, LastName, FirstName, title, iClassNumber, imageName) SET  updateTime ="+_updateTime;
+                      
+                  } //end of switch
   
                         
-                  //strSQL = "LOAD DATA LOCAL INFILE 'C:/Users/bligh/Dropbox/v_starter/mobss demo6310_1.csv' INTO TABLE people FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (empID, LastName, FirstName, title, iClassNumber, imageName) SET  updateTime = CURRENT_TIMESTAMP";
                   console.log('People INFILE query'+strSQL);
                   query = connection.query(strSQL, function(err, result) {
 
@@ -182,16 +203,17 @@ exports.inFile = function(csvFileName, fileExtension, callback) {
                          * Added processing for AMAG EXPIRY Date -- Currently using the updateTime field to
                          * Store the expiry date from the AMAG/Symmetry txt export file
                          */
+                        //###### Mon Oct 2 14:17:44 PDT 2017 use termBy to condition the line ending
                         
                          switch (exSrc)
                         {
                           case "AMAG":
-                              strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE empbadge FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' (@dummy, @dummy, @var1, @dummy, @dummy, @var2, @dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy,@dummy, @dummy, UpdateTime) SET iClassNumber = CONCAT(@var2, @var1), EmpID = CONCAT(@var2, @var1), StatusID ='1', StatusName = 'Active'";
+                              strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE empbadge FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '"+termBy+"' (@dummy, @dummy, @var1, @dummy, @dummy, @var2, @dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy, @dummy,@dummy, @dummy, UpdateTime) SET iClassNumber = CONCAT(@var2, @var1), EmpID = CONCAT(@var2, @var1), StatusID ='1', StatusName = 'Active'";
 
                               break;
                           case "ACM":
-                              strSQL =  strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE empbadge FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (@dummy, @var2, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @var1, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy,@dummy, @dummy, iClassNumber) SET EmpID = @var2, StatusID ='1', StatusName = 'Active', updateTime ="+_updateTime;
-
+                              strSQL =  strPrepend+"'"+csvFileName+"'"+" IGNORE INTO TABLE empbadge FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '"+termBy+"' IGNORE 1 LINES (@dummy, @var2, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @var1, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy,@dummy, @dummy, @dummy,@dummy, @dummy, iClassNumber) SET EmpID = @var2, StatusID ='1', StatusName = 'Active', updateTime ="+_updateTime;
+                             
                               break;
                           default: 
                           /**
@@ -201,10 +223,15 @@ exports.inFile = function(csvFileName, fileExtension, callback) {
                          * REVERSED this 7/9/17 -- \n alone wasnt working properly.  There seems to be some inconsistency here.
                          * Needs to be MONITORED.  Possible that git changes line endings on .csv files?  it certianly sends warnings that
                          * it is checking line endings.  Notes on this can be found in Evernote.
+                         * 
+                         * ###### Mon Oct 2 12:47:48 PDT 2017
+                         * Cr, LF, and CRLF, which are are all valid line endings based on the OS (Win v Unix) and the specific package used
+                         * to save the file.  hence, we now detect the line ending and adjust the INFILE TERMINATED BY syntax accordingly
                          */
-                            //Process for export source OTHER
-                            strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE empbadge FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (EmpID, @dummy, @dummy, @dummy, iClassNumber) SET StatusID ='1', StatusName = 'Active', updateTime ="+_updateTime;
-
+                            //Process for export source OTHER (default mobss)
+                            
+                            strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE empbadge FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '"+termBy+"' IGNORE 1 LINES (EmpID, @dummy, @dummy, @dummy, iClassNumber) SET StatusID ='1', StatusName = 'Active', updateTime ="+_updateTime;
+                             
                         }
 
 
@@ -261,16 +288,23 @@ exports.inFile = function(csvFileName, fileExtension, callback) {
                          * CSV (commman delim)
                          * Quote in enclosure must be escaped
                          * AMAG does not come with a title line, so no IGNORE 1 LINES for that option
+                         * 
+                         * 
+                         * ###### Mon Oct 2 12:47:48 PDT 2017
+                         * Cr, LF, and CRLF, which are are all valid line endings based on the OS (Win v Unix) and the specific package used
+                         * to save the file.  hence, we now detect the line ending and adjust the INFILE TERMINATED BY syntax accordingly
                          */
                           
                         switch (exSrc)
                         {
                           case "AMAG":
-                              strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE accesslevels FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' (@dummy, @dummy, @var1, @dummy, @dummy, @var2) SET BadgeID = CONCAT(@var2, @var1), EmpID = CONCAT(@var2, @var1), AccsLvlID = '1', AccsLvlName = 'Main', updateTime ="+_updateTime;
+                              strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE accesslevels FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '"+termBy+"' (@dummy, @dummy, @var1, @dummy, @dummy, @var2) SET BadgeID = CONCAT(@var2, @var1), EmpID = CONCAT(@var2, @var1), AccsLvlID = '1', AccsLvlName = 'Main', updateTime ="+_updateTime;
 
                               break;
                           case "ACM":
-                              strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE accesslevels FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (@dummy, @var2, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @var1, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, BadgeID) SET EmpID = @var2, AccsLvlID = '1', AccsLvlName = 'Main', updateTime ="+_updateTime;
+                           
+                              strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE accesslevels FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '"+termBy+"' IGNORE 1 LINES (@dummy, @var2, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @var1, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, BadgeID) SET EmpID = @var2, AccsLvlID = '1', AccsLvlName = 'Main', updateTime ="+_updateTime;
+                              
                           break;
 
                           default: 
@@ -282,8 +316,10 @@ exports.inFile = function(csvFileName, fileExtension, callback) {
                          * Needs to be MONITORED.  Possible that git changes line endings on .csv files?  it certianly sends warnings that
                          * it is checning line endings.  Notes on this can be found in Evernote.
                          */
-                           strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE accesslevels FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (EmpID, @dummy, @dummy, @dummy, BadgeID) SET AccsLvlID = '1', AccsLvlName = 'Main', updateTime ="+_updateTime;
+                            //Process for export source OTHER (default mobss)
 
+                            strSQL =  strPrepend+"'"+csvFileName+"'"+" INTO TABLE accesslevels FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '"+termBy+"' IGNORE 1 LINES (EmpID, @dummy, @dummy, @dummy, BadgeID) SET AccsLvlID = '1', AccsLvlName = 'Main', updateTime ="+_updateTime;
+                            
                         }
                           
                           query = connection.query(strSQL, function(err, result) {
@@ -323,13 +359,13 @@ exports.inFile = function(csvFileName, fileExtension, callback) {
   
 };
 
-//wqdwdqwdd
 
 
 ////////////////////////////////////////////////////////
 //  Load the csv invitee file into the invitees table //
 ////////////////////////////////////////////////////////
-exports.importInvite = function(csvFileName, listName, listComment, callback) {
+//###### Tue Oct 3 06:30:43 PDT 2017 Added lineEnding parm
+exports.importInvite = function(csvFileName, listName, listComment, lineEnding, callback) {
   sess.success = null;
   sess.error = null;
   var strSQL = "";
@@ -344,8 +380,6 @@ exports.importInvite = function(csvFileName, listName, listComment, callback) {
    * has a localhost MySQL which does not allow LOCAL.
    * So we will configure the front part of the INFILE SQL statement based on our .env variable.
    */
-  
-
   var dbLoc = process.env.LOCAL_INFILE;
   var strPrepend = "";
 
@@ -358,6 +392,18 @@ exports.importInvite = function(csvFileName, listName, listComment, callback) {
     default: 
       strPrepend = 'LOAD DATA LOCAL INFILE '
   }
+
+  //###### Tue Oct 3 06:24:53 PDT 2017  Set the line terminator for the INFILE statement based on the lineEnding parameter
+  var termBy = '\r\n'
+  if (lineEnding=="CRLF") {
+    termBy = '\r\n'
+    } else if (lineEnding=="LF"){
+      termBy = '\n'
+      } else if (lineEnding=="CR"){
+        termBy = '\r'
+          }else{
+          console.log("The file does not have supported line endings.  Detected line ending is: " +lineEnding)
+          }
 
   db.createConnection(function(err,reslt)
   {  
@@ -479,13 +525,13 @@ exports.importInvite = function(csvFileName, listName, listComment, callback) {
                        
                         /**
                          * Two Source formats currently distinguished -- regular and ACM 
-                         * 
+                         * ###### Tue Oct 3 07:29:51 PDT 2017  parameterized the line endings
                          */
                         if (process.env.EXPORT_SOURCE == "ACM"){
-                            strSQL = strPrepend+ "'"+csvFileName+"'"+" INTO TABLE Invitees FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (@dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy,  FirstName, LastName, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, EmailAddress, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy,BadgeNumber) SET InvitationListID = LAST_INSERT_ID(), UpdateTime ="+_updateTime;
+                            strSQL = strPrepend+ "'"+csvFileName+"'"+" INTO TABLE Invitees FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '"+termBy+"' IGNORE 1 LINES (@dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy,  FirstName, LastName, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, EmailAddress, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy, @dummy,BadgeNumber) SET InvitationListID = LAST_INSERT_ID(), UpdateTime ="+_updateTime;
 
                           }else{
-                            strSQL = strPrepend+ "'"+csvFileName+"'"+" INTO TABLE Invitees FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '\r\n' IGNORE 1 LINES (@dummy, LastName, FirstName, @dummy, BadgeNumber) SET InvitationListID = LAST_INSERT_ID(), UpdateTime ="+_updateTime;
+                            strSQL = strPrepend+ "'"+csvFileName+"'"+" INTO TABLE Invitees FIELDS TERMINATED BY ',' ENCLOSED BY '' LINES TERMINATED BY '"+termBy+"' IGNORE 1 LINES (@dummy, LastName, FirstName, @dummy, BadgeNumber) SET InvitationListID = LAST_INSERT_ID(), UpdateTime ="+_updateTime;
 
                           }    
                         

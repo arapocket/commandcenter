@@ -49,6 +49,10 @@ exports.settingsHome = function(req, res) {
     
     var sweep = process.env.SWEEP_SCHED;
     var sweepDir = process.env.SWEEP_FILE;
+
+    //###### Tue Oct 3 09:37:23 PDT 2017 allow for sweep of photos with data only (no photos)
+    var sweepScope = process.env.SWEEP_SCOPE;
+    
     var pictureDir = process.env.PICTURE_DIR;
     
     var muster = process.env.MUSTER;
@@ -77,7 +81,7 @@ exports.settingsHome = function(req, res) {
 console.log('sess.userType = '+sess.userType);
 
  if (sess.userType == '2'){
-    res.render('settings', { title: 'Command Center' + name, username: sess.username, version, env, dbHost, dbName, dbUser, dbPass, ccSSL, port, infileDis, infileLocal, exportSource, certName, certPass, sweep, sweepDir, pictureDir, muster, latitude, longitude, emailHost, emailPort, emailSecure, emailUser, emailPass, emailFrom });
+    res.render('settings', { title: 'Command Center' + name, username: sess.username, version, env, dbHost, dbName, dbUser, dbPass, ccSSL, port, infileDis, infileLocal, exportSource, certName, certPass, sweep, sweepDir, sweepScope, pictureDir, muster, latitude, longitude, emailHost, emailPort, emailSecure, emailUser, emailPass, emailFrom });
     } else {
     res.render('Unauthorized', { title: 'Command Center'});
     }
@@ -94,7 +98,7 @@ exports.settingsUpdate = function(req, res) {
     /**
      * Create an array from the display fields so we can write the .env file
      */
-    
+    //###### Tue Oct 3 09:48:09 PDT 2017  Added sweep scope parm to allow sweep without photos
     var param_array = [{
         value: 'VERSION='+process.env.VERSION
         },
@@ -136,6 +140,9 @@ exports.settingsUpdate = function(req, res) {
         },
         {
         value: 'SWEEP_SCHED='+req.body.sweepRadios
+        },
+        {
+        value: 'SWEEP_SCOPE='+req.body.sweepRadioScope
         },
         {
         value: 'MUSTER='+req.body.musterRadios

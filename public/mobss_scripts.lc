@@ -2,6 +2,7 @@
 -- 2017-07-27
 -- for use in CommandCenter 5 (node.js)
 -- plain-text authCode challenge to be added
+--###### Tue Oct 3 11:42:40 PDT 2017  processing for SendEvents added
 
 makeItSo
 
@@ -156,6 +157,48 @@ command makeItSo
                set itemdel to comma
                put "INSERT INTO" && tTable && "(" & tFields & ") VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12, :13, :14);" into tSQL
                revExecuteSQL tConId, tSQL, "tMobSSID", "tEmpID", "tiClassNumber", "tFirstName", "tLastName", "tInTIme", "tOutTIme", "tInSeconds", "tOutSeconds", "tEventID" , "tEventName", "tAttendDate", "tMobSSOperator", "tRecordStatus"
+               if the result is a number then
+                  add the result to tRecords
+               else
+                  put the result into tError
+               end if
+            end repeat
+
+            if tError is empty then put "SUCCESS" && tRecords
+            else get returnFail("ERROR" && tError && tRecords)
+            break
+
+         case "sendEvents"
+            put 0 into tRecords
+            put empty into tError
+            put "Events" into tTable
+            put "EventID,EventName,EventDateTime,EventLocationName,EventSponsorName, DurationInMins, Latitude, Longitude,RecordStatus, Comments, updateTime, EventsType, InvitationListID" into tFields
+
+            repeat with i = 1 to the number of lines in tData
+               set itemdel to tab
+               put line i of tData into tLine
+               put item 1 of tLine into tEventID
+               put item 2 of tLine into tEventName
+               put item 3 of tLine into tEventDateTime
+               put item 4 of tLine into tEventLocationName
+               put item 5 of tLine into tEventSponsorName
+               put item 6 of tLine into tDurationInMins
+               put item 7 of tLine into tLatitude
+               put item 8 of tLine into tLongitude
+               put item 9 of tLine into tRecordStatus
+               put item 10 of tLine into tComments
+               --put item 11 of tLine into tupdateTime
+               put item 11 of tLine into tEventsType
+               put item 12 of tLine into tInvitationListID
+               put item 13 of tLine into tTempID
+
+
+               set itemdel to comma
+             
+               put "INSERT INTO" && tTable && "(" & tFields & ") VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9, :10, :11, :12);" into tSQL
+               revExecuteSQL tConId, tSQL, "tEventName", "tEventDateTime", "tEventLocationName", "tEventSponsorName", "tDurationInMins", "tLatitude", "tLongitude", "tRecordStatus", "tComments", "tEventsType", "tInvitationListID", "tTempID"
+               
+               
                if the result is a number then
                   add the result to tRecords
                else

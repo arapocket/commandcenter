@@ -1,3 +1,4 @@
+<!-- ###### Tue Oct 3 09:45:53 PDT 2017 added parm to allow sweep to run without sweeping photos -->
 include mixins
 extends layout
 block content   
@@ -96,7 +97,7 @@ block content
                                   |            Other
                        
                         .form-group
-                            label.col-lg-2.control-label Sweep 
+                            label.col-lg-2.control-label Sweep ON/OFF
                             .col-lg-10
                               .radio
                                 label
@@ -106,6 +107,16 @@ block content
                                 label
                                   input#optionsRadios4(name='sweepRadios', type='radio', checked=sweep == 'OFF', value='OFF')
                                   |            OFF
+                            label.col-lg-2.control-label Sweep Includes Photos YES/NO
+                            .col-lg-10
+                              .radio
+                                label
+                                  input#optionsRadios3(name='sweepRadioScope', type='radio', checked=sweepScope == 'YES', value='YES')
+                                  |            YES
+                              .radio
+                                label
+                                  input#optionsRadios4(name='sweepRadioScope', type='radio', checked=sweepScope == 'NO', value='NO')
+                                  |            NO
 
                         .form-group
                             label.col-lg-2.control-label(for='disabledInput') Sweep file (full path)
@@ -126,6 +137,7 @@ block content
                                 label
                                   input#optionsRadios4(name='musterRadios', type='radio', checked=muster == 'OFF', value='OFF')
                                   |            OFF
+                        
                         .form-group
                             label.col-lg-2.control-label(for='inputPassword') Latitude
                             .col-lg-10

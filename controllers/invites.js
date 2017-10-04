@@ -5,11 +5,15 @@ var csvParser = require('csv-parse');
 var path = require( 'path' );
 var csvImport = require('./csvImport');
 var db = require('../models/db');
+//###### Tue Oct 3 06:38:06 PDT 2017 detect line endings
+var crlf = require('crlf-helper');
 
 
 
 
-// handler for processing csv file ingest submit request
+////////////////////////////////////////////////////////////////////////////////////                                                           
+// handler for displaying all invite lists
+////////////////////////////////////////////////////////////////////////////////////
 exports.inviteLists = function(req, res) {
 
 	sess=req.session;
@@ -49,7 +53,9 @@ exports.inviteLists = function(req, res) {
     }
 };
 
-// handler for processing csv file ingest submit request
+////////////////////////////////////////////////////////////////////////////////////                                                           
+// handler for displaying invite lists
+////////////////////////////////////////////////////////////////////////////////////
 exports.inviteListsforEvent = function(req, res) {
 
   sess=req.session;
@@ -85,9 +91,12 @@ exports.inviteListsforEvent = function(req, res) {
 
         //res.render('cardholders', { title: 'Command Center 360 - ' });
     }
-};
+}
 
-// handler for processing csv file ingest submit request
+
+////////////////////////////////////////////////////////////////////////////////////                                                           
+// handler for displaying invite lists so that change can be made
+////////////////////////////////////////////////////////////////////////////////////
 exports.inviteListsChangeforEvent = function(req, res) {
 
   sess=req.session;
@@ -124,7 +133,10 @@ exports.inviteListsChangeforEvent = function(req, res) {
     }
 };
 
-// handler for processing csv file ingest submit request
+
+////////////////////////////////////////////////////////////////////////////////////                                                           
+// handler for  processing csv file ingest submit request
+////////////////////////////////////////////////////////////////////////////////////
 exports.inviteListsAddforEvent = function(req, res) {
 
   sess=req.session;
@@ -161,7 +173,10 @@ exports.inviteListsAddforEvent = function(req, res) {
     }
 };
 
-// handler for showing simple pages
+
+////////////////////////////////////////////////////////////////////////////////////                                                           
+// handler for showing the invite add form
+////////////////////////////////////////////////////////////////////////////////////
 exports.inviteAdd = function(req, res) {
   sess=req.session;
   sess.error =null;
@@ -176,7 +191,8 @@ exports.inviteAdd = function(req, res) {
  };
 };
 
-////////////////////////////////////////////////////////////////////////////////////                                                           //
+
+////////////////////////////////////////////////////////////////////////////////////                                                           
 // handler for processing csv file through INFILE MySQL functionality             //
 ////////////////////////////////////////////////////////////////////////////////////
 exports.inviteIngest = function(req, res) {
@@ -243,10 +259,19 @@ exports.inviteIngest = function(req, res) {
           res.render('inviteAdd', { title: 'Command Center - Add Invite', username: sess.username, success: sess.success});
           } else {
   
-            
+            //###### Tue Oct 3 06:33:50 PDT 2017
+            //PB 2017.09.28 detect line endings and adjust infile syntax accordingly
+            // Need to change this read to just get the first line of the file if possible
+            var text = fs.readFileSync(csvFileName,'utf8')
+            var lineEnding = crlf.getLineEnding(text);
+            console.log("This is the CR?LF? for this INVITE file -- "+lineEnding);
+            // CRLF line ending detection
+
             // passing as variable the screen inputted directory and filename for the csv
             // NOTE: res2 so that this subbordinate function can access the original http res variable
-            csvImport.importInvite(csvFileName, listName, listComment, function(err, res2){ 
+
+            //###### Tue Oct 3 06:29:16 PDT 2017 Add the lineEnding parameter
+            csvImport.importInvite(csvFileName, listName, listComment, lineEnding, function(err, res2){ 
                     if (err) {
                       console.log('Error while performing INFILE proessing: ' + err);
                       res.render('inviteAdd', { title: 'Command Center', username: sess.username, success: sess.success });

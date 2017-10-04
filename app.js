@@ -131,11 +131,15 @@ if (process.env.SWEEP_SCHED != "OFF") {
     Six * means runs every second
      */
     //new CronJob('00 46 12 * * 1-5', function() {
+    
+    //###### Tue Oct 3 07:12:37 PDT 2017  Seperate the photos and data elements of the sweep
+    var sweepDataAndPhotos = process.env.SWEEP_SCOPE 
 
     new CronJob('0 36 00 * * 0-6', function() {
 
     //new CronJob('* * * * * *', function() {
-        beckenbauer.sweeper(function(err,rslt){
+        //###### Tue Oct 3 07:12:37 PDT 2017  Seperate the photos and data elements of the sweep
+        beckenbauer.sweeper(sweepDataAndPhotos, function(err,rslt){
               if (err) {console.log('cron unsuccessful: ' + err);}
       });
 

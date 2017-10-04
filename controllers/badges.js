@@ -2,7 +2,7 @@
 var mysql = require('mysql');
 var datetime = require('./datetime');
 var db = require('../models/db');
-
+//###### Sun Oct 1 10:44:14 PDT 2017
 ///////////////////////////////////
 // Display badges list screen    //
 ///////////////////////////////////

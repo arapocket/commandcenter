@@ -1,7 +1,7 @@
+<!-- ###### Mon Oct 2 10:24:04 PDT 2017  Added In/Out, repplaced contractor-->
 include mixins
 extends layout
 block content   
-
         include navbar
 
         .well
@@ -32,7 +32,7 @@ block content
                             th Employee ID
                             th Badge ID
                             th Scan Date/Time
-                            th Contractor
+                            th In/Out
                             th Device ID
                             
                     tbody
@@ -41,7 +41,7 @@ block content
                                     td=result.EmpID
                                     td=result.BadgeID
                                     td=result.ScanDateTime
-                                    td=result.Contractor
+                                    td=result.InOutType
                                     td=result.MobSSOperator
             script.
                     $(document).ready(function() {
