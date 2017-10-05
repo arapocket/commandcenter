@@ -137,8 +137,8 @@ router.get('/devicePointAdd/:pointID', mustering.deviceListForPoint);
 router.get('/devicePointChange/:pointID/:authCode', mustering.deviceChangeForMusterPoint);
 
 //Posts the selected device to the muster point record
-router.get('/musterPointAddDevice/:AuthCode/:pointID', mustering.deviceAddForPoint )
-router.post('/musterPointAddDevice/:AuthCode/:pointID', mustering.deviceAddForPoint )
+router.get('/musterPointAddDevice/:AuthCode/:pointID', mustering.deviceAddForPoint)
+router.post('/musterPointAddDevice/:AuthCode/:pointID', mustering.deviceAddForPoint)
 
 
 
@@ -166,18 +166,29 @@ router.post('/', cc.home_post_handler);
 
 
 // and logging out, closing the session
-router.get('/logout', function(req, res) {
-    // delete the session variable
-	sess=req.session;
-	console.log("logging out "+ sess.username);
-    delete sess.username;
+router.get('/logout', function (req, res) {
+	    // delete the session variable
+	sess = req.session;
+	console.log("logging out " + sess.username);
+	    delete sess.username;
 	delete sess.success;
 	delete sess.photoSuccess;
 	delete sess.error;
-	console.log("logged out "+sess.username);
-    // redirect user to homepage
-    res.redirect('/');
+	console.log("logged out " + sess.username);
+	    // redirect user to homepage
+	    res.redirect('/');
 });
+
+
+//////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
+var GuardLocations = require('../controllers/GuardLocations');
+
+router.get('/guardlocations', GuardLocations.getAllGuardLocations);
+router.post('/guardlocations', GuardLocations.AddGuardLocation);
+router.put('/guardlocations', GuardLocations.updateGuardLocation);
+
+
+
 
 
 module.exports = router;
