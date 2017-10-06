@@ -1,0 +1,75 @@
+include mixins
+extends layout
+block content   
+            include navbar
+
+            head
+                style.
+                  #map {
+                  height: 600px;
+                  width: 100%;
+                  }
+            .row
+              .col-md-3.col-sm-3.col-xs-12
+                .row
+                      .panel.panel-info
+                        .panel-heading
+                          h3.panel-title Guards       
+                        div
+                            table#pickle.table.table-hover.table-striped.table-bordered
+                                thead
+                                    tr.info
+                                        th First Name
+                                        th Last Name
+                                tbody
+                                -each guard in getAllGuardsResult
+                                    tr.info
+                                        td=guard.FirstName
+                                        td=guard.LastName
+                  .row
+                      .panel.panel-danger
+                        .panel-heading
+                          h3.panel-title Incidents       
+                        div
+                            table#pickle.table.table-hover.table-striped.table-bordered
+                                thead
+                                tbody
+                                -each incident in getAllIncidentsResult
+                                    tr.danger
+                                        td=incident.Type                               
+              .col-md-9.col-sm-9.col-xs-12              
+                  #map
+
+                  script.
+                    function initMap() {
+                    var locations = !{JSON.stringify(getCurrentLocationsResult)};
+                    var incidents = !{JSON.stringify(getAllIncidentsResult)};
+                    var iconsBase = "http://maps.google.com/mapfiles/"
+                    var ara = {lat: 34.0257385, lng: -118.3754848};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 18,
+                    center: {lat: locations[0].lat, lng: locations[0].lng},
+                    mapTypeId: google.maps.MapTypeId.HYBRID
+                    });
+                    for (i = 0 ; i < locations.length ; i++){
+                      var lat = locations[i].lat;
+                      var lng = locations[i].lng;
+                        var marker = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: map,
+                        icon: iconsBase + "ms/micons/police.png",
+                        animation: google.maps.Animation.BOUNCE,
+                    });
+                    }
+                    for (i = 0 ; i < incidents.length ; i++){
+                      var lat = incidents[i].lat;
+                      var lng = incidents[i].lng;
+                        var marker = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: map,
+                        icon: iconsBase + "kml/pal3/icon59.png",
+                        animation: google.maps.Animation.BOUNCE,
+                    });
+                    }
+                    }
+                  script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCuuEBG2qsNl6WRWo9093Abz4MEvv3QayU&callback=initMap')

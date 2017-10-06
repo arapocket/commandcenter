@@ -181,11 +181,11 @@ router.get('/logout', function (req, res) {
 
 
 //////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
-var GuardLocations = require('../controllers/GuardLocations');
+var GuardPatrols = require('../controllers/GuardPatrols');
 
-router.get('/guardlocations', GuardLocations.getAllGuardLocations);
-router.post('/guardlocations', GuardLocations.AddGuardLocation);
-router.put('/guardlocations', GuardLocations.updateGuardLocation);
+router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
+router.post('/guardpatrols', GuardPatrols.AddGuardPatrol);
+router.put('/guardpatrols', GuardPatrols.updateGuardPatrol);
 
 
 
