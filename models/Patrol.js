@@ -109,7 +109,7 @@ module.exports.deletePatrol = function (id, callback) {
     });
 }
 
-module.exports.updatePatrol = function (id, Patrol, callback) {
+module.exports.updatePatrol = function (Patrol, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {

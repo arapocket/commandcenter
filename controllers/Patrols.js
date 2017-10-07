@@ -36,7 +36,7 @@ module.exports.addPatrol = function (req, res) {
 };
 
 module.exports.updatePatrol = function (req, res) {
-  Patrol.updatePatrol(req.params.id,req.body, function (err, result) {
+  Patrol.updatePatrol(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
