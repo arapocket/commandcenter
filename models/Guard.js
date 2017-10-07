@@ -4,27 +4,136 @@ var db = require('./db');
 
 module.exports.getAllGuards = function (callback) {
 
-    return db.query("Select * from Guard", callback);
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = ' Select * from Guard; ';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select guardpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+
 
 }
 
 
 module.exportsgetGuardByID = function (id, callback) {
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
 
-    return db.query("select * from guard where GuardID=?", [id], callback);
+            var strSQL = ' Select * from guard where GuardID = ' + id + ';';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select guardpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
 }
 
 
 module.exports.addGuard = function (Guard, callback) {
-    return db.query("Insert into guard values(?,?,?,?)", [Guard.GuardID, Guard.FirstName, Guard.LastName, Guard.OrganizationID], callback);
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = 'Insert into guard values ' + Guard.GuardID + ', ' + Guard.FirstName + ', ' + Guard.LastName + ', ' + Guard.OrganizationID + ';';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select guardpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
 }
 
 module.exports.deleteGuard = function (id, callback) {
-    return db.query("delete from Guard where GuardID=?", [id], callback);
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = ' delete from Guard where GuardID = ' + id + ';';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select guardpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
 }
 
 module.exports.updateGuard = function (id, Guard, callback) {
-    return db.query("update Guard set FirstName=?,LastName=?, OrganizationID=? where GuardID=?", [Guard.FirstName, Guard.LastName, GuardID], callback);
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = 'Update Guard set FirstName = ' + Guard.FirstName + ', LastName = ' + Guard.LastName + ', OrganizationID = ' + Guard.OrganizationID + ', WHERE GuardID =  ' + Guard.GuardID + ';';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select guardpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+
 }
 
 

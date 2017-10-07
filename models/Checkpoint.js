@@ -4,27 +4,136 @@ var db = require('./db');
 
 module.exports.getAllCheckpoints = function (callback) {
 
-    return db.query("Select * from Checkpoint", callback);
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = ' Select * from Checkpoint; ';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select checkpointpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+
 
 }
 
 
 module.exportsgetCheckpointByID = function (id, callback) {
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
 
-    return db.query("select * from checkpoint where CheckpointID=?", [id], callback);
+            var strSQL = ' Select * from checkpoint where CheckpointID = ' + id + ';';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select checkpointpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
 }
 
 
 module.exports.addCheckpoint = function (Checkpoint, callback) {
-    return db.query("Insert into checkpoint values(?,?,?,?)", [Checkpoint.CheckpointID, Checkpoint.FirstName, Checkpoint.LastName, Checkpoint.OrganizationID], callback);
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = 'Insert into checkpoint values ' + Checkpoint.CheckpointID + ', ' + Checkpoint.Sequence + ', ' + Checkpoint.lat + ', ' + Checkpoint.lng + ', ' + Checkpoint.RouteID + ';';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select checkpointpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
 }
 
 module.exports.deleteCheckpoint = function (id, callback) {
-    return db.query("delete from Checkpoint where CheckpointID=?", [id], callback);
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = ' delete from Checkpoint where CheckpointID = ' + id + ';';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select checkpointpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
 }
 
 module.exports.updateCheckpoint = function (id, Checkpoint, callback) {
-    return db.query("update Checkpoint set FirstName=?,LastName=?, OrganizationID=? where CheckpointID=?", [Checkpoint.FirstName, Checkpoint.LastName, CheckpointID], callback);
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = 'Update Checkpoint set Sequence = ' + Checkpoint.Sequence + ', lat = ' + Checkpoint.lat + ', lng = ' + Checkpoint.lng + ', RouteID = ' + Checkpoint.RouteID + ', WHERE CheckpointID =  ' + Checkpoint.CheckpointID + ';';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select checkpointpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+
 }
 
 

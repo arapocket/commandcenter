@@ -46,13 +46,3 @@ module.exports.deleteRoute = function (req, res) {
   });
 };
 
-module.exports.updateRoute = function (req, res) {
-  Route.updateRoute(function (err, result) {
-    if (err) {
-      res.json(err);
-    }
-    else {
-      res.json(result);
-    }
-  });
-};

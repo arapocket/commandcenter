@@ -193,31 +193,42 @@ var Guards = require('../controllers/Guards');
 router.get('/guards'), Guards.getAllGuards;
 router.get('/guards/:id'), Guards.getGuardByID;
 router.post('/guards', Guards.addGuard);
+router.delete('/guards/:id'), Guards.deleteGuard;
+router.put('/guards/:id'), Guards.updateGuard;
 
 var Patrols = require('../controllers/Patrols');
 router.get('/patrols'), Patrols.getAllPatrols;
 router.get('/patrols/:id'), Patrols.getPatrolByID;
 router.post('/patrols', Patrols.addPatrol);
+router.delete('/patrols/:id'), Patrols.deletePatrol;
+router.put('/patrols/:id'), Patrols.updatePatrol;
 
 var Incidents = require('../controllers/Incidents');
 router.get('/incidents'), Incidents.getAllIncidents;
 router.get('/incidents/:id'), Incidents.getIncidentByID;
 router.post('/incidents', Incidents.addIncident);
+router.delete('/incidents/:id'), Incidents.deleteIncident;
+router.put('/incidents/:id'), Incidents.updateIncident;
 
 var Checkpoints = require('../controllers/Checkpoints');
 router.get('/checkpoints'), Checkpoints.getAllCheckpoints;
 router.get('/checkpoints/:id'), Checkpoints.getCheckpointByID;
 router.post('/checkpoints', Checkpoints.addCheckpoint);
+router.delete('/checkpoints/:id'), Checkpoints.deleteCheckpoint;
+router.put('/checkpoints/:id'), Checkpoints.updateCheckpoint;
 
 var Coordinates = require('../controllers/Coordinates');
 router.get('/coordinates'), Coordinates.getAllCoordinates;
 router.get('/coordinates/:id'), Coordinates.getCoordinateByID;
 router.post('/coordinates', Coordinates.addCoordinate);
+router.delete('/coordinates/:id'), Coordinates.deleteCoordinate;
+router.put('/coordinates/:id'), Coordinates.updateCoordinate;
 
 var Routes = require('../controllers/Routes');
 router.get('/routes'), Routes.getAllRoutes;
 router.get('/routes/:id'), Routes.getRouteByID;
 router.post('/routes', Routes.addRoute);
+router.delete('/guards/:id'), Guards.deleteGuard;
 
 
 
