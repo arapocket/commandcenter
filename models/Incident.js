@@ -1,27 +1,32 @@
-var db=require('../dbconnection'); //reference of dbconnection.js
- 
-var Incident={
- 
-getAllIncidents:function(callback){
- 
-return db.query("Select * from Incident",callback);
- 
-},
- getIncidentByID:function(id,callback){
- 
-return db.query("select * from Incident where IncidentID=?",[id],callback);
- },
- addIncident:function(Incident,callback){
- return db.query("Insert into Incident values(?,?,?,?,?,?)",[Incident.IncidentID, Incident.Description, Incident.Type, Incident.lat, Incident.lng, Incident.PatrolID],callback);
- },
- deleteIncident:function(id,callback){
-  return db.query("delete from Incident where IncidentID=?",[id],callback);
- },
- updateIncident:function(id,Incident,callback){
-  return db.query("update Incident set Description=?, Type = ?,lat = ?, lng = ?, patrolID = ?, where IncidentID=?",[Incident.Description, Incident.Type,Incident.lat, Incident.lng, Incident.PatrolID, IncidentID],callback);
- }
- 
-};
- module.exports=Incident;
+var db = require('./db');
 
- 
+
+
+module.exports.getAllIncidents = function (callback) {
+
+    return db.query("Select * from Incident", callback);
+
+}
+
+
+module.exportsgetIncidentByID = function (id, callback) {
+
+    return db.query("select * from incident where IncidentID=?", [id], callback);
+}
+
+
+module.exports.addIncident = function (Incident, callback) {
+    return db.query("Insert into incident values(?,?,?,?)", [Incident.IncidentID, Incident.FirstName, Incident.LastName, Incident.OrganizationID], callback);
+}
+
+module.exports.deleteIncident = function (id, callback) {
+    return db.query("delete from Incident where IncidentID=?", [id], callback);
+}
+
+module.exports.updateIncident = function (id, Incident, callback) {
+    return db.query("update Incident set FirstName=?,LastName=?, OrganizationID=? where IncidentID=?", [Incident.FirstName, Incident.LastName, IncidentID], callback);
+}
+
+
+
+
