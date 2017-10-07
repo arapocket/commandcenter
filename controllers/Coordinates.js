@@ -14,7 +14,7 @@ module.exports.getAllCoordinates = function (req, res) {
 };
 
 module.exports.getCoordinateByID = function (req, res) {
-  Coordinate.getCoordinateByID(function (err, result) {
+  Coordinate.getCoordinateByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -25,7 +25,7 @@ module.exports.getCoordinateByID = function (req, res) {
 };
 
 module.exports.addCoordinate = function (req, res) {
-  Coordinate.addCoordinate(function (err, result) {
+  Coordinate.addCoordinate(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -36,7 +36,7 @@ module.exports.addCoordinate = function (req, res) {
 };
 
 module.exports.deleteCoordinate = function (req, res) {
-  Coordinate.deleteCoordinate(function (err, result) {
+  Coordinate.deleteCoordinate(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -47,7 +47,7 @@ module.exports.deleteCoordinate = function (req, res) {
 };
 
 module.exports.updateCoordinate = function (req, res) {
-  Coordinate.updateCoordinate(function (err, result) {
+  Coordinate.updateCoordinate(req.params.id,req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

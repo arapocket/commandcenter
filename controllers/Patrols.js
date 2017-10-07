@@ -14,7 +14,7 @@ module.exports.getAllPatrols = function (req, res) {
 };
 
 module.exports.getPatrolByID = function (req, res) {
-  Guard.getPatrolByID(function (err, result) {
+  Guard.getPatrolByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -25,7 +25,7 @@ module.exports.getPatrolByID = function (req, res) {
 };
 
 module.exports.addPatrol = function (req, res) {
-  Guard.addPatrol(function (err, result) {
+  Guard.addPatrol(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -36,7 +36,7 @@ module.exports.addPatrol = function (req, res) {
 };
 
 module.exports.updatePatrol = function (req, res) {
-  Guard.updatePatrol(function (err, result) {
+  Guard.updatePatrol(req.params.id,req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -47,7 +47,7 @@ module.exports.updatePatrol = function (req, res) {
 };
 
 module.exports.deletePatrol = function (req, res) {
-  Guard.deletePatrol(function (err, result) {
+  Guard.deletePatrol(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }

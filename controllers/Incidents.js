@@ -14,7 +14,7 @@ module.exports.getAllIncidents = function (req, res) {
 };
 
 module.exports.getIncidentByID = function (req, res) {
-  Incident.getIncidentByID(function (err, result) {
+  Incident.getIncidentByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -25,7 +25,7 @@ module.exports.getIncidentByID = function (req, res) {
 };
 
 module.exports.addIncident = function (req, res) {
-  Incident.addIncident(function (err, result) {
+  Incident.addIncident(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -36,7 +36,7 @@ module.exports.addIncident = function (req, res) {
 };
 
 module.exports.deleteIncident = function (req, res) {
-  Incident.deleteIncident(function (err, result) {
+  Incident.deleteIncident(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -47,7 +47,7 @@ module.exports.deleteIncident = function (req, res) {
 };
 
 module.exports.updateIncident = function (req, res) {
-  Incident.updateIncident(function (err, result) {
+  Incident.updateIncident(req.params.id,req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

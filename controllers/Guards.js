@@ -16,29 +16,29 @@ module.exports.getAllGuards = function (req, res) {
 };
 
 exports.getGuardByID = function (req, res) {
-  Guard.getGuardByID(function (err, result) {
+  Guard.getGuardByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
     else {
       res.json(result);
     }
-  });
+  }); 
 };
 
 exports.addGuard = function (req, res) {
-  Guard.addGuard(function (err, result) {
+  Guard.addGuard(req.body,function (err, result) {
     if (err) {
       res.json(err);
     }
     else {
-      res.json(result);
+      res.json(req.body);
     }
   });
 };
 
 exports.deleteGuard = function (req, res) {
-  Guard.deleteGuard(function (err, result) {
+  Guard.deleteGuard(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -49,7 +49,7 @@ exports.deleteGuard = function (req, res) {
 };
 
 exports.updateGuard = function (req, res) {
-  Guard.updateGuard(function (err, result) {
+  Guard.updateGuard(req.params.id,req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

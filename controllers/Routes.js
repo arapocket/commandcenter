@@ -14,7 +14,7 @@ module.exports.getAllRoutes = function (req, res) {
 };
 
 module.exports.getRouteByID = function (req, res) {
-  Route.getRouteByID(function (err, result) {
+  Route.getRouteByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -25,7 +25,7 @@ module.exports.getRouteByID = function (req, res) {
 };
 
 module.exports.addRoute = function (req, res) {
-  Route.addRoute(function (err, result) {
+  Route.addRoute(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -36,7 +36,7 @@ module.exports.addRoute = function (req, res) {
 };
 
 module.exports.deleteRoute = function (req, res) {
-  Route.deleteRoute(function (err, result) {
+  Route.deleteRoute(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }

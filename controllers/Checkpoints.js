@@ -14,7 +14,7 @@ module.exports.getAllCheckpoints = function (req, res) {
 };
 
 module.exports.getCheckpointByID = function (req, res) {
-  Checkpoint.getCheckpointByID(function (err, result) {
+  Checkpoint.getCheckpointByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -25,7 +25,7 @@ module.exports.getCheckpointByID = function (req, res) {
 };
 
 module.exports.addCheckpoint = function (req, res) {
-  Checkpoint.addCheckpoint(function (err, result) {
+  Checkpoint.addCheckpoint(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -36,7 +36,7 @@ module.exports.addCheckpoint = function (req, res) {
 };
 
 module.exports.deleteCheckpoint = function (req, res) {
-  Checkpoint.deleteCheckpoint(function (err, result) {
+  Checkpoint.deleteCheckpoint(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -47,7 +47,7 @@ module.exports.deleteCheckpoint = function (req, res) {
 };
 
 module.exports.updateCheckpoint = function (req, res) {
-  Checkpoint.updateCheckpoint(function (err, result) {
+  Checkpoint.updateCheckpoint(req.params.id,req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
