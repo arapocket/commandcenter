@@ -3,7 +3,7 @@ var router = express.Router();
 var Patrol = require('../models/Patrol');
 
 module.exports.getAllPatrols = function (req, res) {
-  Guard.getAllPatrols(function (err, result) {
+  Patrol.getAllPatrols(function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -14,7 +14,7 @@ module.exports.getAllPatrols = function (req, res) {
 };
 
 module.exports.getPatrolByID = function (req, res) {
-  Guard.getPatrolByID(req.params.id, function (err, result) {
+  Patrol.getPatrolByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -25,7 +25,7 @@ module.exports.getPatrolByID = function (req, res) {
 };
 
 module.exports.addPatrol = function (req, res) {
-  Guard.addPatrol(req.body, function (err, result) {
+  Patrol.addPatrol(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -36,7 +36,7 @@ module.exports.addPatrol = function (req, res) {
 };
 
 module.exports.updatePatrol = function (req, res) {
-  Guard.updatePatrol(req.params.id,req.body, function (err, result) {
+  Patrol.updatePatrol(req.params.id,req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -47,7 +47,7 @@ module.exports.updatePatrol = function (req, res) {
 };
 
 module.exports.deletePatrol = function (req, res) {
-  Guard.deletePatrol(req.params.id, function (err, result) {
+  Patrol.deletePatrol(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
