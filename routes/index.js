@@ -201,23 +201,23 @@ router.post('/patrols', Patrols.addPatrol);
 
 var Incidents = require('../contollers/Incidents');
 router.get('/incidents'), Incidents.getAllIncidents;
-router.get('/patrols/:id'), Incidents.getIncidentByID;
-router.post('/patrols', Incidents.addIncident);
+router.get('/incidents/:id'), Incidents.getIncidentByID;
+router.post('/incidents', Incidents.addIncident);
 
 var Checkpoints = require('../contollers/Checkpoints');
 router.get('/checkpoints'), Checkpoints.getAllCheckpoints;
-router.get('/patrols/:id'), Checkpoints.getCheckpointByID;
-router.post('/patrols', Checkpoints.addCheckpoint);
+router.get('/checkpoints/:id'), Checkpoints.getCheckpointByID;
+router.post('/checkpoints', Checkpoints.addCheckpoint);
 
 var Coordinates = require('../contollers/Coordinates');
 router.get('/coordinates'), Coordinates.getAllCoordinates;
-router.get('/patrols/:id'), Coordinates.getCoordinateByID;
-router.post('/patrols', Coordinates.addCoordinate);
+router.get('/coordinates/:id'), Coordinates.getCoordinateByID;
+router.post('/coordinates', Coordinates.addCoordinate);
 
 var Routes = require('../contollers/Routes');
 router.get('/routes'), Routes.getAllRoutes;
-router.get('/patrols/:id'), Routes.getRouteByID;
-router.post('/patrols', Routes.addRoute);
+router.get('/routes/:id'), Routes.getRouteByID;
+router.post('/routes', Routes.addRoute);
 
 
 
