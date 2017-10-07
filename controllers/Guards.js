@@ -15,7 +15,7 @@ module.exports.getAllGuards = function (req, res) {
   });
 };
 
-module.exports.getGuardByID = function (req, res) {
+exports.getGuardByID = function (req, res) {
   Guard.getGuardByID(function (err, result) {
     if (err) {
       res.json(err);
@@ -26,7 +26,7 @@ module.exports.getGuardByID = function (req, res) {
   });
 };
 
-module.exports.addGuard = function (req, res) {
+exports.addGuard = function (req, res) {
   Guard.addGuard(function (err, result) {
     if (err) {
       res.json(err);
@@ -37,7 +37,7 @@ module.exports.addGuard = function (req, res) {
   });
 };
 
-module.exports.deleteGuard = function (req, res) {
+exports.deleteGuard = function (req, res) {
   Guard.deleteGuard(function (err, result) {
     if (err) {
       res.json(err);
@@ -48,7 +48,7 @@ module.exports.deleteGuard = function (req, res) {
   });
 };
 
-module.exports.updateGuard = function (req, res) {
+exports.updateGuard = function (req, res) {
   Guard.updateGuard(function (err, result) {
     if (err) {
       res.json(err);
