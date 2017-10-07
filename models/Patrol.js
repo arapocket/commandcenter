@@ -67,7 +67,7 @@ module.exports.addPatrol = function (Patrol, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into patrol values ('" + Patrol.PatrolID + "', '" + Patrol.GuardID + "', '" + Patrol.CurrentPatrol + "');";
+            var strSQL = "Insert into patrol values ('" + Patrol.PatrolID + "', '" + Patrol.GuardID + "', " + Patrol.CurrentPatrol + ");";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -119,7 +119,7 @@ module.exports.updatePatrol = function (id, Patrol, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update Patrol set CurrentPatrol = '" + Patrol.CurrentPatrol + "', WHERE PatrolID =  '" + Patrol.PatrolID + "';";
+            var strSQL = "Update Patrol set CurrentPatrol = " + Patrol.CurrentPatrol + ", WHERE PatrolID =  '" + Patrol.PatrolID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
