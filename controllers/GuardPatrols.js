@@ -49,14 +49,13 @@ module.exports.getAllGuardPatrols = function (req, res) {
         }
       });
 
-      /////////////////////////////////////////////////////////////////////////////////////
-      // GET REST OF INFO TO DISPLAY ON MAP
+
       //=========================== VERIFIED SQL STATEMENTS √ =====================================
 
       // *************    SHOW GUARD NAMES ON MAP
 
       // CREATE VIEW allguards
-      //AS SELECT g.FirstName, g.LastName, p.CurrentPatrol
+      // AS SELECT g.FirstName, g.LastName, p.CurrentPatrol
       // FROM guard g
       // INNER JOIN patrol p ON g.GuardID = p.GuardID;
 
@@ -119,77 +118,3 @@ exports.updateGuardPatrol = function (req, res) {
   });
 
 };
-
-
-// router.get('/:id?', function (req, res, next) {
-
-// //add this line when you want your res to render a page, with supplied data.
-// // res.render('musterLive', { title: 'Command Center', statusBar : statusBar});
-
-
-//   if (req.params.id) {
-
-//     GuardPatrol.getGuardPatrolByID(req.params.id, function (err, rows) {
-
-//       if (err) {
-//         res.json(err);
-//       }
-//       else {
-//         res.json(rows);
-
-
-//       }
-//     });
-//   }
-//   else {
-
-//     GuardPatrol.getAllGuardPatrols(function (err, rows) {
-
-//       if (err) {
-//         res.json(err);
-//       }
-//       else {
-//         res.json(rows);
-//         res.render('guardpatrols', { title: 'Guard Locations', rows});
-//       }
-
-//     });
-//   }
-// });
-// router.post('/', function (req, res, next) {
-
-//   GuardPatrol.addGuardPatrol(req.body, function (err, count) {
-//     if (err) {
-//       res.json(err);
-//     }
-//     else {
-//       res.json(req.body);//or return count for 1 &amp;amp;amp; 0
-//     }
-//   });
-// });
-// router.delete('/:id', function (req, res, next) {
-
-//   GuardPatrol.deleteGuardPatrol(req.params.id, function (err, count) {
-
-//     if (err) {
-//       res.json(err);
-//     }
-//     else {
-//       res.json(count);
-//     }
-
-//   });
-// });
-// router.put('/:id', function (req, res, next) {
-
-//   GuardPatrol.updateGuardPatrol(req.params.id, req.body, function (err, rows) {
-
-//     if (err) {
-//       res.json(err);
-//     }
-//     else {
-//       res.json(rows);
-//     }
-//   });
-// });
-// module.exports = router;

@@ -188,6 +188,36 @@ router.post('/guardpatrols', GuardPatrols.AddGuardPatrol);
 router.put('/guardpatrols', GuardPatrols.updateGuardPatrol);
 
 
+//////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
+var Guards = require('../contollers/Guards');
+router.get('/guards'), Guards.getAllGuards;
+router.get('/guards/:id'), Guards.getGuardByID;
+router.post('/guards', Guards.addGuard);
+
+var Patrols = require('../contollers/Patrols');
+router.get('/patrols'), Patrols.getAllPatrols;
+router.get('/patrols/:id'), Patrols.getPatrolByID;
+router.post('/patrols', Patrols.addPatrol);
+
+var Incidents = require('../contollers/Incidents');
+router.get('/incidents'), Incidents.getAllIncidents;
+router.get('/patrols/:id'), Incidents.getIncidentByID;
+router.post('/patrols', Incidents.addIncident);
+
+var Checkpoints = require('../contollers/Checkpoints');
+router.get('/checkpoints'), Checkpoints.getAllCheckpoints;
+router.get('/patrols/:id'), Checkpoints.getCheckpointByID;
+router.post('/patrols', Checkpoints.addCheckpoint);
+
+var Coordinates = require('../contollers/Coordinates');
+router.get('/coordinates'), Coordinates.getAllCoordinates;
+router.get('/patrols/:id'), Coordinates.getCoordinateByID;
+router.post('/patrols', Coordinates.addCoordinate);
+
+var Routes = require('../contollers/Routes');
+router.get('/routes'), Routes.getAllRoutes;
+router.get('/patrols/:id'), Routes.getRouteByID;
+router.post('/patrols', Routes.addRoute);
 
 
 
