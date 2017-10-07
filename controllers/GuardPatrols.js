@@ -2,6 +2,10 @@ var express = require('express');
 var router = express.Router();
 var GuardPatrol = require('../models/GuardPatrol');
 
+// NEED TO GET ALL THE PATROLS
+//FOR EACH CURRENT PATROL
+//GIVE ME ALL THE COORDS
+
 
 module.exports.getAllGuardPatrols = function (req, res) {
 
@@ -24,10 +28,18 @@ module.exports.getAllGuardPatrols = function (req, res) {
             else {
               GuardPatrol.getCurrentLocations(function (err, getCurrentLocationsResult) {
                 if (err) {
-                  res.json(err)
+                  res.json(err);
                 }
                 else {
-                  res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getAllCoordsResult: getAllCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult });
+                  GuardPatrol.getCurrentPatrols(function (err, getCurrentPatrolsResult){
+                    if (err) {
+                      res.json(err);
+                    }
+                    else {
+                      res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getAllCoordsResult: getAllCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult });
+                    }
+                  })
+                  
                 }
               })
 

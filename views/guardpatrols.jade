@@ -42,14 +42,24 @@ block content
 
                   script.
                     function initMap() {
+                    var guards = !{JSON.stringify(getAllGuardsResult)};
                     var locations = !{JSON.stringify(getCurrentLocationsResult)};
                     var incidents = !{JSON.stringify(getAllIncidentsResult)};
+                    var coords = !{JSON.stringify(getAllCoordsResult)};
+                    var patrols = !{JSON.stringify(getCurrentPatrolsResult)};
                     var iconsBase = "http://maps.google.com/mapfiles/"
                     var ara = {lat: 34.0257385, lng: -118.3754848};
                     var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 18,
+                    zoom: 20,
                     center: {lat: locations[0].lat, lng: locations[0].lng},
-                    mapTypeId: google.maps.MapTypeId.HYBRID
+                    mapTypeId: google.maps.MapTypeId.SATELLITE,
+                    streetViewControl: false,
+                    clickableIcons: false,
+                    fullscreenControl: false,
+                    mapTypeControl: false,
+                    panControl: false,
+                    rotateControl: false
+
                     });
                     for (i = 0 ; i < locations.length ; i++){
                       var lat = locations[i].lat;
@@ -71,5 +81,42 @@ block content
                         animation: google.maps.Animation.BOUNCE,
                     });
                     }
+                    for (i = 0 ; i < patrols.length ; i++){
+                      // create a polyline for each
+                      var patrolSeq = {
+                          repeat: '30px',
+                          icon: {
+                              path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                              scale: 1,
+                              fillOpacity: 0,
+                              strokeColor: "white",
+                              strokeWeight: 1,
+                              strokeOpacity: 1
+                          }
+                      };                      
+                      var patrol = new google.maps.Polyline({
+                      // icons: Array<IconSequence>
+                      map: null,
+                      zIndex: 1,
+                      geodesic: true,
+                      strokeColor: "purple",
+                      strokeOpacity: 0.7,
+                      strokeWeight: 7,
+                      icons: [patrolSeq]
+                      }) 
+                      for (i = 0 ; i < coords.length ; i++){
+                        if (coords[i].PatrolID == patrols[i]){
+                          // add coord to path of patrols[i]
+                          patrol.getPath().push({
+                            lat: coords[i].lat,
+                            lng: coords[i].lng
+                          });
+                        }
+                      }
+                      // add a point 
+                    }                    
+                    
+
+                    
                     }
                   script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCuuEBG2qsNl6WRWo9093Abz4MEvv3QayU&callback=initMap')
