@@ -47,7 +47,7 @@ module.exports.deleteCoordinate = function (req, res) {
 };
 
 module.exports.updateCoordinate = function (req, res) {
-  Coordinate.updateCoordinate(req.params.id,req.body, function (err, result) {
+  Coordinate.updateCoordinate(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

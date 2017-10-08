@@ -109,7 +109,7 @@ module.exports.deleteCoordinate = function (id, callback) {
     });
 }
 
-module.exports.updateCoordinate = function (id, Coordinate, callback) {
+module.exports.updateCoordinate = function (Coordinate, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
