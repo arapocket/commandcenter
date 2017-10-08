@@ -12,7 +12,7 @@ module.exports.getAllCoordinates = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' Select * from Coordinate; ';
+            var strSQL = ' Select * from coordinate; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -93,7 +93,7 @@ module.exports.deleteCoordinate = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " delete from Coordinate where CoordID = '" + id + "';";
+            var strSQL = " delete from coordinate where CoordID = '" + id + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -119,7 +119,7 @@ module.exports.updateCoordinate = function (Coordinate, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update Coordinate SET Sequence = '" + Coordinate.Sequence + "', lat = '" + Coordinate.lat + "', lng = '" + Coordinate.lng + "', PatrolID = '" + Coordinate.PatrolID + "', CurrentCoord = " + Coordinate.CurrentCord + " WHERE CoordID =  '" + Coordinate.CoordID + "';"; connection.query(strSQL, function (err, rows, fields) {
+            var strSQL = "Update coordinate SET Sequence = '" + Coordinate.Sequence + "', lat = '" + Coordinate.lat + "', lng = '" + Coordinate.lng + "', PatrolID = '" + Coordinate.PatrolID + "', CurrentCoord = " + Coordinate.CurrentCord + " WHERE CoordID =  '" + Coordinate.CoordID + "';"; connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
                     callback(null, rows);

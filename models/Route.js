@@ -12,7 +12,7 @@ module.exports.getAllRoutes = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' Select * from Route; ';
+            var strSQL = ' Select * from route; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -93,7 +93,7 @@ module.exports.deleteRoute = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' delete from Route where RouteID = ' + id + ';';
+            var strSQL = ' delete from route where RouteID = ' + id + ';';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

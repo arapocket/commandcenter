@@ -12,7 +12,7 @@ module.exports.getAllGuards = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' Select * from Guard; ';
+            var strSQL = ' Select * from guard; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -93,7 +93,7 @@ module.exports.deleteGuard = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " delete from Guard where GuardID = '" + id + "';";
+            var strSQL = " delete from guard where GuardID = '" + id + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -119,7 +119,7 @@ module.exports.updateGuard = function (id, Guard, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update Guard set FirstName = '" + Guard.FirstName + "', LastName = '" + Guard.LastName + "', OrganizationID = '" + Guard.OrganizationID + "', WHERE GuardID =  '" + Guard.GuardID + "';";
+            var strSQL = "Update guard set FirstName = '" + Guard.FirstName + "', LastName = '" + Guard.LastName + "', OrganizationID = '" + Guard.OrganizationID + "', WHERE GuardID =  '" + Guard.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

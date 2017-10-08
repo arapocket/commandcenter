@@ -12,7 +12,7 @@ module.exports.getAllCheckpoints = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' Select * from Checkpoint; ';
+            var strSQL = ' Select * from checkpoint; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -93,7 +93,7 @@ module.exports.deleteCheckpoint = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " delete from Checkpoint where CheckpointID = '" + id + "';";
+            var strSQL = " delete from checkpoint where CheckpointID = '" + id + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -119,7 +119,7 @@ module.exports.updateCheckpoint = function (id, Checkpoint, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update Checkpoint set Sequence = '" + Checkpoint.Sequence + "', lat = '" + Checkpoint.lat + "', lng = '" + Checkpoint.lng + "', RouteID = '" + Checkpoint.RouteID + "', WHERE CheckpointID =  '" + Checkpoint.CheckpointID + "';"; connection.query(strSQL, function (err, rows, fields) {
+            var strSQL = "Update checkpoint set Sequence = '" + Checkpoint.Sequence + "', lat = '" + Checkpoint.lat + "', lng = '" + Checkpoint.lng + "', RouteID = '" + Checkpoint.RouteID + "', WHERE CheckpointID =  '" + Checkpoint.CheckpointID + "';"; connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
                     callback(null, rows);

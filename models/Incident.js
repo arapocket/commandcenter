@@ -12,7 +12,7 @@ module.exports.getAllIncidents = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' Select * from Incident; ';
+            var strSQL = ' Select * from incident; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -93,7 +93,7 @@ module.exports.deleteIncident = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' delete from Incident where IncidentID = ' + id + ';';
+            var strSQL = ' delete from incident where IncidentID = ' + id + ';';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -119,7 +119,7 @@ module.exports.updateIncident = function (id, Incident, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'Update Incident set Description = ' + Incident.Description + ', Type = ' + Incident.Type + ', lat = ' + Incident.lat + ', lng = ' + Incident.lng + ', PatrolID = ' + Incident.PatrolID + ', WHERE IncidentID =  ' + Incident.IncidentID + ';';
+            var strSQL = 'Update incident set Description = ' + Incident.Description + ', Type = ' + Incident.Type + ', lat = ' + Incident.lat + ', lng = ' + Incident.lng + ', PatrolID = ' + Incident.PatrolID + ', WHERE IncidentID =  ' + Incident.IncidentID + ';';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
