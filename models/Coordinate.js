@@ -40,7 +40,7 @@ module.exportsgetCoordinateByID = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " Select * from coordinate where CoordinateID = '" + id + "';";
+            var strSQL = " Select * from coordinate where CoordID = '" + id + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -67,7 +67,7 @@ module.exports.addCoordinate = function (Coordinate, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into coordinate values ('" + Coordinate.CoordinateID + "', '" + Coordinate.Sequence + "', '" + Coordinate.lat + "', '" + Coordinate.lng + "', '" + Coordinate.RouteID + "', '" + Coordinate.CurrentCoordinate +  "' );";
+            var strSQL = "Insert into coordinate values ('" + Coordinate.CoordID + "', '" + Coordinate.Sequence + "', '" + Coordinate.lat + "', '" + Coordinate.lng + "', '" + Coordinate.PatrolID + "', '" + Coordinate.CurrentCord +  "' );";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -93,7 +93,7 @@ module.exports.deleteCoordinate = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " delete from Coordinate where CoordinateID = '" + id + "';";
+            var strSQL = " delete from Coordinate where CoordID = '" + id + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -119,7 +119,7 @@ module.exports.updateCoordinate = function (id, Coordinate, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update Coordinate set Sequence = '" + Coordinate.Sequence + "', lat = '" + Coordinate.lat + "', lng = '" + Coordinate.lng + "', RouteID = '" + Coordinate.RouteID + "', '" + Coordinate.CurrentCoordinate + "' WHERE CoordinateID =  '" + Coordinate.CoordinateID + "';"; connection.query(strSQL, function (err, rows, fields) {
+            var strSQL = "Update Coordinate set Sequence = '" + Coordinate.Sequence + "', lat = '" + Coordinate.lat + "', lng = '" + Coordinate.lng + "', RouteID = '" + Coordinate.PatrolID + "', '" + Coordinate.CurrentCord + "' WHERE CoordID =  '" + Coordinate.CoordID + "';"; connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
                     callback(null, rows);
