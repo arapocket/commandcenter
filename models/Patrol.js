@@ -119,7 +119,7 @@ module.exports.updatePatrol = function (Patrol, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update patrol set CurrentPatrol = " + Patrol.CurrentPatrol + ", WHERE PatrolID =  '" + Patrol.PatrolID + "';";
+            var strSQL = "Update patrol SET CurrentPatrol = " + Patrol.CurrentPatrol + " WHERE PatrolID =  '" + Patrol.PatrolID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
