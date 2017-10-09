@@ -105,7 +105,7 @@ block content
                       icons: [patrolSeq]
                       }) 
                       for (i = 0 ; i < coords.length ; i++){
-                        if (coords[i].PatrolID == patrols[i]){
+                        if (coords[i].PatrolID == patrols[i].PatrolID){
                           // add coord to path of patrols[i]
                           patrol.getPath().push({
                             lat: coords[i].lat,

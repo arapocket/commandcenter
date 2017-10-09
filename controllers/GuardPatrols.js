@@ -31,7 +31,7 @@ module.exports.getAllGuardPatrols = function (req, res) {
                   res.json(err);
                 }
                 else {
-                  GuardPatrol.getCurrentPatrols(function (err, getCurrentPatrolsResult){
+                  GuardPatrol.getCurrentPatrols(function (err, getCurrentPatrolsResult) {
                     if (err) {
                       res.json(err);
                     }
@@ -39,7 +39,7 @@ module.exports.getAllGuardPatrols = function (req, res) {
                       res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getAllCoordsResult: getAllCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult });
                     }
                   })
-                  
+
                 }
               })
 
@@ -64,7 +64,7 @@ module.exports.getAllGuardPatrols = function (req, res) {
       // *************    SHOW CURRENT COORDS ON MAP
 
       // CREATE VIEW allcoords
-      // AS SELECT c.Sequence, c.lat, c.lng, p.CurrentPatrol
+      // AS SELECT c.Sequence, c.lat, c.lng, p.CurrentPatrol, p.PatrolID
       // FROM coordinate c
       // INNER JOIN patrol p ON c.PatrolID = p.PatrolID;
 
