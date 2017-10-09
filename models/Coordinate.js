@@ -119,7 +119,7 @@ module.exports.updateCoordinate = function (Coordinate, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update coordinate SET CurrentCoord = " + Coordinate.CurrentCoord + " WHERE CoordID =  '" + Coordinate.CoordID + "';"; 
+            var strSQL = "Update coordinate SET CurrentCoord = " + Coordinate.CurrentCoord + " WHERE NOT CoordID =  '" + Coordinate.CoordID + "';"; 
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
