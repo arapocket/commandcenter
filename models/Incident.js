@@ -67,7 +67,7 @@ module.exports.addIncident = function (Incident, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'Insert into incident values ' + Incident.IncidentID + ', ' + Incident.Description + ', ' + Incident.Type + ', ' + Incident.lat + ', ' + Incident.lng + ', ' + Incident.PatrolID + ';';
+            var strSQL = 'Insert into incident values (' + Incident.IncidentID + ', ' + Incident.Description + ', ' + Incident.Type + ', ' + Incident.lat + ', ' + Incident.lng + ', ' + Incident.PatrolID + ');';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
