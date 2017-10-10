@@ -1,5 +1,3 @@
-
-
 function configureMap(guards, locations, incidents, coords, patrols){
 
 
@@ -79,5 +77,4 @@ function initMap() {
         }
     }
 }
-
 }
