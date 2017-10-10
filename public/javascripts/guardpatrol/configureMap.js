@@ -52,8 +52,8 @@ function initMap() {
             map: map,
             zIndex: 1,
             geodesic: true,
-            strokeColor: "purple",
-            strokeOpacity: 0.7,
+            strokeColor: "blue",
+            strokeOpacity: 1,
             strokeWeight: 3,
             icons: [patrolSeq]
         })
