@@ -41,7 +41,6 @@ block content
                   #map
 
                   script.
-                    test();
                     function initMap() {
                     var guards = !{JSON.stringify(getAllGuardsResult)};
                     var locations = !{JSON.stringify(getCurrentLocationsResult)};
@@ -110,8 +109,8 @@ block content
                           var latlng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                           if (i > 0){
                             var lastLocation = new google.maps.LatLng(coords[i-1].lat, coords[i-1].lng);
-                            var locationIsAccurate = locationIsAccurate(latlng, lastLocation)
-                            if (locationIsAccurate){
+                            var locAccurate = locationIsAccurate(latlng, lastLocation);
+                            if (locAccurate){
                               patrol.getPath().push(latlng);  
                             } else{
                               patrol.getpath().pop();
