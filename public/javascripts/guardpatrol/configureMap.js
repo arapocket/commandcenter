@@ -21,6 +21,12 @@ function initMap() {
 
     createPatrolPaths(patrols, coords, map);
 
+    createRoutes(map);
+
+
+
+
+
 
 }
 
@@ -65,7 +71,6 @@ function createPatrolPaths(patrols, coords, map) {
             }
         };
         var patrol = new google.maps.Polyline({
-            // icons: Array<IconSequence>
             map: map,
             zIndex: 1,
             geodesic: true,
@@ -94,4 +99,62 @@ function createPatrolPaths(patrols, coords, map) {
         }
     }
 }
+
+function createRoutes(map) {
+
+    var routeSeq = {
+        repeat: '30px',
+        icon: {
+            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+            scale: 1,
+            fillOpacity: 0,
+            strokeColor: "red",
+            strokeWeight: 1,
+            strokeOpacity: 1
+        }
+    };
+    var route = new google.maps.Polyline({
+        map: map,
+        zIndex: 1,
+        geodesic: true,
+        strokeColor: "green",
+        strokeOpacity: 1,
+        strokeWeight: 8,
+        icons: [routeSeq]
+    })
+
+    map.addListener('click', function (e) {
+        onSetCheckpoint(route, e.latLng, map);
+    });
+
+}
+
+function onSetCheckpoint(route, latLng, map) {
+    route.getPath().push(latLng);
+    route.setMap(map);
+    createRouteMarker(latLng, map);
+}
+
+function createRouteMarker(latLng, map){
+
+    var marker = new google.maps.Marker({
+        animation: google.maps.Animation.DROP,
+        position: latLng,
+        map: map,
+        icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+    })
+
+    marker.addListener('click', function (e) {
+
+        route.getPath().push(latLng);
+        route.setMap(map);
+
+        var marker = new google.maps.Marker({
+            position: e.latLng,
+            map: map,
+            icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+        });
+    })
+}
+
 
