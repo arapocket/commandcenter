@@ -14,16 +14,9 @@ function initMap() {
         rotateControl: false
 
     });
-    for (i = 0; i < locations.length; i++) {
-        var lat = locations[i].lat;
-        var lng = locations[i].lng;
-        var marker = new google.maps.Marker({
-            position: { lat: lat, lng: lng },
-            map: map,
-            icon: iconsBase + "ms/micons/police.png",
-            animation: google.maps.Animation.BOUNCE,
-        });
-    }
+        
+    createGuardMarkers(locations, map, iconsBase);
+
     for (i = 0; i < incidents.length; i++) {
         var lat = incidents[i].lat;
         var lng = incidents[i].lng;
@@ -75,6 +68,19 @@ function initMap() {
                 }
             }
         }
+    }
+}
+
+function createGuardMarkers(locations, map, iconsBase){
+    for (i = 0; i < locations.length; i++) {
+        var lat = locations[i].lat;
+        var lng = locations[i].lng;
+        var marker = new google.maps.Marker({
+            position: { lat: lat, lng: lng },
+            map: map,
+            icon: iconsBase + "ms/micons/police.png",
+            animation: google.maps.Animation.BOUNCE,
+        });
     }
 }
 
