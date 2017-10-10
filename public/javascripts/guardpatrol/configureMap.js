@@ -1,5 +1,7 @@
-function configureMap(guards, locations, incidents, coords, patrols){
 
+
+function configureMap(guards, locations, incidents, coords, patrols){
+script(async = '', defer = '', src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCuuEBG2qsNl6WRWo9093Abz4MEvv3QayU&callback=initMap');
 
 function initMap() {
     var iconsBase = "http://maps.google.com/mapfiles/"
