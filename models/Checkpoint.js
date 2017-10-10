@@ -40,7 +40,7 @@ module.exportsgetCheckpointByID = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " Select * from checkpoint where CheckpointID = '" + id + "';";
+            var strSQL = " Select * from checkpoint where RouteID = '" + id + "' ORDER BY Sequence ASC;";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
