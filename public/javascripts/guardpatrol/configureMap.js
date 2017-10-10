@@ -62,6 +62,8 @@ function initMap() {
                 var latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                 if (i > 0) {
                     var lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
+                    console.log("latLng lat" & latLng.lat);
+                    console.log("lastLocation lat" & lastLocation.lat);
                     var locAccurate = locationIsAccurate(latLng, lastLocation);
                     if (locAccurate) {
                         patrol.getPath().push(latLng);
