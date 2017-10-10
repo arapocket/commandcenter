@@ -42,7 +42,7 @@ function initMap() {
                 path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
                 scale: 1,
                 fillOpacity: 0,
-                strokeColor: "purple",
+                strokeColor: "red",
                 strokeWeight: 1,
                 strokeOpacity: 1
             }
@@ -52,9 +52,9 @@ function initMap() {
             map: map,
             zIndex: 1,
             geodesic: true,
-            strokeColor: "white",
+            strokeColor: "purple",
             strokeOpacity: 1,
-            strokeWeight: 3,
+            strokeWeight: 5,
             icons: [patrolSeq]
         })
         for (i = 0; i < coords.length; i++) {
