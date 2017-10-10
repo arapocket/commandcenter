@@ -6,7 +6,7 @@ block content
             head
                 style.
                   #map {
-                  height: 600px;
+                  height: 400px;
                   width: 100%;
                   }
             .row
@@ -41,10 +41,13 @@ block content
                   #map
               .col-md-1.col-sm-1.col-xs-1
                 .btn-group-vertical(role='group', aria-label='Vertical button group')
-                button.btn.btn-info(type='button') Remove Checkpoint
-                button.btn.btn-info(type='button') Save Route 
-                button.btn.btn-info(type='button') Load Route                
-
+                a.btn.btn-primary.btn-danger(href='#')
+                span.glyphicon.glyphicon-flag
+                a.btn.btn-primary.btn-primary(href='#')
+                span.glyphicon.glyphicon-floppy-save 
+                a.btn.btn-primary.btn-info(href='#')
+                span.glyphicon.glyphicon-cloud-download
+                
                   script(src='/javascripts/guardpatrol/configureMap.js')
                   script.
                     var mapElement = document.getElementById('map');
