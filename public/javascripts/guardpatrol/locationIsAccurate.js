@@ -18,8 +18,8 @@ function locationIsAccurate(location, lastLocation) {
         // console.log("Current Longitude: " + location.coords.longitude)
         // console.log("Last Latitude: " + this.lastLocation.coords.latitude);
         // console.log("Last Longitude: " + this.lastLocation.coords.longitude);
-        // console.log("Delta Latitude: " + deltaLatitude);
-        // console.log("Delta Longitude: " + deltaLongitude);
+        console.log("Delta Latitude: " + deltaLatitude);
+        console.log("Delta Longitude: " + deltaLongitude);
     
         if (
           (
