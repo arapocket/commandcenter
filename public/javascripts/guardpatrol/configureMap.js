@@ -21,7 +21,7 @@ function initMap() {
 
     createPatrolPaths(patrols, coords, map);
 
-    createRoutes(map);
+    createRoutes(map, iconsBase);
 
 
 
