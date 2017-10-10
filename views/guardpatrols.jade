@@ -81,7 +81,7 @@ block content
                         animation: google.maps.Animation.BOUNCE,
                     });
                     }
-                    for (i = 0 ; i < patrols.length ; i++){
+                    for (patrolsIndex = 0 ; patrolsIndex < patrols.length ; patrolsIndex++){
                       // create a polyline for each
                       var patrolSeq = {
                           repeat: '30px',
@@ -105,7 +105,7 @@ block content
                       icons: [patrolSeq]
                       }) 
                       for (i = 0 ; i < coords.length ; i++){
-                        if (coords[i].PatrolID == patrols[i].PatrolID){
+                        if (coords[i].PatrolID == patrols[patrolsIndex].PatrolID){
                           // add coord to path of patrols[i]
                           patrol.getPath().push({
                             lat: coords[i].lat,
