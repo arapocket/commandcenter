@@ -106,9 +106,9 @@ block content
                       }) 
                       for (i = 0 ; i < coords.length ; i++){
                         if (coords[i].PatrolID == patrols[patrolsIndex].PatrolID){
-                          var latLng = new google.maps.latLng(coords[i].lat, coords[i].lng);
+                          var latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                           if (i > 0){
-                            var lastLocation = new google.maps.latLng(coords[i-1].lat, coords[i-1].lng);
+                            var lastLocation = new google.maps.LatLng(coords[i-1].lat, coords[i-1].lng);
                             var locAccurate = locationIsAccurate(latLng, lastLocation);
                             if (locAccurate){
                               patrol.getPath().push(latLng);  
