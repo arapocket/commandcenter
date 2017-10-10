@@ -23,11 +23,6 @@ function initMap() {
 
     createRoutes(map, iconsBase);
 
-
-
-
-
-
 }
 
 function createGuardMarkers(locations, map, iconsBase) {
@@ -108,7 +103,7 @@ function createRoutes(map, iconsBase) {
             path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
             scale: 1,
             fillOpacity: 0,
-            strokeColor: "red",
+            strokeColor: "yellow",
             strokeWeight: 1,
             strokeOpacity: 1
         }
@@ -117,9 +112,9 @@ function createRoutes(map, iconsBase) {
         map: map,
         zIndex: 1,
         geodesic: true,
-        strokeColor: "green",
+        strokeColor: "blue",
         strokeOpacity: 1,
-        strokeWeight: 8,
+        strokeWeight: 7,
         icons: [routeSeq]
     })
 
@@ -135,7 +130,7 @@ function onSetCheckpoint(route, latLng, map, iconsBase) {
     createRouteMarker(latLng, map, iconsBase, route);
 }
 
-function createRouteMarker(latLng, map, iconsBase){
+function createRouteMarker(latLng, map, iconsBase, route){
 
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
