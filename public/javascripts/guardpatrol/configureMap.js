@@ -1,4 +1,5 @@
 function initMap() {
+    console.log("init map called");
     var iconsBase = "http://maps.google.com/mapfiles/"
     var ara = { lat: 34.0257385, lng: -118.3754848 };
     var map = new google.maps.Map(document.getElementById('map'), {
