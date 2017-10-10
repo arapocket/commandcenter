@@ -1,7 +1,7 @@
 function initMap() {
-    console.log("init map called");
+
     var iconsBase = "http://maps.google.com/mapfiles/"
-    var ara = { lat: 34.0257385, lng: -118.3754848 };
+
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 20,
         center: { lat: locations[0].lat, lng: locations[0].lng },
@@ -14,9 +14,30 @@ function initMap() {
         rotateControl: false
 
     });
-        
+
     createGuardMarkers(locations, map, iconsBase);
 
+    createIncidentMarkers(incidents, map, iconsBase);
+
+    createPatrolPaths(patrols, coords, map);
+
+
+}
+
+function createGuardMarkers(locations, map, iconsBase) {
+    for (i = 0; i < locations.length; i++) {
+        var lat = locations[i].lat;
+        var lng = locations[i].lng;
+        var marker = new google.maps.Marker({
+            position: { lat: lat, lng: lng },
+            map: map,
+            icon: iconsBase + "ms/micons/police.png",
+            animation: google.maps.Animation.BOUNCE,
+        });
+    }
+}
+
+function createIncidentMarkers(incidents, map, iconsBase) {
     for (i = 0; i < incidents.length; i++) {
         var lat = incidents[i].lat;
         var lng = incidents[i].lng;
@@ -27,6 +48,9 @@ function initMap() {
             animation: google.maps.Animation.BOUNCE,
         });
     }
+}
+
+function createPatrolPaths(patrols, coords, map) {
     for (patrolsIndex = 0; patrolsIndex < patrols.length; patrolsIndex++) {
         // create a polyline for each
         var patrolSeq = {
@@ -68,19 +92,6 @@ function initMap() {
                 }
             }
         }
-    }
-}
-
-function createGuardMarkers(locations, map, iconsBase){
-    for (i = 0; i < locations.length; i++) {
-        var lat = locations[i].lat;
-        var lng = locations[i].lng;
-        var marker = new google.maps.Marker({
-            position: { lat: lat, lng: lng },
-            map: map,
-            icon: iconsBase + "ms/micons/police.png",
-            animation: google.maps.Animation.BOUNCE,
-        });
     }
 }
 
