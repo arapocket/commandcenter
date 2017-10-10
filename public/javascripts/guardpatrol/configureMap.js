@@ -132,7 +132,7 @@ function createRoutes(map, iconsBase) {
 function onSetCheckpoint(route, latLng, map, iconsBase) {
     route.getPath().push(latLng);
     route.setMap(map);
-    createRouteMarker(latLng, map, iconsBase);
+    createRouteMarker(latLng, map, iconsBase, route);
 }
 
 function createRouteMarker(latLng, map, iconsBase){
