@@ -40,6 +40,7 @@ block content
               .col-md-9.col-sm-9.col-xs-12              
                   #map
 
+                  script(src='/javascripts/guardpatrol/configureMap.js')
                   script.
                     var mapElement = document.getElementById('map');
                     var guards = !{ JSON.stringify(getAllGuardsResult) };
@@ -47,5 +48,6 @@ block content
                     var incidents = !{ JSON.stringify(getAllIncidentsResult) };
                     var coords = !{ JSON.stringify(getAllCoordsResult) };
                     var patrols = !{ JSON.stringify(getCurrentPatrolsResult) }; 
-                  script(src="/javascripts/guardpatrol/configureMap.js")
+                    initMap();
+
 
