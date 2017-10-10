@@ -100,7 +100,7 @@ function createPatrolPaths(patrols, coords, map) {
     }
 }
 
-function createRoutes(map) {
+function createRoutes(map, iconsBase) {
 
     var routeSeq = {
         repeat: '30px',
@@ -124,35 +124,35 @@ function createRoutes(map) {
     })
 
     map.addListener('click', function (e) {
-        onSetCheckpoint(route, e.latLng, map);
+        onSetCheckpoint(route, e.latLng, map, iconsBase);
     });
 
 }
 
-function onSetCheckpoint(route, latLng, map) {
+function onSetCheckpoint(route, latLng, map, iconsBase) {
     route.getPath().push(latLng);
     route.setMap(map);
-    createRouteMarker(latLng, map);
+    createRouteMarker(latLng, map, iconsBase);
 }
 
-function createRouteMarker(latLng, map){
+function createRouteMarker(latLng, map, iconsBase){
 
     var marker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: latLng,
         map: map,
-        icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+        icon: iconsBase + "ms/micons/flag.png" 
     })
 
     marker.addListener('click', function (e) {
 
-        route.getPath().push(latLng);
+        route.getPath().push(e.latLng);
         route.setMap(map);
 
         var marker = new google.maps.Marker({
             position: e.latLng,
             map: map,
-            icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+            icon: iconsBase + "ms/micons/flag.png"
         });
     })
 }
