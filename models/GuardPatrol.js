@@ -59,7 +59,7 @@ module.exports.getAllCoords = function (callback) {
     });
 }
 
-// GETS ALL THE COORDS IN THE CURRENT SHIFT
+// GETS ALL THE INCIDENTS IN THE CURRENT SHIFT
 module.exports.getAllIncidents = function (callback) {
 
 
@@ -88,7 +88,7 @@ module.exports.getAllIncidents = function (callback) {
     });
 }
 
-// GETS ALL THE COORDS IN THE CURRENT SHIFT
+// GETS ALL THE LOCATIONS IN THE CURRENT SHIFT
 module.exports.getCurrentLocations = function (callback) {
 
 
@@ -117,7 +117,7 @@ module.exports.getCurrentLocations = function (callback) {
     });
 }
 
-// GETS ALL THE COORDS IN THE CURRENT SHIFT
+// GETS ALL THE PATROLS IN THE CURRENT SHIFT
 module.exports.getCurrentPatrols = function (callback) {
     
     
