@@ -37,16 +37,13 @@ block content
                                 -each incident in getAllIncidentsResult
                                     tr.danger
                                         td=incident.Type                               
-              .col-md-8.col-sm-9.col-xs-11              
+              .col-md-9.col-sm-9.col-xs-11              
                   #map
               .col-md-1.col-sm-1.col-xs-1
                 .btn-group-vertical(role='group', aria-label='Vertical button group')
-                button.btn.btn-secondary(type='button') Button
-                button.btn.btn-secondary(type='button') Button
-                button.btn.btn-secondary(type='button') Button
-                button.btn.btn-secondary(type='button') Button
-                button.btn.btn-secondary(type='button') Button
-                button.btn.btn-secondary(type='button') Button                
+                button.btn.btn-info(type='button') Remove Checkpoint
+                button.btn.btn-info(type='button') Save Route 
+                button.btn.btn-info(type='button') Load Route                
 
                   script(src='/javascripts/guardpatrol/configureMap.js')
                   script.
