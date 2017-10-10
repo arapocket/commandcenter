@@ -1,7 +1,7 @@
 function initMap() {
     var iconsBase = "http://maps.google.com/mapfiles/"
     var ara = { lat: 34.0257385, lng: -118.3754848 };
-    var map = new google.maps.Map(mapElement, {
+    var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 20,
         center: { lat: locations[0].lat, lng: locations[0].lng },
         mapTypeId: google.maps.MapTypeId.SATELLITE,
