@@ -1,6 +1,3 @@
-function configureMap(guards, locations, incidents, coords, patrols, mapElement){
-
-
 function initMap() {
     var iconsBase = "http://maps.google.com/mapfiles/"
     var ara = { lat: 34.0257385, lng: -118.3754848 };
@@ -77,4 +74,4 @@ function initMap() {
         }
     }
 }
-}
+
