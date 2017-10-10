@@ -1,13 +1,14 @@
 function locationIsAccurate(location, lastLocation) {
     
+
         let maxDelta = 0.0001;
-    
+
         let deltaLatitude = Math.abs(
-          (location.lat - this.lastLocation.lat)
+          (location.lat - lastLocation.lat)
         )
     
         let deltaLongitude = Math.abs(
-          (location.lng - this.lastLocation.lng)
+          (location.lng - lastLocation.lng)
         )
     
         //CHECK IF DISTANCE IS TOO FAR, ie PREVENT WEIRD LINES ON MAP
