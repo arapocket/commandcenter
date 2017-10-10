@@ -106,11 +106,9 @@ block content
                       }) 
                       for (i = 0 ; i < coords.length ; i++){
                         if (coords[i].PatrolID == patrols[patrolsIndex].PatrolID){
+                          var latlng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                           // add coord to path of patrols[i]
-                          patrol.getPath().push({
-                            lat: coords[i].lat,
-                            lng: coords[i].lng
-                          });
+                          patrol.getPath().push(latlng);
                         }
                       }
                       // add a point 
