@@ -124,7 +124,7 @@ function createRoutes(map, iconsBase) {
 
     var removeCheckpointButton = document.getElementById("removeCheckpointButton");
 
-    removeCheckpointButton.addListener('click', function (e) {
+    removeCheckpointButton.addEventListener('click', function (e) {
         onRemoveCheckpoint(route);
     });
 
