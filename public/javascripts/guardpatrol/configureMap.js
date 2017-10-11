@@ -124,7 +124,7 @@ function createRoutes(map, iconsBase) {
 
     removeCheckpointButton.addEventListener('click', function (e) {
 
-        onRemoveCheckpoint(route, routeMarkers);
+        onRemoveCheckpoint(route, routeMarkers[routeMarkers.length-1]);
     });
 
 
@@ -170,12 +170,10 @@ function createRouteMarker(latLng, map, iconsBase, route, routeMarkers) {
 
 }
 
-function onRemoveCheckpoint(route, routeMarkers) {
-    console.log(routeMarkers);
+function onRemoveCheckpoint(route, lastRouteMarker) {
+    console.log(lastRouteMarker);
     route.getPath().pop();
-    if (routeMarkers.length > 0) {
-        routeMarkers[routeMarkers.length - 1].setMap(null);
-    }
+        lastRouteMarker.setMap(null);
 }
 
 
