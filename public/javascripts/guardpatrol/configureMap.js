@@ -122,6 +122,12 @@ function createRoutes(map, iconsBase) {
         onSetCheckpoint(route, e.latLng, map, iconsBase);
     });
 
+    var removeCheckpointButton = document.getElementById("removeCheckpointButton");
+
+    removeCheckpointButton.addListener('click', function (e) {
+        onRemoveCheckpoint(route);
+    });
+
 }
 
 function onSetCheckpoint(route, latLng, map, iconsBase) {
@@ -150,6 +156,10 @@ function createRouteMarker(latLng, map, iconsBase, route){
             icon: iconsBase + "ms/micons/flag.png"
         });
     })
+}
+
+function onRemoveCheckpoint(){
+        route.getPath().pop();
 }
 
 
