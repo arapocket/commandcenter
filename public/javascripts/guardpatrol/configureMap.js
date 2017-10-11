@@ -122,12 +122,6 @@ function createRoutes(map, iconsBase) {
         onSetCheckpoint(route, e.latLng, map, iconsBase);
     });
 
-    var removeCheckpointButton = document.getElementById("removeCheckpointButton");
-
-    removeCheckpointButton.addEventListener('click', function (e) {
-        onRemoveCheckpoint(route);
-    });
-
 }
 
 function onSetCheckpoint(route, latLng, map, iconsBase) {
@@ -138,28 +132,43 @@ function onSetCheckpoint(route, latLng, map, iconsBase) {
 
 function createRouteMarker(latLng, map, iconsBase, route){
 
-    var marker = new google.maps.Marker({
+    var routeMarkers = [];
+
+    var routeMarker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
         position: latLng,
         map: map,
         icon: iconsBase + "ms/micons/flag.png" 
     })
 
+    routeMarkers.push(routeMarker);
+
     marker.addListener('click', function (e) {
 
         route.getPath().push(e.latLng);
         route.setMap(map);
 
-        var marker = new google.maps.Marker({
+        var routeMarker = new google.maps.Marker({
             position: e.latLng,
             map: map,
             icon: iconsBase + "ms/micons/flag.png"
         });
+
+        routeMarkers.push(routeMarker);
     })
+
+    var removeCheckpointButton = document.getElementById("removeCheckpointButton");
+    
+        removeCheckpointButton.addEventListener('click', function (e) {
+            onRemoveCheckpoint(route);
+        });
 }
 
-function onRemoveCheckpoint(route){
+function onRemoveCheckpoint(route, routeMarkers){
         route.getPath().pop();
+        if (routeMarkers.length > 0) {
+            routeMarkers[routeMarkers.length - 1].setMap(null);
+          }
 }
 
 
