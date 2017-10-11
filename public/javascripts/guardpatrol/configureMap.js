@@ -97,6 +97,8 @@ function createPatrolPaths(patrols, coords, map) {
 
 function createRoutes(map, iconsBase) {
 
+    var routeMarkers = [];
+
     var routeSeq = {
         repeat: '30px',
         icon: {
@@ -132,7 +134,6 @@ function onSetCheckpoint(route, latLng, map, iconsBase) {
 
 function createRouteMarker(latLng, map, iconsBase, route){
 
-    var routeMarkers = [];
 
     var routeMarker = new google.maps.Marker({
         animation: google.maps.Animation.DROP,
@@ -160,7 +161,7 @@ function createRouteMarker(latLng, map, iconsBase, route){
     var removeCheckpointButton = document.getElementById("removeCheckpointButton");
     
         removeCheckpointButton.addEventListener('click', function (e) {
-            onRemoveCheckpoint(route,  routeMarkers);
+            onRemoveCheckpoint(route, routeMarkers);
         });
 }
 
