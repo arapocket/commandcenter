@@ -118,27 +118,29 @@ function createRoutes(map, iconsBase) {
         icons: [routeSeq]
     })
 
-    map.addListener('click', function (e) {
-        onSetCheckpoint(route, e.latLng, map, iconsBase);
-    });
-
     var routeMarkers = [];
+    
+        var removeCheckpointButton = document.getElementById("removeCheckpointButton");
+    
+        removeCheckpointButton.addEventListener('click', function (e) {
+            onRemoveCheckpoint(route, routeMarkers);
+        });
 
-    var removeCheckpointButton = document.getElementById("removeCheckpointButton");
-
-    removeCheckpointButton.addEventListener('click', function (e) {
-        onRemoveCheckpoint(route, routeMarkers);
+    map.addListener('click', function (e) {
+        onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
+
+
 
 }
 
-function onSetCheckpoint(route, latLng, map, iconsBase) {
+function onSetCheckpoint(route, latLng, map, iconsBase, routeMarkers) {
     route.getPath().push(latLng);
     route.setMap(map);
-    createRouteMarker(latLng, map, iconsBase, route);
+    createRouteMarker(latLng, map, iconsBase, route, routeMarkers);
 }
 
-function createRouteMarker(latLng, map, iconsBase, route) {
+function createRouteMarker(latLng, map, iconsBase, route, routeMarkers) {
 
 
     var routeMarker = new google.maps.Marker({
