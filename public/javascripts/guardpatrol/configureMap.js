@@ -158,7 +158,7 @@ function createRouteMarker(latLng, map, iconsBase, route){
     })
 }
 
-function onRemoveCheckpoint(){
+function onRemoveCheckpoint(route){
         route.getPath().pop();
 }
 
