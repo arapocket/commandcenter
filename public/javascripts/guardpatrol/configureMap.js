@@ -143,7 +143,7 @@ function createRouteMarker(latLng, map, iconsBase, route){
 
     routeMarkers.push(routeMarker);
 
-    marker.addListener('click', function (e) {
+    routeMarker.addListener('click', function (e) {
 
         route.getPath().push(e.latLng);
         route.setMap(map);
