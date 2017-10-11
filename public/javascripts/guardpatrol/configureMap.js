@@ -119,12 +119,14 @@ function createRoutes(map, iconsBase) {
     })
 
     var routeMarkers = [];
-    
-        var removeCheckpointButton = document.getElementById("removeCheckpointButton");
-    
-        removeCheckpointButton.addEventListener('click', function (e) {
-            onRemoveCheckpoint(route, routeMarkers);
-        });
+
+    var removeCheckpointButton = document.getElementById("removeCheckpointButton");
+
+    removeCheckpointButton.addEventListener('click', function (e) {
+
+        onRemoveCheckpoint(route, routeMarkers);
+    });
+
 
     map.addListener('click', function (e) {
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
@@ -169,6 +171,7 @@ function createRouteMarker(latLng, map, iconsBase, route, routeMarkers) {
 }
 
 function onRemoveCheckpoint(route, routeMarkers) {
+    console.log(routeMarkers);
     route.getPath().pop();
     if (routeMarkers.length > 0) {
         routeMarkers[routeMarkers.length - 1].setMap(null);
