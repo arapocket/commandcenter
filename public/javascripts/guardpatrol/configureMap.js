@@ -160,7 +160,7 @@ function createRouteMarker(latLng, map, iconsBase, route){
     var removeCheckpointButton = document.getElementById("removeCheckpointButton");
     
         removeCheckpointButton.addEventListener('click', function (e) {
-            onRemoveCheckpoint(route);
+            onRemoveCheckpoint(route,  routeMarkers);
         });
 }
 
