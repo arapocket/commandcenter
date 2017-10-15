@@ -179,4 +179,19 @@ function onRemoveCheckpoint(route, routeMarkers) {
     routeMarkers.pop();
 }
 
+function onSaveRoute(){
+    // METHOD A
+// we add a currentRoute field to route
+// we add a Set Current Route button to CC
+
+// when patrol starts, the current route is loaded 
+
+
+}
+
+function onLoadRoute(){
+    // shows modal and routes are loaded from the DB
+    // we select route and it loads on the map
+}
+
 
