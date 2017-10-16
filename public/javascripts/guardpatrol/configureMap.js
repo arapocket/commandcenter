@@ -215,7 +215,7 @@ function onSaveRoute() {
 
 
 function updateOtherRoutes(routeID, xhr) {
-    console.log("inside updateOtherRoutes");
+    console.log("inside updateOtherRoutes");gi
 
     var xhr = xhr;
     var routeID = routeID;
@@ -224,7 +224,6 @@ function updateOtherRoutes(routeID, xhr) {
         alert('Giving up :( Cannot create an XMLHTTP instance');
         return false;
     }
-    xhr.onreadystatechange = alertContents(xhr, routeID);
 
     xhr.open("PUT", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
 
