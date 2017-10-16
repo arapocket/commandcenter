@@ -196,7 +196,7 @@ function onSaveRoute() {
         alert('Giving up :( Cannot create an XMLHTTP instance');
         return false;
       }
-      xhr.onreadystatechange = alertContents();
+      xhr.onreadystatechange = alertContents(xhr);
 
     xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
 
@@ -213,7 +213,8 @@ function onSaveRoute() {
 
 }
 
-function alertContents() {
+function alertContents(xhr) {
+    var xhr = xhr
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         alert(xhr.responseText);
