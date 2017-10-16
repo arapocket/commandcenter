@@ -217,6 +217,7 @@ function alertContents(xhr, routeID) {
     var xhr = xhr;
     // console.log(xhr);
     var routeID = routeID;
+    console.log(xhr.readyState);
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
             console.log("status 200");
