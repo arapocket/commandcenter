@@ -244,8 +244,9 @@ function postCheckpoints(route, routeID) {
         }));
 
         s++;
-        alert("Route has been saved as the current route!");
+        
     }
+    alert("Route has been saved as the current route!");
 }
 
 function onLoadRoute() {
