@@ -198,7 +198,23 @@ function onSaveRoute() {
             if (xhr.status === 200) {
                 console.log(xhr.response);
                 console.log(xhr.responseText);
-                updateOtherRoutes(routeID, xhr);
+                xhr.open("PUT", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
+                
+                    xhr.onload = function () {
+                        if (xhr.readyState === xhr.DONE) {
+                            if (xhr.status === 200) {
+                                console.log(xhr.response);
+                                console.log(xhr.responseText);
+                            }
+                        }
+                    };
+                
+                    xhr.send(JSON.stringify({
+                        "RouteID": routeID,
+                        "RouteName": "test",
+                        "CurrentRoute": 1,
+                        "NotCurrentRoute": 0
+                    }));
             }
         }
     };
@@ -216,26 +232,6 @@ function onSaveRoute() {
 
 }
 
-function updateOtherRoutes(routeID, xhr){
-    // var xhr = xhr;
-    xhr.open("PUT", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
-
-    xhr.onload = function () {
-        if (xhr.readyState === xhr.DONE) {
-            if (xhr.status === 200) {
-                console.log(xhr.response);
-                console.log(xhr.responseText);
-            }
-        }
-    };
-
-    xhr.send(JSON.stringify({
-        "RouteID": routeID,
-        "RouteName": "test",
-        "CurrentRoute": 1,
-        "NotCurrentRoute": 0
-    }));
-}
 
 function onLoadRoute() {
     // shows modal and routes are loaded from the DB
