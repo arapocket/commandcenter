@@ -136,7 +136,7 @@ function createRoutes(map, iconsBase) {
 
     saveRouteButton.addEventListener('click', function (e) {
 
-        onSaveRoute();
+        onSaveRoute(route);
     });
 
 
@@ -186,11 +186,11 @@ function onRemoveCheckpoint(route, routeMarkers) {
     routeMarkers.pop();
 }
 
-function onSaveRoute() {
+function onSaveRoute(route) {
 
-    var routeID = createRouteID();
-
-    var xhr = new XMLHttpRequest();
+    let routeID = createRouteID();
+    let xhr = new XMLHttpRequest();
+    let route = route;
 
     if (!xhr) {
         alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -207,7 +207,44 @@ function onSaveRoute() {
         "NotCurrentRoute": 0
     }));
 
+    postCheckpoints(route, routeID);
 
+    // now need to add the checkpoint saving -- tricky tricky 
+
+
+}
+
+function postCheckpoints(route, routeID) {
+    let s = 0;
+    let route = route;
+    console.log("logging route:");
+    console.log(route);
+    let coords = route.getPath();
+    console.log("logging coords:");
+    console.log(coords);
+    for (let latLng of coords) {
+        let checkpointID = createCheckpointID();
+
+        let xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/checkpoints", true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            "CheckpointID": checkpointID,
+            "Sequence": s,
+            "lat": latLng.lat(),
+            "lng": latLng.lng(),
+            "RouteID": routeID
+        }));
+
+        s++;
+    }
 }
 
 function onLoadRoute() {
