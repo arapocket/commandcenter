@@ -188,9 +188,9 @@ function onRemoveCheckpoint(route, routeMarkers) {
 
 function onSaveRoute(route) {
 
-    let routeID = createRouteID();
-    let xhr = new XMLHttpRequest();
-    let route = route;
+    var routeID = createRouteID();
+    var xhr = new XMLHttpRequest();
+    var route = route;
 
     if (!xhr) {
         alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -216,7 +216,7 @@ function onSaveRoute(route) {
 
 function postCheckpoints(route, routeID) {
     let s = 0;
-    let route = route;
+    var route = route;
     console.log("logging route:");
     console.log(route);
     let coords = route.getPath();
