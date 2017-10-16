@@ -133,11 +133,11 @@ function createRoutes(map, iconsBase) {
     });
 
     var saveRouteButton = document.getElementById("saveRouteButton");
-    
-        saveRouteButton.addEventListener('click', function (e) {
-    
-            onSaveRoute();
-        });
+
+    saveRouteButton.addEventListener('click', function (e) {
+
+        onSaveRoute();
+    });
 
 
 
@@ -188,6 +188,7 @@ function onRemoveCheckpoint(route, routeMarkers) {
 
 function onSaveRoute() {
 
+    console.log("onSaveRoute clicked");
     var routeID = createRouteID();
 
     var xhr = new XMLHttpRequest();
@@ -209,12 +210,12 @@ function onLoadRoute() {
     // we select route and it loads on the map
 }
 
-function createRouteID(){
+function createRouteID() {
     var newRouteID = Math.random().toString(36).substr(2, 9);
     return newRouteID;
 }
 
-function createCheckpointID(){
+function createCheckpointID() {
     var newCheckpointID = Math.random().toString(36).substr(2, 9);
     return newCheckpointID;
 }
