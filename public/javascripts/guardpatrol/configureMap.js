@@ -215,7 +215,7 @@ function onSaveRoute() {
 
 
 function updateOtherRoutes(routeID, xhr) {
-    console.log("inside updateOtherRoutes");gi
+    console.log("inside updateOtherRoutes");
 
     var xhr = xhr;
     var routeID = routeID;
