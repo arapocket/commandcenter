@@ -196,36 +196,8 @@ function onSaveRoute() {
         alert('Giving up :( Cannot create an XMLHTTP instance');
         return false;
     }
-    xhr.onreadystatechange = updateOtherRoutes(routeID, xhr);
 
     xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
-
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify({
-        "RouteID": routeID,
-        "RouteName": "test",
-        "CurrentRoute": 1
-    }));
-
-
-    // DO ANOTHER ONE FOR THE UPDATING OF THE OTHER ROUTES to 0
-
-
-}
-
-
-function updateOtherRoutes(routeID, xhr) {
-    console.log("inside updateOtherRoutes");
-
-    var xhr = xhr;
-    var routeID = routeID;
-
-    if (!xhr) {
-        alert('Giving up :( Cannot create an XMLHTTP instance');
-        return false;
-    }
-
-    xhr.open("PUT", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
@@ -234,6 +206,11 @@ function updateOtherRoutes(routeID, xhr) {
         "CurrentRoute": 1,
         "NotCurrentRoute": 0
     }));
+
+
+    // DO ANOTHER ONE FOR THE UPDATING OF THE OTHER ROUTES to 0
+
+
 }
 
 function onLoadRoute() {
