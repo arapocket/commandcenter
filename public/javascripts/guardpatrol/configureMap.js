@@ -198,7 +198,7 @@ function onSaveRoute() {
             if (xhr.status === 200) {
                 console.log(xhr.response);
                 console.log(xhr.responseText);
-                
+                updateOtherRoutes(routeID);
             }
         }
     };
@@ -212,7 +212,7 @@ function onSaveRoute() {
 
 
     // DO ANOTHER ONE FOR THE UPDATING OF THE OTHER ROUTES to 0
-    updateOtherRoutes(routeID);
+    
 
 }
 
@@ -229,7 +229,7 @@ function updateOtherRoutes(routeID){
         }
     };
 
-    xhr.setRequestHeader('Content-Type', 'application/json');
+    // xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         "RouteID": routeID,
         "RouteName": "test",
