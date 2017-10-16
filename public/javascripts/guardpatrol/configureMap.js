@@ -179,19 +179,37 @@ function onRemoveCheckpoint(route, routeMarkers) {
     routeMarkers.pop();
 }
 
-function onSaveRoute(){
-    // METHOD A
-// we add a currentRoute field to route
-// we add a Set Current Route button to CC
+function onSaveRoute() {
 
-// when patrol starts, the current route is loaded 
+    var routeID = createRouteID();
 
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+        "RouteID": routeID,
+        "RouteName": "test"
+    }));
+
+    //FOR NOW
+    //HTTP post current route 
+    // GET IT FROM FOXWATCH
 
 }
 
-function onLoadRoute(){
+function onLoadRoute() {
     // shows modal and routes are loaded from the DB
     // we select route and it loads on the map
+}
+
+function createRouteID(){
+    var newRouteID = Math.random().toString(36).substr(2, 9);
+    return newRouteID;
+}
+
+function createCheckpointID(){
+    var newCheckpointID = Math.random().toString(36).substr(2, 9);
+    return newCheckpointID;
 }
 
 

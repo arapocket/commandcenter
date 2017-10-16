@@ -185,8 +185,8 @@ module.exports.updateRoute = function (Route, callback) {
 
 //need several things to get this to work:
 
-// make sure updateRoute is doing everything properly
-// make sure addRoute is doing everything properly
-// make sure getCurrentRoute is doing everything properly
-// need to set up GuardPatrols view to do all this stuff
+// make sure updateRoute is doing everything properly               √
+// make sure addRoute is doing everything properly                  √
+// make sure getCurrentRoute is doing everything properly           √
+// need to set up GuardPatrols view to do all this stuff            
 // need to prep FOXWATCH for all this
