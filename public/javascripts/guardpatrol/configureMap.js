@@ -198,7 +198,7 @@ function onSaveRoute() {
             if (xhr.status === 200) {
                 console.log(xhr.response);
                 console.log(xhr.responseText);
-                updateOtherRoutes(routeID);
+                // updateOtherRoutes(routeID);
             }
         }
     };
