@@ -31,6 +31,14 @@ module.exports.addRoute = function (req, res) {
     }
     else {
       res.json(result);
+      Route.updateRoute(req.body, function (err, res) {
+      if (res){
+        console.log(res);
+      }else{
+        res.json(err);
+      }
+
+      });
     }
   });
 };
