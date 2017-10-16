@@ -219,7 +219,7 @@ function postCheckpoints(route, routeID) {
     var route = route;
     console.log("logging route:");
     console.log(route);
-    let coords = route.getPath();
+    var coords = route.getPath();
     console.log("logging coords:");
     console.log(coords);
     for (let latLng of coords) {
