@@ -35,7 +35,7 @@ module.exports.addRoute = function (req, res) {
       if (res){
         console.log(res);
       }else{
-        res.json(err);
+        console.log(err);
       }
 
       });
