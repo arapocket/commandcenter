@@ -191,7 +191,7 @@ function onSaveRoute() {
     var routeID = createRouteID();
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
+    xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes");
 
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE) {
@@ -218,7 +218,7 @@ function onSaveRoute() {
 
 function updateOtherRoutes(routeID){
     var xhr = new XMLHttpRequest();
-    xhr.open("PUT", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
+    xhr.open("PUT", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes");
 
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE) {
@@ -229,7 +229,7 @@ function updateOtherRoutes(routeID){
         }
     };
 
-    // xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         "RouteID": routeID,
         "RouteName": "test",
