@@ -208,7 +208,7 @@ function onSaveRoute() {
                             }
                         }
                     };
-                
+                    xhr.setRequestHeader('Content-Type', 'application/json');
                     xhr.send(JSON.stringify({
                         "RouteID": routeID,
                         "RouteName": "test",
