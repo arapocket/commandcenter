@@ -218,6 +218,7 @@ function alertContents(xhr, routeID) {
     var routeID = routeID;
     if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
+            console.log("ze status is 200");
             alert(xhr.responseText);
             updateOtherRoutes(routeID, xhr);
         } else {
