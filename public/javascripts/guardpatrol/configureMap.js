@@ -132,6 +132,13 @@ function createRoutes(map, iconsBase) {
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
 
+    var saveRouteButton = document.getElementById("saveRouteButton");
+    
+        saveRouteButton.addEventListener('click', function (e) {
+    
+            onSaveRoute();
+        });
+
 
 
 }
