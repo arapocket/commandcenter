@@ -196,12 +196,17 @@ function onSaveRoute() {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         "RouteID": routeID,
-        "RouteName": "test"
+        "RouteName": "test",
+        "CurrentRoute": 1
     }));
+    if (xhr.status === 200) {
+        console.log(xhr.responseText);
+    } else {
+        console.error(xhr.statusText);
+    }
 
-    //FOR NOW
-    //HTTP post current route 
-    // GET IT FROM FOXWATCH
+    // DO ANOTHER ONE FOR THE UPDATING OF THE OTHER ROUTES to 0
+
 
 }
 
