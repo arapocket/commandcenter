@@ -215,10 +215,11 @@ function onSaveRoute() {
 
 function alertContents(xhr, routeID) {
     var xhr = xhr;
-    console.log(xhr);
+    // console.log(xhr);
     var routeID = routeID;
-    if (xhr.readyState === XMLHttpRequest.DONE) {
+    if (xhr.readyState === 4) {
         if (xhr.status === 200) {
+            console.log("status 200");
             alert(xhr.responseText);
             updateOtherRoutes(routeID, xhr);
         } else {
