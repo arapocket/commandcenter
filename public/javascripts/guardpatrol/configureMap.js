@@ -214,11 +214,11 @@ function onSaveRoute() {
 }
 
 function alertContents(xhr, routeID) {
+    console.log("alert contents being called");
     var xhr = xhr;
     var routeID = routeID;
     if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
-            console.log("ze status is 200");
             alert(xhr.responseText);
             updateOtherRoutes(routeID, xhr);
         } else {
