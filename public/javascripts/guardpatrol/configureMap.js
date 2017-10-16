@@ -193,17 +193,23 @@ function onSaveRoute() {
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
+    
+    xhr.onload = function () {
+        if (xhr.readyState === xhr.DONE) {
+            if (xhr.status === 200) {
+                console.log(xhr.response);
+                console.log(xhr.responseText);
+            }
+        }
+    };
+    
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
         "RouteID": routeID,
         "RouteName": "test",
         "CurrentRoute": 1
     }));
-    if (xhr.status === 200) {
-        console.log(xhr.responseText);
-    } else {
-        console.error(xhr.statusText);
-    }
+
 
     // DO ANOTHER ONE FOR THE UPDATING OF THE OTHER ROUTES to 0
 
