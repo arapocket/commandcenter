@@ -214,8 +214,8 @@ function onSaveRoute() {
 }
 
 function alertContents(xhr, routeID) {
-    console.log("alert contents being called");
     var xhr = xhr;
+    console.log(xhr);
     var routeID = routeID;
     if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
