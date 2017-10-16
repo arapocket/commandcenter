@@ -215,7 +215,7 @@ function onSaveRoute() {
 
 function alertContents(xhr, routeID) {
     var xhr = xhr;
-    // console.log(xhr);
+    console.log(xhr);
     var routeID = routeID;
     console.log(xhr.readyState);
     if (xhr.readyState === 4) {
