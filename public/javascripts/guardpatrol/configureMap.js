@@ -218,15 +218,10 @@ function alertContents(xhr, routeID) {
     console.log(xhr.readyState);
     console.log(xhr);
     var routeID = routeID;
-    if (xhr.readyState === 0) {
-        if (xhr.status === 200) {
-            console.log("status 200");
-            alert(xhr.responseText);
-            updateOtherRoutes(routeID, xhr);
-        } else {
-            alert('There was a problem with the request.');
-        }
-    }
+
+    alert(xhr.responseText);
+    updateOtherRoutes(routeID, xhr);
+
 }
 
 function updateOtherRoutes(routeID, xhr) {
