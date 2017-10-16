@@ -95,18 +95,18 @@ module.exports.addRoute = function (Route, callback) {
                 if (!err) {
                     connection.end();
                     callback(null, rows);
-                                // here with set all routes to 0
-            var strSQL2 = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE NOT RouteID =  '" + Route.RouteID + "';";
-            connection.query(strSQL2, function (err, rows, fields) {
-                if (!err) {
-                    connection.end();
-                    callback(null, rows);
-                } else {
-                    console.log('error with the select routeroute query');
-                    connection.end();
-                    callback(err, rows);
-                }
-            });
+                    // here we set all other routes to 0
+                    var strSQL2 = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE NOT RouteID =  '" + Route.RouteID + "';";
+                    // connection.query(strSQL2, function (err, rows, fields) {
+                    //     if (!err) {
+                    //         connection.end();
+                    //         callback(null, rows);
+                    //     } else {
+                    //         console.log('error with the select routeroute query');
+                    //         connection.end();
+                    //         callback(err, rows);
+                    //     }
+                    // });
 
                 } else {
                     console.log("error with the select routeroute query");
@@ -155,7 +155,7 @@ module.exports.updateRoute = function (Route, callback) {
             var connection = reslt;
 
 
-            // here with set all other routes to 0
+            // here we set all other routes to 0
             var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE NOT RouteID =  '" + Route.RouteID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {

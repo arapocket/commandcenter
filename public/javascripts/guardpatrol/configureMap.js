@@ -208,9 +208,6 @@ function onSaveRoute() {
     }));
 
 
-    // DO ANOTHER ONE FOR THE UPDATING OF THE OTHER ROUTES to 0
-
-
 }
 
 function onLoadRoute() {
