@@ -188,7 +188,6 @@ function onRemoveCheckpoint(route, routeMarkers) {
 
 function onSaveRoute() {
 
-    console.log("onSaveRoute clicked");
     var routeID = createRouteID();
 
     var xhr = new XMLHttpRequest();
