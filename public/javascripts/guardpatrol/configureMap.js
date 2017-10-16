@@ -228,7 +228,8 @@ function alertContents(xhr, routeID) {
 
 function updateOtherRoutes(routeID, xhr) {
 
-    var xhr = new XMLHttpRequest();
+    var xhr = xhr;
+    var routeID = routeID;
 
     if (!xhr) {
         alert('Giving up :( Cannot create an XMLHTTP instance');
