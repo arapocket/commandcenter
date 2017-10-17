@@ -31,7 +31,7 @@ module.exports.getAllCheckpoints = function (callback) {
 }
 
 
-module.exportsgetCheckpointByID = function (id, callback) {
+module.exports.getCheckpointByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);

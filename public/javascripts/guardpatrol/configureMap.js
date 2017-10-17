@@ -252,7 +252,9 @@ function postCheckpoints(route, routeID) {
 function onLoadRoute() {
     // shows modal and routes are loaded from the DB
     // we select route and it loads on the map
+
 }
+
 
 function createRouteID() {
     var newRouteID = Math.random().toString(36).substr(2, 9);
