@@ -23,6 +23,13 @@ function initMap() {
 
     createRoutes(map, iconsBase);
 
+    var loadRouteButton = document.getElementById("loadRouteButton");
+    
+        loadRouteButton.addEventListener('click', function (e) {
+    
+            onLoadRoute();
+        });
+
 }
 
 function createGuardMarkers(locations, map, iconsBase) {
@@ -250,8 +257,57 @@ function postCheckpoints(route, routeID) {
 }
 
 function onLoadRoute() {
-    // shows modal and routes are loaded from the DB
-    // we select route and it loads on the map
+
+    var xhr = new XMLHttpRequest();
+
+    if (!xhr) {
+        alert('Giving up :( Cannot create an XMLHTTP instance');
+        return false;
+    }
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.responseText);
+        }
+
+    
+    xhr.open("GET", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(null);
+
+    
+
+    return new Promise(resolve => {
+        this.http.get('http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/currentroutes/')
+            .map(res => res.json())
+            .subscribe(data => {
+                this.currentRouteData = data;
+            });
+        let id = this.currentRouteData[0].RouteID;
+
+        //DOING SAME THING BELOW AS IN loadRoute()
+        this.http.get('http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/checkpoints/' + id)
+            .map(res => res.json())
+            .subscribe(data => {
+                this.routeData = data;
+                
+                this.route.setPath(this.routeData);
+                for (var i = 0; i < this.routeMarkers.length; i++) {
+                    this.routeMarkers[i].setMap(null);
+                }
+                this.routeMarkers = [];
+                for (let checkpoint of this.routeData) {
+                    var marker = new google.maps.Marker({
+                        position: checkpoint,
+                        map: null,
+                        icon: this.iconImage
+                    });
+                    this.routeMarkers.push(marker);
+                }
+            });
+            resolve(this.routeData);
+    });
 
 }
 
