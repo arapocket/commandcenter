@@ -24,6 +24,17 @@ module.exports.getRouteByID = function (req, res) {
   });
 };
 
+module.exports.getCurrentRoutes = function (req, res) {
+  Route.getCurrentRoutes(req.params.bool, function (err, result) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+};
+
 module.exports.addRoute = function (req, res) {
   Route.addRoute(req.body, function (err, result) {
     if (err) {

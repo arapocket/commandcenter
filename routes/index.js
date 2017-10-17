@@ -226,6 +226,7 @@ router.put('/coordinates', Coordinates.updateCoordinate);
 var Routes = require('../controllers/Routes');
 router.get('/routes', Routes.getAllRoutes);
 router.get('/routes/:id', Routes.getRouteByID);
+router.get('/routes/:bool', Routes.getCurrentRoutes);
 router.post('/routes', Routes.addRoute);
 router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);

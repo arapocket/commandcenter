@@ -57,6 +57,33 @@ module.exports.getCheckpointByID = function (id, callback) {
 }
 
 
+
+// need to get current routes first >> do this in route model
+module.exports.getCurrentCheckpoints = function (id, callback) {
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = " Select * from checkpoint where RouteID = '" + id + "' ORDER BY Sequence ASC;";
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select checkpointpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+}
+
 module.exports.addCheckpoint = function (Checkpoint, callback) {
 
     db.createConnection(function (err, reslt) {
