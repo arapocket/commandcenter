@@ -39,7 +39,7 @@ module.exports.getCurrentRoutes = function (bool, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " Select * from route where CurrentRoute = " + Route.bool + ";";
+            var strSQL = " Select * from route where CurrentRoute = " + bool + ";";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
