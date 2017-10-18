@@ -25,11 +25,11 @@ function initMap() {
 
 
     var autoRefreshButton = document.getElementById("autoRefreshButton");
-    
-        autoRefreshButton.addEventListener('click', function (e) {
-    
-            onAutoRefresh();
-        });
+
+    autoRefreshButton.addEventListener('click', function (e) {
+
+        onAutoRefresh(autoRefreshButton);
+    });
 
 }
 
@@ -150,11 +150,11 @@ function createRoutes(map, iconsBase) {
     onLoadRoute(map, iconsBase, route, routeMarkers);
 
     var loadRouteButton = document.getElementById("loadRouteButton");
-    
-        loadRouteButton.addEventListener('click', function (e) {
-    
-            onLoadRoute(map, iconsBase, route, routeMarkers);
-        });
+
+    loadRouteButton.addEventListener('click', function (e) {
+
+        onLoadRoute(map, iconsBase, route, routeMarkers);
+    });
 
 
 
@@ -337,7 +337,7 @@ function loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             var checkpoints = JSON.parse(xhr.responseText);
-            loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers );
+            loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers);
 
             // this gives us a string of all the current checkpoint rows
             // next we need to parse it, (which will turn it into an array of objects)
@@ -355,7 +355,7 @@ function loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers) {
 
 function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
     console.log("loadRoutesOnMapCalled");
-    
+
     // var routeSeq = {
     //     repeat: '30px',
     //     icon: {
@@ -381,13 +381,13 @@ function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
 
 
     for (i = 0; i < checkpoints.length; i++) {
-            var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
-            route.getPath().push(latLng);
-            createRouteMarker(latLng, map, iconsBase, route, routeMarkers);
+        var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
+        route.getPath().push(latLng);
+        createRouteMarker(latLng, map, iconsBase, route, routeMarkers);
     }
 
 
-    
+
 
 }
 
@@ -401,10 +401,13 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function onAutoRefresh(){
-    var elem = document.getElementById("autoRefreshButton");
-    if (elem.value=="Auto Refresh Off") elem.value = "Auto Refresh On";
-    else elem.value = "Auto Refresh Off";
+function onAutoRefresh(autoRefreshButton) {
+    if (autoRefreshButton.value == "Auto Refresh Off") {
+        autoRefreshButton.value = "Auto Refresh On";
+    }
+    else {
+        autoRefreshButton.value = "Auto Refresh Off";
+    }
 }
 
 
