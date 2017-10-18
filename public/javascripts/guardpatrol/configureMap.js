@@ -270,8 +270,9 @@ function onLoadRoute() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
-            let routeID = json.RouteID;            
-            alert(routeID);
+            alert(json);
+            // let routeID = json.RouteID;            
+            // alert(routeID);
             // loadCurrentRoutes();
 
         }
