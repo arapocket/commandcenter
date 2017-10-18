@@ -394,13 +394,9 @@ function createCheckpointID() {
 }
 
 function autoRefresh(){
-    let refreshTime = 0;
-    // meta(http-equiv='refresh', content='60')
-
-    // create enum for each second value
-
-    return refreshTime;
-
+    var elem = document.getElementById("autoRefreshButton");
+    if (elem.value=="Auto Refresh Off") elem.value = "Auto Refresh On";
+    else elem.value = "Auto Refresh Off";
 }
 
 
