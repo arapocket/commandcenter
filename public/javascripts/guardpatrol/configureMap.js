@@ -139,13 +139,13 @@ function createRoutes(map, iconsBase) {
         onSaveRoute(route);
     });
 
-    onLoadRoute(map, iconsBase, route);
+    onLoadRoute(map, iconsBase, route, routeMarkers);
 
     var loadRouteButton = document.getElementById("loadRouteButton");
     
         loadRouteButton.addEventListener('click', function (e) {
     
-            onLoadRoute(map, iconsBase, route);
+            onLoadRoute(map, iconsBase, route, routeMarkers);
         });
 
 
@@ -258,7 +258,7 @@ function postCheckpoints(route, routeID) {
     alert("Route has been saved as the current route!");
 }
 
-function onLoadRoute(map, iconsBase, route) {
+function onLoadRoute(map, iconsBase, route, routeMarkers) {
 
     var xhr = new XMLHttpRequest();
 
@@ -272,7 +272,7 @@ function onLoadRoute(map, iconsBase, route) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
             let routeID = json[0].RouteID;
-            loadCurrentRoutes(routeID, map, iconsBase, route);
+            loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
 
         }
     }
@@ -318,7 +318,7 @@ function onLoadRoute(map, iconsBase, route) {
 
 }
 
-function loadCurrentRoutes(routeID, map, iconsBase, route) {
+function loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers) {
     var xhr = new XMLHttpRequest();
 
     if (!xhr) {
@@ -329,7 +329,7 @@ function loadCurrentRoutes(routeID, map, iconsBase, route) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             var checkpoints = JSON.parse(xhr.responseText);
-            loadRoutesOnMap(checkpoints, map, iconsBase, route );
+            loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers );
 
             // this gives us a string of all the current checkpoint rows
             // next we need to parse it, (which will turn it into an array of objects)
@@ -345,7 +345,7 @@ function loadCurrentRoutes(routeID, map, iconsBase, route) {
     xhr.send(null);
 }
 
-function loadRoutesOnMap(checkpoints, map, iconsBase, route) {
+function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
     console.log("loadRoutesOnMapCalled");
     
     // var routeSeq = {
