@@ -269,8 +269,8 @@ function onLoadRoute() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
-            console.log(json);
-            console.log(json[0].RouteID);
+            let routeID = json[0].RouteID;
+            loadCurrentRoutes(routeID);
 
         }
     }
@@ -316,7 +316,8 @@ function onLoadRoute() {
 
 }
 
-function loadCurrentRoutes() {
+function loadCurrentRoutes(routeID) {
+    let routeID = routeID;
     var xhr = new XMLHttpRequest();
 
     if (!xhr) {
@@ -326,12 +327,12 @@ function loadCurrentRoutes() {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.responseText);
+            console.log(xhr.responseText);
 
         }
     }
 
-    xhr.open("GET", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/checkpoints", true);
+    xhr.open("GET", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(null);
