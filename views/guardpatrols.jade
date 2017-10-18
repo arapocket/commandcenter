@@ -2,7 +2,6 @@ include mixins
 extends layout
 block content   
             include navbar
-            
 
             head
                 style.
@@ -52,7 +51,12 @@ block content
                       #loadRouteButton
                           a.btn.btn-default.btn-block
                            i.fa.fa-cloud-download(aria-hidden='true')
-                           | &nbsp Load Route                                                                      
+                           | &nbsp Load Route   
+                  .row
+                      #autoRefreshButton
+                          a.btn.btn-default.btn-block
+                           i.fa.fa-cloud-download(aria-hidden='true')
+                           | &nbsp Auto Refresh Off                                                                     
               .col-md-10.col-sm-10.col-xs-12              
                   #map
 

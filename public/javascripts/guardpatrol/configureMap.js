@@ -393,4 +393,14 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
+function autoRefresh(){
+    let refreshTime = 0;
+    // meta(http-equiv='refresh', content='60')
+
+    // create enum for each second value
+
+    return refreshTime;
+
+}
+
 
