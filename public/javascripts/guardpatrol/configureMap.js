@@ -402,12 +402,14 @@ function createCheckpointID() {
 }
 
 function onAutoRefresh(autoRefreshButton) {
-    if (autoRefreshButton.value == "Auto Refresh Off") {
-        autoRefreshButton.value = "Auto Refresh On";
-    }
-    else {
-        autoRefreshButton.value = "Auto Refresh On";
-    }
+
+    console.log(autoRefreshButton.value);
+    // if (autoRefreshButton.value == "Auto Refresh Off") {
+    //     autoRefreshButton.value = "Auto Refresh On";
+    // }
+    // else {
+    //     autoRefreshButton.value = "Auto Refresh On";
+    // }
 }
 
 
