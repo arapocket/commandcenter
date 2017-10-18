@@ -403,7 +403,7 @@ function createCheckpointID() {
 
 function onAutoRefresh(autoRefreshButton) {
 
-    console.log(autoRefreshButton.value);
+    console.log(autoRefreshButton);
     // if (autoRefreshButton.value == "Auto Refresh Off") {
     //     autoRefreshButton.value = "Auto Refresh On";
     // }
