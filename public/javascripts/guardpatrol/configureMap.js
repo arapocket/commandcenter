@@ -14,7 +14,7 @@ function initMap() {
         rotateControl: false
 
     });
-    onLoadRoute(map);
+    onLoadRoute(map, iconsBase);
 
     createGuardMarkers(locations, map, iconsBase);
 
@@ -28,7 +28,7 @@ function initMap() {
 
     loadRouteButton.addEventListener('click', function (e) {
 
-        onLoadRoute(map);
+        onLoadRoute(map, iconsBase);
     });
 
 }
@@ -257,7 +257,7 @@ function postCheckpoints(route, routeID) {
     alert("Route has been saved as the current route!");
 }
 
-function onLoadRoute(map) {
+function onLoadRoute(map, iconsBase) {
 
     var xhr = new XMLHttpRequest();
 
@@ -271,7 +271,7 @@ function onLoadRoute(map) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
             let routeID = json[0].RouteID;
-            loadCurrentRoutes(routeID, map);
+            loadCurrentRoutes(routeID, map, iconsBase);
 
         }
     }
@@ -317,7 +317,7 @@ function onLoadRoute(map) {
 
 }
 
-function loadCurrentRoutes(routeID, map) {
+function loadCurrentRoutes(routeID, map, iconsBase) {
     var xhr = new XMLHttpRequest();
 
     if (!xhr) {
@@ -328,7 +328,7 @@ function loadCurrentRoutes(routeID, map) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             var checkpoints = JSON.parse(xhr.responseText);
-            loadRoutesOnMap(checkpoints, map );
+            loadRoutesOnMap(checkpoints, map, iconsBase );
 
             // this gives us a string of all the current checkpoint rows
             // next we need to parse it, (which will turn it into an array of objects)
@@ -344,7 +344,7 @@ function loadCurrentRoutes(routeID, map) {
     xhr.send(null);
 }
 
-function loadRoutesOnMap(checkpoints, map) {
+function loadRoutesOnMap(checkpoints, map, iconsBase) {
     console.log("loadRoutesOnMapCalled");
     
     var routeSeq = {
@@ -368,14 +368,18 @@ function loadRoutesOnMap(checkpoints, map) {
         icons: [routeSeq]
     })
 
+    let routeMarkers = [];
+
+
     for (i = 0; i < checkpoints.length; i++) {
-        // console.log(checkpoints[i].lat) WORKS
             var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
             route.getPath().push(latLng);
-        
+            createRouteMarker(latLng, map, iconsBase, route, routeMarkers);
     }
-    // console.log("logging the route.getPath()");g
-    // console.log(route.getPath());
+
+
+    
+
 }
 
 function createRouteID() {
