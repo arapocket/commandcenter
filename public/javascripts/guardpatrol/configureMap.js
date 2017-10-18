@@ -23,6 +23,14 @@ function initMap() {
 
     createRoutes(map, iconsBase);
 
+
+    var autoRefreshButton = document.getElementById("autoRefreshButton");
+    
+        autoRefreshButton.addEventListener('click', function (e) {
+    
+            onAutoRefresh();
+        });
+
 }
 
 function createGuardMarkers(locations, map, iconsBase) {
@@ -393,7 +401,7 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function autoRefresh(){
+function onAutoRefresh(){
     var elem = document.getElementById("autoRefreshButton");
     if (elem.value=="Auto Refresh Off") elem.value = "Auto Refresh On";
     else elem.value = "Auto Refresh Off";
