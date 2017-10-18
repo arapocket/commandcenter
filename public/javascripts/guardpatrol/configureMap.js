@@ -257,7 +257,6 @@ function postCheckpoints(route, routeID) {
 }
 
 function onLoadRoute() {
-    console.log("onLoardRoute called");
 
     var xhr = new XMLHttpRequest();
 
@@ -270,7 +269,7 @@ function onLoadRoute() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
-            alert(json);
+            console.log(json);
             // let routeID = json.RouteID;            
             // alert(routeID);
             // loadCurrentRoutes();
