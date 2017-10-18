@@ -406,7 +406,7 @@ function onAutoRefresh(autoRefreshButton) {
         autoRefreshButton.value = "Auto Refresh On";
     }
     else {
-        autoRefreshButton.value = "Auto Refresh Off";
+        autoRefreshButton.value = "Auto Refresh On";
     }
 }
 
