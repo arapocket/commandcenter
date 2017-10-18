@@ -257,6 +257,7 @@ function postCheckpoints(route, routeID) {
 }
 
 function onLoadRoute() {
+    console.log("onLoardRoute called");
 
     var xhr = new XMLHttpRequest();
 
