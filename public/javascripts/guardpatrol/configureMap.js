@@ -27,7 +27,7 @@ function initMap() {
 
     loadRouteButton.addEventListener('click', function (e) {
 
-        onLoadRoute();
+        onLoadRoute(map);
     });
 
 }
@@ -256,7 +256,7 @@ function postCheckpoints(route, routeID) {
     alert("Route has been saved as the current route!");
 }
 
-function onLoadRoute() {
+function onLoadRoute(map) {
 
     var xhr = new XMLHttpRequest();
 
@@ -270,7 +270,7 @@ function onLoadRoute() {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
             let routeID = json[0].RouteID;
-            loadCurrentRoutes(routeID);
+            loadCurrentRoutes(routeID, map);
 
         }
     }
@@ -316,7 +316,7 @@ function onLoadRoute() {
 
 }
 
-function loadCurrentRoutes(routeID) {
+function loadCurrentRoutes(routeID, map) {
     var xhr = new XMLHttpRequest();
 
     if (!xhr) {
@@ -326,7 +326,13 @@ function loadCurrentRoutes(routeID) {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            console.log(xhr.responseText);
+            var checkpoints = JSON.parse(xhr.responseText);
+            loadRoutesOnMap(checkpoints, map )
+
+            // this gives us a string of all the current checkpoint rows
+            // next we need to parse it, (which will turn it into an array of objects)
+            // then we need to create a marker for each latLng
+            // let's check the app to see how to do this
 
         }
     }
@@ -335,6 +341,36 @@ function loadCurrentRoutes(routeID) {
 
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(null);
+}
+
+function loadRoutesOnMap(checkpoints, map) {
+    
+    var routeSeq = {
+        repeat: '30px',
+        icon: {
+            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+            scale: 1,
+            fillOpacity: 0,
+            strokeColor: "yellow",
+            strokeWeight: 1,
+            strokeOpacity: 1
+        }
+    };
+    var route = new google.maps.Polyline({
+        map: map,
+        zIndex: 1,
+        geodesic: true,
+        strokeColor: "blue",
+        strokeOpacity: 1,
+        strokeWeight: 7,
+        icons: [routeSeq]
+    })
+
+    for (i = 0; i < checkpoints.length; i++) {
+            var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
+            route.getPath().push(latLng);
+        
+    }
 }
 
 function createRouteID() {
