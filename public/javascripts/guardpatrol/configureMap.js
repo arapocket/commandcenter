@@ -14,7 +14,6 @@ function initMap() {
         rotateControl: false
 
     });
-    onLoadRoute(map, iconsBase);
 
     createGuardMarkers(locations, map, iconsBase);
 
@@ -23,13 +22,6 @@ function initMap() {
     createPatrolPaths(patrols, coords, map);
 
     createRoutes(map, iconsBase);
-
-    var loadRouteButton = document.getElementById("loadRouteButton");
-
-    loadRouteButton.addEventListener('click', function (e) {
-
-        onLoadRoute(map, iconsBase);
-    });
 
 }
 
@@ -146,6 +138,15 @@ function createRoutes(map, iconsBase) {
 
         onSaveRoute(route);
     });
+
+    onLoadRoute(map, iconsBase);
+
+    var loadRouteButton = document.getElementById("loadRouteButton");
+    
+        loadRouteButton.addEventListener('click', function (e) {
+    
+            onLoadRoute(map, iconsBase);
+        });
 
 
 
@@ -347,28 +348,28 @@ function loadCurrentRoutes(routeID, map, iconsBase) {
 function loadRoutesOnMap(checkpoints, map, iconsBase) {
     console.log("loadRoutesOnMapCalled");
     
-    var routeSeq = {
-        repeat: '30px',
-        icon: {
-            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-            scale: 1,
-            fillOpacity: 0,
-            strokeColor: "yellow",
-            strokeWeight: 1,
-            strokeOpacity: 1
-        }
-    };
-    var route = new google.maps.Polyline({
-        map: map,
-        zIndex: 1,
-        geodesic: true,
-        strokeColor: "blue",
-        strokeOpacity: 1,
-        strokeWeight: 7,
-        icons: [routeSeq]
-    })
+    // var routeSeq = {
+    //     repeat: '30px',
+    //     icon: {
+    //         path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+    //         scale: 1,
+    //         fillOpacity: 0,
+    //         strokeColor: "yellow",
+    //         strokeWeight: 1,
+    //         strokeOpacity: 1
+    //     }
+    // };
+    // var route = new google.maps.Polyline({
+    //     map: map,
+    //     zIndex: 1,
+    //     geodesic: true,
+    //     strokeColor: "blue",
+    //     strokeOpacity: 1,
+    //     strokeWeight: 7,
+    //     icons: [routeSeq]
+    // })
 
-    let routeMarkers = [];
+    // let routeMarkers = [];
 
 
     for (i = 0; i < checkpoints.length; i++) {
