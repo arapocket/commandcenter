@@ -372,6 +372,8 @@ function loadRoutesOnMap(checkpoints, map) {
             route.getPath().push(latLng);
         
     }
+    console.log("logging the route.getPath()");
+    console.log(route.getPath());
 }
 
 function createRouteID() {
