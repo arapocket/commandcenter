@@ -16,29 +16,28 @@ block content
                     .panel.panel-info
                         .panel-heading
                          h3.panel-title Guards       
-                         div
-                            table#pickle.table.table-hover.table-striped.table-bordered
-                                thead
-                                    tr.info
-                                        th First Name
-                                        th Last Name
-                                tbody
-                                -each guard in getAllGuardsResult
-                                    tr.info
-                                        td=guard.FirstName
-                                        td=guard.LastName
+                            div
+                                table#pickle.table.table-hover.table-striped.table-bordered
+                                    thead
+                                        tr.info
+                                            th First Name
+                                            th Last Name
+                                    tbody
+                                    -each guard in getAllGuardsResult
+                                        tr.info
+                                            td=guard.FirstName
+                                            td=guard.LastName
                 .row
                     .panel.panel-danger
                         .panel-heading
                          h3.panel-title Incidents       
-                         div
-                            table#pickle.table.table-hover.table-striped.table-bordered
-                                thead
-                                tbody
-                                -each incident in getAllIncidentsResult
-                                    tr.danger
-                                        td=incident.Type  
-                br
+                            div
+                                table#pickle.table.table-hover.table-striped.table-bordered
+                                    thead
+                                    tbody
+                                    -each incident in getAllIncidentsResult
+                                        tr.danger
+                                            td=incident.Type  
                 br
                 .row
                     #removeCheckpointButton
