@@ -266,18 +266,18 @@ function onLoadRoute() {
         return false;
     }
 
-    // xhr.onreadystatechange = function () {
-    //     if (xhr.readyState == XMLHttpRequest.DONE) {
-    //         alert(xhr.responseText);
-    //     }
-
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.responseText);
+        }
+    }
 
         xhr.open("GET", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(null);
 
-
+    
 
         // return new Promise(resolve => {
         //     this.http.get('http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/currentroutes/')
@@ -310,7 +310,7 @@ function onLoadRoute() {
         //     resolve(this.routeData);
         // });
 
-    }
+    
 }
 
 
