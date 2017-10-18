@@ -38,22 +38,22 @@ block content
                                 -each incident in getAllIncidentsResult
                                     tr.danger
                                         td=incident.Type 
-                 br
-                 .row
-                     #removeCheckpointButton
-                         a.btn.btn-default.btn-block
-                          i.fa.fa-eraser(aria-hidden='true')
-                          | &nbsp Remove Checkpoint
-                 .row
-                     #saveRouteButton
-                         a.btn.btn-default.btn-block
-                          i.fa.fa-floppy-o(aria-hidden='true')
-                          | &nbsp Save Route
-                 .row
-                     #loadRouteButton
-                         a.btn.btn-default.btn-block
-                          i.fa.fa-cloud-download(aria-hidden='true')
-                          | &nbsp Load Route                                                                      
+                  br
+                  .row
+                      #removeCheckpointButton
+                          a.btn.btn-default.btn-block
+                           i.fa.fa-eraser(aria-hidden='true')
+                           | &nbsp Remove Checkpoint
+                  .row
+                      #saveRouteButton
+                          a.btn.btn-default.btn-block
+                           i.fa.fa-floppy-o(aria-hidden='true')
+                           | &nbsp Save Route
+                  .row
+                      #loadRouteButton
+                          a.btn.btn-default.btn-block
+                           i.fa.fa-cloud-download(aria-hidden='true')
+                           | &nbsp Load Route                                                                      
               .col-md-10.col-sm-10.col-xs-12              
                   #map
 
