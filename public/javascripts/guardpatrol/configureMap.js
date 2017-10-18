@@ -269,7 +269,7 @@ function onLoadRoute() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
-            var routeID = json[0].RouteID;
+            let routeID = json[0].RouteID;
             loadCurrentRoutes(routeID);
 
         }
@@ -317,7 +317,6 @@ function onLoadRoute() {
 }
 
 function loadCurrentRoutes(routeID) {
-    let routeID = routeID;
     var xhr = new XMLHttpRequest();
 
     if (!xhr) {
