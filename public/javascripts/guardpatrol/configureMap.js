@@ -270,7 +270,7 @@ function onLoadRoute() {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
             console.log(json);
-            console.log(json["RouteID"]);
+            console.log(json[0].RouteID);
 
         }
     }
