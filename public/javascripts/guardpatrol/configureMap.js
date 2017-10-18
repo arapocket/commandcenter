@@ -327,7 +327,7 @@ function loadCurrentRoutes(routeID, map) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             var checkpoints = JSON.parse(xhr.responseText);
-            loadRoutesOnMap(checkpoints, map )
+            loadRoutesOnMap(checkpoints, map );
 
             // this gives us a string of all the current checkpoint rows
             // next we need to parse it, (which will turn it into an array of objects)
@@ -344,6 +344,7 @@ function loadCurrentRoutes(routeID, map) {
 }
 
 function loadRoutesOnMap(checkpoints, map) {
+    console.log("loadRoutesOnMapCalled");
     
     var routeSeq = {
         repeat: '30px',
