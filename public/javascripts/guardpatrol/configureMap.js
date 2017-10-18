@@ -14,6 +14,7 @@ function initMap() {
         rotateControl: false
 
     });
+    onLoadRoute(map);
 
     createGuardMarkers(locations, map, iconsBase);
 
@@ -368,7 +369,7 @@ function loadRoutesOnMap(checkpoints, map) {
     })
 
     for (i = 0; i < checkpoints.length; i++) {
-        console.log(checkpoints[i].lat);
+        // console.log(checkpoints[i].lat) WORKS
             var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
             route.getPath().push(latLng);
         
