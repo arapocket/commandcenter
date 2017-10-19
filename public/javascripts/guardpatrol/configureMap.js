@@ -30,7 +30,7 @@ function initMap() {
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonSIXTY = document.getElementById('autoRefreshButtonSIXTY');
-    autoRefreshButtonSIXTY.style.opacity = 0;
+    autoRefreshButtonSIXTY.style.display = "none";
 
     let currentButtonValue = buttonValues.OFF;
 
@@ -415,9 +415,8 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValue
     if (currentButtonValue == buttonValues.OFF) {
         // autoRefreshButtonOFF.style.display = "none";
         currentButtonValue = buttonValues.SIXTY;
-        autoRefreshButtonOFF.style.opacity = 0;
-        autoRefreshButtonSIXTY.style.opacity = 1;
-        alert(autoRefreshButtonSIXTY.style.opacity);
+        autoRefreshButtonOFF.style.display = "none";
+        autoRefreshButtonSIXTY.style.display = "revert";
     } else if (currentButtonValue == buttonValues.SIXTY) {
     }
 
