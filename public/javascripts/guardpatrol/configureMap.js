@@ -33,6 +33,7 @@ function initMap() {
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
     autoRefreshButtonTEN.style.display = "none";
 
+    localStorage.setItem("currentButtonValue", buttonValues.OFF);
     var currentButtonValue = localStorage.getItem("currentButtonValue");
 
     console.log(currentButtonValue);
