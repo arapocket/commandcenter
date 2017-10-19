@@ -406,7 +406,7 @@ function onAutoRefresh(autoRefreshButton, autoRefreshAnchor) {
 
     console.log(autoRefreshButton);
     console.log(autoRefreshAnchor);
-    console.log(autoRefreshAnchor.value);
+    console.log(autoRefreshAnchor.innerHTML);
     // if (autoRefreshButton.value == "Auto Refresh Off") {
     //     autoRefreshButton.value = "Auto Refresh On";
     // }
