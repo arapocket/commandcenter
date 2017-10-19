@@ -30,7 +30,7 @@ function initMap() {
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonSIXTY = document.getElementById('autoRefreshButtonSIXTY');
-
+    autoRefreshButtonSIXTY.style.opacity = 0;
 
     let currentButtonValue = buttonValues.OFF;
 
