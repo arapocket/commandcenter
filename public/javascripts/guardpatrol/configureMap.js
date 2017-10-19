@@ -418,9 +418,11 @@ function onAutoRefresh(autoRefreshAnchor, buttonValue, currentButtonValue) {
         currentButtonValue = buttonValue.SIXTY;
         autoRefreshAnchor.innertext = buttonValue.SIXTY;
         console.log(autoRefreshAnchor.innerText);
+    } else{
+        console.log("didn't work");
     }
 
-    console.log("didn't work");
+    
 
     return currentButtonValue;
 
