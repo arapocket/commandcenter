@@ -33,12 +33,12 @@ function initMap() {
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
     autoRefreshButtonTEN.style.display = "none";
 
-    localStorage.setItem("currentButtonValue", buttonValues.OFF);
+    
+    // localStorage.setItem("currentButtonValue", buttonValues.OFF);
+    
     var currentButtonValue = localStorage.getItem("currentButtonValue");
 
-    console.log(currentButtonValue);
-
-    if (currentButtonValue == null) {
+    if (currentButtonValue === undefined || currentButtonValue === null) {
         console.log("worked");
         currentButtonValue = buttonValues.OFF;
         localStorage.setItem("currentButtonValue", currentButtonValue);
@@ -46,10 +46,6 @@ function initMap() {
     else if (currentButtonValue == buttonValues.TEN) {
         window.onload = timedRefresh(1000);
     }
-
-    currentButtonValue = localStorage.getItem("currentButtonValue");
-    console.log(currentButtonValue);
-
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
 
