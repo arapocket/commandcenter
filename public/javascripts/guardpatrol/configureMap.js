@@ -35,6 +35,7 @@ function initMap() {
 
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
+    console.log(currentButtonValue);
 
     if (currentButtonValue == buttonValues.OFF) {
     }
