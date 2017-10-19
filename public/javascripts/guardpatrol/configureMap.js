@@ -33,9 +33,14 @@ function initMap() {
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
     autoRefreshButtonTEN.style.display = "none";
 
-    let currentButtonValue = buttonValues.OFF;
+    
+    let currentButtonValue = localStorage.getItem("currentButtonValue");
 
-    if (currentButtonValue == buttonValues.TEN){
+    if (currentButtonValue == null){
+        currentButtonValue = buttonValues.OFF;
+        localStorage.setItem("currentButtonValue", currentButtonValue);
+    }
+    else if (currentButtonValue == buttonValues.TEN){
         window.onload = timedRefresh(10000);
     }
     
@@ -432,12 +437,14 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
         currentButtonValue = buttonValues.SIXTY;
         autoRefreshButtonOFF.style.display = "none";
         autoRefreshButtonTEN.style.display = "inline";
-        window.onload = timedRefresh(10000);
+        localStorage.setItem("currentButtonValue", currentButtonValue);
+        
         
     } else if (currentButtonValue == buttonValues.SIXTY) {
         currentButtonValue = buttonValues.OFF;
         autoRefreshButtonOFF.style.display = "inline";
         autoRefreshButtonTEN.style.display = "none";
+        localStorage.setItem("currentButtonValue", currentButtonValue);
         
     }
 
