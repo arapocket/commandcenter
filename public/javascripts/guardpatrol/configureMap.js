@@ -39,6 +39,11 @@ function initMap() {
         currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValues, currentButtonValue);
     });
 
+    autoRefreshButtonSIXTY.addEventListener('click', function (e) {
+
+        currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValues, currentButtonValue);
+    });
+
 }
 
 function createGuardMarkers(locations, map, iconsBase) {
@@ -420,7 +425,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValue
     } else if (currentButtonValue == buttonValues.SIXTY) {
         currentButtonValue = buttonValues.OFF;
         autoRefreshButtonOFF.style.display = "inline";
-        autoRefreshButtonSIXTY.style.display = "none";
+        autoRefreshButtonSIXTY.style.display = "noneg";
     }
 
     return currentButtonValue;
