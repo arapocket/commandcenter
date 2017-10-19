@@ -25,23 +25,23 @@ function initMap() {
 
     let buttonValues = {
         OFF: "Auto Refresh Off",
-        SIXTY: "Auto Refresh On"
+        TEN: "Auto Refresh On"
     };
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
-    autoRefreshButtonSIXTY = document.getElementById('autoRefreshButtonSIXTY');
-    autoRefreshButtonSIXTY.style.display = "none";
+    autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
+    autoRefreshButtonTEN.style.display = "none";
 
     let currentButtonValue = buttonValues.OFF;
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
 
-        currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValues, currentButtonValue);
+        currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues, currentButtonValue);
     });
 
-    autoRefreshButtonSIXTY.addEventListener('click', function (e) {
+    autoRefreshButtonTEN.addEventListener('click', function (e) {
 
-        currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValues, currentButtonValue);
+        currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues, currentButtonValue);
     });
 
 }
@@ -414,18 +414,18 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValues, currentButtonValue) {
+function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues, currentButtonValue) {
 
 
     if (currentButtonValue == buttonValues.OFF) {
         // autoRefreshButtonOFF.style.display = "none";
         currentButtonValue = buttonValues.SIXTY;
         autoRefreshButtonOFF.style.display = "none";
-        autoRefreshButtonSIXTY.style.display = "inline";
+        autoRefreshButtonTEN.style.display = "inline";
     } else if (currentButtonValue == buttonValues.SIXTY) {
         currentButtonValue = buttonValues.OFF;
         autoRefreshButtonOFF.style.display = "inline";
-        autoRefreshButtonSIXTY.style.display = "none";
+        autoRefreshButtonTEN.style.display = "none";
     }
 
     return currentButtonValue;
