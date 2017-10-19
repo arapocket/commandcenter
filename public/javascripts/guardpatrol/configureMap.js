@@ -411,8 +411,8 @@ function createCheckpointID() {
 function onAutoRefresh(autoRefreshAnchor, buttonValue, currentButtonValue) {
 
 
-    
-    // console.log(buttonValue.OFF);
+    console.log(currentButtonValue);
+    console.log(buttonValue.OFF);
 
     if (currentButtonValue == buttonValue.OFF){
         currentButtonValue = buttonValue.SIXTY;
