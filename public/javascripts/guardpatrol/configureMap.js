@@ -27,8 +27,6 @@ function initMap() {
         OFF: "Auto Refresh Off",
         TEN: "Auto Refresh On"
     };
-
-    window.onload = timedRefresh(1000);
     
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
@@ -36,6 +34,11 @@ function initMap() {
     autoRefreshButtonTEN.style.display = "none";
 
     let currentButtonValue = buttonValues.OFF;
+
+    if (currentButtonValue = buttonValues.TEN){
+        window.onload = timedRefresh(10000);
+    }
+    
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
 
