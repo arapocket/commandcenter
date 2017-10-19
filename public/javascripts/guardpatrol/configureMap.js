@@ -416,10 +416,10 @@ function onAutoRefresh(autoRefreshAnchor, buttonValue, currentButtonValue) {
 
     if (currentButtonValue == buttonValue.OFF){
         currentButtonValue = buttonValue.SIXTY;
-        autoRefreshAnchor.innertext = buttonValue.SIXTY;
+        autoRefreshAnchor.innerText = buttonValue.SIXTY;
         console.log(autoRefreshAnchor.innerText);
     } else{
-        console.log("didn't work");
+        console.log("didn't work");g
     }
 
     
