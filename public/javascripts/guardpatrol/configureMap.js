@@ -25,14 +25,17 @@ function initMap() {
 
 
     var autoRefreshAnchor = document.getElementById("autoRefreshAnchor");
-    
-    let buttonValue  = {
-        OFF: "&nbsp Auto Refresh Off",
+
+    let buttonValue = {
+        OFF: "Auto Refresh Off",
         SIXTY: "Auto Refresh On"
-      };
+    };
+
+    let currentButtonValue = buttonValue.OFF;
+
     autoRefreshButton.addEventListener('click', function (e) {
 
-        onAutoRefresh(autoRefreshAnchor, buttonValue);
+        currentButtonValue = onAutoRefresh(autoRefreshAnchor, buttonValue, currentButtonValue);
     });
 
 }
@@ -405,15 +408,18 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function onAutoRefresh(autoRefreshAnchor, buttonValue) {
+function onAutoRefresh(autoRefreshAnchor, buttonValue, currentButtonValue) {
 
 
-    console.log(autoRefreshAnchor.innerText);
-    console.log(buttonValue.OFF);
+    // console.log(autoRefreshAnchor.innerText);
+    // console.log(buttonValue.OFF);
 
-    if (autoRefreshAnchor.innerText == buttonValue.OFF) {
-        console.log("yesh");
-    } 
+    if (currentButtonValue == buttonValue.OFF){
+        currentButtonValue = buttonValue.SIXTY;
+        autoRefreshAnchor.innertext = buttonValue.SIXTY;
+    }
+
+    return currentButtonValue;
 
 
 }
