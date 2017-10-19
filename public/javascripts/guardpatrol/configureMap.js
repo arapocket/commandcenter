@@ -34,6 +34,10 @@ function initMap() {
     autoRefreshButtonTEN.style.display = "none";
 
     let currentButtonValue = buttonValues.OFF;
+
+    if (currentButtonValue == buttonValues.TEN){
+        window.onload = timedRefresh(10000);
+    }
     
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
