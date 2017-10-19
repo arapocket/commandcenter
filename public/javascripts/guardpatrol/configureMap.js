@@ -24,12 +24,15 @@ function initMap() {
     createRoutes(map, iconsBase);
 
 
-    var autoRefreshButton = document.getElementById("autoRefreshButton");
     var autoRefreshAnchor = document.getElementById("autoRefreshAnchor");
-
+    
+    let buttonValue  = {
+        OFF: "Auto Refresh Off",
+        SIXTY: "Auto Refresh On"
+      };
     autoRefreshButton.addEventListener('click', function (e) {
 
-        onAutoRefresh(autoRefreshButton, autoRefreshAnchor);
+        onAutoRefresh(autoRefreshAnchor, buttonValue);
     });
 
 }
@@ -402,17 +405,16 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function onAutoRefresh(autoRefreshButton, autoRefreshAnchor) {
+function onAutoRefresh(autoRefreshAnchor, buttonValue) {
 
-    console.log(autoRefreshButton);
-    console.log(autoRefreshAnchor);
+
     console.log(autoRefreshAnchor.innerText);
-    // if (autoRefreshButton.value == "Auto Refresh Off") {
-    //     autoRefreshButton.value = "Auto Refresh On";
-    // }
-    // else {
-    //     autoRefreshButton.value = "Auto Refresh On";
-    // }
+
+    if (autoRefreshAnchor.innerText == buttonValue.OFF) {
+        console.log("yesh");
+    } 
+
+
 }
 
 
