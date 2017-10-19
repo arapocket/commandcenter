@@ -27,24 +27,28 @@ function initMap() {
         OFF: "Auto Refresh Off",
         TEN: "Auto Refresh On"
     };
-    
+
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
     autoRefreshButtonTEN.style.display = "none";
 
-    
-    let currentButtonValue = localStorage.getItem("currentButtonValue");
+    var currentButtonValue = "";
+    currentButtonValue = localStorage.getItem("currentButtonValue");
 
     console.log(currentButtonValue);
-    if (currentButtonValue == null){
+    if (currentButtonValue == null) {
+        console.log("worked");
         currentButtonValue = buttonValues.OFF;
         localStorage.setItem("currentButtonValue", currentButtonValue);
     }
-    else if (currentButtonValue == buttonValues.TEN){
+    else if (currentButtonValue == buttonValues.TEN) {
         window.onload = timedRefresh(1000);
     }
-    
+
+    currentButtonValue = localStorage.getItem("currentButtonValue");
+    console.log(currentButtonValue);
+
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
 
@@ -59,7 +63,7 @@ function initMap() {
 }
 
 function timedRefresh(timeoutPeriod) {
-    setTimeout("location.reload(true);",timeoutPeriod);
+    setTimeout("location.reload(true);", timeoutPeriod);
 }
 
 function createGuardMarkers(locations, map, iconsBase) {
@@ -439,14 +443,14 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
         autoRefreshButtonTEN.style.display = "inline";
         localStorage.setItem("currentButtonValue", currentButtonValue);
         window.onload = timedRefresh(1000);
-        
-        
+
+
     } else if (currentButtonValue == buttonValues.SIXTY) {
         currentButtonValue = buttonValues.OFF;
         autoRefreshButtonOFF.style.display = "inline";
         autoRefreshButtonTEN.style.display = "none";
         localStorage.setItem("currentButtonValue", currentButtonValue);
-        
+
     }
 
     return currentButtonValue;
