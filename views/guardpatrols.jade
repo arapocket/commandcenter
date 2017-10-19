@@ -39,10 +39,9 @@ block content
                                         td=incident.Type 
                   .row
                       #removeCheckpointButton
-                        #removeCheckpointAnchor
-                           a.btn.btn-default.btn-block
-                            i.fa.fa-eraser(aria-hidden='true')
-                            | &nbsp Remove Checkpoint
+                          a.btn.btn-default.btn-block
+                           i.fa.fa-eraser(aria-hidden='true')
+                           | &nbsp Remove Checkpoint
                   .row
                       #saveRouteButton
                           a.btn.btn-default.btn-block
@@ -55,9 +54,10 @@ block content
                            | &nbsp Load Route   
                   .row
                       #autoRefreshButton
-                          a.btn.btn-default.btn-block
-                           i.fa.fa-refresh(aria-hidden='true')
-                           | &nbsp Auto Refresh Off                                                                     
+                        #autoRefreshAnchor
+                            a.btn.btn-default.btn-block
+                             i.fa.fa-refresh(aria-hidden='true')
+                             | &nbsp Auto Refresh Off                                                                     
               .col-md-10.col-sm-10.col-xs-12              
                   #map
 
