@@ -415,6 +415,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValue
     if (currentButtonValue == buttonValues.OFF) {
         // autoRefreshButtonOFF.style.display = "none";
         currentButtonValue = buttonValues.SIXTY;
+        autoRefreshButtonOFF.style.opacity = 0;
         autoRefreshButtonSIXTY.style.opacity = 1;
         alert(autoRefreshButtonSIXTY.style.opacity);
     } else if (currentButtonValue == buttonValues.SIXTY) {
