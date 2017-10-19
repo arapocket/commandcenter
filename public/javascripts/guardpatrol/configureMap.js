@@ -40,9 +40,9 @@ function initMap() {
         currentButtonValue = buttonValues.OFF;
         localStorage.setItem("currentButtonValue", currentButtonValue);
     }
-    // else if (currentButtonValue == buttonValues.TEN){
-    //     window.onload = timedRefresh(1000);
-    // }
+    else if (currentButtonValue == buttonValues.TEN){
+        window.onload = timedRefresh(1000);
+    }
     
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
