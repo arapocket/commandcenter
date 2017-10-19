@@ -418,6 +418,9 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValue
         autoRefreshButtonOFF.style.display = "none";
         autoRefreshButtonSIXTY.style.display = "inline";
     } else if (currentButtonValue == buttonValues.SIXTY) {
+        currentButtonValue = buttonValues.OFF;
+        autoRefreshButtonOFF.style.display = "inline";
+        autoRefreshButtonSIXTY.style.display = "none";
     }
 
     return currentButtonValue;
