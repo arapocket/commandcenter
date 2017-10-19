@@ -34,10 +34,6 @@ function initMap() {
     autoRefreshButtonTEN.style.display = "none";
 
     let currentButtonValue = buttonValues.OFF;
-
-    if (currentButtonValue == buttonValues.TEN){
-        window.onload = timedRefresh(10000);
-    }
     
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
@@ -432,10 +428,12 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
         currentButtonValue = buttonValues.SIXTY;
         autoRefreshButtonOFF.style.display = "none";
         autoRefreshButtonTEN.style.display = "inline";
+        window.onload = timedRefresh(0);
     } else if (currentButtonValue == buttonValues.SIXTY) {
         currentButtonValue = buttonValues.OFF;
         autoRefreshButtonOFF.style.display = "inline";
         autoRefreshButtonTEN.style.display = "none";
+        window.onload = timedRefresh(10000);
     }
 
     return currentButtonValue;
