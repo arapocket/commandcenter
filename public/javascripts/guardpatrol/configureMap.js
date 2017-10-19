@@ -436,6 +436,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
         autoRefreshButtonOFF.style.display = "none";
         autoRefreshButtonTEN.style.display = "inline";
         localStorage.setItem("currentButtonValue", currentButtonValue);
+        window.onload = timedRefresh(1000);
 
 
     } else if (currentButtonValue == buttonValues.TEN) {
