@@ -42,7 +42,7 @@ function initMap() {
     }
     else if (currentButtonValue == buttonValues.TEN) {
         autoRefreshButtonOFF.style.display = "none";
-        window.onload = timedRefresh(1000);
+        window.onload = timedRefresh(10000);
     }
     else{
         currentButtonValue = buttonValues.OFF;
@@ -439,7 +439,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
         autoRefreshButtonOFF.style.display = "none";
         autoRefreshButtonTEN.style.display = "inline";
         localStorage.setItem("currentButtonValue", currentButtonValue);
-        window.onload = timedRefresh(1000);
+        window.onload = timedRefresh(10000);
 
 
     } else if (currentButtonValue == buttonValues.TEN) {
