@@ -31,7 +31,7 @@ function initMap() {
         SIXTY: "Auto Refresh On"
     };
 
-    let currentButtonValue = buttonValue.OFF;
+    let currentButtonValue = buttonValues.OFF;
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
 
@@ -410,14 +410,6 @@ function createCheckpointID() {
 
 function onAutoRefresh(autoRefreshButtonOFF,autoRefreshButtonSIXTY ,buttonValues, currentButtonValue) {
 
-
-    // if (currentButtonValue == buttonValue.OFF){
-    //     currentButtonValue = buttonValue.SIXTY;
-    //     autoRefreshAnchor.innerText = buttonValue.SIXTY;
-    //     console.log(autoRefreshAnchor.innerText);
-    // } else{
-    //     console.log("didn't work");g
-    // }
 
     if (currentButtonValue == buttonValues.OFF){
            autoRefreshButtonOFF.style.display = "none";
