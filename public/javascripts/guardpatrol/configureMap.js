@@ -420,12 +420,12 @@ function onAutoRefresh(autoRefreshButton, buttonValue, currentButtonValue) {
     // }
 
     if (currentButtonValue == buttonValue.OFF){
-           currentButtonValue.style.display = "none";
+           autoRefreshButton.style.display = "none";
            currentButtonValue = buttonValue.SIXTY
     } else{
         console.log("didn't work");g
     }
-
+g
     return currentButtonValue;
 
 
