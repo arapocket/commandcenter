@@ -27,7 +27,7 @@ function initMap() {
     var autoRefreshAnchor = document.getElementById("autoRefreshAnchor");
     
     let buttonValue  = {
-        OFF: "Auto Refresh Off",
+        OFF: "&nbsp Auto Refresh Off",
         SIXTY: "Auto Refresh On"
       };
     autoRefreshButton.addEventListener('click', function (e) {
