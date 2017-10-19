@@ -31,15 +31,17 @@ function initMap() {
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
-    autoRefreshButtonTEN.style.display = "none";
+    
 
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
     console.log(currentButtonValue);
 
     if (currentButtonValue == buttonValues.OFF) {
+        autoRefreshButtonTEN.style.display = "none";
     }
     else if (currentButtonValue == buttonValues.TEN) {
+        autoRefreshButtonOFF.style.display = "none";
     }
     else{
         currentButtonValue = buttonValues.OFF;
