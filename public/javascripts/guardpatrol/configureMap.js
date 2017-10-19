@@ -38,13 +38,13 @@ function initMap() {
     
     var currentButtonValue = localStorage.getItem("currentButtonValue");
 
-    if (currentButtonValue === undefined || currentButtonValue === null) {
-        console.log("worked");
-        currentButtonValue = buttonValues.OFF;
-        localStorage.setItem("currentButtonValue", currentButtonValue);
+    if (currentButtonValue == buttonValues.OFF) {
     }
     else if (currentButtonValue == buttonValues.TEN) {
         window.onload = timedRefresh(1000);
+    }
+    else{
+        currentButtonValue = buttonValues.OFF;
     }
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
