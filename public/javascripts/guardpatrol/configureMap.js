@@ -35,7 +35,7 @@ function initMap() {
 
     autoRefreshButton.addEventListener('click', function (e) {
 
-        currentButtonValue = onAutoRefresh(autoRefreshAnchor, buttonValue, currentButtonValue);
+        currentButtonValue = onAutoRefresh(autoRefreshButton, buttonValue, currentButtonValue);
     });
 
 }
@@ -408,21 +408,23 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function onAutoRefresh(autoRefreshAnchor, buttonValue, currentButtonValue) {
+function onAutoRefresh(autoRefreshButton, buttonValue, currentButtonValue) {
 
 
-    console.log(currentButtonValue);
-    console.log(buttonValue.OFF);
+    // if (currentButtonValue == buttonValue.OFF){
+    //     currentButtonValue = buttonValue.SIXTY;
+    //     autoRefreshAnchor.innerText = buttonValue.SIXTY;
+    //     console.log(autoRefreshAnchor.innerText);
+    // } else{
+    //     console.log("didn't work");g
+    // }
 
     if (currentButtonValue == buttonValue.OFF){
-        currentButtonValue = buttonValue.SIXTY;
-        autoRefreshAnchor.innerText = buttonValue.SIXTY;
-        console.log(autoRefreshAnchor.innerText);
+           currentButtonValue.style.display = "none";
+           currentButtonValue = buttonValue.SIXTY
     } else{
         console.log("didn't work");g
     }
-
-    
 
     return currentButtonValue;
 
