@@ -42,6 +42,7 @@ function initMap() {
     }
     else if (currentButtonValue == buttonValues.TEN) {
         autoRefreshButtonOFF.style.display = "none";
+        window.onload = timedRefresh(1000);
     }
     else{
         currentButtonValue = buttonValues.OFF;
