@@ -25,10 +25,11 @@ function initMap() {
 
 
     var autoRefreshButton = document.getElementById("autoRefreshButton");
+    var autoRefreshAnchor = document.getElementById("autoRefreshAnchor");
 
     autoRefreshButton.addEventListener('click', function (e) {
 
-        onAutoRefresh(autoRefreshButton);
+        onAutoRefresh(autoRefreshButton, autoRefreshAnchor);
     });
 
 }
@@ -401,9 +402,10 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function onAutoRefresh(autoRefreshButton) {
+function onAutoRefresh(autoRefreshButton, autoRefreshAnchor) {
 
     console.log(autoRefreshButton);
+    console.log(autoRefreshAnchor);
     // if (autoRefreshButton.value == "Auto Refresh Off") {
     //     autoRefreshButton.value = "Auto Refresh On";
     // }
