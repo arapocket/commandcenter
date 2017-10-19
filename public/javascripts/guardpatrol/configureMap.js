@@ -416,7 +416,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValue
         // autoRefreshButtonOFF.style.display = "none";
         currentButtonValue = buttonValues.SIXTY;
         autoRefreshButtonOFF.style.display = "none";
-        autoRefreshButtonSIXTY.style.display = "revert";
+        autoRefreshButtonSIXTY.style.display = "inline";
     } else if (currentButtonValue == buttonValues.SIXTY) {
     }
 
