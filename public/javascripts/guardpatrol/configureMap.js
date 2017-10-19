@@ -23,13 +23,14 @@ function initMap() {
 
     createRoutes(map, iconsBase);
 
-    autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
-    autoRefreshButtonSIXTY = document.getElementById('autoRefreshButtonSIXTY');
-
     let buttonValues = {
         OFF: "Auto Refresh Off",
         SIXTY: "Auto Refresh On"
     };
+
+    autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
+    autoRefreshButtonSIXTY = document.getElementById('autoRefreshButtonSIXTY');
+
 
     let currentButtonValue = buttonValues.OFF;
 
@@ -408,14 +409,14 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function onAutoRefresh(autoRefreshButtonOFF,autoRefreshButtonSIXTY ,buttonValues, currentButtonValue) {
+function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValues, currentButtonValue) {
 
 
-    if (currentButtonValue == buttonValues.OFF){
-           autoRefreshButtonOFF.style.display = "none";
-           currentButtonValue = buttonValues.SIXTY
-           autoRefreshButtonSIXTY.style.display = "inline";
-    } else if (currentButtonValue == buttonValues.SIXTY){
+    if (currentButtonValue == buttonValues.OFF) {
+        autoRefreshButtonOFF.style.display = "none";
+        currentButtonValue = buttonValues.SIXTY
+        autoRefreshButtonSIXTY.style.display = "block";
+    } else if (currentButtonValue == buttonValues.SIXTY) {
     }
 
     return currentButtonValue;
