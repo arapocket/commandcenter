@@ -28,7 +28,8 @@ function initMap() {
         TEN: "Auto Refresh On"
     };
 
-    let refreshTime = "3";
+    window.onload = timedRefresh(1000);
+    
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
@@ -46,6 +47,10 @@ function initMap() {
         currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues, currentButtonValue);
     });
 
+}
+
+function timedRefresh(timeoutPeriod) {
+    setTimeout("location.reload(true);",timeoutPeriod);
 }
 
 function createGuardMarkers(locations, map, iconsBase) {
