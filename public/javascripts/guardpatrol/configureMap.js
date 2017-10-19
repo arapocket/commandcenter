@@ -409,6 +409,7 @@ function onAutoRefresh(autoRefreshAnchor, buttonValue) {
 
 
     console.log(autoRefreshAnchor.innerText);
+    console.log(buttonValue.OFF);
 
     if (autoRefreshAnchor.innerText == buttonValue.OFF) {
         console.log("yesh");
