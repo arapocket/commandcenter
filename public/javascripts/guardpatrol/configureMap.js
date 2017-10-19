@@ -40,9 +40,9 @@ function initMap() {
         currentButtonValue = buttonValues.OFF;
         localStorage.setItem("currentButtonValue", currentButtonValue);
     }
-    else if (currentButtonValue == buttonValues.TEN){
-        window.onload = timedRefresh(10000);
-    }
+    // else if (currentButtonValue == buttonValues.TEN){
+    //     window.onload = timedRefresh(1000);
+    // }
     
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {
@@ -438,6 +438,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
         autoRefreshButtonOFF.style.display = "none";
         autoRefreshButtonTEN.style.display = "inline";
         localStorage.setItem("currentButtonValue", currentButtonValue);
+        window.onload = timedRefresh(1000);
         
         
     } else if (currentButtonValue == buttonValues.SIXTY) {
