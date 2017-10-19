@@ -28,7 +28,7 @@ function initMap() {
         TEN: "Auto Refresh On"
     };
 
-    var refreshTime = "10";
+    let refreshTime = "3";
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
