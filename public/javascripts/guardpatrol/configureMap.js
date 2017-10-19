@@ -39,7 +39,6 @@ function initMap() {
     if (currentButtonValue == buttonValues.OFF) {
     }
     else if (currentButtonValue == buttonValues.TEN) {
-        window.onload = timedRefresh(1000);
     }
     else{
         currentButtonValue = buttonValues.OFF;
