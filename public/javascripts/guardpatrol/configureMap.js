@@ -36,6 +36,7 @@ function initMap() {
     
     let currentButtonValue = localStorage.getItem("currentButtonValue");
 
+    console.log(currentButtonValue);
     if (currentButtonValue == null){
         currentButtonValue = buttonValues.OFF;
         localStorage.setItem("currentButtonValue", currentButtonValue);
@@ -382,7 +383,6 @@ function loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers) {
 }
 
 function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
-    console.log("loadRoutesOnMapCalled");
 
     // var routeSeq = {
     //     repeat: '30px',
