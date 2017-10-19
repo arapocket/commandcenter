@@ -53,11 +53,14 @@ block content
                            i.fa.fa-cloud-download(aria-hidden='true')
                            | &nbsp Load Route   
                   .row
-                      #autoRefreshButton
-                        #autoRefreshAnchor
-                            a.btn.btn-default.btn-block
-                             i.fa.fa-refresh(aria-hidden='true')
-                             | &nbsp Auto Refresh Off                                                                     
+                      #autoRefreshButtonOFF
+                          a.btn.btn-default.btn-block
+                           i.fa.fa-refresh(aria-hidden='true')
+                           | &nbsp Auto Refresh Off
+                      #autoRefreshButtonSIXTY
+                          a.btn.btn-default.btn-block(style='display: none;')
+                           i.fa.fa-refresh(aria-hidden='true')
+                           | &nbsp Auto Refresh 60 Seconds                                                                                               
               .col-md-10.col-sm-10.col-xs-12              
                   #map
 

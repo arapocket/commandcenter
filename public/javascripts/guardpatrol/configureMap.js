@@ -23,19 +23,19 @@ function initMap() {
 
     createRoutes(map, iconsBase);
 
+    autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
+    autoRefreshButtonSIXTY = document.getElementById('autoRefreshButtonSIXTY');
 
-    var autoRefreshAnchor = document.getElementById("autoRefreshAnchor");
-
-    let buttonValue = {
+    let buttonValues = {
         OFF: "Auto Refresh Off",
         SIXTY: "Auto Refresh On"
     };
 
     let currentButtonValue = buttonValue.OFF;
 
-    autoRefreshButton.addEventListener('click', function (e) {
+    autoRefreshButtonOFF.addEventListener('click', function (e) {
 
-        currentButtonValue = onAutoRefresh(autoRefreshButton, buttonValue, currentButtonValue);
+        currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonSIXTY, buttonValues, currentButtonValue);
     });
 
 }
@@ -408,7 +408,7 @@ function createCheckpointID() {
     return newCheckpointID;
 }
 
-function onAutoRefresh(autoRefreshButton, buttonValue, currentButtonValue) {
+function onAutoRefresh(autoRefreshButtonOFF,autoRefreshButtonSIXTY ,buttonValues, currentButtonValue) {
 
 
     // if (currentButtonValue == buttonValue.OFF){
@@ -419,13 +419,13 @@ function onAutoRefresh(autoRefreshButton, buttonValue, currentButtonValue) {
     //     console.log("didn't work");g
     // }
 
-    if (currentButtonValue == buttonValue.OFF){
-           autoRefreshButton.style.display = "none";
-           currentButtonValue = buttonValue.SIXTY
-    } else{
-        console.log("didn't work");g
+    if (currentButtonValue == buttonValues.OFF){
+           autoRefreshButtonOFF.style.display = "none";
+           currentButtonValue = buttonValues.SIXTY
+           autoRefreshButtonSIXTY.style.display = "inline";
+    } else if (currentButtonValue == buttonValues.SIXTY){
     }
-g
+
     return currentButtonValue;
 
 
