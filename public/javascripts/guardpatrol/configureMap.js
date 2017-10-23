@@ -119,6 +119,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         routeMarker.addListener('click', function (e) {
             markerWindow.open(map, marker); 
         });
+        
     }
 }
 
@@ -488,7 +489,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
 }
 
 function openMarker(){
-    
+
 }
 
 
