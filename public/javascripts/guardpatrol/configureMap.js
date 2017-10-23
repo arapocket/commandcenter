@@ -78,15 +78,38 @@ function createGuardMarkers(locations, map, iconsBase) {
 }
 
 function createIncidentMarkers(incidents, map, iconsBase) {
+
+// need to create info box with each incident icon
+// infobox will have image inside
+
+
+
+
     for (i = 0; i < incidents.length; i++) {
         var lat = incidents[i].lat;
         var lng = incidents[i].lng;
+
+////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
+        var windowString = '<div id="incidentBox">'+
+        '</div>'+
+        '<h5 id="firstHeading" class="firstHeading" style="color:#404040">'+incidents[i].IncidentID+'</h5>'+
+        '<div id="bodyContent">'+
+        '<img src="https://s3-us-west-2.amazonaws.com/foxwatch/ ' + incidents.IncidentID + '">'  
+        '</div>';
+
+        var markerWindow = new google.maps.InfoWindow({
+            content: windowString
+              });
+
+////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////
+
         var marker = new google.maps.Marker({
             position: { lat: lat, lng: lng },
             map: map,
             icon: iconsBase + "kml/pal3/icon59.png",
             animation: google.maps.Animation.BOUNCE,
         });
+        markerWindow.open(map, marker);         
     }
 }
 
