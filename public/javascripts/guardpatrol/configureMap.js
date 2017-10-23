@@ -103,7 +103,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         <a href = "https://s3-us-west-2.amazonaws.com/foxwatch/`
         + incidents[i].IncidentID +
         `"><img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
-            + incidents[i].IncidentID + `"height="150" width="150"></a>`
+            + incidents[i].IncidentID + `"height="120" width="120"></a>`
 
         var markerWindow = new google.maps.InfoWindow({
             content: windowString
@@ -356,38 +356,6 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(null);
 
-
-
-    // return new Promise(resolve => {
-    //     this.http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes/')
-    //         .map(res => res.json())
-    //         .subscribe(data => {
-    //             this.currentRouteData = data;
-    //         });
-    //     let id = this.currentRouteData[0].RouteID;
-
-    //     //DOING SAME THING BELOW AS IN loadRoute()
-    //     this.http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/' + id)
-    //         .map(res => res.json())
-    //         .subscribe(data => {
-    //             this.routeData = data;
-
-    //             this.route.setPath(this.routeData);
-    //             for (var i = 0; i < this.routeMarkers.length; i++) {
-    //                 this.routeMarkers[i].setMap(null);
-    //             }
-    //             this.routeMarkers = [];
-    //             for (let checkpoint of this.routeData) {
-    //                 var marker = new google.maps.Marker({
-    //                     position: checkpoint,
-    //                     map: null,
-    //                     icon: this.iconImage
-    //                 });
-    //                 this.routeMarkers.push(marker);
-    //             }
-    //         });
-    //     resolve(this.routeData);
-    // });
 
 
 }
