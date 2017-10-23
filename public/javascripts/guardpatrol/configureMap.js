@@ -245,7 +245,7 @@ function onSaveRoute(route) {
         return false;
     }
 
-    xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/routes", true);
+    xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes", true);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify({
@@ -280,7 +280,7 @@ function postCheckpoints(route, routeID) {
             return false;
         }
 
-        xhr.open("POST", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/checkpoints", true);
+        xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints", true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
@@ -316,7 +316,7 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
         }
     }
 
-    xhr.open("GET", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
+    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(null);
@@ -324,7 +324,7 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
 
 
     // return new Promise(resolve => {
-    //     this.http.get('http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/currentroutes/')
+    //     this.http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes/')
     //         .map(res => res.json())
     //         .subscribe(data => {
     //             this.currentRouteData = data;
@@ -332,7 +332,7 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
     //     let id = this.currentRouteData[0].RouteID;
 
     //     //DOING SAME THING BELOW AS IN loadRoute()
-    //     this.http.get('http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/checkpoints/' + id)
+    //     this.http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/' + id)
     //         .map(res => res.json())
     //         .subscribe(data => {
     //             this.routeData = data;
@@ -378,7 +378,7 @@ function loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers) {
         }
     }
 
-    xhr.open("GET", "http://ec2-52-38-237-33.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
+    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(null);
