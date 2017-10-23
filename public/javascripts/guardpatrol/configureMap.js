@@ -31,7 +31,7 @@ function initMap() {
 
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
-    
+
 
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
@@ -44,7 +44,7 @@ function initMap() {
         autoRefreshButtonOFF.style.display = "none";
         window.onload = timedRefresh(10000);
     }
-    else{
+    else {
         currentButtonValue = buttonValues.OFF;
     }
 
@@ -79,8 +79,8 @@ function createGuardMarkers(locations, map, iconsBase) {
 
 function createIncidentMarkers(incidents, map, iconsBase) {
 
-// need to create info box with each incident icon
-// infobox will have image inside
+    // need to create info box with each incident icon
+    // infobox will have image inside
 
 
 
@@ -93,25 +93,62 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         console.log(incidents[i].IncidentID);
 
 
-////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
-        var windowString = 
-        `
-        <h5 style="color:#D20202">`  + incidents[i].Type +`</h5>
+        ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
+        var windowString =
+            `
+        <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
         <h6 style="color:#404040"> 
-        ` + incidents[i].Description +`
+        ` + incidents[i].Description + `
         </h6>
         <img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
-        + incidents[i].IncidentID +`"height="100" width="100" >`
-
+            + incidents[i].IncidentID + `"height="100" width="100" >`
+            + `
+    <!-- Trigger the Modal -->
+    <img id="myImg" src="img_fjords.jpg" alt="Trolltunga, Norway" width="300" height="200">
     
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+    
+      <!-- The Close Button -->
+      <span class="close">&times;</span>
+    
+      <!-- Modal Content (The Image) -->
+      <img class="modal-content" id="img01">
+    
+      <!-- Modal Caption (Image Text) -->
+      <div id="caption"></div>
+    </div>
+    `
 
-        
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg');
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+
+
 
         var markerWindow = new google.maps.InfoWindow({
             content: windowString
-              });
+        });
 
-////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////
+        ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////
 
         var marker = new google.maps.Marker({
             position: { lat: lat, lng: lng },
@@ -119,7 +156,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
             icon: iconsBase + "kml/pal3/icon59.png",
             animation: google.maps.Animation.BOUNCE,
         });
-        markerWindow.open(map, marker);         
+        markerWindow.open(map, marker);
     }
 }
 
