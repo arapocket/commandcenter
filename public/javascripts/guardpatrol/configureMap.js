@@ -88,16 +88,17 @@ function createIncidentMarkers(incidents, map, iconsBase) {
     for (i = 0; i < incidents.length; i++) {
         var lat = incidents[i].lat;
         var lng = incidents[i].lng;
-        
+
         console.log("logging IncidentID");
         console.log(incidents[i].IncidentID);
 
 
 ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
         var windowString = '<h5 id="firstHeading" style="color:#404040">'
-        + incidents[i].IncidentID+'</h5>'+
+        + incidents[i].Type+'</h5>'+
+        '<h6 style="color:#404040"> ' + incidents[i].Description + '<h6>' + 
         '<img src="https://s3-us-west-2.amazonaws.com/foxwatch/' 
-        + incidents[i].IncidentID + '">'  
+        + incidents[i].IncidentID + '" height="10" width="10"> '  
 
         var markerWindow = new google.maps.InfoWindow({
             content: windowString
