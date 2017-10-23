@@ -513,7 +513,7 @@ var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 
     modal.style.display = "block";
-    modalImg.src = this.src;
+    modalImg.src = "https://s3-us-west-2.amazonaws.com/foxwatch/lqyv9xq8x";
     captionText.innerHTML = this.alt;
     console.log("fack");
 }
