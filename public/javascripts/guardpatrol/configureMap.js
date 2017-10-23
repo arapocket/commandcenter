@@ -512,8 +512,7 @@ var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 
     modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
+    modalImg.src = "https://s3-us-west-2.amazonaws.com/foxwatch/lqyv9xq8x";
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
