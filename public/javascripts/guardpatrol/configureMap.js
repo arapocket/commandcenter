@@ -88,6 +88,9 @@ function createIncidentMarkers(incidents, map, iconsBase) {
     for (i = 0; i < incidents.length; i++) {
         var lat = incidents[i].lat;
         var lng = incidents[i].lng;
+        console.log("logging IncidentID");
+        console.log(incidents[i].IncidentID);
+
 
 ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
         var windowString = '<h5 id="firstHeading" style="color:#404040">'
