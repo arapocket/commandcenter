@@ -423,6 +423,10 @@ function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
     
 
     route.setPath([]);
+    for (i = 0 ; i < routeMarkers.length ; i++){
+        routeMarkers[i].setMap(null);
+    }
+    routeMarkers = [];
     for (i = 0; i < checkpoints.length; i++) {
         var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
         route.getPath().push(latLng);
