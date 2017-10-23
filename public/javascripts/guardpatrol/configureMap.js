@@ -504,6 +504,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
 }
 
 function imageClick(){
+    
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -512,16 +513,9 @@ var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
 
     modal.style.display = "block";
-    modalImg.src = "https://s3-us-west-2.amazonaws.com/foxwatch/lqyv9xq8x";
+    modalImg.src = this.src;
     captionText.innerHTML = this.alt;
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
+    console.log("fack");
 }
 
 
