@@ -104,7 +104,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
             + incidents[i].IncidentID + `"height="100" width="100" >`
             + `
     <!-- Trigger the Modal -->
-    <img id="myImg" src="img_fjords.jpg" alt="Trolltunga, Norway" width="300" height="200">
+    <img id="myImg" src="https://s3-us-west-2.amazonaws.com/foxwatch/lqyv9xq8x" alt="Trolltunga, Norway" width="300" height="200">
     
     <!-- The Modal -->
     <div id="myModal" class="modal">
