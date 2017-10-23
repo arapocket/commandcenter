@@ -101,26 +101,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         ` + incidents[i].Description + `
         </h6>
         <img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
-            + incidents[i].IncidentID + `"height="100" width="100"  >`+
-         `
-         <!-- Trigger the Modal -->
-         <img id="myImg" src="https://s3-us-west-2.amazonaws.com/foxwatch/lqyv9xq8x" alt="Trolltunga, Norway" width="300" height="200" onclick= "imageClick()">
-         
-         <!-- The Modal -->
-         <div id="myModal" class="modal">
-         
-           <!-- The Close Button -->
-           <span class="close">&times;</span>
-         
-           <!-- Modal Content (The Image) -->
-           <img class="modal-content" id="img01">
-         
-           <!-- Modal Caption (Image Text) -->
-           <div id="caption"></div>
-         </div>
-
-         `   
-
+            + incidents[i].IncidentID + `"height="100" width="100"  >`
 
         var markerWindow = new google.maps.InfoWindow({
             content: windowString
@@ -503,20 +484,6 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
 
 }
 
-function imageClick(){
-    
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-
-    modal.style.display = "block";
-    modalImg.src = "https://s3-us-west-2.amazonaws.com/foxwatch/lqyv9xq8x";
-    captionText.innerHTML = this.alt;
-    console.log("fack");
-}
 
 
 
