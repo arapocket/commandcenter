@@ -116,7 +116,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
             animation: google.maps.Animation.BOUNCE,
         });
         markerWindow.open(map, marker);
-        routeMarker.addListener('click', function (e) {
+        marker.addListener('click', function (e) {
             markerWindow.open(map, marker); 
         });
         
