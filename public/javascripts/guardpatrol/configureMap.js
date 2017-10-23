@@ -100,9 +100,13 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         <h6 style="color:#404040"> 
         ` + incidents[i].Description +`
         </h6>
-        <img data-toggle="modal" data-target="#exampleModal" src="https://s3-us-west-2.amazonaws.com/foxwatch/`
+        <img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
         + incidents[i].IncidentID +`"height="100" width="100" >`
         +`
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+      </button>
+
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
