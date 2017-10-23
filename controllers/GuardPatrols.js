@@ -88,11 +88,11 @@ module.exports.getAllGuardPatrols = (function (req, res) {
     // *************    SHOW ALL INCIDENTS ON MAP
 
     // CREATE VIEW allincidents
-    // AS SELECT i.Description, i.Type, i.lat, i.lng, p.CurrentPatrol
+    // AS SELECT i.IncidentID, i.Description, i.Type, i.lat, i.lng, p.CurrentPatrol
     // FROM incident i
     // INNER JOIN patrol p ON i.PatrolID = p.PatrolID;
 
-    // SELECT Description, Type, lat,  lng, CurrentPatrol FROM allincidents WHERE CurrentPatrol = 1;
+    // SELECT IncidentID, Description, Type, lat,  lng, CurrentPatrol FROM allincidents WHERE CurrentPatrol = 1;
 
     // *************    SHOW ALL ROUTES ON MAP 
 

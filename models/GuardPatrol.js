@@ -44,7 +44,7 @@ module.exports.getAllIncidents = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT Description, Type, lat,  lng, CurrentPatrol FROM allincidents WHERE CurrentPatrol = 1';
+            var strSQL = 'SELECT IncidentID, Description, Type, lat,  lng, CurrentPatrol, IncidentID FROM allincidents WHERE CurrentPatrol = 1';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

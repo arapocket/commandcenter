@@ -88,6 +88,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
     for (i = 0; i < incidents.length; i++) {
         var lat = incidents[i].lat;
         var lng = incidents[i].lng;
+        
         console.log("logging IncidentID");
         console.log(incidents[i].IncidentID);
 
