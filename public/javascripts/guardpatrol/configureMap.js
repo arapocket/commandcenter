@@ -420,31 +420,11 @@ function loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers) {
 }
 
 function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
-
-    // var routeSeq = {
-    //     repeat: '30px',
-    //     icon: {
-    //         path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-    //         scale: 1,
-    //         fillOpacity: 0,
-    //         strokeColor: "yellow",
-    //         strokeWeight: 1,
-    //         strokeOpacity: 1
-    //     }
-    // };
-    // var route = new google.maps.Polyline({
-    //     map: map,
-    //     zIndex: 1,
-    //     geodesic: true,
-    //     strokeColor: "blue",
-    //     strokeOpacity: 1,
-    //     strokeWeight: 7,
-    //     icons: [routeSeq]
-    // })
-
-    // let routeMarkers = [];
-
-
+    
+    for (i = 0 ; i < routeMarkers.length ; i++){
+        routeMarkers[i].setMap(null);
+    }
+    routeMarkers = [];
     for (i = 0; i < checkpoints.length; i++) {
         var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
         route.getPath().push(latLng);
