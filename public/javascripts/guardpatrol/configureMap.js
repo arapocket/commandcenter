@@ -100,10 +100,8 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         <h6 style="color:#404040"> 
         ` + incidents[i].Description + `
         </h6>
-        <a href = "https://s3-us-west-2.amazonaws.com/foxwatch/ ` + incidents[i].IncidentID +
-    
-        `"> <img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
-            + incidents[i].IncidentID + `"height="100" width="100" href = ""  ></a>`
+        <img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
+            + incidents[i].IncidentID + `"height="150" width="150" href = ""  >`
 
         var markerWindow = new google.maps.InfoWindow({
             content: windowString
