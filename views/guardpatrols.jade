@@ -12,22 +12,22 @@ block content
             .row
               .col-md-2.col-sm-2.col-xs-12
                 .row
-                      .panel.panel-info
+                      .panel.panel-default
                         .panel-heading
                           h3.panel-title Guards       
                         div
                             table#pickle.table.table-hover.table-striped.table-bordered
                                 thead
-                                    tr.info
+                                    tr.default
                                         th First Name
                                         th Last Name
                                 tbody
                                 -each guard in getAllGuardsResult
-                                    tr.info
+                                    tr.default
                                         td=guard.FirstName
                                         td=guard.LastName
                   .row
-                      .panel.panel-danger
+                      .panel.panel-default
                         .panel-heading
                           h3.panel-title Incidents       
                         div
@@ -35,7 +35,7 @@ block content
                                 thead
                                 tbody
                                 -each incident in getAllIncidentsResult
-                                    tr.danger
+                                    tr.default
                                         td=incident.Type 
                   .row
                       #removeCheckpointButton
