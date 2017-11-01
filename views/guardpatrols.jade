@@ -64,30 +64,11 @@ block content
                           a.btn.btn-default.btn-block
                            i.fa.fa-refresh(aria-hidden='true')
                            | &nbsp Auto Refresh 10                                                                                           
-              .col-md-8.col-sm-8.col-xs-12              
+              .col-md-10.col-sm-10.col-xs-12              
                   #map
-              .col-md-2.col-sm-2.col-xs-12                       
-                  ul#messages
-                  form(action='')
-                   input#m(autocomplete='off')
-                   button Send
-
                   script(src='/javascripts/guardpatrol/configureMap.js')
                   script(src='https://cdn.socket.io/socket.io-1.2.0.js')
                   script(src='https://code.jquery.com/jquery-1.11.1.js')
-                  script.
-                    $(function () {
-                    var socket = io();
-                    $('form').submit(function(){
-                    socket.emit('message', $('#m').val());
-                    $('#m').val('');
-                    return false;
-                    });
-                    socket.on('message', function(msg){
-                    $('#messages').append($('<li>').text(msg));
-                    window.scrollTo(0, document.body.scrollHeight);
-                    });
-                    });
                   script.
                     var mapElement = document.getElementById('map');
                     var guards = !{ JSON.stringify(getAllGuardsResult) };
