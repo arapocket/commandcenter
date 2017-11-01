@@ -1,7 +1,9 @@
 var db = require('./db');
 
-
+var app = require('express')();
+var http = require('http').Server(express);
 var io = require('socket.io')(http);
+
 
 io.on('connection', function(socket){
   console.log('a user connected');
