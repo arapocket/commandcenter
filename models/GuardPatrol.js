@@ -5,24 +5,26 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-  socket.on('message', function(msg){
-    console.log('message: ' + msg);
-  });
-  socket.on('message', function(msg){
-    io.emit('message', msg);
-  });
-});
+
 
 
 
 
 // GETS ALL THE GUARDS WITH A CURRENT SHIFT
 module.exports.getAllGuards = function (callback) {
+
+    io.on('connection', function(socket){
+        console.log('a user connected');
+        socket.on('disconnect', function(){
+          console.log('user disconnected');
+        });
+        socket.on('message', function(msg){
+          console.log('message: ' + msg);
+        });
+        socket.on('message', function(msg){
+          io.emit('message', msg);
+        });
+      });
 
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
