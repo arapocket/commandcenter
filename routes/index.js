@@ -233,7 +233,7 @@ router.get('/currentroutes', Routes.getCurrentRoutes);
 
 
 // ###### Tue Oct 31 20:57:55 PDT 2017 ARA
-var http = require('http').Server(app);
+var http = require('http').Server(express);
 var io = require('socket.io')(http);
 
 io.on('connection', function(socket){
