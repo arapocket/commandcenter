@@ -12,20 +12,6 @@ var io = require('socket.io')(http);
 
 // GETS ALL THE GUARDS WITH A CURRENT SHIFT
 module.exports.getAllGuards = function (callback) {
-
-    io.on('connection', function(socket){
-        console.log('a user connected');
-        socket.on('disconnect', function(){
-          console.log('user disconnected');
-        });
-        socket.on('message', function(msg){
-          console.log('message: ' + msg);
-        });
-        socket.on('message', function(msg){
-          io.emit('message', msg);
-        });
-      });
-
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
