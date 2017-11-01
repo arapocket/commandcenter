@@ -1,5 +1,20 @@
 function initMap() {
 
+    var io = require('socket.io')(http);
+    
+    io.on('connection', function(socket){
+      console.log('a user connected');
+      socket.on('disconnect', function(){
+        console.log('user disconnected');
+      });
+      socket.on('message', function(msg){
+        console.log('message: ' + msg);
+      });
+      socket.on('message', function(msg){
+        io.emit('message', msg);
+      });
+    });
+
     var iconsBase = "http://maps.google.com/mapfiles/"
 
     var map = new google.maps.Map(document.getElementById('map'), {
