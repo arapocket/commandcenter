@@ -231,7 +231,4 @@ router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
-
-// ###### Tue Oct 31 20:57:55 PDT 2017 ARA
-
 module.exports = router;
