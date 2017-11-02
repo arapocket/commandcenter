@@ -6,10 +6,10 @@ var http = require('http').Server(app);
 var io = require('socket.io').listen(http);
 
 
-console.log(express);
-console.log(app);
-console.log(http);
-console.log(io);
+// console.log(express);
+// console.log(app);
+// console.log(http);
+// console.log(io);
 
 
 http.listen(3001, function(){

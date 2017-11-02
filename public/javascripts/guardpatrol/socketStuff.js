@@ -1,9 +1,9 @@
 $(function () {
 
-    console.log(express);
-    console.log(app);
-    console.log(http);
-    console.log(io);
+    // console.log(express);
+    // console.log(app);
+    // console.log(http);
+    // console.log(io);
     
 
     var socket = io();
