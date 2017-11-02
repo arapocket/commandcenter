@@ -43,10 +43,10 @@ if (process.env.CC_SSL == "YES"){
 var app = express();
 
 
-var http = require('http').Server(app);
-var io = require('socket.io').listen(http);
+var httpForSocket = require('http').Server(app);
+var io = require('socket.io').listen(httpForSocket);
 
-http.listen(3001, function(){
+httpForSocket.listen(3001, function(){
   console.log('listening on *:3001');
 });
 
