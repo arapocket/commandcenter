@@ -1,6 +1,7 @@
 $(function () {
 
     console.log(io);
+    console.log(express);
     console.log(app);
     console.log(http);
     
