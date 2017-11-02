@@ -1,9 +1,11 @@
 $(function () {
 
-    // console.log(express);
-    // console.log(app);
-    // console.log(http);
-    // console.log(io);
+
+    console.log("logging stuff in socketStuff.js:");
+    console.log(express);
+    console.log(app);
+    console.log(http);
+    console.log(io);
     
 
     var socket = io();

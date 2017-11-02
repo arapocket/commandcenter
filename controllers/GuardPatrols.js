@@ -6,6 +6,7 @@ var http = require('http').Server(app);
 var io = require('socket.io').listen(http);
 
 
+console.log("logging stuff in GuardPatrols.js");
 console.log(express);
 console.log(app);
 console.log(http);
