@@ -5,6 +5,13 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io').listen(http);
 
+
+console.log(express);
+console.log(app);
+console.log(http);
+console.log(io);
+
+
 http.listen(3001, function(){
   console.log('listening on *:3001');
 });
@@ -64,7 +71,7 @@ module.exports.getAllGuardPatrols = (function (req, res) {
                             } else {
                               res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult, io: io, http: http, app: app, express: express });
                             }
-                          });
+                          });g
                         }
                       });
                     }
