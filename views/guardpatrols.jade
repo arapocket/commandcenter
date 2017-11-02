@@ -75,9 +75,7 @@ block content
                   script(src='/javascripts/guardpatrol/configureMap.js')
                   script(src='https://cdn.socket.io/socket.io-1.2.0.js')
                   script(src='https://code.jquery.com/jquery-1.11.1.js')
-                  script.
-                    $(function () {
-                    var socket = io();
+                  script(src ='/javascripts/guardpatrol/socketStuff.js')
                   script.
                     var mapElement = document.getElementById('map');
                     var guards = !{ JSON.stringify(getAllGuardsResult) };
