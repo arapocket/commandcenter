@@ -182,8 +182,8 @@ router.get('/logout', function (req, res) {
 
 //////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
 var GuardPatrols = require('../controllers/GuardPatrols');
-
-router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
+var test = 1;
+router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols(test));
 
 
 

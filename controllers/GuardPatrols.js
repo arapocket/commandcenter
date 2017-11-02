@@ -5,14 +5,6 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io').listen(http);
 
-
-console.log("logging stuff in GuardPatrols.js");
-console.log(express);
-console.log(app);
-console.log(http);
-console.log(io);
-
-
 http.listen(3001, function(){
   console.log('listening on *:3001');
 });
@@ -32,9 +24,9 @@ io.on('connection', function(socket){
 
 
 
-module.exports.getAllGuardPatrols = (function (req, res) {
+module.exports.getAllGuardPatrols(test) = (function (req, res) {
 
-
+alert(test);
   GuardPatrol.getAllGuards(function (err, getAllGuardsResult) {
 
     if (err) {
