@@ -1,32 +1,8 @@
 var GuardPatrol = require('../models/GuardPatrol');
 
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io').listen(http);
-
-http.listen(3001, function(){
-  console.log('listening on *:3001');
-});
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
-  });
-  socket.on('message', function(msg){
-    console.log('message: ' + msg);
-  });
-  socket.on('message', function(msg){
-    io.emit('message', msg);
-  });
-});
+module.exports.getAllGuardPatrols = (function (req, res) {
 
 
-
-module.exports.getAllGuardPatrols(test) = (function (req, res) {
-
-alert(test);
   GuardPatrol.getAllGuards(function (err, getAllGuardsResult) {
 
     if (err) {
