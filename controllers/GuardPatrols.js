@@ -6,10 +6,10 @@ var http = require('http').Server(app);
 var io = require('socket.io').listen(http);
 
 
-// console.log(express);
-// console.log(app);
-// console.log(http);
-// console.log(io);
+console.log(express);
+console.log(app);
+console.log(http);
+console.log(io);
 
 
 http.listen(3001, function(){
@@ -69,7 +69,7 @@ module.exports.getAllGuardPatrols = (function (req, res) {
                             if (err) {
                               res.json(err);
                             } else {
-                              res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult, io: io, http: http, app: app, express: express });
+                              res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult, io: io, http: http, app: app });
                             }
                           });g
                         }
