@@ -1,9 +1,10 @@
 $(function () {
 
     console.log(io);
-    console.log(http);
     console.log(app);
+    console.log(http);
     
+
     var socket = io();
     $('form').submit(function(){
     socket.emit('message', $('#m').val());
