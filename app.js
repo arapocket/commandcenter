@@ -159,6 +159,7 @@ var port = process.env.PORT || 3000;
  */
 var server = app.listen(port, function() {
   console.log("Listening on " + port);
+
  });
 
  server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
@@ -187,6 +188,26 @@ if (process.env.CC_SSL == "YES"){
 //} else{
   //opn('http://localhost:3000/setup');
 //}
+
+
+//////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
+var app = express();
+var io = require('socket.io')(server);
+app.set('socketio', io);
+
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+  socket.on('message', function(msg){
+    console.log('message: ' + msg);
+  });
+  socket.on('message', function(msg){
+    io.emit('message', msg);
+  });
+});
 
 
 module.exports = app;
