@@ -186,9 +186,8 @@ var httpForSocket = require('http').createServer(app);
 var io = require('socket.io')(httpForSocket);
 app.set('socketio', io);
 
-httpForSocket.listen(3001, function(){
-  console.log('listening on *:3001');
-});
+httpForSocket.listen(8080, "127.0.0.1");
+
 
 
 io.on('connection', function(socket){
