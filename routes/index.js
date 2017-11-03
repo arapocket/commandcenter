@@ -206,7 +206,7 @@ io.on('connection', function(socket){
 
 
 var GuardPatrols = require('../controllers/GuardPatrols');
-router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols(io));
+router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols(io, httpForSocket));
 
 
 

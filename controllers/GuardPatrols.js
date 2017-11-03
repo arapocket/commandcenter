@@ -1,7 +1,8 @@
 var GuardPatrol = require('../models/GuardPatrol');
 
-module.exports.getAllGuardPatrols = function(io){
+module.exports.getAllGuardPatrols = function(io, httpForSocket){
   var io = io;
+  var httpForSocket = httpForSocket;
   return (function (req, res) {
 
 
@@ -40,7 +41,7 @@ module.exports.getAllGuardPatrols = function(io){
                             if (err) {
                               res.json(err);
                             } else {
-                              res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult, io: io});
+                              res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult, io: io, httpForSocket: httpForSocket});
                             }
                           });
                         }
