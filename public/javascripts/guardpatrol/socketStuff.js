@@ -1,8 +1,8 @@
 function socketStuff() {
 
 
-    // console.log("logging io");
-    // console.log(io);
+    console.log("logging io");
+    console.log(io);
 
     // $(function () {
 
