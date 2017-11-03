@@ -182,8 +182,8 @@ router.get('/logout', function (req, res) {
 
 //////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
 var app = express();
-var httpForSocket = require('http').Server(app);
-var io = require('socket.io').listen(httpForSocket);
+var httpForSocket = require('http').createServer(app);
+var io = require('socket.io')(httpForSocket);
 app.set('socketio', io);
 
 var fuck = httpForSocket.listen(3001, function(){
