@@ -3,6 +3,8 @@ function socketStuff() {
 
     console.log("logging io");
     console.log(io);
+    console.log("logging fuck");
+    console.log(fuck);
     
 
     $(function () {
