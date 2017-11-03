@@ -6,7 +6,7 @@ function socketStuff() {
 
     $(function () {
 
-        var socket = io();        
+        // var socket = io();        
         // console.log("logging socket");
         // console.log(socket);
     //     $('form').submit(function () {
