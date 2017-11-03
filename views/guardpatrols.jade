@@ -82,8 +82,8 @@ block content
                     var incidents = !{ JSON.stringify(getAllIncidentsResult) };
                     var coords = !{ JSON.stringify(getCurrentCoordsResult) };
                     var patrols = !{ JSON.stringify(getCurrentPatrolsResult) }; 
-                    var io = !{ io }; 
+                    var io = !{io}; 
                     initMap();
-                    socketStuff();
+                    socketStuff(io);
 
 
