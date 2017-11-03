@@ -1,7 +1,7 @@
 var GuardPatrol = require('../models/GuardPatrol');
 
 module.exports.getAllGuardPatrols = function(io){
-  
+  var io = io;
   return (function (req, res) {
 
 
