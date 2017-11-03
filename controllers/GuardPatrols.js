@@ -4,7 +4,7 @@ module.exports.getAllGuardPatrols = (function (req, res) {
 
 
 var io = req.app.get('socketio');
-var fuck = req.app.get('fuck');
+
 
 
   GuardPatrol.getAllGuards(function (err, getAllGuardsResult) {

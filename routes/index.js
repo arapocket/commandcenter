@@ -186,11 +186,10 @@ var httpForSocket = require('http').createServer(app);
 var io = require('socket.io')(httpForSocket);
 app.set('socketio', io);
 
-var fuck = httpForSocket.listen(3001, function(){
+httpForSocket.listen(3001, function(){
   console.log('listening on *:3001');
 });
 
-app.set('fuck', fuck);
 
 io.on('connection', function(socket){
   console.log('a user connected');

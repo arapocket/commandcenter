@@ -3,13 +3,10 @@ function socketStuff() {
 
     console.log("logging io");
     console.log(io);
-    console.log("logging fuck");
-    console.log(fuck);
-    
 
     $(function () {
 
-        var socket = io.connect("http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/guardpatrols")
+        var socket = io.connect("http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/guardpatrols");
         $('form').submit(function () {
             socket.emit('message', $('#m').val());
             $('#m').val('');
