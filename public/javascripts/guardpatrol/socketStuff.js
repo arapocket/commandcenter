@@ -1,7 +1,7 @@
 function socketStuff(io) {
 var io = io;
 console.log("logging io");
-console.log(io);
+// console.log(io);
 $(function () {
 
     var socket = io();
