@@ -182,10 +182,9 @@ router.get('/logout', function (req, res) {
 
 //////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
 var app = express();
-
-
 var httpForSocket = require('http').Server(app);
 var io = require('socket.io').listen(httpForSocket);
+app.set('socketio', io);
 
 httpForSocket.listen(3001, function(){
   console.log('listening on *:3001');
@@ -206,7 +205,7 @@ io.on('connection', function(socket){
 
 
 var GuardPatrols = require('../controllers/GuardPatrols');
-router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols(io, httpForSocket));
+router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols;
 
 
 
