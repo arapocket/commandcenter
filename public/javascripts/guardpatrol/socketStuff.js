@@ -7,8 +7,8 @@ function socketStuff() {
     $(function () {
 
         var socket = io();        
-        console.log("logging socket");
-        console.log(socket);
+        // console.log("logging socket");
+        // console.log(socket);
     //     $('form').submit(function () {
     //         socket.emit('message', $('#m').val());
     //         $('#m').val('');
