@@ -206,9 +206,7 @@ io.on('connection', function(socket){
 
 
 var GuardPatrols = require('../controllers/GuardPatrols');
-router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols, function(req,res){
-  res.sendFile(__dirname + '/index.html');
-} );
+router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
 
 
 
