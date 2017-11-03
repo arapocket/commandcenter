@@ -4,9 +4,9 @@ function socketStuff() {
     console.log("logging io");
     console.log(io);
 
-    // $(function () {
+    $(function () {
 
-    //     var socket = io();        
+        var socket = io();        
     //     console.log("logging socket");
     //     console.log(socket);
     //     $('form').submit(function () {
@@ -18,6 +18,6 @@ function socketStuff() {
     //         $('#messages').append($('<li>').text(msg));
     //         window.scrollTo(0, document.body.scrollHeight);
     //     });
-    // });
+    });
 
 }
