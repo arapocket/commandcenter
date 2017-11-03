@@ -193,8 +193,6 @@ if (process.env.CC_SSL == "YES"){
 //////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
 var app = express();
 var io = require('socket.io')(server);
-app.set('socketio', io);
-
 
 io.on('connection', function(socket){
   console.log('a user connected');
