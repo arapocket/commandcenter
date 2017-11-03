@@ -1,3 +1,5 @@
+function socketStuff() {
+
 $(function () {
 
     var socket = io();
@@ -11,3 +13,5 @@ $(function () {
     window.scrollTo(0, document.body.scrollHeight);
     });
     });
+
+}
