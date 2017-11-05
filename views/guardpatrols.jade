@@ -64,15 +64,15 @@ block content
 																#map
 														.col-md-3.col-sm-3.col-xs-12  
 																iframe.iframe-class(src='chatwindow.html', width='300', height='300', scrolling='no', frameborder='0')
-																		script(src='/javascripts/guardpatrol/configureMaps.js')
-																		script.
-																				var mapElement = document.getElementById('map');
-																				var guards = !{ JSON.stringify(getAllGuardsResult) };
-																				var locations = !{ JSON.stringify(getCurrentLocationsResult) };
-																				var incidents = !{ JSON.stringify(getAllIncidentsResult) };
-																				var coords = !{ JSON.stringify(getCurrentCoordsResult) };
-																				var patrols = !{ JSON.stringify(getCurrentPatrolsResult) }; 
-																				initMap();
+																script(src='/javascripts/guardpatrol/configureMap.js')
+																script.
+																		var mapElement = document.getElementById('map');
+																		var guards = !{ JSON.stringify(getAllGuardsResult) };
+																		var locations = !{ JSON.stringify(getCurrentLocationsResult) };
+																		var incidents = !{ JSON.stringify(getAllIncidentsResult) };
+																		var coords = !{ JSON.stringify(getCurrentCoordsResult) };
+																		var patrols = !{ JSON.stringify(getCurrentPatrolsResult) }; 
+																		initMap();
 																				
 
 
