@@ -1,5 +1,6 @@
 function initMap() {
 
+    console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
 
     var map = new google.maps.Map(document.getElementById('map'), {

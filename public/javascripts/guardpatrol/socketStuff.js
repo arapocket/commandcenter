@@ -229,7 +229,7 @@
         socket.on('login', function (data) {
           connected = true;
           // Display the welcome message
-          var message = "Welcome to GREYFOX chat.";
+          var message = "Welcome to FOXCHAT.";
           log(message, {
             prepend: true
           });
