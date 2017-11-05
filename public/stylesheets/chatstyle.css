@@ -53,8 +53,13 @@
   }
   
   .login.page .title, .login.page .usernameInput {
-    color: #fff;
-    font-weight: 100;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    outline: none;
+    padding-bottom: 15px;
+    text-align: left;
+    width: 400px;
   }
   
   /* Chat page */
@@ -94,6 +99,7 @@
   .username {
     font-weight: 700;
     overflow: hidden;
+    padding-right: 15px;
     text-align: left;
   }
   
