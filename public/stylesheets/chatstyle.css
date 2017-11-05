@@ -20,12 +20,6 @@
       sans-serif;
   }
   
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
   ul {
     list-style: none;
     word-wrap: break-word;
@@ -33,18 +27,6 @@
   
   /* Pages */
   
-  .pages {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-  
-  .page {
-    height: 100%;
-    position: absolute;
-    width: 100%;
-  }
   
   /* Login Page */
   
@@ -53,13 +35,10 @@
   }
   
   .login.page .form {
-    height: 100px;
     margin-top: -100px;
     position: absolute;
   
     text-align: center;
-    top: 50%;
-    width: 100%;
   }
   
   .login.page .form .usernameInput {
@@ -73,11 +52,9 @@
   }
   
   .login.page .title {
-    font-size: 200%;
   }
   
   .login.page .usernameInput {
-    font-size: 200%;
     letter-spacing: 3px;
   }
   
@@ -95,16 +72,13 @@
   /* Font */
   
   .messages {
-    font-size: 150%;
   }
   
   .inputMessage {
-    font-size: 100%;
   }
   
   .log {
     color: gray;
-    font-size: 70%;
     margin: 5px;
     text-align: center;
   }
@@ -112,12 +86,10 @@
   /* Messages */
   
   .chatArea {
-    height: 100%;
     padding-bottom: 60px;
   }
   
   .messages {
-    height: 100%;
     margin: 0;
     overflow-y: scroll;
     padding: 10px 20px 10px 20px;
@@ -145,6 +117,5 @@
     padding-left: 10px;
     position: absolute;
     right: 0;
-    width: 100%;
   }
   
