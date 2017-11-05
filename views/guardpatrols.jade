@@ -10,7 +10,7 @@ block content
                   }
                   #messages { list-style-type: none; margin: 0; padding: 0; }
                   #messages li { padding: 5px 10px; }
-                  #messages li:nth-child(odd) { background: #eee; }
+                  #messages li:nth-child(odd) { background: #e5e5ff; }
                   #messages { margin-bottom: 40px }
             .row
               .col-md-2.col-sm-2.col-xs-12
@@ -74,7 +74,7 @@ block content
                   script(src='/javascripts/guardpatrol/configureMap.js')
                   script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js')
                   script(src='https://code.jquery.com/jquery-1.11.1.js')
-                  script(src ='/javascripts/guardpatrol/socketStuff.js')
+                  script(src='/javascripts/guardpatrol/socketStuff.js')
                   script.
                     var mapElement = document.getElementById('map');
                     var guards = !{ JSON.stringify(getAllGuardsResult) };
