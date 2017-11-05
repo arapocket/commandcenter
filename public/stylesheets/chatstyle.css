@@ -36,14 +36,14 @@
   
   .login.page .form {
   
-    text-align: center;
+    text-align: left;
   }
   
   .login.page .form .usernameInput {
     background-color: transparent;
     border: none;
     outline: none;
-    text-align: center;
+    text-align: left;
   }
   
   .login.page .title {
@@ -54,7 +54,6 @@
   }
   
   .login.page .title, .login.page .usernameInput {
-    color: #fff;
     font-weight: 100;
   }
   
@@ -84,17 +83,16 @@
   
   .messages {
     margin: 0;
-    overflow-y: scroll;
   }
   
   .message.typing .messageBody {
-    color: gray;
+    color: rgb(64, 205, 248);
   }
   
   .username {
     font-weight: 700;
     overflow: hidden;
-    text-align: right;
+    text-align: left;
   }
   
   /* Input */
