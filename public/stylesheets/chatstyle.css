@@ -1,7 +1,6 @@
 /* Fix user-agent */
 
 * {
-    box-sizing: border-box;
   }
   
   html {
@@ -54,6 +53,7 @@
   }
   
   .login.page .title, .login.page .usernameInput {
+    color: #fff;
     font-weight: 100;
   }
   
@@ -66,6 +66,8 @@
   /* Font */
   
   .messages {
+    margin: 0;
+    padding: 10px 20px 10px 20px;
   }
   
   .inputMessage {
