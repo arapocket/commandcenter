@@ -55,11 +55,8 @@
   .login.page .title, .login.page .usernameInput {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #fff;
     outline: none;
-    padding-bottom: 15px;
     text-align: left;
-    width: 400px;
   }
   
   /* Chat page */
@@ -81,6 +78,7 @@
   .log {
     color: rgba(40, 157, 224, 0.938);
     text-align: left;
+    margin: 5px;
   }
   
   /* Messages */
