@@ -1,5 +1,3 @@
-function socketStuff() {
-    
     $(function() {
         var socket = io();
         var FADE_TIME = 150; // ms
@@ -283,5 +281,3 @@ function socketStuff() {
       
       });
       
-
-}
