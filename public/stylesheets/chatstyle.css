@@ -21,8 +21,6 @@
   
   ul {
     list-style: none;
-    word-wrap: break-word;
-    left: -10;
   }
   
   /* Pages */
@@ -54,10 +52,8 @@
   }
   
   .login.page .title, .login.page .usernameInput {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    text-align: left;
+    color: #fff;
+    font-weight: 100;
   }
   
   /* Chat page */
