@@ -42,9 +42,7 @@
   .login.page .form .usernameInput {
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #fff;
     outline: none;
-    padding-bottom: 15px;
     text-align: center;
   }
   
@@ -75,21 +73,18 @@
   }
   
   .log {
-    color: gray;
-    margin: 5px;
-    text-align: center;
+    color: rgba(40, 157, 224, 0.938);
+    text-align: left;
   }
   
   /* Messages */
   
   .chatArea {
-    padding-bottom: 60px;
   }
   
   .messages {
     margin: 0;
     overflow-y: scroll;
-    padding: 10px 20px 10px 20px;
   }
   
   .message.typing .messageBody {
@@ -99,7 +94,6 @@
   .username {
     font-weight: 700;
     overflow: hidden;
-    padding-right: 15px;
     text-align: right;
   }
   
@@ -111,8 +105,6 @@
     height: 60px;
     left: 0;
     outline: none;
-    padding-left: 10px;
-    position: absolute;
     right: 0;
   }
   
