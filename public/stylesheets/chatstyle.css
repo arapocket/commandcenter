@@ -57,7 +57,7 @@ ul {
   margin-top: -100px;
   position: absolute;
 
-  text-align: center;
+  text-align: left;
   top: 50%;
   width: 100%;
 }
@@ -68,7 +68,7 @@ ul {
   border-bottom: 2px solid #fff;
   outline: none;
   padding-bottom: 15px;
-  text-align: center;
+  text-align: left;
   width: 400px;
 }
 
@@ -96,6 +96,7 @@ ul {
 
 .messages {
   font-size: 110%;
+  background-color: #000;
 }
 
 .inputMessage {
@@ -106,7 +107,7 @@ ul {
   color: gray;
   font-size: 70%;
   margin: 5px;
-  text-align: center;
+  text-align: left;
 }
 
 /* Messages */
