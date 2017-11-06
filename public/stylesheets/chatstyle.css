@@ -141,10 +141,11 @@ ul {
 .inputMessage {
   border: 5px solid rgba(20, 173, 255, 0.055);
   bottom: 0;
-  height: 60px;
+  height: 40px;
   left: 0;
   outline: none;
   padding-left: 10px;
   position: absolute;
   right: 0;
+  width: 100%;
 }
