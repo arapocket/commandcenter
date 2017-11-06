@@ -49,6 +49,7 @@ ul {
 /* Login Page */
 
 .login.page {
+  background-color: #000;
 }
 
 .login.page .form {
@@ -72,11 +73,11 @@ ul {
 }
 
 .login.page .title {
-  font-size: 150%;
+  font-size: 120%;
 }
 
 .login.page .usernameInput {
-  font-size: 150%;
+  font-size: 120%;
   letter-spacing: 3px;
 }
 
@@ -94,7 +95,7 @@ ul {
 /* Font */
 
 .messages {
-  font-size: 150%;
+  font-size: 110%;
 }
 
 .inputMessage {
