@@ -51,7 +51,7 @@
           }
         }
       
-        // Sends a chat message
+        // Sends a chat messages
         function sendMessage () {
           var message = $inputMessage.val();
           // Prevent markup from being injected into the message
