@@ -50,6 +50,7 @@ ul {
 
 .login.page {
   background-color: #000;
+  border: 5px solid rgba(20, 169, 255, 0.294);
 }
 
 .login.page .form {
@@ -96,7 +97,8 @@ ul {
 
 .messages {
   font-size: 110%;
-  background-color: #fff;
+  background-color: #000;
+  color: #fff;
 }
 
 .inputMessage {
@@ -138,7 +140,7 @@ ul {
 /* Input */
 
 .inputMessage {
-  border: 10px solid #000;
+  border: 5px solid #000;
   bottom: 0;
   height: 60px;
   left: 0;
