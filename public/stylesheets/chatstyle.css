@@ -97,6 +97,7 @@ ul {
   font-size: 110%;
   background-color: #000;
   color: #fff;
+  border: 5px solid rgba(20, 169, 255, 0.294);
 }
 
 .inputMessage {
@@ -138,7 +139,7 @@ ul {
 /* Input */
 
 .inputMessage {
-  border: 5px solid #000;
+  border: 5px solid rgba(20, 169, 255, 0.294);
   bottom: 0;
   height: 60px;
   left: 0;
