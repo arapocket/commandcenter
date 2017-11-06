@@ -201,10 +201,14 @@ var numUsers = 0;
 io.on('connection', function (socket) {
   var addedUser = false;
 
-  // when the client emits 'new message', this listens and executes
-  socket.on('new message', function (data) {
+  // when the client emits 'message', this listens and executes
+  socket.on('message', function (data) {
     // we tell the client to execute 'new message'
-    socket.broadcast.emit('new message', {
+
+    if (socket.username==null){
+      socket.username = "FOX"
+    }
+    socket.broadcast.emit('message', {
       username: socket.username,
       message: data
     });
