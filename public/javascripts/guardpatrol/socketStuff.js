@@ -1,4 +1,7 @@
     $(function() {
+
+        console.log("socket stuff called");
+        
         var socket = io();
         var FADE_TIME = 150; // ms
         var TYPING_TIMER_LENGTH = 400; // ms
