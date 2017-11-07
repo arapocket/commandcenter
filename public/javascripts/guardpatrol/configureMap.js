@@ -37,6 +37,7 @@ function initMap() {
     var chatWindow  = document.getElementById("chatWindow");
      chatWindow.innerHTML = localStorage.getItem("chatWindow");
      
+     
 
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
