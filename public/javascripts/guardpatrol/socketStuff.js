@@ -13,8 +13,6 @@
         var $usernameInput = $('.usernameInput'); // Input for username
         var $messages = $('.messages'); // Messages area
         var $inputMessage = $('.inputMessage'); // Input message input box
-      
-        var $loginPage = $('.login.page'); // The login page
         var $chatPage = $('.chat.page'); // The chatroom page
       
         // Prompt for setting a username
@@ -23,7 +21,7 @@
         var typing = false;
         var lastTypingTime;
         var $currentInput = $usernameInput.focus();
-      
+        setUsername();
       
         function addParticipantsMessage (data) {
           var message = '';
@@ -192,7 +190,6 @@
               socket.emit('stop typing');
               typing = false;
             } else {
-              setUsername();
             }
           }
         });
