@@ -431,7 +431,8 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
 
         // save the chat window to keep its contents between refreshes
         var chatWindow = document.getElementById("chatWindow");
-        localStorage.setItem("chatWindow", chatWindow.innerHTML);
+        var htmlTestString = '<input class="inputMessage" placeholder="Type here..."/>'
+        localStorage.setItem("chatWindow", htmlTestString);
 
 
         window.onload = timedRefresh(10000);
