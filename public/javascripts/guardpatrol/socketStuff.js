@@ -37,18 +37,8 @@
       
         // Sets the client's username
         function setUsername () {
-          username = cleanInput($usernameInput.val().trim());
-      
-          // If the username is valid
-          if (username) {
-            $loginPage.fadeOut();
-            $chatPage.show();
-            $loginPage.off('click');
-            $currentInput = $inputMessage.focus();
-      
-            // Tell the server your username
-            socket.emit('add user', username);
-          }
+          username = "GREYFOX";
+          socket.emit('add user', username);
         }
       
         // Sends a chat messages
