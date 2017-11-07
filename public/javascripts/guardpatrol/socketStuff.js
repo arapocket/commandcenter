@@ -1,7 +1,7 @@
     $(function() {
 
         console.log("socket stuff called");
-
+        
         var socket = io();
         var FADE_TIME = 150; // ms
         var TYPING_TIMER_LENGTH = 400; // ms
@@ -170,13 +170,15 @@
       
         // Gets the color of a username through our hash function
         function getUsernameColor (username) {
-          var randomIndex = randomIntFromInterval(0,11);
-          return COLORS[randomIndex];
+          // Compute hash code
+          var hash = 7;
+          for (var i = 0; i < username.length; i++) {
+             hash = username.charCodeAt(i) + (hash << 5) - hash;
+          }
+          // Calculate color
+          var index = Math.abs(hash % COLORS.length);
+          return COLORS[index];
         }
-
-        function randomIntFromInterval(min, max) {
-          return Math.floor(Math.random() * (max - min + 1) + min);
-      }
       
         // Keyboard events
       
