@@ -33,6 +33,10 @@ function initMap() {
     autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
 
+    // load the chat window as it was before
+    var chatWindow  = document.getElementById("chatWindow");
+     chatWindow.innerHTML = localStorage.getItem("chatWindow");
+     
 
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
@@ -424,6 +428,12 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
         autoRefreshButtonOFF.style.display = "none";
         autoRefreshButtonTEN.style.display = "inline";
         localStorage.setItem("currentButtonValue", currentButtonValue);
+
+        // save the chat window to keep its contents between refreshes
+        var chatWindow = document.getElementById("chatWindow");
+        localStorage.setItem("chatWindow", chatWindow.innerHTML);
+
+
         window.onload = timedRefresh(10000);
 
 
