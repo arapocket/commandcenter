@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "apn": "^2.1.5",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "crlf-helper": "^0.1.0",
