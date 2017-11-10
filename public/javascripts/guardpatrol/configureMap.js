@@ -35,8 +35,8 @@ function initMap() {
     };
 
 
-    autoRefreshButtonOFF = parent.parent.document.getElementById('autoRefreshButtonOFF');
-    autoRefreshButtonTEN = parent.parent.document.getElementById('autoRefreshButtonTEN');     
+    autoRefreshButtonOFF = parent.document.getElementById('autoRefreshButtonOFF');
+    autoRefreshButtonTEN = parent.document.getElementById('autoRefreshButtonTEN');     
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
     console.log(currentButtonValue);
@@ -198,7 +198,7 @@ function createRoutes(map, iconsBase) {
 
     var routeMarkers = [];
 
-    var removeCheckpointButton = parent.parent.document.getElementById("removeCheckpointButton");
+    var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
 
     removeCheckpointButton.addEventListener('click', function (e) {
 
@@ -210,7 +210,7 @@ function createRoutes(map, iconsBase) {
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
 
-    var saveRouteButton = parent.parent.document.getElementById("saveRouteButton");
+    var saveRouteButton = parent.document.getElementById("saveRouteButton");
 
     saveRouteButton.addEventListener('click', function (e) {
 
@@ -219,7 +219,7 @@ function createRoutes(map, iconsBase) {
 
     onLoadRoute(map, iconsBase, route, routeMarkers);
 
-    var loadRouteButton = parent.parent.document.getElementById("loadRouteButton");
+    var loadRouteButton = parent.document.getElementById("loadRouteButton");
 
     loadRouteButton.addEventListener('click', function (e) {
 
