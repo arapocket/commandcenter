@@ -184,7 +184,7 @@ router.get('/logout', function (req, res) {
 
 var GuardPatrols = require('../controllers/GuardPatrols');
 router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
-
+//
 var FoxMaps = require('../controllers/foxmaps');
 router.get('/foxmaps', FoxMaps.getMap);
 
