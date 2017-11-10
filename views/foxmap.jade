@@ -18,14 +18,13 @@ html(lang='en')
 		script(src='/javascripts/guardpatrol/configureMap.js')
 		script(src='/javascripts/guardpatrol/locationIsAccurate.js')
 		script.
-			initMap();
-		script.
 				var mapElement = document.getElementById('map');
 				var guards = !{ JSON.stringify(getAllGuardsResult) };
 				var locations = !{ JSON.stringify(getCurrentLocationsResult) };
 				var incidents = !{ JSON.stringify(getAllIncidentsResult) };
 				var coords = !{ JSON.stringify(getCurrentCoordsResult) };
 				var patrols = !{ JSON.stringify(getCurrentPatrolsResult) }; 
+                initMap();
 																				
 
 
