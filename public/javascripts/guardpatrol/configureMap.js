@@ -1,10 +1,4 @@
 function initMap() {
-    locations = locations;
-    incidents = parent.incidents;
-    guards = parent.guards;
-    coords = parent.coords;
-    patrols = parent.patrols;
-
     console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
 
