@@ -186,7 +186,7 @@ var GuardPatrols = require('../controllers/GuardPatrols');
 router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
 //
 var FoxMaps = require('../controllers/foxmaps');
-router.get('/foxmaps', FoxMaps.getMap);
+router.get('/foxmaps', FoxMaps.getAllGuardPatrols);
 
 
 //////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
