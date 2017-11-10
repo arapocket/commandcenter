@@ -36,8 +36,8 @@ function initMap() {
     };
 
 
-    autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
-    autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');     
+    autoRefreshButtonOFF = parent.document.getElementById('autoRefreshButtonOFF');
+    autoRefreshButtonTEN = parent.document.getElementById('autoRefreshButtonTEN');     
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
     console.log(currentButtonValue);
