@@ -187,6 +187,7 @@ router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
 
 
 
+
 //////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
 var Guards = require('../controllers/Guards');
 router.get('/guards', Guards.getAllGuards);
