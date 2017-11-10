@@ -8,6 +8,7 @@ function getMapContents(){
     
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {   
+                console.log("http request done");
                 initMap(); 
             }
         }
