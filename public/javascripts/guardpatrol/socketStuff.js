@@ -11,7 +11,7 @@
           '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
         ];
       
-        // Initialize variables
+        /// Initialize variables
         var $window = $(window);
         var $usernameInput = $('.usernameInput'); // Input for username
         var $messages = $('.messages'); // Messages area
