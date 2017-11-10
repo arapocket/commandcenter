@@ -1,11 +1,31 @@
-object#map(data='/map.html', width='100%', height='480px', type='text/html')
-script.
-		var mapElement = document.getElementById('map');
-		var guards = !{ JSON.stringify(getAllGuardsResult) };
-		var locations = !{ JSON.stringify(getCurrentLocationsResult) };
-		var incidents = !{ JSON.stringify(getAllIncidentsResult) };
-		var coords = !{ JSON.stringify(getCurrentCoordsResult) };
-		var patrols = !{ JSON.stringify(getCurrentPatrolsResult) }; 
+doctype html
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		title FOXMAP
+		style.
+			#map {
+			height: 100%;
+			}
+			html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			}
+	body
+		#map
+		script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCuuEBG2qsNl6WRWo9093Abz4MEvv3QayU')
+		script(src='/javascripts/guardpatrol/configureMap.js')
+		script(src='/javascripts/guardpatrol/locationIsAccurate.js')
+		script.
+			getMapContents();
+		script.
+				var mapElement = document.getElementById('map');
+				var guards = !{ JSON.stringify(getAllGuardsResult) };
+				var locations = !{ JSON.stringify(getCurrentLocationsResult) };
+				var incidents = !{ JSON.stringify(getAllIncidentsResult) };
+				var coords = !{ JSON.stringify(getCurrentCoordsResult) };
+				var patrols = !{ JSON.stringify(getCurrentPatrolsResult) }; 
 																				
 
 
