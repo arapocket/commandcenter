@@ -1,5 +1,11 @@
 function initMap() {
 
+    parent.locations = locations;
+    parent.incidents = incidents;
+    parent.guards = guards;
+    parent.coords = coords;
+    parent.patrols = patrols;
+
     console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
 
