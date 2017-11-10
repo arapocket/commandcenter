@@ -8,7 +8,7 @@ module.exports.getMap = (function (req, res) {
             res.json(err);
         }
         else{
-            res.render('foxmap', { title: 'FOXMAP'});
+            res.render('foxmaps', { title: 'FOXMAP'});
         }
 
     })
