@@ -18,7 +18,7 @@ html(lang='en')
 		script(src='/javascripts/guardpatrol/configureMap.js')
 		script(src='/javascripts/guardpatrol/locationIsAccurate.js')
 		script.
-			getMapContents();
+			initMap();
 		script.
 				var mapElement = document.getElementById('map');
 				var guards = !{ JSON.stringify(getAllGuardsResult) };

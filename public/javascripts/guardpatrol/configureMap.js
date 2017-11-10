@@ -1,31 +1,4 @@
-function getMapContents(){
-    var xhr = new XMLHttpRequest();
-    
-        if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
-    
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {   
-                console.log("http request done");
-                initMap(); 
-            }
-        }
-    
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/foxmaps/", true);
-    
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(null);
-}
-
-
 function initMap() {
-    locations = parent.locations;
-    incidents = parent.incidents;
-    guards = parent.guards;
-    coords = parent.coords;
-    patrols = parent.patrols;
 
     console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
