@@ -7,7 +7,7 @@ module.exports.getMap = function (callback) {
             callback(err, null);
         }else{
             var connection = reslt;
-            var strSQL = ' SELECT * FROM Guard';
+            var strSQL = ' SELECT * FROM guard';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
