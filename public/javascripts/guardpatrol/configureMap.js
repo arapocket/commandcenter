@@ -1,5 +1,5 @@
 function initMap() {
-
+    console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -29,10 +29,8 @@ function initMap() {
     };
 
 
-    autoRefreshButtonOFF = document.getElementById('autoRefreshButtonOFF');
-    autoRefreshButtonTEN = document.getElementById('autoRefreshButtonTEN');
-
-
+    autoRefreshButtonOFF = parent.document.getElementById('autoRefreshButtonOFF');
+    autoRefreshButtonTEN = parent.document.getElementById('autoRefreshButtonTEN');     
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
     console.log(currentButtonValue);
@@ -194,7 +192,7 @@ function createRoutes(map, iconsBase) {
 
     var routeMarkers = [];
 
-    var removeCheckpointButton = document.getElementById("removeCheckpointButton");
+    var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
 
     removeCheckpointButton.addEventListener('click', function (e) {
 
@@ -206,7 +204,7 @@ function createRoutes(map, iconsBase) {
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
 
-    var saveRouteButton = document.getElementById("saveRouteButton");
+    var saveRouteButton = parent.document.getElementById("saveRouteButton");
 
     saveRouteButton.addEventListener('click', function (e) {
 
@@ -215,7 +213,7 @@ function createRoutes(map, iconsBase) {
 
     onLoadRoute(map, iconsBase, route, routeMarkers);
 
-    var loadRouteButton = document.getElementById("loadRouteButton");
+    var loadRouteButton = parent.document.getElementById("loadRouteButton");
 
     loadRouteButton.addEventListener('click', function (e) {
 
@@ -446,3 +444,4 @@ function openMarker(){
 
 
 
+//

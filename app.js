@@ -43,7 +43,6 @@ if (process.env.CC_SSL == "YES"){
 var app = express();
 
 
-
 // which index file to use
 var routes = require('./routes/index');
 
@@ -160,6 +159,7 @@ var port = process.env.PORT || 3000;
  */
 var server = app.listen(port, function() {
   console.log("Listening on " + port);
+
  });
 
  server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
@@ -188,5 +188,95 @@ if (process.env.CC_SSL == "YES"){
 //} else{
   //opn('http://localhost:3000/setup');
 //}
+
+
+//////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
+
+const apn = require("apn");
+
+let tokens = ["<3ce05bc3 44be6743 6a2d97e9 342c2c2b d8181c98 df6a0378 c324f3ca 11aa47aa>"];
+let service = new apn.Provider({
+  cert: "certificates/cert.pem",
+  key: "certificates/key.pem",
+});
+
+///////////////////////////////////////////////////////////////////////
+
+
+
+var app = express();
+var io = require('socket.io')(server);
+
+
+// Chatroom
+
+var numUsers = 0;
+
+io.on('connection', function (socket) {
+  var addedUser = false;
+
+  // when the client emits 'message', this listens and executes
+  socket.on('message', function (data) {
+    // we tell the client to execute 'new message'
+
+    if (socket.username==null){
+      socket.username = "FOX"
+    }
+    socket.broadcast.emit('message', {
+      username: socket.username,
+      message: data
+    });
+  });
+
+  /// when the client emits 'add user', this listens and executes
+  socket.on('add user', function (username) {
+    if (addedUser) return;
+
+    // we store the username in the socket session for this client
+    socket.username = username;
+    ++numUsers;
+    addedUser = true;
+    socket.emit('login', {
+      numUsers: numUsers
+    });
+    // echo globally (all clients) that a person has connected
+    socket.broadcast.emit('user joined', {
+      username: socket.username,
+      numUsers: numUsers
+    });
+  });
+
+  // when the client emits 'typing', we broadcast it to others
+  socket.on('typing', function () {
+    socket.broadcast.emit('typing', {
+      username: socket.username
+    });
+  });
+
+  // when the client emits 'stop typing', we broadcast it to others
+  socket.on('stop typing', function () {
+    socket.broadcast.emit('stop typing', {
+      username: socket.username
+    });
+  });
+
+  // when the user disconnects.. perform this
+  socket.on('disconnect', function () {
+    if (addedUser) {
+      --numUsers;
+
+      // echo globally that this client has left
+      socket.broadcast.emit('user left', {
+        username: socket.username,
+        numUsers: numUsers
+      });
+    }
+  });
+});
+
+
+
+
+
 
 module.exports = app;

@@ -2,7 +2,6 @@ var GuardPatrol = require('../models/GuardPatrol');
 
 module.exports.getAllGuardPatrols = (function (req, res) {
 
-
   GuardPatrol.getAllGuards(function (err, getAllGuardsResult) {
 
     if (err) {
@@ -38,7 +37,8 @@ module.exports.getAllGuardPatrols = (function (req, res) {
                             if (err) {
                               res.json(err);
                             } else {
-                              res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult });
+                              res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
+                      
                             }
                           });
                         }
@@ -54,6 +54,8 @@ module.exports.getAllGuardPatrols = (function (req, res) {
     }
   });
 });
+
+
 
 
 

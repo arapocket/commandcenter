@@ -180,11 +180,13 @@ router.get('/logout', function (req, res) {
 });
 
 
-//////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
+
+
 var GuardPatrols = require('../controllers/GuardPatrols');
-
 router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
-
+//
+var FoxMaps = require('../controllers/foxmaps');
+router.get('/foxmaps', FoxMaps.getAllGuardPatrols);
 
 
 //////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
@@ -231,5 +233,6 @@ router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
+///
 
 module.exports = router;
