@@ -194,7 +194,11 @@ if (process.env.CC_SSL == "YES"){
 
 const apn = require("apn");
 
-let tokens = [""];
+let tokens = ["<3ce05bc3 44be6743 6a2d97e9 342c2c2b d8181c98 df6a0378 c324f3ca 11aa47aa>"];
+let service = new apn.Provider({
+  cert: "certificates/cert.pem",
+  key: "certificates/key.pem",
+});
 
 ///////////////////////////////////////////////////////////////////////
 
