@@ -209,10 +209,9 @@ let deviceToken = "3ce05bc344be67436a2d97e9342c2c2bd8181c98df6a0378c324f3ca11aa4
 var note = new apn.Notification();
 
 note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-note.badge = 3;
 note.sound = "ping.aiff";
 note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
-note.payload = {'messageFrom': 'John Appleseed'};
+note.payload = {'messageFrom': 'GREYFOX'};
 note.topic = "mobss.foxwatch";
 
 /////////////////////////////////////////////////////////////////////////
