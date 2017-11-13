@@ -243,7 +243,8 @@ io.on('connection', function (socket) {
     });
 
     apnProvider.send(note, deviceToken).then( (result) => {
-      // see documentation for an explanation of result
+      console.log("logging result");
+      console.log(result);
     });
   });
 
