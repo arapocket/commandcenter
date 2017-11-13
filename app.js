@@ -194,11 +194,26 @@ if (process.env.CC_SSL == "YES"){
 
 const apn = require("apn");
 
-let tokens = ["<3ce05bc3 44be6743 6a2d97e9 342c2c2b d8181c98 df6a0378 c324f3ca 11aa47aa>"];
-let service = new apn.Provider({
-  cert: "certificates/cert.pem",
-  key: "certificates/key.pem",
-});
+var options = {
+  token: {
+    key: "path/to/AuthKey_M4D8R5539E.p8",
+    keyId: "M4D8R5539E",
+    teamId: "KUJ3K83XLJ"
+  },
+  production: false
+};
+
+var apnProvider = new apn.Provider(options);
+let deviceToken = "3ce05bc344be67436a2d97e9342c2c2bd8181c98df6a0378c324f3ca11aa47aa"
+
+var note = new apn.Notification();
+
+note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+note.badge = 3;
+note.sound = "ping.aiff";
+note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
+note.payload = {'messageFrom': 'John Appleseed'};
+note.topic = "<mobss.foxwatch>";
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -225,6 +240,10 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('message', {
       username: socket.username,
       message: data
+    });
+
+    apnProvider.send(note, deviceToken).then( (result) => {
+      // see documentation for an explanation of result
     });
   });
 
