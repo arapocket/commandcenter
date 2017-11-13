@@ -204,7 +204,7 @@ var options = {
 };
 
 var apnProvider = new apn.Provider(options);
-let deviceToken = "3ce05bc344be67436a2d97e9342c2c2bd8181c98df6a0378c324f3ca11aa47aa"
+let deviceToken = "3ce05bc344be67436a2d97e9342c2c2bd8181c98df6a0378c324f3ca11aa47aa"                   
 
 var note = new apn.Notification();
 
@@ -245,6 +245,7 @@ io.on('connection', function (socket) {
     apnProvider.send(note, deviceToken).then( (result) => {
       console.log("logging result");
       console.log(result);
+      console.log(result.reason);
     });
   });
 
