@@ -196,7 +196,7 @@ const apn = require("apn");
 
 var options = {
   token: {
-    key: "path/to/AuthKey_M4D8R5539E.p8",
+    key: "/certificates/AuthKey_M4D8R5539E.p8",
     keyId: "M4D8R5539E",
     teamId: "KUJ3K83XLJ"
   },
