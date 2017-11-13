@@ -204,7 +204,7 @@ var options = {
 };
 
 var apnProvider = new apn.Provider(options);
-let deviceToken = "3ce05bc344be67436a2d97e9342c2c2bd8181c98df6a0378c324f3ca11aa47aa"                   
+let deviceToken = "b29a236fe06ebff2fd19ec6c93be5577acbeccdfeedf09208148b58a494954e4" 
 
 var note = new apn.Notification();
 
