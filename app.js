@@ -243,9 +243,9 @@ io.on('connection', function (socket) {
     });
 
     apnProvider.send(note, deviceToken).then( (result) => {
+      var res = JSON.stringify(result);  
       console.log("logging result");
-      console.log(result);
-      console.log(result.reason);
+      console.log(res);
     });
   });
 
