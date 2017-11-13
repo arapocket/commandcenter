@@ -213,7 +213,7 @@ note.badge = 3;
 note.sound = "ping.aiff";
 note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
 note.payload = {'messageFrom': 'John Appleseed'};
-note.topic = "<mobss.foxwatch>";
+note.topic = "mobss.foxwatch";
 
 ///////////////////////////////////////////////////////////////////////
 
