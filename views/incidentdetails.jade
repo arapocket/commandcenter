@@ -1,13 +1,43 @@
-doctype html
-html(lang='en')
-	head
-		meta(charset='UTF-8')
-		title Incident Details
-	body
-		script(src='/javascripts/guardpatrol/locationIsAccurate.js')
-		script.
-				var incident = !{ JSON.stringify(getIncidentResult) };
-				renderIncidentDetails();
+include mixins
+extends layout
+block content   
+												include navbar
+												head
+												.row
+																		.row
+																						#removeCheckpointButton
+																										a.btn.btn-default.btn-block
+																											i.fa.fa-eraser(aria-hidden='true')
+																											| &nbsp Remove Checkpoint
+																		.row
+																						#saveRouteButton
+																										a.btn.btn-default.btn-block
+																											i.fa.fa-floppy-o(aria-hidden='true')
+																											| &nbsp Save Route
+																		.row
+																						#loadRouteButton
+																										a.btn.btn-default.btn-block
+																											i.fa.fa-cloud-download(aria-hidden='true')
+																											| &nbsp Load Route   
+																		.row
+																						#autoRefreshButtonOFF
+																										a.btn.btn-default.btn-block
+																											i.fa.fa-refresh(aria-hidden='true')
+																											| &nbsp Auto Refresh Off
+																						#autoRefreshButtonTEN
+																										a.btn.btn-default.btn-block
+																											i.fa.fa-refresh(aria-hidden='true')
+																											| &nbsp Auto Refresh 10																						   
+														.col-md-7.col-sm-7.col-xs-12			  
+																object#incidentphoto(width='100%', height='500', type='text/html')
+																script(src='/javascripts/guardpatrol/renderIncidentDetails.js')
+																script.
+																		var incident = !{ JSON.stringify(getIncidentResult) };
+																		renderIncidentDetails();
+																				
+
+
+
 																				
 
 

@@ -92,7 +92,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         <h6 style="color:#404040"> 
         ` + incidents[i].Description + `
         </h6>
-        <a href = "https://s3-us-west-2.amazonaws.com/incidentdetails/`
+        <a href = "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/`
         + incidents[i].IncidentID +
         `"><img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
             + incidents[i].IncidentID + `"height="120" width="120"></a>`
