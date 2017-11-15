@@ -1,6 +1,7 @@
 function incidentDetail(){
 
-    console.log("incidentDetail called ");
+    console.log("logging iconsbase");
+    console.log(parent.iconsBase);
 
     var incidentID = parent.incidents[i].IncidentID;
     var pic = document.getElementById("incidentphoto");
