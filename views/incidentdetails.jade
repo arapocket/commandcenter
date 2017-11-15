@@ -1,0 +1,13 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		title Incident Details
+	body
+		script(src='/javascripts/guardpatrol/locationIsAccurate.js')
+		script.
+				var incident = !{ JSON.stringify(getIncidentResult) };
+				renderIncidentDetails();
+																				
+
+

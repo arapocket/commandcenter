@@ -31,7 +31,7 @@ module.exports.getAllGuards = function (callback) {
 }
 
 
-module.exportsgetGuardByID = function (id, callback) {
+module.exports.getGuardByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);
