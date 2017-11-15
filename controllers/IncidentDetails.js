@@ -12,7 +12,7 @@ module.exports.getIncidentDetails = (function (req, res) {
 
     }
   });
-}
+});
 
 
 
