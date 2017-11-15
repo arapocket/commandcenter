@@ -8,7 +8,8 @@ module.exports.getIncidentDetails = (function (req, res) {
       res.json(err);
     }
     else {
-      res.render('incidentdetails', { title: 'Incident Details', getIncidentResult: getIncidentResult });
+      // res.render('incidentdetails', { title: 'Incident Details', getIncidentResult: getIncidentResult });
+      res.json(getInidentResult);
 
     }
   });
