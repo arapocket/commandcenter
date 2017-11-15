@@ -9,7 +9,7 @@ module.exports.getIncidentDetails = (function (req, res) {
     }
     else {
       // res.render('incidentdetails', { title: 'Incident Details', getIncidentResult: getIncidentResult });
-      res.json(getInidentResult);
+      res.json(getIncidentResult);
 
     }
   });
