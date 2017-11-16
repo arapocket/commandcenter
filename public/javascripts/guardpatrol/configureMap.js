@@ -29,7 +29,7 @@ function initMap() {
 
     } else {
         var mapSpace = document.getElementById('map');
-        mapSpace.innerHTML = "<p>NO LOCATION AVAILABLE</p>";
+        mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
 
 
