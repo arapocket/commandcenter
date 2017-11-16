@@ -3,7 +3,7 @@ function initMap() {
     var iconsBase = "http://maps.google.com/mapfiles/"
 
 
-    if (locations != null){
+    if (locations != null) {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 20,
             center: { lat: locations[0].lat, lng: locations[0].lng },
@@ -14,22 +14,26 @@ function initMap() {
             mapTypeControl: false,
             panControl: false,
             rotateControl: false
-    
+
         });
-    } else{
+
+        createGuardMarkers(locations, map, iconsBase);
+
+        createIncidentMarkers(incidents, map, iconsBase);
+
+        createPatrolPaths(patrols, coords, map);
+
+        createRoutes(map, iconsBase);
+
+
+
+    } else {
         var mapSpace = document.getElementById('map');
         mapSpace.innerHTML = "<p>NO LOCATION AVAILABLE</p>";
     }
 
 
 
-    createGuardMarkers(locations, map, iconsBase);
-
-    createIncidentMarkers(incidents, map, iconsBase);
-
-    createPatrolPaths(patrols, coords, map);
-
-    createRoutes(map, iconsBase);
 
     let buttonValues = {
         OFF: "Auto Refresh Off",
@@ -38,7 +42,7 @@ function initMap() {
 
 
     autoRefreshButtonOFF = parent.document.getElementById('autoRefreshButtonOFF');
-    autoRefreshButtonTEN = parent.document.getElementById('autoRefreshButtonTEN');     
+    autoRefreshButtonTEN = parent.document.getElementById('autoRefreshButtonTEN');
 
     var currentButtonValue = localStorage.getItem("currentButtonValue");
     console.log(currentButtonValue);
@@ -103,8 +107,8 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         ` + incidents[i].Description + `
         </h6>
         <a href = "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/`
-        + incidents[i].IncidentID +
-        `"><img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
+            + incidents[i].IncidentID +
+            `"><img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
             + incidents[i].IncidentID + `"height="120" width="120"></a>`
 
         var markerWindow = new google.maps.InfoWindow({
@@ -122,9 +126,9 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         });
         markerWindow.open(map, marker);
         marker.addListener('click', function (e) {
-            markerWindow.open(map, marker); 
+            markerWindow.open(map, marker);
         });
-        
+
     }
 }
 
@@ -391,10 +395,10 @@ function loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers) {
 }
 
 function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
-    
+
 
     route.setPath([]);
-    for (i = 0 ; i < routeMarkers.length ; i++){
+    for (i = 0; i < routeMarkers.length; i++) {
         routeMarkers[i].setMap(null);
     }
     for (i = 0; i < checkpoints.length; i++) {
@@ -442,7 +446,7 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
 
 }
 
-function openMarker(){
+function openMarker() {
 
 }
 
