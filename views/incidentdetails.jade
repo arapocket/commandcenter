@@ -10,8 +10,6 @@ html(lang='en')
 					a.btn.btn-default.btn-block
 						i.fa.fa-eraser(aria-hidden='true')
 						| &nbsp Back To Map																				   
-		.row	
-			img#incidentPhoto(src="",  width = "500px", height = "300px")
 			script(src='/javascripts/guardpatrol/renderIncidentDetails.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
