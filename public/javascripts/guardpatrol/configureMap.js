@@ -64,6 +64,8 @@ function timedRefresh(timeoutPeriod) {
 
 function createGuardMarkers(locations, map, iconsBase) {
     for (i = 0; i < locations.length; i++) {
+        console.log("here's a guard locations");
+        console.log(locations[i]);
         var lat = locations[i].lat;
         var lng = locations[i].lng;
         var marker = new google.maps.Marker({
