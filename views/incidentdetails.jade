@@ -5,8 +5,8 @@ html(lang='en')
 		title Incident Details
 		style.
 			html, body {
-			height: 100%;
-			width: 95%;
+			height: 99%;
+			width: 99%;
 			margin: 0;
 			padding: 0;
 			}
@@ -20,7 +20,7 @@ html(lang='en')
 						i.fa.fa-arrow-left(aria-hidden='true')
 						| &nbsp Back To Map																				   
 		.col-md-12.col-sm-12.col-xs-12
-			img#incidentPhoto(src="",  width = "100%", height = "100%")
+			img#incidentPhoto(src="",  width = "100%", height = "400px")
 			script(src='/javascripts/guardpatrol/renderIncidentDetails.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
