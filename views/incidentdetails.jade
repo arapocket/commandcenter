@@ -6,6 +6,7 @@ html(lang='en')
 		style.
 			html, body {
 			height: 100%;
+			width: 90%;
 			margin: 0;
 			padding: 0;
 			}
@@ -13,12 +14,12 @@ html(lang='en')
 	link(href="/stylesheets/chatstyle.css", rel="stylesheet")
 	link(rel='stylesheet', href='/font-awesome-4.7.0/css/font-awesome.min.css')
 	.row
-		.col-md-2.col-sm-2.col-xs-12
+		.col-md-12.col-sm-12.col-xs-12
 			#backButton
 					a.btn.btn-default.btn-block
 						i.fa.fa-arrow-left(aria-hidden='true')
 						| &nbsp Back To Map																				   
-		.col-md-10.col-sm-10.col-xs-12
+		.col-md-12.col-sm-12.col-xs-12
 			img#incidentPhoto(src="",  width = "300px", height = "300px")
 			script(src='/javascripts/guardpatrol/renderIncidentDetails.js')
 			script.
