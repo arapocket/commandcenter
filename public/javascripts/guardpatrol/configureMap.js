@@ -3,7 +3,7 @@ function initMap() {
     var iconsBase = "http://maps.google.com/mapfiles/"
 
 
-    if (locations != []) {
+    if (locations.length > 0) {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 20,
             center: { lat: locations[0].lat, lng: locations[0].lng },
