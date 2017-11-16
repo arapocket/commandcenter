@@ -70,7 +70,7 @@ module.exports.getCurrentLocations = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT lat, lng FROM coordinate WHERE CurrentCoord = 1';
+            var strSQL = 'SELECT DISTINCT lat, lng FROM coordinate WHERE CurrentCoord = 1';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
