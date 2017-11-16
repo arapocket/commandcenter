@@ -2,18 +2,26 @@ function initMap() {
     console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
 
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 20,
-        center: { lat: locations[0].lat, lng: locations[0].lng },
-        mapTypeId: google.maps.MapTypeId.SATELLITE,
-        streetViewControl: false,
-        clickableIcons: false,
-        fullscreenControl: false,
-        mapTypeControl: false,
-        panControl: false,
-        rotateControl: false
 
-    });
+    if (locations != null){
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 20,
+            center: { lat: locations[0].lat, lng: locations[0].lng },
+            mapTypeId: google.maps.MapTypeId.SATELLITE,
+            streetViewControl: false,
+            clickableIcons: false,
+            fullscreenControl: false,
+            mapTypeControl: false,
+            panControl: false,
+            rotateControl: false
+    
+        });
+    } else{
+        var mapSpace = document.getElementById('map');
+        mapSpace.innerHTML = "<p>NO LOCATION AVAILABLE</p>";
+    }
+
+
 
     createGuardMarkers(locations, map, iconsBase);
 
