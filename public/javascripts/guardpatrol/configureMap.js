@@ -7,7 +7,7 @@ function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 20,
             center: { lat: locations[0].lat, lng: locations[0].lng },
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeId: google.maps.MapTypeId.SATELLITE,
             streetViewControl: false,
             clickableIcons: false,
             fullscreenControl: false,
@@ -84,7 +84,6 @@ function createGuardMarkers(locations, map, iconsBase) {
         var marker = new google.maps.Marker({
             position: { lat: lat, lng: lng },
             map: map,
-            icon: iconsBase + "ms/micons/police.png",
             animation: google.maps.Animation.DROP,
         });
     }
