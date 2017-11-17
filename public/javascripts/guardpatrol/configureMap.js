@@ -84,7 +84,7 @@ function createGuardMarkers(locations, map, iconsBase) {
             position: { lat: lat, lng: lng },
             map: map,
             icon: iconsBase + "ms/micons/police.png",
-            animation: google.maps.Animation.BOUNCE,
+            animation: google.maps.Animation.DROP,
         });
     }
 }
