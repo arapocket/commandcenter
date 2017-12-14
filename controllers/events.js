@@ -235,35 +235,35 @@ module.exports.eventGetOne = function(req,res) {
                     //get the invite ListName for display
                     var inviteListName = '';
                     console.log('here is the value of the invite list ID '+result[0].InvitationListID);
-                    if (result[0].InvitationListID > 0) {
-                      console.log('getting inside????????');
-                    var strSQL2 = 'SELECT ListName FROM InviteList WHERE InvitationListID='+result[0].InvitationListID;
+                    // if (result[0].InvitationListID > 0) {
+                    //   console.log('getting inside????????');
+                    // var strSQL2 = 'SELECT ListName FROM InviteList WHERE InvitationListID='+result[0].InvitationListID;
                               
-                              var query = connection.query(strSQL2, function(err, result2, calllback) {
+                    //           var query = connection.query(strSQL2, function(err, result2, calllback) {
 
-                                     if (err) {
-                                        inviteListName = 'No name found for this invite list';
+                    //                  if (err) {
+                    //                     inviteListName = 'No name found for this invite list';
                                        
-                                      } else {
-                                        console.log('return values '+result2.ListName+' '+result2[0].ListName);
-                                        inviteListName = result2[0].ListName;
-                                        console.log('display date is as follows : ' + displayDate);
-                                        console.log('display time is as follows : ' + displayTime);
-                                        connection.end();
-                                        console.log('LIST NAME '+inviteListName);
-                                        res.render('eventModify', { title: 'Command Center 360 - events', result, displayDate : displayDate, displayTime : displayTime, inviteListName : inviteListName });
-                                      }
-                              });
-                    }else{
-                      //0 value means no invite list has been attached yet
-                      inviteListName = 'No invite list for this event'
-                      console.log('display date is as follows : ' + displayDate);
-                      console.log('display time is as follows : ' + displayTime);
-                      connection.end();
-                      console.log('LIST NAME '+inviteListName);
-                      res.render('eventModify', { title: 'Command Center 360 - events', result, displayDate : displayDate, displayTime : displayTime, inviteListName : inviteListName });
+                    //                   } else {
+                    //                     console.log('return values '+result2.ListName+' '+result2[0].ListName);
+                    //                     inviteListName = result2[0].ListName;
+                    //                     console.log('display date is as follows : ' + displayDate);
+                    //                     console.log('display time is as follows : ' + displayTime);
+                    //                     connection.end();
+                    //                     console.log('LIST NAME '+inviteListName);
+                    //                     res.render('eventModify', { title: 'Command Center 360 - events', result, displayDate : displayDate, displayTime : displayTime, inviteListName : inviteListName });
+                    //                   }
+                    //           });
+                    // }else{
+                    //   //0 value means no invite list has been attached yet
+                    //   inviteListName = 'No invite list for this event'
+                    //   console.log('display date is as follows : ' + displayDate);
+                    //   console.log('display time is as follows : ' + displayTime);
+                    //   connection.end();
+                    //   console.log('LIST NAME '+inviteListName);
+                    //   res.render('eventModify', { title: 'Command Center 360 - events', result, displayDate : displayDate, displayTime : displayTime, inviteListName : inviteListName });
 
-                    }
+                    // }
   
 
                     
