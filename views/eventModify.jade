@@ -30,10 +30,10 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='disabledInput') Invitation List
                             .col-lg-10
-                            span.col-lg-2.custom-dropdown.custom-dropdown--white
-                                select.col-lg-2.custom-dropdown__select.custom-dropdown__select--white
-                                    -each result in inviteListName
-                                        option !{JSON.stringify(result.ListName)}
+                                span.custom-dropdown.custom-dropdown--white
+                                    select.custom-dropdown__select.custom-dropdown__select--white
+                                        -each result in inviteListName
+                                            option !{JSON.stringify(result.ListName)}
 
                         .form-group
                           label.col-lg-2.control-label(for='select') Duration
