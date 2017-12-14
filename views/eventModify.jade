@@ -37,6 +37,10 @@ block content
                                 .dropdown-menu(aria-labelledby='dropdownMenuButton')
                                     -each result in inviteListName
                                         a.dropdown-item(href='#') !{JSON.stringify(result.ListName)}
+                            span.custom-dropdown.custom-dropdown--white
+                                select.custom-dropdown__select.custom-dropdown__select--white
+                                    -each result in inviteListName
+                                        option !{JSON.stringify(result.ListName)}
 
                         .form-group
                           label.col-lg-2.control-label(for='select') Duration
