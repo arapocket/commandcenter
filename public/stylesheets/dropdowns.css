@@ -100,6 +100,7 @@ Different state of .custom-dropdown
       top: .5em; bottom: .5em;
       background-color: #fff;
       border-left: 1px solid rgba(0,0,0,.1);
+      width: 100%
     }
     
     .custom-dropdown--white::after {
