@@ -30,13 +30,6 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='disabledInput') Invitation List
                             .col-lg-10
-
-                            .dropdown
-                                button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                                    | Dropdown button
-                                .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                                    -each result in inviteListName
-                                        a.dropdown-item(href='#') !{JSON.stringify(result.ListName)}
                             span.custom-dropdown.custom-dropdown--white
                                 select.custom-dropdown__select.custom-dropdown__select--white
                                     -each result in inviteListName
