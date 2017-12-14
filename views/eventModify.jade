@@ -30,7 +30,21 @@ block content
                         .form-group
                             label.col-lg-2.control-label(for='disabledInput') Invitation List
                             .col-lg-10
-                                input#disabledInput.form-control(disabled='', type='text', value='#{inviteListName}')
+                            
+                        table#pickle.table.table-hover.table-striped.table-bordered
+                            thead
+                                tr  
+                                    th
+                                    th ID
+                                    th Name
+                                    th Comment
+                            tbody
+                                -each result in results
+                                    tr
+                                            td
+                                            td=result.InvitationListID
+                                            td=result.ListName
+                                            td=result.ListComment
                                 
 
 
