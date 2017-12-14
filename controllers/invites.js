@@ -9,7 +9,7 @@ var db = require('../models/db');
 var crlf = require('crlf-helper');
 
 
-
+//
 
 ////////////////////////////////////////////////////////////////////////////////////                                                           
 // handler for displaying all invite lists
