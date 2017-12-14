@@ -51,9 +51,8 @@ Different state of .custom-dropdown
     }
     
     .custom-dropdown {
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
+      display: block;
+      width: 100%;
     }
     
     .custom-dropdown__select {
