@@ -45,8 +45,13 @@ block content
                                             td=result.InvitationListID
                                             td=result.ListName
                                             td=result.ListComment
-                                
-
+                            .dropdown
+                                a.btn(href='#')
+                                    | Dropdown
+                                .outer-list
+                                    -each result in inviteListName
+                                        ul
+                                            li !{JSON.stringify(result.ListName)}
 
                         .form-group
                           label.col-lg-2.control-label(for='select') Duration
