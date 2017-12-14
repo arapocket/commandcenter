@@ -31,6 +31,7 @@ block content
                             label.col-lg-2.control-label(for='disabledInput') Invitation List
                             .col-lg-10
                             span.custom-dropdown.custom-dropdown--white
+                            .col-lg-10
                                 select.custom-dropdown__select.custom-dropdown__select--white
                                     -each result in inviteListName
                                         option !{JSON.stringify(result.ListName)}
