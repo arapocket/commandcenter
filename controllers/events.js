@@ -235,6 +235,21 @@ module.exports.eventGetOne = function(req,res) {
                     //get the invite ListName for display
                     var inviteListName = '';
                     console.log('here is the value of the invite list ID '+result[0].InvitationListID);
+
+
+                    var inviteListQueryStr = 'Select * FROM invitelist';
+
+                    var query = connection.query(inviteListQueryStr, function (err, inviteListResult, callback) {
+
+                      if (err){
+                        'ara sucks'
+                      } else {
+                        inviteListName = inviteListResult;
+                        res.render('eventModify', { title: 'Command Center 360 - events', result, displayDate : displayDate, displayTime : displayTime, inviteListName : inviteListName });
+                      }
+
+                    });
+
                     // if (result[0].InvitationListID > 0) {
                     //   console.log('getting inside????????');
                     // var strSQL2 = 'SELECT ListName FROM InviteList WHERE InvitationListID='+result[0].InvitationListID;
