@@ -250,7 +250,7 @@ module.exports.eventGetOne = function(req,res) {
 
                     });
 
-                    // if (result[0].InvitationListID > 0) {
+                    // if (result[0].InvitationList ID > 0) {
                     //   console.log('getting inside????????');
                     // var strSQL2 = 'SELECT ListName FROM InviteList WHERE InvitationListID='+result[0].InvitationListID;
                               
