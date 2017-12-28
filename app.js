@@ -86,7 +86,7 @@ app.use(session({secret: 'boris',
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false, parameterLimit:50000}));
 
 
-app.use('/', routes);
+// app.use('/', routes);
 
 
 //app.use('/users', users);
@@ -154,7 +154,7 @@ console.log('logging token');
 console.log(token);
 
 var expressJwt = require('express-jwt');
-app.use(expressJwt({
+app.use('/', routes, expressJwt({
   secret: 'secret',
   getToken: function fromHeaderOrQuerystring (req) {
       if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
