@@ -153,6 +153,7 @@ var token = jwt.sign({ foo: 'bar' }, 'secret');
 console.log('logging token');
 console.log(token);
 
+var expressJwt = require('express-jwt');
 app.use(expressJwt({
   secret: secret,
   getToken: function fromHeaderOrQuerystring (req) {
