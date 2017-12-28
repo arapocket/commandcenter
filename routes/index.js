@@ -248,6 +248,7 @@ router.get('/protected',
 	function (req, res) {
 		if (!req.user) return res.sendStatus(401);
 		res.sendStatus(200);
+		GuardPatrols.getAllGuardPatrols;
 	});
 
 
