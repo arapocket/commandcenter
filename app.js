@@ -96,7 +96,7 @@ console.log('logging token');
 console.log(token);
 
 var expressJwt = require('express-jwt');
-app.use('/', routes, expressJwt({
+app.use('/', expressJwt({
   secret: 'secret',
   getToken: function fromHeaderOrQuerystring (req) {
       if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -106,7 +106,9 @@ app.use('/', routes, expressJwt({
       }
       return null;
   }
-}).unless({path: ['/authentication']}));
+}).unless({path: ['/authentication']}),
+routes, 
+);
 
 //////////////////////////////////////////////////////////////////////////
 
