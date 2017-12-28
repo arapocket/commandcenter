@@ -237,23 +237,4 @@ router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
 
-
-var jwt = require('express-jwt');
-
-// router.get('/protected',
-// 	jwt({
-// 		secret: 'secret',
-// 		foo: 'bar'
-// 	}),
-// 	function (req, res) {
-// 		if (!req.user) {
-// 			return res.sendStatus(401)
-// 		} else {
-// 			res.sendStatus(200);	
-// 		}
-		
-
-// 	});
-
-
 module.exports = router;

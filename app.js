@@ -106,7 +106,7 @@ app.use('/', expressJwt({
       }
       return null;
   }
-}).unless({path: ['/authentication']}),
+}),
 routes );
 
 //////////////////////////////////////////////////////////////////////////
