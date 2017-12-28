@@ -251,7 +251,7 @@ router.get('/protected',
 		} else {
 			
 			// res.sendStatus(200);
-			GuardPatrols.getAllGuardPatrols;
+			GuardPatrols.getAllGuardPatrols();
 			
 		}
 		
