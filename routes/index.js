@@ -238,7 +238,7 @@ router.get('/currentroutes', Routes.getCurrentRoutes);
 
 
 
-var jwtExpress = require('express-jwt');
+var jwt = require('express-jwt');
 
 router.get('/protected',
 	jwt({
