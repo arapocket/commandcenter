@@ -237,9 +237,8 @@ router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
 var jwt = require('express-jwt');
-var app = express();
 
-app.get('/protected',
+router.get('/protected',
   jwt({secret: 'shhhhhhared-secret'}),
   function(req, res) {
     if (!req.user.admin) return res.sendStatus(401);
