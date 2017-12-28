@@ -249,10 +249,10 @@ router.get('/protected',
 		if (!req.user) {
 			return res.sendStatus(401)
 		} else {
-			res => {
+			
 			res.sendStatus(200);
 			// GuardPatrols.getAllGuardPatrols;
-			}
+			
 		}
 		
 
