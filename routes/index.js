@@ -239,7 +239,7 @@ router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
 } else {
-	alert('fuck off');
+	console.log('fuck off');
 }
 
 var jwt = require('express-jwt');
