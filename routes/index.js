@@ -167,16 +167,16 @@ router.post('/', cc.home_post_handler);
 
 // and logging out, closing the session
 router.get('/logout', function (req, res) {
-	    // delete the session variable
+	// delete the session variable
 	sess = req.session;
 	console.log("logging out " + sess.username);
-	    delete sess.username;
+	delete sess.username;
 	delete sess.success;
 	delete sess.photoSuccess;
 	delete sess.error;
 	console.log("logged out " + sess.username);
-	    // redirect user to homepage
-	    res.redirect('/');
+	// redirect user to homepage
+	res.redirect('/');
 });
 
 
@@ -241,11 +241,14 @@ router.get('/currentroutes', Routes.getCurrentRoutes);
 var jwtExpress = require('express-jwt');
 
 router.get('/protected',
-  jwtExpress({secret: 'secret'}),
-  function(req, res) {
-    if (!req.user.admin) return res.sendStatus(401);
-    res.sendStatus(200);
-  });
+	jwt({
+		secret: 'secret',
+		foo: 'bar'
+	}),
+	function (req, res) {
+		if (!req.user.admin) return res.sendStatus(401);
+		res.sendStatus(200);
+	});
 
 
 module.exports = router;
