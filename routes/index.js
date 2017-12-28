@@ -236,10 +236,15 @@ router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
-var jwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
+var token = jwt.sign({ foo: 'bar' }, 'secret');
+
+console.log(token);
+
+var jwtExpress = require('express-jwt');
 
 router.get('/protected',
-  jwt({secret: 'shhhhhhared-secret'}),
+  jwtExpress({secret: 'secret'}),
   function(req, res) {
     if (!req.user.admin) return res.sendStatus(401);
     res.sendStatus(200);
