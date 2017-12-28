@@ -246,7 +246,7 @@ router.get('/protected',
 		foo: 'bar'
 	}),
 	function (req, res) {
-		if (!req.user.admin) return res.sendStatus(401);
+		if (!req.user) return res.sendStatus(401);
 		res.sendStatus(200);
 	});
 
