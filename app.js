@@ -145,6 +145,22 @@ if (process.env.SWEEP_SCHED != "OFF") {
     }, null, true, 'America/New_York');
 }
 
+
+// ###### Thu Dec 28 10:16:09 PST 2017 ARA
+
+var jwt = require('jsonwebtoken');
+var token = jwt.sign({ foo: 'bar' }, 'secret');
+console.log('logging token');
+console.log(token);
+
+
+//////////////////////////////////////////
+
+
+
+
+
+
 // console.log('You will see this message every second');
     //this will allow us to simply add a hardcoded directory daily csv and then it will simply read the latest file in the directory and determine if there has been a change
       //console.log('the path is '+__dirname); // this looks like the application directory
@@ -297,9 +313,6 @@ io.on('connection', function (socket) {
 
 
 
-var jwt = require('jsonwebtoken');
-var token = jwt.sign({ foo: 'bar' }, 'secret');
-console.log('logging token');
-console.log(token);
+
 
 module.exports = app;
