@@ -246,11 +246,15 @@ router.get('/protected',
 		foo: 'bar'
 	}),
 	function (req, res) {
-		if (!req.user) return res.sendStatus(401);
-		res => {
-		res.sendStatus(200);
-		// GuardPatrols.getAllGuardPatrols;
+		if (!req.user) {
+			return res.sendStatus(401)
+		} else {
+			res => {
+			res.sendStatus(200);
+			// GuardPatrols.getAllGuardPatrols;
+			}
 		}
+		
 
 	});
 
