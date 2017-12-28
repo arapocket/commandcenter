@@ -236,6 +236,15 @@ router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
-///
+var jwt = require('express-jwt');
+var app = express();
+
+app.get('/protected',
+  jwt({secret: 'shhhhhhared-secret'}),
+  function(req, res) {
+    if (!req.user.admin) return res.sendStatus(401);
+    res.sendStatus(200);
+  });
+
 
 module.exports = router;
