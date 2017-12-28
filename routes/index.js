@@ -180,9 +180,11 @@ router.get('/logout', function (req, res) {
 });
 
 
+var authorized = false;
 
+if (authorized){
 
-var GuardPatrols = require('../controllers/GuardPatrols');
+	var GuardPatrols = require('../controllers/GuardPatrols');
 router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
 //
 var FoxMaps = require('../controllers/FoxMaps');
@@ -236,7 +238,9 @@ router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
-
+} else {
+	alert('fuck off');
+}
 
 var jwt = require('express-jwt');
 
@@ -250,8 +254,9 @@ router.get('/protected',
 			return res.sendStatus(401)
 		} else {
 			
-			// res.sendStatus(200);
-			router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
+			res.sendStatus(200);
+			authorized = true;
+			
 			
 		}
 		
