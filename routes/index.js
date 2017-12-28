@@ -236,10 +236,7 @@ router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
-var jwt = require('jsonwebtoken');
-var token = jwt.sign({ foo: 'bar' }, 'secret');
-console.log('logging token');
-console.log(token);
+
 
 var jwtExpress = require('express-jwt');
 
