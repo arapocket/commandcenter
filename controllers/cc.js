@@ -192,7 +192,7 @@ exports.dashboardHome = function(req, res) {
                                       if (err) {
                                         console.log('Error while performing bad connections query: ' + err);
                                       }else{
-                                      res.render('dashboard', { title: 'Command Center - Dashboard', username: req.session.username, results : result, resultAs : resultA, metaTime : metaTime, rowCount : rowCount, totalDevices, lastMuster, siteCount, rst : rst, reslt8s : reslt8}).append('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU');
+                                      res.render('dashboard', { title: 'Command Center - Dashboard', username: req.session.username, results : result, resultAs : resultA, metaTime : metaTime, rowCount : rowCount, totalDevices, lastMuster, siteCount, rst : rst, reslt8s : reslt8}).set('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU');
 
                                       }
                                     })
