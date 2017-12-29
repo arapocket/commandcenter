@@ -41,12 +41,12 @@ exports.home = function(req, res){
 
               res.render('home', { title: 'Command Center'});
             } else {
-              let options = {
-                setHeaders: function (res, path, stat) {
-                  res.set('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ1MDgyMzV9.oQ9GpL9g-kVwrmsmlyS-PTr5yW2cHFSPWzoaccwQTA8')
-                }
-              }
-              res.redirect(options,'/dashboard');
+              // let options = {
+              //   setHeaders: function (res, path, stat) {
+              //     res.set('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ1MDgyMzV9.oQ9GpL9g-kVwrmsmlyS-PTr5yW2cHFSPWzoaccwQTA8')
+              //   }
+              // }
+              res.redirect('/dashboard');
             }
  	
         }); 
