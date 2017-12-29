@@ -46,6 +46,7 @@ exports.home = function (req, res) {
         //     res.set('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ1MDgyMzV9.oQ9GpL9g-kVwrmsmlyS-PTr5yW2cHFSPWzoaccwQTA8')
         //   }
         // }
+        res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU');
         res.redirect('/dashboard');
       }
 
@@ -77,9 +78,7 @@ exports.home_post_handler = function (req, res) {
 //feb--changes to following handlers to incorporate new express 4 session handling, as above
 // handler for displaying the dashboard
 exports.dashboardHome = function (req, res) {
-  res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU');
-  console.log('logging res');
-  console.log(res);
+  
 
   sess = req.session;
   sess.time = '';
