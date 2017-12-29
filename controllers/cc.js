@@ -78,7 +78,8 @@ exports.home_post_handler = function (req, res) {
 // handler for displaying the dashboard
 exports.dashboardHome = function (req, res) {
   res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU');
-
+  console.log('logging res');
+  console.log(res);
 
   sess = req.session;
   sess.time = '';
