@@ -15,6 +15,7 @@ var emailController = require('./emailController');
 
 
 exports.home = function(req, res){
+  res.append('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
  	// initiatie the session and check the Id in the console
 	sess = req.session;
 	sess.error = null;
