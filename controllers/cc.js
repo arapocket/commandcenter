@@ -46,8 +46,7 @@ exports.home = function (req, res) {
         //     res.set('Authorization','Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ1MDgyMzV9.oQ9GpL9g-kVwrmsmlyS-PTr5yW2cHFSPWzoaccwQTA8')
         //   }
         // }
-        res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU');
-        res.redirect('/dashboard');
+        res.redirect('/dashboard').set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU');
       }
 
     });
