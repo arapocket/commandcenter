@@ -72,7 +72,8 @@ exports.home_post_handler = function(req, res) {
 //feb--changes to following handlers to incorporate new express 4 session handling, as above
 // handler for displaying the dashboard
 exports.dashboardHome = function(req, res) {
-  res.header('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ1MDgxNDl9.FSq3YVdSzoVQpAdgcQ7hhVYzDWGrYyxVrRQjfgukzz0' )
+  res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ1MDgyMzV9.oQ9GpL9g-kVwrmsmlyS-PTr5yW2cHFSPWzoaccwQTA8');
+
   sess = req.session;
   sess.time = '';
     // don't let nameless people view the dashboard, redirect them back to the homepage
