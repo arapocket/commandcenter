@@ -15,6 +15,7 @@ var emailController = require('./emailController');
 
 
 exports.home = function (req, res) {
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
   res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
   // initiatie the session and check the Id in the console
   sess = req.session;
@@ -79,7 +80,8 @@ exports.home_post_handler = function (req, res) {
 //feb--changes to following handlers to incorporate new express 4 session handling, as above
 // handler for displaying the dashboard
 exports.dashboardHome = function (req, res) {
-  
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
 
   sess = req.session;
   sess.time = '';
