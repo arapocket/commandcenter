@@ -224,28 +224,28 @@ if (process.env.CC_SSL == "YES"){
 
 //////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
 
-const apn = require("apn");
+// const apn = require("apn");
 
-var options = {
-  token: {
-    key: "C:/Users/Administrator/greyfox/certificates/AuthKey_M4D8R5539E.p8",
-    keyId: "M4D8R5539E",
-    teamId: "KUJ3K83XLJ"
-  },
-  production: false
-};
+// var options = {
+//   token: {
+//     key: "C:/Users/Administrator/greyfox/certificates/AuthKey_M4D8R5539E.p8",
+//     keyId: "M4D8R5539E",
+//     teamId: "KUJ3K83XLJ"
+//   },
+//   production: false
+// };
 
-var apnProvider = new apn.Provider(options);
+// var apnProvider = new apn.Provider(options);
 // let deviceToken = "b29a236fe06ebff2fd19ec6c93be5577acbeccdfeedf09208148b58a494954e4" 
 
-var note = new apn.Notification();
+// var note = new apn.Notification();
 
-note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-note.sound = "ping.aiff";
-note.badge = 0;
-note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
-note.payload = {'messageFrom': 'GREYFOX'};
-note.topic = "mobss.foxwatch";
+// note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+// note.sound = "ping.aiff";
+// note.badge = 0;
+// note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
+// note.payload = {'messageFrom': 'GREYFOX'};
+// note.topic = "mobss.foxwatch";
 
 ////////////////////////////////////////////////////////////////////////////
 
