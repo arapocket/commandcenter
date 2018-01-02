@@ -236,7 +236,7 @@ var options = {
 };
 
 var apnProvider = new apn.Provider(options);
-let deviceToken = "b29a236fe06ebff2fd19ec6c93be5577acbeccdfeedf09208148b58a494954e4" 
+let deviceToken = "94b9c26276c600d067a09803bfae74611b7e1b91872e72567df15d5040ad681b" 
 
 var note = new apn.Notification();
 
@@ -274,11 +274,11 @@ io.on('connection', function (socket) {
       message: data
     });
 
-    // apnProvider.send(note, deviceToken).then( (result) => {
-    //   var res = JSON.stringify(result);  
-    //   console.log("logging result");
-    //   console.log(res);
-    // });
+    apnProvider.send(note, deviceToken).then( (result) => {
+      var res = JSON.stringify(result);  
+      console.log("logging result");
+      console.log(res);
+    });
   });
 
   /// when the client emits 'add user', this listens and executes
