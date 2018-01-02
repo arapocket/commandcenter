@@ -67,7 +67,7 @@ module.exports.addGuard = function (Guard, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into guard values ('" + Guard.GuardID + "', '" + Guard.FirstName + "', '" + Guard.LastName + "', '" + Guard.OrganizationID + "');";
+            var strSQL = "Insert into guard values ('" + Guard.GuardID + "', '" + Guard.FirstName + "', '" + Guard.LastName + "', '" + Guard.DeviceToken + "','" + Guard.OrganizationID + "');";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -119,7 +119,7 @@ module.exports.updateGuard = function (id, Guard, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update guard set FirstName = '" + Guard.FirstName + "', LastName = '" + Guard.LastName + "', OrganizationID = '" + Guard.OrganizationID + "', WHERE GuardID =  '" + Guard.GuardID + "';";
+            var strSQL = "Update guard set DeviceToken = '" + Guard.DeviceToken + "', WHERE GuardID =  '" + Guard.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
