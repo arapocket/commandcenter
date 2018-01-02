@@ -49,7 +49,7 @@ exports.deleteGuard = function (req, res) {
 };
 
 exports.updateGuard = function (req, res) {
-  Guard.updateGuard(req.params.id,req.body, function (err, result) {
+  Guard.updateGuard(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

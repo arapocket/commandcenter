@@ -109,7 +109,7 @@ module.exports.deleteGuard = function (id, callback) {
     });
 }
 
-module.exports.updateGuard = function (id, Guard, callback) {
+module.exports.updateGuard = function (Guard, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
