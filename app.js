@@ -245,7 +245,7 @@ note.sound = "ping.aiff";
 note.badge = 0;
 note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
 note.payload = {'messageFrom': 'GREYFOX'};
-note.topic = "mobss.foxwatchrn";
+note.topic = "mobss.foxwatchrns";
 
 ////////////////////////////////////////////////////////////////////////////
 
