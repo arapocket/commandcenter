@@ -92,11 +92,11 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: false, parameterLimit:50
 
 // app.use('/', routes);
 
-var option = {
-  setHeaders: function (res, path, stat) {
-    res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
-  }
-}
+// var option = {
+//   setHeaders: function (res, path, stat) {
+//     res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
+//   }
+// }
 
 var jwt = require('jsonwebtoken');
 var token = jwt.sign({ foo: 'bar' }, 'secret');
@@ -115,7 +115,7 @@ app.use('/', expressJwt({
       return null;
   }
 }).unless({path: ['/']}),
-routes, option );
+routes );
 
 //////////////////////////////////////////////////////////////////////////
 
