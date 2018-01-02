@@ -90,7 +90,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: false, parameterLimit:50
 
 ///////////////////////////////// ###### Thu Dec 28 10:16:09 PST 2017 ARA
 
-// app.use('/', routes);
+app.use('/', routes);
 
 // var option = {
 //   setHeaders: function (res, path, stat) {
@@ -98,24 +98,24 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: false, parameterLimit:50
 //   }
 // }
 
-var jwt = require('jsonwebtoken');
-var token = jwt.sign({ foo: 'bar' }, 'secret');
-console.log('logging token');
-console.log(token);
+// var jwt = require('jsonwebtoken');
+// var token = jwt.sign({ foo: 'bar' }, 'secret');
+// console.log('logging token');
+// console.log(token);
 
-var expressJwt = require('express-jwt');
-app.use('/', expressJwt({
-  secret: 'secret',
-  getToken: function fromHeaderOrQuerystring (req) {
-      if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-          return req.headers.authorization.split(' ')[1   ];
-      } else if (req.query && req.query.token) {
-          return req.query.token;
-      }
-      return null;
-  }
-}).unless({path: ['/']}),
-routes );
+// var expressJwt = require('express-jwt');
+// app.use('/', expressJwt({
+//   secret: 'secret',
+//   getToken: function fromHeaderOrQuerystring (req) {
+//       if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+//           return req.headers.authorization.split(' ')[1   ];
+//       } else if (req.query && req.query.token) {
+//           return req.query.token;
+//       }
+//       return null;
+//   }
+// }).unless({path: ['/']}),
+// routes );
 
 //////////////////////////////////////////////////////////////////////////
 
