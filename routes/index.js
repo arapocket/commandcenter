@@ -198,7 +198,7 @@ router.get('/guards', Guards.getAllGuards);
 router.get('/guards/:id', Guards.getGuardByID);
 router.post('/guards', Guards.addGuard);
 router.delete('/guards/:id', Guards.deleteGuard);
-router.put('/guards/:id', Guards.updateGuard);
+router.put('/guards', Guards.updateGuard);
 
 var Patrols = require('../controllers/Patrols');
 router.get('/patrols', Patrols.getAllPatrols);
