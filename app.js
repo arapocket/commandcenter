@@ -86,9 +86,17 @@ app.use(session({secret: 'boris',
 app.use(bodyParser.urlencoded({limit: '50mb', extended: false, parameterLimit:50000}));
 
 
-// app.use('/', routes);
+
 
 ///////////////////////////////// ###### Thu Dec 28 10:16:09 PST 2017 ARA
+
+// app.use('/', routes);
+
+var option = {
+  setHeaders: function (res, path, stat) {
+    res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
+  }
+}
 
 var jwt = require('jsonwebtoken');
 var token = jwt.sign({ foo: 'bar' }, 'secret');
@@ -107,7 +115,7 @@ app.use('/', expressJwt({
       return null;
   }
 }).unless({path: ['/']}),
-routes );
+routes, option );
 
 //////////////////////////////////////////////////////////////////////////
 
