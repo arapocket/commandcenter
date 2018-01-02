@@ -119,7 +119,7 @@ module.exports.updateGuard = function (id, Guard, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update guard set DeviceToken = '" + Guard.DeviceToken + "', WHERE GuardID =  '" + Guard.GuardID + "';";
+            var strSQL = "Update guard set DeviceToken = '" + Guard.DeviceToken + "' WHERE GuardID =  '" + Guard.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
