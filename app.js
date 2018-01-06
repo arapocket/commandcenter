@@ -224,9 +224,35 @@ if (process.env.CC_SSL == "YES"){
 
 //////////////////////////////// ###### Wed Oct 4 18:39:53 PDT 2017 ARA
 
+const httpOptions = {
+  hostname: 'http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com',
+  port: 3000,
+  path: '/guards',
+  method: 'GET',
+  headers: {
+  }
+}
+
+const tokenReq = http.request(options, (res) => {
+  console.log(`STATUS: ${res.statusCode}`);
+  console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+  res.setEncoding('utf8');
+  res.on('data', (chunk) => {
+    console.log(`BODY: ${chunk}`);
+  });
+  res.on('end', () => {
+    console.log('No more data in response.');
+  });
+});
+
+tokenReq.on('error', (e) => {
+  console.error(`problem with request: ${e.message}`);
+});
+
+
 const apn = require("apn");
 
-var options = {
+const notificationOptions = {
   token: {
     key: "C:/Users/Administrator/greyfox/certificates/AuthKey_M4D8R5539E.p8",
     keyId: "M4D8R5539E",
@@ -235,7 +261,7 @@ var options = {
   production: false
 };
 
-var apnProvider = new apn.Provider(options);
+var apnProvider = new apn.Provider(notificationOptions);
 let deviceToken = "94b9c26276c600d067a09803bfae74611b7e1b91872e72567df15d5040ad681b" 
 
 var note = new apn.Notification();
