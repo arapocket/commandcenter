@@ -88,6 +88,140 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: false, parameterLimit:50
 
 
 
+///////////////////////////////// ###### Thu Dec 28 10:16:09 PST 2017 ARA
+
+app.use('/', routes);
+
+// var option = {
+//   setHeaders: function (res, path, stat) {
+//     res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
+//   }
+// }
+
+// var jwt = require('jsonwebtoken');
+// var token = jwt.sign({ foo: 'bar' }, 'secret');
+// console.log('logging token');
+// console.log(token);
+
+// var expressJwt = require('express-jwt');
+// app.use('/', expressJwt({
+//   secret: 'secret',
+//   getToken: function fromHeaderOrQuerystring (req) {
+//       if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+//           return req.headers.authorization.split(' ')[1   ];
+//       } else if (req.query && req.query.token) {
+//           return req.query.token;
+//       }
+//       return null;
+//   }
+// }).unless({path: ['/']}),
+// routes );
+
+//////////////////////////////////////////////////////////////////////////
+
+
+//app.use('/users', users);
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+///////////////////////////////////////
+// daily csv sweeper                 //
+///////////////////////////////////////
+var CronJob = require('cron').CronJob;
+
+if (process.env.SWEEP_SCHED != "OFF") {
+
+    /*
+    Each of the 6 ranges represent, left to right...
+    Seconds: 0-59
+    Minutes: 0-59
+    Hours: 0-23
+    Day of Month: 1-31
+    Months: 0-11
+    Day of Week: 0-6
+    eg: runs 5 days a week at 640PM
+    '00 40 18 * * 1-5'
+    Six * means runs every second
+     */
+    //new CronJob('00 46 12 * * 1-5', function() {
+    
+    //###### Tue Oct 3 07:12:37 PDT 2017  Seperate the photos and data elements of the sweep
+    var sweepDataAndPhotos = process.env.SWEEP_SCOPE 
+
+    new CronJob('0 36 00 * * 0-6', function() {
+
+    //new CronJob('* * * * * *', function() {
+        //###### Tue Oct 3 07:12:37 PDT 2017  Seperate the photos and data elements of the sweep
+        beckenbauer.sweeper(sweepDataAndPhotos, function(err,rslt){
+              if (err) {console.log('cron unsuccessful: ' + err);}
+      });
+
+    }, null, true, 'America/New_York');
+}
+
+
+// console.log('You will see this message every second');
+    //this will allow us to simply add a hardcoded directory daily csv and then it will simply read the latest file in the directory and determine if there has been a change
+      //console.log('the path is '+__dirname); // this looks like the application directory
+        //console.log('the path is '+__filename); // this is the directory plus app.js
+          //console.log('the path is '+process.argv[1]);//this is the directory plus app
+
+var port = process.env.PORT || 3000;
+/**
+ * Adding a name for the listen object so we can then set the timeout length.
+ * Node defaults to 2 minutes, which is too sort to wait for long inserts.
+ * Have only done the for HTTP so far.
+ */
+var server = app.listen(port, function() {
+  console.log("Listening on " + port);
+
+ });
+
+ server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
+
+
+// You can set morgan to log differently depending on your environment
+//console.log(__dirname);
+//app.use(logger('common', { skip: function(req, res) { return res.statusCode < 400 }, stream: __dirname + '/morgan.log' }));
+
+/** 
+ * If SSL enabled, create a server instance for SSL
+ * 
+ */
+if (process.env.CC_SSL == "YES"){
+ https.createServer(options,app).listen(443, function () {
+  console.log('App listening on port 443!')
+});
+}
+
+
+
+// Opens the url in the default browser
+//if (process.env.SETUP_STS == 1){
+  //console.log('getting here '+process.env.SETUP_STS)
+  //opn('http://localhost:3000');
+//} else{
+  //opn('http://localhost:3000/setup');
+//}
+
+
 /*
 =====================================================================
 =====================================================================
@@ -230,139 +364,5 @@ io.on('connection', function (socket) {
 
 
 
-
-
-///////////////////////////////// ###### Thu Dec 28 10:16:09 PST 2017 ARA
-
-app.use('/', routes);
-
-// var option = {
-//   setHeaders: function (res, path, stat) {
-//     res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
-//   }
-// }
-
-// var jwt = require('jsonwebtoken');
-// var token = jwt.sign({ foo: 'bar' }, 'secret');
-// console.log('logging token');
-// console.log(token);
-
-// var expressJwt = require('express-jwt');
-// app.use('/', expressJwt({
-//   secret: 'secret',
-//   getToken: function fromHeaderOrQuerystring (req) {
-//       if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-//           return req.headers.authorization.split(' ')[1   ];
-//       } else if (req.query && req.query.token) {
-//           return req.query.token;
-//       }
-//       return null;
-//   }
-// }).unless({path: ['/']}),
-// routes );
-
-//////////////////////////////////////////////////////////////////////////
-
-
-//app.use('/users', users);
-
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-///////////////////////////////////////
-// daily csv sweeper                 //
-///////////////////////////////////////
-var CronJob = require('cron').CronJob;
-
-if (process.env.SWEEP_SCHED != "OFF") {
-
-    /*
-    Each of the 6 ranges represent, left to right...
-    Seconds: 0-59
-    Minutes: 0-59
-    Hours: 0-23
-    Day of Month: 1-31
-    Months: 0-11
-    Day of Week: 0-6
-    eg: runs 5 days a week at 640PM
-    '00 40 18 * * 1-5'
-    Six * means runs every second
-     */
-    //new CronJob('00 46 12 * * 1-5', function() {
-    
-    //###### Tue Oct 3 07:12:37 PDT 2017  Seperate the photos and data elements of the sweep
-    var sweepDataAndPhotos = process.env.SWEEP_SCOPE 
-
-    new CronJob('0 36 00 * * 0-6', function() {
-
-    //new CronJob('* * * * * *', function() {
-        //###### Tue Oct 3 07:12:37 PDT 2017  Seperate the photos and data elements of the sweep
-        beckenbauer.sweeper(sweepDataAndPhotos, function(err,rslt){
-              if (err) {console.log('cron unsuccessful: ' + err);}
-      });
-
-    }, null, true, 'America/New_York');
-}
-
-
-// console.log('You will see this message every second');
-    //this will allow us to simply add a hardcoded directory daily csv and then it will simply read the latest file in the directory and determine if there has been a change
-      //console.log('the path is '+__dirname); // this looks like the application directory
-        //console.log('the path is '+__filename); // this is the directory plus app.js
-          //console.log('the path is '+process.argv[1]);//this is the directory plus app
-
-var port = process.env.PORT || 3000;
-/**
- * Adding a name for the listen object so we can then set the timeout length.
- * Node defaults to 2 minutes, which is too sort to wait for long inserts.
- * Have only done the for HTTP so far.
- */
-var server = app.listen(port, function() {
-  console.log("Listening on " + port);
-
- });
-
- server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
-
-
-// You can set morgan to log differently depending on your environment
-//console.log(__dirname);
-//app.use(logger('common', { skip: function(req, res) { return res.statusCode < 400 }, stream: __dirname + '/morgan.log' }));
-
-/** 
- * If SSL enabled, create a server instance for SSL
- * 
- */
-if (process.env.CC_SSL == "YES"){
- https.createServer(options,app).listen(443, function () {
-  console.log('App listening on port 443!')
-});
-}
-
-
-
-// Opens the url in the default browser
-//if (process.env.SETUP_STS == 1){
-  //console.log('getting here '+process.env.SETUP_STS)
-  //opn('http://localhost:3000');
-//} else{
-  //opn('http://localhost:3000/setup');
-//}
 
 module.exports = app;
