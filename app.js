@@ -242,31 +242,42 @@ var numUsers = 0;
 io.on('connection', function (socket) {
 
 ///////////////////////////////NOTIFICATION STUFF//////////////////////////
-  const httpOptions = {
-    hostname: 'http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com',
-    port: 3000,
-    path: '/guards',
-    method: 'GET',
-    headers: {
-    }
+
+  http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/guards', (res) => {
+  const { statusCode } = res;
+  const contentType = res.headers['content-type'];
+
+  let error;
+  if (statusCode !== 200) {
+    error = new Error('Request Failed.\n' +
+                      `Status Code: ${statusCode}`);
+  } else if (!/^application\/json/.test(contentType)) {
+    error = new Error('Invalid content-type.\n' +
+                      `Expected application/json but received ${contentType}`);
   }
-  
-  const tokenReq = http.request(options, (res) => {
-    console.log(`STATUS: ${res.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-    res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`);
-    });
-    res.on('end', () => {
-      console.log('No more data in response.');
-    });
+  if (error) {
+    console.error(error.message);
+    // consume response data to free up memory
+    res.resume();
+    return;
+  }
+
+  res.setEncoding('utf8');
+  let rawData = '';
+  res.on('data', (chunk) => { rawData += chunk; });
+  res.on('end', () => {
+    try {
+      const parsedData = JSON.parse(rawData);
+      console.log(parsedData);
+    } catch (e) {
+      console.error(e.message);
+    }
   });
-  
-  tokenReq.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
-  });
-  
+}).on('error', (e) => {
+  console.error(`Got error: ${e.message}`);
+});
+
+///////////////////////////////////
   
   const apn = require("apn");
   
