@@ -19,7 +19,11 @@ var connection = mysql.createConnection({
   password : process.argv[13],
   database : process.argv[15]
 });
-  console.log('does this dotenv stuff work '+process.env.DB_PASS);
+
+//  ARA ###### Sat Jan 6 14:57:03 PST 2018
+  // console.log('does this dotenv stuff work '+process.env.DB_PASS);
+
+
   connection.connect(function(err) {
   if (err) {
     console.error('error doing the modularized connect ' + err.stack);
