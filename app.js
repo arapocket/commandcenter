@@ -273,8 +273,8 @@ let tokens = [];
       console.log(parsedData);
 
 for (var i = 0 ; i < parsedData.length ; i ++ ){
-  console.log('logging a guard');
-  console.log(parsedData[i]);
+  console.log('logging a guard device token ');
+  console.log(parsedData[i].DeviceToken);
 }
 
 
