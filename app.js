@@ -273,8 +273,11 @@ let tokens = [];
       console.log(parsedData);
 
 for (var i = 0 ; i < parsedData.length ; i ++ ){
-  console.log('logging a guard device token ');
-  console.log(parsedData[i].DeviceToken);
+  // console.log('logging a guard device token ');
+  // console.log(parsedData[i].DeviceToken);
+
+  tokens.push(parsedData[i].DeviceToken);
+
 }
 
 
@@ -300,7 +303,7 @@ for (var i = 0 ; i < parsedData.length ; i ++ ){
   };
   
   var apnProvider = new apn.Provider(notificationOptions);
-  let deviceToken = "94b9c26276c600d067a09803bfae74611b7e1b91872e72567df15d5040ad681b" 
+  // let deviceToken = "94b9c26276c600d067a09803bfae74611b7e1b91872e72567df15d5040ad681b" 
   
   var note = new apn.Notification();
   
@@ -328,7 +331,7 @@ for (var i = 0 ; i < parsedData.length ; i ++ ){
       message: data
     });
 
-    apnProvider.send(note, deviceToken).then( (result) => {
+    apnProvider.send(note, tokens).then( (result) => {
       var res = JSON.stringify(result);  
       console.log("logging result");
       console.log(res);
