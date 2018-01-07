@@ -84,7 +84,7 @@ module.exports.getActiveGuards = (function (req, res) {
     // *************    SHOW GUARD NAMES ON MAP
 
     // CREATE VIEW allguards
-    // AS SELECT g.FirstName, g.LastName, g.DeviceToken, p.CurrentPatrol
+    // AS SELECT g.FirstName, g.LastName, g.DeviceToken, p.PatrolID,  p.CurrentPatrol
     // FROM guard g
     // INNER JOIN patrol p ON g.GuardID = p.GuardID;
 
