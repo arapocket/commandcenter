@@ -12,7 +12,7 @@ module.exports.getAllGuards = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' SELECT FirstName, LastName, CurrentPatrol FROM allguards WHERE CurrentPatrol = 1; ';
+            var strSQL = ' SELECT FirstName, LastName, DeviceToken, CurrentPatrol FROM allguards WHERE CurrentPatrol = 1; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -27,6 +27,7 @@ module.exports.getAllGuards = function (callback) {
         }
     });
 }
+
 
 // GETS ALL THE INCIDENTS IN THE CURRENT SHIFT
 module.exports.getAllIncidents = function (callback) {

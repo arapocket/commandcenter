@@ -245,7 +245,7 @@ io.on('connection', function (socket) {
 
 let tokens = [];
 
-  http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/guards', (res) => {
+  http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/activeguards', (res) => {
   const { statusCode } = res;
   const contentType = res.headers['content-type'];
 

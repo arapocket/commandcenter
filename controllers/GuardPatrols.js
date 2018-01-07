@@ -55,6 +55,21 @@ module.exports.getAllGuardPatrols = (function (req, res) {
   });
 });
 
+module.exports.getActiveGuards = (function (req, res) {
+
+  GuardPatrol.getAllGuards(function (err, getAllGuardsResult) {
+
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(getAllGuardsResult);
+    }
+
+  });
+
+});
+
 
 
 
@@ -69,7 +84,7 @@ module.exports.getAllGuardPatrols = (function (req, res) {
     // *************    SHOW GUARD NAMES ON MAP
 
     // CREATE VIEW allguards
-    // AS SELECT g.FirstName, g.LastName, p.CurrentPatrol
+    // AS SELECT g.FirstName, g.LastName, g.DeviceToken, p.CurrentPatrol
     // FROM guard g
     // INNER JOIN patrol p ON g.GuardID = p.GuardID;
 
