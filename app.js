@@ -243,6 +243,8 @@ io.on('connection', function (socket) {
 
 ///////////////////////////////NOTIFICATION STUFF//////////////////////////
 
+let tokens = [];
+
   http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/guards', (res) => {
   const { statusCode } = res;
   const contentType = res.headers['content-type'];
@@ -269,6 +271,13 @@ io.on('connection', function (socket) {
     try {
       const parsedData = JSON.parse(rawData);
       console.log(parsedData);
+
+for (var i = 0 ; i < parsedData.length ; i ++ ){
+  console.log('logging a guard');
+  console.log(parsedData[i]);
+}
+
+
     } catch (e) {
       console.error(e.message);
     }
