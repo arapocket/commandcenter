@@ -17,9 +17,10 @@ block content
 																																								th Last Name
 																																tbody
 																																-each guard in getAllGuardsResult
-																																				tr.default
-																																								td=guard.FirstName
-																																								td=guard.LastName
+																																				#guard.GuardID
+																																						tr.default
+																																										td=guard.FirstName
+																																										td=guard.LastName
 																		.row
 																						.panel.panel-default
 																								.panel-heading
