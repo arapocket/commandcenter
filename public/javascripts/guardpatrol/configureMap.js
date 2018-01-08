@@ -78,10 +78,13 @@ function timedRefresh(timeoutPeriod) {
 function createGuardButtons(guards){
 
     for (i = 0 ; i < guards.length ; i++){
-        var guardButton = parent.document.getElementById(guards[i].GuardID);
-        guardButton.addEventListener('click', function(e) {
-            console.log('test worked');
-        })
+
+        console.log(guards[i].GuardID);
+
+        // var guardButton = parent.document.getElementById(guards[i].GuardID);
+        // guardButton.addEventListener('click', function(e) {
+        //     console.log('test worked');
+        // })
     }
 
 }
