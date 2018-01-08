@@ -26,14 +26,14 @@ function initMap() {
 
         createRoutes(map, iconsBase);
 
+        createGuardButtons(guards);
+
 
 
     } else {
         var mapSpace = document.getElementById('map');
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
-
-
 
 
     let buttonValues = {
@@ -73,6 +73,17 @@ function initMap() {
 
 function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);", timeoutPeriod);
+}
+
+function createGuardButtons(guards){
+
+    for (i = 0 ; i < guards.length ; i++){
+        var guardButton = parent.document.getElementById(guards[i].GuardID);
+        guardButton.addEventListener('click', function(e) {
+            console.log('test worked');
+        })
+    }
+
 }
 
 function createGuardMarkers(locations, map, iconsBase) {
