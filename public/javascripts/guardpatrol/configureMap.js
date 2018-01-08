@@ -85,21 +85,26 @@ function createGuardButtons(guards, map, locations){
     for (i = 0 ; i < locations.length ; i++){
         
         var location = locations[i];
-        guardButtons.push(parent.document.getElementById(location.GuardID));
+        var guardButton = parent.document.getElementById(location.GuardID);
 
-        guardButtons[i].addEventListener('click', function(e) {
+        for (i = 0 ; i < guardButtons.length ; i++){
+            guardButton.addEventListener('click', function(e) {
 
 
-            console.log('logging location object');
-            console.log(location);
-            console.log('logging location.lat');
-            console.log(location.lat);
+                console.log('logging location object');
+                console.log(location);
+                console.log('logging location.lat');
+                console.log(location.lat);
+    
+                map.setCenter({
+                    lat: location.lat,
+                    lng: location.lng
+                });
+            })
 
-            map.setCenter({
-                lat: location.lat,
-                lng: location.lng
-            });
-        })
+            guardButtons.push(guardButton);
+        }
+
 
         console.log(guardButtons);
     }
