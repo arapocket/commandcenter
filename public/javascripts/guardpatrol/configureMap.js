@@ -80,12 +80,14 @@ function createGuardButtons(guards, map, locations){
     console.log('logging locations inside createGuardButtons');
     console.log(locations);
 
+    var guardButtons = [];
+
     for (i = 0 ; i < locations.length ; i++){
         
         var location = locations[i];
-        var guardButton = parent.document.getElementById(locations[i].GuardID);
+        guardButtons.push(parent.document.getElementById(locations[i].GuardID));
 
-        guardButton.addEventListener('click', function(e) {
+        guardButtons[i].addEventListener('click', function(e) {
 
 
             console.log('logging location object');
