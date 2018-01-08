@@ -79,6 +79,7 @@ function createGuardButtons(guards){
 
     for (i = 0 ; i < guards.length ; i++){
 
+        console.log('logging guard id inside createGuardButtons');
         console.log(guards[i].GuardID);
 
         // var guardButton = parent.document.getElementById(guards[i].GuardID);
