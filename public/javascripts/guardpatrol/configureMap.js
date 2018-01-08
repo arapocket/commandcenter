@@ -26,7 +26,6 @@ function initMap() {
 
         createRoutes(map, iconsBase);
 
-        console.log(guards);
         createGuardButtons(guards);
 
 

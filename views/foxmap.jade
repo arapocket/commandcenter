@@ -21,9 +21,7 @@ html(lang='en')
 		script(src='/javascripts/guardpatrol/locationIsAccurate.js')
 		script.
 				var mapElement = document.getElementById('map');
-				var guards = !{ JSON.stringify(getAllGuardsResult) };
-				console.log('logging the guards stringified');
-				console.log(guards);				
+				var guards = !{ JSON.stringify(getAllGuardsResult) };		
 				var locations = !{ JSON.stringify(getCurrentLocationsResult) };
 				var incidents = !{ JSON.stringify(getAllIncidentsResult) };
 				var coords = !{ JSON.stringify(getCurrentCoordsResult) };
