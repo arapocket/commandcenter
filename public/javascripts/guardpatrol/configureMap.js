@@ -93,10 +93,10 @@ function createGuardButtons(guards, map, locations){
             console.log('logging location.lat');
             console.log(location.lat);
 
-            // map.setCenter({
-            //     lat: locations[i].lat,
-            //     lng: locations[i].lng
-            // });
+            map.setCenter({
+                lat: location.lat,
+                lng: location.lng
+            });
         })
     }
 
