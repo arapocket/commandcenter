@@ -17,8 +17,7 @@ block content
 																																								th Last Name
 																																tbody
 																																-each guard in getAllGuardsResult
-																																				#{guard.GuardID}
-																																						tr.default
+																																						tr.default(id=guard.GuardID)
 																																										td=guard.FirstName
 																																										td=guard.LastName
 																		.row
