@@ -26,7 +26,7 @@ function initMap() {
 
         createRoutes(map, iconsBase);
 
-        createGuardButtons(guards);
+        createGuardButtons(guards, map, locations);
 
 
 
@@ -75,19 +75,20 @@ function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);", timeoutPeriod);
 }
 
-function createGuardButtons(guards){
+function createGuardButtons(guards, map, locations){
 
-    console.log('logging guards inside createGuardButtons');
-    console.log(guards);
+    // console.log('logging guards inside createGuardButtons');
+    // console.log(guards);
 
-    for (i = 0 ; i < guards.length ; i++){
+    for (i = 0 ; i < locations.length ; i++){
 
-        // console.log('logging guard id inside createGuardButtons');
-        // console.log(guards[i].GuardID);
-
-        var guardButton = parent.document.getElementById(guards[i].GuardID);
+        var guardButton = parent.document.getElementById(locations[i].GuardID);
         guardButton.addEventListener('click', function(e) {
-            console.log('test worked');
+
+            map.setCenter({
+                lat: locations[i].lat,
+                lng: locations[i].lng
+            });
         })
     }
 

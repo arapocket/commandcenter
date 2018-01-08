@@ -95,7 +95,7 @@ module.exports.getActiveGuards = (function (req, res) {
     // *************    SHOW CURRENT COORDS ON MAP
 
     // CREATE VIEW allcoords
-    // AS SELECT c.Sequence, c.lat, c.lng, p.CurrentPatrol, p.PatrolID
+    // AS SELECT c.Sequence, c.lat, c.lng, p.CurrentPatrol, p.PatrolID, p.GuardID
     // FROM coordinate c
     // INNER JOIN patrol p ON c.PatrolID = p.PatrolID;
 
