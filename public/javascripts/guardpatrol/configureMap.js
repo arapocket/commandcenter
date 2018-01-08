@@ -85,7 +85,11 @@ function createGuardButtons(guards, map, locations){
         var guardButton = parent.document.getElementById(locations[i].GuardID);
         guardButton.addEventListener('click', function(e) {
 
-            console.log('test worked');
+
+            console.log('logging locations[i]');
+            console.log(locations[i]);
+            console.log('logging locations[i].lat');
+            console.log(locations[i].lat);
 
             // map.setCenter({
             //     lat: locations[i].lat,
