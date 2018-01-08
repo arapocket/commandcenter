@@ -15,6 +15,7 @@ module.exports.getAllGuards = function (callback) {
             var strSQL = ' SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol FROM allguards WHERE CurrentPatrol = 1; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
+                    console.log(rows);
                     connection.end();
                     callback(null, rows);
 
