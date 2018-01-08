@@ -137,7 +137,7 @@ function createGuardMarkers(locations, map, iconsBase) {
             `
         <h5 style="color:#D20202">`  + locations[i].FirstName + `</h5>`;
 
-        var markerWindow = new google.maps.InfoWindow({
+        let markerWindow = new google.maps.InfoWindow({
             content: windowString
         });
 
@@ -146,7 +146,7 @@ function createGuardMarkers(locations, map, iconsBase) {
         console.log(locations[i]);
         var lat = locations[i].lat;
         var lng = locations[i].lng;
-        var marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
             position: { lat: lat, lng: lng },
             map: map,
             animation: google.maps.Animation.DROP,
@@ -183,14 +183,14 @@ function createIncidentMarkers(incidents, map, iconsBase) {
             `"><img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
             + incidents[i].IncidentID + `"height="120" width="120"></a>`
 
-        var markerWindow = new google.maps.InfoWindow({
+        let markerWindow = new google.maps.InfoWindow({
             content: windowString
         });
 
 
         ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////
 
-        var marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
             position: { lat: lat, lng: lng },
             map: map,
             icon: iconsBase + "kml/pal3/icon59.png",
