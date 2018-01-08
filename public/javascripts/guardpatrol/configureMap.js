@@ -85,7 +85,7 @@ function createGuardButtons(guards, map, locations){
     for (i = 0 ; i < locations.length ; i++){
         
         var location = locations[i];
-        guardButtons.push(parent.document.getElementById(locations[i].GuardID));
+        guardButtons.push(parent.document.getElementById(location.GuardID));
 
         guardButtons[i].addEventListener('click', function(e) {
 
