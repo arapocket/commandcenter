@@ -29,8 +29,8 @@ block content
 																																thead
 																																tbody
 																																-each incident in getAllIncidentsResult
-																																				tr.default
-																																								td=incident.Type 
+																																						tr.default(id=incident.IncidentID)
+																																										td=incident.Type 
 																		.row
 																						#removeCheckpointButton
 																										a.btn.btn-default.btn-block
