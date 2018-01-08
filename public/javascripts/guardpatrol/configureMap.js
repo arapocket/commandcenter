@@ -82,13 +82,13 @@ function createGuardButtons(guards){
 
     for (i = 0 ; i < guards.length ; i++){
 
-        console.log('logging guard id inside createGuardButtons');
-        console.log(guards[i].GuardID);
+        // console.log('logging guard id inside createGuardButtons');
+        // console.log(guards[i].GuardID);
 
-        // var guardButton = parent.document.getElementById(guards[i].GuardID);
-        // guardButton.addEventListener('click', function(e) {
-        //     console.log('test worked');
-        // })
+        var guardButton = parent.document.getElementById(guards[i].GuardID);
+        guardButton.addEventListener('click', function(e) {
+            console.log('test worked');
+        })
     }
 
 }
