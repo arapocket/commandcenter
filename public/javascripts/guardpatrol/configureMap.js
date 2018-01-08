@@ -100,6 +100,8 @@ function createGuardButtons(guards, map, locations){
                 lng: location.lng
             });
         })
+
+        console.log(guardButtons);
     }
 
 }
