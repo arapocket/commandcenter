@@ -104,12 +104,17 @@ function createIncidentButtons(map, incidents){
 
     var incidentButtons = [];
 
+    console.log('logging incidents inside createIncidentButtons');
+    console.log(incidents);
+
     for (i = 0 ; i < incidents.length ; i++){
         let incident = incidents[i];
         let incidentButton = parent.document.getElementById(incident.IncidentID);
 
 
         incidentButton.addEventListener('click', function(e) {
+
+            console.log('incident listener called');
 
             map.setCenter({
                 lat: incident.lat,
