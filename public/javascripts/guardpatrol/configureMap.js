@@ -110,21 +110,14 @@ function createGuardButtons(guards, map, locations){
 function createGuardMarkers(locations, map, iconsBase) {
     for (i = 0; i < locations.length; i++) {
 
-        // ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
-        // var windowString =
-        //     `
-        // <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
-        // <h6 style="color:#404040"> 
-        // ` + incidents[i].Description + `
-        // </h6>
-        // <a href = "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/`
-        //     + incidents[i].IncidentID +
-        //     `"><img src="https://s3-us-west-2.amazonaws.com/foxwatch/`
-        //     + incidents[i].IncidentID + `"height="120" width="120"></a>`
+        ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
+        var windowString =
+            `
+        <h5 style="color:#D20202">`  + locations[i].FirstName + `</h5>`;
 
-        // var markerWindow = new google.maps.InfoWindow({
-        //     content: windowString
-        // });
+        var markerWindow = new google.maps.InfoWindow({
+            content: windowString
+        });
 
 
         console.log("here's a guard locations");
@@ -136,6 +129,13 @@ function createGuardMarkers(locations, map, iconsBase) {
             map: map,
             animation: google.maps.Animation.DROP,
         });
+
+        markerWindow.open(map, marker);
+        marker.addListener('click', function (e) {
+            markerWindow.open(map, marker);
+        });
+
+
     }
 }
 
