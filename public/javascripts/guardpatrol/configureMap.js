@@ -77,6 +77,9 @@ function timedRefresh(timeoutPeriod) {
 
 function createGuardButtons(guards){
 
+    console.log('logging guards inside createGuardButtons');
+    console.log(guards);
+
     for (i = 0 ; i < guards.length ; i++){
 
         console.log('logging guard id inside createGuardButtons');
