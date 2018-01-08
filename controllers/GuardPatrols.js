@@ -37,6 +37,8 @@ module.exports.getAllGuardPatrols = (function (req, res) {
                             if (err) {
                               res.json(err);
                             } else {
+                              console.log('logging getallguards from guardpatrols');
+                              console.log(getAllGuardsResult);
                               res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
                       
                             }
