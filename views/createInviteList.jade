@@ -5,13 +5,14 @@ block content
             include navbar
 
             
-            h3 List of all cardholders
+            h3 Create Invite List
             br
 
             div
                 table#pickle.table.table-hover.table-striped.table-bordered
                     thead
                         tr.warning
+                            th
                             th
                             th Last Name
                             th First Name
@@ -23,6 +24,7 @@ block content
                     tbody
                         -each result in results
                             tr
+                                    td
                                     td
                                         a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
                                     td=result.LastName
