@@ -1,7 +1,7 @@
 function loadScripts() {
 
 
-    var checkboxes = document.getElementsByName('person');
+    var checkboxes = document.getElementById('person');
     var checkallbox = document.getElementById('checkallbox');
 
     checkallbox.addEventListener('click', function(e){
