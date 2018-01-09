@@ -21,7 +21,12 @@ function loadScripts() {
     var checkallbox = document.getElementById('checkallbox');
 
     checkallbox.addEventListener('click', function(e){
-        console.log('checkallbox clicked');    
+        console.log('checkallbox clicked');  
+        
+        for (i = 0 ; i < checkboxes.length ; i ++ ) {
+            checkboxes[i].click();
+        }
+        
     })
 
 }
