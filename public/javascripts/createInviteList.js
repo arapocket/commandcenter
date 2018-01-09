@@ -7,7 +7,7 @@ function loadScripts() {
     checkallbox.addEventListener('click', function(e){
         console.log('checkallbox clicked');
 
-        checkbox[i].click();
+        checkbox.click();
         
 
     })
