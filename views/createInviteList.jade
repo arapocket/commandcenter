@@ -13,7 +13,7 @@ block content
                     thead
                         tr.warning
                             th
-                                input.form-check-input(type='checkbox' value ='')
+                                input.form-check-input(type='checkbox' value ='' onClick="toggle(this)")
                             th
                             th Last Name
                             th First Name
@@ -24,23 +24,31 @@ block content
                             th Image File
                     tbody
                         -each result in results
-                            tr
-                                    td
-                                        input.form-check-input(type='checkbox' value ='')
-                                    td
-                                        a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
-                                    td=result.LastName
-                                    td=result.FirstName
-                                    td=result.iClassNumber
-                                    td=result.EmpID
-                                    td=result.EmailAddr
-                                    td=result.Title
-                                    td=result.imageName
+                            #person
+                                tr
+                                        td
+                                            input.form-check-input(type='checkbox' value={result.EmpID} )
+                                        td
+                                            a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
+                                        td=result.LastName
+                                        td=result.FirstName
+                                        td=result.iClassNumber
+                                        td=result.EmpID
+                                        td=result.EmailAddr
+                                        td=result.Title
+                                        td=result.imageName
 
                  script.
                     $(document).ready(function() {
                     $('#pickle').DataTable();
                     }); 
+                 script.
+                    function toggle(source) {
+                    checkboxes = document.getElementsByName('person');
+                    for(var i=0, n=checkboxes.length;i<n;i++) {
+                        checkboxes[i].checked = '';
+                    }
+                    }                                        
                 
 
 
