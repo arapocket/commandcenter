@@ -86,6 +86,8 @@ function createGuardButtons(map, locations){
         let location = locations[i];
         let guardButton = parent.document.getElementById(location.GuardID);
 
+        if (guardButton != null || guardButton != undefined){
+            
             guardButton.addEventListener('click', function(e) {
 
                 map.setCenter({
@@ -95,6 +97,8 @@ function createGuardButtons(map, locations){
             })
 
             guardButtons.push(guardButton);
+        }
+            
 
     }
 
