@@ -240,7 +240,7 @@ router.get('/currentroutes', Routes.getCurrentRoutes);
 
 
 
-//###### Tue Jan 9 09:37:23 PST 2018  Invite List Creation Page ARA
+//####### Tue Jan 9 09:37:23 PST 2018  Invite List Creation Page ARA
 
 var createInviteList = require('../controllers/createInviteList');
 router.get('/createinvitelist', createInviteList.createInviteListHome);
