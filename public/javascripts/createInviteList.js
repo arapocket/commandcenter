@@ -23,6 +23,9 @@ function loadScripts() {
     checkallbox.addEventListener('click', function(e){
         console.log('checkallbox clicked');  
         
+        console.log('logging checkboxes array');
+        console.log(checkboxes);
+
         for (i = 0 ; i < checkboxes.length ; i ++ ) {
             checkboxes[i].click();
         }
