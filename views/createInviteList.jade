@@ -25,10 +25,10 @@ block content
 							th Image File
 					tbody
 						-each result in results
-							#person
 								tr
 										td
-											input.form-check-input(type='checkbox' value=result.EmpID )
+                                            #person
+											    input.form-check-input(type='checkbox' value=result.EmpID )
 										td
 											a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
 										td=result.LastName
