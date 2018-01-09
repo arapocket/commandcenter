@@ -27,8 +27,7 @@ block content
 						-each result in results
 								tr
 										td
-											#person
-												input.form-check-input(type='checkbox' value=result.EmpID )
+												input.form-check-input(type='checkbox' value=result.EmpID id=result.EmpID )
 										td
 											a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
 										td=result.LastName
@@ -45,5 +44,6 @@ block content
 					}); 
 				script(src='/javascripts/createInviteList.js')
 				script.
+					var results = !{ JSON.stringify(results) };
 					loadScripts();
 								

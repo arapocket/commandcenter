@@ -97,9 +97,7 @@ function createGuardButtons(map, locations){
             })
 
             guardButtons.push(guardButton);
-        }
-            
-
+        }        
     }
 
 }
