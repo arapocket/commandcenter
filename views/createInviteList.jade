@@ -25,6 +25,7 @@ block content
                         -each result in results
                             tr
                                     td
+                                        input.form-check-input(type='checkbox', value='', checked='')
                                     td
                                         a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
                                     td=result.LastName
