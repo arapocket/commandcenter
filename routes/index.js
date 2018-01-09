@@ -1,3 +1,5 @@
+import { request } from 'http';
+
 var express = require('express');
 var router = express.Router();
 var cc = require('../controllers/cc');
@@ -235,6 +237,16 @@ router.post('/routes', Routes.addRoute);
 router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);
 router.get('/currentroutes', Routes.getCurrentRoutes);
+
+
+
+//###### Tue Jan 9 09:37:23 PST 2018  Invite List Creation Page ARA
+
+var createInviteList = require('../controllers/createInviteList');
+router.get('/createinvitelist', createInviteList.createInviteListHome);
+
+
+
 
 
 module.exports = router;
