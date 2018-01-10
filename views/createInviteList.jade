@@ -40,7 +40,11 @@ block content
 
 				script.
 					$(document).ready(function() {
-					$('#pickle').DataTable();
+					$('#pickle').DataTable({
+                        "columnDefs": [
+                            { "orderable": false, "targets": 0 }
+                        ]
+                    });
 					}); 
 				script(src='/javascripts/createInviteList.js')
 				script.
