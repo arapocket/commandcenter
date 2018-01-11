@@ -2,14 +2,15 @@ function renderIncidentDetails(){
 console.log("renderIncidentDetails called");
 console.log(incident);
 var incidentPhoto = document.getElementById("incidentPhoto");
+var incidentVideo = document.getSelection('incidentVideo');
 var backButton = document.getElementById("backButton");
 incidentPhoto.src = "https://s3-us-west-2.amazonaws.com/foxwatch/" + incident[0].IncidentID;
 incidentPhoto.onerror = function(){
-    // incidentPhoto.src = 'https://s3-us-west-2.amazonaws.com/foxwatch/error'
 
-    incidentPhoto.innerHTML = `<video width="400" controls autoplay> 
-    <source src="https://s3-us-west-2.amazonaws.com/foxwatch/` + incident[0].IncidentID + `" type="video/mp4">
-</video>'`
+incidentPhoto.style.display = 'none';
+incidentVideo.src = "https://s3-us-west-2.amazonaws.com/foxwatch/" + incident[0].IncidentID;
+incidentVideo.style.display = 'block';
+
 } 
 
 
