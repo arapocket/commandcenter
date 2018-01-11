@@ -26,9 +26,17 @@ function loadScripts() {
         console.log('logging checkboxes array');
         console.log(checkboxes);
 
-        for (i = 0 ; i < checkboxes.length ; i ++ ) {
-            checkboxes[i].checked = '';
+        if (checkallbox.checked == true) {
+            for (i = 0 ; i < checkboxes.length ; i ++ ) {
+                checkboxes[i].checked = 'true';
+            }
+        } else {
+            for (i = 0 ; i < checkboxes.length ; i ++ ) {
+                checkboxes[i].checked = 'false';
+            }
         }
+
+
         
     })
 
