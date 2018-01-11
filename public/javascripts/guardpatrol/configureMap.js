@@ -105,7 +105,7 @@ function createGuardButtons(map, locations) {
                 });
 
                 localStorage.setItem("currentGuard", location.GuardID);
-                
+
             })
 
             guardButtons.push(guardButton);
@@ -190,8 +190,8 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
         <h6 style="color:#404040"> 
         ` + incidents[i].Description + `
-        </h6> ` +    
-         `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID +  `' width='100%' height='100%' type='text/html'> <object/> `
+        </h6> ` +
+            `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
 
 
 
@@ -205,7 +205,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
             maxWidth: 160
         });
 
-    
+
 
         ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////
 
@@ -388,7 +388,7 @@ function onSaveRoute(route) {
         "RouteName": "test",
         "CurrentRoute": 1,
         "NotCurrentRoute": 0,
-        "GuardID" : currentGuard
+        "GuardID": currentGuard
     }));
 
     postCheckpoints(route, routeID);
@@ -446,12 +446,12 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
-            let routeID = json[0].RouteID;
 
-            if (routeID != null || routeID != undefined || routeID != ''){
+            if (json != null || json != undefined || json != []) {
+                let routeID = json[0].RouteID;
                 loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
             }
-            
+
 
         }
     }
