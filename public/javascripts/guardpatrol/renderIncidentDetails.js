@@ -8,10 +8,7 @@ incidentPhoto.src = "https://s3-us-west-2.amazonaws.com/foxwatch/" + incident[0]
 backButton.addEventListener('click', function (e) {
             backToMap();
         });
-
-
 }
-
 
 function backToMap(){
 
