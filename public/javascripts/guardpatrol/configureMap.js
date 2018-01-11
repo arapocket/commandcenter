@@ -126,15 +126,7 @@ function changeButtons(GuardID, locations, map, iconsBase){
         
         hideRemoveButton.style.display = 'none';
         hideSaveButton.style.display = 'none';
-        hideLoadButton.style.display = 'none';
-
-        map.removeListener('click');
-
-        map.addListener('click', function (e) {
-            onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
-        });
-
-        
+        hideLoadButton.style.display = 'none';        
 
     }
 
