@@ -117,15 +117,15 @@ function createGuardButtons(map, locations, iconsBase) {
 
 function changeButtons(GuardID){
 
-    let removeButton = document.getElementById(GuardID + 'remove');
-    let saveButton = document.getElementById(GuardID + 'save');
-    let loadButton = document.getElementById(GuardID + 'load');
+    let removeButton = parent.document.getElementById(GuardID + 'remove');
+    let saveButton = parent.document.getElementById(GuardID + 'save');
+    let loadButton = parent.document.getElementById(GuardID + 'load');
 
     removeButton.display = 'block';
     saveButton.display = 'block';
     loadButton.display = "block";
 
-    
+
 
 }
 
