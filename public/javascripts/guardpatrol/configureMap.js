@@ -305,7 +305,7 @@ function createRoutes(map, iconsBase) {
 function createRoute(aCurrentRoute, map, iconsBase){
 
 
-    var routeSeq = {
+    let routeSeq = {
         repeat: '30px',
         icon: {
             path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
@@ -316,7 +316,7 @@ function createRoute(aCurrentRoute, map, iconsBase){
             strokeOpacity: 1
         }
     };
-    var route = new google.maps.Polyline({
+    let route = new google.maps.Polyline({
         map: map,
         zIndex: 1,
         geodesic: true,
