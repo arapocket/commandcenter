@@ -99,7 +99,7 @@ function createGuardButtons(map, locations, iconsBase) {
 
             guardButton.addEventListener('click', function (e) {
 
-                console.log(guardButton.id + 'clicked');
+                console.log(guardButton.id + ' clicked');
 
                 map.setCenter({
                     lat: location.lat,
@@ -123,12 +123,9 @@ function changeButtons(GuardID){
     let saveButton = parent.document.getElementById(GuardID + 'save');
     let loadButton = parent.document.getElementById(GuardID + 'load');
 
-    removeButton.display = 'block';
-    saveButton.display = 'block';
-    loadButton.display = "block";
-
-
-
+    removeButton.display = 'inline';
+    saveButton.display = 'inline';
+    loadButton.display = "inline";
 }
 
 function createIncidentButtons(map, incidents) {
