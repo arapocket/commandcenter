@@ -109,7 +109,6 @@ function createGuardButtons(map, locations, iconsBase) {
                 changeButtons(location.GuardID, locations);
 
                 localStorage.setItem("currentGuard", location.GuardID);
-                // setButtonListeners(route, routeMarkers, map, iconsBase);
             })
 
             guardButtons.push(guardButton);
@@ -312,9 +311,12 @@ function createRoutes(map, iconsBase) {
                 // loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
 
                 for (i = 0 ; i < json.length ; i ++ ){
-                    createRoute(json[i], map, iconsBase);
+                    createRoute(json[i].GuardID, map, iconsBase);
                 }
 
+            } else {
+                var currentGuard = localStorage.getItem("currentGuard");
+                createFirstRoute(currentGuard, map, iconsBase);
             }
 
 
@@ -328,7 +330,35 @@ function createRoutes(map, iconsBase) {
 
 }
 
-function createRoute(aCurrentRoute, map, iconsBase){
+function createFirstRoute(guardID, map, iconsBase){
+
+    let routeSeq = {
+        repeat: '30px',
+        icon: {
+            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+            scale: 1,
+            fillOpacity: 0,
+            strokeColor: "yellow",
+            strokeWeight: 1,
+            strokeOpacity: 1
+        }
+    };
+    let route = new google.maps.Polyline({
+        map: map,
+        zIndex: 1,
+        geodesic: true,
+        strokeColor: "blue",
+        strokeOpacity: 1,
+        strokeWeight: 7,
+        icons: [routeSeq]
+    })
+
+    var routeMarkers = [];
+
+    setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
+}
+
+function createRoute(guardID, map, iconsBase){
 
 
     let routeSeq = {
@@ -354,12 +384,12 @@ function createRoute(aCurrentRoute, map, iconsBase){
 
     var routeMarkers = [];
 
-    setButtonListeners(route, routeMarkers, map, iconsBase, aCurrentRoute );
+    setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
 
 }
 
-function setButtonListeners(route, routeMarkers, map, iconsBase, aCurrentRoute){
-    var removeCheckpointButton = parent.document.getElementById(aCurrentRoute.GuardID + 'remove');
+function setButtonListeners(route, routeMarkers, map, iconsBase, guardID){
+    var removeCheckpointButton = parent.document.getElementById(guardID + 'remove');
 
     removeCheckpointButton.addEventListener('click', function (e) {
 
@@ -371,7 +401,7 @@ function setButtonListeners(route, routeMarkers, map, iconsBase, aCurrentRoute){
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
 
-    let saveRouteButton = parent.document.getElementById(aCurrentRoute.GuardID + 'save');
+    let saveRouteButton = parent.document.getElementById(guardID + 'save');
 
     saveRouteButton.addEventListener('click', function (e) {
         console.log('save route button clicked');
@@ -380,7 +410,7 @@ function setButtonListeners(route, routeMarkers, map, iconsBase, aCurrentRoute){
 
     onLoadRoute(map, iconsBase, route, routeMarkers);
 
-    let loadRouteButton = parent.document.getElementById(aCurrentRoute.GuardID + 'load');
+    let loadRouteButton = parent.document.getElementById(guardID + 'load');
 
     loadRouteButton.addEventListener('click', function (e) {
 
