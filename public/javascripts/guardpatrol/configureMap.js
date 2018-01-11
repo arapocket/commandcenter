@@ -190,7 +190,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         <h6 style="color:#404040"> 
         ` + incidents[i].Description + `
         </h6> ` +
-         `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID +  `' width='100' height='300' type='text/html'> <object/> `
+         `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID +  `' width='100' height='300' type='text/html'> <object/> </a> `
 
 
 
