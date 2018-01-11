@@ -32,15 +32,15 @@ block content
 																																						tr.default(id=incident.IncidentID)
 																		-each location in getCurrentLocationsResult													td=incident.Type 
 																			.row
-																											a.btn.btn-default.btn-block(id=(location.GuardID + 'remove'))
+																											a.btn.btn-default.btn-block(id=location.GuardID)
 																												i.fa.fa-eraser(aria-hidden='true')
 																												| &nbsp Remove Checkpoint
 																			.row
-																											a.btn.btn-default.btn-block(id=(location.GuardID + 'save'))
+																											a.btn.btn-default.btn-block(id=location.GuardID)
 																												i.fa.fa-floppy-o(aria-hidden='true')
 																												| &nbsp Save Route
 																			.row
-																											a.btn.btn-default.btn-block(id=(location.GuardID + 'load'))
+																											a.btn.btn-default.btn-block(id=location.GuardID)
 																												i.fa.fa-cloud-download(aria-hidden='true')
 																												| &nbsp Load Route   
 																		.row
