@@ -33,7 +33,7 @@ function initMap() {
 
         createPatrolPaths(patrols, coords, map);
 
-        createRoutes(map, iconsBase, locations);
+        createRoutes(map, iconsBase);
 
         createGuardButtons(map, locations, iconsBase);
 
@@ -328,12 +328,12 @@ function createRoute(aCurrentRoute, map, iconsBase){
 
     var routeMarkers = [];
 
-    setButtonListeners(route, routeMarkers, map, iconsBase );
+    setButtonListeners(route, routeMarkers, map, iconsBase, aCurrentRoute );
 
 }
 
-function setButtonListeners(route, routeMarkers, map, iconsBase){
-    var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
+function setButtonListeners(route, routeMarkers, map, iconsBase, aCurrentRoute){
+    var removeCheckpointButton = parent.document.getElementById(aCurrentRoute.GuardID + 'remove');
 
     removeCheckpointButton.addEventListener('click', function (e) {
 
@@ -345,7 +345,7 @@ function setButtonListeners(route, routeMarkers, map, iconsBase){
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
 
-    let saveRouteButton = parent.document.getElementById("saveRouteButton");
+    let saveRouteButton = parent.document.getElementById(aCurrentRoute.GuardID + 'save');
 
     saveRouteButton.addEventListener('click', function (e) {
         console.log('save route button clicked');
@@ -354,7 +354,7 @@ function setButtonListeners(route, routeMarkers, map, iconsBase){
 
     onLoadRoute(map, iconsBase, route, routeMarkers);
 
-    let loadRouteButton = parent.document.getElementById("loadRouteButton");
+    let loadRouteButton = parent.document.getElementById(aCurrentRoute.GuardID + 'load');
 
     loadRouteButton.addEventListener('click', function (e) {
 
