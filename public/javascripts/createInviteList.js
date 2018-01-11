@@ -1,4 +1,4 @@
-function loadScripts() {
+function loadS`cr`ipts() {
 
 
     var checkboxes = [];
@@ -31,10 +31,10 @@ function loadScripts() {
 
             console.log('has attribute');
             for (i = 0 ; i < checkboxes.length ; i ++ ) {
-                checkboxes[i].createAttribute('checked');
+                checkboxes[i].setAttribute('checked', '');
             }
         } else {
-            checkallbox.createAttribute('checked');
+            checkallbox.setAttribute('checked', '');
 
             console.log('doesnt haz attribute');
             for (i = 0 ; i < checkboxes.length ; i ++ ) {
