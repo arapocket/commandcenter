@@ -201,7 +201,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
             content: windowString
         });
 
-        markerWindow.maxWidth = 100;
+        markerWindow.maxWidth = 10;
 
         ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////
 
