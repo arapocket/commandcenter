@@ -447,7 +447,11 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
             let routeID = json[0].RouteID;
-            loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
+
+            if (routeID != null || routeID != undefined || routeID != ''){
+                loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
+            }
+            
 
         }
     }
