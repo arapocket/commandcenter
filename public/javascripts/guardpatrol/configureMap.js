@@ -105,7 +105,7 @@ function createGuardButtons(map, locations, iconsBase) {
                 });
 
                 localStorage.setItem("currentGuard", location.GuardID);
-                setButtonListeners(route, routeMarkers, map, iconsBase);
+                // setButtonListeners(route, routeMarkers, map, iconsBase);
             })
 
             guardButtons.push(guardButton);
