@@ -144,13 +144,13 @@ module.exports.updateRoute = function (Route, callback) {
 
 
             // here we set all other routes to 0
-            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE NOT RouteID =  '" + Route.RouteID + "';";
+            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID + "' AND WHERE NOT RouteID =  '" + Route.RouteID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
                     callback(null, rows);
                     // here we will set our selected route to 1
-                    var strSQL2 = "Update route SET CurrentRoute = " + Route.CurrentRoute + " WHERE RouteID = '" + Route.RouteID + "';";
+                    var strSQL2 = "Update route SET CurrentRoute = " + Route.CurrentRoute + " WHERE GuardID = '" + Route.GuardID + "' AND WHERE  RouteID = '" + Route.RouteID + "';";
                     connection.query(strSQL2, function (err, rows, fields) {
                         if (!err) {
                             connection.end();

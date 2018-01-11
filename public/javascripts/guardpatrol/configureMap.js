@@ -393,8 +393,6 @@ function onSaveRoute(route) {
 
     postCheckpoints(route, routeID);
 
-    // now need to add the checkpoint saving -- tricky tricky 
-
 
 }
 
