@@ -2,8 +2,8 @@
 function imageError() {
 
     console.log('image error called');
-    let incidentImage = parent.document.getElementById('incidentImage');
-    incidentImage.style.display = 'none';
+    // let incidentImage = document.getElementById('incidentImage');
+    // incidentImage.style.display = 'none';
 
 }
 
@@ -183,16 +183,16 @@ function createIncidentMarkers(incidents, map, iconsBase) {
 
 
         ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
-        var windowString =
-            `
-        <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
-        <h6 style="color:#404040"> 
-        ` + incidents[i].Description + `
-        </h6>
-        <a href = "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/`
-            + incidents[i].IncidentID +
-            `"><img id ="incidentImage" src="https://s3-us-west-2.amazonaws.com/foxwatch/`
-            + incidents[i].IncidentID + `"height="120" width="120" onerror="imageError()" ></a> `
+        var windowString = `object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/foxmaps', width='100%', height='500', type='text/html')`
+        //     `
+        // <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
+        // <h6 style="color:#404040"> 
+        // ` + incidents[i].Description + `
+        // </h6>
+        // <a href = "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/`
+        //     + incidents[i].IncidentID +
+        //     `"><img id ="incidentImage" src="https://s3-us-west-2.amazonaws.com/foxwatch/`
+        //     + incidents[i].IncidentID + `"height="120" width="120" onerror="imageError()" ></a> `
 
         let markerWindow = new google.maps.InfoWindow({
             content: windowString
