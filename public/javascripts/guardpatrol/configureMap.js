@@ -103,6 +103,9 @@ function createGuardButtons(map, locations) {
                     lat: location.lat,
                     lng: location.lng
                 });
+
+                localStorage.setItem("currentGuard", location.GuardID);
+                
             })
 
             guardButtons.push(guardButton);
@@ -366,6 +369,8 @@ function onRemoveCheckpoint(route, routeMarkers) {
 
 function onSaveRoute(route) {
 
+    var currentGuard = localStorage.getItem("currentGuard");
+
     var routeID = createRouteID();
     var xhr = new XMLHttpRequest();
     var route = route;
@@ -382,7 +387,8 @@ function onSaveRoute(route) {
         "RouteID": routeID,
         "RouteName": "test",
         "CurrentRoute": 1,
-        "NotCurrentRoute": 0
+        "NotCurrentRoute": 0,
+        "GuardID" : currentGuard
     }));
 
     postCheckpoints(route, routeID);

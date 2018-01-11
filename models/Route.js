@@ -90,7 +90,7 @@ module.exports.addRoute = function (Route, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.CurrentRoute + ");";
+            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.CurrentRoute + "', " + Route.GuardID +  ");";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
