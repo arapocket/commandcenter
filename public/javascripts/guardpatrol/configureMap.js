@@ -35,6 +35,8 @@ function initMap() {
 
         createRoutes(map, iconsBase, locations);
 
+        createGuardButtons(map, locations, iconsBase);
+
         createIncidentButtons(map, incidents);
 
 
@@ -84,7 +86,7 @@ function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);", timeoutPeriod);
 }
 
-function createGuardButtons(map, locations, iconsBase, route, routeMarkers) {
+function createGuardButtons(map, locations, iconsBase) {
 
     var guardButtons = [];
 
@@ -265,7 +267,7 @@ function createPatrolPaths(patrols, coords, map) {
     }
 }
 
-function createRoutes(map, iconsBase, locations) {
+function createRoutes(map, iconsBase) {
 
 
     var xhr = new XMLHttpRequest();
@@ -284,7 +286,7 @@ function createRoutes(map, iconsBase, locations) {
                 // loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
 
                 for (i = 0 ; i < json.length ; i ++ ){
-                    createRoute(json[i], map, iconsBase, locations);
+                    createRoute(json[i], map, iconsBase);
                 }
 
             }
@@ -298,11 +300,9 @@ function createRoutes(map, iconsBase, locations) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(null);
 
-    
-
 }
 
-function createRoute(aCurrentRoute, map, iconsBase, locations){
+function createRoute(aCurrentRoute, map, iconsBase){
 
 
     let routeSeq = {
@@ -327,8 +327,8 @@ function createRoute(aCurrentRoute, map, iconsBase, locations){
     })
 
     var routeMarkers = [];
-    createGuardButtons(map, locations, iconsBase, route, routeMarkers);
-    setButtonListeners(route, routeMarkers, map, iconsBase, );
+
+    setButtonListeners(route, routeMarkers, map, iconsBase );
 
 }
 
