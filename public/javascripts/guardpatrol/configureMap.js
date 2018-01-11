@@ -106,7 +106,7 @@ function createGuardButtons(map, locations, iconsBase) {
                     lng: location.lng
                 });
 
-                changeButtons(location.GuardID);
+                changeButtons(location.GuardID, locations);
 
                 localStorage.setItem("currentGuard", location.GuardID);
                 // setButtonListeners(route, routeMarkers, map, iconsBase);
@@ -117,7 +117,19 @@ function createGuardButtons(map, locations, iconsBase) {
     }
 }
 
-function changeButtons(GuardID){
+function changeButtons(GuardID, locations){
+
+
+    for (i = 0 ; i < locations.length ; i++ ){
+        let hideRemoveButton = parent.document.getElementById(location[i].GuardID + 'remove');
+        let hideSaveButton = parent.document.getElementById(location[i].GuardID + 'save');
+        let hideLoadButton = parent.document.getElementById(location[i].GuardID + 'load');
+        
+        hideRemoveButton.style.display = 'none';
+        hideSaveButton.style.display = 'none';
+        hideLoadButton.style.display = 'none';
+
+    }
 
     let removeButton = parent.document.getElementById(GuardID + 'remove');
     let saveButton = parent.document.getElementById(GuardID + 'save');
