@@ -1,3 +1,12 @@
+
+function imageError() {
+
+    console.log('image error called');
+    let incidentImage = document.getElementById('incidentImage');
+    incidentImage.style.display = 'none';
+
+}
+
 function initMap() {
     console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
@@ -77,18 +86,18 @@ function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);", timeoutPeriod);
 }
 
-function createGuardButtons(map, locations){
+function createGuardButtons(map, locations) {
 
     var guardButtons = [];
 
-    for (i = 0 ; i < locations.length ; i++){
-        
+    for (i = 0; i < locations.length; i++) {
+
         let location = locations[i];
         let guardButton = parent.document.getElementById(location.GuardID);
 
-        if (guardButton != null || guardButton != undefined){
-            
-            guardButton.addEventListener('click', function(e) {
+        if (guardButton != null || guardButton != undefined) {
+
+            guardButton.addEventListener('click', function (e) {
 
                 map.setCenter({
                     lat: location.lat,
@@ -97,24 +106,24 @@ function createGuardButtons(map, locations){
             })
 
             guardButtons.push(guardButton);
-        }        
+        }
     }
 
 }
 
-function createIncidentButtons(map, incidents){
+function createIncidentButtons(map, incidents) {
 
     var incidentButtons = [];
 
     console.log('logging incidents inside createIncidentButtons');
     console.log(incidents);
 
-    for (i = 0 ; i < incidents.length ; i++){
+    for (i = 0; i < incidents.length; i++) {
         let incident = incidents[i];
         let incidentButton = parent.document.getElementById(incident.IncidentID);
 
 
-        incidentButton.addEventListener('click', function(e) {
+        incidentButton.addEventListener('click', function (e) {
 
             console.log('incident listener called');
 
@@ -184,15 +193,6 @@ function createIncidentMarkers(incidents, map, iconsBase) {
             + incidents[i].IncidentID +
             `"><img id = "incidentImage" src="https://s3-us-west-2.amazonaws.com/foxwatch/`
             + incidents[i].IncidentID + `"height="120" width="120" onerror="imageError()" ></a> `
-
-
-            function imageError(){
-
-                console.log('image error called');
-                let incidentImage = document.getElementById('incidentImage');
-                incidentImage.style.display = 'none';
-
-            }
 
         let markerWindow = new google.maps.InfoWindow({
             content: windowString
