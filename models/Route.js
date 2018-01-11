@@ -144,7 +144,7 @@ module.exports.updateRoute = function (Route, callback) {
 
 
             // here we set all other routes to 0
-            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID + "' AND WHERE NOT RouteID =  '" + Route.RouteID + "';";
+            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID +  "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
