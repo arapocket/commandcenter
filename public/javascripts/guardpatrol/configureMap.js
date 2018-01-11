@@ -33,9 +33,7 @@ function initMap() {
 
         createPatrolPaths(patrols, coords, map);
 
-        createRoutes(map, iconsBase);
-
-        createGuardButtons(map, locations);
+        createRoutes(map, iconsBase, locations);
 
         createIncidentButtons(map, incidents);
 
@@ -86,7 +84,7 @@ function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);", timeoutPeriod);
 }
 
-function createGuardButtons(map, locations) {
+function createGuardButtons(map, locations, iconsBase, route, routeMarkers) {
 
     var guardButtons = [];
 
@@ -105,7 +103,7 @@ function createGuardButtons(map, locations) {
                 });
 
                 localStorage.setItem("currentGuard", location.GuardID);
-
+                setButtonListeners(route, routeMarkers, map, iconsBase);
             })
 
             guardButtons.push(guardButton);
@@ -267,7 +265,7 @@ function createPatrolPaths(patrols, coords, map) {
     }
 }
 
-function createRoutes(map, iconsBase) {
+function createRoutes(map, iconsBase, locations) {
 
 
     var xhr = new XMLHttpRequest();
@@ -286,7 +284,7 @@ function createRoutes(map, iconsBase) {
                 // loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
 
                 for (i = 0 ; i < json.length ; i ++ ){
-                    createRoute(json[i], map, iconsBase);
+                    createRoute(json[i], map, iconsBase, locations);
                 }
 
             }
@@ -300,9 +298,11 @@ function createRoutes(map, iconsBase) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(null);
 
+    
+
 }
 
-function createRoute(aCurrentRoute, map, iconsBase){
+function createRoute(aCurrentRoute, map, iconsBase, locations){
 
 
     let routeSeq = {
@@ -327,7 +327,12 @@ function createRoute(aCurrentRoute, map, iconsBase){
     })
 
     var routeMarkers = [];
+    createGuardButtons(map, locations, iconsBase, route, routeMarkers);
+    setButtonListeners(route, routeMarkers, map, iconsBase, );
 
+}
+
+function setButtonListeners(route, routeMarkers, map, iconsBase){
     var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
 
     removeCheckpointButton.addEventListener('click', function (e) {
@@ -356,7 +361,6 @@ function createRoute(aCurrentRoute, map, iconsBase){
         console.log('load route button clicked');
         onLoadRoute(map, iconsBase, route, routeMarkers);
     });
-
 }
 
 function onSetCheckpoint(route, latLng, map, iconsBase, routeMarkers) {
