@@ -27,7 +27,7 @@ function loadScripts() {
         console.log(checkboxes);
 
         for (i = 0 ; i < checkboxes.length ; i ++ ) {
-            checkboxes[i].click();
+            checkboxes[i].checked = '';
         }
         
     })
