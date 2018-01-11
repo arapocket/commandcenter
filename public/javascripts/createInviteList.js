@@ -31,14 +31,15 @@ function loadScripts() {
 
             console.log('has attribute');
             for (i = 0 ; i < checkboxes.length ; i ++ ) {
-                checkboxes[i].setAttribute('checked', '');
+                checkboxes[i].removeAttribute('checked');
+                
             }
         } else {
             checkallbox.setAttribute('checked', '');
 
             console.log('doesnt haz attribute');
             for (i = 0 ; i < checkboxes.length ; i ++ ) {
-                checkboxes[i].removeAttribute('checked');
+                checkboxes[i].setAttribute('checked', '');
             }
         }
 
