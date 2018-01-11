@@ -106,7 +106,7 @@ function createGuardButtons(map, locations, iconsBase) {
                     lng: location.lng
                 });
 
-                changeButtons(location.GuardID, locations);
+                changeButtons(location.GuardID, locations, map, iconsBase);
 
                 localStorage.setItem("currentGuard", location.GuardID);
             })
@@ -116,7 +116,7 @@ function createGuardButtons(map, locations, iconsBase) {
     }
 }
 
-function changeButtons(GuardID, locations){
+function changeButtons(GuardID, locations, map, iconsBase){
 
 
     for (i = 0 ; i < locations.length ; i++ ){
@@ -127,6 +127,14 @@ function changeButtons(GuardID, locations){
         hideRemoveButton.style.display = 'none';
         hideSaveButton.style.display = 'none';
         hideLoadButton.style.display = 'none';
+
+        map.removeListener('click');
+
+        map.addListener('click', function (e) {
+            onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+        });
+
+        
 
     }
 
