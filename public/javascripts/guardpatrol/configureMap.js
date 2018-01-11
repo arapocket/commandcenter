@@ -340,19 +340,20 @@ function createRoute(aCurrentRoute, map, iconsBase){
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
 
-    let saveRouteButton = parent.document.getElementById("saveRouteButton");
+    var saveRouteButton = parent.document.getElementById("saveRouteButton");
 
     saveRouteButton.addEventListener('click', function (e) {
-
+        console.log('save route button clicked');
         onSaveRoute(route);
     });
 
     onLoadRoute(map, iconsBase, route, routeMarkers);
 
-    let loadRouteButton = parent.document.getElementById("loadRouteButton");
+    var loadRouteButton = parent.document.getElementById("loadRouteButton");
 
     loadRouteButton.addEventListener('click', function (e) {
 
+        console.log('load route button clicked');
         onLoadRoute(map, iconsBase, route, routeMarkers);
     });
 
