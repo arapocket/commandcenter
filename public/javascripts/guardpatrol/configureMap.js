@@ -447,7 +447,7 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
             // alert(xhr.responseText);
             var json = JSON.parse(xhr.responseText);
 
-            if (json != null && json != undefined && json != []) {
+            if (json != []) {
                 let routeID = json[0].RouteID;
                 loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
             }
