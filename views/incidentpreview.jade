@@ -7,8 +7,6 @@ html(lang='en')
 			html {
 			width: 90%;	
 			}, body {
-			width: 100;
-			height: 100;
 			}
 	link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
 	link(href="/stylesheets/chatstyle.css", rel="stylesheet")
@@ -16,9 +14,9 @@ html(lang='en')
 	.row																			   
 		.col-md-12.col-sm-12.col-xs-12
 			a(id = 'imageAnchor' href='' target="_parent")		
-				img#incidentPhoto(src="",  width = "100%", height = "100%", align = "center")
+				img#incidentPhoto(src="",  width = "100%", height = "300", align = "center")
 			a(id = 'videoAnchor' href='' target="_parent")		
-				video#incidentVideo(src="",  width = "100%", height = "100%", align = "center" display = "none" autoplay = "" controls = "" loop = "true" )
+				video#incidentVideo(src="",  width = "100%", height = "300", align = "center" display = "none" autoplay = "" controls = "" loop = "true" )
 			script(src='/javascripts/guardpatrol/renderIncidentPreview.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
