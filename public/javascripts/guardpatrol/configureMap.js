@@ -123,9 +123,9 @@ function changeButtons(GuardID){
     let saveButton = parent.document.getElementById(GuardID + 'save');
     let loadButton = parent.document.getElementById(GuardID + 'load');
 
-    removeButton.display = 'inline';
-    saveButton.display = 'inline';
-    loadButton.display = "inline";
+    removeButton.style.display = 'block';
+    saveButton.style.display = 'block';
+    loadButton.style.display = "block";
 }
 
 function createIncidentButtons(map, incidents) {
