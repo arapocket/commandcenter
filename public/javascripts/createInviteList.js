@@ -26,13 +26,15 @@ function loadScripts() {
         console.log('logging checkboxes array');
         console.log(checkboxes);
 
-        if (checkallbox.checked == true) {
+        if (checkallbox.hasAttribute('checked')) {
+            console.log('has attribute');
             for (i = 0 ; i < checkboxes.length ; i ++ ) {
-                checkboxes[i].checked = 'true';
+                checkboxes[i].createAttribute('checked');
             }
         } else {
+            console.log('doesnt haz attribute');
             for (i = 0 ; i < checkboxes.length ; i ++ ) {
-                checkboxes[i].checked = 'false';
+                checkboxes[i].removeAttribute('checked');
             }
         }
 
