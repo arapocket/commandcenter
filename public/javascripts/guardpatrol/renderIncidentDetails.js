@@ -7,10 +7,12 @@ incidentPhoto.src = "https://s3-us-west-2.amazonaws.com/foxwatch/" + incident[0]
 incidentPhoto.onerror = function(){
     // incidentPhoto.src = 'https://s3-us-west-2.amazonaws.com/foxwatch/error'
 
-    incidentPhoto.innerHTML = `<video width="400" controls autoplay>
+    incidentPhoto.innerHTML = `<video width="400" controls autoplay> 
     <source src="https://s3-us-west-2.amazonaws.com/foxwatch/ ` + incident[0].IncidentID + `" type="video/mp4">
-</video>'
-} `
+</video>'`
+} 
+
+
 
 
 backButton.addEventListener('click', function (e) {
