@@ -14,7 +14,19 @@ module.exports.getIncidentDetails = (function (req, res) {
   });
 });
 
+module.exports.getIncidentPreview = (function (req, res) {
 
+  IncidentDetail.getIncidentByID(req.params.id, function (err, getIncidentResult) {
+
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.render('incidentpreview', { title: 'Incident Preview', getIncidentResult: getIncidentResult });
+
+    }
+  });
+});
 
 
 

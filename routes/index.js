@@ -191,6 +191,7 @@ router.get('/foxmaps', FoxMaps.getAllGuardPatrols);
 
 var IncidentDetails = require('../controllers/IncidentDetails');
 router.get('/incidentdetails/:id', IncidentDetails.getIncidentDetails);
+router.get('/incidentpreview/:id', IncidentDetails.getIncidentPreview);
 
 
 //////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
