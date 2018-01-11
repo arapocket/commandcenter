@@ -199,7 +199,7 @@ function createIncidentMarkers(incidents, map, iconsBase) {
 
         let markerWindow = new google.maps.InfoWindow({
             content: windowString,
-            maxWidth: 100
+            maxWidth: 200
         });
 
     
