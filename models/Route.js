@@ -176,6 +176,34 @@ module.exports.updateRoute = function (Route, callback) {
 }
 
 
+module.exports.disableRoutes = function (Route, callback) {
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+
+            // here we set all other routes to 0
+            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID +  "';";
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    // connection.end();
+                    callback(null, rows);
+                } else {
+                    console.log('error with the select routeroute query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+
+}
+
 
 
 

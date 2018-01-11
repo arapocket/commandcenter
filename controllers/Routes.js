@@ -76,4 +76,14 @@ module.exports.updateRoute = function (req, res) {
   });
 };
 
+module.exports.disableRoutes = function (req, res) {
+  Route.disableRoutes(req.body, function (err, result) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+};
 

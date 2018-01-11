@@ -236,6 +236,7 @@ router.get('/routes/:id', Routes.getRouteByID);
 router.post('/routes', Routes.addRoute);
 router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/routes', Routes.updateRoute);
+router.put('/disableroutes', Routes.disableRoutes);
 router.get('/currentroutes', Routes.getCurrentRoutes);
 
 

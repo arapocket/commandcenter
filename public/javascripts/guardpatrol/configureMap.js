@@ -104,6 +104,8 @@ function createGuardButtons(map, locations, iconsBase) {
                     lng: location.lng
                 });
 
+                changeButtons(location.GuardID);
+
                 localStorage.setItem("currentGuard", location.GuardID);
                 // setButtonListeners(route, routeMarkers, map, iconsBase);
             })
@@ -111,6 +113,19 @@ function createGuardButtons(map, locations, iconsBase) {
             guardButtons.push(guardButton);
         }
     }
+}
+
+function changeButtons(GuardID){
+
+    let removeButton = document.getElementById(GuardID + 'remove');
+    let saveButton = document.getElementById(GuardID + 'save');
+    let loadButton = document.getElementById(GuardID + 'load');
+
+    removeButton.display = 'block';
+    saveButton.display = 'block';
+    loadButton.display = "block";
+
+    
 
 }
 
