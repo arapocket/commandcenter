@@ -2,7 +2,7 @@ function renderIncidentDetails(){
 console.log("renderIncidentDetails called");
 console.log(incident);
 var incidentPhoto = document.getElementById("incidentPhoto");
-var incidentVideo = document.getSelection('incidentVideo');
+var incidentVideo = document.getElementById('incidentVideo');
 var backButton = document.getElementById("backButton");
 incidentPhoto.src = "https://s3-us-west-2.amazonaws.com/foxwatch/" + incident[0].IncidentID;
 incidentPhoto.onerror = function(){
