@@ -99,6 +99,8 @@ function createGuardButtons(map, locations, iconsBase) {
 
             guardButton.addEventListener('click', function (e) {
 
+                console.log(guardButton.id + 'clicked');
+
                 map.setCenter({
                     lat: location.lat,
                     lng: location.lng
