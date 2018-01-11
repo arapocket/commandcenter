@@ -198,10 +198,11 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         //     + incidents[i].IncidentID + `"height="120" width="120" onerror="imageError()" ></a> `
 
         let markerWindow = new google.maps.InfoWindow({
-            content: windowString
+            content: windowString,
+            maxWidth: 100
         });
 
-        markerWindow.maxWidth = 10;
+    
 
         ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////
 
