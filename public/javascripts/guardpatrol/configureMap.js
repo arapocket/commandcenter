@@ -445,7 +445,7 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // alert(xhr.responseText);
-            var json = JSON.parse(xhr.responseText);
+            let json = JSON.parse(xhr.responseText);
 
             if (json != []) {
                 let routeID = json[0].RouteID;
