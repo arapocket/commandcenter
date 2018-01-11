@@ -1,4 +1,4 @@
-function loadS`cr`ipts() {
+function loadScripts() {
 
 
     var checkboxes = [];
