@@ -183,14 +183,14 @@ function createIncidentMarkers(incidents, map, iconsBase) {
 
 
         ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
-        var windowString =          `  <a href = "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/`
-        + incidents[i].IncidentID +
-        `">         ` +    `
+        var windowString = `
         <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
         <h6 style="color:#404040"> 
         ` + incidents[i].Description + `
-        </h6> ` +
-         `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID +  `' width='100' height='300' type='text/html'> <object/> </a> `
+        </h6> ` + `  <a href = "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/`
+        + incidents[i].IncidentID +
+        `">         ` +    
+         `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID +  `' width='100%' height='100%' type='text/html'> <object/> </a> `
 
 
 
