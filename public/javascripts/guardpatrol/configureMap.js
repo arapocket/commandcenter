@@ -269,6 +269,42 @@ function createPatrolPaths(patrols, coords, map) {
 
 function createRoutes(map, iconsBase) {
 
+
+    var xhr = new XMLHttpRequest();
+
+    if (!xhr) {
+        alert('Giving up :( Cannot create an XMLHTTP instance');
+        return false;
+    }
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            // alert(xhr.responseText);
+            let json = JSON.parse(xhr.responseText);
+            if (json.length > 0) {
+                // let routeID = json[0].RouteID;
+                // loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
+
+                for (i = 0 ; i < json.length ; i ++ ){
+                    createRoute(json[i], map, iconsBase);
+                }
+
+            }
+
+
+        }
+    }
+
+    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(null);
+
+}
+
+function createRoute(aCurrentRoute, map, iconsBase){
+
+
     var routeSeq = {
         repeat: '30px',
         icon: {
@@ -319,8 +355,6 @@ function createRoutes(map, iconsBase) {
 
         onLoadRoute(map, iconsBase, route, routeMarkers);
     });
-
-
 
 }
 
@@ -444,7 +478,6 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             // alert(xhr.responseText);
             let json = JSON.parse(xhr.responseText);
-
             if (json.length > 0) {
                 let routeID = json[0].RouteID;
                 loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
