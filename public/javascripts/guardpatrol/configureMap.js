@@ -121,9 +121,9 @@ function changeButtons(GuardID, locations){
 
 
     for (i = 0 ; i < locations.length ; i++ ){
-        let hideRemoveButton = parent.document.getElementById(location[i].GuardID + 'remove');
-        let hideSaveButton = parent.document.getElementById(location[i].GuardID + 'save');
-        let hideLoadButton = parent.document.getElementById(location[i].GuardID + 'load');
+        let hideRemoveButton = parent.document.getElementById(locations[i].GuardID + 'remove');
+        let hideSaveButton = parent.document.getElementById(locations[i].GuardID + 'save');
+        let hideLoadButton = parent.document.getElementById(locations[i].GuardID + 'load');
         
         hideRemoveButton.style.display = 'none';
         hideSaveButton.style.display = 'none';
