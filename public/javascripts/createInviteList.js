@@ -27,11 +27,15 @@ function loadScripts() {
         console.log(checkboxes);
 
         if (checkallbox.hasAttribute('checked')) {
+            checkallbox.removeAttribute('checked');
+
             console.log('has attribute');
             for (i = 0 ; i < checkboxes.length ; i ++ ) {
                 checkboxes[i].createAttribute('checked');
             }
         } else {
+            checkallbox.createAttribute('checked');
+
             console.log('doesnt haz attribute');
             for (i = 0 ; i < checkboxes.length ; i ++ ) {
                 checkboxes[i].removeAttribute('checked');
