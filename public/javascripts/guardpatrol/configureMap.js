@@ -33,7 +33,7 @@ function initMap() {
 
         createPatrolPaths(patrols, coords, map);
 
-        createRoutes(map, iconsBase);
+        createRoutes(map, iconsBase, locations);
 
         createGuardButtons(map, locations, iconsBase);
 
@@ -292,7 +292,7 @@ function createPatrolPaths(patrols, coords, map) {
     }
 }
 
-function createRoutes(map, iconsBase) {
+function createRoutes(map, iconsBase, locations) {
 
 
     var xhr = new XMLHttpRequest();
@@ -315,8 +315,10 @@ function createRoutes(map, iconsBase) {
                 }
 
             } else {
-                var currentGuard = localStorage.getItem("currentGuard");
-                createFirstRoute(currentGuard, map, iconsBase);
+                for (i = 0 ; i < locations.length ; i ++ ) {
+                    createFirstRoutes(locations[i].GuardID, map, iconsBase);
+                }
+                
             }
 
 
@@ -330,7 +332,7 @@ function createRoutes(map, iconsBase) {
 
 }
 
-function createFirstRoute(guardID, map, iconsBase){
+function createFirstRoutes(guardID, map, iconsBase){
 
     let routeSeq = {
         repeat: '30px',
