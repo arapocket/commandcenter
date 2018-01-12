@@ -129,7 +129,7 @@ function changeButtons(GuardID, locations, map, iconsBase){
         hideLoadButton.style.display = 'none';        
     }
 
-    map.clearListeners('click');
+    map.click.clearListener();
 
     let removeButton = parent.document.getElementById(GuardID + 'remove');
     let saveButton = parent.document.getElementById(GuardID + 'save');
