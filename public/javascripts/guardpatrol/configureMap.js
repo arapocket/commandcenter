@@ -365,6 +365,9 @@ function createFirstRoutes(guardID, map, iconsBase){
 
     var routeMarkers = [];
 
+    localStorage.setItem(guardID + 'routeMarkers', routeMarkers);
+    localStorage.setItem(guardID + 'route', route);
+
     setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
 }
 
