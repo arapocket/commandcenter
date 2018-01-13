@@ -365,8 +365,8 @@ function createFirstRoutes(guardID, map, iconsBase){
 
     var routeMarkers = [];
 
-    localStorage.setItem(guardID + 'routeMarkers', JSON.stringify(routeMarkers));
-    localStorage.setItem(guardID + 'route', JSON.stringify(route));
+    localStorage.setItem(guardID + 'routeMarkers', routeMarkers);
+    localStorage.setItem(guardID + 'route', route);
 
     setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
 }
@@ -399,8 +399,8 @@ function createRoute(guardID, map, iconsBase){
 
     var routeMarkers = [];
 
-    localStorage.setItem(guardID + 'routeMarkers', JSON.stringify(routeMarkers));
-    localStorage.setItem(guardID + 'route', JSON.stringify(route));
+    localStorage.setItem(guardID + 'routeMarkers', routeMarkers);
+    localStorage.setItem(guardID + 'route', route);
 
     setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
 
