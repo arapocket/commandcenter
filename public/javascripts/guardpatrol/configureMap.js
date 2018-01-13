@@ -177,6 +177,32 @@ function createIncidentButtons(map, incidents) {
 }
 
 function createGuardMarkers(locations, map, iconsBase) {
+
+
+    // let routeSeq = {
+    //     repeat: '30px',
+    //     icon: {
+    //         path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+    //         scale: 1,
+    //         fillOpacity: 0,
+    //         strokeColor: "yellow",
+    //         strokeWeight: 1,
+    //         strokeOpacity: 1
+    //     }
+    // };
+    // let route = new google.maps.Polyline({
+    //     map: map,
+    //     zIndex: 1,
+    //     geodesic: true,
+    //     strokeColor: "blue",
+    //     strokeOpacity: 1,
+    //     strokeWeight: 7,
+    //     icons: [routeSeq]
+    // })
+
+    // var routeMarkers = [];
+
+
     for (i = 0; i < locations.length; i++) {
 
         ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
@@ -204,8 +230,9 @@ function createGuardMarkers(locations, map, iconsBase) {
             markerWindow.open(map, marker);
         });
 
-        createRoute(locations[i].GuardID, map, iconsBase);
-
+        
+        // createRoute(locations[i].GuardID, map, iconsBase);
+        
 
     }
 }
@@ -374,33 +401,11 @@ function createFirstRoutes(guardID, map, iconsBase){
 
 function createRoute(guardID, map, iconsBase){
 
-    let routeSeq = {
-        repeat: '30px',
-        icon: {
-            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-            scale: 1,
-            fillOpacity: 0,
-            strokeColor: "yellow",
-            strokeWeight: 1,
-            strokeOpacity: 1
-        }
-    };
-    let route = new google.maps.Polyline({
-        map: map,
-        zIndex: 1,
-        geodesic: true,
-        strokeColor: "blue",
-        strokeOpacity: 1,
-        strokeWeight: 7,
-        icons: [routeSeq]
-    })
-
-    var routeMarkers = [];
 
     // localStorage.setItem(guardID + 'routeMarkers', JSON.stringify(routeMarkers));
     // localStorage.setItem(guardID + 'route', JSON.stringify(route));
 
-    setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
+    
 
 
 
