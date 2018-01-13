@@ -134,9 +134,9 @@ function changeButtons(GuardID, locations, map, iconsBase){
     // var route = JSON.parse(localStorage.getItem(GuardID + 'route'));
     // var routeMarkers = JSON.parse(localStorage.getItem(GuardID + 'routeMarkers'));
 
-    map.addListener('click', function (e) {
-        onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
-    });
+    // map.addListener('click', function (e) {
+    //     onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+    // });
 
     let removeButton = parent.document.getElementById(GuardID + 'remove');
     let saveButton = parent.document.getElementById(GuardID + 'save');
