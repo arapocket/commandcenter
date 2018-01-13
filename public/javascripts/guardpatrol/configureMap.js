@@ -131,6 +131,13 @@ function changeButtons(GuardID, locations, map, iconsBase){
 
     google.maps.event.clearListeners(map, 'click');
 
+    let route = localStorage.getItem(GuardID + ' route');
+    let routeMarkers = localStorage.getItem(GuardID + ' routeMarkers');
+
+    map.addListener('click', function (e) {
+        onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+    });
+
     let removeButton = parent.document.getElementById(GuardID + 'remove');
     let saveButton = parent.document.getElementById(GuardID + 'save');
     let loadButton = parent.document.getElementById(GuardID + 'load');
@@ -387,7 +394,12 @@ function createRoute(guardID, map, iconsBase){
 
     var routeMarkers = [];
 
+    localStorage.setItem(guardID + ' routeMarkers', routeMarkers);
+    localStorage.setItem(guardID + ' route', route);
+
     setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
+
+
 
 }
 
