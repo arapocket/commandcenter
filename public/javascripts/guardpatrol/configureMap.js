@@ -370,6 +370,8 @@ function createFirstRoutes(guardID, map, iconsBase){
 
 function createRoute(guardID, map, iconsBase){
 
+    console.log('create route called');
+
 
     let routeSeq = {
         repeat: '30px',
