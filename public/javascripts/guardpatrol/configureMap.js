@@ -162,7 +162,7 @@ function changeButtons(GuardID, locations, map, iconsBase) {
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
 
-    setButtonListeners(route, routeMarkers, map, iconsBase, guardID);
+    setButtonListeners(route, routeMarkers, map, iconsBase, GuardID);
 
     let removeButton = parent.document.getElementById(GuardID + 'remove');
     let saveButton = parent.document.getElementById(GuardID + 'save');
