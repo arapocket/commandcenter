@@ -312,7 +312,7 @@ function createRoutes(map, iconsBase, locations) {
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.responseText);
+            // alert(xhr.responseText);
             let json = JSON.parse(xhr.responseText);
             if (json.length > 0) {
                 // let routeID = json[0].RouteID;
