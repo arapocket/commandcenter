@@ -129,7 +129,7 @@ function changeButtons(GuardID, locations, map, iconsBase){
         hideLoadButton.style.display = 'none';        
     }
 
-    google.maps.event.clearListeners(map, 'click');
+    // google.maps.event.clearListeners(map, 'click');
 
     // var route = JSON.parse(localStorage.getItem(GuardID + 'route'));
     // var routeMarkers = JSON.parse(localStorage.getItem(GuardID + 'routeMarkers'));
