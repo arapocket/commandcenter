@@ -116,41 +116,17 @@ function createGuardButtons(map, locations, iconsBase) {
     }
 }
 
-function changeButtons(GuardID, locations, map, iconsBase) {
+function changeButtons(GuardID, locations, map, iconsBase){
 
 
-    let routeSeq = {
-        repeat: '30px',
-        icon: {
-            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-            scale: 1,
-            fillOpacity: 0,
-            strokeColor: "yellow",
-            strokeWeight: 1,
-            strokeOpacity: 1
-        }
-    };
-    let route = new google.maps.Polyline({
-        map: map,
-        zIndex: 1,
-        geodesic: true,
-        strokeColor: "blue",
-        strokeOpacity: 1,
-        strokeWeight: 7,
-        icons: [routeSeq]
-    })
-
-    var routeMarkers = [];
-
-
-    for (i = 0; i < locations.length; i++) {
+    for (i = 0 ; i < locations.length ; i++ ){
         let hideRemoveButton = parent.document.getElementById(locations[i].GuardID + 'remove');
         let hideSaveButton = parent.document.getElementById(locations[i].GuardID + 'save');
         let hideLoadButton = parent.document.getElementById(locations[i].GuardID + 'load');
-
+        
         hideRemoveButton.style.display = 'none';
         hideSaveButton.style.display = 'none';
-        hideLoadButton.style.display = 'none';
+        hideLoadButton.style.display = 'none';        
     }
 
     google.maps.event.clearListeners(map, 'click');
@@ -161,8 +137,6 @@ function changeButtons(GuardID, locations, map, iconsBase) {
     map.addListener('click', function (e) {
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
-
-    setButtonListeners(route, routeMarkers, map, iconsBase, GuardID);
 
     let removeButton = parent.document.getElementById(GuardID + 'remove');
     let saveButton = parent.document.getElementById(GuardID + 'save');
@@ -229,6 +203,8 @@ function createGuardMarkers(locations, map, iconsBase) {
         marker.addListener('click', function (e) {
             markerWindow.open(map, marker);
         });
+
+        createRoute(locations[i].GuardID, map, iconsBase);
 
 
     }
@@ -328,7 +304,6 @@ function createPatrolPaths(patrols, coords, map) {
 
 function createRoutes(map, iconsBase, locations) {
 
-
     var xhr = new XMLHttpRequest();
 
     if (!xhr) {
@@ -344,15 +319,15 @@ function createRoutes(map, iconsBase, locations) {
                 // let routeID = json[0].RouteID;
                 // loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
 
-                for (i = 0; i < json.length; i++) {
+                for (i = 0 ; i < json.length ; i ++ ){
                     createRoute(json[i].GuardID, map, iconsBase);
                 }
 
             } else {
-                for (i = 0; i < locations.length; i++) {
+                for (i = 0 ; i < locations.length ; i ++ ) {
                     createFirstRoutes(locations[i].GuardID, map, iconsBase);
                 }
-
+                
             }
 
 
@@ -366,7 +341,7 @@ function createRoutes(map, iconsBase, locations) {
 
 }
 
-function createFirstRoutes(guardID, map, iconsBase) {
+function createFirstRoutes(guardID, map, iconsBase){
 
     let routeSeq = {
         repeat: '30px',
@@ -394,13 +369,10 @@ function createFirstRoutes(guardID, map, iconsBase) {
     // localStorage.setItem(guardID + 'routeMarkers', JSON.stringify(routeMarkers));
     // localStorage.setItem(guardID + 'route', JSON.stringify(route));
 
-    setButtonListeners(route, routeMarkers, map, iconsBase, guardID);
+    setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
 }
 
-function createRoute(guardID, map, iconsBase) {
-
-    console.log('create route called');
-
+function createRoute(guardID, map, iconsBase){
 
     let routeSeq = {
         repeat: '30px',
@@ -428,13 +400,13 @@ function createRoute(guardID, map, iconsBase) {
     // localStorage.setItem(guardID + 'routeMarkers', JSON.stringify(routeMarkers));
     // localStorage.setItem(guardID + 'route', JSON.stringify(route));
 
-    setButtonListeners(route, routeMarkers, map, iconsBase, guardID);
+    setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
 
 
 
 }
 
-function setButtonListeners(route, routeMarkers, map, iconsBase, guardID) {
+function setButtonListeners(route, routeMarkers, map, iconsBase, guardID){
     var removeCheckpointButton = parent.document.getElementById(guardID + 'remove');
 
     removeCheckpointButton.addEventListener('click', function (e) {
@@ -687,6 +659,3 @@ function openMarker() {
 }
 
 
-
-
-//
