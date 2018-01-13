@@ -131,8 +131,8 @@ function changeButtons(GuardID, locations, map, iconsBase){
 
     google.maps.event.clearListeners(map, 'click');
 
-    let route = localStorage.getItem(GuardID + ' route');
-    let routeMarkers = localStorage.getItem(GuardID + ' routeMarkers');
+    var route = localStorage.getItem(GuardID + ' route');
+    var routeMarkers = localStorage.getItem(GuardID + ' routeMarkers');
 
     map.addListener('click', function (e) {
         onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
