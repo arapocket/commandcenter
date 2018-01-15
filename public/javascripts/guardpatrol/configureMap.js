@@ -151,21 +151,37 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase) {
 
     var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
 
-
-
-
-
     var saveRouteButton = parent.document.getElementById("saveRouteButton");
 
     var loadRouteButton = parent.document.getElementById("loadRouteButton");
 
     var addRouteButton = parent.document.getElementById('addRouteButton');
 
+    var trashRouteButton = parent.document.getElementById('trashRouteButton');
+
+
 
     addRouteButton.addEventListener('click', function (e) {
-        onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
+        onAddRoute(route, routeMarkers, iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
     });
 
+    trashRouteButton.addEventListener('click', function(e){
+        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map , iconsBase, route, routeMarkers);
+    });
+
+    removeCheckpointButton.addEventListener('click', function (e) {
+        onRemoveCheckpoint(route, routeMarkers)
+    } );
+
+    saveRouteButton.addEventListener('click', function (e) {
+
+        onSaveRoute(route);
+    });
+
+    loadRouteButton.addEventListener('click', function (e) {
+
+        onLoadRoute(map, iconsBase, route, routeMarkers);
+    });
 
 
 }
@@ -441,9 +457,8 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
 
 }
 
-function onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
+function onAddRoute(route, routeMarkers, iconsBase, trashRouteButton,  addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
 
-    var trashRouteButton = parent.document.getElementById('trashRouteButton');
 
 
     for (i = 0; i < routeMarkers.length; i++) {
@@ -464,23 +479,7 @@ function onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckp
     saveRouteButton.style.display = 'block';
     loadRouteButton.style.display = 'block';
 
-    trashRouteButton.addEventListener('click', function(e){
-        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map , iconsBase, route, routeMarkers);
-    });
 
-    removeCheckpointButton.addEventListener('click', function (e) {
-        onRemoveCheckpoint(route, routeMarkers)
-    } );
-
-    saveRouteButton.addEventListener('click', function (e) {
-
-        onSaveRoute(route);
-    });
-
-    loadRouteButton.addEventListener('click', function (e) {
-
-        onLoadRoute(map, iconsBase, route, routeMarkers);
-    });
 
 
 }
