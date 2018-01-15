@@ -491,7 +491,7 @@ function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, 
     saveRouteButton.style.display = 'none';
     loadRouteButton.style.display = 'none';
     google.maps.event.clearListeners(map, 'click');
-    onLoadRoute(map, iconsBase, route, routeMarkers);
+    // onLoadRoute(map, iconsBase, route, routeMarkers);
     
 
     
