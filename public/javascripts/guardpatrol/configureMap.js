@@ -568,7 +568,6 @@ function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
     route.setPath([]);
     for (i = 0; i < routeMarkers.length; i++) {
         routeMarkers[i].setMap(null);
-        route.getPath.pop();
     }
 
     routeMarkers = [];
