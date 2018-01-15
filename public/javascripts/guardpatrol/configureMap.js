@@ -220,7 +220,9 @@ function initMap() {
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
         let loadRouteButton = parent.document.getElementById('loadRouteButton' + GuardID);
         
-        addRouteButton.style.display = 'block';
+        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route );
+
+        // addRouteButton.style.display = 'block';
 
         // trashRouteButton.style.display = 'block';
         // removeCheckpointButton.style.display = 'block';
@@ -532,6 +534,8 @@ function initMap() {
 
         route.setPath([]);
 
+
+        onLoadRoute(map, iconsBase, route);
 
     }
 
