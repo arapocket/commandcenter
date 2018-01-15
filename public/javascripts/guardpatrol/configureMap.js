@@ -466,6 +466,7 @@ function onAddRoute(route, routeMarkers, iconsBase, addRouteButton,trashRouteBut
     for (i = 0; i < routeMarkers.length; i++) {
         routeMarkers[i].setMap(null);
         route.getPath().pop();
+        console.log('route path: ' + route.getPath());
     }
 
     routeMarkers = [];
@@ -567,6 +568,7 @@ function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
     for (i = 0; i < routeMarkers.length; i++) {
         routeMarkers[i].setMap(null);
         route.getPath().pop();
+        console.log('route path: ' + route.getPath());
     }
 
     routeMarkers = [];
