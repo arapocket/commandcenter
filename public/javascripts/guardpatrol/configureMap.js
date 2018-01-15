@@ -465,7 +465,10 @@ function onAddRoute(route, routeMarkers, iconsBase, addRouteButton,trashRouteBut
 
     for (i = 0; i < routeMarkers.length; i++) {
         routeMarkers[i].setMap(null);
+        route.getPath().pop();
     }
+
+    routeMarkers = [];
 
     map.addListener('click', function (e) {
         onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
@@ -563,7 +566,11 @@ function loadRoutesOnMap(checkpoints, map, iconsBase, route, routeMarkers) {
     route.setPath([]);
     for (i = 0; i < routeMarkers.length; i++) {
         routeMarkers[i].setMap(null);
+        route.getPath().pop();
     }
+
+    routeMarkers = [];
+    
     for (i = 0; i < checkpoints.length; i++) {
         var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
         route.getPath().push(latLng);
