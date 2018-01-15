@@ -1,11 +1,5 @@
 
-function imageError() {
 
-    console.log('image error called');
-    // let incidentImage = document.getElementById('incidentImage');
-    // incidentImage.style.display = 'none';
-
-}
 
 function initMap() {
     console.log("initMap called");
@@ -46,7 +40,16 @@ function initMap() {
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
 
-}
+
+    function imageError() {
+
+        console.log('image error called');
+        // let incidentImage = document.getElementById('incidentImage');
+        // incidentImage.style.display = 'none';
+    
+    }
+
+
 
 function setRefreshButtonListeners() {
 
@@ -645,3 +648,4 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
 
 
 
+}
