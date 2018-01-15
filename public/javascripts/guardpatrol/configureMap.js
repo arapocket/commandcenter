@@ -27,31 +27,66 @@ function initMap() {
 
         });
 
+        createRoutes(map, iconsBase);
+
         createGuardMarkers(locations, map, iconsBase);
 
         createIncidentMarkers(incidents, map, iconsBase);
 
         createPatrolPaths(patrols, coords, map);
 
-        // createRoutes(map, iconsBase, locations);
-
         createGuardButtons(map, locations, iconsBase);
 
         createIncidentButtons(map, incidents);
 
+        setRouteButtonListeners(route, routeMarkers, map, iconsBase, guardID );
 
+        setRefreshButtonListeners();
 
     } else {
         var mapSpace = document.getElementById('map');
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
 
+}
+
+function setRouteButtonListeners(route, routeMarkers, map, iconsBase, guardID){
+
+    var removeCheckpointButton = parent.document.getElementById('removeButton');
+
+    removeCheckpointButton.addEventListener('click', function (e) {
+        onRemoveCheckpoint(route, routeMarkers);
+    });
+
+    map.addListener('click', function (e) {
+        onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+    });
+
+    let saveRouteButton = parent.document.getElementById(guardID + 'save');
+
+    saveRouteButton.addEventListener('click', function (e) {
+        console.log('save route button clicked');
+        onSaveRoute(route);
+    });
+
+    onLoadRoute(map, iconsBase, route, routeMarkers);
+
+    let loadRouteButton = parent.document.getElementById(guardID + 'load');
+
+    loadRouteButton.addEventListener('click', function (e) {
+
+        console.log('load route button clicked');
+        onLoadRoute(map, iconsBase, route, routeMarkers);
+    });
+}
+
+
+function SetRefreshButtonListeners(){
 
     let buttonValues = {
         OFF: "Auto Refresh Off",
         TEN: "Auto Refresh On"
     };
-
 
     autoRefreshButtonOFF = parent.document.getElementById('autoRefreshButtonOFF');
     autoRefreshButtonTEN = parent.document.getElementById('autoRefreshButtonTEN');
@@ -146,6 +181,64 @@ function changeButtons(GuardID, locations, map, iconsBase){
     saveButton.style.display = 'block';
     loadButton.style.display = "block";
 }
+
+function createRoutes(map, iconsBase) {
+
+    var routeSeq = {
+        repeat: '30px',
+        icon: {
+            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+            scale: 1,
+            fillOpacity: 0,
+            strokeColor: "yellow",
+            strokeWeight: 1,
+            strokeOpacity: 1
+        }
+    };
+    var route = new google.maps.Polyline({
+        map: map,
+        zIndex: 1,
+        geodesic: true,
+        strokeColor: "blue",
+        strokeOpacity: 1,
+        strokeWeight: 7,
+        icons: [routeSeq]
+    })
+
+    var routeMarkers = [];
+
+    var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
+
+    removeCheckpointButton.addEventListener('click', function (e) {
+
+        onRemoveCheckpoint(route, routeMarkers);
+    });
+
+
+    map.addListener('click', function (e) {
+        onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+    });
+
+    var saveRouteButton = parent.document.getElementById("saveRouteButton");
+
+    saveRouteButton.addEventListener('click', function (e) {
+
+        onSaveRoute(route);
+    });
+
+    onLoadRoute(map, iconsBase, route, routeMarkers);
+
+    var loadRouteButton = parent.document.getElementById("loadRouteButton");
+
+    loadRouteButton.addEventListener('click', function (e) {
+
+        onLoadRoute(map, iconsBase, route, routeMarkers);
+    });
+
+
+
+}
+
 
 function createIncidentButtons(map, incidents) {
 
@@ -329,120 +422,7 @@ function createPatrolPaths(patrols, coords, map) {
     }
 }
 
-function createRoutes(map, iconsBase, locations) {
-
-    var xhr = new XMLHttpRequest();
-
-    if (!xhr) {
-        alert('Giving up :( Cannot create an XMLHTTP instance');
-        return false;
-    }
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            // alert(xhr.responseText);
-            let json = JSON.parse(xhr.responseText);
-            if (json.length > 0) {
-                // let routeID = json[0].RouteID;
-                // loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
-
-                for (i = 0 ; i < json.length ; i ++ ){
-                    createRoute(json[i].GuardID, map, iconsBase);
-                }
-
-            } else {
-                for (i = 0 ; i < locations.length ; i ++ ) {
-                    createFirstRoutes(locations[i].GuardID, map, iconsBase);
-                }
-                
-            }
-
-
-        }
-    }
-
-    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
-
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(null);
-
-}
-
-function createFirstRoutes(guardID, map, iconsBase){
-
-    let routeSeq = {
-        repeat: '30px',
-        icon: {
-            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-            scale: 1,
-            fillOpacity: 0,
-            strokeColor: "yellow",
-            strokeWeight: 1,
-            strokeOpacity: 1
-        }
-    };
-    let route = new google.maps.Polyline({
-        map: map,
-        zIndex: 1,
-        geodesic: true,
-        strokeColor: "blue",
-        strokeOpacity: 1,
-        strokeWeight: 7,
-        icons: [routeSeq]
-    })
-
-    var routeMarkers = [];
-
-    // localStorage.setItem(guardID + 'routeMarkers', JSON.stringify(routeMarkers));
-    // localStorage.setItem(guardID + 'route', JSON.stringify(route));
-
-    setButtonListeners(route, routeMarkers, map, iconsBase, guardID );
-}
-
-function createRoute(guardID, map, iconsBase){
-
-
-    // localStorage.setItem(guardID + 'routeMarkers', JSON.stringify(routeMarkers));
-    // localStorage.setItem(guardID + 'route', JSON.stringify(route));
-
-    
-
-
-
-}
-
-function setButtonListeners(route, routeMarkers, map, iconsBase, guardID){
-    var removeCheckpointButton = parent.document.getElementById(guardID + 'remove');
-
-    removeCheckpointButton.addEventListener('click', function (e) {
-
-        onRemoveCheckpoint(route, routeMarkers);
-    });
-
-
-    map.addListener('click', function (e) {
-        onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
-    });
-
-    let saveRouteButton = parent.document.getElementById(guardID + 'save');
-
-    saveRouteButton.addEventListener('click', function (e) {
-        console.log('save route button clicked');
-        onSaveRoute(route);
-    });
-
-    onLoadRoute(map, iconsBase, route, routeMarkers);
-
-    let loadRouteButton = parent.document.getElementById(guardID + 'load');
-
-    loadRouteButton.addEventListener('click', function (e) {
-
-        console.log('load route button clicked');
-        onLoadRoute(map, iconsBase, route, routeMarkers);
-    });
-}
-
-function onSetCheckpoint(route, latLng, map, iconsBase, routeMarkers) {
+function onAddCheckpoint(route, latLng, map, iconsBase, routeMarkers) {
     route.getPath().push(latLng);
     route.setMap(map);
     createRouteMarker(latLng, map, iconsBase, route, routeMarkers);
@@ -659,8 +639,5 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
 
 }
 
-function openMarker() {
-
-}
 
 
