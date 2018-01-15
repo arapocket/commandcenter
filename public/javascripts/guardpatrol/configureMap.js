@@ -151,9 +151,6 @@ function changeButtons(GuardID, locations, map, iconsBase){
 
 function createRoutes(map, iconsBase) {
 
-
-function setRouteButtonListeners(route, routeMarkers, map, iconsBase, guardID){
-
     var routeSeq = {
         repeat: '30px',
         icon: {
@@ -209,7 +206,6 @@ function setRouteButtonListeners(route, routeMarkers, map, iconsBase, guardID){
 
 }
 
-
 function createIncidentButtons(map, incidents) {
 
     var incidentButtons = [];
@@ -242,30 +238,6 @@ function createIncidentButtons(map, incidents) {
 function createGuardMarkers(locations, map, iconsBase) {
 
 
-    // let routeSeq = {
-    //     repeat: '30px',
-    //     icon: {
-    //         path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-    //         scale: 1,
-    //         fillOpacity: 0,
-    //         strokeColor: "yellow",
-    //         strokeWeight: 1,
-    //         strokeOpacity: 1
-    //     }
-    // };
-    // let route = new google.maps.Polyline({
-    //     map: map,
-    //     zIndex: 1,
-    //     geodesic: true,
-    //     strokeColor: "blue",
-    //     strokeOpacity: 1,
-    //     strokeWeight: 7,
-    //     icons: [routeSeq]
-    // })
-
-    // var routeMarkers = [];
-
-
     for (i = 0; i < locations.length; i++) {
 
         ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
@@ -291,11 +263,7 @@ function createGuardMarkers(locations, map, iconsBase) {
         markerWindow.open(map, marker);
         marker.addListener('click', function (e) {
             markerWindow.open(map, marker);
-        });
-
-        
-        // createRoute(locations[i].GuardID, map, iconsBase);
-        
+        });        
 
     }
 }
