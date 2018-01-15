@@ -26,7 +26,7 @@ function initMap() {
         map: map,
         zIndex: 1,
         geodesic: true,
-        strokeColor: "blue",
+        strokeColor: "#26e9f7",
         strokeOpacity: 1,
         strokeWeight: 7,
         icons: [routeSeq]
@@ -139,7 +139,6 @@ function initMap() {
             }
         }
     }
-
 
     function addRouteButtonListeners(route , map, iconsBase) {
 
@@ -424,6 +423,7 @@ function initMap() {
         map.addListener('click', function (e) {
             onAddCheckpoint(route, e.latLng, map, iconsBase );
         });
+
 
         addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'block';
