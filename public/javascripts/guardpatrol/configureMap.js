@@ -178,7 +178,7 @@ function initMap() {
 
         saveRouteButton.addEventListener('click', function (e) {
 
-            onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, map);
+            onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton, map);
         });
 
 
@@ -353,7 +353,7 @@ function initMap() {
 
     }
 
-    function onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, map) {
+    function onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton,  map) {
 
         /*
         TODO: 
