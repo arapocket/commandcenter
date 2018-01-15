@@ -39,8 +39,6 @@ function initMap() {
 
         createIncidentButtons(map, incidents);
 
-        setRouteButtonListeners(route, routeMarkers, map, iconsBase, guardID );
-
         setRefreshButtonListeners();
 
     } else {
@@ -49,37 +47,6 @@ function initMap() {
     }
 
 }
-
-function setRouteButtonListeners(route, routeMarkers, map, iconsBase, guardID){
-
-    var removeCheckpointButton = parent.document.getElementById('removeButton');
-
-    removeCheckpointButton.addEventListener('click', function (e) {
-        onRemoveCheckpoint(route, routeMarkers);
-    });
-
-    map.addListener('click', function (e) {
-        onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
-    });
-
-    let saveRouteButton = parent.document.getElementById(guardID + 'save');
-
-    saveRouteButton.addEventListener('click', function (e) {
-        console.log('save route button clicked');
-        onSaveRoute(route);
-    });
-
-    onLoadRoute(map, iconsBase, route, routeMarkers);
-
-    let loadRouteButton = parent.document.getElementById(guardID + 'load');
-
-    loadRouteButton.addEventListener('click', function (e) {
-
-        console.log('load route button clicked');
-        onLoadRoute(map, iconsBase, route, routeMarkers);
-    });
-}
-
 
 function SetRefreshButtonListeners(){
 
@@ -183,6 +150,9 @@ function changeButtons(GuardID, locations, map, iconsBase){
 }
 
 function createRoutes(map, iconsBase) {
+
+
+function setRouteButtonListeners(route, routeMarkers, map, iconsBase, guardID){
 
     var routeSeq = {
         repeat: '30px',
