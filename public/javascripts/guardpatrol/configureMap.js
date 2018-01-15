@@ -403,7 +403,6 @@ function initMap() {
 
         var routeID = createRouteID();
         var xhr = new XMLHttpRequest();
-        var route = route;
 
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -512,7 +511,6 @@ function initMap() {
 
     function postCheckpoints(route, routeID) {
         let s = 0;
-        var route = route;
         console.log("logging route:");
         console.log(route);
         var coords = route.getPath().getArray();
