@@ -133,12 +133,16 @@ function initMap() {
                         lng: location.lng
                     });
 
+                    changeButtons(location.GuardID, locations, map, iconsBase);
+
                     localStorage.setItem("currentGuard", location.GuardID);
                 })
 
                 guardButtons.push(guardButton);
             }
         }
+
+        
     }
 
     function addRouteButtonListeners(route , map, iconsBase) {
@@ -178,6 +182,37 @@ function initMap() {
         });
 
 
+    }
+
+    function changeButtons(GuardID, locations, map, iconsBase){
+
+
+        for (i = 0 ; i < locations.length ; i++ ){
+            let hideRemoveButton = parent.document.getElementById(locations[i].GuardID + 'remove');
+            let hideSaveButton = parent.document.getElementById(locations[i].GuardID + 'save');
+            let hideLoadButton = parent.document.getElementById(locations[i].GuardID + 'load');
+            
+            hideRemoveButton.style.display = 'none';
+            hideSaveButton.style.display = 'none';
+            hideLoadButton.style.display = 'none';        
+        }
+    
+        // google.maps.event.clearListeners(map, 'click');
+    
+        // var route = JSON.parse(localStorage.getItem(GuardID + 'route'));
+        // var routeMarkers = JSON.parse(localStorage.getItem(GuardID + 'routeMarkers'));
+    
+        // map.addListener('click', function (e) {
+        //     onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+        // });
+    
+        let removeButton = parent.document.getElementById(GuardID + 'remove');
+        let saveButton = parent.document.getElementById(GuardID + 'save');
+        let loadButton = parent.document.getElementById(GuardID + 'load');
+    
+        removeButton.style.display = 'block';
+        saveButton.style.display = 'block';
+        loadButton.style.display = "block";
     }
 
     function createIncidentButtons(map, incidents) {
