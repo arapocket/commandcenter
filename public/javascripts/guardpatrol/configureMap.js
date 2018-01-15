@@ -177,11 +177,13 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase) {
 
     var addRouteButton = parent.document.getElementById('addRouteButton');
 
+    var trashRouteButton = parent.document.getElementById('trashRouteButton');
+
+
     addRouteButton.addEventListener('click', function (e) {
-        onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
+        onAddRoute(route, routeMarkers, iconsBase, addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
     });
 
-    var trashRouteButton = parent.document.getElementById('trashRouteButton');
 
     trashRouteButton.addEventListener('click', function(e){
         onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map , iconsBase, route, routeMarkers);
@@ -454,6 +456,7 @@ function onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckp
     });
 
     addRouteButton.style.display = 'none';
+    trashRouteButton.style.display = 'block';
     removeCheckpointButton.style.display = 'block';
     saveRouteButton.style.display = 'block';
     loadRouteButton.style.display = 'block';
