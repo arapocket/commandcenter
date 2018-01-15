@@ -486,7 +486,7 @@ function onAddRoute(iconsBase, addRouteButton,trashRouteButton, removeCheckpoint
 
     var routeMarkers = [];
 
-
+    addRouteButtonListeners(route, routeMarkers, map, iconsBase);
 
     map.addListener('click', function (e) {
         onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
