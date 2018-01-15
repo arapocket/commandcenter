@@ -181,7 +181,7 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase) {
 
 
     addRouteButton.addEventListener('click', function (e) {
-        onAddRoute(route, routeMarkers, iconsBase, addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
+        onAddRoute(iconsBase, addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
     });
 
 
@@ -391,6 +391,12 @@ function onRemoveCheckpoint(route, routeMarkers) {
 
 function onSaveRoute(route) {
 
+    /*
+    TODO: 
+    -- create a dialogue popup with radio buttons to choose the guard to save for
+    **/
+    
+
     var currentGuard = localStorage.getItem("currentGuard");
 
     var routeID = createRouteID();
@@ -419,6 +425,11 @@ function onSaveRoute(route) {
 }
 
 function onLoadRoute(map, iconsBase, route, routeMarkers) {
+
+    /*
+    TODO: 
+    -- create a dialogue popup with radio buttons to choose the guard to load for
+    **/
 
     var xhr = new XMLHttpRequest();
 
@@ -449,7 +460,33 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
 
 }
 
-function onAddRoute(route, routeMarkers, iconsBase, addRouteButton,trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
+function onAddRoute(iconsBase, addRouteButton,trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
+
+
+    var routeSeq = {
+        repeat: '30px',
+        icon: {
+            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+            scale: 1,
+            fillOpacity: 0,
+            strokeColor: "yellow",
+            strokeWeight: 1,
+            strokeOpacity: 1
+        }
+    };
+    var route = new google.maps.Polyline({
+        map: map,
+        zIndex: 1,
+        geodesic: true,
+        strokeColor: "blue",
+        strokeOpacity: 1,
+        strokeWeight: 7,
+        icons: [routeSeq]
+    })
+
+    var routeMarkers = [];
+
+
 
     map.addListener('click', function (e) {
         onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
