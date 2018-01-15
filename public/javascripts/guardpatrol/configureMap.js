@@ -226,7 +226,7 @@ function initMap() {
         saveRouteButton.style.display = 'block';
         loadRouteButton.style.display = 'block';        
     }
-    }
+    
 
     function createIncidentButtons(map, incidents) {
 
