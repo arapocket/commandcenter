@@ -54,7 +54,7 @@ function initMap() {
 
         });
 
-        addRouteButtonListeners(route , map, iconsBase);
+        addRouteButtonListeners(route , map, iconsBase, locations);
 
         createGuardMarkers(locations, map, iconsBase);
 
@@ -145,42 +145,51 @@ function initMap() {
         
     }
 
-    function addRouteButtonListeners(route , map, iconsBase) {
+    function addRouteButtonListeners(route , map, iconsBase, locations) {
 
-        var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
+    
+        for (i = 0 ; i < locations.length ; i ++){
 
-        var saveRouteButton = parent.document.getElementById("saveRouteButton");
+            var GuardID = locations[i].GuardID;
 
-        var loadRouteButton = parent.document.getElementById("loadRouteButton");
+            var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton" + GuardID);
 
-        var addRouteButton = parent.document.getElementById('addRouteButton');
+            var saveRouteButton = parent.document.getElementById("saveRouteButton" + GuardID);
+    
+            var loadRouteButton = parent.document.getElementById("loadRouteButton" + GuardID);
+    
+            var addRouteButton = parent.document.getElementById('addRouteButton' + GuardID);
+    
+            var trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
+    
+    
+    
+            addRouteButton.addEventListener('click', function (e) {
+                onAddRoute(route , iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
+            });
+    
+            trashRouteButton.addEventListener('click', function (e) {
+                onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route );
+            });
+    
+            removeCheckpointButton.addEventListener('click', function (e) {
+                onRemoveCheckpoint(route )
+            });
+    
+            loadRouteButton.addEventListener('click', function (e) {
+    
+                onLoadRoute(map, iconsBase, route );
+            });
+    
+            saveRouteButton.addEventListener('click', function (e) {
+    
+                onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton, map);
+            });
+    
 
-        var trashRouteButton = parent.document.getElementById('trashRouteButton');
+        }
 
-
-
-        addRouteButton.addEventListener('click', function (e) {
-            onAddRoute(route , iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
-        });
-
-        trashRouteButton.addEventListener('click', function (e) {
-            onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route );
-        });
-
-        removeCheckpointButton.addEventListener('click', function (e) {
-            onRemoveCheckpoint(route )
-        });
-
-        loadRouteButton.addEventListener('click', function (e) {
-
-            onLoadRoute(map, iconsBase, route );
-        });
-
-        saveRouteButton.addEventListener('click', function (e) {
-
-            onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton, map);
-        });
-
+  
 
     }
 
