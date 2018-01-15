@@ -141,6 +141,12 @@ function createRoutes(map, iconsBase) {
 
     var routeMarkers = [];
 
+    addRouteButtonListeners(route, routeMarkers, map, iconsBase);
+
+}
+
+function addRouteButtonListeners(route, routeMarkers, map, iconsBase){
+
     var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
 
     removeCheckpointButton.addEventListener('click', function (e) {
@@ -159,6 +165,7 @@ function createRoutes(map, iconsBase) {
 
         onSaveRoute(route);
     });
+    
 
     onLoadRoute(map, iconsBase, route, routeMarkers);
 
@@ -168,7 +175,6 @@ function createRoutes(map, iconsBase) {
 
         onLoadRoute(map, iconsBase, route, routeMarkers);
     });
-
 
 
 }
