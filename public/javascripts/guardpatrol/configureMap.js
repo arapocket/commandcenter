@@ -449,7 +449,7 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
 
 }
 
-function onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
+function onAddRoute(route, routeMarkers, iconsBase, addRouteButton,trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
 
     map.addListener('click', function (e) {
         onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
