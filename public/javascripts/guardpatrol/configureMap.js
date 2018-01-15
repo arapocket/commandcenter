@@ -359,6 +359,9 @@ function createRouteMarker(latLng, map, iconsBase, route, routeMarkers) {
 }
 
 function onRemoveCheckpoint(route, routeMarkers) {
+
+    console.log('onRemoveCheckpoint called');
+
     console.log(routeMarkers);
     route.getPath().pop();
     if (routeMarkers.length > 0) {
