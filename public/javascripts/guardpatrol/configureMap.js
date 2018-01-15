@@ -170,7 +170,7 @@ function changeButtons(GuardID, locations, map, iconsBase){
     // var routeMarkers = JSON.parse(localStorage.getItem(GuardID + 'routeMarkers'));
 
     // map.addListener('click', function (e) {
-    //     onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+    //     onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     // });
 
     let removeButton = parent.document.getElementById(GuardID + 'remove');
@@ -216,7 +216,7 @@ function createRoutes(map, iconsBase) {
 
 
     map.addListener('click', function (e) {
-        onSetCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+        onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
     });
 
     var saveRouteButton = parent.document.getElementById("saveRouteButton");
