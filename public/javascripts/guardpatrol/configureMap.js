@@ -425,6 +425,12 @@ function initMap() {
 
     function onAddRoute(route , iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
 
+        addRouteButton.style.display = 'none';
+        trashRouteButton.style.display = 'block';
+        removeCheckpointButton.style.display = 'block';
+        saveRouteButton.style.display = 'block';
+        loadRouteButton.style.display = 'block';
+
         if (route.getPath().length > 0) {
 
             var newRouteSeq = {
@@ -448,7 +454,7 @@ function initMap() {
                 icons: [routeSeq]
             })
         
-            // google.maps.event.clearListeners(map, 'click');
+            google.maps.event.clearListeners(map, 'click');
 
             map.addListener('click', function (e) {
                 onAddCheckpoint(newRoute, e.latLng, map, iconsBase );
@@ -459,13 +465,6 @@ function initMap() {
             map.addListener('click', function (e) {
                 onAddCheckpoint(route, e.latLng, map, iconsBase );
             });
-    
-    
-            addRouteButton.style.display = 'none';
-            trashRouteButton.style.display = 'block';
-            removeCheckpointButton.style.display = 'block';
-            saveRouteButton.style.display = 'block';
-            loadRouteButton.style.display = 'block';
         
         }
 
