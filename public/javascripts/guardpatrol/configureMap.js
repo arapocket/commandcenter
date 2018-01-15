@@ -456,11 +456,6 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
 
 function onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
 
-    onLoadRoute(map, iconsBase, route, routeMarkers);
-
-    
-
-
     var trashRouteButton = parent.document.getElementById('trashRouteButton');
 
 
