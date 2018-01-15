@@ -152,28 +152,12 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase) {
     var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
 
 
-    removeCheckpointButton.addEventListener('click', function (e) {
-        onRemoveCheckpoint(route, routeMarkers)
-    } );
+
 
 
     var saveRouteButton = parent.document.getElementById("saveRouteButton");
 
-    saveRouteButton.addEventListener('click', function (e) {
-
-        onSaveRoute(route);
-    });
-
-
-    
-
     var loadRouteButton = parent.document.getElementById("loadRouteButton");
-
-    loadRouteButton.addEventListener('click', function (e) {
-
-        onLoadRoute(map, iconsBase, route, routeMarkers);
-    });
-
 
     var addRouteButton = parent.document.getElementById('addRouteButton');
 
@@ -459,11 +443,6 @@ function onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckp
     var trashRouteButton = parent.document.getElementById('trashRouteButton');
 
 
-    trashRouteButton.addEventListener('click', function(e){
-        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map , iconsBase, route, routeMarkers);
-    });
-
-
     for (i = 0; i < routeMarkers.length; i++) {
         routeMarkers[i].setMap(null);
         route.getPath().pop();
@@ -481,6 +460,25 @@ function onAddRoute(route, routeMarkers, iconsBase, addRouteButton, removeCheckp
     removeCheckpointButton.style.display = 'block';
     saveRouteButton.style.display = 'block';
     loadRouteButton.style.display = 'block';
+
+    trashRouteButton.addEventListener('click', function(e){
+        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map , iconsBase, route, routeMarkers);
+    });
+
+    removeCheckpointButton.addEventListener('click', function (e) {
+        onRemoveCheckpoint(route, routeMarkers)
+    } );
+
+    saveRouteButton.addEventListener('click', function (e) {
+
+        onSaveRoute(route);
+    });
+
+    loadRouteButton.addEventListener('click', function (e) {
+
+        onLoadRoute(map, iconsBase, route, routeMarkers);
+    });
+
 
 }
 
