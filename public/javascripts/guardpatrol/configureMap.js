@@ -32,6 +32,11 @@ function initMap() {
         icons: [routeSeq]
     })
 
+    google.maps.event.addListener(route, 'click', function(e) {
+        onAddCheckpoint(route, e.latLng, map, iconsBase);
+    } );
+
+
     console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
 
