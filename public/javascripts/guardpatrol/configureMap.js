@@ -176,7 +176,7 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase){
     var addRouteButton = parent.document.getElementById('addRouteButton');
 
     addRouteButton.addEventListener('click', function (e){
-        onAddRoute(route, routeMarkers, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
+        onAddRoute(route, routeMarkers, iconsBase, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
     });
 
 
@@ -439,7 +439,7 @@ function onLoadRoute(map, iconsBase, route, routeMarkers) {
 
 }
 
-function onAddRoute(route, routeMarkers, removeCheckpointButton, saveRouteButton, loadRouteButton, map){
+function onAddRoute(route, routeMarkers, iconsBase, removeCheckpointButton, saveRouteButton, loadRouteButton, map){
 
 map.addListener('click', function (e) {
     onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
