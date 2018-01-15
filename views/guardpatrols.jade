@@ -32,15 +32,19 @@ block content
 																																						tr.default(id=incident.IncidentID)
 																																								td=incident.Type 
 																			.row
-																											a.btn.btn-default.btn-block(id='removeCheckpointButton')
+																											a.btn.btn-default.btn-block(id='addRouteButton');
+																												i.fa.fa-plus(aria-hidden='true')
+																												| &nbsp Add Route
+																			.row
+																											a.btn.btn-default.btn-block(id='removeCheckpointButton', style='display: none ! important;');
 																												i.fa.fa-eraser(aria-hidden='true')
 																												| &nbsp Remove Checkpoint
 																			.row
-																											a.btn.btn-default.btn-block(id='saveRouteButton')
+																											a.btn.btn-default.btn-block(id='saveRouteButton', style='display: none ! important;')
 																												i.fa.fa-floppy-o(aria-hidden='true')
 																												| &nbsp Save Route
 																			.row
-																											a.btn.btn-default.btn-block(id='loadRouteButton')
+																											a.btn.btn-default.btn-block(id='loadRouteButton', style='display: none ! important;')
 																												i.fa.fa-cloud-download(aria-hidden='true')
 																												| &nbsp Load Route   
 																		.row
