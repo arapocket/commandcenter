@@ -151,11 +151,16 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase) {
 
     var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
 
-    removeCheckpointButton = removeCheckpointButton.cloneNode();
+    var newRemoveButton = removeCheckpointButton.cloneNode();
 
-    removeCheckpointButton.style.display = 'block';
+    while (removeCheckpointButton.firstChild) {
+        newRemoveButton.appendChild(removeCheckpointButton.lastChild);
+    }
 
-    removeCheckpointButton.addEventListener('click', function(e) {
+    removeCheckpointButton.parentNode.replaceChild(newRemoveButton, removeCheckpointButton);
+
+
+    newRemoveButton.addEventListener('click', function(e) {
         onRemoveCheckpoint(route, routeMarkers);
     });
 
