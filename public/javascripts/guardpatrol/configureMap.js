@@ -450,6 +450,8 @@ function initMap() {
         google.maps.event.clearListeners(map, 'click');
         // onLoadRoute(map, iconsBase, route );
 
+        route.setPath([]);
+
 
     }
 
@@ -521,9 +523,6 @@ function initMap() {
 
 
         route.setPath([]);
-
-
-
 
         for (i = 0; i < checkpoints.length; i++) {
             var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
