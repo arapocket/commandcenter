@@ -9,8 +9,6 @@ function imageError() {
 
 function initMap() {
 
-    var self = this;
-
     var routeSeq = {
         repeat: '30px',
         icon: {
@@ -74,8 +72,6 @@ function initMap() {
         var mapSpace = document.getElementById('map');
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
-
-
 
     function setRefreshButtonListeners() {
 
@@ -343,8 +339,6 @@ function initMap() {
         route.setMap(map);
     }
 
-
-
     function onRemoveCheckpoint(route ) {
 
         console.log('onRemoveCheckpoint called');
@@ -431,17 +425,49 @@ function initMap() {
 
     function onAddRoute(route , iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
 
-        map.addListener('click', function (e) {
-            onAddCheckpoint(route, e.latLng, map, iconsBase );
-        });
+        if (route.getPath().length > 0) {
+
+            var newRouteSeq = {
+                repeat: '30px',
+                icon: {
+                    path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                    scale: 1,
+                    fillOpacity: 0,
+                    strokeColor: "yellow",
+                    strokeWeight: 1,
+                    strokeOpacity: 1
+                }
+            };
+            var newRoute = new google.maps.Polyline({
+                map: map,
+                zIndex: 1,
+                geodesic: true,
+                strokeColor: "#26e9f7",
+                strokeOpacity: 1,
+                strokeWeight: 7,
+                icons: [routeSeq]
+            })
+        
+            google.maps.event.clearListeners(map, 'click');
+
+            map.addListener('click', function (e) {
+                onAddCheckpoint(newRoute, e.latLng, map, iconsBase );
+            });
 
 
-        addRouteButton.style.display = 'none';
-        trashRouteButton.style.display = 'block';
-        removeCheckpointButton.style.display = 'block';
-        saveRouteButton.style.display = 'block';
-        loadRouteButton.style.display = 'block';
-
+        } else {
+            map.addListener('click', function (e) {
+                onAddCheckpoint(route, e.latLng, map, iconsBase );
+            });
+    
+    
+            addRouteButton.style.display = 'none';
+            trashRouteButton.style.display = 'block';
+            removeCheckpointButton.style.display = 'block';
+            saveRouteButton.style.display = 'block';
+            loadRouteButton.style.display = 'block';
+        
+        }
 
 
 
