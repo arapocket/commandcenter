@@ -171,14 +171,14 @@ function initMap() {
             onRemoveCheckpoint(route )
         });
 
-        saveRouteButton.addEventListener('click', function (e) {
-
-            onSaveRoute(route);
-        });
-
         loadRouteButton.addEventListener('click', function (e) {
 
             onLoadRoute(map, iconsBase, route );
+        });
+
+        saveRouteButton.addEventListener('click', function (e) {
+
+            onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, map);
         });
 
 
@@ -353,13 +353,19 @@ function initMap() {
 
     }
 
-    function onSaveRoute(route) {
+    function onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, map) {
 
         /*
         TODO: 
         -- create a dialogue popup with radio buttons to choose the guard to save for
         **/
 
+        addRouteButton.style.display = 'block';
+        trashRouteButton.style.display = 'none';
+        removeCheckpointButton.style.display = 'none';
+        saveRouteButton.style.display = 'none';
+        loadRouteButton.style.display = 'none';
+        google.maps.event.clearListeners(map, 'click');
 
         var currentGuard = localStorage.getItem("currentGuard");
 
