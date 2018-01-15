@@ -155,10 +155,6 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase){
     });
 
 
-    map.addListener('click', function (e) {
-        onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
-    });
-
     var saveRouteButton = parent.document.getElementById("saveRouteButton");
 
     saveRouteButton.addEventListener('click', function (e) {
@@ -174,6 +170,13 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase){
     loadRouteButton.addEventListener('click', function (e) {
 
         onLoadRoute(map, iconsBase, route, routeMarkers);
+    });
+
+
+    var addRouteButton = parent.document.getElementById('addRouteButton');
+
+    addRouteButton.addEventListener('click', function (e){
+        onAddRoute(removeCheckpointButton, saveRouteButton, loadRouteButton);
     });
 
 
@@ -405,6 +408,51 @@ function onSaveRoute(route) {
 
 }
 
+function onLoadRoute(map, iconsBase, route, routeMarkers) {
+
+    var xhr = new XMLHttpRequest();
+
+    if (!xhr) {
+        alert('Giving up :( Cannot create an XMLHTTP instance');
+        return false;
+    }
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            // alert(xhr.responseText);
+            let json = JSON.parse(xhr.responseText);
+            if (json.length > 0) {
+                let routeID = json[0].RouteID;
+                loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
+            }
+
+
+        }
+    }
+
+    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(null);
+
+
+
+}
+
+function onAddRoute(removeCheckpointButton, saveRouteButton, loadRouteButton){
+
+map.addListener('click', function (e) {
+    onAddCheckpoint(route, e.latLng, map, iconsBase, routeMarkers);
+});
+
+removeCheckpointButton.style.display = 'block';
+saveRouteButton.style.display = 'block';
+loadRouteButton.style.display = 'block';
+
+}
+
+
+
 function postCheckpoints(route, routeID) {
     let s = 0;
     var route = route;
@@ -440,36 +488,6 @@ function postCheckpoints(route, routeID) {
     alert("Route has been saved as the current route!");
 }
 
-function onLoadRoute(map, iconsBase, route, routeMarkers) {
-
-    var xhr = new XMLHttpRequest();
-
-    if (!xhr) {
-        alert('Giving up :( Cannot create an XMLHTTP instance');
-        return false;
-    }
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            // alert(xhr.responseText);
-            let json = JSON.parse(xhr.responseText);
-            if (json.length > 0) {
-                let routeID = json[0].RouteID;
-                loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers);
-            }
-
-
-        }
-    }
-
-    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
-
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(null);
-
-
-
-}
 
 function loadCurrentRoutes(routeID, map, iconsBase, route, routeMarkers) {
     var xhr = new XMLHttpRequest();
