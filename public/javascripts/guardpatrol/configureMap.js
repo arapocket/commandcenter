@@ -32,8 +32,6 @@ function initMap() {
         icons: [routeSeq]
     })
 
-    var routeMarkers = [];
-
     console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
 
@@ -52,8 +50,6 @@ function initMap() {
 
 
         });
-
-        // createRoutes(map, iconsBase);
 
         addRouteButtonListeners(route, routeMarkers, map, iconsBase);
 
@@ -144,13 +140,6 @@ function initMap() {
         }
     }
 
-    function createRoutes(map, iconsBase) {
-
-
-
-        // onLoadRoute(map, iconsBase, route, routeMarkers);
-
-    }
 
     function addRouteButtonListeners(route, routeMarkers, map, iconsBase) {
 
@@ -351,33 +340,33 @@ function initMap() {
         createRouteMarker(latLng, map, iconsBase, route, routeMarkers);
     }
 
-    function createRouteMarker(latLng, map, iconsBase, route, routeMarkers) {
+    // function createRouteMarker(latLng, map, iconsBase, route, routeMarkers) {
 
 
-        var routeMarker = new google.maps.Marker({
-            animation: google.maps.Animation.DROP,
-            position: latLng,
-            map: map,
-            icon: iconsBase + "ms/micons/flag.png"
-        })
+    //     var routeMarker = new google.maps.Marker({
+    //         animation: google.maps.Animation.DROP,
+    //         position: latLng,
+    //         map: map,
+    //         icon: iconsBase + "ms/micons/flag.png"
+    //     })
 
-        routeMarkers.push(routeMarker);
+    //     routeMarkers.push(routeMarker);
 
-        routeMarker.addListener('click', function (e) {
+    //     routeMarker.addListener('click', function (e) {
 
-            route.getPath().push(e.latLng);
-            route.setMap(map);
+    //         route.getPath().push(e.latLng);
+    //         route.setMap(map);
 
-            var routeMarker = new google.maps.Marker({
-                position: e.latLng,
-                map: map,
-                icon: iconsBase + "ms/micons/flag.png"
-            });
+    //         var routeMarker = new google.maps.Marker({
+    //             position: e.latLng,
+    //             map: map,
+    //             icon: iconsBase + "ms/micons/flag.png"
+    //         });
 
-            routeMarkers.push(routeMarker);
-        })
+    //         routeMarkers.push(routeMarker);
+    //     })
 
-    }
+    // }
 
     function onRemoveCheckpoint(route, routeMarkers) {
 
@@ -584,7 +573,7 @@ function initMap() {
         for (i = 0; i < checkpoints.length; i++) {
             var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
             route.getPath().push(latLng);
-            createRouteMarker(latLng, map, iconsBase, route, routeMarkers);
+            // createRouteMarker(latLng, map, iconsBase, route, routeMarkers);
         }
 
 
