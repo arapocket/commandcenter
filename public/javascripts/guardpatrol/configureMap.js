@@ -448,7 +448,7 @@ function initMap() {
                 icons: [routeSeq]
             })
         
-            google.maps.event.clearListeners(map, 'click');
+            // google.maps.event.clearListeners(map, 'click');
 
             map.addListener('click', function (e) {
                 onAddCheckpoint(newRoute, e.latLng, map, iconsBase );
