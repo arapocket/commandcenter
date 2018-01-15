@@ -220,11 +220,12 @@ function initMap() {
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
         let loadRouteButton = parent.document.getElementById('loadRouteButton' + GuardID);
         
-        trashRouteButton.style.display = 'block';
         addRouteButton.style.display = 'block';
-        removeCheckpointButton.style.display = 'block';
-        saveRouteButton.style.display = 'block';
-        loadRouteButton.style.display = 'block';        
+
+        // trashRouteButton.style.display = 'block';
+        // removeCheckpointButton.style.display = 'block';
+        // saveRouteButton.style.display = 'block';
+        // loadRouteButton.style.display = 'block';        
     }
     
 
