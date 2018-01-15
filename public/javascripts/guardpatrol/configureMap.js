@@ -48,7 +48,7 @@ function initMap() {
 
 }
 
-function SetRefreshButtonListeners(){
+function setRefreshButtonListeners(){
 
     let buttonValues = {
         OFF: "Auto Refresh Off",
