@@ -151,7 +151,8 @@ function addRouteButtonListeners(route, routeMarkers, map, iconsBase) {
 
     var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton");
 
-    removeCheckpointButton.removeEventListener('click');
+    removeCheckpointButton.removeEventListener('click', function(e) {
+    });
 
     removeCheckpointButton.addEventListener('click', function(e) {
         onRemoveCheckpoint(route, routeMarkers);
