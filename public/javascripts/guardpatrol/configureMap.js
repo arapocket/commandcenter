@@ -64,11 +64,9 @@ function initMap() {
 
         if (currentButtonValue == buttonValues.OFF) {
             autoRefreshButtonTEN.style.display = "none";
-            autoRefreshButtonOFF.style.display = 'block';
         }
         else if (currentButtonValue == buttonValues.TEN) {
             autoRefreshButtonOFF.style.display = "none";
-            autoRefreshButtonTEN.style.display = 'block';
             window.onload = timedRefresh(10000);
         }
         else {
