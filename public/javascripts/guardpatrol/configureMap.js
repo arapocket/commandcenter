@@ -222,7 +222,7 @@ function initMap() {
         
         onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route );
 
-        // addRouteButton.style.display = 'block';
+        addRouteButton.style.display = 'block';
 
         // trashRouteButton.style.display = 'block';
         // removeCheckpointButton.style.display = 'block';
