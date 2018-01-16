@@ -547,7 +547,7 @@ function initMap() {
 
     function coordPut(id){
 
-        var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest();
 
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
