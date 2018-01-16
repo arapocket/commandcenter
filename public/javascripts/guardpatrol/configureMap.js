@@ -175,6 +175,8 @@ function initMap() {
 
                     route.setPath([]);
 
+                    route.setMap(null);
+
                     changeButtons(location.GuardID, locations, map, iconsBase, route);
 
                     localStorage.setItem("currentGuard", location.GuardID);
