@@ -482,7 +482,7 @@ function initMap() {
         for (i = 0 ; i < locations.length ; i ++ ){
             var id = locations[i].GuardID;
 
-            var addButton = document.getElementById('addRouteButton' + id);
+            var addButton = parent.document.getElementById('addRouteButton' + id);
             addButton.style.display = 'none';
 
         }
