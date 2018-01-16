@@ -122,6 +122,30 @@ module.exports.getActiveGuards = (function (req, res) {
     // SELECT Sequence, lat, lng, CurrentRoute FROM allcheckpoints WHERE CurrentRoute = 1;
 
 
+    // *************    currentlocations VIEW
+
+    /*
+
+CREATE VIEW currentlocations
+AS SELECT p.CurrentPatrol, g.FirstName, g.LastName, g.DeviceToken, g.GuardID, p.PatrolID, g.OrganizationID
+FROM patrol p
+INNER JOIN guard g ON p.GuardID = g.GuardID 
+
+    **/
+
+
+    // *************    currentguards VIEW
+
+    /*
+
+CREATE VIEW currentguards
+AS SELECT  c.CurrentCoord, l.CurrentPatrol,  l.FirstName,  l.LastName,  l.DeviceToken,  l.GuardID, l.PatrolID, c.lat, c.lng, l.OrganizationID  
+FROM currentlocations l
+INNER JOIN coordinate c ON l.PatrolID = c.PatrolID 
+
+    **/    
+
+
     //=========================== VERIFIED SQL STATEMENTS √ =====================================
 
 
