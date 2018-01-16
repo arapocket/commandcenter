@@ -540,6 +540,8 @@ function initMap() {
 
         coordPut(id);
 
+        window.onload = timedRefresh(3000);
+
     }
 
     function coordPut(id){
