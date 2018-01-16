@@ -173,6 +173,8 @@ function initMap() {
                         lng: location.lng
                     });
 
+                    route.setPath([]);
+
                     changeButtons(location.GuardID, locations, map, iconsBase, route);
 
                     localStorage.setItem("currentGuard", location.GuardID);
@@ -278,7 +280,8 @@ function initMap() {
             hideAddButton.style.display = 'none';
             hideRemoveButton.style.display = 'none';
             hideSaveButton.style.display = 'none';
-            hideLoadButton.style.display = 'none';        
+            hideLoadButton.style.display = 'none';      
+              
         }
     
 
