@@ -173,9 +173,6 @@ function initMap() {
                         lng: location.lng
                     });
 
-                    route.setPath([]);
-
-
                     changeButtons(location.GuardID, locations, map, iconsBase, route);
 
                     localStorage.setItem("currentGuard", location.GuardID);
@@ -618,11 +615,6 @@ function initMap() {
         google.maps.event.clearListeners(map, 'click');
         // onLoadRoute(map, iconsBase, route );
 
-        route.setPath([]);
-        route.setMap(null);
-
-
-
         onLoadRoute(map, iconsBase, route);
 
     }
@@ -695,6 +687,7 @@ function initMap() {
 
 
         
+        route.setMap(null);
         route.setPath([]);
 
         route.setMap(map);
