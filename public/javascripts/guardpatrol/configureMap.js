@@ -9,11 +9,10 @@ function imageError() {
 
 function initMap() {
 
-
-
     console.log("initMap called");
     var iconsBase = "http://maps.google.com/mapfiles/"
 
+    setRefreshButtonListeners();
 
     if (locations.length > 0) {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -40,9 +39,7 @@ function initMap() {
 
         createGuardButtons(map, locations, iconsBase);
 
-        createIncidentButtons(map, incidents);
-
-        setRefreshButtonListeners();
+        createIncidentButtons(map, incidents);        
 
     } else {
         var mapSpace = document.getElementById('map');
