@@ -139,7 +139,7 @@ function initMap() {
 
             addRouteButton.addEventListener('click', function (e) {
                 console.log('the guardid is: ' + GuardID);
-                onAddRoute(route, iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
+                onAddRoute(route, iconsBase, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
             });
 
             trashRouteButton.addEventListener('click', function (e) {
@@ -478,7 +478,7 @@ function initMap() {
 
     }
 
-    function onAddRoute(route, iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations) {
+    function onAddRoute(route, iconsBase, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations) {
 
 
 
@@ -486,7 +486,11 @@ function initMap() {
             var id = locations[i].GuardID;
 
             var addButton = parent.document.getElementById('addRouteButton' + id);
+            var endButton = parent.document.getElementById('endPatrolButton' + id)
+
             addButton.style.display = 'none';
+            endButton.style.display = 'none';
+
 
         }
 
