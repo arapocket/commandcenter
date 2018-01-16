@@ -165,6 +165,7 @@ function initMap() {
     
     
             addRouteButton.addEventListener('click', function (e) {
+                console.log('the guardid is: ' + GuardID );
                 onAddRoute(route , iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map);
             });
     
@@ -475,6 +476,8 @@ function initMap() {
     }
 
     function onAddRoute(route , iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map) {
+
+
 
         addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'block';
