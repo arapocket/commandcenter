@@ -95,7 +95,7 @@ function initMap() {
 
         for (i = 0; i < locations.length; i++) {
 
-            var id = locations[i].GuardID;
+            let id = locations[i].GuardID;
 
 
             let routeSeq = {
@@ -124,17 +124,17 @@ function initMap() {
             });
 
 
-            var GuardID = locations[i].GuardID;
+            let GuardID = locations[i].GuardID;
 
-            var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton" + GuardID);
+            let removeCheckpointButton = parent.document.getElementById("removeCheckpointButton" + GuardID);
 
-            var saveRouteButton = parent.document.getElementById("saveRouteButton" + GuardID);
+            let saveRouteButton = parent.document.getElementById("saveRouteButton" + GuardID);
 
-            var loadRouteButton = parent.document.getElementById("loadRouteButton" + GuardID);
+            let loadRouteButton = parent.document.getElementById("loadRouteButton" + GuardID);
 
-            var addRouteButton = parent.document.getElementById('addRouteButton' + GuardID);
+            let addRouteButton = parent.document.getElementById('addRouteButton' + GuardID);
 
-            var trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
+            let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
 
 
 
