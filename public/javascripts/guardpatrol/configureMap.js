@@ -520,7 +520,7 @@ function initMap() {
 
     }
 
-    function onEndPatrol(id){
+    function onEndPatrol(id, endPatrolButton){
 
 
         endPatrolButton.style.display = 'none';
