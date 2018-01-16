@@ -531,9 +531,7 @@ function initMap() {
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
             return false;
-        } else {
-            coordPut(id);
-        }
+        } 
 
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols", true);
 
@@ -542,6 +540,8 @@ function initMap() {
             "CurrentPatrol": 0,
             "GuardID": id
         }));
+
+        coordPut(id);
 
     }
 
