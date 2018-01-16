@@ -453,7 +453,7 @@ function initMap() {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
-                // alert(xhr.responseText);
+                console.log('logging currentroutes response: ' + xhr.responseText);
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
@@ -504,7 +504,6 @@ function initMap() {
         saveRouteButton.style.display = 'none';
         loadRouteButton.style.display = 'none';
         google.maps.event.clearListeners(map, 'click');
-        // onLoadRoute(map, iconsBase, route );
 
 
         route.setMap(null);
@@ -562,13 +561,9 @@ function initMap() {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
+                console.log('logging checkpoints response: ' + xhr.responseText);
                 var checkpoints = JSON.parse(xhr.responseText);
                 loadRoutesOnMap(checkpoints, map, iconsBase, route);
-
-                // this gives us a string of all the current checkpoint rows
-                // next we need to parse it, (which will turn it into an array of objects)
-                // then we need to create a marker for each latLng
-                // let's check the app to see how to do this
 
             }
         }
