@@ -405,7 +405,7 @@ function initMap() {
         -- create a dialogue popup with radio buttons to choose the guard to save for
         **/
 
-        addRouteButton.style.display = 'block';
+        addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
         removeCheckpointButton.style.display = 'none';
         saveRouteButton.style.display = 'none';
@@ -528,7 +528,7 @@ function initMap() {
     }
 
     function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route ) {
-        addRouteButton.style.display = 'block';
+        addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
         removeCheckpointButton.style.display = 'none';
         saveRouteButton.style.display = 'none';
