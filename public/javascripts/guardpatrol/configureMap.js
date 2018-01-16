@@ -291,7 +291,7 @@ function initMap() {
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
         let loadRouteButton = parent.document.getElementById('loadRouteButton' + GuardID);
         
-        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, id );
+        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, GuardID );
 
         addRouteButton.style.display = 'block';
 
