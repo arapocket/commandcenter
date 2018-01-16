@@ -30,7 +30,7 @@ function initMap() {
 
         });
 
-        addRouteButtonListeners(route , map, iconsBase, locations);
+        addRouteButtonListeners(map, iconsBase, locations);
 
         createGuardMarkers(locations, map, iconsBase);
 
