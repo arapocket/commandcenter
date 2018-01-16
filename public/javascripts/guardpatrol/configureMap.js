@@ -225,7 +225,7 @@ function initMap() {
         let removeCheckpointButton = parent.document.getElementById('removeCheckpointButton' + GuardID);
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
         let loadRouteButton = parent.document.getElementById('loadRouteButton' + GuardID);
-        let hidePatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
+        let endPatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
 
         onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, iconsBase, route, GuardID);
 
