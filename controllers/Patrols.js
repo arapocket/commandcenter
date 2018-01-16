@@ -46,7 +46,7 @@ module.exports.updatePatrol = function (req, res) {
         if (err) {
           res.json(err);
         } else {
-          console.log(updateCoordinatesResult);  
+          res.json(updateCoordinatesResult);  
         } 
       });
     }
