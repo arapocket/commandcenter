@@ -42,13 +42,6 @@ module.exports.updatePatrol = function (req, res) {
     }
     else {
       res.json(result);
-      Patrol.updateCoordinates(function (err, updateCoordinatesResult) {
-        if (err) {
-          res.json(err);
-        } else {
-          res.json(updateCoordinatesResult);  
-        } 
-      });
     }
   });
 };
