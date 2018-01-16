@@ -9,30 +9,6 @@ function imageError() {
 
 function initMap() {
 
-    var routeSeq = {
-        repeat: '30px',
-        icon: {
-            path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-            scale: 1,
-            fillOpacity: 0,
-            strokeColor: "yellow",
-            strokeWeight: 1,
-            strokeOpacity: 1
-        }
-    };
-    var route = new google.maps.Polyline({
-        map: map,
-        zIndex: 1,
-        geodesic: true,
-        strokeColor: "#26e9f7",
-        strokeOpacity: 1,
-        strokeWeight: 7,
-        icons: [routeSeq]
-    })
-
-    google.maps.event.addListener(route, 'click', function(e) {
-        onAddCheckpoint(route, e.latLng, map, iconsBase);
-    } );
 
 
     console.log("initMap called");
@@ -145,10 +121,37 @@ function initMap() {
         
     }
 
-    function addRouteButtonListeners(route , map, iconsBase, locations) {
+    function addRouteButtonListeners(map, iconsBase, locations) {
 
     
         for (i = 0 ; i < locations.length ; i ++){
+
+
+            var routeSeq = {
+                repeat: '30px',
+                icon: {
+                    path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                    scale: 1,
+                    fillOpacity: 0,
+                    strokeColor: "yellow",
+                    strokeWeight: 1,
+                    strokeOpacity: 1
+                }
+            };
+            var route = new google.maps.Polyline({
+                map: map,
+                zIndex: 1,
+                geodesic: true,
+                strokeColor: "#26e9f7",
+                strokeOpacity: 1,
+                strokeWeight: 7,
+                icons: [routeSeq]
+            })
+        
+            google.maps.event.addListener(route, 'click', function(e) {
+                onAddCheckpoint(route, e.latLng, map, iconsBase);
+            } );
+        
 
             var GuardID = locations[i].GuardID;
 
