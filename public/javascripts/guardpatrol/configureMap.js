@@ -136,6 +136,8 @@ function initMap() {
 
             let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
 
+            let endPatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
+
 
 
             addRouteButton.addEventListener('click', function (e) {
@@ -144,7 +146,7 @@ function initMap() {
             });
 
             trashRouteButton.addEventListener('click', function (e) {
-                onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, id);
+                onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, iconsBase, route, id);
             });
 
             removeCheckpointButton.addEventListener('click', function (e) {
@@ -159,6 +161,10 @@ function initMap() {
             saveRouteButton.addEventListener('click', function (e) {
 
                 onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton, map);
+            });
+
+            endPatrolButton.addEventListener('click', function (e) {
+                onEndPatrol(id);
             });
 
             let location = locations[i];
@@ -190,7 +196,6 @@ function initMap() {
 
     }
 
-
     function changeButtons(GuardID, locations, map, iconsBase, route) {
 
 
@@ -203,12 +208,14 @@ function initMap() {
             let hideRemoveButton = parent.document.getElementById('removeCheckpointButton' + id);
             let hideSaveButton = parent.document.getElementById('saveRouteButton' + id);
             let hideLoadButton = parent.document.getElementById('loadRouteButton' + id);
+            let hidePatrolButton = parent.document.getElementById('endPatrolButton' + id);
 
             hideTrashButton.style.display = 'none';
             hideAddButton.style.display = 'none';
             hideRemoveButton.style.display = 'none';
             hideSaveButton.style.display = 'none';
             hideLoadButton.style.display = 'none';
+            hidePatrolButton.style.display = 'none';
 
         }
 
@@ -218,10 +225,12 @@ function initMap() {
         let removeCheckpointButton = parent.document.getElementById('removeCheckpointButton' + GuardID);
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
         let loadRouteButton = parent.document.getElementById('loadRouteButton' + GuardID);
+        let hidePatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
 
-        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, GuardID);
+        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, iconsBase, route, GuardID);
 
         addRouteButton.style.display = 'block';
+        hidePatrolButton.style.display = 'block';
 
         // trashRouteButton.style.display = 'block';
         // removeCheckpointButton.style.display = 'block';
@@ -497,12 +506,13 @@ function initMap() {
 
     }
 
-    function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, id) {
+    function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, iconsBase, route, id) {
         addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
         removeCheckpointButton.style.display = 'none';
         saveRouteButton.style.display = 'none';
         loadRouteButton.style.display = 'none';
+        endPatrolButton.style.display = 'none';
         google.maps.event.clearListeners(map, 'click');
 
 
@@ -514,7 +524,24 @@ function initMap() {
 
     }
 
+    function onEndPatrol(id){
 
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols", true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            "CurrentPatrol": 0,
+            "GuardID": id
+        }));
+
+    }
 
     function postCheckpoints(route, routeID) {
         let s = 0;
