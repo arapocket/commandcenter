@@ -30,7 +30,7 @@ module.exports.getAllRoutes = function (callback) {
 
 }
 
-module.exports.getCurrentRoutes = function (Guard, callback) {
+module.exports.getCurrentRoutes = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
             console.log("Error while performing common connect query: " + err);
@@ -39,7 +39,7 @@ module.exports.getCurrentRoutes = function (Guard, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " Select * from route where CurrentRoute =  1 AND GuardID = '" + Guard.GuardID + "' ;";
+            var strSQL = " Select * from route where CurrentRoute =  1 AND GuardID = '" + id + "' ;";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
