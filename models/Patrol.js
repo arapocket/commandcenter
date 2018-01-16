@@ -122,7 +122,7 @@ module.exports.updatePatrol = function (Patrol, callback) {
             var strSQL = "Update patrol SET CurrentPatrol = " + Patrol.CurrentPatrol + " WHERE GuardID =  '" + Patrol.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
-                    connection.end();
+                    // connection.end();
                     callback(null, rows);
                     var strSQL2 = "Update coordinate SET CurrentCoord = " + Patrol.CurrentPatrol + " WHERE GUARDID = '" + Patrol.GuardID + "';";
                     connection.query(strSQL2, function (err, rows, fields) {
