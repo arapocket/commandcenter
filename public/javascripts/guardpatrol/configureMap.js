@@ -230,7 +230,7 @@ function initMap() {
         onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, iconsBase, route, GuardID);
 
         addRouteButton.style.display = 'block';
-        hidePatrolButton.style.display = 'block';
+        endPatrolButton.style.display = 'block';
 
         // trashRouteButton.style.display = 'block';
         // removeCheckpointButton.style.display = 'block';
