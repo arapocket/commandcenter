@@ -124,6 +124,18 @@ module.exports.updatePatrol = function (Patrol, callback) {
                 if (!err) {
                     connection.end();
                     callback(null, rows);
+                    var strSQL2 = "Update coordinate SET CurrentCoord = " + Patrol.CurrentPatrol + " WHERE GUARDID = '" + Patrol.GuardID + "';";
+                    connection.query(strSQL2, function (err, rows, fields) {
+                        if (!err) {
+                            connection.end();
+                            callback(null, rows);
+                        } else {
+                            console.log('error with the select routeroute query');
+                            connection.end();
+                            callback(err, rows);
+                        }
+
+                    });
 
                 } else {
                     console.log('error with the select patrolpatrol query');
