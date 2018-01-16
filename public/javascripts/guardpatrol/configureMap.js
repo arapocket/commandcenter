@@ -567,45 +567,6 @@ function initMap() {
             onAddCheckpoint(route, e.latLng, map, iconsBase );
         });
 
-        // if (route.getPath().length > 0) {
-
-        //     var newRouteSeq = {
-        //         repeat: '30px',
-        //         icon: {
-        //             path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-        //             scale: 1,
-        //             fillOpacity: 0,
-        //             strokeColor: "yellow",
-        //             strokeWeight: 1,
-        //             strokeOpacity: 1
-        //         }
-        //     };
-        //     var newRoute = new google.maps.Polyline({
-        //         map: map,
-        //         zIndex: 1,
-        //         geodesic: true,
-        //         strokeColor: "#26e9f7",
-        //         strokeOpacity: 1,
-        //         strokeWeight: 7,
-        //         icons: [routeSeq]
-        //     })
-        
-        //     google.maps.event.clearListeners(map, 'click');
-
-        //     map.addListener('click', function (e) {
-        //         onAddCheckpoint(newRoute, e.latLng, map, iconsBase );
-        //     });
-
-
-        // } else {
-        //     map.addListener('click', function (e) {
-        //         onAddCheckpoint(route, e.latLng, map, iconsBase );
-        //     });
-        
-        // }
-
-
-
     }
 
     function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, id ) {
@@ -689,10 +650,10 @@ function initMap() {
 
 
         
-        route.setMap(null);
+        // route.setMap(null);
         route.setPath([]);
 
-        route.setMap(map);
+        // route.setMap(map);
 
         for (i = 0; i < checkpoints.length; i++) {
             var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
