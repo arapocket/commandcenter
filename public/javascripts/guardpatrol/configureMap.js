@@ -96,7 +96,7 @@ function initMap() {
         for (i = 0; i < locations.length; i++) {
 
 
-            var routeSeq = {
+            let routeSeq = {
                 repeat: '30px',
                 icon: {
                     path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
@@ -107,7 +107,7 @@ function initMap() {
                     strokeOpacity: 1
                 }
             };
-            var route = new google.maps.Polyline({
+            let route = new google.maps.Polyline({
                 map: map,
                 zIndex: 1,
                 geodesic: true,
@@ -185,81 +185,81 @@ function initMap() {
         
     }
 
-    function addRouteButtonListeners(map, iconsBase, locations) {
+    // function addRouteButtonListeners(map, iconsBase, locations) {
 
     
-        for (i = 0 ; i < locations.length ; i ++){
+    //     for (i = 0 ; i < locations.length ; i ++){
 
 
-            var routeSeq = {
-                repeat: '30px',
-                icon: {
-                    path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-                    scale: 1,
-                    fillOpacity: 0,
-                    strokeColor: "yellow",
-                    strokeWeight: 1,
-                    strokeOpacity: 1
-                }
-            };
-            var route = new google.maps.Polyline({
-                map: map,
-                zIndex: 1,
-                geodesic: true,
-                strokeColor: "#26e9f7",
-                strokeOpacity: 1,
-                strokeWeight: 7,
-                icons: [routeSeq]
-            })
+    //         var routeSeq = {
+    //             repeat: '30px',
+    //             icon: {
+    //                 path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+    //                 scale: 1,
+    //                 fillOpacity: 0,
+    //                 strokeColor: "yellow",
+    //                 strokeWeight: 1,
+    //                 strokeOpacity: 1
+    //             }
+    //         };
+    //         var route = new google.maps.Polyline({
+    //             map: map,
+    //             zIndex: 1,
+    //             geodesic: true,
+    //             strokeColor: "#26e9f7",
+    //             strokeOpacity: 1,
+    //             strokeWeight: 7,
+    //             icons: [routeSeq]
+    //         })
         
-            google.maps.event.addListener(route, 'click', function(e) {
-                onAddCheckpoint(route, e.latLng, map, iconsBase);
-            } );
+    //         google.maps.event.addListener(route, 'click', function(e) {
+    //             onAddCheckpoint(route, e.latLng, map, iconsBase);
+    //         } );
         
 
-            var GuardID = locations[i].GuardID;
+    //         var GuardID = locations[i].GuardID;
 
-            var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton" + GuardID);
+    //         var removeCheckpointButton = parent.document.getElementById("removeCheckpointButton" + GuardID);
 
-            var saveRouteButton = parent.document.getElementById("saveRouteButton" + GuardID);
+    //         var saveRouteButton = parent.document.getElementById("saveRouteButton" + GuardID);
     
-            var loadRouteButton = parent.document.getElementById("loadRouteButton" + GuardID);
+    //         var loadRouteButton = parent.document.getElementById("loadRouteButton" + GuardID);
     
-            var addRouteButton = parent.document.getElementById('addRouteButton' + GuardID);
+    //         var addRouteButton = parent.document.getElementById('addRouteButton' + GuardID);
     
-            var trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
+    //         var trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
     
     
     
-            addRouteButton.addEventListener('click', function (e) {
-                console.log('the guardid is: ' + GuardID );
-                onAddRoute(route , iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
-            });
+    //         addRouteButton.addEventListener('click', function (e) {
+    //             console.log('the guardid is: ' + GuardID );
+    //             onAddRoute(route , iconsBase, trashRouteButton, addRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
+    //         });
     
-            trashRouteButton.addEventListener('click', function (e) {
-                onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route );
-            });
+    //         trashRouteButton.addEventListener('click', function (e) {
+    //             onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route );
+    //         });
     
-            removeCheckpointButton.addEventListener('click', function (e) {
-                onRemoveCheckpoint(route )
-            });
+    //         removeCheckpointButton.addEventListener('click', function (e) {
+    //             onRemoveCheckpoint(route )
+    //         });
     
-            loadRouteButton.addEventListener('click', function (e) {
+    //         loadRouteButton.addEventListener('click', function (e) {
     
-                onLoadRoute(map, iconsBase, route );
-            });
+    //             onLoadRoute(map, iconsBase, route );
+    //         });
     
-            saveRouteButton.addEventListener('click', function (e) {
+    //         saveRouteButton.addEventListener('click', function (e) {
     
-                onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton, map);
-            });
+    //             onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton, map);
+    //         });
     
 
-        }
+    //     }
 
   
 
-    }
+    // }
 
     function changeButtons(GuardID, locations, map, iconsBase, route){
 
