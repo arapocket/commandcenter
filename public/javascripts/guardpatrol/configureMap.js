@@ -175,7 +175,6 @@ function initMap() {
 
                     route.setPath([]);
 
-                    route.setMap(null);
 
                     changeButtons(location.GuardID, locations, map, iconsBase, route);
 
@@ -620,6 +619,8 @@ function initMap() {
         // onLoadRoute(map, iconsBase, route );
 
         route.setPath([]);
+        route.setMap(null);
+
 
 
         onLoadRoute(map, iconsBase, route);
@@ -693,7 +694,10 @@ function initMap() {
     function loadRoutesOnMap(checkpoints, map, iconsBase, route ) {
 
 
+        
         route.setPath([]);
+
+        route.setMap(map);
 
         for (i = 0; i < checkpoints.length; i++) {
             var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
