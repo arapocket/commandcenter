@@ -156,12 +156,11 @@ function initMap() {
             });
 
             saveRouteButton.addEventListener('click', function (e) {
-
                 onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton, map);
             });
 
             endPatrolButton.addEventListener('click', function (e) {
-                onEndPatrol(id);
+                onEndPatrol(id, endPatrolButton);
             });
 
             let location = locations[i];
@@ -523,6 +522,9 @@ function initMap() {
 
     function onEndPatrol(id){
 
+
+        endPatrolButton.style.display = 'none';
+
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -540,7 +542,7 @@ function initMap() {
 
         coordPut(id);
 
-        window.onload = timedRefresh(3000);
+        parent.window.onload = timedRefresh(3000);
 
     }
 
