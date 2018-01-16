@@ -542,7 +542,7 @@ function initMap() {
 
         coordPut(id);
 
-        window.parent.onload = timedRefresh(3000);
+        parent.location.reload();
 
     }
 
