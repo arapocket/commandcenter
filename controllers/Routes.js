@@ -25,7 +25,7 @@ module.exports.getRouteByID = function (req, res) {
 };
 
 module.exports.getCurrentRoutes = function (req, res) {
-  Route.getCurrentRoutes(req.params.bool, function (err, result) {
+  Route.getCurrentRoutes(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

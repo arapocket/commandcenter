@@ -95,6 +95,8 @@ function initMap() {
 
         for (i = 0; i < locations.length; i++) {
 
+            var id = locations[i].GuardID;
+
 
             let routeSeq = {
                 repeat: '30px',
@@ -142,7 +144,7 @@ function initMap() {
             });
     
             trashRouteButton.addEventListener('click', function (e) {
-                onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route );
+                onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, id );
             });
     
             removeCheckpointButton.addEventListener('click', function (e) {
@@ -151,7 +153,7 @@ function initMap() {
     
             loadRouteButton.addEventListener('click', function (e) {
     
-                onLoadRoute(map, iconsBase, route );
+                onLoadRoute(map, iconsBase, route, id );
             });
     
             saveRouteButton.addEventListener('click', function (e) {
@@ -289,7 +291,7 @@ function initMap() {
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
         let loadRouteButton = parent.document.getElementById('loadRouteButton' + GuardID);
         
-        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route );
+        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, id );
 
         addRouteButton.style.display = 'block';
 
@@ -507,7 +509,7 @@ function initMap() {
 
     }
 
-    function onLoadRoute(map, iconsBase, route ) {
+    function onLoadRoute(map, iconsBase, route, id ) {
 
         /*
         TODO: 
@@ -537,7 +539,9 @@ function initMap() {
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes", true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(null);
+        xhr.send(JSON.stringify({
+            "GuardID": id
+        }));
 
 
 
@@ -606,7 +610,7 @@ function initMap() {
 
     }
 
-    function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route ) {
+    function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, iconsBase, route, id ) {
         addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
         removeCheckpointButton.style.display = 'none';
@@ -615,7 +619,7 @@ function initMap() {
         google.maps.event.clearListeners(map, 'click');
         // onLoadRoute(map, iconsBase, route );
 
-        onLoadRoute(map, iconsBase, route);
+        onLoadRoute(map, iconsBase, route, id);
 
     }
 
