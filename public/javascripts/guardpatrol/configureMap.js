@@ -554,7 +554,7 @@ var xhr = new XMLHttpRequest();
             return false;
         }
 
-        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols", true);
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/coordinates", true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
