@@ -9,6 +9,8 @@ function imageError() {
 
 function initMap() {
 
+    var socket = io();
+
     console.log("initMap called");
 
     var iconsBase = "http://maps.google.com/mapfiles/"
@@ -34,7 +36,7 @@ function initMap() {
 
         createPatrolPaths(patrols, coords, map);
 
-        createGuards(map, locations);
+        createGuards(map, locations, socket);
 
         createIncidentButtons(map, incidents);
 
@@ -85,7 +87,7 @@ function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);", timeoutPeriod);
 }
 
-function createGuards(map, locations) {
+function createGuards(map, locations, socket) {
 
     var guardButtons = [];
 
@@ -159,7 +161,7 @@ function createGuards(map, locations) {
         });
 
         endPatrolButton.addEventListener('click', function (e) {
-            onEndPatrol(id, endPatrolButton);
+            onEndPatrol(id, endPatrolButton, socket);
         });
 
         let location = locations[i];
@@ -533,6 +535,7 @@ function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, 
 
 function onEndPatrol(id, endPatrolButton) {
 
+    socket.emit('stop');
 
     endPatrolButton.style.display = 'none';
 
