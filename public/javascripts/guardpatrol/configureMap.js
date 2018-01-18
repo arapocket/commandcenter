@@ -504,6 +504,12 @@ function onAddRoute(route, trashRouteButton, removeCheckpointButton, saveRouteBu
         onAddCheckpoint(route, e.latLng, map);
     });
 
+    google.maps.event.addListener(route, 'click', function (e) {
+        onAddCheckpoint(route, e.latLng, map);
+    });
+
+
+
 }
 
 function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id) {
