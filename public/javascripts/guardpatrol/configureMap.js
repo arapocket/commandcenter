@@ -398,6 +398,8 @@ function onAddCheckpoint(route, latLng, map) {
 
 function onRemoveCheckpoint(route) {
 
+    socket.emit('checkpoint removed');
+    
     console.log('onRemoveCheckpoint called');
 
     route.getPath().pop();

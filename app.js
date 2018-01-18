@@ -397,6 +397,10 @@ io.on('connection', function (socket) {
     })
   })
 
+  socket.on('checkpoint removed', function(){
+    socket.broadcast.emit('checkpoint remove')
+  })
+
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
     if (addedUser) {
