@@ -533,7 +533,7 @@ function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, 
 
 }
 
-function onEndPatrol(id, endPatrolButton) {
+function onEndPatrol(id, endPatrolButton, socket) {
 
     socket.emit('stop');
 
