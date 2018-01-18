@@ -391,15 +391,12 @@ function createPatrolPaths(patrols, coords, map) {
 }
 
 function onAddCheckpoint(route, latLng, map) {
-    socket.emit('checkpoint added', latLng)
     route.getPath().push(latLng);
     route.setMap(map);
 }
 
 function onRemoveCheckpoint(route) {
 
-    socket.emit('checkpoint removed');
-    
     console.log('onRemoveCheckpoint called');
 
     route.getPath().pop();
