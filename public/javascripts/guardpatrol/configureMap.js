@@ -39,7 +39,7 @@ function initMap() {
 
         createGuardButtons(map, locations, iconsBase);
 
-        createIncidentButtons(map, incidents);        
+        createIncidentButtons(map, incidents);
 
     } else {
         var mapSpace = document.getElementById('map');
@@ -524,7 +524,7 @@ function initMap() {
 
     }
 
-    function onEndPatrol(id, endPatrolButton){
+    function onEndPatrol(id, endPatrolButton) {
 
 
         endPatrolButton.style.display = 'none';
@@ -534,7 +534,7 @@ function initMap() {
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
             return false;
-        } 
+        }
 
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols", true);
 
@@ -550,9 +550,9 @@ function initMap() {
 
     }
 
-    function coordPut(id){
+    function coordPut(id) {
 
-var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -628,6 +628,8 @@ var xhr = new XMLHttpRequest();
     }
 
     function loadRoutesOnMap(checkpoints, map, iconsBase, route) {
+
+        route.getPath().push([]);
 
 
         for (i = 0; i < checkpoints.length; i++) {
