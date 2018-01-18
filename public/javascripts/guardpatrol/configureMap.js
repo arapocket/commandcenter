@@ -629,7 +629,7 @@ function initMap() {
 
     function loadRoutesOnMap(checkpoints, map, iconsBase, route) {
 
-        route.getPath().push([]);
+        route.setPath([]);
 
 
         for (i = 0; i < checkpoints.length; i++) {
