@@ -384,6 +384,13 @@ io.on('connection', function (socket) {
     });
   });
 
+  // when the End Patrol buttons is pressed.. do this
+  socket.on('stop', function (){
+    socket.broadcast.emit('patrol stop', {
+      id: socket.id
+    });
+  })
+
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
     if (addedUser) {
