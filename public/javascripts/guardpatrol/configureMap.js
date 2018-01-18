@@ -535,7 +535,7 @@ function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, 
 
 function onEndPatrol(id, endPatrolButton, socket) {
 
-    socket.emit('stop');
+    socket.emit('stop', id);
 
     endPatrolButton.style.display = 'none';
 
