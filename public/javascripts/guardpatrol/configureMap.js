@@ -29,13 +29,12 @@ function initMap() {
 
         });
 
-        // addRouteButtonListeners(map, iconsBase, locations);
 
         createIncidentMarkers(incidents, map, iconsBase);
 
         createPatrolPaths(patrols, coords, map);
 
-        createGuardButtons(map, locations, iconsBase);
+        createGuardButtons(map, locations);
 
         createIncidentButtons(map, incidents);
 
@@ -84,7 +83,7 @@ function initMap() {
         setTimeout("location.reload(true);", timeoutPeriod);
     }
 
-    function createGuardButtons(map, locations, iconsBase) {
+    function createGuardButtons(map, locations) {
 
         var guardButtons = [];
 
@@ -115,7 +114,7 @@ function initMap() {
             })
 
             google.maps.event.addListener(route, 'click', function (e) {
-                onAddCheckpoint(route, e.latLng, map, iconsBase);
+                onAddCheckpoint(route, e.latLng, map);
             });
 
 
@@ -137,11 +136,11 @@ function initMap() {
 
             addRouteButton.addEventListener('click', function (e) {
                 console.log('the guardid is: ' + GuardID);
-                onAddRoute(route, iconsBase, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
+                onAddRoute(route, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
             });
 
             trashRouteButton.addEventListener('click', function (e) {
-                onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, iconsBase, route, id);
+                onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id);
             });
 
             removeCheckpointButton.addEventListener('click', function (e) {
@@ -150,7 +149,7 @@ function initMap() {
 
             loadRouteButton.addEventListener('click', function (e) {
 
-                onLoadRoute(map, iconsBase, route, id);
+                onLoadRoute(map, route, id);
             });
 
             saveRouteButton.addEventListener('click', function (e) {
@@ -175,7 +174,7 @@ function initMap() {
                         lng: location.lng
                     });
 
-                    changeButtons(location.GuardID, locations, map, iconsBase, route);
+                    changeButtons(location.GuardID, locations, map, route);
 
                     localStorage.setItem("currentGuard", location.GuardID);
                 })
@@ -183,17 +182,17 @@ function initMap() {
                 guardButtons.push(guardButton);
             }
 
-            onLoadRoute(map, iconsBase, route, id);
+            onLoadRoute(map, route, id);
 
 
-            createGuardMarker(location, locations, map, iconsBase, route, id);
+            createGuardMarker(location, locations, map, route, id);
 
         }
 
 
     }
 
-    function changeButtons(GuardID, locations, map, iconsBase, route) {
+    function changeButtons(GuardID, locations, map, route) {
 
 
 
@@ -224,7 +223,7 @@ function initMap() {
         let loadRouteButton = parent.document.getElementById('loadRouteButton' + GuardID);
         let endPatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
 
-        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, iconsBase, route, GuardID);
+        onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, GuardID);
 
         addRouteButton.style.display = 'block';
         endPatrolButton.style.display = 'block';
@@ -265,7 +264,7 @@ function initMap() {
 
     }
 
-    function createGuardMarker(location, locations, map, iconsBase, route, id) {
+    function createGuardMarker(location, locations, map, route, id) {
 
 
             var windowString =
@@ -290,7 +289,7 @@ function initMap() {
             markerWindow.open(map, marker);
             marker.addListener('click', function (e) {
                 markerWindow.open(map, marker);
-                changeButtons(id, locations, map, iconsBase, route);
+                changeButtons(id, locations, map, route);
             });
 
         
@@ -388,7 +387,7 @@ function initMap() {
         }
     }
 
-    function onAddCheckpoint(route, latLng, map, iconsBase) {
+    function onAddCheckpoint(route, latLng, map) {
         route.getPath().push(latLng);
         route.setMap(map);
     }
@@ -441,7 +440,7 @@ function initMap() {
 
     }
 
-    function onLoadRoute(map, iconsBase, route, id) {
+    function onLoadRoute(map, route, id) {
 
         /*
         TODO: 
@@ -461,7 +460,7 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
-                    loadCurrentRoutes(routeID, map, iconsBase, route);
+                    loadCurrentRoutes(routeID, map, route);
                 }
 
 
@@ -477,7 +476,7 @@ function initMap() {
 
     }
 
-    function onAddRoute(route, iconsBase, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations) {
+    function onAddRoute(route, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations) {
 
 
 
@@ -500,12 +499,12 @@ function initMap() {
         loadRouteButton.style.display = 'block';
 
         map.addListener('click', function (e) {
-            onAddCheckpoint(route, e.latLng, map, iconsBase);
+            onAddCheckpoint(route, e.latLng, map);
         });
 
     }
 
-    function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, iconsBase, route, id) {
+    function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id) {
         addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
         removeCheckpointButton.style.display = 'none';
@@ -519,7 +518,7 @@ function initMap() {
         route.setPath([]);
         route.setMap(map);
 
-        onLoadRoute(map, iconsBase, route, id);
+        onLoadRoute(map, route, id);
 
     }
 
@@ -603,7 +602,7 @@ function initMap() {
     }
 
 
-    function loadCurrentRoutes(routeID, map, iconsBase, route) {
+    function loadCurrentRoutes(routeID, map, route) {
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -615,7 +614,7 @@ function initMap() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 console.log('logging checkpoints response: ' + xhr.responseText);
                 var checkpoints = JSON.parse(xhr.responseText);
-                loadRoutesOnMap(checkpoints, map, iconsBase, route);
+                loadRoutesOnMap(checkpoints, map, route);
 
             }
         }
@@ -626,7 +625,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function loadRoutesOnMap(checkpoints, map, iconsBase, route) {
+    function loadRoutesOnMap(checkpoints, map, route) {
 
         route.setPath([]);
 
