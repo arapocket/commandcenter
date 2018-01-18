@@ -10,6 +10,7 @@ function imageError() {
 function initMap() {
 
     console.log("initMap called");
+
     var iconsBase = "http://maps.google.com/mapfiles/"
 
     setRefreshButtonListeners();
@@ -29,12 +30,11 @@ function initMap() {
 
         });
 
-
         createIncidentMarkers(incidents, map, iconsBase);
 
         createPatrolPaths(patrols, coords, map);
 
-        createGuardButtons(map, locations);
+        createGuards(map, locations);
 
         createIncidentButtons(map, incidents);
 
@@ -42,6 +42,8 @@ function initMap() {
         var mapSpace = document.getElementById('map');
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
+
+}
 
     function setRefreshButtonListeners() {
 
@@ -83,7 +85,7 @@ function initMap() {
         setTimeout("location.reload(true);", timeoutPeriod);
     }
 
-    function createGuardButtons(map, locations) {
+    function createGuards(map, locations) {
 
         var guardButtons = [];
 
@@ -676,4 +678,3 @@ function initMap() {
 
 
 
-}
