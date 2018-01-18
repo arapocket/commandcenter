@@ -36,7 +36,7 @@ function initMap() {
 
         createPatrolPaths(patrols, coords, map);
 
-        createGuards(map, locations, socket);
+        createGuards(map, locations);
 
         createIncidentButtons(map, incidents);
 
@@ -45,7 +45,7 @@ function initMap() {
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
 
-}
+
 
 function setRefreshButtonListeners() {
 
@@ -87,7 +87,7 @@ function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);", timeoutPeriod);
 }
 
-function createGuards(map, locations, socket) {
+function createGuards(map, locations) {
 
     var guardButtons = [];
 
@@ -161,7 +161,7 @@ function createGuards(map, locations, socket) {
         });
 
         endPatrolButton.addEventListener('click', function (e) {
-            onEndPatrol(id, endPatrolButton, socket);
+            onEndPatrol(id, endPatrolButton);
         });
 
         let location = locations[i];
@@ -533,7 +533,7 @@ function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, 
 
 }
 
-function onEndPatrol(id, endPatrolButton, socket) {
+function onEndPatrol(id, endPatrolButton) {
 
     socket.emit('stop', id);
 
@@ -686,4 +686,4 @@ function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues,
 }
 
 
-
+}
