@@ -187,6 +187,9 @@ function initMap() {
 
             onLoadRoute(map, iconsBase, route, id);
 
+
+            createGuardMarker(location, locations, map, iconsBase, route, id);
+
         }
 
 
@@ -264,25 +267,22 @@ function initMap() {
 
     }
 
-    function createGuardMarkers(locations, map, iconsBase) {
+    function createGuardMarker(location, locations, map, iconsBase, route, id) {
 
 
-        for (i = 0; i < locations.length; i++) {
-
-            ////////////////////////////DO INFO BOX STUFF HERE////////////////////////////////        
             var windowString =
                 `
-        <h5 style="color:#D20202">`  + locations[i].FirstName + `</h5>`;
+        <h5 style="color:#D20202">`  + location.FirstName + `</h5>`;
 
             let markerWindow = new google.maps.InfoWindow({
                 content: windowString
             });
 
 
-            console.log("here's a guard locations");
-            console.log(locations[i]);
-            var lat = locations[i].lat;
-            var lng = locations[i].lng;
+            console.log("here's a guard location");
+            console.log(location);
+            var lat = location.lat;
+            var lng = location.lng;
             let marker = new google.maps.Marker({
                 position: { lat: lat, lng: lng },
                 map: map,
@@ -292,9 +292,10 @@ function initMap() {
             markerWindow.open(map, marker);
             marker.addListener('click', function (e) {
                 markerWindow.open(map, marker);
+                changeButtons(id, locations, map, iconsBase, route);
             });
 
-        }
+        
     }
 
     function createIncidentMarkers(incidents, map, iconsBase) {
