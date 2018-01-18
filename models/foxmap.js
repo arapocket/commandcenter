@@ -12,7 +12,7 @@ module.exports.getAllGuards = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol, CurrentCoord FROM currentguards WHERE CurrentCoord = 1; ';
+            var strSQL = 'SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol, CurrentCoord FROM currentguards WHERE CurrentCoord = 1 AND CurrentPatrol =1; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -70,7 +70,7 @@ module.exports.getCurrentLocations = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT lat, lng, GuardID, FirstName, LastName, DeviceToken FROM currentguards WHERE CurrentCoord = 1';
+            var strSQL = 'SELECT lat, lng, GuardID, FirstName, LastName, DeviceToken FROM currentguards WHERE CurrentCoord = 1 AND CurrentPatrol = 1';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
