@@ -31,8 +31,6 @@ function initMap() {
 
         // addRouteButtonListeners(map, iconsBase, locations);
 
-        createGuardMarkers(locations, map, iconsBase);
-
         createIncidentMarkers(incidents, map, iconsBase);
 
         createPatrolPaths(patrols, coords, map);
