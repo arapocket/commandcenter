@@ -2,6 +2,37 @@ var db = require('./db');
 var crypto = require('crypto')
 
 
+///////////////////////////////////////////////
+// Common functions for the cryto processing //
+///////////////////////////////////////////////
+	
+	/**
+	 * generates randon tring of charcters i.e 'salt'
+	 */
+
+	var genRandomString = function(length){
+            return crypto.randomBytes(Math.ceil(length/2))
+                    .toString('hex') /** convert to hexadecimal format */
+                    .slice(0,length);   /** return required number of characters */
+        };
+    
+        /**
+         * hash password with sha512.
+         * @function
+         * @param {string} password - List of required fields.
+         * @param {string} salt - Data to be validated.
+         */
+        var sha512 = function(password, salt){
+            var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+            hash.update(password);
+            var value = hash.digest('hex');
+            return {
+                salt:salt,
+                passwordHash:value
+            };
+        };
+
+
 module.exports.getAllGuards = function (callback) {
 
     db.createConnection(function (err, reslt) {
