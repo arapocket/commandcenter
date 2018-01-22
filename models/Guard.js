@@ -1,5 +1,5 @@
 var db = require('./db');
-
+var crypto = require('crypto')
 
 
 module.exports.getAllGuards = function (callback) {
