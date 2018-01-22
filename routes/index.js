@@ -107,13 +107,16 @@ router.get('/guardlist', Guards.guardList);
 router.get('/guardAdd', Guards.guardAdd);
 router.post('/guardAdd', Guards.guardAddToDb);
 
+router.get('/guardModify/:GuardID', Guards.getGuardByID);
+router.post('/guardModify/:GuardID', Guards.updateGuard);
+router.post('/guardDelete/:GuardID', Guards.deleteGuard);
 
 
 router.get('/guards', Guards.getAllGuards);
 router.get('/guards/:id', Guards.getGuardByID);
 router.post('/guards', Guards.addGuard);
-router.delete('/guards/:id', Guards.deleteGuard);
-router.put('/guards', Guards.updateGuard);
+// router.delete('/guards/:id', Guards.deleteGuard);
+// router.put('/guards', Guards.updateGuard);
 
 /**
  *  ================================================

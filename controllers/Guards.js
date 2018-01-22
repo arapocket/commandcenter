@@ -59,16 +59,7 @@ module.exports.getAllGuards = function (req, res) {
   });
 };
 
-exports.getGuardByID = function (req, res) {
-  Guard.getGuardByID(req.params.id, function (err, result) {
-    if (err) {
-      res.json(err);
-    }
-    else {
-      res.json(result);
-    }
-  }); 
-};
+
 
 exports.addGuard = function (req, res) {
   Guard.addGuard(req.body,function (err, result) {
@@ -179,27 +170,174 @@ module.exports.guardAddToDb = function (req, res) {
 }; //end of user post handler
 
 
-exports.deleteGuard = function (req, res) {
-  Guard.deleteGuard(req.params.id, function (err, result) {
+
+module.exports.getGuardByID = function (req, res) {
+
+  sess = req.session;
+      // don't let nameless people view the dashboard, redirect them back to the homepage
+      if (typeof sess.username == 'undefined') res.redirect('/');
+      else {
+
+    //get a connection using the common handler in models/db.js
+    db.createConnection(function (err, reslt) {
+      if (err) {
+        console.log('Error while performing common connect query: ' + err);
+        callback(err, null);
+      } else {
+        //process the i/o after successful connect.  Connection object returned in callback
+        var connection = reslt;
+
+        var strSQL = 'SELECT * FROM foxwatchusers WHERE GuardID="' + req.params.guardID + '"';
+        console.log('here is the query string' + strSQL);
+        var query = connection.query(strSQL, function (err, results) {
+
+          if (err) {
+            console.log(err)
+            connection.end();
+            //sess.error = 'There was a problem updating the mobss database: '+err;
+            res.render('guardlist', { title: 'Command Center' });
+          } else {
+            connection.end();
+            res.render('guardModify', { title: 'Command Center', results });
+
+
+          };
+        });//end of connection.query
+      }
+    });
+  };
+}; //end of handler
+
+
+
+
+////////////////////////////////////////////////
+// Update the datebase with the modifications //
+////////////////////////////////////////////////
+exports.updateGuard = function (req, res) {
+  sess = req.session;
+      var name = req.query.name;
+
+  //get a connection using the common handler in models/db.js
+  db.createConnection(function (err, reslt) {
     if (err) {
-      res.json(err);
-    }
-    else {
-      res.json(result);
+      console.log('Error while performing common connect query: ' + err);
+      callback(err, null);
+    } else {
+      //process the i/o after successful connect.  Connection object returned in callback
+      var connection = reslt;
+
+      var buildUserQuery = (function () {
+        var updateUser = function (field1, field2, field3, field4, field5, field6) {
+
+          var _userName = field1;
+          var _lastName = field2;
+          var _firstName = field3;
+          var _empID = field4;
+          var _userEmail = field5;
+          var _status = field6;
+
+
+          /**
+          * Use the cmmon date handler to return the timestamp in a more usable
+          * format for the database
+          */
+          var _date = datetime.syncCurrentDateTimeforDB();
+
+
+          var _qFields = '(UserName, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime)';
+          var _qValues = '("' + _userName + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date + '")';
+          var _qUpdates = 'UserName="' + _userName + '", LastName="' + _lastName + '"' + ', FirstName="' + _firstName + '"' + ', EmpID="' + _empID + '"' + ', UserEmail="' + _userEmail + '"' + ', Status="' + _status + '"' + ', UpdateTime="' + _date + '"' + '"';
+          var parmQuery3 = 'UPDATE foxwatchusers SET ' + _qUpdates + ' WHERE UserName="' + _userName + '"';
+          //console.log('parmQuery3= '+parmQuery3);
+          return parmQuery3;
+        };
+        return { updateUser: updateUser };
+      })();//end of revealing module
+
+      //set the privilege level for database based on the user input
+      var _privLevel = '';
+      if (req.body.privLevel == 'User') {
+        _privLevel = '1';
+      } else if (req.body.privLevel == 'Administrator') {
+        _privLevel = '2';
+      } else { _privLevel = '3' }
+
+      //set the status  for database based on the user input
+      console.log('here is the status ' + req.body.status)
+
+      var _status = '';
+      if (req.body.status == 'Active') {
+        _status = '1';
+      } else if (req.body.status == 'Suspended') {
+        _status = '2';
+      } else { _status = '3' }
+
+      /**
+       * Get the username from request object -- can't retrieve from the read-only "disabled" field
+       */
+
+      var strSQL = buildUserQuery.updateUser(req.params.userName, req.body.lastName, req.body.firstName, req.body.empID, req.body.userEmail, _status, _privLevel);
+
+      console.log('update strSQL= ' + strSQL);
+
+      var query = connection.query(strSQL, function (err, result) {
+
+        if (err) {
+          console.log(err)
+          sess.error = 'There was a problem updating the mobss database: ' + err;
+          connection.end();
+          res.render('userModify', { title: 'Command Center' });
+        } else {
+          console.log("successful update")
+          connection.end();
+          res.status(301).redirect('/users');
+
+        };
+      });//feb--end of connection.query
     }
   });
 };
 
-exports.updateGuard = function (req, res) {
-  Guard.updateGuard(req.body, function (err, result) {
-    if (err) {
-      res.json(err);
-    }
-    else {
-      res.json(result);
-    }
-  });
-};
+////////////////////////////////////////////////
+// delete the record from the database        //
+////////////////////////////////////////////////
+module.exports.deleteGuard = function (req, res) {
+
+  sess = req.session;
+      // don't let nameless people view the dashboard, redirect them back to the homepage
+      if (typeof sess.username == 'undefined') res.redirect('/');
+      else {
+
+    //get a connection using the common handler in models/db.js
+    db.createConnection(function (err, reslt) {
+      if (err) {
+        console.log('Error while performing common connect query: ' + err);
+        callback(err, null);
+      } else {
+        //process the i/o after successful connect.  Connection object returned in callback
+        var connection = reslt;
+
+        var strSQL = 'DELETE FROM users WHERE UserName="' + req.params.userName + '"';
+        console.log('here is the query string' + strSQL);
+        var query = connection.query(strSQL, function (err, results) {
+
+          if (err) {
+            console.log(err)
+            connection.end();
+            //sess.error = 'There was a problem updating the mobss database: '+err;
+            res.render('users', { title: 'Command Center' });
+          } else {
+            connection.end();
+            res.status(301).redirect('/users');
+
+
+          };
+        });//end of connection.query
+      }
+    });
+  };
+}; //end of handler
 
 
 
