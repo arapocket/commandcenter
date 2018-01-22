@@ -94,6 +94,7 @@ function createGuards(map, locations) {
     for (i = 0; i < locations.length; i++) {
 
         let id = locations[i].GuardID;
+        let firstName = locations[i].FirstName;
 
 
         let routeSeq = {
@@ -161,7 +162,7 @@ function createGuards(map, locations) {
         });
 
         endPatrolButton.addEventListener('click', function (e) {
-            onEndPatrol(id, endPatrolButton);
+            onEndPatrol(id, firstName, endPatrolButton);
         });
 
         let location = locations[i];
@@ -533,33 +534,46 @@ function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, 
 
 }
 
-function onEndPatrol(id, endPatrolButton) {
+function onEndPatrol(id, firstName, endPatrolButton) {
 
 
-    bootbox.alert("Hello world!");
+    bootbox.confirm({ 
+        size: "small",
+        message: "Are you sure you want to end " + firstName + "'s patrol?", 
+        callback: function(result){
+             /* result is a boolean; true = OK, false = Cancel*/ 
+             if (result) {
 
-    // socket.emit('stop', id);
+                socket.emit('stop', id);
 
-    // endPatrolButton.style.display = 'none';
+                endPatrolButton.style.display = 'none';
+            
+                var xhr = new XMLHttpRequest();
+            
+                if (!xhr) {
+                    alert('Giving up :( Cannot create an XMLHTTP instance');
+                    return false;
+                }
+            
+                xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols", true);
+            
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({
+                    "CurrentPatrol": 0,
+                    "GuardID": id
+                }));
+            
+                coordPut(id);
+            
+                parent.location.reload();
 
-    // var xhr = new XMLHttpRequest();
+             } else {
 
-    // if (!xhr) {
-    //     alert('Giving up :( Cannot create an XMLHTTP instance');
-    //     return false;
-    // }
+             }
+            }
+      })
 
-    // xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols", true);
-
-    // xhr.setRequestHeader('Content-Type', 'application/json');
-    // xhr.send(JSON.stringify({
-    //     "CurrentPatrol": 0,
-    //     "GuardID": id
-    // }));
-
-    // coordPut(id);
-
-    // parent.location.reload();
+   
 
 }
 
