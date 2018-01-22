@@ -1,12 +1,9 @@
 include mixins
 extends layout
 block content   
-
 			include navbar
-
 			h3 FoxWatch Guards
 			br
-
 			div
 				table#pickle.table.table-hover.table-striped.table-bordered
 					thead
@@ -26,7 +23,6 @@ block content
 									td
 										a(href="/userModify/#{result.UserName}")  Edit |
 										a(href="/userDelete/#{result.UserName}")  Delete
-									   
 									td=result.UserName
 									td=result.LastName
 									td=result.FirstName
@@ -34,7 +30,6 @@ block content
 									td=result.UserEmail
 									td=result.Status
 									td=result.UpdateTime
-
 				script.
 					$(document).ready(function() {
 					$('#pickle').DataTable();
