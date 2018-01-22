@@ -249,7 +249,7 @@ exports.updateGuard = function (req, res) {
        * Get the username from request object -- can't retrieve from the read-only "disabled" field
        */
 
-      var strSQL = buildUserQuery.updateUser(req.params.userName, req.body.lastName, req.body.firstName, req.body.empID, req.body.userEmail, _status, _privLevel);
+      var strSQL = buildUserQuery.updateUser(req.params.userName, req.body.lastName, req.body.firstName, req.body.empID, req.body.userEmail, _status);
 
       console.log('update strSQL= ' + strSQL);
 
