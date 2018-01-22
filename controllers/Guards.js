@@ -208,7 +208,7 @@ exports.updateGuard = function (req, res) {
       var connection = reslt;
 
       var buildUserQuery = (function () {
-        var updateUser = function (field1, field2, field3, field4, field5, field6, field7) {
+        var updateUser = function (field1, field2, field3, field4, field5, field6) {
 
           var _userName = field1;
           var _lastName = field2;
@@ -216,7 +216,6 @@ exports.updateGuard = function (req, res) {
           var _empID = field4;
           var _userEmail = field5;
           var _status = field6;
-          var _guardID = field7;
 
 
           /**
@@ -226,10 +225,10 @@ exports.updateGuard = function (req, res) {
           var _date = datetime.syncCurrentDateTimeforDB();
 
 
-          var _qFields = '(UserName, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime, GuardID)';
-          var _qValues = '("' + _userName + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date + '", "' + _guardID + '")';
-          var _qUpdates = 'UserName="' + _userName + '", LastName="' + _lastName + '"' + ', FirstName="' + _firstName + '"' + ', EmpID="' + _empID + '"' + ', UserEmail="' + _userEmail + '"' + ', Status="' + _status + '"' + ', UpdateTime="' + _date + '"' + ', GuardID="' + _guardID +  '"'  + '"';
-          var parmQuery3 = 'UPDATE foxwatchusers SET ' + _qUpdates + ' WHERE GuardID="' + _guardID + '"';
+          var _qFields = '(UserName, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime)';
+          var _qValues = '("' + _userName + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date +  '")';
+          var _qUpdates = 'UserName="' + _userName + '", LastName="' + _lastName + '"' + ', FirstName="' + _firstName + '"' + ', EmpID="' + _empID + '"' + ', UserEmail="' + _userEmail + '"' + ', Status="' + _status + '"' + ', UpdateTime="' + _date + '"' +   '"'  + '"';
+          var parmQuery3 = 'UPDATE foxwatchusers SET ' + _qUpdates + ' WHERE GuardID="' + req.params.GuardID + '"';
           //console.log('parmQuery3= '+parmQuery3);
           return parmQuery3;
         };
@@ -250,7 +249,7 @@ exports.updateGuard = function (req, res) {
        * Get the username from request object -- can't retrieve from the read-only "disabled" field
        */
 
-      var strSQL = buildUserQuery.updateUser(req.body.userName, req.body.lastName, req.body.firstName, req.body.empID, req.body.userEmail, _status, req.params.GuardID);
+      var strSQL = buildUserQuery.updateUser(req.body.userName, req.body.lastName, req.body.firstName, req.body.empID, req.body.userEmail, _status);
 
       console.log('update strSQL= ' + strSQL);
 
