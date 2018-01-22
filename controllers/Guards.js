@@ -229,7 +229,7 @@ exports.updateGuard = function (req, res) {
           var _qFields = '(UserName, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime, GuardID)';
           var _qValues = '("' + _userName + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date + '", "' + _guardID + '")';
           var _qUpdates = 'UserName="' + _userName + '", LastName="' + _lastName + '"' + ', FirstName="' + _firstName + '"' + ', EmpID="' + _empID + '"' + ', UserEmail="' + _userEmail + '"' + ', Status="' + _status + '"' + ', UpdateTime="' + _date + '"' + ', GuardID="' + _guardID +  '"'  + '"';
-          var parmQuery3 = 'UPDATE foxwatchusers SET ' + _qUpdates + ' WHERE GuardID="' + req.params.GuardID + '"';
+          var parmQuery3 = 'UPDATE foxwatchusers SET ' + _qUpdates + ' WHERE GuardID="' + _guardID + '"';
           //console.log('parmQuery3= '+parmQuery3);
           return parmQuery3;
         };
