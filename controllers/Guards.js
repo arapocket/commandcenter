@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Guard = require('../models/Guard');
 var db = require('../models/db');
-
+var datetime = require('./datetime');
 
 module.exports.getAllGuards = function (req, res) {
   Guard.getAllGuards(function (err, result) {
