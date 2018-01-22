@@ -187,7 +187,7 @@ module.exports.getGuardByID = function (req, res) {
         //process the i/o after successful connect.  Connection object returned in callback
         var connection = reslt;
 
-        var strSQL = 'SELECT * FROM foxwatchusers WHERE GuardID="' + req.params.guardID + '"';
+        var strSQL = 'SELECT * FROM foxwatchusers WHERE GuardID="' + req.params.GuardID + '"';
         console.log('here is the query string' + strSQL);
         var query = connection.query(strSQL, function (err, results) {
 
