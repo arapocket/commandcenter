@@ -103,6 +103,7 @@ router.post('/userDelete/:userName', users.userDeleteOne);
 var Guards = require('../controllers/Guards');
 
 router.get('/guardAdd', Guards.guardAdd);
+router.post('/guardAdd', Guards.guardAddToDb);
 
 
 
