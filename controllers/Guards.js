@@ -271,6 +271,43 @@ exports.updateGuard = function (req, res) {
   });
 };
 
+module.exports.getGuardForDelete = function (req, res) {
+
+  sess = req.session;
+      // don't let nameless people view the dashboard, redirect them back to the homepage
+      if (typeof sess.username == 'undefined') res.redirect('/');
+      else {
+
+    //get a connection using the common handler in models/db.js
+    db.createConnection(function (err, reslt) {
+      if (err) {
+        console.log('Error while performing common connect query: ' + err);
+        callback(err, null);
+      } else {
+        //process the i/o after successful connect.  Connection object returned in callback
+        var connection = reslt;
+
+        var strSQL = 'SELECT * FROM foxwatchusers WHERE GuardID="' + req.params.GuardID + '"';
+        console.log('here is the query string' + strSQL);
+        var query = connection.query(strSQL, function (err, results) {
+
+          if (err) {
+            console.log(err)
+            connection.end();
+            //sess.error = 'There was a problem updating the mobss database: '+err;
+            res.render('guardList', { title: 'Command Center' });
+          } else {
+            connection.end();
+            res.render('guardDelete', { title: 'Command Center', results });
+
+
+          };
+        });//end of connection.query
+      }
+    });
+  };
+}; //end of handler
+
 module.exports.deleteGuard = function (req, res) {
 
   sess = req.session;

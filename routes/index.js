@@ -109,6 +109,7 @@ router.post('/guardAdd', Guards.guardAddToDb);
 
 router.get('/guardModify/:GuardID', Guards.getGuardByID);
 router.post('/guardModify/:GuardID', Guards.updateGuard);
+router.get('/guardDelete/:GuardID', Guards.getGuardForDelete);
 router.post('/guardDelete/:GuardID', Guards.deleteGuard);
 
 
