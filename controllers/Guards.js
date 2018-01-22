@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Guard = require('../models/Guard');
-
+var db = require('../models/db');
 
 
 module.exports.getAllGuards = function (req, res) {
