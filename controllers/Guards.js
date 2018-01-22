@@ -5,9 +5,6 @@ var db = require('../models/db');
 var datetime = require('./datetime');
 
 
-//////////////////////////////
-//   show the list of guards //
-//////////////////////////////
 module.exports.guardList = function (req, res) {
   sess = req.session;
   // initializes the success/error messages for the report generation
@@ -16,8 +13,8 @@ module.exports.guardList = function (req, res) {
   sess.rptError = null;
 
   // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
     db.createConnection(function (err, reslt) {
       if (err) {
@@ -44,9 +41,8 @@ module.exports.guardList = function (req, res) {
         });
       }
     });
-      }
+  }
 };
-
 
 module.exports.getAllGuards = function (req, res) {
   Guard.getAllGuards(function (err, result) {
@@ -60,9 +56,8 @@ module.exports.getAllGuards = function (req, res) {
 };
 
 
-
 exports.addGuard = function (req, res) {
-  Guard.addGuard(req.body,function (err, result) {
+  Guard.addGuard(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -73,35 +68,33 @@ exports.addGuard = function (req, res) {
 };
 
 
-exports.guardAdd = function(req, res) {
-  sess=req.session;
-    // don't let nameless people view the dashboard, redirect them back to the homepage
-    if (typeof sess.username == 'undefined') res.redirect('/');
-    else {
+exports.guardAdd = function (req, res) {
+  sess = req.session;
+      // don't let nameless people view the dashboard, redirect them back to the homepage
+      if (typeof sess.username == 'undefined') res.redirect('/');
+      else {
 
-    var name = req.query.name;
-    /**
-     * Only show the users screen if user has privilege
-     */
-    if (sess.userType == '2'){
-        res.render('guardAdd', { title: 'Command Center'});
-      } else {
-        res.render('Unauthorized', { title: 'Command Center'});
-      }
- };
+        var name = req.query.name;
+        /**
+         * Only show the users screen if user has privilege
+         */
+    if (sess.userType == '2') {
+      res.render('guardAdd', { title: 'Command Center' });
+    } else {
+      res.render('Unauthorized', { title: 'Command Center' });
+    }
+  };
 };
 
 module.exports.guardAddToDb = function (req, res) {
 
-  var _guardID =  Math.random().toString(36).substr(2, 9);
+  var _guardID = Math.random().toString(36).substr(2, 9);
 
-  //get a connection using the common handler in models/db.js
   db.createConnection(function (err, reslt) {
     if (err) {
       console.log('Error while performing common connect query: ' + err);
       callback(err, null);
     } else {
-      //process the i/o after successful connect.  Connection object returned in callback
       var connection = reslt;
 
       var buildUserQuery = (function () {
@@ -132,16 +125,14 @@ module.exports.guardAddToDb = function (req, res) {
           var _date = datetime.syncCurrentDateTimeforDB();
 
           var _qFields = '(UserName, Password, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime, RGen, GuardID)';
-          var _qValues = '("' + _userName + '", "' + _password + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date +  '", "' + _rgen + '", "' + _guardID + '")';
+          var _qValues = '("' + _userName + '", "' + _password + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date + '", "' + _rgen + '", "' + _guardID + '")';
           var parmQuery3 = 'INSERT INTO foxwatchusers ' + _qFields + ' VALUES ' + _qValues;
           //console.log('parmQuery3= '+parmQuery3);
           return parmQuery3;
         };
         return { insertUser: insertUser };
-      })();//end of revealing module
+      })();
 
-
-      //set the status  for database based on the user input
       var _status = '';
       if (req.body.status == 'Active') {
         _status = '1';
@@ -163,28 +154,25 @@ module.exports.guardAddToDb = function (req, res) {
           connection.end();
           res.status(301).redirect('/guardlist');
         }
-      });//end of connection.query
+      });
     }
   });
 
-}; //end of user post handler
-
+}; 
 
 
 module.exports.getGuardByID = function (req, res) {
 
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
-    //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
       if (err) {
         console.log('Error while performing common connect query: ' + err);
         callback(err, null);
       } else {
-        //process the i/o after successful connect.  Connection object returned in callback
         var connection = reslt;
 
         var strSQL = 'SELECT * FROM foxwatchusers WHERE GuardID="' + req.params.GuardID + '"';
@@ -202,29 +190,21 @@ module.exports.getGuardByID = function (req, res) {
 
 
           };
-        });//end of connection.query
+        });
       }
     });
   };
-}; //end of handler
+}; 
 
-
-
-
-////////////////////////////////////////////////
-// Update the datebase with the modifications //
-////////////////////////////////////////////////
 exports.updateGuard = function (req, res) {
   sess = req.session;
-      var name = req.query.name;
+  var name = req.query.name;
 
-  //get a connection using the common handler in models/db.js
   db.createConnection(function (err, reslt) {
     if (err) {
       console.log('Error while performing common connect query: ' + err);
       callback(err, null);
     } else {
-      //process the i/o after successful connect.  Connection object returned in callback
       var connection = reslt;
 
       var buildUserQuery = (function () {
@@ -248,22 +228,14 @@ exports.updateGuard = function (req, res) {
           var _qFields = '(UserName, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime)';
           var _qValues = '("' + _userName + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date + '")';
           var _qUpdates = 'UserName="' + _userName + '", LastName="' + _lastName + '"' + ', FirstName="' + _firstName + '"' + ', EmpID="' + _empID + '"' + ', UserEmail="' + _userEmail + '"' + ', Status="' + _status + '"' + ', UpdateTime="' + _date + '"' + '"';
-          var parmQuery3 = 'UPDATE foxwatchusers SET ' + _qUpdates + ' WHERE UserName="' + _userName + '"';
+          var parmQuery3 = 'UPDATE foxwatchusers SET ' + _qUpdates + ' WHERE GuardID="' + req.param.GuardID + '"';
           //console.log('parmQuery3= '+parmQuery3);
           return parmQuery3;
         };
         return { updateUser: updateUser };
-      })();//end of revealing module
+      })();
 
-      //set the privilege level for database based on the user input
-      var _privLevel = '';
-      if (req.body.privLevel == 'User') {
-        _privLevel = '1';
-      } else if (req.body.privLevel == 'Administrator') {
-        _privLevel = '2';
-      } else { _privLevel = '3' }
 
-      //set the status  for database based on the user input
       console.log('here is the status ' + req.body.status)
 
       var _status = '';
@@ -299,15 +271,12 @@ exports.updateGuard = function (req, res) {
   });
 };
 
-////////////////////////////////////////////////
-// delete the record from the database        //
-////////////////////////////////////////////////
 module.exports.deleteGuard = function (req, res) {
 
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
@@ -337,7 +306,7 @@ module.exports.deleteGuard = function (req, res) {
       }
     });
   };
-}; //end of handler
+}; 
 
 
 
