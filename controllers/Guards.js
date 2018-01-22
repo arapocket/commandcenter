@@ -76,7 +76,7 @@ module.exports.guardAddToDb = function (req, res) {
           /**
            * Call common handler to hash the password with 'salt' and store both in db
            */
-          var _passData = user.saltHashPassword(field2);
+          var _passData = Guard.saltHashPassword(field2);
           var _password = _passData.hash
           var _rgen = _passData.salt
           console.log('password returned : ' + _password)

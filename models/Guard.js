@@ -133,8 +133,22 @@ module.exports.updateGuard = function (Guard, callback) {
             });
         }
     });
-
 }
+
+module.exports.saltHashPassword = function (userpassword) {
+        var salt = genRandomString(16); /** Gives us salt of length 16 */
+        var passwordData = sha512(userpassword, salt);
+        console.log('UserPassword = '+userpassword);
+        console.log('Passwordhash = '+passwordData.passwordHash);
+        console.log('nSalt = '+passwordData.salt);
+        return {
+            hash : passwordData.passwordHash,
+            salt : salt
+        }
+    
+    
+    };
+    
 
 
 
