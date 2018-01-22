@@ -97,7 +97,7 @@ module.exports.guardAddToDb = function (req, res) {
           var _date = datetime.syncCurrentDateTimeforDB();
 
           var _qFields = '(UserName, Password, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime, RGen, GuardID)';
-          var _qValues = '("' + _userName + '", "' + _password + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date + '", "' + _privLevel + '", "' + _rgen + '", "' + _guardID + '")';
+          var _qValues = '("' + _userName + '", "' + _password + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date +  '", "' + _rgen + '", "' + _guardID + '")';
           var parmQuery3 = 'INSERT INTO foxwatchusers ' + _qFields + ' VALUES ' + _qValues;
           //console.log('parmQuery3= '+parmQuery3);
           return parmQuery3;
