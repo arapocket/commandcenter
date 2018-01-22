@@ -535,6 +535,9 @@ function onTrashRoute(addRouteButton, trashRouteButton, removeCheckpointButton, 
 
 function onEndPatrol(id, endPatrolButton) {
 
+
+    bootbox.alert("Hello world!");
+
     socket.emit('stop', id);
 
     endPatrolButton.style.display = 'none';
