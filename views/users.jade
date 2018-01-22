@@ -24,8 +24,8 @@ block content
                         -each result in results
                             tr
                                     td
-                                        a(href="/userModify/#{result.GuardID}")  Edit |
-                                        a(href="/userDelete/#{result.GuardID}")  Delete
+                                        a(href="/userModify/#{result.UserName}")  Edit |
+                                        a(href="/userDelete/#{result.UserName}")  Delete
                                        
                                     td=result.UserName
                                     td=result.LastName
