@@ -4,6 +4,50 @@ var Guard = require('../models/Guard');
 var db = require('../models/db');
 var datetime = require('./datetime');
 
+
+//////////////////////////////
+//   show the list of guards //
+//////////////////////////////
+module.exports.guardList = function (req, res) {
+  sess = req.session;
+  // initializes the success/error messages for the report generation
+  // ..so that messages are removed after leaving and re-entering the attendance ascreen
+  sess.rptSuccess = null;
+  sess.rptError = null;
+
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+      if (typeof sess.username == 'undefined') res.redirect('/');
+      else {
+
+    db.createConnection(function (err, reslt) {
+      if (err) {
+        callback(err, null);
+      } else {
+        //process the i/o after successful connect.  Connection object returned in callback
+        var connection = reslt;
+
+        var _sqlQ = "SELECT * FROM foxwatchusers";
+        connection.query(_sqlQ, function (err, results) {
+          if (err) { console.log('user query bad' + err); connection.end(); callback(true); return; }
+
+          connection.end()
+          /**
+           * Only show the users screen if user has privilege
+           * 
+           */
+          if (sess.userType == '2') {
+            res.render('guardlist', { title: 'Command Center', username: req.session.username, results });
+          } else {
+            res.render('Unauthorized', { title: 'Command Center' });
+          }
+
+        });
+      }
+    });
+      }
+};
+
+
 module.exports.getAllGuards = function (req, res) {
   Guard.getAllGuards(function (err, result) {
     if (err) {
@@ -126,7 +170,7 @@ module.exports.guardAddToDb = function (req, res) {
         } else {
 
           connection.end();
-          res.status(301).redirect('/users');
+          res.status(301).redirect('/guardlist');
         }
       });//end of connection.query
     }
