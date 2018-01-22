@@ -10,6 +10,7 @@ function imageError() {
 function initMap() {
 
     var socket = io();
+    var bootbox = require('bootbox');
 
     console.log("initMap called");
 
