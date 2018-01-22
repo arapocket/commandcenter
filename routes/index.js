@@ -100,6 +100,17 @@ router.post('/userDelete/:userName', users.userDeleteOne);
  *  ================================================
  */
 
+var Guards = require('../controllers/Guards');
+
+router.get('/guardAdd', Guards.guardAdd);
+
+
+
+router.get('/guards', Guards.getAllGuards);
+router.get('/guards/:id', Guards.getGuardByID);
+router.post('/guards', Guards.addGuard);
+router.delete('/guards/:id', Guards.deleteGuard);
+router.put('/guards', Guards.updateGuard);
 
 
 
@@ -214,12 +225,6 @@ router.get('/incidentpreview/:id', IncidentDetails.getIncidentPreview);
 
 
 //////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
-var Guards = require('../controllers/Guards');
-router.get('/guards', Guards.getAllGuards);
-router.get('/guards/:id', Guards.getGuardByID);
-router.post('/guards', Guards.addGuard);
-router.delete('/guards/:id', Guards.deleteGuard);
-router.put('/guards', Guards.updateGuard);
 
 var Patrols = require('../controllers/Patrols');
 router.get('/patrols', Patrols.getAllPatrols);
