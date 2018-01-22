@@ -93,6 +93,25 @@ router.get('/userDelete/:userName', users.userGetOneForDelete);
 router.post('/userDelete/:userName', users.userDeleteOne);
 
 
+/**
+ * ================================================
+ * // ###### Mon Jan 22 11:35:45 PST 2018 ARA
+ * routes for adding a guard to FoxWatch
+ *  ================================================
+ */
+
+
+
+
+
+
+/**
+ *  ================================================
+ * 
+ */
+
+
+
 // Routes for VERIFY (records of scans through the verify app)
 // show events list
 router.get('/verifyRecords', verify.verifyHome);

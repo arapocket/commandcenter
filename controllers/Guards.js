@@ -37,6 +37,25 @@ exports.addGuard = function (req, res) {
   });
 };
 
+
+exports.guardAdd = function(req, res) {
+  sess=req.session;
+    // don't let nameless people view the dashboard, redirect them back to the homepage
+    if (typeof sess.username == 'undefined') res.redirect('/');
+    else {
+
+    var name = req.query.name;
+    /**
+     * Only show the users screen if user has privilege
+     */
+    if (sess.userType == '2'){
+        res.render('guardAdd', { title: 'Command Center'});
+      } else {
+        res.render('Unauthorized', { title: 'Command Center'});
+      }
+ };
+};
+
 exports.deleteGuard = function (req, res) {
   Guard.deleteGuard(req.params.id, function (err, result) {
     if (err) {
