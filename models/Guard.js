@@ -186,7 +186,7 @@ module.exports.authenticateUser = function (Guard, callback) {
     /**
      * Check the user table for the name and retrieve salt
      */
-    db.createConnection(function (esrr, reslt) {
+    db.createConnection(function (err, reslt) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);
             callback(err, null);
