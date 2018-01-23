@@ -221,7 +221,6 @@ module.exports.authenticateUser = function (Guard, callback) {
                          */
                         if (result[0].Status == '1') {
 
-                            console.log('sess.userType = ' + sess.userType);
                             callback(null, 'Authentication_success');
                         } else {
                             callback('Authentication_fail_status', null);
