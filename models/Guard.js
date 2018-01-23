@@ -186,14 +186,14 @@ module.exports.authenticateUser = function (Guard, callback) {
     /**
      * Check the user table for the name and retrieve salt
      */
-    db.createConnection(function (err, reslt) {
+    db.createConnection(function (esrr, reslt) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
-            var strSQL = 'select * from foxwatchusers where UserName="' + Guard.Username + '"';
+            var strSQL = 'select * from guard where UserName="' + Guard.Username + '"';
             console.log('USER ADD strSQL= ' + strSQL);
             var query = connection.query(strSQL, function (err, result) {
 
