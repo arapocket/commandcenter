@@ -193,7 +193,7 @@ module.exports.authenticateUser = function (Guard, callback) {
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
-            var strSQL = 'select * from foxwatchusers where UserName="' + Guard.UserName + '"';
+            var strSQL = 'select * from foxwatchusers where UserName="' + Guard.Username + '"';
             console.log('USER ADD strSQL= ' + strSQL);
             var query = connection.query(strSQL, function (err, result) {
 
