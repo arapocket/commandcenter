@@ -350,7 +350,7 @@ module.exports.authenticateGuard = function (req, res) {
     Guard.authenticateUser(req.body, function (err, authResult) {
       if (err) {
         console.log(err)
-          res.json('failed');
+          res.json(err);
       } else {
           res.json('success');
       }
