@@ -324,7 +324,7 @@ module.exports.deleteGuard = function (req, res) {
         //process the i/o after successful connect.  Connection object returned in callback
         var connection = reslt;
 
-        var strSQL = 'DELETE FROM users WHERE UserName="' + req.params.userName + '"';
+        var strSQL = 'DELETE FROM foxwatchusers WHERE GuardID="' + req.params.GuardID + '"';
         console.log('here is the query string' + strSQL);
         var query = connection.query(strSQL, function (err, results) {
 
@@ -332,10 +332,10 @@ module.exports.deleteGuard = function (req, res) {
             console.log(err)
             connection.end();
             //sess.error = 'There was a problem updating the mobss database: '+err;
-            res.render('users', { title: 'Command Center' });
+            res.render('guardList', { title: 'Command Center' });
           } else {
             connection.end();
-            res.status(301).redirect('/users');
+            res.status(301).redirect('/guardList');
 
 
           };
