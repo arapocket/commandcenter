@@ -198,7 +198,7 @@ module.exports.getGuardByID = function (req, res) {
 };
 
 module.exports.getGuardByUsername = function (req, res) {
-  Patrol.getGuardByUsername(req.params.username, function (err, result) {
+  Guard.getGuardByUsername(req.params.username, function (err, result) {
     if (err) {
       res.json(err);
     }
