@@ -161,40 +161,6 @@ module.exports.guardAddToDb = function (req, res) {
 };
 
 
-module.exports.getGuardByID = function (req, res) {
-
-  sess = req.session;
-  // don't let nameless people view the dashboard, redirect them back to the homepage
-  if (typeof sess.username == 'undefined') res.redirect('/');
-  else {
-
-    db.createConnection(function (err, reslt) {
-      if (err) {
-        console.log('Error while performing common connect query: ' + err);
-        callback(err, null);
-      } else {
-        var connection = reslt;
-
-        var strSQL = 'SELECT * FROM guard WHERE GuardID="' + req.params.GuardID + '"';
-        console.log('here is the query string' + strSQL);
-        var query = connection.query(strSQL, function (err, results) {
-
-          if (err) {
-            console.log(err)
-            connection.end();
-            //sess.error = 'There was a problem updating the mobss database: '+err;
-            res.render('guardlist', { title: 'Command Center' });
-          } else {
-            connection.end();
-            res.render('guardModify', { title: 'Command Center', results });
-
-
-          };
-        });
-      }
-    });
-  };
-};
 
 module.exports.getGuardByID = function (req, res) {
 
