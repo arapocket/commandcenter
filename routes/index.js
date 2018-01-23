@@ -93,12 +93,12 @@ router.get('/userDelete/:userName', users.userGetOneForDelete);
 router.post('/userDelete/:userName', users.userDeleteOne);
 
 
-/**
- * ================================================
+/************************************************************************
+ * ======================================================================
  * // ###### Mon Jan 22 11:35:45 PST 2018 ARA
  * routes for adding a guard to FoxWatch
- *  ================================================
- */
+ * ======================================================================
+ *************************************************************************/
 
 var Guards = require('../controllers/Guards');
 
@@ -118,15 +118,15 @@ router.post('/guardDelete/:GuardID', Guards.deleteGuard);
 router.get('/guards', Guards.getAllGuards);
 router.get('/guards/:id', Guards.getGuardByID);
 router.get('/getGuard/:username', Guards.getGuardByUsername);
-router.post('/guards', Guards.addGuard);
 router.put('/guards', Guards.updateGuardLogin);
+router.put('/addDeviceToken', Guards.addDeviceToken);
 
 
 // router.delete('/guards/:id', Guards.deleteGuard);
 // router.put('/guards', Guards.updateGuard);
 
 /**
- *  ================================================
+ *  ======================================================================
  * 
  */
 

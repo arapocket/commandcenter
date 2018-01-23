@@ -56,18 +56,6 @@ module.exports.getAllGuards = function (req, res) {
 };
 
 
-exports.addGuard = function (req, res) {
-  Guard.addGuard(req.body, function (err, result) {
-    if (err) {
-      res.json(err);
-    }
-    else {
-      res.json(req.body);
-    }
-  });
-};
-
-
 exports.guardAdd = function (req, res) {
   sess = req.session;
   // don't let nameless people view the dashboard, redirect them back to the homepage
@@ -294,6 +282,18 @@ module.exports.updateGuardLogin = function (req, res) {
     }
   });
 };
+
+module.exports.addDeviceToken = function (req, res) {
+  Guard.addDeviceToken(req.body, function (err, result) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+};
+
 
 module.exports.getGuardForDelete = function (req, res) {
 
