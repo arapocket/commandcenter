@@ -23,7 +23,7 @@ module.exports.guardList = function (req, res) {
         //process the i/o after successful connect.  Connection object returned in callback
         var connection = reslt;
 
-        var _sqlQ = "SELECT * FROM foxwatchusers";
+        var _sqlQ = "SELECT * FROM guard";
         connection.query(_sqlQ, function (err, results) {
           if (err) { console.log('user query bad' + err); connection.end(); callback(true); return; }
 
@@ -126,7 +126,7 @@ module.exports.guardAddToDb = function (req, res) {
 
           var _qFields = '(UserName, Password, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime, RGen, GuardID)';
           var _qValues = '("' + _userName + '", "' + _password + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date + '", "' + _rgen + '", "' + _guardID + '")';
-          var parmQuery3 = 'INSERT INTO foxwatchusers ' + _qFields + ' VALUES ' + _qValues;
+          var parmQuery3 = 'INSERT INTO guard ' + _qFields + ' VALUES ' + _qValues;
           //console.log('parmQuery3= '+parmQuery3);
           return parmQuery3;
         };
@@ -175,7 +175,7 @@ module.exports.getGuardByID = function (req, res) {
       } else {
         var connection = reslt;
 
-        var strSQL = 'SELECT * FROM foxwatchusers WHERE GuardID="' + req.params.GuardID + '"';
+        var strSQL = 'SELECT * FROM guard WHERE GuardID="' + req.params.GuardID + '"';
         console.log('here is the query string' + strSQL);
         var query = connection.query(strSQL, function (err, results) {
 
@@ -228,7 +228,7 @@ exports.updateGuard = function (req, res) {
           var _qFields = '(UserName, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime)';
           var _qValues = '("' + _userName + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date +  '")';
           var _qUpdates = 'UserName="' + _userName + '", LastName="' + _lastName + '"' + ', FirstName="' + _firstName + '"' + ', EmpID="' + _empID + '"' + ', UserEmail="' + _userEmail + '"' + ', Status="' + _status + '"' + ', UpdateTime="' + _date + '"' +   '"'  + '"';
-          var parmQuery3 = 'UPDATE foxwatchusers SET ' + _qUpdates + ' WHERE GuardID="' + req.params.GuardID + '"';
+          var parmQuery3 = 'UPDATE guard SET ' + _qUpdates + ' WHERE GuardID="' + req.params.GuardID + '"';
           //console.log('parmQuery3= '+parmQuery3);
           return parmQuery3;
         };
@@ -287,7 +287,7 @@ module.exports.getGuardForDelete = function (req, res) {
         //process the i/o after successful connect.  Connection object returned in callback
         var connection = reslt;
 
-        var strSQL = 'SELECT * FROM foxwatchusers WHERE GuardID="' + req.params.GuardID + '"';
+        var strSQL = 'SELECT * FROM guard WHERE GuardID="' + req.params.GuardID + '"';
         console.log('here is the query string' + strSQL);
         var query = connection.query(strSQL, function (err, results) {
 
@@ -324,7 +324,7 @@ module.exports.deleteGuard = function (req, res) {
         //process the i/o after successful connect.  Connection object returned in callback
         var connection = reslt;
 
-        var strSQL = 'DELETE FROM foxwatchusers WHERE GuardID="' + req.params.GuardID + '"';
+        var strSQL = 'DELETE FROM guard WHERE GuardID="' + req.params.GuardID + '"';
         console.log('here is the query string' + strSQL);
         var query = connection.query(strSQL, function (err, results) {
 
