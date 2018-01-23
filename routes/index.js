@@ -102,6 +102,8 @@ router.post('/userDelete/:userName', users.userDeleteOne);
 
 var Guards = require('../controllers/Guards');
 
+router.post('/guardauth', Guards.authenticateGuard);
+
 router.get('/guardlist', Guards.guardList);
 
 router.get('/guardAdd', Guards.guardAdd);

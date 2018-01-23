@@ -345,6 +345,19 @@ module.exports.deleteGuard = function (req, res) {
   };
 }; 
 
+module.exports.authenticateGuard = function (req, res) {
+
+    Guard.authenticateUser(req.body, function (err, authResult) {
+      if (err) {
+        console.log(err)
+          res.json('failed');
+      } else {
+          res.json('success');
+      }
+
+    });
+  
+}; // feb--end of exports home
 
 
 
