@@ -70,14 +70,14 @@ exports.addGuard = function (req, res) {
 
 exports.guardAdd = function (req, res) {
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
-        var name = req.query.name;
-        /**
-         * Only show the users screen if user has privilege
-         */
+    var name = req.query.name;
+    /**
+     * Only show the users screen if user has privilege
+     */
     if (sess.userType == '2') {
       res.render('guardAdd', { title: 'Command Center' });
     } else {
@@ -158,7 +158,7 @@ module.exports.guardAddToDb = function (req, res) {
     }
   });
 
-}; 
+};
 
 
 module.exports.getGuardByID = function (req, res) {
@@ -194,7 +194,54 @@ module.exports.getGuardByID = function (req, res) {
       }
     });
   };
-}; 
+};
+
+module.exports.getGuardByID = function (req, res) {
+
+  sess = req.session;
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
+
+    db.createConnection(function (err, reslt) {
+      if (err) {
+        console.log('Error while performing common connect query: ' + err);
+        callback(err, null);
+      } else {
+        var connection = reslt;
+
+        var strSQL = 'SELECT * FROM guard WHERE GuardID="' + req.params.GuardID + '"';
+        console.log('here is the query string' + strSQL);
+        var query = connection.query(strSQL, function (err, results) {
+
+          if (err) {
+            console.log(err)
+            connection.end();
+            //sess.error = 'There was a problem updating the mobss database: '+err;
+            res.render('guardlist', { title: 'Command Center' });
+          } else {
+            connection.end();
+            res.render('guardModify', { title: 'Command Center', results });
+
+
+          };
+        });
+      }
+    });
+  };
+};
+
+module.exports.getGuardByUsername = function (req, res) {
+  Patrol.getGuardByUsername(req.params.username, function (err, result) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+};
+
 
 exports.updateGuard = function (req, res) {
   sess = req.session;
@@ -226,8 +273,8 @@ exports.updateGuard = function (req, res) {
 
 
           var _qFields = '(UserName, LastName, FirstName, EmpID, UserEmail, Status, UpdateTime)';
-          var _qValues = '("' + _userName + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date +  '")';
-          var _qUpdates = 'UserName="' + _userName + '", LastName="' + _lastName + '"' + ', FirstName="' + _firstName + '"' + ', EmpID="' + _empID + '"' + ', UserEmail="' + _userEmail + '"' + ', Status="' + _status + '"' + ', UpdateTime="' + _date + '"' +   '"'  + '"';
+          var _qValues = '("' + _userName + '", "' + _lastName + '", "' + _firstName + '", "' + _empID + '", "' + _userEmail + '", "' + _status + '", "' + _date + '")';
+          var _qUpdates = 'UserName="' + _userName + '", LastName="' + _lastName + '"' + ', FirstName="' + _firstName + '"' + ', EmpID="' + _empID + '"' + ', UserEmail="' + _userEmail + '"' + ', Status="' + _status + '"' + ', UpdateTime="' + _date + '"' + '"' + '"';
           var parmQuery3 = 'UPDATE guard SET ' + _qUpdates + ' WHERE GuardID="' + req.params.GuardID + '"';
           //console.log('parmQuery3= '+parmQuery3);
           return parmQuery3;
@@ -271,12 +318,23 @@ exports.updateGuard = function (req, res) {
   });
 };
 
+module.exports.updateGuardLogin = function (req, res) {
+  Guard.updateGuardLogin(req.body, function (err, result) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+};
+
 module.exports.getGuardForDelete = function (req, res) {
 
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
@@ -343,20 +401,20 @@ module.exports.deleteGuard = function (req, res) {
       }
     });
   };
-}; 
+};
 
 module.exports.authenticateGuard = function (req, res) {
 
-    Guard.authenticateUser(req.body, function (err, authResult) {
-      if (err) {
-        console.log(err)
-          res.json(err);
-      } else {
-          res.json('success');
-      }
+  Guard.authenticateUser(req.body, function (err, authResult) {
+    if (err) {
+      console.log(err)
+      res.json(err);
+    } else {
+      res.json('success');
+    }
 
-    });
-  
+  });
+
 }; // feb--end of exports home
 
 

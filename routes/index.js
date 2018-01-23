@@ -118,6 +118,8 @@ router.post('/guardDelete/:GuardID', Guards.deleteGuard);
 router.get('/guards', Guards.getAllGuards);
 router.get('/guards/:id', Guards.getGuardByID);
 router.post('/guards', Guards.addGuard);
+router.put('/guards', Guards.updateGuardLogin);
+
 // router.delete('/guards/:id', Guards.deleteGuard);
 // router.put('/guards', Guards.updateGuard);
 

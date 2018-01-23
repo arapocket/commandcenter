@@ -87,6 +87,30 @@ module.exports.getGuardByID = function (id, callback) {
     });
 }
 
+module.exports.getGuardByUsername = function (username, callback) {
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = " Select * from guard where UserName = '" + username + "';";
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select guardpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+}
 
 module.exports.addGuard = function (Guard, callback) {
 
@@ -164,6 +188,32 @@ module.exports.updateGuard = function (Guard, callback) {
             });
         }
     });
+}
+
+module.exports.updateGuardLogin = function (Guard, callback) {
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = "Update guard SET LoggedIn = " + Guard.LoggedIn + " WHERE GuardID =  '" + Guard.GuardID + "';";
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+                } else {
+                    console.log('error with the select patrolpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+
 }
 
 module.exports.saltHashPassword = function (userpassword) {
