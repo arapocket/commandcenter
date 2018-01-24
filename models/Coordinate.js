@@ -67,7 +67,7 @@ module.exports.addCoordinate = function (Coordinate, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into coordinate values ('" + Coordinate.CoordID + "', '" + Coordinate.Sequence + "', '" + Coordinate.lat + "', '" + Coordinate.lng + "', '" + Coordinate.PatrolID + "', " + Coordinate.CurrentCoord +  " );";
+            var strSQL = "Insert into coordinate values ('" + Coordinate.CoordID + "', '" + Coordinate.Sequence + "', '" + Coordinate.lat + "', '" + Coordinate.lng + "', '" + Coordinate.PatrolID + "', " + Coordinate.CurrentCoord + " );";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -119,7 +119,7 @@ module.exports.updateCoordinate = function (Coordinate, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update currentguards SET CurrentCoord = " + Coordinate.CurrentCoord + " WHERE GuardID = '" + Coordinate.GuardID + "';" ; 
+            var strSQL = "Update currentguards SET CurrentCoord = " + Coordinate.CurrentCoord + " WHERE GuardID = '" + Coordinate.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

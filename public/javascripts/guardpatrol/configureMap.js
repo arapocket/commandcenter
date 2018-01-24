@@ -406,11 +406,6 @@ function onRemoveCheckpoint(route) {
 
 function onSaveRoute(route, addRouteButton, trashRouteButton, removeCheckpointButton, loadRouteButton, saveRouteButton, map) {
 
-    /*
-    TODO: 
-    -- create a dialogue popup with radio buttons to choose the guard to save for
-    **/
-
     addRouteButton.style.display = 'none';
     trashRouteButton.style.display = 'none';
     removeCheckpointButton.style.display = 'none';
@@ -627,7 +622,7 @@ function postCheckpoints(route, routeID) {
         s++;
 
     }
-    alert("Route has been saved as the current route!");
+    bootbox.alert('Route has been saved as the current route!', callback)
 }
 
 function loadCurrentRoutes(routeID, map, route) {
