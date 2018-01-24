@@ -622,7 +622,7 @@ function postCheckpoints(route, routeID) {
         s++;
 
     }
-    bootbox.alert('Route has been saved as the current route!', callback)
+    bootbox.alert('Route has been saved as the current route!')
 }
 
 function loadCurrentRoutes(routeID, map, route) {
