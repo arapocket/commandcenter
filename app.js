@@ -316,7 +316,7 @@ io.on('connection', function (socket) {
   var note = new apn.Notification();
 
   note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-  note.sound = "chime.caf";
+  note.sound = "chime.aiff";
   note.badge = 0;
   note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
   note.payload = { 'messageFrom': 'GREYFOX' };
