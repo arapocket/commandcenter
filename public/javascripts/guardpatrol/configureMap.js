@@ -189,7 +189,7 @@ function createGuards(map, locations) {
 
         onLoadRoute(map, route, id);
 
-
+ 
         createGuardMarker(location, locations, map, route, id);
 
     }
