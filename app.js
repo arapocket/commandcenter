@@ -303,8 +303,8 @@ io.on('connection', function (socket) {
 
   const notificationOptions = {
     token: {
-      key: "C:/Users/Administrator/greyfox/certificates/AuthKey_M4D8R5539E.p8",
-      keyId: "M4D8R5539E",
+      key: "C:/Users/Administrator/greyfox/certificates/AuthKey_U6BYE7K8Q5.p8",
+      keyId: "U6BYE7K8Q5",
       teamId: "KUJ3K83XLJ"
     },
     production: false
