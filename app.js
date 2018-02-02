@@ -243,6 +243,12 @@ var numUsers = 0;
 
 io.on('connection', function (socket) {
 
+  initializeSockets(socket);
+
+});
+
+
+function initializeSockets(socket){
   /*
   =====================================================================
   =====================================================================
@@ -402,9 +408,10 @@ io.on('connection', function (socket) {
         numUsers: numUsers
       });
     }
-  });
-});
 
+    initializeSockets(socket)
+  });
+}
 
 
 
