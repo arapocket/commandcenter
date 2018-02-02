@@ -409,7 +409,6 @@ function initializeSockets(socket){
       });
     }
 
-    initializeSockets(socket)
   });
 }
 
