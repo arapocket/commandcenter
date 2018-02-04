@@ -17,6 +17,7 @@ function renderIncidentPreview(){
     incidentVideo.style.display = 'block';
 
     incidentVideo.onerror = function (){
+        console.log('incidentView.onerror called');
         incidentVideo.style.display = 'none';
         window.close();
     }
