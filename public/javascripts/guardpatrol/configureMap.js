@@ -317,14 +317,6 @@ function createIncidentMarkers(incidents, map, iconsBase) {
         ` + incidents[i].Description + `
         </h6> ` +
             `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
-
-
-
-        // <a href = "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/`
-        //     + incidents[i].IncidentID +
-        //     `"><img id ="incidentImage" src="https://s3-us-west-2.amazonaws.com/foxwatch/`
-        //     + incidents[i].IncidentID + `"height="120" width="120" onerror="imageError()" ></a> `
-
         let markerWindow = new google.maps.InfoWindow({
             content: windowString,
             maxWidth: 160
