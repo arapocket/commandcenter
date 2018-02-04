@@ -69,6 +69,7 @@ function setRefreshButtonListeners() {
     }
     else {
         currentButtonValue = buttonValues.OFF;
+        autoRefreshButtonTEN.style.display = "none";
     }
 
     autoRefreshButtonOFF.addEventListener('click', function (e) {

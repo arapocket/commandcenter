@@ -15,6 +15,11 @@ function renderIncidentPreview(){
     incidentPhoto.style.display = 'none';
     incidentVideo.src = "https://s3-us-west-2.amazonaws.com/foxwatch/" + incident[0].IncidentID;
     incidentVideo.style.display = 'block';
+
+    incidentVideo.onerror = function (){
+        incidentVideo.style.display = 'none';
+    }
+
     
     } 
 
