@@ -19,7 +19,7 @@ function renderIncidentPreview(){
     incidentVideo.onerror = function (){
         console.log('incidentView.onerror called');
         incidentVideo.style.display = 'none';
-        document.style.width = 0;
+        document.body.style.display = 'none';
     }
 
     
