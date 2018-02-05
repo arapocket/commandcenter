@@ -14,9 +14,9 @@ html(lang='en')
 	.row																			   
 		.col-md-12.col-sm-12.col-xs-12
 			a(id = 'imageAnchor' href='' target="_parent")		
-				img#incidentPhoto(src="",  width = "100%", height = "100%", align = "center", display = 'none')
+				img#incidentPhoto(src="", width = "100%", height = "100%", align = "center", display = 'none')
 			a(id = 'videoAnchor' href='' target="_parent")		
-				video#incidentVideo(src="",  width = "100%", height = "100%", align = "center" display = "none" autoplay = "" loop = "true" )
+				video#incidentVideo(src="", width = "100%", height = "100%", align = "center", display = "none", autoplay = "", loop = "true" )
 			script(src='/javascripts/guardpatrol/renderIncidentPreview.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
