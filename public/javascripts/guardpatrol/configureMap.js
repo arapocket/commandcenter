@@ -159,6 +159,9 @@ function initMap() {
                 if (path.length > 0) {
                     let firstCheckpoint = path[0];
 
+
+                    console.log('logging firstCheckpoint ' + firstCheckpoint);
+
                     map.setCenter({
                         lat: firstCheckpoint.lat,
                         lng: firstCheckpoint.lng
