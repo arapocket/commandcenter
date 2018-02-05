@@ -155,10 +155,17 @@ function initMap() {
 
             loadRouteButton.addEventListener('click', function (e) {
                 let path = route.getPath().getArray();
-                let firstCheckpoint = path[0];
 
-                console.log('logging path ' + path);
-                console.log('logging firstCheckpoint ' + firstCheckpoint);
+                if (path.length > 0) {
+                    let firstCheckpoint = path[0];
+
+                    map.setCenter({
+                        lat: firstCheckpoint.lat,
+                        lng: firstCheckpoint.lng
+                    });
+    
+                }
+
 
                 onLoadRoute(map, route, id);
             });
