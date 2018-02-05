@@ -154,7 +154,7 @@ function initMap() {
             });
 
             loadRouteButton.addEventListener('click', function (e) {
-                let path = JSON.stringify(route.getPath());
+                let path = route.getPath();
                 let firstCheckpoint = path[0];
 
                 console.log('logging path ' + path);
