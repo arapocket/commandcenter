@@ -159,9 +159,7 @@ function initMap() {
                 if (path.length > 0) {
                     let firstCheckpoint = path[0];
                     console.log('logging firstCheckpoint ' + firstCheckpoint);
-                    map.setCenter(new google.maps.LatLng(firstCheckpoint));
-
-    
+                    map.setCenter(firstCheckpoint);
                 }
 
 
