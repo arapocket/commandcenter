@@ -154,7 +154,15 @@ function initMap() {
             });
 
             loadRouteButton.addEventListener('click', function (e) {
+                let path = route.getPath();
+                let firstCheckpoint = path[0];
+
+                console.log('logging firstCheckpoint ' + firstCheckpoint);
+
                 onLoadRoute(map, route, id);
+
+
+                map.setCenter(route.getPath())
             });
 
             saveRouteButton.addEventListener('click', function (e) {
@@ -656,10 +664,6 @@ function initMap() {
                 route.getPath().push(latLng);
             }
 
-            map.setCenter({
-                lat: checkpoints[0].lat,
-                lng: checkpoints[0].lng
-            });
         }
 
     }
