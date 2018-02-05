@@ -154,7 +154,6 @@ function initMap() {
             });
 
             loadRouteButton.addEventListener('click', function (e) {
-
                 onLoadRoute(map, route, id);
             });
 
@@ -650,16 +649,15 @@ function initMap() {
     function loadRoutesOnMap(checkpoints, map, route) {
 
         route.setPath([]);
-
-
         for (i = 0; i < checkpoints.length; i++) {
             var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
             route.getPath().push(latLng);
         }
 
-
-
-
+        map.setCenter({
+            lat: checkpoints[0].lat,
+            lng: checkpoints[0].lng
+        });
     }
 
     function createRouteID() {
