@@ -105,7 +105,7 @@ module.exports.getActiveGuards = (function (req, res) {
     // *************    SHOW ALL INCIDENTS ON MAP
 
     // CREATE VIEW allincidents
-    // AS SELECT i.IncidentID, i.Description, i.Type, i.lat, i.lng, p.CurrentPatrol
+    // AS SELECT i.IncidentID, i.Description, i.Type, i.lat, i.lng, p.CurrentPatrol, i.Media
     // FROM incident i
     // INNER JOIN patrol p ON i.PatrolID = p.PatrolID;
 
