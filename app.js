@@ -235,7 +235,7 @@ if (process.env.CC_SSL == "YES") {
 
 var app = express();
 var io = require('socket.io')(server);
-
+const apn = require("apn");
 
 // Chatroom
 
@@ -243,20 +243,20 @@ var numUsers = 0;
 
 io.on('connection', function (socket) {
 
-  initializeSockets(socket);
+  initializeSockets(socket, apn);
 
 });
 
 
-function initializeSockets(socket) {
+function initializeSockets(socket, apn) {
 
   console.log('initializeSockets called')
 
-  getDevices(socket);
+  getDevices(socket, apn);
 
 }
 
-function getDevices(socket) {
+function getDevices(socket, apn) {
 
 
   console.log('get devices called ');
@@ -298,7 +298,7 @@ function getDevices(socket) {
 
         console.log('logging tokens from getDevices()');
         console.log(tokens);
-        setSocketListeners(tokens, socket);
+        setSocketListeners(tokens, socket, apn);
 
 
       } catch (e) {
@@ -313,9 +313,7 @@ function getDevices(socket) {
 
 }
 
-function setSocketListeners(tokens, socket){
-
-  const apn = require("apn");
+function setSocketListeners(tokens, socket, apn){
 
   const notificationOptions = {
     token: {
