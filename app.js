@@ -419,6 +419,8 @@ function getDevices() {
 
         console.log('logging tokens from getDevices()');
         console.log(tokens);
+        console.log('returning tokens');
+        return tokens;
 
       } catch (e) {
         console.error(e.message);
@@ -429,8 +431,7 @@ function getDevices() {
   });
 
 
-  console.log('returning tokens');
-  return tokens;
+
 }
 
 
