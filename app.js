@@ -364,10 +364,6 @@ function initializeSockets(socket) {
 
  */
 
-socket.on('user left', function (data) {
-  console.log('user left heard');
-})
-
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
 
