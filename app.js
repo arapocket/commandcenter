@@ -308,8 +308,6 @@ function initializeSockets(socket) {
       message: data
     });
 
-    // tokens = getDevices();
-
     apnProvider.send(note, tokens).then((result) => {
       var res = JSON.stringify(result);
       console.log('logging tokens: ' + tokens);
@@ -364,7 +362,7 @@ function initializeSockets(socket) {
     if (addedUser) {
       --numUsers;
 
-      tokens = getDevices();
+      // tokens = getDevices();
 
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
