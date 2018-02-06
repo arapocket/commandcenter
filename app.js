@@ -258,7 +258,7 @@ function initializeSockets(socket){
   **/
 
 
-  let tokens = getDevices();
+  var tokens = getDevices();
 
   const apn = require("apn");
 
