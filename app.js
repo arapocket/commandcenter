@@ -354,7 +354,7 @@ function initializeSockets(socket) {
     });
   })
 
-  socket.on('user left', function () {
+  socket.on('user left', function (data) {
       tokens = getDevices();
   })
 
