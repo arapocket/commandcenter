@@ -390,7 +390,7 @@ function initializeSockets(socket) {
 function getDevices() {
 
   console.log('get devices called ');
-  let tokens = [];
+  var tokens = [];
 
   http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/activeguards', (res) => {
     const { statusCode } = res;
