@@ -365,14 +365,10 @@ function initializeSockets(socket) {
         username: socket.username,
         numUsers: numUsers
       });
+    } else {
+      tokens = getDevices();
     }
 
-  });
-
-  // when someone else disconnects, do this
-  socket.on('user left', function (data) {
-    console.log('user left heard')
-    tokens = getDevices();
   });
 
 
