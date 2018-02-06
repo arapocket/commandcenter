@@ -260,11 +260,11 @@ function initializeSockets(socket) {
   **/
 
 
-  getDevices();
+  getDevices(socket);
 
 }
 
-function getDevices() {
+function getDevices(socket) {
 
   console.log('get devices called ');
   var tokens = [];
