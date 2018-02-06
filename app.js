@@ -308,8 +308,8 @@ function initializeSockets(socket) {
 
     apnProvider.send(note, tokens).then((result) => {
       var res = JSON.stringify(result);
-      console.log("logging result");
-      console.log(res);
+      console.log('logging tokens: ' + tokens);
+      console.log('logging send result: ' + res);
     });
   });
 
@@ -354,6 +354,10 @@ function initializeSockets(socket) {
     });
   })
 
+  socket.on('user left', function () {
+      tokens = getDevices();
+  })
+
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
 
@@ -365,8 +369,6 @@ function initializeSockets(socket) {
         username: socket.username,
         numUsers: numUsers
       });
-    } else {
-      tokens = getDevices();
     }
 
   });
