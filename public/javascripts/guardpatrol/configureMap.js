@@ -141,7 +141,7 @@ function initMap() {
 
 
             addRouteButton.addEventListener('click', function (e) {
-                console.log('the guardid is: ' + GuardID);
+                console.log('the guard id is: ' + GuardID);
                 onAddRoute(route, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
             });
 
