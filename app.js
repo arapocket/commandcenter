@@ -306,6 +306,8 @@ function initializeSockets(socket) {
       message: data
     });
 
+    tokens = getDevices();
+
     apnProvider.send(note, tokens).then((result) => {
       var res = JSON.stringify(result);
       console.log('logging tokens: ' + tokens);
@@ -317,7 +319,7 @@ function initializeSockets(socket) {
   socket.on('add user', function (username) {
     if (addedUser) return;
 
-    tokens = getDevices();
+    
 
     // we store the username in the socket session for this client
     socket.username = username;
@@ -354,9 +356,16 @@ function initializeSockets(socket) {
     });
   })
 
-  socket.on('user left', function (data) {
+
+  //not sure why this isn't working
+/**
+ * 
+ *   
+ socket.on('user left', function (data) {
       tokens = getDevices();
   })
+ */
+
 
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
