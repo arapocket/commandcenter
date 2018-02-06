@@ -377,6 +377,8 @@ function initializeSockets(socket){
 }
 
 function getDevices(){
+
+  console.log('get devices called ');
   let tokens = [];
 
   http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/activeguards', (res) => {
@@ -420,6 +422,7 @@ function getDevices(){
     console.error(`Got error: ${e.message}`);
   });
 
+  console.log(tokens);
 return tokens;
 }
 
