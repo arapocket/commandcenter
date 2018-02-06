@@ -429,6 +429,7 @@ function getDevices() {
   });
 
 
+  console.log('returning tokens');
   return tokens;
 }
 
