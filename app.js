@@ -425,6 +425,10 @@ function getDevices() {
 
           tokens.push(parsedData[i].DeviceToken);
         }
+
+        console.log('logging tokens from getDevices()');
+        console.log(tokens);
+
       } catch (e) {
         console.error(e.message);
       }
@@ -433,8 +437,7 @@ function getDevices() {
     console.error(`Got error: ${e.message}`);
   });
 
-  console.log('logging tokens from getDevices()');
-  console.log(tokens);
+
   return tokens;
 }
 
