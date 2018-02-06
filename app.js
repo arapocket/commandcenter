@@ -306,7 +306,7 @@ function initializeSockets(socket) {
       message: data
     });
 
-    tokens = getDevices();
+    // tokens = getDevices();
 
     apnProvider.send(note, tokens).then((result) => {
       var res = JSON.stringify(result);
