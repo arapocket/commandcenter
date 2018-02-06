@@ -433,7 +433,8 @@ function getDevices() {
     console.error(`Got error: ${e.message}`);
   });
 
-  console.log('logging tokens from getDevices()' + tokens);
+  console.log('logging tokens from getDevices()');
+  console.log(tokens);
   return tokens;
 }
 
