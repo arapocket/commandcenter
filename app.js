@@ -249,6 +249,8 @@ io.on('connection', function (socket) {
 
 
 function initializeSockets(socket) {
+
+  console.log('initializeSockets called')
   /*
   =====================================================================
   =====================================================================
@@ -356,19 +358,13 @@ function initializeSockets(socket) {
     });
   })
 
-
-  //not sure why this isn't working
-/**
- * 
- *   
-
- */
-
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
 
     if (addedUser) {
       --numUsers;
+
+      tokens = getDevices();
 
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
