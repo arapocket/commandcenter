@@ -305,7 +305,7 @@ function getDevices(socket) {
 
         console.log('logging tokens from getDevices()');
         console.log(tokens);
-        setSocketListeners(tokens);
+        setSocketListeners(tokens, socket);
 
 
       } catch (e) {
@@ -320,7 +320,7 @@ function getDevices(socket) {
 
 }
 
-function setSocketListeners(tokens){
+function setSocketListeners(tokens, socket){
 
   const apn = require("apn");
 
