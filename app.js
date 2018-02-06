@@ -248,7 +248,7 @@ io.on('connection', function (socket) {
 });
 
 
-function initializeSockets(socket){
+function initializeSockets(socket) {
   /*
   =====================================================================
   =====================================================================
@@ -348,7 +348,7 @@ function initializeSockets(socket){
   });
 
   // when the End Patrol buttons is pressed.. do this
-  socket.on('stop', function (){
+  socket.on('stop', function () {
     socket.broadcast.emit('patrol stop', {
       id: socket.id
     });
@@ -369,17 +369,18 @@ function initializeSockets(socket){
 
   });
 
-// when someone else disconnects, do this
-  socket.on('user left', function () {
-
+  // when someone else disconnects, do this
+  socket.on('user left', function (data) {
     console.log('user left heard')
-
     tokens = getDevices();
-  })
+  });
+
+
+
 
 }
 
-function getDevices(){
+function getDevices() {
 
   console.log('get devices called ');
   let tokens = [];
@@ -426,7 +427,7 @@ function getDevices(){
   });
 
   console.log(tokens);
-return tokens;
+  return tokens;
 }
 
 
