@@ -257,53 +257,8 @@ function initializeSockets(socket){
   =====================================================================
   **/
 
-  let tokens = [];
 
-  http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/activeguards', (res) => {
-    const { statusCode } = res;
-    const contentType = res.headers['content-type'];
-
-    let error;
-    if (statusCode !== 200) {
-      error = new Error('Request Failed.\n' +
-        `Status Code: ${statusCode}`);
-    } else if (!/^application\/json/.test(contentType)) {
-      error = new Error('Invalid content-type.\n' +
-        `Expected application/json but received ${contentType}`);
-    }
-    if (error) {
-      console.error(error.message);
-      // consume response data to free up memory
-      res.resume();
-      return;
-    }
-
-    res.setEncoding('utf8');
-    let rawData = '';
-    res.on('data', (chunk) => { rawData += chunk; });
-    res.on('end', () => {
-      try {
-        const parsedData = JSON.parse(rawData);
-        console.log(parsedData);
-
-        for (var i = 0; i < parsedData.length; i++) {
-          // console.log('logging a guard device token ');
-          // console.log(parsedData[i].DeviceToken);
-
-          tokens.push(parsedData[i].DeviceToken);
-
-        }
-
-
-      } catch (e) {
-        console.error(e.message);
-      }
-    });
-  }).on('error', (e) => {
-    console.error(`Got error: ${e.message}`);
-  });
-
-
+  let tokens = getDevices();
 
   const apn = require("apn");
 
@@ -362,6 +317,8 @@ function initializeSockets(socket){
   socket.on('add user', function (username) {
     if (addedUser) return;
 
+    tokens = getDevices();
+
     // we store the username in the socket session for this client
     socket.username = username;
     ++numUsers;
@@ -410,6 +367,53 @@ function initializeSockets(socket){
     }
 
   });
+}
+
+function getDevices(){
+  let tokens = [];
+
+  http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/activeguards', (res) => {
+    const { statusCode } = res;
+    const contentType = res.headers['content-type'];
+
+    let error;
+    if (statusCode !== 200) {
+      error = new Error('Request Failed.\n' +
+        `Status Code: ${statusCode}`);
+    } else if (!/^application\/json/.test(contentType)) {
+      error = new Error('Invalid content-type.\n' +
+        `Expected application/json but received ${contentType}`);
+    }
+    if (error) {
+      console.error(error.message);
+      // consume response data to free up memory
+      res.resume();
+      return;
+    }
+
+    res.setEncoding('utf8');
+    let rawData = '';
+    res.on('data', (chunk) => { rawData += chunk; });
+    res.on('end', () => {
+      try {
+        const parsedData = JSON.parse(rawData);
+        console.log(parsedData);
+
+        for (var i = 0; i < parsedData.length; i++) {
+          // console.log('logging a guard device token ');
+          // console.log(parsedData[i].DeviceToken);
+
+          tokens.push(parsedData[i].DeviceToken);
+        }
+      } catch (e) {
+        console.error(e.message);
+      }
+    });
+  }).on('error', (e) => {
+    console.error(`Got error: ${e.message}`);
+  });
+
+return tokens;
 }
 
 
