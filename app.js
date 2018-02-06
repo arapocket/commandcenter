@@ -306,7 +306,7 @@ function initializeSockets(socket) {
       message: data
     });
 
-    // tokens = getDevices();
+    tokens = getDevices();
 
     apnProvider.send(note, tokens).then((result) => {
       var res = JSON.stringify(result);
@@ -433,7 +433,7 @@ function getDevices() {
     console.error(`Got error: ${e.message}`);
   });
 
-  console.log(tokens);
+  console.log('logging tokens from getDevices()' + tokens);
   return tokens;
 }
 
