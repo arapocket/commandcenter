@@ -357,8 +357,6 @@ function initializeSockets(socket){
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
 
-    tokens = getDevices();
-
     if (addedUser) {
       --numUsers;
 
@@ -370,6 +368,12 @@ function initializeSockets(socket){
     }
 
   });
+
+// when someone else disconnects, do this
+  socket.on('user left', function () {
+    tokens = getDevices();
+  })
+
 }
 
 function getDevices(){
