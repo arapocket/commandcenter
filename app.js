@@ -371,6 +371,9 @@ function initializeSockets(socket){
 
 // when someone else disconnects, do this
   socket.on('user left', function () {
+
+    console.log('user left heard')
+
     tokens = getDevices();
   })
 
