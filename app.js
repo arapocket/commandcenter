@@ -285,11 +285,10 @@ function getDevices(socket) {
       try {
         const parsedData = JSON.parse(rawData);
         console.log(parsedData);
-
+        tokens = [];
         for (var i = 0; i < parsedData.length; i++) {
           // console.log('logging a guard device token ');
           // console.log(parsedData[i].DeviceToken);
-          tokens = [];
           tokens.push(parsedData[i].DeviceToken);
         }
 
@@ -425,8 +424,6 @@ function setSocketListeners(socket){
 
     if (addedUser) {
       --numUsers;
-
-      // tokens = getDevices();
 
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
