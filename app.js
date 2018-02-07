@@ -306,8 +306,6 @@ function getDevices(socket) {
     console.error(`Got error: ${e.message}`);
   });
 
-
-
 }
 
 function setSocketListeners(socket){
@@ -406,8 +404,11 @@ function setSocketListeners(socket){
     });
   })
 
-  socket.on('patrol start', function () {
+  socket.on('patrol start', function (data) {
       console.log('patrol start test');
+      console.log('logging the data we got');
+      console.log(data);
+      // patrolPost(data);
   })
 
   // when the user disconnects.. perform this
@@ -431,6 +432,74 @@ function setSocketListeners(socket){
 
 }
 
+function patrolPost(data){
+  let patrolID = Math.random().toString(36).substr(2, 9);
+
+
+  const postData = querystring.stringify({
+
+  });
+  
+  const options = {
+    hostname: 'www.google.com',
+    port: 80,
+    path: '/upload',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': Buffer.byteLength(postData)
+    }
+  };
+
+  http.request('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols', (res) => {
+    const { statusCode } = res;
+    const contentType = res.headers['content-type'];
+
+    let error;
+    if (statusCode !== 200) {
+      error = new Error('Request Failed.\n' +
+        `Status Code: ${statusCode}`);
+    } else if (!/^application\/json/.test(contentType)) {
+      error = new Error('Invalid content-type.\n' +
+        `Expected application/json but received ${contentType}`);
+    }
+    if (error) {
+      console.error(error.message);
+      // consume response data to free up memory
+      res.resume();
+      return;
+    }
+
+    res.setEncoding('utf8');
+    let rawData = '';
+    res.on('data', (chunk) => { rawData += chunk; });
+    res.on('end', () => {
+      try {
+        const parsedData = JSON.parse(rawData);
+        console.log(parsedData);
+
+        for (var i = 0; i < parsedData.length; i++) {
+          // console.log('logging a guard device token ');
+          // console.log(parsedData[i].DeviceToken);
+          tokens = [];
+          tokens.push(parsedData[i].DeviceToken);
+        }
+
+        console.log('logging tokens from getDevices()');
+        console.log(tokens);
+        setSocketListeners(socket);
+
+
+      } catch (e) {
+        console.error(e.message);
+      }
+    });
+  }).on('error', (e) => {
+    console.error(`Got error: ${e.message}`);
+  });
+
+
+}
 
 
 
