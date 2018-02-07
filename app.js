@@ -290,6 +290,7 @@ function getDevices(socket) {
           // console.log('logging a guard device token ');
           // console.log(parsedData[i].DeviceToken);
           tokens.push(parsedData[i].DeviceToken);
+          console.log('pushed a token');
         }
 
         console.log('logging tokens from getDevices()');
