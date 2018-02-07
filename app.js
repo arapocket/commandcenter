@@ -411,6 +411,13 @@ function setSocketListeners(socket){
       patrolPost(data, socket);
   })
 
+  socket.on('ended patrol', function (data) {
+    console.log('ended patrol test');
+    console.log('logging the data we got');
+    console.log(data);
+    patrolPut(data, socket);
+})
+
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
 
@@ -452,6 +459,50 @@ function patrolPost(data, socket){
     port: 3000,
     path: '/patrols',
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': Buffer.byteLength(postData)
+    }
+  };
+
+  const req = http.request(options, (res) => {
+    console.log(`STATUS: ${res.statusCode}`);
+    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
+      console.log(`BODY: ${chunk}`);
+    });
+    res.on('end', () => {
+      console.log('No more data in response.');
+      initializeSockets(socket);
+    });
+  });
+  
+  req.on('error', (e) => {
+    console.error(`problem with request: ${e.message}`);
+  });
+  
+  // write data to request body
+  req.write(postData);
+  req.end();
+
+
+}
+
+function patrolPut(data, socket){
+
+  const querystring = require('querystring');
+
+  const postData = querystring.stringify({
+    'GuardID': data.GuardID,
+    'CurrentPatrol': 0
+  });
+  
+  const options = {
+    hostname: 'ec2-34-210-155-178.us-west-2.compute.amazonaws.com',
+    port: 3000,
+    path: '/patrols',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(postData)
