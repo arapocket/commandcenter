@@ -408,7 +408,7 @@ function setSocketListeners(socket){
       console.log('patrol start test');
       console.log('logging the data we got');
       console.log(data);
-      // patrolPost(data);
+      patrolPost(data);
   })
 
   // when the user disconnects.. perform this
@@ -433,17 +433,17 @@ function setSocketListeners(socket){
 }
 
 function patrolPost(data){
-  let patrolID = Math.random().toString(36).substr(2, 9);
-
 
   const postData = querystring.stringify({
-
+    'PatrolID': data.PatrolID,
+    'GuardID': data.GuardID,
+    'CurrentPatrol': 1
   });
   
   const options = {
-    hostname: 'www.google.com',
-    port: 80,
-    path: '/upload',
+    hostname: 'http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com',
+    port: 3000,
+    path: '/patrols',
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -451,52 +451,25 @@ function patrolPost(data){
     }
   };
 
-  http.request('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols', (res) => {
-    const { statusCode } = res;
-    const contentType = res.headers['content-type'];
-
-    let error;
-    if (statusCode !== 200) {
-      error = new Error('Request Failed.\n' +
-        `Status Code: ${statusCode}`);
-    } else if (!/^application\/json/.test(contentType)) {
-      error = new Error('Invalid content-type.\n' +
-        `Expected application/json but received ${contentType}`);
-    }
-    if (error) {
-      console.error(error.message);
-      // consume response data to free up memory
-      res.resume();
-      return;
-    }
-
+  const req = http.request(options, (res) => {
+    console.log(`STATUS: ${res.statusCode}`);
+    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
     res.setEncoding('utf8');
-    let rawData = '';
-    res.on('data', (chunk) => { rawData += chunk; });
-    res.on('end', () => {
-      try {
-        const parsedData = JSON.parse(rawData);
-        console.log(parsedData);
-
-        for (var i = 0; i < parsedData.length; i++) {
-          // console.log('logging a guard device token ');
-          // console.log(parsedData[i].DeviceToken);
-          tokens = [];
-          tokens.push(parsedData[i].DeviceToken);
-        }
-
-        console.log('logging tokens from getDevices()');
-        console.log(tokens);
-        setSocketListeners(socket);
-
-
-      } catch (e) {
-        console.error(e.message);
-      }
+    res.on('data', (chunk) => {
+      console.log(`BODY: ${chunk}`);
     });
-  }).on('error', (e) => {
-    console.error(`Got error: ${e.message}`);
+    res.on('end', () => {
+      console.log('No more data in response.');
+    });
   });
+  
+  req.on('error', (e) => {
+    console.error(`problem with request: ${e.message}`);
+  });
+  
+  // write data to request body
+  req.write(postData);
+  req.end();
 
 
 }
