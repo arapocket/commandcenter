@@ -442,9 +442,9 @@ function patrolPost(data){
   console.log(guardID);
 
   const postData = JSON.stringify({
-    'PatrolID': patrolID,
-    'GuardID': guardID,
-    'CurrentPatrol': 1
+    PatrolID: patrolID,
+    GuardID: guardID,
+    CurrentPatrol: 1
   });
   
   const options = {
