@@ -235,7 +235,7 @@ if (process.env.CC_SSL == "YES") {
 
 var app = express();
 var io = require('socket.io')(server);
-const apn = require("apn");
+var tokens = [];
 
 // Chatroom
 
@@ -243,24 +243,21 @@ var numUsers = 0;
 
 io.on('connection', function (socket) {
 
-  initializeSockets(socket, apn);
+  initializeSockets(socket);
 
 });
 
 
-function initializeSockets(socket, apn) {
+function initializeSockets(socket) {
 
   console.log('initializeSockets called')
 
-  getDevices(socket, apn);
+  getDevices(socket);
 
 }
 
-function getDevices(socket, apn) {
+function getDevices(socket) {
 
-
-  console.log('get devices called ');
-  var tokens = [];
 
   http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/activeguards', (res) => {
     const { statusCode } = res;
@@ -292,13 +289,13 @@ function getDevices(socket, apn) {
         for (var i = 0; i < parsedData.length; i++) {
           // console.log('logging a guard device token ');
           // console.log(parsedData[i].DeviceToken);
-
+          tokens = [];
           tokens.push(parsedData[i].DeviceToken);
         }
 
         console.log('logging tokens from getDevices()');
         console.log(tokens);
-        setSocketListeners(tokens, socket, apn);
+        setSocketListeners(socket);
 
 
       } catch (e) {
@@ -313,7 +310,9 @@ function getDevices(socket, apn) {
 
 }
 
-function setSocketListeners(tokens, socket, apn){
+function setSocketListeners(socket){
+
+  const apn = require("apn");
 
   const notificationOptions = {
     token: {
