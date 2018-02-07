@@ -286,6 +286,8 @@ function getDevices(socket) {
         const parsedData = JSON.parse(rawData);
         console.log(parsedData);
         tokens = [];
+        console.log('logging parsedData.length')
+        console.log(parsedData.length);
         for (var i = 0; i < parsedData.length; i++) {
           // console.log('logging a guard device token ');
           // console.log(parsedData[i].DeviceToken);
