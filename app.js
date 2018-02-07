@@ -441,7 +441,7 @@ function patrolPost(data){
   });
   
   const options = {
-    hostname: 'http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com',
+    hostname: 'ec2-34-210-155-178.us-west-2.compute.amazonaws.com',
     port: 3000,
     path: '/patrols',
     method: 'POST',
