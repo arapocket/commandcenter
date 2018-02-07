@@ -409,6 +409,8 @@ function setSocketListeners(socket){
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
 
+    initializeSockets(socket);
+
     if (addedUser) {
       --numUsers;
 
