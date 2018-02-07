@@ -434,9 +434,12 @@ function setSocketListeners(socket){
 
 function patrolPost(data){
 
+  let patrolID = JSON.stringify(data.patrolID);
+  let guardID = JSON.stringify(data.GuardID);
+
   const postData = JSON.stringify({
-    'PatrolID': data.PatrolID,
-    'GuardID': data.GuardID,
+    'PatrolID': patrolID,
+    'GuardID': guardID,
     'CurrentPatrol': 1
   });
   
