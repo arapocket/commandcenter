@@ -406,6 +406,11 @@ function setSocketListeners(socket){
     });
   })
 
+  socket.on('patrol stop', function () {
+      console.log('patrol stop test');
+  })
+
+
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
 
