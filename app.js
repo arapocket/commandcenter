@@ -235,7 +235,7 @@ if (process.env.CC_SSL == "YES") {
 
 var app = express();
 var io = require('socket.io')(server);
-var tokens = [];
+let tokens = [];
 
 // Chatroom
 
