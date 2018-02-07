@@ -408,7 +408,7 @@ function setSocketListeners(socket){
       console.log('patrol start test');
       console.log('logging the data we got');
       console.log(data);
-      patrolPost(data);
+      patrolPost(data, socket);
   })
 
   // when the user disconnects.. perform this
@@ -432,7 +432,7 @@ function setSocketListeners(socket){
 
 }
 
-function patrolPost(data){
+function patrolPost(data, socket){
 
   const querystring = require('querystring');
 
@@ -467,6 +467,7 @@ function patrolPost(data){
     });
     res.on('end', () => {
       console.log('No more data in response.');
+      initializeSockets(socket);
     });
   });
   
