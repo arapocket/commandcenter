@@ -377,12 +377,12 @@ function initMap() {
             })
             for (i = 0; i < coords.length; i++) {
                 if (coords[i].PatrolID == patrols[p].PatrolID) {
-                    var latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+                    let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                     if (i > 0) {
-                        var lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
+                        let lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
                         console.log(latLng.lat());
                         console.log(lastLocation.lat());
-                        var locAccurate = locationIsAccurate(latLng, lastLocation);
+                        let locAccurate = locationIsAccurate(latLng, lastLocation);
                         if (locAccurate) {
                             patrol.getPath().push(latLng);
                         } else {
