@@ -1,6 +1,13 @@
 function locationIsAccurate(location, lastLocation) {
   
 
+
+  console.log('logging location')
+  console.log(location);
+
+  console.log('logging lastLocation')
+  console.log(lastLocation);
+
         let maxDelta = 0.0001;
 
         let deltaLatitude = Math.abs(
