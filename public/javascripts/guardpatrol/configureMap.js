@@ -45,8 +45,6 @@ function initMap() {
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
 
-
-
     function setRefreshButtonListeners() {
 
         let buttonValues = {

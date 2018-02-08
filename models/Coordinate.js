@@ -96,11 +96,14 @@ module.exports.deleteCoordinate = function (id, callback) {
             var strSQL = " delete from coordinate where CoordID = '" + id + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
+                    console.log('logging coord delete response');
+                    console.log(rows);
                     connection.end();
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select coordinatepatrol query');
+                    console.log('error with deleteCoordinate query');
+                    console.log(err);
                     connection.end();
                     callback(err, rows);
                 }
