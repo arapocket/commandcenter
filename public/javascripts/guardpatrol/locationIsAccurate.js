@@ -1,7 +1,7 @@
 function locationIsAccurate(location, lastLocation) {
   
 
-        let maxDelta = 0.00007;
+        let maxDelta = 0.0001;
 
         let deltaLatitude = Math.abs(
           (location.lat() - lastLocation.lat())
