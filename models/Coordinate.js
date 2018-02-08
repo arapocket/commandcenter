@@ -74,7 +74,8 @@ module.exports.addCoordinate = function (Coordinate, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select coordinatepatrol query');
+                    console.log('error with the add coordinate query');
+                    console.log(err);
                     connection.end();
                     callback(err, rows);
                 }
