@@ -3,10 +3,10 @@ function locationIsAccurate(location, lastLocation) {
 
 
   console.log('logging location')
-  console.log(location);
+  console.log(JSON.stringify(location));
 
   console.log('logging lastLocation')
-  console.log(lastLocation);
+  console.log(JSON.stringify(lastLocation));
 
         let maxDelta = 0.0001;
 
