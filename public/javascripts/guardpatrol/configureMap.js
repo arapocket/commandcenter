@@ -353,7 +353,7 @@ function initMap() {
     }
 
     function createPatrolPaths(patrols, coords, map) {
-        for (patrolsIndex = 0; patrolsIndex < patrols.length; patrolsIndex++) {
+        for (p = 0; p < patrols.length; p++) {
             // create a polyline for each
             var patrolSeq = {
                 repeat: '30px',
@@ -376,7 +376,7 @@ function initMap() {
                 icons: [patrolSeq]
             })
             for (i = 0; i < coords.length; i++) {
-                if (coords[i].PatrolID == patrols[patrolsIndex].PatrolID) {
+                if (coords[i].PatrolID == patrols[p].PatrolID) {
                     var latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                     if (i > 0) {
                         var lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
@@ -600,7 +600,7 @@ function initMap() {
         let s = 0;
         console.log("logging route:");
         console.log(route);
-        var coords = route.getPath().getArray();
+        let coords = route.getPath().getArray();
         console.log("logging coords:");
         console.log(coords);
         for (let latLng of coords) {
