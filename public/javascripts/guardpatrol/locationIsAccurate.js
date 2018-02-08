@@ -1,7 +1,8 @@
 function locationIsAccurate(location, lastLocation) {
     
-return true;
-        // let maxDelta = 0.001;
+  return true;
+  
+        // let maxDelta = 0.00007;
 
         // let deltaLatitude = Math.abs(
         //   (location.lat() - lastLocation.lat())
@@ -13,13 +14,13 @@ return true;
     
         // //CHECK IF DISTANCE IS TOO FAR, ie PREVENT WEIRD LINES ON MAP
     
-        // console.log("Comparing this location and last location:");
-        // console.log("Current Latitude: " + location.coords.latitude);
-        // console.log("Current Longitude: " + location.coords.longitude)
-        // console.log("Last Latitude: " + this.lastLocation.coords.latitude);
-        // console.log("Last Longitude: " + this.lastLocation.coords.longitude);
-        // console.log("Delta Latitude: " + deltaLatitude);
-        // console.log("Delta Longitude: " + deltaLongitude);
+        // // console.log("Comparing this location and last location:");
+        // // console.log("Current Latitude: " + location.coords.latitude);
+        // // console.log("Current Longitude: " + location.coords.longitude)
+        // // console.log("Last Latitude: " + this.lastLocation.coords.latitude);
+        // // console.log("Last Longitude: " + this.lastLocation.coords.longitude);
+        // // console.log("Delta Latitude: " + deltaLatitude);
+        // // console.log("Delta Longitude: " + deltaLongitude);
     
         // if (
         //   (
@@ -29,7 +30,6 @@ return true;
         //   return true;
         // } else {
         //   console.log("Location is not accurate: ignoring coordinate");
-        // //   this.patrol.getPath().pop();
         //   return false;
         // }
 
