@@ -14,10 +14,10 @@ function locationIsAccurate(location, lastLocation) {
         //CHECK IF DISTANCE IS TOO FAR, ie PREVENT WEIRD LINES ON MAP
     
         console.log("Comparing this location and last location:");
-        console.log("Current Latitude: " + location.coords.latitude);
-        console.log("Current Longitude: " + location.coords.longitude)
-        console.log("Last Latitude: " + this.lastLocation.coords.latitude);
-        console.log("Last Longitude: " + this.lastLocation.coords.longitude);
+        console.log("Current Latitude: " + location.lat());
+        console.log("Current Longitude: " + location.lng())
+        console.log("Last Latitude: " + this.lastLocation.lat());
+        console.log("Last Longitude: " + this.lastLocation.lng());
         console.log("Delta Latitude: " + deltaLatitude);
         console.log("Delta Longitude: " + deltaLongitude);
     
