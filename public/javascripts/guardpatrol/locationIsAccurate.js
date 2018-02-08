@@ -8,23 +8,29 @@ function locationIsAccurate(location, lastLocation) {
   console.log('logging lastLocation')
   console.log(JSON.stringify(lastLocation));
 
+  let locationLat = JSON.stringify(location.lat());
+  let locationLng = JSON.stringify(location.lng());
+
+  let lastLocationLat = JSON.stringify(lastLocation.lat());
+  let lastLocationLng = JSON.stringify(lastLocation.lng());
+
         let maxDelta = 0.0001;
 
         let deltaLatitude = Math.abs(
-          (location.lat() - lastLocation.lat())
+          (locationLat - lastLocationLat)
         )
     
         let deltaLongitude = Math.abs(
-          (location.lng() - lastLocation.lng())
+          (locationLng - lastLocationLng)
         )
     
         //CHECK IF DISTANCE IS TOO FAR, ie PREVENT WEIRD LINES ON MAP
     
         console.log("Comparing this location and last location:");
-        console.log("Current Latitude: " + location.lat());
-        console.log("Current Longitude: " + location.lng())
-        console.log("Last Latitude: " + this.lastLocation.lat());
-        console.log("Last Longitude: " + this.lastLocation.lng());
+        console.log("Current Latitude: " + locationLat);
+        console.log("Current Longitude: " + locationLng)
+        console.log("Last Latitude: " + this.lastLocationLat);
+        console.log("Last Longitude: " + this.lastLocationLng);
         console.log("Delta Latitude: " + deltaLatitude);
         console.log("Delta Longitude: " + deltaLongitude);
     
