@@ -22,7 +22,7 @@ function initMap() {
 
         console.log('logging locations[0]');
         console.log(locations[0]);
-        
+
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 20,
             center: { lat: locations[0].lat, lng: locations[0].lng },
@@ -39,42 +39,42 @@ function initMap() {
 
         createIncidentMarkers(incidents, map, iconsBase);
 
-        createPatrolPaths(patrols, coords, map);
+        // createPatrolPaths(patrols, coords, map);
 
-        createGuards(map, locations);
+        createGuards(map, locations, coords);
 
         createIncidentButtons(map, incidents);
 
 
-        var patrolSeq = {
-            repeat: '30px',
-            icon: {
-                path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-                scale: 1,
-                fillOpacity: 0,
-                strokeColor: "red",
-                strokeWeight: 1,
-                strokeOpacity: 1
-            }
-        };
-        var patrol = new google.maps.Polyline({
-            map: map,
-            zIndex: 1,
-            geodesic: true,
-            strokeColor: "purple",
-            strokeOpacity: 1,
-            strokeWeight: 5,
-            icons: [patrolSeq]
-        });
+        // var patrolSeq = {
+        //     repeat: '30px',
+        //     icon: {
+        //         path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+        //         scale: 1,
+        //         fillOpacity: 0,
+        //         strokeColor: "red",
+        //         strokeWeight: 1,
+        //         strokeOpacity: 1
+        //     }
+        // };
+        // var patrol = new google.maps.Polyline({
+        //     map: map,
+        //     zIndex: 1,
+        //     geodesic: true,
+        //     strokeColor: "purple",
+        //     strokeOpacity: 1,
+        //     strokeWeight: 5,
+        //     icons: [patrolSeq]
+        // });
 
 
 
-        socket.on('location', function (location) {
-            console.log('location heard from configureMap()');
-            console.log(location);
-            continuePath(patrol, location);
-          });
-    
+        // socket.on('location', function (location) {
+        //     console.log('location heard from configureMap()');
+        //     console.log(location);
+        //     continuePath(patrol, location);
+        //   });
+
 
     } else {
         var mapSpace = document.getElementById('map');
@@ -134,14 +134,14 @@ function initMap() {
         setTimeout("location.reload(true);", timeoutPeriod);
     }
 
-    function createGuards(map, locations) {
+    function createGuards(map, locations, coords) {
 
         var guardButtons = [];
 
         for (i = 0; i < locations.length; i++) {
-
-            let id = locations[i].GuardID;
-            let firstName = locations[i].FirstName;
+            let location = locations[i];
+            let id = location.GuardID;
+            let firstName = location.FirstName;
 
 
             let routeSeq = {
@@ -170,7 +170,7 @@ function initMap() {
             });
 
 
-            let GuardID = locations[i].GuardID;
+            let GuardID = location.GuardID;
 
             let removeCheckpointButton = parent.document.getElementById("removeCheckpointButton" + GuardID);
 
@@ -183,7 +183,6 @@ function initMap() {
             let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
 
             let endPatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
-
 
 
             addRouteButton.addEventListener('click', function (e) {
@@ -220,7 +219,7 @@ function initMap() {
                 onEndPatrol(id, firstName, endPatrolButton);
             });
 
-            let location = locations[i];
+
             let guardButton = parent.document.getElementById(location.GuardID);
 
             if (guardButton != null || guardButton != undefined) {
@@ -244,13 +243,13 @@ function initMap() {
 
             onLoadRoute(map, route, id);
 
-
             createGuardMarker(location, locations, map, route, id);
 
+            createPatrolPath(location, map, coords);
         }
-
-
     }
+
+
 
     function changeButtons(GuardID, locations, map, route) {
 
@@ -352,6 +351,13 @@ function initMap() {
         });
 
 
+        socket.on('location', function (location) {
+
+            let lat = location.location.coords.latitude;
+            let lng = location.location.coords.longitude;
+            marker.setPosition(new google.maps.LatLng(lat, lng))
+        });
+
     }
 
     function createIncidentMarkers(incidents, map, iconsBase) {
@@ -400,49 +406,102 @@ function initMap() {
         }
     }
 
-    function createPatrolPaths(patrols, coords, map) {
-        for (p = 0; p < patrols.length; p++) {
-            // create a polyline for each
-            var patrolSeq = {
-                repeat: '30px',
-                icon: {
-                    path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-                    scale: 1,
-                    fillOpacity: 0,
-                    strokeColor: "red",
-                    strokeWeight: 1,
-                    strokeOpacity: 1
-                }
-            };
-            var patrol = new google.maps.Polyline({
-                map: map,
-                zIndex: 1,
-                geodesic: true,
-                strokeColor: "purple",
-                strokeOpacity: 1,
-                strokeWeight: 5,
-                icons: [patrolSeq]
-            })
-            for (i = 0; i < coords.length; i++) {
-                if (coords[i].PatrolID == patrols[p].PatrolID) {
-                    let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
-                    if (i > 0) {
-                        let lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
-                        console.log(latLng.lat());
-                        console.log(lastLocation.lat());
-                        let locAccurate = locationIsAccurate(latLng, lastLocation);
-                        if (locAccurate) {
-                            patrol.getPath().push(latLng);
-                        } else {
-                            patrol.getPath().pop();
-                        }
-                    } else {
+    function createPatrolPath(location, map, coords) {
+
+        var patrolSeq = {
+            repeat: '30px',
+            icon: {
+                path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                scale: 1,
+                fillOpacity: 0,
+                strokeColor: "red",
+                strokeWeight: 1,
+                strokeOpacity: 1
+            }
+        };
+        var patrol = new google.maps.Polyline({
+            map: map,
+            zIndex: 1,
+            geodesic: true,
+            strokeColor: "purple",
+            strokeOpacity: 1,
+            strokeWeight: 5,
+            icons: [patrolSeq]
+        })
+
+
+        for (i = 0; i < coords.length; i++) {
+            if (coords[i].PatrolID == patrols[p].PatrolID) {
+                let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+                if (i > 0) {
+                    let lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
+                    console.log(latLng.lat());
+                    console.log(lastLocation.lat());
+                    let locAccurate = locationIsAccurate(latLng, lastLocation);
+                    if (locAccurate) {
                         patrol.getPath().push(latLng);
+                    } else {
+                        patrol.getPath().pop();
                     }
+                } else {
+                    patrol.getPath().push(latLng);
                 }
             }
         }
+
+        socket.on('location', function (location) {
+            // console.log('location heard from configureMap()');
+            // console.log(location);
+            continuePath(patrol, location);
+        });
+
+
+
     }
+
+    // function createPatrolPaths(patrols, coords, map) {
+    //     for (p = 0; p < patrols.length; p++) {
+    //         // create a polyline for each
+    //         var patrolSeq = {
+    //             repeat: '30px',
+    //             icon: {
+    //                 path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+    //                 scale: 1,
+    //                 fillOpacity: 0,
+    //                 strokeColor: "red",
+    //                 strokeWeight: 1,
+    //                 strokeOpacity: 1
+    //             }
+    //         };
+    //         var patrol = new google.maps.Polyline({
+    //             map: map,
+    //             zIndex: 1,
+    //             geodesic: true,
+    //             strokeColor: "purple",
+    //             strokeOpacity: 1,
+    //             strokeWeight: 5,
+    //             icons: [patrolSeq]
+    //         })
+    //         for (i = 0; i < coords.length; i++) {
+    //             if (coords[i].PatrolID == patrols[p].PatrolID) {
+    //                 let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+    //                 if (i > 0) {
+    //                     let lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
+    //                     console.log(latLng.lat());
+    //                     console.log(lastLocation.lat());
+    //                     let locAccurate = locationIsAccurate(latLng, lastLocation);
+    //                     if (locAccurate) {
+    //                         patrol.getPath().push(latLng);
+    //                     } else {
+    //                         patrol.getPath().pop();
+    //                     }
+    //                 } else {
+    //                     patrol.getPath().push(latLng);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     function onAddCheckpoint(route, latLng, map) {
         route.getPath().push(latLng);
