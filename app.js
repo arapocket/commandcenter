@@ -250,7 +250,7 @@ io.on('connection', function (socket) {
 
 function initializeSockets(socket) {
 
-  console.log('initializeSockets called')
+  console.log('B. initializeSockets called')
 
   getDevices(socket);
 
@@ -284,7 +284,7 @@ function getDevices(socket) {
     res.on('end', () => {
       try {
         const parsedData = JSON.parse(rawData);
-        console.log('logging parsed data');
+        console.log('C. logging parsed data');
         console.log(parsedData);
         tokens = [];
         console.log('logging parsedData.length')
@@ -449,6 +449,9 @@ function setSocketListeners(socket){
 }
 
 function patrolPost(data, socket){
+
+
+  console.log('A. patrolPost called');
 
   const querystring = require('querystring');
 
