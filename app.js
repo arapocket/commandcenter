@@ -283,6 +283,9 @@ function getDevices(socket) {
     res.on('data', (chunk) => { rawData += chunk; });
     res.on('end', () => {
       try {
+        console.log('logging data before it parses');
+        console.log(rawData);
+
         const parsedData = JSON.parse(rawData);
         console.log('C. logging parsed data');
         console.log(parsedData);
