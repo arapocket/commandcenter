@@ -87,8 +87,8 @@ function initMap() {
 
         console.log(location.location.coords);
 
-        let lat = JSON.stringify(location.location.coords.latitude);
-        let lng = JSON.stringify(location.location.coords.longitude);
+        let lat = location.location.coords.latitude;
+        let lng = location.location.coords.longitude;
 
         patrol.getPath().push({
             lat: lat,
