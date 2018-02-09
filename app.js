@@ -294,13 +294,11 @@ function getDevices(socket) {
           // console.log(parsedData[i].DeviceToken);
           tokens.push(parsedData[i].DeviceToken);
           console.log('pushed a token');
-          setSocketListeners(socket);
+          
         }
-
-        console.log('logging tokens from getDevices()');
+        console.log('I. logging tokens from getDevices()');
         console.log(tokens);
-        
-
+        setSocketListeners(socket);
 
       } catch (e) {
         console.error(e.message);
@@ -313,6 +311,9 @@ function getDevices(socket) {
 }
 
 function setSocketListeners(socket){
+
+
+  console.log('setSocketListeners called')
 
   const apn = require("apn");
 
@@ -348,6 +349,9 @@ function setSocketListeners(socket){
 
   var addedUser = false;
 
+  console.log('II. logging tokens from setSocketListeners()');
+  console.log(tokens);
+
   // when the client emits 'message', this listens and executes
   socket.on('message', function (data) {
     // we tell the client to execute 'new message'
@@ -359,6 +363,9 @@ function setSocketListeners(socket){
       username: socket.username,
       message: data
     });
+
+    console.log('III. logging tokens from on message listener');
+    console.log(tokens);
 
     apnProvider.send(note, tokens).then((result) => {
       var res = JSON.stringify(result);
