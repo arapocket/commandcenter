@@ -198,8 +198,8 @@ function initMap() {
 
                     console.log(guardButton.id + ' clicked');
 
-                    let lat = location.lat;
-                    let lng = location.lng;
+                    var lat = location.lat;
+                    var lng = location.lng;
                     socket.on('location', function (location) {
 
                         lat = location.location.coords.latitude;
