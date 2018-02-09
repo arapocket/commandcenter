@@ -447,6 +447,8 @@ function initMap() {
         postCheckpoints(route, routeID);
 
 
+        socket.emit('load route');
+
     }
 
     function onLoadRoute(map, route, id) {
@@ -482,6 +484,7 @@ function initMap() {
         xhr.send(null);
 
 
+        socket.emit('load route');
 
     }
 
