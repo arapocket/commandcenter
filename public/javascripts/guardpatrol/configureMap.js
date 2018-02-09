@@ -194,17 +194,18 @@ function initMap() {
 
             if (guardButton != null || guardButton != undefined) {
 
+                var lat = location.lat;
+                var lng = location.lng;
+
+                socket.on('location', function (location) {
+
+                    lat = location.location.coords.latitude;
+                    lng = location.location.coords.longitude;
+                });
+
                 guardButton.addEventListener('click', function (e) {
 
                     console.log(guardButton.id + ' clicked');
-
-                    var lat = location.lat;
-                    var lng = location.lng;
-                    socket.on('location', function (location) {
-
-                        lat = location.location.coords.latitude;
-                        lng = location.location.coords.longitude;
-                    });
 
                     map.setCenter({
                         lat: lat,
