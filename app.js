@@ -294,11 +294,12 @@ function getDevices(socket) {
           // console.log(parsedData[i].DeviceToken);
           tokens.push(parsedData[i].DeviceToken);
           console.log('pushed a token');
+          setSocketListeners(socket);
         }
 
         console.log('logging tokens from getDevices()');
         console.log(tokens);
-        setSocketListeners(socket);
+        
 
 
       } catch (e) {
