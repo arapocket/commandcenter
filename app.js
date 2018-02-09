@@ -438,7 +438,7 @@ function setSocketListeners(socket) {
       console.log('new incident heard');
       console.log(incident);
       socket.broadcast.emit('incident', {
-        incident: incidentID
+        incident: incident
       });
     })
 
