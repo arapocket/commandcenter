@@ -11,6 +11,7 @@ function initMap() {
 
     var socket = io();
 
+
     console.log("initMap called");
 
     var iconsBase = "http://maps.google.com/mapfiles/"
@@ -43,6 +44,11 @@ function initMap() {
         createGuards(map, locations);
 
         createIncidentButtons(map, incidents);
+
+        socket.on('location', function (data) {
+            createPatrolPaths(patrols, coords, map);
+          });
+    
 
     } else {
         var mapSpace = document.getElementById('map');
