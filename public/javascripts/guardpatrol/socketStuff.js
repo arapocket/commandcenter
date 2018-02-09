@@ -231,7 +231,7 @@ $(function () {
   socket.on('user joined', function (data) {
     log(data.username + ' joined');
     addParticipantsMessage(data);
-    parent.location.reload();
+    parent.window.onload = timedRefresh(3000);
   });
 
   // Whenever the server emits 'user left', log it in the chat body
