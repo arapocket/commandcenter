@@ -84,7 +84,7 @@ function initMap() {
     function continuePath(patrol, location) {
 
         console.log('continue path called');
-        patrol.getPath.push(location);
+        patrol.getPath().push(location);
     }
 
     function setRefreshButtonListeners() {
