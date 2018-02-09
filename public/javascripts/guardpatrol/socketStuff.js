@@ -232,20 +232,20 @@ $(function () {
     log(data.username + ' joined');
     addParticipantsMessage(data);
 
-    bootbox.confirm({
-      size: "small",
-      message: "A guard has started patrol. Allow page to refresh?",
-      callback: function (result) {
-          /* result is a boolean; true = OK, false = Cancel*/
-          if (result) {
-            setTimeout(
-              function () { parent.location.reload(); }, 2000
-            );
-          } else {
+  //   bootbox.confirm({
+  //     size: "small",
+  //     message: "A guard has started patrol. Allow page to refresh?",
+  //     callback: function (result) {
+  //         /* result is a boolean; true = OK, false = Cancel*/
+  //         if (result) {
+  //           setTimeout(
+  //             function () { parent.location.reload(); }, 2000
+  //           );
+  //         } else {
 
-          }
-      }
-  })
+  //         }
+  //     }
+  // })
 
 
   });
@@ -256,20 +256,20 @@ $(function () {
     addParticipantsMessage(data);
     removeChatTyping(data);
 
-    bootbox.confirm({
-      size: "small",
-      message: "A guard has ended patrol. Allow page to refresh?",
-      callback: function (result) {
-          /* result is a boolean; true = OK, false = Cancel*/
-          if (result) {
-            setTimeout(
-              function () { parent.location.reload(); }, 2000
-            );
-          } else {
+  //   bootbox.confirm({
+  //     size: "small",
+  //     message: "A guard has ended patrol. Allow page to refresh?",
+  //     callback: function (result) {
+  //         /* result is a boolean; true = OK, false = Cancel*/
+  //         if (result) {
+  //           setTimeout(
+  //             function () { parent.location.reload(); }, 2000
+  //           );
+  //         } else {
 
-          }
-      }
-  })
+  //         }
+  //     }
+  // })
 
 
 
