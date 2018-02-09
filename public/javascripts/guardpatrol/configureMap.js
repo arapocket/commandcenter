@@ -381,9 +381,78 @@ function initMap() {
             marker.addListener('click', function (e) {
                 markerWindow.open(map, marker);
             });
-
         }
     }
+
+    function createIncidentMarker(incidentID) {
+
+
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                console.log('logging incident GET response: ' + xhr.responseText);
+                let json = JSON.parse(xhr.responseText);
+                if (json.length > 0) {
+                    console.log('logging json from Incident GET');
+                    console.log(json);
+                }
+            }
+        }
+
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidents/" + incidentID, true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(null);
+
+
+            // var lat = incidents[i].lat;
+            // var lng = incidents[i].lng;
+
+            // console.log("logging IncidentID");
+            // console.log(incidents[i].IncidentID);
+
+            // let windowString = '';
+
+            // if (incidents[i].Media != 'none') {
+            //     windowString = `
+            //     <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
+            //     <h6 style="color:#404040"> 
+            //     ` + incidents[i].Description + `
+            //     </h6> ` +
+            //         `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
+
+            // } else {
+            //     windowString = `
+            //     <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
+            //     <h6 style="color:#404040"> 
+            //     ` + incidents[i].Description + `
+            //     </h6> `
+            // }
+
+            // let markerWindow = new google.maps.InfoWindow({
+            //     content: windowString,
+            //     maxWidth: 160
+            // });
+
+            // let marker = new google.maps.Marker({
+            //     position: { lat: lat, lng: lng },
+            //     map: map,
+            //     icon: iconsBase + "kml/pal3/icon59.png",
+            //     animation: google.maps.Animation.BOUNCE,
+            // });
+            // markerWindow.open(map, marker);
+            // marker.addListener('click', function (e) {
+            //     markerWindow.open(map, marker);
+            // });
+
+    }
+    
 
     function createPatrolPath(location, map, coords) {
 

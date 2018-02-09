@@ -31,7 +31,7 @@ module.exports.getAllIncidents = function (callback) {
 }
 
 
-module.exportsgetIncidentByID = function (id, callback) {
+module.exports.getIncidentByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);

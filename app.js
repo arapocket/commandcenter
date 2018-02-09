@@ -297,7 +297,7 @@ function getDevices(socket) {
           // console.log(parsedData[i].DeviceToken);
           tokens.push(parsedData[i].DeviceToken);
           console.log('pushed a token');
-          
+
         }
         console.log('I. logging tokens from getDevices()');
         console.log(tokens);
@@ -313,7 +313,7 @@ function getDevices(socket) {
 
 }
 
-function setSocketListeners(socket){
+function setSocketListeners(socket) {
 
 
   console.log('setSocketListeners called')
@@ -381,7 +381,7 @@ function setSocketListeners(socket){
   socket.on('add user', function (username) {
     if (addedUser) return;
 
-    
+
 
     // we store the username in the socket session for this client
     socket.username = username;
@@ -418,26 +418,35 @@ function setSocketListeners(socket){
     });
   })
 
-    // when a route is updated.. emit this so guard route updates
-    socket.on('load route', function () {
-      socket.broadcast.emit('new route', {
+  // when a route is updated.. emit this so guard route updates
+  socket.on('load route', function () {
+    socket.broadcast.emit('new route', {
+    });
+  })
+
+  // when a location is updated.. emit this so patrol path is drawn
+  socket.on('new location', function (location) {
+    console.log('new location heard');
+    console.log(location);
+    socket.broadcast.emit('location', {
+      location: location
+    });
+  })
+
+    // when a new incident is reported.. emit this
+    socket.on('new incident', function (incident) {
+      console.log('new incident heard');
+      console.log(incident);
+      socket.broadcast.emit('incident', {
+        incident: incidentID
       });
     })
 
-        // when a location is updated.. emit this so patrol path is drawn
-        socket.on('new location', function (location) {
-          console.log('new location heard');
-          console.log(location);
-          socket.broadcast.emit('location', {
-            location: location
-          });
-        })
-
   socket.on('patrol start', function (data) {
-      console.log('patrol start test');
-      console.log('logging the data we got');
-      console.log(data);
-      patrolPost(data, socket);
+    console.log('patrol start test');
+    console.log('logging the data we got');
+    console.log(data);
+    patrolPost(data, socket);
   })
 
   socket.on('ended patrol', function (data) {
@@ -445,7 +454,7 @@ function setSocketListeners(socket){
     console.log('logging the data we got');
     console.log(data);
     patrolPut(data, socket);
-})
+  })
 
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
@@ -466,7 +475,7 @@ function setSocketListeners(socket){
 
 }
 
-function patrolPost(data, socket){
+function patrolPost(data, socket) {
 
 
   console.log('A. patrolPost called');
@@ -474,7 +483,7 @@ function patrolPost(data, socket){
   const querystring = require('querystring');
 
 
-  console.log('logging the patrolID and guardID in patrolPost' );
+  console.log('logging the patrolID and guardID in patrolPost');
   console.log(data.PatrolID);
   console.log(data.GuardID);
 
@@ -483,7 +492,7 @@ function patrolPost(data, socket){
     'GuardID': data.GuardID,
     'CurrentPatrol': 1
   });
-  
+
   const options = {
     hostname: 'ec2-34-210-155-178.us-west-2.compute.amazonaws.com',
     port: 3000,
@@ -507,11 +516,11 @@ function patrolPost(data, socket){
       initializeSockets(socket);
     });
   });
-  
+
   req.on('error', (e) => {
     console.error(`problem with request: ${e.message}`);
   });
-  
+
   // write data to request body
   req.write(postData);
   req.end();
@@ -519,7 +528,7 @@ function patrolPost(data, socket){
 
 }
 
-function patrolPut(data, socket){
+function patrolPut(data, socket) {
 
   const querystring = require('querystring');
 
@@ -527,7 +536,7 @@ function patrolPut(data, socket){
     'GuardID': data.GuardID,
     'CurrentPatrol': 0
   });
-  
+
   const options = {
     hostname: 'ec2-34-210-155-178.us-west-2.compute.amazonaws.com',
     port: 3000,
@@ -551,11 +560,11 @@ function patrolPut(data, socket){
       initializeSockets(socket);
     });
   });
-  
+
   req.on('error', (e) => {
     console.error(`problem with request: ${e.message}`);
   });
-  
+
   // write data to request body
   req.write(postData);
   req.end();
