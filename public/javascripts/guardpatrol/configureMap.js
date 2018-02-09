@@ -90,10 +90,7 @@ function initMap() {
         let lat = location.location.coords.latitude;
         let lng = location.location.coords.longitude;
 
-        patrol.getPath().push({
-            lat: lat,
-            lng: lng
-        });
+        patrol.getPath().push(new google.maps.LatLng(lat, lng));
     }
 
     function setRefreshButtonListeners() {
