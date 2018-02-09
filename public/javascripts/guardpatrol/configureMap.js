@@ -426,7 +426,11 @@ function initMap() {
                         console.log(lastLocation.lat());
                         let locAccurate = locationIsAccurate(latLng, lastLocation);
                         if (locAccurate) {
-                            patrol.getPath().push(latLng);
+                            patrol.getPath().push({
+                                lat: location.coords.latitude,
+                                lng: location.coords.longitude
+                            }
+                            );
                         } else {
                             patrol.getPath().pop();
                         }
