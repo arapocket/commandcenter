@@ -259,7 +259,7 @@ function initializeSockets(socket) {
 function getDevices(socket) {
 
 
-  http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/activeguards', (res) => {
+  http.get('http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/guardnotifications', (res) => {
     const { statusCode } = res;
     const contentType = res.headers['content-type'];
 

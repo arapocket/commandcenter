@@ -29,6 +29,34 @@ module.exports.getAllGuards = function (callback) {
     });
 }
 
+// GETS ALL THE GUARDS WITH A CURRENT SHIFT (FOR SENDING NOTIFICATIONS -- does not ask for currentCoord = 1 to avoid async issues between foxwatch and greyfox)
+module.exports.getGuardsForNotifications = function (callback) {
+    //get a connection using the common handler in models/db.js
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = ' SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol, CurrentCoord FROM currentguards WHERE CurrentPatrol = 1 GROUP BY GuardID; ';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    console.log(rows);
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select guardpatrol query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+}
+
 
 // GETS ALL THE INCIDENTS IN THE CURRENT SHIFT
 module.exports.getAllIncidents = function (callback) {

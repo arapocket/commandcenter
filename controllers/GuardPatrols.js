@@ -72,6 +72,20 @@ module.exports.getActiveGuards = (function (req, res) {
 
 });
 
+module.exports.getGuardsForNotifications = (function (req, res) {
+
+  GuardPatrol.getGuardsForNotifications(function (err, getGuardsResult) {
+
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(getGuardsResult);
+    }
+
+  });
+
+});
 
 
 
