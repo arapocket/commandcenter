@@ -431,7 +431,7 @@ function initMap() {
 
 
         for (i = 0; i < coords.length; i++) {
-            if (coords[i].PatrolID == patrols[p].PatrolID) {
+            if (coords[i].PatrolID == location.PatrolID) {
                 let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                 if (i > 0) {
                     let lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
