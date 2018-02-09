@@ -1,3 +1,8 @@
+
+function socketStuff(){
+
+
+
 $(function () {
 
   console.log("socket stuff called");
@@ -303,3 +308,6 @@ $(function () {
 
 
 });
+
+
+}
