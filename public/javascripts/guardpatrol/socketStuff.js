@@ -1,8 +1,3 @@
-
-function socketStuff(){
-
-
-
 $(function () {
 
   console.log("socket stuff called");
@@ -239,7 +234,7 @@ $(function () {
 
     bootbox.confirm({
       size: "small",
-      message: "A guard has started their patrol. Allow page to refresh?",
+      message: "A guard has started patrol. Allow page to refresh?",
       callback: function (result) {
           /* result is a boolean; true = OK, false = Cancel*/
           if (result) {
@@ -308,6 +303,3 @@ $(function () {
 
 
 });
-
-
-}
