@@ -84,7 +84,14 @@ function initMap() {
     function continuePath(patrol, location) {
 
         console.log('continue path called');
-        patrol.getPath().push(location.coords);
+
+        let lat = JSON.stringify(location.coords.latitude);
+        let lng = JSON.stringify(location.coords.longitude);
+
+        patrol.getPath().push({
+            lat: lat,
+            lng: lng
+        });
     }
 
     function setRefreshButtonListeners() {
@@ -426,11 +433,7 @@ function initMap() {
                         console.log(lastLocation.lat());
                         let locAccurate = locationIsAccurate(latLng, lastLocation);
                         if (locAccurate) {
-                            patrol.getPath().push({
-                                lat: location.coords.latitude,
-                                lng: location.coords.longitude
-                            }
-                            );
+                            patrol.getPath().push(latLng);
                         } else {
                             patrol.getPath().pop();
                         }
