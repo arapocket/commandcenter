@@ -70,8 +70,8 @@ function initMap() {
 
 
         socket.on('location', function (location) {
-            // console.log('location heard from configureMap()');
-            // console.log(location);
+            console.log('location heard from configureMap()');
+            console.log(location);
             continuePath(patrol, location);
           });
     
@@ -84,7 +84,7 @@ function initMap() {
     function continuePath(patrol, location) {
 
         console.log('continue path called');
-        patrol.getPath().push(location);
+        patrol.getPath().push(location.coords);
     }
 
     function setRefreshButtonListeners() {
