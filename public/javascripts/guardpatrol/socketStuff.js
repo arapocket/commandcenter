@@ -231,6 +231,7 @@ $(function () {
   socket.on('user joined', function (data) {
     log(data.username + ' joined');
     addParticipantsMessage(data);
+    parent.location.reload();
   });
 
   // Whenever the server emits 'user left', log it in the chat body
@@ -264,5 +265,7 @@ $(function () {
   socket.on('reconnect_error', function () {
     log('attempt to reconnect has failed');
   });
+
+
 
 });
