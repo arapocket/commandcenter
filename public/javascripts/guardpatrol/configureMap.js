@@ -45,15 +45,46 @@ function initMap() {
 
         createIncidentButtons(map, incidents);
 
+
+        var patrolSeq = {
+            repeat: '30px',
+            icon: {
+                path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                scale: 1,
+                fillOpacity: 0,
+                strokeColor: "red",
+                strokeWeight: 1,
+                strokeOpacity: 1
+            }
+        };
+        var patrol = new google.maps.Polyline({
+            map: map,
+            zIndex: 1,
+            geodesic: true,
+            strokeColor: "purple",
+            strokeOpacity: 1,
+            strokeWeight: 5,
+            icons: [patrolSeq]
+        });
+
+
+
         socket.on('location', function (location) {
-            console.log('location heard from configureMap()');
-            console.log(location);
+            // console.log('location heard from configureMap()');
+            // console.log(location);
+            continuePath(patrol, location);
           });
     
 
     } else {
         var mapSpace = document.getElementById('map');
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
+    }
+
+    function continuePath(patrol, location) {
+
+        console.log('continue path called');
+        patrol.getPath.push(location);
     }
 
     function setRefreshButtonListeners() {
