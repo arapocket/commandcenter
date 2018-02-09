@@ -418,6 +418,12 @@ function setSocketListeners(socket){
     });
   })
 
+    // when a route is updated.. emit this so guard route updates
+    socket.on('load route', function () {
+      socket.broadcast.emit('new route', {
+      });
+    })
+
   socket.on('patrol start', function (data) {
       console.log('patrol start test');
       console.log('logging the data we got');
