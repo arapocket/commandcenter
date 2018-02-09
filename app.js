@@ -425,9 +425,11 @@ function setSocketListeners(socket){
     })
 
         // when a location is updated.. emit this so patrol path is drawn
-        socket.on('new location', function () {
+        socket.on('new location', function (location) {
           console.log('new location heard');
+          console.log(location);
           socket.broadcast.emit('location', {
+            location: location
           });
         })
 

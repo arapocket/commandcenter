@@ -45,9 +45,9 @@ function initMap() {
 
         createIncidentButtons(map, incidents);
 
-        socket.on('location', function (data) {
+        socket.on('location', function (location) {
             console.log('location heard from configureMap()');
-            createPatrolPaths(patrols, coords, map);
+
           });
     
 
