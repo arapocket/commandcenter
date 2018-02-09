@@ -284,6 +284,7 @@ function getDevices(socket) {
     res.on('end', () => {
       try {
         const parsedData = JSON.parse(rawData);
+        console.log('logging parsed data');
         console.log(parsedData);
         tokens = [];
         console.log('logging parsedData.length')
