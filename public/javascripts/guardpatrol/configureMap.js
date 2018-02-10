@@ -53,9 +53,9 @@ function initMap() {
 
     function continuePath(patrol, location) {
 
-        console.log('continue path called');
+        // console.log('continue path called');
 
-        console.log(location.location.coords);
+        // console.log(location.location.coords);
 
         let lat = location.location.coords.latitude;
         let lng = location.location.coords.longitude;
@@ -225,6 +225,12 @@ function initMap() {
             createGuardMarker(location, locations, map, route, id);
 
             createPatrolPath(location, map, coords);
+
+
+            socket.on('incident', function (incident) {
+                createIncidentMarker(incident);
+            });
+
         }
     }
 
@@ -384,31 +390,33 @@ function initMap() {
         }
     }
 
-    function createIncidentMarker(incidentID) {
+    function createIncidentMarker(incident) {
 
+        console.log('logging incident from createIncidentMarker');
+        console.log(incident);
 
-        var xhr = new XMLHttpRequest();
+        // var xhr = new XMLHttpRequest();
 
-        if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
+        // if (!xhr) {
+        //     alert('Giving up :( Cannot create an XMLHTTP instance');
+        //     return false;
+        // }
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                console.log('logging incident GET response: ' + xhr.responseText);
-                let json = JSON.parse(xhr.responseText);
-                if (json.length > 0) {
-                    console.log('logging json from Incident GET');
-                    console.log(json);
-                }
-            }
-        }
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == XMLHttpRequest.DONE) {
+        //         console.log('logging incident GET response: ' + xhr.responseText);
+        //         let json = JSON.parse(xhr.responseText);
+        //         if (json.length > 0) {
+        //             console.log('logging json from Incident GET');
+        //             console.log(json);
+        //         }
+        //     }
+        // }
 
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidents/" + incidentID, true);
+        // xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidents/" + incidentID, true);
 
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(null);
+        // xhr.setRequestHeader('Content-Type', 'application/json');
+        // xhr.send(null);
 
 
             // var lat = incidents[i].lat;
