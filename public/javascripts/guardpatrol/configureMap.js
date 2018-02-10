@@ -223,7 +223,7 @@ function initMap() {
         socket.on('location', function (location) {
             // console.log('location heard from configureMap()');
             // console.log(location);
-            // continuePath(patrol, location);
+            continuePath(patrol, location);
         });
 
 
