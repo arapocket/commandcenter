@@ -37,8 +37,6 @@ function initMap() {
 
         createIncidentMarkers(incidents, map, iconsBase);
 
-        // createPatrolPaths(patrols, coords, map);
-
         createGuards(map, locations, coords);
 
         createIncidentButtons(map, incidents);
@@ -47,18 +45,6 @@ function initMap() {
     } else {
         var mapSpace = document.getElementById('map');
         mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
-    }
-
-    function continuePath(patrol, location) {
-
-        // console.log('continue path called');
-
-        // console.log(location.location.coords);
-
-        let lat = location.location.coords.latitude;
-        let lng = location.location.coords.longitude;
-
-        patrol.getPath().push(new google.maps.LatLng(lat, lng));
     }
 
     function createGuards(map, locations, coords) {
@@ -190,6 +176,73 @@ function initMap() {
 
         }
     }
+
+    function createPatrolPath(location, map, coords) {
+
+        var patrolSeq = {
+            repeat: '30px',
+            icon: {
+                path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                scale: 1,
+                fillOpacity: 0,
+                strokeColor: "red",
+                strokeWeight: 1,
+                strokeOpacity: 1
+            }
+        };
+        var patrol = new google.maps.Polyline({
+            map: map,
+            zIndex: 1,
+            geodesic: true,
+            strokeColor: "purple",
+            strokeOpacity: 1,
+            strokeWeight: 5,
+            icons: [patrolSeq]
+        })
+
+
+        for (i = 0; i < coords.length; i++) {
+            if (coords[i].PatrolID == location.PatrolID) {
+                let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+                if (i > 0) {
+                    let lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
+                    console.log(latLng.lat());
+                    console.log(lastLocation.lat());
+                    let locAccurate = locationIsAccurate(latLng, lastLocation);
+                    if (locAccurate) {
+                        patrol.getPath().push(latLng);
+                    } else {
+                        patrol.getPath().pop();
+                    }
+                } else {
+                    patrol.getPath().push(latLng);
+                }
+            }
+        }
+
+        socket.on('location', function (location) {
+            // console.log('location heard from configureMap()');
+            // console.log(location);
+            // continuePath(patrol, location);
+        });
+
+
+
+    }
+
+
+    function continuePath(patrol, location) {
+
+        // console.log('continue path called');
+
+        // console.log(location.location.coords);
+
+        let lat = location.location.coords.latitude;
+        let lng = location.location.coords.longitude;
+
+        patrol.getPath().push(new google.maps.LatLng(lat, lng));
+    }
+
 
     function changeButtons(GuardID, locations, map, route) {
 
@@ -422,58 +475,6 @@ function initMap() {
 
     }
 
-    function createPatrolPath(location, map, coords) {
-
-        var patrolSeq = {
-            repeat: '30px',
-            icon: {
-                path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
-                scale: 1,
-                fillOpacity: 0,
-                strokeColor: "red",
-                strokeWeight: 1,
-                strokeOpacity: 1
-            }
-        };
-        var patrol = new google.maps.Polyline({
-            map: map,
-            zIndex: 1,
-            geodesic: true,
-            strokeColor: "purple",
-            strokeOpacity: 1,
-            strokeWeight: 5,
-            icons: [patrolSeq]
-        })
-
-
-        for (i = 0; i < coords.length; i++) {
-            if (coords[i].PatrolID == location.PatrolID) {
-                let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
-                if (i > 0) {
-                    let lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
-                    console.log(latLng.lat());
-                    console.log(lastLocation.lat());
-                    let locAccurate = locationIsAccurate(latLng, lastLocation);
-                    if (locAccurate) {
-                        patrol.getPath().push(latLng);
-                    } else {
-                        patrol.getPath().pop();
-                    }
-                } else {
-                    patrol.getPath().push(latLng);
-                }
-            }
-        }
-
-        socket.on('location', function (location) {
-            // console.log('location heard from configureMap()');
-            // console.log(location);
-            continuePath(patrol, location);
-        });
-
-
-
-    }
 
     function onAddCheckpoint(route, latLng, map) {
         route.getPath().push(latLng);
