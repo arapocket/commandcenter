@@ -411,6 +411,7 @@ function initMap() {
                 if (json.length > 0) {
                     console.log('logging json from Incident GET');
                     console.log(json);
+                    loadIncidentMarker(json);
                 }
             }
         }
@@ -420,49 +421,52 @@ function initMap() {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(null);
 
+    }
 
-            // var lat = incidents[i].lat;
-            // var lng = incidents[i].lng;
 
-            // console.log("logging IncidentID");
-            // console.log(incidents[i].IncidentID);
+    function loadIncidentMarker(json) {
 
-            // let windowString = '';
+        let incident = json[0];
 
-            // if (incidents[i].Media != 'none') {
-            //     windowString = `
-            //     <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
-            //     <h6 style="color:#404040"> 
-            //     ` + incidents[i].Description + `
-            //     </h6> ` +
-            //         `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
+        var lat = incident.lat;
+        var lng = incident.lng;
 
-            // } else {
-            //     windowString = `
-            //     <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
-            //     <h6 style="color:#404040"> 
-            //     ` + incidents[i].Description + `
-            //     </h6> `
-            // }
 
-            // let markerWindow = new google.maps.InfoWindow({
-            //     content: windowString,
-            //     maxWidth: 160
-            // });
+        let windowString = '';
 
-            // let marker = new google.maps.Marker({
-            //     position: { lat: lat, lng: lng },
-            //     map: map,
-            //     icon: iconsBase + "kml/pal3/icon59.png",
-            //     animation: google.maps.Animation.BOUNCE,
-            // });
-            // markerWindow.open(map, marker);
-            // marker.addListener('click', function (e) {
-            //     markerWindow.open(map, marker);
-            // });
+        if (incident.Media != 'none') {
+            windowString = `
+            <h5 style="color:#D20202">`  + incident.Type + `</h5>
+            <h6 style="color:#404040"> 
+            ` + incident.Description + `
+            </h6> ` +
+                `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
+
+        } else {
+            windowString = `
+            <h5 style="color:#D20202">`  + incident.Type + `</h5>
+            <h6 style="color:#404040"> 
+            ` + incident.Description + `
+            </h6> `
+        }
+
+        let markerWindow = new google.maps.InfoWindow({
+            content: windowString,
+            maxWidth: 160
+        });
+
+        let marker = new google.maps.Marker({
+            position: { lat: lat, lng: lng },
+            map: map,
+            icon: iconsBase + "kml/pal3/icon59.png",
+            animation: google.maps.Animation.BOUNCE,
+        });
+        markerWindow.open(map, marker);
+        marker.addListener('click', function (e) {
+            markerWindow.open(map, marker);
+        });
 
     }
-    
 
     function createPatrolPath(location, map, coords) {
 
