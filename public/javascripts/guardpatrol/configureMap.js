@@ -16,8 +16,6 @@ function initMap() {
 
     var iconsBase = "http://maps.google.com/mapfiles/"
 
-    setRefreshButtonListeners();
-
     if (locations.length > 0) {
 
         console.log('logging locations[0]');
@@ -61,47 +59,6 @@ function initMap() {
         let lng = location.location.coords.longitude;
 
         patrol.getPath().push(new google.maps.LatLng(lat, lng));
-    }
-
-    function setRefreshButtonListeners() {
-
-        let buttonValues = {
-            OFF: "Auto Refresh Off",
-            TEN: "Auto Refresh On"
-        };
-
-        autoRefreshButtonOFF = parent.document.getElementById('autoRefreshButtonOFF');
-        autoRefreshButtonTEN = parent.document.getElementById('autoRefreshButtonTEN');
-
-        var currentButtonValue = localStorage.getItem("currentButtonValue");
-        console.log(currentButtonValue);
-
-        if (currentButtonValue == buttonValues.OFF) {
-            autoRefreshButtonTEN.style.display = "none";
-        }
-        else if (currentButtonValue == buttonValues.TEN) {
-            autoRefreshButtonOFF.style.display = "none";
-            window.onload = timedRefresh(10000);
-        }
-        else {
-            currentButtonValue = buttonValues.OFF;
-            autoRefreshButtonTEN.style.display = "none";
-        }
-
-        autoRefreshButtonOFF.addEventListener('click', function (e) {
-
-            currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues, currentButtonValue);
-        });
-
-        autoRefreshButtonTEN.addEventListener('click', function (e) {
-
-            currentButtonValue = onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues, currentButtonValue);
-        });
-
-    }
-
-    function timedRefresh(timeoutPeriod) {
-        setTimeout("location.reload(true);", timeoutPeriod);
     }
 
     function createGuards(map, locations, coords) {
@@ -233,8 +190,6 @@ function initMap() {
 
         }
     }
-
-
 
     function changeButtons(GuardID, locations, map, route) {
 
@@ -422,7 +377,6 @@ function initMap() {
         xhr.send(null);
 
     }
-
 
     function loadIncidentMarker(json) {
 
@@ -805,29 +759,6 @@ function initMap() {
         return newCheckpointID;
     }
 
-    function onAutoRefresh(autoRefreshButtonOFF, autoRefreshButtonTEN, buttonValues, currentButtonValue) {
-
-
-        if (currentButtonValue == buttonValues.OFF) {
-            currentButtonValue = buttonValues.TEN;
-            autoRefreshButtonOFF.style.display = "none";
-            autoRefreshButtonTEN.style.display = "inline";
-            localStorage.setItem("currentButtonValue", currentButtonValue);
-            window.onload = timedRefresh(10000);
-
-
-        } else if (currentButtonValue == buttonValues.TEN) {
-            currentButtonValue = buttonValues.OFF;
-            autoRefreshButtonOFF.style.display = "inline";
-            autoRefreshButtonTEN.style.display = "none";
-            localStorage.setItem("currentButtonValue", currentButtonValue);
-
-        }
-
-        return currentButtonValue;
-
-
-    }
 
 
 }
