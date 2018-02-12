@@ -357,6 +357,9 @@ function setSocketListeners(socket) {
 
   // when the client emits 'message', this listens and executes
   socket.on('message', function (data) {
+
+    console.log('socket.on message called from app.js')
+
     // we tell the client to execute 'new message'
 
     if (socket.username == null) {
