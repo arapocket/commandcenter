@@ -144,8 +144,8 @@ function initMap() {
 
             if (guardButton != null || guardButton != undefined) {
 
-                var lat = location.lat;
-                var lng = location.lng;
+                let lat = location.lat;
+                let lng = location.lng;
 
                 // socket.on('location', function (location) {
 
