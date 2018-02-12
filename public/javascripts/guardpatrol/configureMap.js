@@ -16,6 +16,11 @@ function initMap() {
 
     var iconsBase = "http://maps.google.com/mapfiles/"
 
+    socket.on('incident', function (incident) {
+        createIncidentMarker(incident);
+    });
+
+
     if (locations.length > 0) {
 
         console.log('logging locations[0]');
@@ -168,12 +173,6 @@ function initMap() {
             createGuardMarker(location, locations, map, route, id);
 
             createPatrolPath(location, map, coords);
-
-
-            socket.on('incident', function (incident) {
-                createIncidentMarker(incident);
-            });
-
         }
     }
 
