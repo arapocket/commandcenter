@@ -23,6 +23,8 @@ function initMap() {
 
     if (locations.length > 0) {
 
+        console.log('logging locations');
+        console.log(locations);
         console.log('logging locations[0]');
         console.log(locations[0]);
 
