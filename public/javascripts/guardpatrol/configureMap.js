@@ -58,7 +58,7 @@ function initMap() {
 
         var guardButtons = [];
 
-        for (i = 0; i < locations.length; i++) {
+        for (let i = 0; i < locations.length; i++) {
 
             console.log('looping once');
 
@@ -205,7 +205,7 @@ function initMap() {
         })
 
 
-        for (i = 0; i < coords.length; i++) {
+        for (let i = 0; i < coords.length; i++) {
             if (coords[i].PatrolID == location.PatrolID) {
                 let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                 if (i > 0) {
@@ -252,7 +252,7 @@ function initMap() {
 
 
 
-        for (i = 0; i < locations.length; i++) {
+        for (let i = 0; i < locations.length; i++) {
             var id = locations[i].GuardID;
 
             let hideTrashButton = parent.document.getElementById('trashRouteButton' + id);
@@ -297,7 +297,7 @@ function initMap() {
         console.log('logging incidents inside createIncidentButtons');
         console.log(incidents);
 
-        for (i = 0; i < incidents.length; i++) {
+        for (let i = 0; i < incidents.length; i++) {
             let incident = incidents[i];
             let incidentButton = parent.document.getElementById(incident.IncidentID);
 
@@ -359,7 +359,7 @@ function initMap() {
 
     function createIncidentMarkers(incidents, map, iconsBase) {
 
-        for (i = 0; i < incidents.length; i++) {
+        for (let i = 0; i < incidents.length; i++) {
             var lat = incidents[i].lat;
             var lng = incidents[i].lng;
 
@@ -572,7 +572,7 @@ function initMap() {
 
 
 
-        for (i = 0; i < locations.length; i++) {
+        for (let i = 0; i < locations.length; i++) {
             var id = locations[i].GuardID;
 
             var addButton = parent.document.getElementById('addRouteButton' + id);
@@ -745,7 +745,7 @@ function initMap() {
         route.setPath([]);
 
         if (checkpoints.length > 0) {
-            for (i = 0; i < checkpoints.length; i++) {
+            for (let i = 0; i < checkpoints.length; i++) {
                 var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
                 route.getPath().push(latLng);
             }
