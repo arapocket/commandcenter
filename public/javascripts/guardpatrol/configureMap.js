@@ -145,11 +145,11 @@ function initMap() {
                 var lat = location.lat;
                 var lng = location.lng;
 
-                socket.on('location', function (location) {
+                // socket.on('location', function (location) {
 
-                    lat = location.location.coords.latitude;
-                    lng = location.location.coords.longitude;
-                });
+                //     lat = location.location.coords.latitude;
+                //     lng = location.location.coords.longitude;
+                // });
 
                 guardButton.addEventListener('click', function (e) {
 
@@ -219,11 +219,11 @@ function initMap() {
             }
         }
 
-        socket.on('location', function (location) {
-            // console.log('location heard from configureMap()');
-            // console.log(location);
-            continuePath(patrol, location);
-        });
+        // socket.on('location', function (location) {
+        //     // console.log('location heard from configureMap()');
+        //     // console.log(location);
+        //     continuePath(patrol, location);
+        // });
 
 
 
@@ -343,12 +343,12 @@ function initMap() {
         });
 
 
-        socket.on('location', function (location) {
+        // socket.on('location', function (location) {
 
-            let lat = location.location.coords.latitude;
-            let lng = location.location.coords.longitude;
-            marker.setPosition(new google.maps.LatLng(lat, lng))
-        });
+        //     let lat = location.location.coords.latitude;
+        //     let lng = location.location.coords.longitude;
+        //     marker.setPosition(new google.maps.LatLng(lat, lng))
+        // });
 
     }
 
