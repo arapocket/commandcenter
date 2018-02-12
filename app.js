@@ -356,6 +356,30 @@ function setSocketListeners(socket) {
   console.log(tokens);
 
   // when the client emits 'message', this listens and executes
+  socket.on('message', function (data) {
+
+    console.log('socket.on message called from app.js')
+
+    // we tell the client to execute 'new message'
+
+    if (socket.username == null) {
+      socket.username = "FOX"
+    }
+    socket.broadcast.emit('message', {
+      username: socket.username,
+      message: data
+    });
+
+    console.log('III. logging tokens from on message listener');
+    console.log(tokens);
+
+    apnProvider.send(note, tokens).then((result) => {
+      var res = JSON.stringify(result);
+      console.log('logging tokens: ' + tokens);
+      console.log('logging send result: ' + res);
+    });
+  });
+
   socket.on('guard message', function (data) {
 
     console.log('socket.on message called from app.js')
