@@ -238,8 +238,8 @@ function initMap() {
 
         // console.log(location.location.coords);
 
-        let lat = location.coords.latitude;
-        let lng = location.coords.longitude;
+        let lat = location.location.coords.latitude;
+        let lng = location.location.coords.longitude;
 
         patrol.getPath().push(new google.maps.LatLng(lat, lng));
     }
