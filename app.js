@@ -356,7 +356,7 @@ function setSocketListeners(socket) {
   console.log(tokens);
 
   // when the client emits 'message', this listens and executes
-  socket.on('message', function (data) {
+  socket.on('new message', function (data) {
 
     console.log('socket.on message called from app.js')
 
