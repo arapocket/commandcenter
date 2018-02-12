@@ -92,24 +92,21 @@ function initMap() {
                 onAddCheckpoint(route, e.latLng, map);
             });
 
+            let removeCheckpointButton = parent.document.getElementById("removeCheckpointButton" + id);
 
-            let GuardID = location.GuardID;
+            let saveRouteButton = parent.document.getElementById("saveRouteButton" + id);
 
-            let removeCheckpointButton = parent.document.getElementById("removeCheckpointButton" + GuardID);
+            let loadRouteButton = parent.document.getElementById("loadRouteButton" + id);
 
-            let saveRouteButton = parent.document.getElementById("saveRouteButton" + GuardID);
+            let addRouteButton = parent.document.getElementById('addRouteButton' + id);
 
-            let loadRouteButton = parent.document.getElementById("loadRouteButton" + GuardID);
+            let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
 
-            let addRouteButton = parent.document.getElementById('addRouteButton' + GuardID);
-
-            let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
-
-            let endPatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
+            let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
 
 
             addRouteButton.addEventListener('click', function (e) {
-                console.log('the guard id is: ' + GuardID);
+                console.log('the guard id is: ' + id);
                 onAddRoute(route, trashRouteButton, removeCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
             });
 
@@ -143,7 +140,7 @@ function initMap() {
             });
 
 
-            let guardButton = parent.document.getElementById(location.GuardID);
+            let guardButton = parent.document.getElementById(id);
 
             if (guardButton != null || guardButton != undefined) {
 
@@ -167,7 +164,7 @@ function initMap() {
 
                     changeButtons(location.GuardID, locations, map, route);
 
-                    localStorage.setItem("currentGuard", location.GuardID);
+                    localStorage.setItem("currentGuard", id);
                 })
 
                 guardButtons.push(guardButton);
