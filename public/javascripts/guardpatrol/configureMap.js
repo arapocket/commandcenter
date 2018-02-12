@@ -57,6 +57,9 @@ function initMap() {
         var guardButtons = [];
 
         for (i = 0; i < locations.length; i++) {
+
+            console.log('looping once');
+
             let location = locations[i];
             let id = location.GuardID;
             let firstName = location.FirstName;
