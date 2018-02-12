@@ -428,7 +428,7 @@ function setSocketListeners(socket) {
   socket.on('new location', function (location) {
     console.log('new location heard');
     console.log(location);
-    socket.broadcast.emit('location', {
+    socket.broadcast.emit('location ' + location.guardID, {
       location: location
     });
   })

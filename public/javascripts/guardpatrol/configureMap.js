@@ -174,11 +174,11 @@ function initMap() {
 
             createGuardMarker(location, locations, map, route, id);
 
-            createPatrolPath(location, map, coords);
+            createPatrolPath(location, map, coords, id);
         }
     }
 
-    function createPatrolPath(location, map, coords) {
+    function createPatrolPath(location, map, coords, id) {
 
         var patrolSeq = {
             repeat: '30px',
@@ -221,7 +221,7 @@ function initMap() {
             }
         }
 
-        socket.on('location', function (location) {
+        socket.on('location ' + id, function (location) {
             console.log('location heard from configureMap()');
             console.log(location);
             continuePath(patrol, location);
@@ -345,7 +345,7 @@ function initMap() {
         });
 
 
-        socket.on('location', function (location) {
+        socket.on('location ' + id, function (location) {
 
             let lat = location.location.coords.latitude;
             let lng = location.location.coords.longitude;
