@@ -250,7 +250,6 @@ io.on('connection', function (socket) {
 
 function initializeSockets(socket) {
 
-  console.log('B. initializeSockets called')
 
   getDevices(socket);
 
@@ -462,7 +461,7 @@ function setSocketListeners(socket) {
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
 
-    initializeSockets(socket);
+    // initializeSockets(socket);
 
     if (addedUser) {
       --numUsers;
@@ -516,7 +515,7 @@ function patrolPost(data, socket) {
     });
     res.on('end', () => {
       console.log('No more data in response.');
-      initializeSockets(socket);
+      // initializeSockets(socket);
     });
   });
 
@@ -560,7 +559,7 @@ function patrolPut(data, socket) {
     });
     res.on('end', () => {
       console.log('No more data in response.');
-      initializeSockets(socket);
+      // initializeSockets(socket);
     });
   });
 
