@@ -147,7 +147,7 @@ function initMap() {
                 let lat = location.lat;
                 let lng = location.lng;
 
-                socket.on('location', function (location) {
+                socket.on('location ' + id, function (location) {
 
                     lat = location.location.coords.latitude;
                     lng = location.location.coords.longitude;
@@ -231,7 +231,6 @@ function initMap() {
 
     }
 
-
     function continuePath(patrol, location) {
 
         // console.log('continue path called');
@@ -244,10 +243,7 @@ function initMap() {
         patrol.getPath().push(new google.maps.LatLng(lat, lng));
     }
 
-
     function changeButtons(GuardID, locations, map, route) {
-
-
 
         for (let i = 0; i < locations.length; i++) {
             var id = locations[i].GuardID;
@@ -268,7 +264,6 @@ function initMap() {
 
         }
 
-
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
         let addRouteButton = parent.document.getElementById('addRouteButton' + GuardID);
         let removeCheckpointButton = parent.document.getElementById('removeCheckpointButton' + GuardID);
@@ -281,10 +276,6 @@ function initMap() {
         addRouteButton.style.display = 'block';
         endPatrolButton.style.display = 'block';
 
-        // trashRouteButton.style.display = 'block';
-        // removeCheckpointButton.style.display = 'block';
-        // saveRouteButton.style.display = 'block';
-        // loadRouteButton.style.display = 'block';        
     }
 
     function createIncidentButtons(map, incidents) {
@@ -475,7 +466,6 @@ function initMap() {
         });
 
     }
-
 
     function onAddCheckpoint(route, latLng, map) {
         route.getPath().push(latLng);
