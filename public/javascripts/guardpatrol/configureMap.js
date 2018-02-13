@@ -609,8 +609,6 @@ function initMap() {
     }
 
     function onEndPatrol(id, firstName, endPatrolButton) {
-
-
         bootbox.confirm({
             size: "small",
             message: "Are you sure you want to end " + firstName + "'s patrol?",
@@ -618,7 +616,7 @@ function initMap() {
                 /* result is a boolean; true = OK, false = Cancel*/
                 if (result) {
 
-                    socket.emit('stop', id);
+                    socket.emit('stop ' + id, id);
 
                     endPatrolButton.style.display = 'none';
 
@@ -646,9 +644,6 @@ function initMap() {
                 }
             }
         })
-
-
-
     }
 
     function coordPut(id) {

@@ -415,7 +415,7 @@ function setSocketListeners(socket) {
 
   // when the End Patrol buttons is pressed.. do this
   socket.on('stop', function () {
-    socket.broadcast.emit('patrol stop', {
+    socket.broadcast.emit('patrol stop ' + socket.id, {
       id: socket.id
     });
   })
@@ -452,7 +452,7 @@ function setSocketListeners(socket) {
   })
 
   socket.on('ended patrol', function (data) {
-    console.log('ended patrol test');
+    console.log('ended patrol heard from app.js');
     console.log('logging the data we got');
     console.log(data);
     patrolPut(data, socket);
