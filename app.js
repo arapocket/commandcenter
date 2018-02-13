@@ -415,6 +415,7 @@ function setSocketListeners(socket) {
 
   // when the End Patrol buttons is pressed.. do this
   socket.on('stop', function () {
+    console.log('stop being emitted, the socket.id is ' + socket.id)
     socket.broadcast.emit('patrol stop ' + socket.id, {
       id: socket.id
     });
