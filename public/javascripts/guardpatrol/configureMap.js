@@ -616,7 +616,7 @@ function initMap() {
                 /* result is a boolean; true = OK, false = Cancel*/
                 if (result) {
 
-                    socket.emit('stop ' + id, id);
+                    socket.emit('stop', id);
 
                     endPatrolButton.style.display = 'none';
 
