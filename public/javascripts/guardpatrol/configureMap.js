@@ -31,7 +31,7 @@ function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 20,
             center: { lat: locations[0].lat, lng: locations[0].lng },
-            mapTypeId: google.maps.MapTypeId.SATELLITE,
+            mapTypeId: google.maps.MapTypeId.MAP,
             streetViewControl: false,
             clickableIcons: false,
             fullscreenControl: false,
