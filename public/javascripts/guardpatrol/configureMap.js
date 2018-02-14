@@ -84,7 +84,7 @@ function initMap() {
                 geodesic: true,
                 strokeColor: "#26e9f7",
                 strokeOpacity: 1,
-                strokeWeight: 3,
+                strokeWeight: 5,
                 icons: [routeSeq]
             })
 
