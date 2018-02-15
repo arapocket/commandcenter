@@ -500,6 +500,8 @@ function initMap() {
 
     function onSaveRoute(route, addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map) {
 
+        console.log('onSaveRoute called');
+
         addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
         clearCheckpointsButton.style.display = 'none';
