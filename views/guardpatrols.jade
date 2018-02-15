@@ -35,15 +35,19 @@ block content
 																			.row
 																											a.btn.btn-default.btn-block(id='trashRouteButton' + location.GuardID, style='display: none ! important;')
 																												i.fa.fa-trash(aria-hidden='true')
-																												| &nbsp Trash Route																			
+																												| &nbsp Cancel Route Edit																			
 																			.row
 																											a.btn.btn-default.btn-block(id='addRouteButton' + location.GuardID, style='display: none ! important;')
 																												i.fa.fa-plus(aria-hidden='true')
 																												| &nbsp Add Route
 																			.row
-																											a.btn.btn-default.btn-block(id='removeCheckpointButton' + location.GuardID, style='display: none ! important;')
+																											a.btn.btn-default.btn-block(id='clearCheckpointsButton' + location.GuardID, style='display: none ! important;')
 																												i.fa.fa-eraser(aria-hidden='true')
-																												| &nbsp Remove Checkpoint
+																												| &nbsp Clear All Checkpoints																			
+																			.row
+																											a.btn.btn-default.btn-block(id='removeLastCheckpointButton' + location.GuardID, style='display: none ! important;')
+																												i.fa.fa-undo(aria-hidden='true')
+																												| &nbsp Remove Last Checkpoint
 																			.row
 																											a.btn.btn-default.btn-block(id='saveRouteButton' + location.GuardID, style='display: none ! important;')
 																												i.fa.fa-floppy-o(aria-hidden='true')
