@@ -25,7 +25,7 @@ function initMap() {
         parent.location.reload();    
     });
 
-    socket.on('disconnect', function (incident) {
+    socket.on('user left', function (incident) {
         parent.location.reload();    
     });
     
