@@ -82,7 +82,7 @@ function initMap() {
                 map: map,
                 zIndex: 1,
                 geodesic: true,
-                strokeColor: "#red",
+                strokeColor: "red",
                 strokeOpacity: 1,
                 strokeWeight: 5,
                 icons: [routeSeq]
