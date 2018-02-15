@@ -21,7 +21,7 @@ function initMap() {
     });
 
 
-    socket.on('connect', function (incident) {
+    socket.on('user joined', function (incident) {
         parent.location.reload();    
     });
 
