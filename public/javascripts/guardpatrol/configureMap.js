@@ -21,6 +21,15 @@ function initMap() {
     });
 
 
+    socket.on('connect', function (incident) {
+        parent.location.reload();    
+    });
+
+    socket.on('disconnect', function (incident) {
+        parent.location.reload();    
+    });
+    
+
     if (locations.length > 0) {
 
         console.log('logging locations');
