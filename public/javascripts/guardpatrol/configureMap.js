@@ -138,7 +138,7 @@ function initMap() {
             });
 
             saveRouteButton.addEventListener('click', function (e) {
-                onSaveRoute(route, addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map);
+                onSaveRoute(route, addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map, id);
             });
 
             endPatrolButton.addEventListener('click', function (e) {
@@ -498,9 +498,10 @@ function initMap() {
 
     }
 
-    function onSaveRoute(route, addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map) {
+    function onSaveRoute(route, addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map, id) {
 
         console.log('onSaveRoute called');
+        console.log('for this id ' + id);
 
         addRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
