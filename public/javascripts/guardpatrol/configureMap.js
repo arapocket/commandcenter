@@ -22,11 +22,18 @@ function initMap() {
 
 
     socket.on('user joined', function (incident) {
-        parent.location.reload();    
+        window.setTimeout(function(){
+            parent.location.reload();    
+        }, 2000);
     });
 
     socket.on('user left', function (incident) {
-        parent.location.reload();    
+        
+        window.setTimeout(function(){
+            parent.location.reload();    
+        }, 2000);
+
+        
     });
     
 
