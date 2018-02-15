@@ -24,14 +24,14 @@ function initMap() {
     socket.on('user joined', function (incident) {
         window.setTimeout(function(){
             parent.location.reload();    
-        }, 5000);
+        }, 10000);
     });
 
     socket.on('user left', function (incident) {
         
         window.setTimeout(function(){
             parent.location.reload();    
-        }, 5000);
+        }, 10000);
 
         
     });
