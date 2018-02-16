@@ -392,11 +392,18 @@ function setSocketListeners(socket) {
     socket.emit('login', {
       numUsers: numUsers
     });
+
+    if (socket.username != 'GREYFOX') {
     // echo globally (all clients) that a person has connected
     socket.broadcast.emit('user joined', {
       username: socket.username,
       numUsers: numUsers
     });
+    }
+
+
+
+    
   });
 
   // when the client emits 'typing', we broadcast it to others
@@ -467,11 +474,15 @@ function setSocketListeners(socket) {
     if (addedUser) {
       --numUsers;
 
+
+      if (socket.username != 'GREYFOX'){
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
         username: socket.username,
         numUsers: numUsers
       });
+      }
+
     }
 
   });
