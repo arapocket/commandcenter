@@ -411,7 +411,7 @@ function initMap() {
                 position: { lat: lat, lng: lng },
                 map: map,
                 icon: iconsBase + "kml/pal3/icon59.png",
-                animation: google.maps.Animation.BOUNCE,
+                animation: google.maps.Animation.DROP
             });
             markerWindow.open(map, marker);
             marker.addListener('click', function (e) {
@@ -489,7 +489,7 @@ function initMap() {
             position: { lat: lat, lng: lng },
             map: map,
             icon: iconsBase + "kml/pal3/icon59.png",
-            animation: google.maps.Animation.BOUNCE,
+            animation: google.maps.Animation.DROP
         });
         markerWindow.open(map, marker);
         marker.addListener('click', function (e) {
