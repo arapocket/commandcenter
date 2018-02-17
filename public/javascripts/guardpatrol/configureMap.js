@@ -22,20 +22,20 @@ function initMap() {
 
 
     socket.on('user joined', function (incident) {
-        window.setTimeout(function(){
-            parent.location.reload();    
+        window.setTimeout(function () {
+            parent.location.reload();
         }, 10000);
     });
 
     socket.on('user left', function (incident) {
-        
-        window.setTimeout(function(){
-            parent.location.reload();    
+
+        window.setTimeout(function () {
+            parent.location.reload();
         }, 10000);
 
-        
+
     });
-    
+
 
     if (locations.length > 0) {
 
@@ -182,10 +182,10 @@ function initMap() {
 
                     console.log(guardButton.id + ' clicked');
 
-                    map.setCenter({
-                        lat: lat,
-                        lng: lng
-                    });
+                    // map.setCenter({
+                    //     lat: lat,
+                    //     lng: lng
+                    // });
 
                     changeButtons(location.GuardID, locations, map, route);
 
