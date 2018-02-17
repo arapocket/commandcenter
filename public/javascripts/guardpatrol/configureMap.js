@@ -343,7 +343,8 @@ function initMap() {
         <h5 style="color:#D20202">`  + location.FirstName + `</h5>`;
 
         let markerWindow = new google.maps.InfoWindow({
-            content: windowString
+            content: windowString,
+            disableAutoPan: true
         });
 
 
@@ -402,7 +403,8 @@ function initMap() {
 
             let markerWindow = new google.maps.InfoWindow({
                 content: windowString,
-                maxWidth: 160
+                maxWidth: 160,
+                disableAutoPan: true
             });
 
             let marker = new google.maps.Marker({
@@ -479,7 +481,8 @@ function initMap() {
 
         let markerWindow = new google.maps.InfoWindow({
             content: windowString,
-            maxWidth: 160
+            maxWidth: 160,
+            disableAutoPan: true
         });
 
         let marker = new google.maps.Marker({
