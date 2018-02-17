@@ -18,6 +18,9 @@ function initMap() {
 
     socket.on('incident', function (incident) {
         createIncidentMarker(incident);
+        window.setTimeout(function () {
+            parent.location.reload();
+        }, 10000);
     });
 
 
