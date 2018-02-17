@@ -51,8 +51,8 @@ function initMap() {
         let firstLocationLng = locations[0].lng;
 
         if (incidents.length > 0){
-            firstLocationLat = incidents[incidents.length-1].lat;
-            firstLocationLng = incidents[incidents.length-1].lat;
+            firstLocationLat = incidents[(incidents.length-1)].lat;
+            firstLocationLng = incidents[(incidents.length-1)].lng;
         }
 
 
