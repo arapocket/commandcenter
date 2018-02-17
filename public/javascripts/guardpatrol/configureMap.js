@@ -47,8 +47,14 @@ function initMap() {
         console.log('logging locations[0]');
         console.log(locations[0]);
 
-        const firstLocationLat = locations[0].lat;
-        const firstLocationLng = locations[0].lng;
+        let firstLocationLat = locations[0].lat;
+        let firstLocationLng = locations[0].lng;
+
+        if (incidents.length > 0){
+            firstLocationLat = incidents[incidents.length-1].lat;
+            firstLocationLng = incidents[incidents.length-1].lat;
+        }
+
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 20,
