@@ -28,6 +28,16 @@ $(function () {
   var $currentInput = $usernameInput.focus();
   setUsername();
 
+
+
+let sendMessageButton = parent.document.getElementById('sendMessageButton');
+
+sendMessageButton.addEventListener('click', function () {
+  sendMessage();
+})
+
+
+
   function addParticipantsMessage(data) {
     var message = '';
     if (data.numUsers === 1) {
