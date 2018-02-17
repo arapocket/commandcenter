@@ -44,8 +44,8 @@ function initMap() {
         console.log('logging locations[0]');
         console.log(locations[0]);
 
-        let firstLocationLat = locations[0].lat;
-        let firstLocationLng = locations[0].lng;
+        const firstLocationLat = locations[0].lat;
+        const firstLocationLng = locations[0].lng;
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 20,
@@ -182,10 +182,10 @@ function initMap() {
 
                     console.log(guardButton.id + ' clicked');
 
-                    // map.setCenter({
-                    //     lat: lat,
-                    //     lng: lng
-                    // });
+                    map.setCenter({
+                        lat: lat,
+                        lng: lng
+                    });
 
                     changeButtons(location.GuardID, locations, map, route);
 
