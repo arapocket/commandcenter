@@ -618,8 +618,8 @@ function initMap() {
                         }
 
                         routeButtons.push({
-                            "label": json[0].RouteName,
-                            'class': 'btn-primary',
+                            "label": label,
+                            'class': buttonClass,
                             'callback': function () {
                             }
                         });
@@ -627,8 +627,8 @@ function initMap() {
                     }
 
                     bootbox.dialog("Select Route", [{
-                        "label": label,
-                        'class': buttonClass,
+                        "label": json[0].RouteName,
+                        'class': 'btn-primary',
                         'callback': function () {
                         }
                     }]);
