@@ -626,7 +626,7 @@ function initMap() {
 
                     }
 
-                    bootbox.dialog("Select Route", routeButtons);
+                    bootbox.dialog("Select Route", []);
 
 
                 }
