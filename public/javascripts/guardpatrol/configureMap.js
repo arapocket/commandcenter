@@ -23,7 +23,6 @@ function initMap() {
         }, 10000);
     });
 
-
     socket.on('user joined', function (incident) {
         window.setTimeout(function () {
             parent.location.reload();
@@ -54,7 +53,6 @@ function initMap() {
             firstLocationLat = incidents[0].lat;
             firstLocationLng = incidents[0].lng;
         }
-
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 18,
@@ -176,7 +174,8 @@ function initMap() {
                 }
 
 
-                onLoadRoute(map, route, id);
+                // onLoadRoute(map, route, id);
+                onSelectRoute();
             });
 
             saveRouteButton.addEventListener('click', function (e) {
