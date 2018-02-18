@@ -78,8 +78,22 @@ function initMap() {
 
 
     } else {
-        var mapSpace = document.getElementById('map');
-        mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 18,
+            center: { lat: 34.050963, lng: -118.256133 },
+            mapTypeId: google.maps.MapTypeId.MAP,
+            streetViewControl: false,
+            clickableIcons: false,
+            fullscreenControl: false,
+            mapTypeControl: true,
+            panControl: false,
+            rotateControl: false,
+        });
+
+        // 34.050963, -118.256133
+        // var mapSpace = document.getElementById('map');
+        // mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
 
     function createGuards(map, locations, coords) {
