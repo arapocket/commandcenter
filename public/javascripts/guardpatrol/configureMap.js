@@ -626,7 +626,12 @@ function initMap() {
 
                     }
 
-                    bootbox.dialog("Select Route", []);
+                    bootbox.dialog("Select Route", [{
+                        "label": label,
+                        'class': buttonClass,
+                        'callback': function () {
+                        }
+                    }]);
 
 
                 }
