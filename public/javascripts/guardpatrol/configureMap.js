@@ -545,6 +545,15 @@ function initMap() {
 
     function onSaveRoute(route, addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map, id) {
 
+
+        bootbox.prompt("Enter a name for the route.", function(result) {                
+            if (result === null) {                                             
+              Example.show("Prompt dismissed");                              
+            } else {
+              Example.show("Hi <b>"+result+"</b>");                          
+            }
+          });
+
         console.log('onSaveRoute called');
         console.log('for this id ' + id);
 
