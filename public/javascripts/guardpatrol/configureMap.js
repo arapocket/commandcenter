@@ -618,20 +618,19 @@ function initMap() {
                         }
 
                         routeButtons.push({
-                            "label": label,
-                            'class': buttonClass,
-                            'callback': function () {
+                            label: label,
+                            className: buttonClass,
+                            callback: function () {
                             }
                         });
 
                     }
 
-                    bootbox.dialog("Select Route", [{
-                        "label": json[0].RouteName,
-                        'class': 'btn-primary',
-                        'callback': function () {
-                        }
-                    }]);
+                    var dialog = bootbox.dialog({
+                        title: 'Select Route',
+                        message: "<p>Select the route you wish to load.</p>",
+                        buttons: routeButtons
+                        });
 
 
                 }
