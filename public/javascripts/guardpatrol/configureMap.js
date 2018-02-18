@@ -50,7 +50,7 @@ function initMap() {
         let firstLocationLat = locations[0].lat;
         let firstLocationLng = locations[0].lng;
 
-        if (incidents.length > 0){
+        if (incidents.length > 0) {
             firstLocationLat = incidents[0].lat;
             firstLocationLng = incidents[0].lng;
         }
@@ -546,53 +546,103 @@ function initMap() {
     function onSaveRoute(route, addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map, id) {
 
 
-        bootbox.prompt("Enter a name for the route.", function(result) {                
-            if (result === null) {                                             
-              
+        bootbox.prompt("Enter a name for the route.", function (result) {
+            if (result === null) {
+
             } else {
 
 
-              console.log('onSaveRoute called');
-              console.log('for this id ' + id);
-      
-              addRouteButton.style.display = 'none';
-              trashRouteButton.style.display = 'none';
-              clearCheckpointsButton.style.display = 'none';
-              removeLastCheckpointButton.style.display = 'none';
-              saveRouteButton.style.display = 'none';
-              loadRouteButton.style.display = 'none';
-              google.maps.event.clearListeners(map, 'click');
-              google.maps.event.clearListeners(route, 'click');
-      
-              var currentGuard = localStorage.getItem("currentGuard");
-      
-              var routeID = createRouteID();
-              var xhr = new XMLHttpRequest();
-      
-              if (!xhr) {
-                  alert('Giving up :( Cannot create an XMLHTTP instance');
-                  return false;
-              }
-      
-              xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes", true);
-      
-              xhr.setRequestHeader('Content-Type', 'application/json');
-              xhr.send(JSON.stringify({
-                  "RouteID": routeID,
-                  "RouteName": result,
-                  "CurrentRoute": 1,
-                  "NotCurrentRoute": 0,
-                  "GuardID": currentGuard
-              }));
-      
-              postCheckpoints(route, routeID);
-      
-      
-              socket.emit('load route');                     
-            }
-          });
+                console.log('onSaveRoute called');
+                console.log('for this id ' + id);
 
-       
+                addRouteButton.style.display = 'none';
+                trashRouteButton.style.display = 'none';
+                clearCheckpointsButton.style.display = 'none';
+                removeLastCheckpointButton.style.display = 'none';
+                saveRouteButton.style.display = 'none';
+                loadRouteButton.style.display = 'none';
+                google.maps.event.clearListeners(map, 'click');
+                google.maps.event.clearListeners(route, 'click');
+
+                var currentGuard = localStorage.getItem("currentGuard");
+
+                var routeID = createRouteID();
+                var xhr = new XMLHttpRequest();
+
+                if (!xhr) {
+                    alert('Giving up :( Cannot create an XMLHTTP instance');
+                    return false;
+                }
+
+                xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes", true);
+
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({
+                    "RouteID": routeID,
+                    "RouteName": result,
+                    "CurrentRoute": 1,
+                    "NotCurrentRoute": 0,
+                    "GuardID": currentGuard
+                }));
+
+                postCheckpoints(route, routeID);
+
+
+                socket.emit('load route');
+            }
+        });
+
+
+
+    }
+
+    function onSelectRoute() {
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+                if (json.length > 0) {
+
+                    let routeButtons = [];
+
+                    for (i = 0; i < json.length; i++) {
+                        let label = json[i].RouteName;
+                        let buttonClass = 'btn-primary';
+                        let callback = function () {
+
+                        }
+
+                        routeButtons.push({
+                            "label": label,
+                            'class': buttonClass,
+                            'callback': function () {
+                            }
+                        });
+
+                    }
+
+                    bootbox.dialog("Select Route", routeButtons);
+
+
+                }
+            }
+        }
+
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/", true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(null);
+
+
+
+
+
 
     }
 
