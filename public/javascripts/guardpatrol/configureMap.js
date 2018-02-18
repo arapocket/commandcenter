@@ -618,8 +618,8 @@ function initMap() {
                         }
 
                         routeButtons.push({
-                            "label": label,
-                            'class': buttonClass,
+                            "label": json[0].RouteName,
+                            'class': 'btn-primary',
                             'callback': function () {
                             }
                         });
