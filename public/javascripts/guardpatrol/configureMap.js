@@ -548,11 +548,10 @@ function initMap() {
 
         bootbox.prompt("Enter a name for the route.", function(result) {                
             if (result === null) {                                             
-              Example.show("Prompt dismissed");                              
+              
             } else {
 
-              Example.show("Hi <b>"+result+"</b>");     
-              
+
               console.log('onSaveRoute called');
               console.log('for this id ' + id);
       
@@ -580,7 +579,7 @@ function initMap() {
               xhr.setRequestHeader('Content-Type', 'application/json');
               xhr.send(JSON.stringify({
                   "RouteID": routeID,
-                  "RouteName": "test",
+                  "RouteName": result,
                   "CurrentRoute": 1,
                   "NotCurrentRoute": 0,
                   "GuardID": currentGuard
