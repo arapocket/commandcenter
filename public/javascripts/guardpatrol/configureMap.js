@@ -661,7 +661,7 @@ function initMap() {
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
                     setCurrentRoute(json[0], map, route);
-                    loadCurrentRoutes(routeData.RouteID, map, route);
+                    loadCurrentRoutes(json[0].RouteID, map, route);
                 }
             }
         }
