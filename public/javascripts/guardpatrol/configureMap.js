@@ -685,8 +685,7 @@ function initMap() {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
-
-                loadCurrentRoutes(routeData.RouteID, map, route);
+                // loadCurrentRoutes(routeData.RouteID, map, route);
             }
         }
 
