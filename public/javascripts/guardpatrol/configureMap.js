@@ -550,6 +550,9 @@ function initMap() {
 
             } else {
 
+                
+                let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
+
 
                 console.log('onSaveRoute called');
                 console.log('for this id ' + id);
@@ -578,7 +581,7 @@ function initMap() {
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify({
                     "RouteID": routeID,
-                    "RouteName": result,
+                    "RouteName": cleanInput,
                     "CurrentRoute": 1,
                     "NotCurrentRoute": 0,
                     "GuardID": currentGuard
@@ -664,7 +667,7 @@ function initMap() {
             }
         }
 
-        cleanName = routeName.replace(/[^a-zA-Z0-9]/g, "");
+        let cleanName = routeName.replace(/[^a-zA-Z0-9]/g, "");
 
         console.log('logging cleanName after regex ' + cleanName )
 
