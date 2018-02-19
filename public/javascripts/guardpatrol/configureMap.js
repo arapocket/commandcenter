@@ -326,8 +326,9 @@ function initMap() {
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
         let loadRouteButton = parent.document.getElementById('loadRouteButton' + GuardID);
         let endPatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
+        let addRouteButton = parent.document.getElementById('addRouteButton')
 
-        onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, GuardID);
+        onTrashRoute(addRouteButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, GuardID);
 
         editRouteButton.style.display = 'block';
         endPatrolButton.style.display = 'block';
@@ -875,8 +876,10 @@ function initMap() {
 
         let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
 
+        let addRouteButton = parent.document.getElementById('addRouteButton');
 
-        onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, routeData.GuardID);
+
+        onTrashRoute(addRouteButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, routeData.GuardID);
 
 
     }
