@@ -677,7 +677,6 @@ function initMap() {
 
     function hideAddButton(){
         let addRouteButton = parent.document.getElementById('addRouteButton');
-
         addRouteButton.style.display = 'none'
     }
 
