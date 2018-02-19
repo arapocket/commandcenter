@@ -687,31 +687,6 @@ function initMap() {
         }
 
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-
-                let id = routeData.GuardID;
-
-                let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
-
-                let removeLastCheckpointButton = parent.document.getElementById("removeLastCheckpointButton" + id);
-    
-                let saveRouteButton = parent.document.getElementById("saveRouteButton" + id);
-    
-                let loadRouteButton = parent.document.getElementById("loadRouteButton" + id);
-    
-                let addRouteButton = parent.document.getElementById('addRouteButton' + id);
-    
-                let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
-    
-                let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
-
-
-                onTrashRoute(addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, routeData.GuardID);
-
-                
-            }
-        }
         
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/setcurrentroute", true);
 
@@ -723,6 +698,28 @@ function initMap() {
             "RouteID": routeData.RouteID,
             "GuardID": routeData.GuardID
         }));
+
+
+        let id = routeData.GuardID;
+
+        let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
+
+        let removeLastCheckpointButton = parent.document.getElementById("removeLastCheckpointButton" + id);
+
+        let saveRouteButton = parent.document.getElementById("saveRouteButton" + id);
+
+        let loadRouteButton = parent.document.getElementById("loadRouteButton" + id);
+
+        let addRouteButton = parent.document.getElementById('addRouteButton' + id);
+
+        let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
+
+        let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
+
+
+        onTrashRoute(addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, routeData.GuardID);
+
+
     }
 
     function onLoadRoute(map, route, id) {
