@@ -151,6 +151,7 @@ function initMap() {
 
             let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
 
+            let addRouteButton = parent.document.getElementById('addRouteButton')
 
             editRouteButton.addEventListener('click', function (e) {
                 console.log('the guard id is: ' + id);
@@ -158,7 +159,7 @@ function initMap() {
             });
 
             trashRouteButton.addEventListener('click', function (e) {
-                onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id);
+                onTrashRoute(addRouteButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id);
             });
 
             clearCheckpointsButton.addEventListener('click', function (e) {
@@ -646,7 +647,8 @@ function initMap() {
 
     }
 
-    function onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id) {
+    function onTrashRoute(addRouteButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id) {
+        addRouteButton.style.display = 'none';
         editRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
         clearCheckpointsButton.style.display = 'none';
