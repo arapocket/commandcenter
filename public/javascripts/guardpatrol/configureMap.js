@@ -663,6 +663,7 @@ function initMap() {
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
                     loadCurrentRoutes(routeID, map, route);
+                    setCurrentRoute(json[0], map);       
                 }
             }
         }
@@ -677,6 +678,49 @@ function initMap() {
         xhr.send(null);
     }
 
+    function setCurrentRoute(route, map){
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+
+                let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
+
+                let removeLastCheckpointButton = parent.document.getElementById("removeLastCheckpointButton" + id);
+    
+                let saveRouteButton = parent.document.getElementById("saveRouteButton" + id);
+    
+                let loadRouteButton = parent.document.getElementById("loadRouteButton" + id);
+    
+                let addRouteButton = parent.document.getElementById('addRouteButton' + id);
+    
+                let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
+    
+                let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
+
+
+                onTrashRoute(addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, route.GuardID);
+
+                
+            }
+        }
+        
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes", true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            "CurrentRoute": 1,
+            "NotCurrentRoute": 0,
+            "RouteID": route.RouteID,
+            "GuardID": route.GuardID
+        }));
+    }
 
     function onLoadRoute(map, route, id) {
 
