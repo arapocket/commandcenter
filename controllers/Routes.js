@@ -24,6 +24,18 @@ module.exports.getRouteByID = function (req, res) {
   });
 };
 
+
+module.exports.getRouteByName = function (req, res) {
+  Route.getRouteByName(req.body, function (err, result) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+};
+
 module.exports.getCurrentRoutes = function (req, res) {
   Route.getCurrentRoutes(req.params.id, function (err, result) {
     if (err) {
@@ -43,11 +55,11 @@ module.exports.addRoute = function (req, res) {
     else {
       res.json(result);
       Route.updateRoute(req.body, function (err, res) {
-      if (res){
-        console.log(res);
-      }else{
-        console.log(err);
-      }
+        if (res) {
+          console.log(res);
+        } else {
+          console.log(err);
+        }
 
       });
     }

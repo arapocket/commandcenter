@@ -175,7 +175,7 @@ function initMap() {
 
 
                 // onLoadRoute(map, route, id);
-                onSelectRoute();
+                onSelectRoute(map, route);
             });
 
             saveRouteButton.addEventListener('click', function (e) {
@@ -595,7 +595,7 @@ function initMap() {
 
     }
 
-    function onSelectRoute() {
+    function onSelectRoute(map, route) {
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -621,6 +621,7 @@ function initMap() {
                             label: label,
                             className: buttonClass,
                             callback: function () {
+                                loadSelectedRoute(label, map, route)
                             }
                         });
 
@@ -630,7 +631,7 @@ function initMap() {
                         title: 'Select Route',
                         message: "<p>Select the route you wish to load.</p>",
                         buttons: routeButtons
-                        });
+                    });
 
 
                 }
@@ -641,13 +642,35 @@ function initMap() {
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(null);
-
-
-
-
-
-
     }
+
+
+    function loadSelectedRoute(routeName, map, route) {
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+                if (json.length > 0) {
+                    let routeID = json[0].RouteID;
+                    loadCurrentRoutes(routeID, map, route);
+                }
+            }
+        }
+
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/", true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            "RouteName": routeName
+        }));
+    }
+
 
     function onLoadRoute(map, route, id) {
 
