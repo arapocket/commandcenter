@@ -713,7 +713,6 @@ function initMap() {
         
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes", true);
 
-        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
             "CurrentRoute": 1,
             "NotCurrentRoute": 0,
