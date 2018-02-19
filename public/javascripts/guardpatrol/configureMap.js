@@ -578,7 +578,7 @@ function initMap() {
             onAddCheckpoint(newRoute, e.latLng, map);
         });
 
-        google.maps.event.addListener(route, 'click', function (e) {
+        google.maps.event.addListener(newRoute, 'click', function (e) {
             onAddCheckpoint(newRoute, e.latLng, map);
         });
     }
