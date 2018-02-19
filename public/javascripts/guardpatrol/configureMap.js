@@ -690,6 +690,8 @@ function initMap() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
 
+                let id = route.GuardID;
+
                 let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
 
                 let removeLastCheckpointButton = parent.document.getElementById("removeLastCheckpointButton" + id);
