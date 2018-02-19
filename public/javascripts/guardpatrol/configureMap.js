@@ -661,6 +661,7 @@ function initMap() {
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
                     setCurrentRoute(json[0], map, route);
+                    loadCurrentRoutes(routeData.RouteID, map, route);
                 }
             }
         }
@@ -681,14 +682,6 @@ function initMap() {
             alert('Giving up :( Cannot create an XMLHTTP instance');
             return false;
         }
-
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                loadCurrentRoutes(routeData.RouteID, map, route);
-            }
-        }
-
 
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/setcurrentroute", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
