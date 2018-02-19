@@ -204,7 +204,6 @@ module.exports.updateRoute = function (Route, callback) {
 
 }
 
-
 module.exports.disableRoutes = function (Route, callback) {
 
     db.createConnection(function (err, reslt) {
