@@ -645,7 +645,7 @@ function initMap() {
     function loadSelectedRoute(routeName, map, route) {
 
         console.log('loadSelectedRoute called');
-        
+
 
         var xhr = new XMLHttpRequest();
 
@@ -663,6 +663,8 @@ function initMap() {
                 }
             }
         }
+
+        var routeName = routeName.replace(/[^a-zA-Z0-9 ]/g, "");
 
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/" + routeName, true);
 

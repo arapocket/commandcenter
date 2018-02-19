@@ -1,6 +1,6 @@
 function locationIsAccurate(location, lastLocation) {
-  
-return true;
+
+  return true;
 
   // console.log('logging location')
   // console.log(JSON.stringify(location));
@@ -19,13 +19,13 @@ return true;
   //       let deltaLatitude = Math.abs(
   //         (locationLat - lastLocationLat)
   //       )
-    
+
   //       let deltaLongitude = Math.abs(
   //         (locationLng - lastLocationLng)
   //       )
-    
+
   //       //CHECK IF DISTANCE IS TOO FAR, ie PREVENT WEIRD LINES ON MAP
-    
+
   //       console.log("Comparing this location and last location:");
   //       console.log("Current Latitude: " + locationLat);
   //       console.log("Current Longitude: " + locationLng)
@@ -33,7 +33,7 @@ return true;
   //       console.log("Last Longitude: " + this.lastLocationLng);
   //       console.log("Delta Latitude: " + deltaLatitude);
   //       console.log("Delta Longitude: " + deltaLongitude);
-    
+
   //       if (
   //         (
   //           (deltaLatitude < maxDelta) &&
@@ -46,4 +46,4 @@ return true;
   //       }
 
 
-      };
+};
