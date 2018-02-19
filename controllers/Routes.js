@@ -28,7 +28,7 @@ module.exports.getRouteByID = function (req, res) {
 module.exports.getRouteByName = function (req, res) {
   Route.getRouteByName(req.body, function (err, result) {
 
-    console.log('logging req.body from controller' + req.body)
+    console.log('logging req.body from controller ' + JSON.stringify(req.body))
 
     if (err) {
       res.json(err);
