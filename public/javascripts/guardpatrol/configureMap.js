@@ -664,7 +664,7 @@ function initMap() {
             }
         }
 
-        cleanName = routeName.replace(/[^a-zA-Z0-9 ]/g, "");
+        cleanName = routeName.replace(/[^a-zA-Z0-9]/g, "");
 
         console.log('logging cleanName after regex ' + cleanName )
 
