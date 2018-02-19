@@ -907,6 +907,9 @@ function initMap() {
     }
 
     function loadCurrentRoutes(routeID, map, route) {
+
+        console.log('loadCurrentRoutes called ');
+
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
