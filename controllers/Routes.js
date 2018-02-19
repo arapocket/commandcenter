@@ -59,7 +59,7 @@ module.exports.addRoute = function (req, res) {
       res.json(result);
       Route.updateRoute(req.body, function (err, res) {
         if (res) {
-          console.log(res);
+          return console.log(res);
         } else {
           console.log(err);
         }
