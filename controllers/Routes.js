@@ -59,11 +59,10 @@ module.exports.addRoute = function (req, res) {
       res.json(result);
       Route.updateRoute(req.body, function (err, res) {
         if (res) {
-          return console.log(res);
+           console.log(res);
         } else {
           console.log(err);
         }
-
       });
     }
   });
@@ -83,10 +82,10 @@ module.exports.deleteRoute = function (req, res) {
 module.exports.updateRoute = function (req, res) {
   Route.updateRoute(req.body, function (err, result) {
     if (err) {
-      return res.json(err);
+      console.log(err);
     }
     else {
-      res.json(result);
+      console.log(result);
     }
   });
 };
