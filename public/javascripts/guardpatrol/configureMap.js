@@ -684,9 +684,9 @@ function initMap() {
         }
 
 
-        xhr.setRequestHeader('Content-Type', 'application/json');
         
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/setcurrentroute", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
         
         xhr.send(JSON.stringify({
@@ -828,9 +828,9 @@ function initMap() {
                         alert('Giving up :( Cannot create an XMLHTTP instance');
                         return false;
                     }
-                    xhr.setRequestHeader('Content-Type', 'application/json');
 
                     xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrols", true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
 
                     xhr.send(JSON.stringify({
                         "CurrentPatrol": 0,
@@ -856,9 +856,9 @@ function initMap() {
             alert('Giving up :( Cannot create an XMLHTTP instance');
             return false;
         }
-        xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/coordinates", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.send(JSON.stringify({
             "CurrentCoord": 0,
