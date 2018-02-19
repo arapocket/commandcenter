@@ -663,7 +663,7 @@ function initMap() {
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
                     loadCurrentRoutes(routeID, map, route);
-                    setCurrentRoute(json[0], map);       
+                    setCurrentRoute(json[0], map, route);       
                 }
             }
         }
@@ -678,7 +678,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function setCurrentRoute(route, map){
+    function setCurrentRoute(routeData, map, route){
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -690,7 +690,7 @@ function initMap() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
 
-                let id = route.GuardID;
+                let id = routeData.GuardID;
 
                 let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
 
@@ -707,7 +707,7 @@ function initMap() {
                 let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
 
 
-                onTrashRoute(addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, route.GuardID);
+                onTrashRoute(addRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, routeData.GuardID);
 
                 
             }
