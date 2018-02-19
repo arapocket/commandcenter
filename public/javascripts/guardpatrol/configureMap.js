@@ -660,7 +660,7 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
-                    // setCurrentRoute(json[0], map, route);
+                    setCurrentRoute(json[0], map, route);
                 }
             }
         }

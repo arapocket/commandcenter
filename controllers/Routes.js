@@ -83,7 +83,7 @@ module.exports.deleteRoute = function (req, res) {
 module.exports.updateRoute = function (req, res) {
   Route.updateRoute(req.body, function (err, result) {
     if (err) {
-      res.json(err);
+      return res.json(err);
     }
     else {
       res.json(result);
