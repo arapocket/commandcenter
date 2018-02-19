@@ -645,6 +645,7 @@ function initMap() {
     function loadSelectedRoute(routeName, map, route) {
 
         console.log('loadSelectedRoute called');
+        
 
         var xhr = new XMLHttpRequest();
 
