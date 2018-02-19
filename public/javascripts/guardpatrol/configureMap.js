@@ -549,7 +549,7 @@ function initMap() {
 
             } else {
 
-                
+
                 let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
 
 
@@ -660,22 +660,21 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
-                    loadCurrentRoutes(routeID, map, route);
-                    setCurrentRoute(json[0], map, route);       
+                    setCurrentRoute(json[0], map, route);
                 }
             }
         }
 
         let cleanName = routeName.replace(/[^a-zA-Z0-9]/g, "");
 
-        console.log('logging cleanName after regex ' + cleanName )
+        console.log('logging cleanName after regex ' + cleanName)
 
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/" + cleanName, true);
 
         xhr.send(null);
     }
 
-    function setCurrentRoute(routeData, map, route){
+    function setCurrentRoute(routeData, map, route) {
         let xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -684,11 +683,18 @@ function initMap() {
         }
 
 
-        
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+
+                loadCurrentRoutes(routeData.RouteID, map, route);
+            }
+        }
+
+
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/setcurrentroute", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
-        
+
         xhr.send(JSON.stringify({
             "CurrentRoute": 1,
             "NotCurrentRoute": 0,
