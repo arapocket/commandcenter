@@ -664,11 +664,11 @@ function initMap() {
             }
         }
 
-        routeName = routeName.replace(/[^a-zA-Z0-9 ]/g, "");
+        cleanName = routeName.replace(/[^a-zA-Z0-9 ]/g, "");
 
-        console.log('logging routeName after regex ' + routeName )
+        console.log('logging cleanName after regex ' + cleanName )
 
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/" + routeName, true);
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/" + cleanName, true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(null);
