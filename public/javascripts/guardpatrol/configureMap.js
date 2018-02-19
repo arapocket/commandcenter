@@ -613,9 +613,6 @@ function initMap() {
                     for (i = 0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let buttonClass = 'btn-primary';
-                        let callback = function () {
-
-                        }
 
                         routeButtons.push({
                             label: label,
@@ -646,6 +643,9 @@ function initMap() {
 
 
     function loadSelectedRoute(routeName, map, route) {
+
+        console.log('loadSelectedRoute called');
+
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
