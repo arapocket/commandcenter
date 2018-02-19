@@ -159,7 +159,8 @@ function initMap() {
             });
 
             trashRouteButton.addEventListener('click', function (e) {
-                onTrashRoute(addRouteButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id);
+                onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id);
+                showAddButton();
             });
 
             clearCheckpointsButton.addEventListener('click', function (e) {
@@ -298,6 +299,8 @@ function initMap() {
 
     function changeButtons(GuardID, locations, map, route) {
 
+        hideAddButton();
+
         for (let i = 0; i < locations.length; i++) {
             var id = locations[i].GuardID;
 
@@ -319,6 +322,8 @@ function initMap() {
 
         }
 
+
+
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
         let editRouteButton = parent.document.getElementById('editRouteButton' + GuardID);
         let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
@@ -328,7 +333,7 @@ function initMap() {
         let endPatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
         let addRouteButton = parent.document.getElementById('addRouteButton')
 
-        onTrashRoute(addRouteButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, GuardID);
+        onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, GuardID);
 
         editRouteButton.style.display = 'block';
         endPatrolButton.style.display = 'block';
@@ -547,6 +552,7 @@ function initMap() {
     }
 
     function onAddRoute(){
+        
         let routeSeq = {
             repeat: '30px',
             icon: {
@@ -648,7 +654,7 @@ function initMap() {
 
     }
 
-    function onTrashRoute(addRouteButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id) {
+    function onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id) {
         addRouteButton.style.display = 'block';
         editRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
@@ -667,6 +673,18 @@ function initMap() {
 
         onLoadRoute(map, route, id);
 
+    }
+
+    function hideAddButton(){
+        let addRouteButton = parent.document.getElementById('addRouteButton');
+
+        addRouteButton.style.display = 'none'
+    }
+
+    function showAddButton(){
+        let addRouteButton = parent.document.getElementById('addRouteButton');
+
+        addRouteButton.style.display = 'block'
     }
 
     function onEndPatrol(id, firstName, endPatrolButton) {
@@ -876,10 +894,8 @@ function initMap() {
 
         let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
 
-        let addRouteButton = parent.document.getElementById('addRouteButton');
 
-
-        onTrashRoute(addRouteButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, routeData.GuardID);
+        onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, routeData.GuardID);
 
 
     }
