@@ -718,8 +718,8 @@ function initMap() {
         xhr.send(JSON.stringify({
             "CurrentRoute": 1,
             "NotCurrentRoute": 0,
-            "RouteID": route.RouteID,
-            "GuardID": route.GuardID
+            "RouteID": routeData.RouteID,
+            "GuardID": routeData.GuardID
         }));
     }
 
