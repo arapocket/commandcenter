@@ -667,9 +667,9 @@ function initMap() {
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/", true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(JSON.stringify({
+        xhr.send({
             "RouteName": routeName
-        }));
+        });
     }
 
 
