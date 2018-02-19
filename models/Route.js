@@ -170,7 +170,7 @@ module.exports.updateRoute = function (Route, callback) {
             var connection = reslt;
 
 
-            console.log('logging Route from updateRoute' + JSON.stringify(Route));
+            console.log('logging Route from updateRoute ' + JSON.stringify(Route));
 
             // here we set all other routes to 0
             var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID +  "';";
