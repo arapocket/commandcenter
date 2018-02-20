@@ -269,6 +269,7 @@ router.get('/routes', Routes.getAllRoutes);
 router.get('/selectedroute/:name', Routes.getRouteByName);
 router.get('/routes/:id', Routes.getRouteByID);
 router.post('/routes', Routes.addRoute);
+router.post('/saveroute', Routes.saveRoute);
 router.delete('/routes/:id', Routes.deleteRoute);
 router.put('/setcurrentroute', Routes.updateRoute);
 router.put('/disableroutes', Routes.disableRoutes);

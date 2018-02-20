@@ -68,6 +68,17 @@ module.exports.addRoute = function (req, res) {
   });
 };
 
+module.exports.saveRoute = function (req, res) {
+  Route.saveRoute(req.body, function (err, result) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.json(result);
+    }
+  });
+};
+
 module.exports.deleteRoute = function (req, res) {
   Route.deleteRoute(req.params.id, function (err, result) {
     if (err) {
