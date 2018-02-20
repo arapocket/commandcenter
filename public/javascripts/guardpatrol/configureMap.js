@@ -956,7 +956,7 @@ function initMap() {
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
                     setCurrentRoute(json[0], map, route);
-                    // loadCurrentRoutes(json[0].RouteID, map, route);
+                    loadCurrentRoutes(json[0].RouteID, map, route);
                 }
             }
         }
@@ -985,7 +985,7 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
-                    // loadCurrentRoutes(routeID, map, route);
+                    loadCurrentRoutes(routeID, map, route);
                 }
 
 
@@ -1002,7 +1002,9 @@ function initMap() {
 
     function setCurrentRoute(routeData, map, route) {
 
-        var currentGuard = localStorage.getItem("currentGuard");
+        let currentGuard = localStorage.getItem("currentGuard");
+
+        console.log('logging currentGuard from setCurrentRoute ' + currentGuard);
 
         let xhr = new XMLHttpRequest();
 
@@ -1098,30 +1100,30 @@ function initMap() {
         bootbox.alert('Route has been saved for later!')
     }
 
-    // function loadCurrentRoutes(routeID, map, route) {
+    function loadCurrentRoutes(routeID, map, route) {
 
-    //     console.log('loadCurrentRoutes called ');
+        console.log('loadCurrentRoutes called ');
 
-    //     var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
 
-    //     if (!xhr) {
-    //         alert('Giving up :( Cannot create an XMLHTTP instance');
-    //         return false;
-    //     }
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
 
-    //     xhr.onreadystatechange = function () {
-    //         if (xhr.readyState == XMLHttpRequest.DONE) {
-    //             console.log('logging checkpoints response: ' + xhr.responseText);
-    //             var checkpoints = JSON.parse(xhr.responseText);
-    //             loadRoutesOnMap(checkpoints, map, route);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                console.log('logging checkpoints response: ' + xhr.responseText);
+                var checkpoints = JSON.parse(xhr.responseText);
+                loadRoutesOnMap(checkpoints, map, route);
 
-    //         }
-    //     }
+            }
+        }
 
-    //     xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
 
-    //     xhr.send(null);
-    // }
+        xhr.send(null);
+    }
 
     function loadRoutesOnMap(checkpoints, map, route) {
 
