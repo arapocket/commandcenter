@@ -1042,7 +1042,7 @@ function initMap() {
         let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
 
 
-        onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, routeData.GuardID);
+        onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id);
 
 
     }
