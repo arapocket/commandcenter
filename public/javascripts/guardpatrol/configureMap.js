@@ -228,13 +228,13 @@ function initMap() {
             });
 
             loadRouteButton.addEventListener('click', function (e) {
-                let path = route.getPath().getArray();
+                // let path = route.getPath().getArray();
 
-                if (path.length > 0) {
-                    let firstCheckpoint = path[0];
-                    console.log('logging firstCheckpoint ' + firstCheckpoint);
-                    map.setCenter(firstCheckpoint);
-                }
+                // if (path.length > 0) {
+                //     let firstCheckpoint = path[0];
+                //     console.log('logging firstCheckpoint ' + firstCheckpoint);
+                //     map.setCenter(firstCheckpoint);
+                // }
 
 
                 // loadRoute(map, route, id);
@@ -980,7 +980,7 @@ function initMap() {
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
                     setCurrentRoute(json[0], map, route);
-                    loadCurrentRoutes(json[0].RouteID, map, route);
+                    loadCurrentRoute(json[0].RouteID, map, route);
                 }
             }
         }
@@ -1009,7 +1009,7 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
-                    loadCurrentRoutes(routeID, map, route);
+                    loadCurrentRoute(routeID, map, route);
                 }
 
 
@@ -1123,9 +1123,9 @@ function initMap() {
         }
     }
 
-    function loadCurrentRoutes(routeID, map, route) {
+    function loadCurrentRoute(routeID, map, route) {
 
-        console.log('loadCurrentRoutes called ');
+        console.log('loadCurrentRoute called ');
 
         var xhr = new XMLHttpRequest();
 
@@ -1138,7 +1138,7 @@ function initMap() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 console.log('logging checkpoints response: ' + xhr.responseText);
                 var checkpoints = JSON.parse(xhr.responseText);
-                loadRoutesOnMap(checkpoints, map, route);
+                loadRouteOnMap(checkpoints, map, route);
 
             }
         }
@@ -1149,7 +1149,7 @@ function initMap() {
     }
 
     // $%$%
-    function loadRoutesOnMap(checkpoints, map, route) {
+    function loadRouteOnMap(checkpoints, map, route) {
 
         route.setPath([]);
 
@@ -1159,15 +1159,6 @@ function initMap() {
                 route.getPath().push(latLng);
             }
         }
-
-        let path = route.getPath().getArray();
-
-        if (path.length > 0) {
-            let firstCheckpoint = path[0];
-            console.log('logging firstCheckpoint ' + firstCheckpoint);
-            map.setCenter(firstCheckpoint);
-        }
-
     }
 
     function createRouteID() {
