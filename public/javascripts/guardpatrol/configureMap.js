@@ -878,7 +878,13 @@ function initMap() {
                 postCheckpoints(route, routeID);
 
 
-                socket.emit('load route');
+                hideCancelButton(map, route)
+                hideClearCheckpointsButton();
+                hideRemoveLastCheckpointButton();
+                hideSaveRouteButton();
+                hideLoadRouteButton();
+                showAddButton();
+
             }
         });
 
