@@ -143,7 +143,7 @@ function initMap() {
     });
 
     saveRouteButton.addEventListener('click', function (e) {
-        onSaveRoute(route, map)
+        onSaveRouteAll(route, map)
     });
 
 
@@ -851,7 +851,7 @@ function initMap() {
 
     }
 
-    function onSaveRoute(route, map) {
+    function onSaveRouteAll(route, map) {
 
 
         bootbox.prompt("Enter a name for the route.", function (result) {
