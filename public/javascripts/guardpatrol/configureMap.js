@@ -356,6 +356,7 @@ function initMap() {
 
         hideAddButton();
         hideCancelButton();
+        hideRemoveLastCheckpointButton();
         hideClearCheckpointsButton();
         hideLoadRouteButton();
         hideSaveRouteButton();
@@ -600,7 +601,7 @@ function initMap() {
         route.setPath([]);
     }
 
-    function onRemoveLastCheckpoint(route) {
+    function onRemoveLastChecckpoint(route) {
 
         console.log('onRemoveLastCheckpoint called');
 
