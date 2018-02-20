@@ -110,7 +110,7 @@ function initMap() {
         map: map,
         zIndex: 1,
         geodesic: true,
-        strokeColor: "pink",
+        strokeColor: "black",
         strokeOpacity: 1,
         strokeWeight: 5,
         icons: [routeSeq]
