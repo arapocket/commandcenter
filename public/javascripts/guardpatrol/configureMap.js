@@ -557,6 +557,8 @@ function initMap() {
     function onAddRoute(){
 
         hideAddButton();
+
+        
         
         let routeSeq = {
             repeat: '30px',
@@ -569,7 +571,7 @@ function initMap() {
                 strokeOpacity: 1
             }
         };
-        let newRoute = new google.maps.Polyline({
+        let route = new google.maps.Polyline({
             map: map,
             zIndex: 1,
             geodesic: true,
@@ -580,14 +582,10 @@ function initMap() {
         })
 
         map.addListener('click', function (e) {
-            onAddCheckpoint(newRoute, e.latLng, map);
+            onAddCheckpoint(route, e.latLng, map);
         });
 
-        google.maps.event.addListener(newRoute, 'click', function (e) {
-            onAddCheckpoint(newRoute, e.latLng, map);
-        });
-
-
+        showCancelButton(map, route);
     }
 
     function onLoadRoute(map, route, id) {
@@ -713,12 +711,16 @@ function initMap() {
 
     }
 
-    function showCancelButton(){
+    function showCancelButton(map, route){
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         cancelRouteButton.style.display = 'block';
 
         cancelRouteButton.addEventListener('click', function (e) {
             onCancelRoute(map, route);
+        });
+
+        google.maps.event.addListener(route, 'click', function (e) {
+            onAddCheckpoint(route, e.latLng, map);
         });
     }
 
