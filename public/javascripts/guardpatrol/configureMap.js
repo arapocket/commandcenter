@@ -365,6 +365,12 @@ function initMap() {
 
         }
 
+        hideAddButton();
+        hideCancelButton();
+        hideClearCheckpointsButton();
+        hideLoadRouteButton();
+        hideSaveRouteButton();
+
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
         let editRouteButton = parent.document.getElementById('editRouteButton' + GuardID);
         let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
