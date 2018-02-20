@@ -31,7 +31,6 @@ block content
 																																-each incident in getAllIncidentsResult
 																																						tr.default(id=incident.IncidentID)
 																																								td=incident.Type 
-																		-each location in getCurrentLocationsResult																				
 																			.row
 																											a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
 																												i.fa.fa-plus(aria-hidden='true')
@@ -55,7 +54,8 @@ block content
 																			.row
 																											a.btn.btn-default.btn-block(id='loadRouteButton', style='display: none ! important;')
 																												i.fa.fa-cloud-download(aria-hidden='true')
-																												| &nbsp Load Route																														
+																												| &nbsp Load Route		
+																		-each location in getCurrentLocationsResult																																																
 																			.row
 																											a.btn.btn-default.btn-block(id='trashRouteButton' + location.GuardID, style='display: none ! important;')
 																												i.fa.fa-trash(aria-hidden='true')
