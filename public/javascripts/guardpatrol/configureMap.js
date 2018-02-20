@@ -165,6 +165,9 @@ function initMap() {
             let id = location.GuardID;
             let firstName = location.FirstName;
 
+            let routeColor = getRouteColor(firstName);
+            
+
             let routeSeq = {
                 repeat: '30px',
                 icon: {
@@ -180,7 +183,7 @@ function initMap() {
                 map: map,
                 zIndex: 1,
                 geodesic: true,
-                strokeColor: "red",
+                strokeColor: routeColor,
                 strokeOpacity: 1,
                 strokeWeight: 5,
                 icons: [routeSeq]
@@ -287,6 +290,10 @@ function initMap() {
 
     function createPatrolPath(location, map, coords, id) {
 
+        let firstName = location.FirstName;
+
+        let pathColor = getPathColor(firstName);
+
         var patrolSeq = {
             repeat: '30px',
             icon: {
@@ -302,7 +309,7 @@ function initMap() {
             map: map,
             zIndex: 1,
             geodesic: true,
-            strokeColor: "purple",
+            strokeColor: pathColor,
             strokeOpacity: 1,
             strokeWeight: 3,
             icons: [patrolSeq]
@@ -1171,9 +1178,20 @@ function initMap() {
         return newCheckpointID;
     }
 
-    function getUsernameColor(username) {
+    function getPathColor(username) {
         // Compute hash code
         var hash = 7;
+        for (var i = 0; i < username.length; i++) {
+          hash = username.charCodeAt(i) + (hash << 5) - hash;
+        }
+        // Calculate color
+        var index = Math.abs(hash % COLORS.length);
+        return COLORS[index];
+      }
+
+      function getRouteColor(username) {
+        // Compute hash code
+        var hash = 11;
         for (var i = 0; i < username.length; i++) {
           hash = username.charCodeAt(i) + (hash << 5) - hash;
         }
