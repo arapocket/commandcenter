@@ -95,9 +95,12 @@ function initMap() {
 
     let addRouteButton = parent.document.getElementById("addRouteButton");
 
+
     addRouteButton.addEventListener('click', function (e) {
         onAddRoute();
     });
+
+
 
     function createGuards(map, locations, coords) {
 
@@ -557,6 +560,10 @@ function initMap() {
 
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         cancelRouteButton.style.display = 'block';
+
+        cancelRouteButton.addEventListener('click', function (e) {
+            onCancelRoute();
+        });
         
         let routeSeq = {
             repeat: '30px',
@@ -586,6 +593,8 @@ function initMap() {
         google.maps.event.addListener(newRoute, 'click', function (e) {
             onAddCheckpoint(newRoute, e.latLng, map);
         });
+
+
     }
 
     function onLoadRoute(map, route, id) {
@@ -680,6 +689,18 @@ function initMap() {
 
     }
 
+    function onCancelRoute(route, map){
+
+        google.maps.event.clearListeners(map, 'click');
+        google.maps.event.clearListeners(route, 'click');
+
+        route.setMap(null);
+        route.setPath([]);
+        route.setMap(map);
+
+        showAddButton();
+    }
+
     function hideAddButton(){
         let addRouteButton = parent.document.getElementById('addRouteButton');
         addRouteButton.style.display = 'none'
@@ -689,6 +710,14 @@ function initMap() {
         let addRouteButton = parent.document.getElementById('addRouteButton');
 
         addRouteButton.style.display = 'block'
+    }
+
+    function hideCancelButton(){
+
+    }
+
+    function showCancelButton(){
+        
     }
 
     function onEndPatrol(id, firstName, endPatrolButton) {
