@@ -346,14 +346,6 @@ function initMap() {
 
     function changeButtons(GuardID, locations, map, route) {
 
-        google.maps.event.clearListeners(map, 'click');
-        google.maps.event.clearListeners(route, 'click');
-
-        route.setMap(null);
-        route.setPath([]);
-        route.setMap(map);
-
-
         hideAddButton();
         hideCancelButton();
         hideRemoveLastCheckpointButton();
@@ -684,7 +676,7 @@ function initMap() {
 
     }
 
-    function onCancelRoute() {
+    function onCancelRoute(map, route) {
 
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
