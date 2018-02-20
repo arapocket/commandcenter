@@ -557,13 +557,6 @@ function initMap() {
     function onAddRoute(){
 
         hideAddButton();
-
-        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
-        cancelRouteButton.style.display = 'block';
-
-        cancelRouteButton.addEventListener('click', function (e) {
-            onCancelRoute();
-        });
         
         let routeSeq = {
             repeat: '30px',
@@ -689,15 +682,9 @@ function initMap() {
 
     }
 
-    function onCancelRoute(route, map){
+    function onCancelRoute(map, route){
 
-        google.maps.event.clearListeners(map, 'click');
-        google.maps.event.clearListeners(route, 'click');
-
-        route.setMap(null);
-        route.setPath([]);
-        route.setMap(map);
-
+        hideCancelButton(map, route)
         showAddButton();
     }
 
@@ -712,12 +699,27 @@ function initMap() {
         addRouteButton.style.display = 'block'
     }
 
-    function hideCancelButton(){
+    function hideCancelButton(map, route){
+        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+        cancelRouteButton.style.display = 'none';
+
+        google.maps.event.clearListeners(map, 'click');
+        google.maps.event.clearListeners(route, 'click');
+
+        route.setMap(null);
+        route.setPath([]);
+        route.setMap(map);
+
 
     }
 
     function showCancelButton(){
-        
+        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+        cancelRouteButton.style.display = 'block';
+
+        cancelRouteButton.addEventListener('click', function (e) {
+            onCancelRoute(map, route);
+        });
     }
 
     function onEndPatrol(id, firstName, endPatrolButton) {
