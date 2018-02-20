@@ -1000,6 +1000,9 @@ function initMap() {
     }
 
     function setCurrentRoute(routeData, map, route) {
+
+        var currentGuard = localStorage.getItem("currentGuard");
+
         let xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -1015,11 +1018,11 @@ function initMap() {
             "CurrentRoute": 1,
             "NotCurrentRoute": 0,
             "RouteID": routeData.RouteID,
-            "GuardID": routeData.GuardID
+            "GuardID": currentGuard
         }));
 
 
-        let id = routeData.GuardID;
+        let id = currentGuard;
 
         let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
 
