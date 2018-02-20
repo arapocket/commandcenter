@@ -553,11 +553,10 @@ function initMap() {
 
     function onAddRoute(){
 
-        let addRouteButton = parent.document.getElementById('addRouteButton');
-        let trashRouteButton = parent.document.getElementById('trashRouteButton');
+        hideAddButton();
 
-        addRouteButton.style.display = 'none';
-        trashRouteButton.style.display = 'block';
+        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+        cancelRouteButton.style.display = 'block';
         
         let routeSeq = {
             repeat: '30px',
