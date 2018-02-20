@@ -739,7 +739,7 @@ function initMap() {
     }
 
     function hideLoadRouteButton() {
-        let loadRouteButton = parent.document.getElementById('saveRouteButton');
+        let loadRouteButton = parent.document.getElementById('loadRouteButton');
         loadRouteButton.style.display = 'none';
     }
 
