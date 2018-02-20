@@ -15,7 +15,7 @@ function initMap() {
         '#e21400', '#f8a700', '#f78b00',
         '#58dc00', '#a8f07a', '#4ae8c4',
         '#3b88eb'
-      ];
+    ];
 
 
     console.log("initMap called");
@@ -166,7 +166,7 @@ function initMap() {
             let firstName = location.FirstName;
 
             let routeColor = getRouteColor(firstName);
-            
+
 
             let routeSeq = {
                 repeat: '30px',
@@ -866,7 +866,6 @@ function initMap() {
 
     function onSaveRouteAll(route, map) {
 
-
         bootbox.prompt("Enter a name for the route.", function (result) {
             if (result === null) {
 
@@ -901,7 +900,7 @@ function initMap() {
 
                 google.maps.event.clearListeners(map, 'click');
                 google.maps.event.clearListeners(route, 'click');
-        
+
                 route.setMap(null);
                 route.setPath([]);
                 route.setMap(map);
@@ -918,9 +917,6 @@ function initMap() {
 
             }
         });
-
-
-
     }
 
     function onSelectRoute(map, route) {
@@ -937,7 +933,6 @@ function initMap() {
                 if (json.length > 0) {
 
                     let routeButtons = [];
-
                     for (i = 0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let buttonClass = 'btn-primary';
@@ -951,7 +946,6 @@ function initMap() {
                         });
 
                     }
-
                     var dialog = bootbox.dialog({
                         title: 'Select Route',
                         message: "<p>Select the route you wish to load.</p>",
@@ -1154,6 +1148,7 @@ function initMap() {
         xhr.send(null);
     }
 
+    // $%$%
     function loadRoutesOnMap(checkpoints, map, route) {
 
         route.setPath([]);
@@ -1163,7 +1158,14 @@ function initMap() {
                 var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
                 route.getPath().push(latLng);
             }
+        }
 
+        let path = route.getPath().getArray();
+
+        if (path.length > 0) {
+            let firstCheckpoint = path[0];
+            console.log('logging firstCheckpoint ' + firstCheckpoint);
+            map.setCenter(firstCheckpoint);
         }
 
     }
@@ -1182,23 +1184,23 @@ function initMap() {
         // Compute hash code
         var hash = 7;
         for (var i = 0; i < username.length; i++) {
-          hash = username.charCodeAt(i) + (hash << 5) - hash;
+            hash = username.charCodeAt(i) + (hash << 5) - hash;
         }
         // Calculate color
         var index = Math.abs(hash % COLORS.length);
         return COLORS[index];
-      }
+    }
 
-      function getRouteColor(username) {
+    function getRouteColor(username) {
         // Compute hash code
         var hash = 11;
         for (var i = 0; i < username.length; i++) {
-          hash = username.charCodeAt(i) + (hash << 5) - hash;
+            hash = username.charCodeAt(i) + (hash << 5) - hash;
         }
         // Calculate color
         var index = Math.abs(hash % COLORS.length);
         return COLORS[index];
-      }
+    }
 
 
 }
