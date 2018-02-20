@@ -39,7 +39,23 @@ block content
 																			.row
 																											a.btn.btn-default.btn-block(id='cancelRouteButton', style='display: none ! important;')
 																												i.fa.fa-trash(aria-hidden='true')
-																												| &nbsp Cancel Route Add		
+																												| &nbsp Cancel Route Add
+																			.row
+																											a.btn.btn-default.btn-block(id='clearCheckpointsButton', style='display: none ! important;')
+																												i.fa.fa-eraser(aria-hidden='true')
+																												| &nbsp Clear All Checkpoints																			
+																			.row
+																											a.btn.btn-default.btn-block(id='removeLastCheckpointButton', style='display: none ! important;')
+																												i.fa.fa-undo(aria-hidden='true')
+																												| &nbsp Remove Last Checkpoint
+																			.row
+																											a.btn.btn-default.btn-block(id='saveRouteButton', style='display: none ! important;')
+																												i.fa.fa-floppy-o(aria-hidden='true')
+																												| &nbsp Save Route
+																			.row
+																											a.btn.btn-default.btn-block(id='loadRouteButton', style='display: none ! important;')
+																												i.fa.fa-cloud-download(aria-hidden='true')
+																												| &nbsp Load Route																														
 																			.row
 																											a.btn.btn-default.btn-block(id='trashRouteButton' + location.GuardID, style='display: none ! important;')
 																												i.fa.fa-trash(aria-hidden='true')

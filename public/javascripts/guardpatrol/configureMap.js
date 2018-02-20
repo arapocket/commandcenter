@@ -95,10 +95,15 @@ function initMap() {
 
     let addRouteButton = parent.document.getElementById("addRouteButton");
 
-
     addRouteButton.addEventListener('click', function (e) {
         onAddRoute();
     });
+
+
+    let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
+    let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
+    let saveRouteButton = parent.document.getElementById('saveRouteButton');
+    let loadRouteButton = parent.document.getElementById('loadRouteButton');
 
 
 
@@ -551,12 +556,11 @@ function initMap() {
 
     }
 
-    function onAddRoute(){
+    function onAddRoute() {
 
         hideAddButton();
 
-        
-        
+
         let routeSeq = {
             repeat: '30px',
             icon: {
@@ -583,6 +587,11 @@ function initMap() {
         });
 
         showCancelButton(map, route);
+        showClearCheckpointsButton();
+        showRemoveLastCheckpointButton();
+        showSaveRouteButton();
+        showLoadRouteButton();
+
     }
 
     function onLoadRoute(map, route, id) {
@@ -676,24 +685,27 @@ function initMap() {
 
     }
 
-    function onCancelRoute(map, route){
+    function onCancelRoute(map, route) {
 
         hideCancelButton(map, route)
+        hideClearCheckpointsButton();
+        hideRemoveLastCheckpointButton();
+        hideSaveRouteButton();
+        hideLoadRouteButton();
         showAddButton();
     }
 
-    function hideAddButton(){
+    function hideAddButton() {
         let addRouteButton = parent.document.getElementById('addRouteButton');
-        addRouteButton.style.display = 'none'
+        addRouteButton.style.display = 'none'        
     }
 
-    function showAddButton(){
+    function showAddButton() {
         let addRouteButton = parent.document.getElementById('addRouteButton');
-
         addRouteButton.style.display = 'block'
     }
 
-    function hideCancelButton(map, route){
+    function hideCancelButton(map, route) {
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         cancelRouteButton.style.display = 'none';
 
@@ -707,7 +719,7 @@ function initMap() {
 
     }
 
-    function showCancelButton(map, route){
+    function showCancelButton(map, route) {
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         cancelRouteButton.style.display = 'block';
 
@@ -718,6 +730,46 @@ function initMap() {
         google.maps.event.addListener(route, 'click', function (e) {
             onAddCheckpoint(route, e.latLng, map);
         });
+    }
+
+    function hideClearCheckpointsButton() {
+        let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
+        clearCheckpointsButton.style.display = 'none';
+    }
+
+    function showClearCheckpointsButton() {
+        let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
+        clearCheckpointsButton.style.display = 'block';
+    }
+
+    function hideRemoveLastCheckpointButton() {
+        let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
+        removeLastCheckpointButton.style.display = 'none';
+    }
+
+    function showRemoveLastCheckpointButton() {
+        let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
+        removeLastCheckpointButton.style.display = 'block';
+    }
+
+    function hideSaveRouteButton() {
+        let saveRouteButton = parent.document.getElementById('saveRouteButton');
+        saveRouteButton.style.display = 'none';
+    }
+
+    function showSaveRouteButton() {
+        let saveRouteButton = parent.document.getElementById('saveRouteButton');
+        saveRouteButton.style.display = 'block';
+    }
+
+    function hideLoadRouteButton() {
+        let loadRouteButton = parent.document.getElementById('saveRouteButton');
+        loadRouteButton.style.display = 'none';
+    }
+
+    function showLoadRouteButton() {
+        let loadRouteButton = parent.document.getElementById('saveRouteButton');
+        loadRouteButton.style.display = 'block';
     }
 
     function onEndPatrol(id, firstName, endPatrolButton) {
