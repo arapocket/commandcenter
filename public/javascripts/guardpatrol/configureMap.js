@@ -840,8 +840,10 @@ function initMap() {
 
                 postCheckpoints(route, routeID);
 
-
                 socket.emit('load route');
+
+                bootbox.alert('Route has been set as the current route!');
+
             }
         });
 
@@ -897,6 +899,9 @@ function initMap() {
                 hideSaveRouteButton();
                 hideLoadRouteButton();
                 showAddButton();
+
+                bootbox.alert('Route has been saved for later!');
+
 
             }
         });
@@ -1109,7 +1114,6 @@ function initMap() {
             s++;
 
         }
-        bootbox.alert('Route has been saved for later!')
     }
 
     function loadCurrentRoutes(routeID, map, route) {
