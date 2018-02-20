@@ -436,13 +436,23 @@ function setSocketListeners(socket) {
 
   // when a location is updated.. emit this so patrol path is drawn
   socket.on('new location', function (location) {
-    console.log('new location heard');
-    console.log(location);
+    // console.log('new location heard');
+    // console.log(location);
     socket.broadcast.emit('location ' + location.guardID, {
       location: location
     });
   })
 
+    // when first location is heard.. emit this so command center is refreshed
+    socket.on('first location', function (location) {
+      console.log('first location heard');
+      console.log(location);
+      socket.broadcast.emit('first location', {
+        location: location
+      });
+    })
+
+  
     // when a new incident is reported.. emit this
     socket.on('new incident', function (incident) {
       console.log('new incident heard');

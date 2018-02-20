@@ -11,6 +11,12 @@ function initMap() {
 
     var socket = io();
 
+    const COLORS = [
+        '#e21400', '#f8a700', '#f78b00',
+        '#58dc00', '#a8f07a', '#4ae8c4',
+        '#3b88eb'
+      ];
+
 
     console.log("initMap called");
 
@@ -23,7 +29,7 @@ function initMap() {
         }, 10000);
     });
 
-    socket.on('user joined', function (incident) {
+    socket.on('first location', function (incident) {
         window.setTimeout(function () {
             parent.location.reload();
         }, 10000);
@@ -1165,6 +1171,16 @@ function initMap() {
         return newCheckpointID;
     }
 
+    function getUsernameColor(username) {
+        // Compute hash code
+        var hash = 7;
+        for (var i = 0; i < username.length; i++) {
+          hash = username.charCodeAt(i) + (hash << 5) - hash;
+        }
+        // Calculate color
+        var index = Math.abs(hash % COLORS.length);
+        return COLORS[index];
+      }
 
 
 }
