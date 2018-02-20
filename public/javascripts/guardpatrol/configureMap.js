@@ -138,7 +138,7 @@ function initMap() {
     });
 
     saveRouteButton.addEventListener('click', function (e) {
-        onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map, id);
+        onSaveRoute(route, map)
     });
 
 
@@ -228,7 +228,7 @@ function initMap() {
             });
 
             saveRouteButton.addEventListener('click', function (e) {
-                onSaveRoute(route, map)
+                onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map, id);
             });
 
             endPatrolButton.addEventListener('click', function (e) {
