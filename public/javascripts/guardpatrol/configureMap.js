@@ -119,11 +119,15 @@ function initMap() {
 
 
     let addRouteButton = parent.document.getElementById("addRouteButton");
+    let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
 
     addRouteButton.addEventListener('click', function (e) {
         onAddRoute(route);
     });
 
+    cancelRouteButton.addEventListener('click', function (e) {
+        onCancelRoute(map, route);
+    });
 
     let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
     let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
@@ -342,7 +346,19 @@ function initMap() {
 
     function changeButtons(GuardID, locations, map, route) {
 
+        google.maps.event.clearListeners(map, 'click');
+        google.maps.event.clearListeners(route, 'click');
+
+        route.setMap(null);
+        route.setPath([]);
+        route.setMap(map);
+
+
         hideAddButton();
+        hideCancelButton();
+        hideClearCheckpointsButton();
+        hideLoadRouteButton();
+        hideSaveRouteButton();
 
         for (let i = 0; i < locations.length; i++) {
             var id = locations[i].GuardID;
@@ -365,11 +381,6 @@ function initMap() {
 
         }
 
-        hideAddButton();
-        hideCancelButton();
-        hideClearCheckpointsButton();
-        hideLoadRouteButton();
-        hideSaveRouteButton();
 
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
         let editRouteButton = parent.document.getElementById('editRouteButton' + GuardID);
@@ -605,6 +616,10 @@ function initMap() {
             onAddCheckpoint(route, e.latLng, map);
         });
 
+        google.maps.event.addListener(route, 'click', function (e) {
+            onAddCheckpoint(route, e.latLng, map);
+        });
+
         showCancelButton(map, route);
         showClearCheckpointsButton();
         showRemoveLastCheckpointButton();
@@ -668,9 +683,16 @@ function initMap() {
 
     }
 
-    function onCancelRoute(map, route) {
+    function onCancelRoute() {
 
-        hideCancelButton(map, route)
+        google.maps.event.clearListeners(map, 'click');
+        google.maps.event.clearListeners(route, 'click');
+
+        route.setMap(null);
+        route.setPath([]);
+        route.setMap(map);
+
+        hideCancelButton()
         hideClearCheckpointsButton();
         hideRemoveLastCheckpointButton();
         hideSaveRouteButton();
@@ -688,31 +710,16 @@ function initMap() {
         addRouteButton.style.display = 'block'
     }
 
-    function hideCancelButton(map, route) {
+    function hideCancelButton() {
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         cancelRouteButton.style.display = 'none';
-
-        google.maps.event.clearListeners(map, 'click');
-        google.maps.event.clearListeners(route, 'click');
-
-        route.setMap(null);
-        route.setPath([]);
-        route.setMap(map);
-
-
     }
 
-    function showCancelButton(map, route) {
+    function showCancelButton() {
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         cancelRouteButton.style.display = 'block';
 
-        cancelRouteButton.addEventListener('click', function (e) {
-            onCancelRoute(map, route);
-        });
 
-        google.maps.event.addListener(route, 'click', function (e) {
-            onAddCheckpoint(route, e.latLng, map);
-        });
     }
 
     function hideClearCheckpointsButton() {
@@ -884,8 +891,14 @@ function initMap() {
 
                 postCheckpoints(route, routeID);
 
+                google.maps.event.clearListeners(map, 'click');
+                google.maps.event.clearListeners(route, 'click');
+        
+                route.setMap(null);
+                route.setPath([]);
+                route.setMap(map);
 
-                hideCancelButton(map, route)
+                hideCancelButton()
                 hideClearCheckpointsButton();
                 hideRemoveLastCheckpointButton();
                 hideSaveRouteButton();
