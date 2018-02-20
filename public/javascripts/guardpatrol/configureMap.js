@@ -593,7 +593,7 @@ function initMap() {
         route.setPath([]);
     }
 
-    function onRemoveLastChecckpoint(route) {
+    function onRemoveLastCheckpoint(route) {
 
         console.log('onRemoveLastCheckpoint called');
 
