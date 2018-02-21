@@ -390,7 +390,7 @@ function setSocketListeners(socket) {
     socket.username = username;
     ++numUsers;
     addedUser = true;
-    socket.broadcast.emit('login', {
+    socket.emit('login', {
       numUsers: numUsers
     });
 
@@ -402,6 +402,10 @@ function setSocketListeners(socket) {
     });
     }
   });
+
+  socket.on('login', function(){
+console.log('login heard from app.js');
+  })
 
   // when the client emits 'typing', we broadcast it to others
   socket.on('typing', function () {
