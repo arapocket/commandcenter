@@ -152,6 +152,10 @@ function initMap() {
         onSaveRouteAll(route, map)
     });
 
+    loadRouteButton.addEventListener('click', function (e) {
+        onSelectRoute(route, map);
+    });
+
 
     function createGuards(map, locations, coords) {
 
