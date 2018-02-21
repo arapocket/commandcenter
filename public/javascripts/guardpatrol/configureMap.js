@@ -225,7 +225,7 @@ function initMap() {
                 loadRouteButton.style.display = 'none';
                 endPatrolButton.style.display = 'none';
 
-                onTrashRoute(map, route, id);
+                onCancelRoute(map, route, id);
                 showAddButton();
             });
 
@@ -415,7 +415,7 @@ function initMap() {
         loadRouteButton.style.display = 'none';
         endPatrolButton.style.display = 'none';
 
-        onTrashRoute(map, route, GuardID);
+        onCancelRoute(map, route, GuardID);
 
         editRouteButton.style.display = 'block';
         endPatrolButton.style.display = 'block';
@@ -688,17 +688,17 @@ function initMap() {
 
     }
 
-    function onTrashRoute(map, route, id) {
+    function onCancelRoute(map, route, id) {
         
-        console.log('logging id from onTrashRoute ' + id);
+        console.log('logging id from onCancelRoute ' + id);
 
 
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
 
-        route.setMap(null);
-        route.setPath([]);
-        route.setMap(map);
+        // route.setMap(null);
+        // route.setPath([]);
+        // route.setMap(map);
 
         loadRoute(map, route, id);
 
@@ -1093,7 +1093,7 @@ function initMap() {
         }
         
 
-        onTrashRoute(map, route, id);
+        onCancelRoute(map, route, id);
 
 
     }
