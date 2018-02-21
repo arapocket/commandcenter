@@ -1,0 +1,40 @@
+include mixins
+extends layout
+block content   
+												include navbar
+												head
+												.row
+														.col-md-2.col-sm-2.col-xs-12
+																			.row
+																											a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
+																												i.fa.fa-plus(aria-hidden='true')
+																												| &nbsp Add Route																			
+																			.row
+																											a.btn.btn-default.btn-block(id='cancelRouteButton', style='display: none ! important;')
+																												i.fa.fa-trash(aria-hidden='true')
+																												| &nbsp Cancel Route Add
+																			.row
+																											a.btn.btn-default.btn-block(id='clearCheckpointsButton', style='display: none ! important;')
+																												i.fa.fa-eraser(aria-hidden='true')
+																												| &nbsp Clear All Checkpoints																			
+																			.row
+																											a.btn.btn-default.btn-block(id='removeLastCheckpointButton', style='display: none ! important;')
+																												i.fa.fa-undo(aria-hidden='true')
+																												| &nbsp Remove Last Checkpoint
+																			.row
+																											a.btn.btn-default.btn-block(id='saveRouteButton', style='display: none ! important;')
+																												i.fa.fa-floppy-o(aria-hidden='true')
+																												| &nbsp Save Route
+																			.row
+																											a.btn.btn-default.btn-block(id='loadRouteButton', style='display: none ! important;')
+																												i.fa.fa-cloud-download(aria-hidden='true')
+																												| &nbsp Load Route																													   																				   
+														.col-md-7.col-sm-7.col-xs-12			  
+																object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routeeditormap', width='100%', height='500', type='text/html')																	
+																script.
+																		var mapElement = document.getElementById('map');
+																		var guards = !{ JSON.stringify(getAllGuardsResult) };
+																		var routes = !{ JSON.stringify(getAllRoutesResult) };
+																				
+
+

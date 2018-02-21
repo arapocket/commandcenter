@@ -221,6 +221,13 @@ router.get('/logout', function (req, res) {
 
 
 
+//////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
+
+var RouteEditor = require('../controllers/RouteEditorController');
+router.get('/routeditor', RouteEditor.getRouteEditor);
+
+var RouteEditorMap = require('../controllers/RouteEditorMapController');
+router.get('/routeeditormap', RouteEditorMap.getRouteEditorMap);
 
 var GuardPatrols = require('../controllers/GuardPatrols');
 router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
@@ -233,8 +240,6 @@ var IncidentDetails = require('../controllers/IncidentDetails');
 router.get('/incidentdetails/:id', IncidentDetails.getIncidentDetails);
 router.get('/incidentpreview/:id', IncidentDetails.getIncidentPreview);
 
-
-//////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
 
 var Patrols = require('../controllers/Patrols');
 router.get('/patrols', Patrols.getAllPatrols);
@@ -275,9 +280,6 @@ router.put('/setcurrentroute', Routes.updateRoute);
 router.put('/disableroutes', Routes.disableRoutes);
 router.get('/currentroutes/:id', Routes.getCurrentRoutes);
 
-
-
-//####### Tue Jan 9 09:37:23 PST 2018  Invite List Creation Page ARA
 
 var createInviteList = require('../controllers/createInviteList');
 router.get('/createinvitelist', createInviteList.createInviteListHome);
