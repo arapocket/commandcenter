@@ -111,7 +111,7 @@ function initMap() {
         }
     };
 
-    let route = new google.maps.Polyline({
+    var route = new google.maps.Polyline({
         map: map,
         zIndex: 1,
         geodesic: true,
