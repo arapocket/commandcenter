@@ -56,6 +56,9 @@ sendMessageButton.addEventListener('click', function () {
 
   // Sends a chat messages
   function sendMessage() {
+
+    console.log('sendMessage called');
+
     var message = $inputMessage.val();
     // Prevent markup from being injected into the message
     message = cleanInput(message);
