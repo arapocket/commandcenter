@@ -150,7 +150,7 @@ function initMap() {
     });
 
     loadRouteButton.addEventListener('click', function (e) {
-        onSelectRoute(route, map);
+        // onSelectRoute(route, map);
     });
 
 
