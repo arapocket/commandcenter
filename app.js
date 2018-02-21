@@ -383,6 +383,7 @@ function setSocketListeners(socket) {
   socket.on('add user', function (username) {
     // if (addedUser) return;
 
+    console.log('add user heard');
 
 
     // we store the username in the socket session for this client
