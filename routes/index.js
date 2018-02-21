@@ -224,7 +224,7 @@ router.get('/logout', function (req, res) {
 //////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
 
 var RouteEditor = require('../controllers/RouteEditorController');
-router.get('/routeditor', RouteEditor.getRouteEditor);
+router.get('/routeeditor', RouteEditor.getRouteEditor);
 
 var RouteEditorMap = require('../controllers/RouteEditorMapController');
 router.get('/routeeditormap', RouteEditorMap.getRouteEditorMap);
