@@ -111,7 +111,7 @@ function initMap() {
         }
     };
 
-    var route = new google.maps.Polyline({
+    let route = new google.maps.Polyline({
         map: map,
         zIndex: 1,
         geodesic: true,
@@ -696,7 +696,7 @@ function initMap() {
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
 
-        route.setMap(null);
+        // route.setMap(null);
         route.setPath([]);
         route.setMap(map);
 
