@@ -150,7 +150,7 @@ function initMap() {
     });
 
     loadRouteButton.addEventListener('click', function (e) {
-        onSelectRoute(route, map);
+        // onSelectRoute(route, map);
     });
 
 
@@ -696,7 +696,7 @@ function initMap() {
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
 
-        // route.setMap(null);
+        route.setMap(null);
         route.setPath([]);
         route.setMap(map);
 
