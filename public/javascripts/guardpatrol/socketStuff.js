@@ -21,7 +21,7 @@ $(function () {
 
 
   // Prompt for setting a username
-  var username;
+  var username = '';
   var connected = false;
   var typing = false;
   var lastTypingTime;
@@ -50,6 +50,9 @@ sendMessageButton.addEventListener('click', function () {
 
   // Sets the client's username
   function setUsername() {
+
+    console.log('setUsername called');
+
     username = "GREYFOX";
     socket.emit('add user', username);
   }
@@ -62,6 +65,9 @@ sendMessageButton.addEventListener('click', function () {
     var message = $inputMessage.val();
     // Prevent markup from being injected into the message
     message = cleanInput(message);
+
+    console.log('logging message ' + message)
+
     // if there is a non-empty message and a socket connection
     if (message && connected) {
       $inputMessage.val('');
