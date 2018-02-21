@@ -675,6 +675,8 @@ function initMap() {
 
     function onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id) {
         
+        console.log('logging id from onTrashRoute ' + id);
+
         if (id){
             editRouteButton.style.display = 'none';
             trashRouteButton.style.display = 'none';
