@@ -22,7 +22,7 @@ $(function () {
 
   // Prompt for setting a username
   var username = '';
-  var connected = false;
+  var connected = true;
   var typing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
