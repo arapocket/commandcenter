@@ -674,13 +674,17 @@ function initMap() {
     }
 
     function onTrashRoute(editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, endPatrolButton, map, route, id) {
-        editRouteButton.style.display = 'none';
-        trashRouteButton.style.display = 'none';
-        clearCheckpointsButton.style.display = 'none';
-        removeLastCheckpointButton.style.display = 'none';
-        saveRouteButton.style.display = 'none';
-        loadRouteButton.style.display = 'none';
-        endPatrolButton.style.display = 'none';
+        
+        if (id){
+            editRouteButton.style.display = 'none';
+            trashRouteButton.style.display = 'none';
+            clearCheckpointsButton.style.display = 'none';
+            removeLastCheckpointButton.style.display = 'none';
+            saveRouteButton.style.display = 'none';
+            loadRouteButton.style.display = 'none';
+            endPatrolButton.style.display = 'none';
+        }
+
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
 
