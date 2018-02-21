@@ -349,7 +349,7 @@ function setSocketListeners(socket) {
   **/
 
 
-  var addedUser = false;
+  let addedUser = false;
 
   console.log('II. logging tokens from setSocketListeners()');
   console.log(tokens);
@@ -381,7 +381,7 @@ function setSocketListeners(socket) {
 
   /// when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {
-    // if (addedUser) return;
+    if (addedUser) return;
 
     console.log('add user heard');
 
@@ -402,10 +402,6 @@ function setSocketListeners(socket) {
     });
     }
   });
-
-  socket.on('login', function(){
-console.log('login heard from app.js');
-  })
 
   // when the client emits 'typing', we broadcast it to others
   socket.on('typing', function () {
