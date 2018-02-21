@@ -696,7 +696,7 @@ function initMap() {
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
 
-
+        route.setMap(map);
         route.setMap(null);
         route.setPath([]);
         route.setMap(map);
@@ -710,7 +710,6 @@ function initMap() {
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
 
-        route.setMap(map);
         route.setMap(null);
         route.setPath([]);
         route.setMap(map);
