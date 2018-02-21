@@ -233,8 +233,8 @@ var GuardPatrols = require('../controllers/GuardPatrols');
 router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
 router.get('/activeguards', GuardPatrols.getActiveGuards);
 router.get('/guardnotifications', GuardPatrols.getGuardsForNotifications);
-var FoxMaps = require('../controllers/FoxMaps');
-router.get('/foxmaps', FoxMaps.getAllGuardPatrols);
+var ConvoyerMapController = require('../controllers/ConvoyerMapController');
+router.get('/foxmaps', ConvoyerMapController.getAllGuardPatrols);
 
 var IncidentDetails = require('../controllers/IncidentDetails');
 router.get('/incidentdetails/:id', IncidentDetails.getIncidentDetails);

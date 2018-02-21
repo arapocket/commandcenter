@@ -1,4 +1,4 @@
-var GuardPatrol = require('../models/FoxMap');
+var GuardPatrol = require('../models/ConvoyerMapModel');
 
 module.exports.getAllGuardPatrols = (function (req, res) {
 
@@ -37,7 +37,7 @@ module.exports.getAllGuardPatrols = (function (req, res) {
                             if (err) {
                               res.json(err);
                             } else {
-                              res.render('foxmap', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
+                              res.render('ConvoyerMapView', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
                       
                             }
                           });
