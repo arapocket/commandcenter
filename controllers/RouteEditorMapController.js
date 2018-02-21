@@ -17,6 +17,8 @@ module.exports.getRouteEditorMap = (function (req, res) {
     }
   });
 
+});
+
 //=========================== VERIFIED SQL STATEMENTS √ =====================================
 
     // *************    SHOW GUARD NAMES ON MAP
