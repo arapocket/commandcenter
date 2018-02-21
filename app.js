@@ -381,7 +381,7 @@ function setSocketListeners(socket) {
 
   /// when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {
-    if (addedUser) return;
+    // if (addedUser) return;
 
 
 
@@ -393,13 +393,13 @@ function setSocketListeners(socket) {
       numUsers: numUsers
     });
 
-    // if (socket.username != 'GREYFOX') {
+    if (socket.username != 'GREYFOX') {
     // echo globally (all clients) that a person has connected
     socket.broadcast.emit('user joined', {
       username: socket.username,
       numUsers: numUsers
     });
-    // }
+    }
 
 
 
