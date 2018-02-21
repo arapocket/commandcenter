@@ -17,6 +17,8 @@ module.exports.getRouteEditor = (function (req, res) {
     }
   });
 
+});
+
 
 
 
