@@ -99,8 +99,6 @@ function initMap() {
         // mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
 
-
-
     let routeSeq = {
         repeat: '30px',
         icon: {
@@ -123,9 +121,13 @@ function initMap() {
         icons: [routeSeq]
     })
 
-
     let addRouteButton = parent.document.getElementById("addRouteButton");
     let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+    let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
+    let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
+    let saveRouteButton = parent.document.getElementById('saveRouteButton');
+    let loadRouteButton = parent.document.getElementById('loadRouteButton');
+
 
     addRouteButton.addEventListener('click', function (e) {
         onAddRoute(route);
@@ -134,11 +136,6 @@ function initMap() {
     cancelRouteButton.addEventListener('click', function (e) {
         onCancelRoute(map, route);
     });
-
-    let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
-    let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
-    let saveRouteButton = parent.document.getElementById('saveRouteButton');
-    let loadRouteButton = parent.document.getElementById('loadRouteButton');
 
     clearCheckpointsButton.addEventListener('click', function (e) {
         onClearCheckpoints(route);
@@ -713,6 +710,7 @@ function initMap() {
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
 
+        route.setMap(map);
         route.setMap(null);
         route.setPath([]);
         route.setMap(map);
