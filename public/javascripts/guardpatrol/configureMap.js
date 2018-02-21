@@ -1092,8 +1092,8 @@ function initMap() {
             saveRouteButton.style.display = 'none';
             loadRouteButton.style.display = 'none';
             endPatrolButton.style.display = 'none';
-        } catch {
-            
+        } catch(e) {
+
         }
         
 
