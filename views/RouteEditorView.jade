@@ -16,6 +16,26 @@ block content
 																																							tr.default(id=area.AreaID)
 																																											th=area.Name
 																			.row
+																											a.btn.btn-default.btn-block(id='addAreaButton', style='display: block ! important;')
+																												i.fa.fa-plus(aria-hidden='true')
+																												| &nbsp Add Patrol Area																			
+																			.row
+																											a.btn.btn-default.btn-block(id='cancelAreaAdd', style='display: none ! important;')
+																												i.fa.fa-ban(aria-hidden='true')
+																												| &nbsp Cancel Area Add																	
+																			.row
+																											a.btn.btn-default.btn-block(id='saveAreaButton', style='display: none ! important;')
+																												i.fa.fa-floppy-o(aria-hidden='true')
+																												| &nbsp Save Area
+																			.row
+																											a.btn.btn-default.btn-block(id='setCurrentAreaButton', style='display: none ! important;')
+																												i.fa.fa-cloud-download(aria-hidden='true')
+																												| &nbsp Set Current Area																													   																				   
+																			.row
+																											a.btn.btn-default.btn-block(id='deleteAreaButton', style='display: none ! important;')
+																												i.fa.fa-trash(aria-hidden='true')
+																												| &nbsp Delete Area																																												
+																			.row
 																											a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
 																												i.fa.fa-plus(aria-hidden='true')
 																												| &nbsp Add Route																			
