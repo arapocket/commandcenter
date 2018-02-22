@@ -11,7 +11,7 @@ module.exports.getRouteEditor = (function (req, res) {
         if (err) {
           res.json(err);
         } else {
-          RouteEditorModel.getAllPatrolAreas(function (err, getAllAreasResult){
+          RouteEditorModel.getAllPatrolAreas(function (err, getAllPatrolAreasResult){
             if (err) {
               res.json(err);
             } else {
