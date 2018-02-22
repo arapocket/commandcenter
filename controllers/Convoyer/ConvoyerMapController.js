@@ -38,7 +38,6 @@ module.exports.getAllGuardPatrols = (function (req, res) {
                               res.json(err);
                             } else {
                               res.render('ConvoyerMapView', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
-                      
                             }
                           });
                         }
