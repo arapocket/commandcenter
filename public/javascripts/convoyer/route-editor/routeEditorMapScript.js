@@ -3,17 +3,17 @@ function initMap() {
 
 
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 18,
-            center: { lat: 34.050963, lng: -118.256133 },
-            mapTypeId: google.maps.MapTypeId.MAP,
-            streetViewControl: false,
-            clickableIcons: false,
-            fullscreenControl: false,
-            mapTypeControl: true,
-            panControl: false,
-            rotateControl: false,
-        });
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 18,
+        center: { lat: 34.050963, lng: -118.256133 },
+        mapTypeId: google.maps.MapTypeId.MAP,
+        streetViewControl: false,
+        clickableIcons: false,
+        fullscreenControl: false,
+        mapTypeControl: true,
+        panControl: false,
+        rotateControl: false,
+    });
 
 
     let routeSeq = {
@@ -67,7 +67,7 @@ function initMap() {
     });
 
     loadRouteButton.addEventListener('click', function (e) {
-        // onSelectRoute(route, map);
+        onSelectRoute(route, map);
     });
 
 
@@ -148,7 +148,7 @@ function initMap() {
     }
 
     function onTrashRoute(map, route, id) {
-        
+
         console.log('logging id from onTrashRoute ' + id);
 
 
@@ -451,10 +451,10 @@ function initMap() {
             saveRouteButton.style.display = 'none';
             loadRouteButton.style.display = 'none';
             endPatrolButton.style.display = 'none';
-        } catch(e) {
+        } catch (e) {
 
         }
-        
+
 
         onTrashRoute(map, route, id);
 
@@ -519,7 +519,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    
+
     function loadRouteOnMap(checkpoints, map, route) {
 
         route.setPath([]);
