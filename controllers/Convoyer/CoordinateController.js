@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var CoordinateModel = require('../models/Convoyer/CoordinateModel');
+var CoordinateModel = require('../../models/Convoyer/CoordinateModel');
 
 module.exports.getAllCoordinates = function (req, res) {
   CoordinateModel.getAllCoordinates(function (err, result) {

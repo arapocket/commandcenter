@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var IncidentModel = require('../models/Convoyer/IncidentModel');
+var IncidentModel = require('../../models/Convoyer/IncidentModel');
 
 module.exports.getAllIncidents = function (req, res) {
   IncidentModel.getAllIncidents(function (err, result) {

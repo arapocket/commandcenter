@@ -1,4 +1,4 @@
-var RouteEditorMapModel = require('../models/Convoyer/RouteEditorMapModel');
+var RouteEditorMapModel = require('../../models/Convoyer/RouteEditorMapModel');
 
 module.exports.getRouteEditorMap = (function (req, res) {
 

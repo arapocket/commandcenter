@@ -1,4 +1,4 @@
-var IncidentDetailModel = require('../models/Convoyer/IncidentDetailModel');
+var IncidentDetailModel = require('../../models/Convoyer/IncidentDetailModel');
 
 module.exports.getIncidentDetails = (function (req, res) {
 

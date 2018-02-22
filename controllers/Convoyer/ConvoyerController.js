@@ -1,4 +1,4 @@
-var ConvoyerModel = require('../models/Convoyer/ConvoyerModel');
+var ConvoyerModel = require('../../models/Convoyer/ConvoyerModel');
 
 module.exports.getConvoyer = (function (req, res) {
 

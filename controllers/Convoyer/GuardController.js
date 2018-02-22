@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var GuardModel = require('../models/Convoyer/GuardModel');
-var db = require('../models/db');
+var GuardModel = require('../../models/Convoyer/GuardModel');
+var db = require('../../models/db');
 var datetime = require('./datetime');
 
 

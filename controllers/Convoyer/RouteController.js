@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var RouteModel = require('../models/Convoyer/RouteModel');
+var RouteModel = require('../../models/Convoyer/RouteModel');
 
 module.exports.getAllRoutes = function (req, res) {
   RouteModel.getAllRoutes(function (err, result) {

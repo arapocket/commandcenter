@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var CheckpointModel = require('../models/Convoyer/CheckpointModel');
+var CheckpointModel = require('../../models/Convoyer/CheckpointModel');
 
 module.exports.getAllCheckpoints = function (req, res) {
   CheckpointModel.getAllCheckpoints(function (err, result) {

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var PatrolModel = require('../models/Convoyer/PatrolModel');
+var PatrolModel = require('../../models/Convoyer/PatrolModel');
 
 module.exports.getAllPatrols = function (req, res) {
   PatrolModel.getAllPatrols(function (err, result) {

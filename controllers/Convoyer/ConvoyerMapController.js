@@ -1,4 +1,4 @@
-var ConvoyerMapModel = require('../models/Convoyer/ConvoyerMapModel');
+var ConvoyerMapModel = require('../../models/Convoyer/ConvoyerMapModel');
 
 module.exports.getAllGuardPatrols = (function (req, res) {
 
