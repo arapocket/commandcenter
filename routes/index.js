@@ -235,7 +235,7 @@ router.get('/guardnotifications', ConvoyerController.getGuardsForNotifications);
 var ConvoyerMapController = require('../controllers/Convoyer/ConvoyerMapController');
 router.get('/foxmaps', ConvoyerMapController.getAllGuardPatrols);
 
-var IncidentDetailController = require('../controllers/Convoyer/IncidentDetails');
+var IncidentDetailController = require('../controllers/Convoyer/IncidentDetailController');
 router.get('/incidentdetails/:id', IncidentDetailController.getIncidentDetails);
 router.get('/incidentpreview/:id', IncidentDetailController.getIncidentPreview);
 
