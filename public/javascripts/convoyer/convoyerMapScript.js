@@ -947,8 +947,8 @@ function initMap() {
                             label: label,
                             className: buttonClass,
                             callback: function () {
-                                setCurrentRoute(json[0], route);
-                                loadCurrentRoute(json[0].RouteID, route);
+                                setCurrentRoute(routeID, route);
+                                loadCurrentRoute(routeID, route);
                             }
                         });
 
