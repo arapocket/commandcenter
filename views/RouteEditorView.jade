@@ -12,12 +12,9 @@ block content
 																											div
 																															table#pickle.table.table-hover.table-striped.table-bordered
 																																			thead
-																																							tr.default
-																																											th Name
-																																			tbody
 																																			-each area in getAllPatrolAreasResult
-																																									tr.default(id=area.AreaID)
-																																													td=area.Name
+																																							tr.default(id=area.AreaID)
+																																											th=area.Name
 																			.row
 																											a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
 																												i.fa.fa-plus(aria-hidden='true')
