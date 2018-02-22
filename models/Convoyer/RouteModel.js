@@ -158,31 +158,47 @@ module.exports.saveRoute = function (Route, callback) {
         }
     });
 }
-
-module.exports.deleteRoute = function (name, callback) {
+module.exports.updateRoute = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log("Error while performing common connect query: " + err);
+            console.log('Error while performing common connect query: ' + err);
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " delete from route where RouteName = '" + name + "';";
+
+            // here we set all other routes to 0
+            var strSQL = "DELETE FROM checkpoint WHERE RouteID = '" + id + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
-                    connection.end();
+                    // connection.end();
                     callback(null, rows);
+                    // here we will set our selected route to 1
+                    var strSQL = "DELETE FROM route WHERE RouteID = '" + id + "';";
+                    connection.query(strSQL2, function (err, rows, fields) {
+                        if (!err) {
+                            connection.end();
+                            callback(null, rows);
+                        } else {
+                            console.log('error with the select routeroute query');
+                            connection.end();
+                            callback(err, rows);
+                        }
+
+                    });
+
 
                 } else {
-                    console.log("error with the select routeroute query");
+                    console.log('error with the select routeroute query');
                     connection.end();
                     callback(err, rows);
                 }
             });
         }
     });
+
 }
 
 module.exports.updateRoute = function (Route, callback) {

@@ -343,12 +343,12 @@ function initMap() {
                     for (i = 0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let buttonClass = 'btn-primary';
-
+                        let routeID = json[i].RouteID;
                         routeButtons.push({
                             label: label,
                             className: buttonClass,
                             callback: function () {
-                                deleteSelectedRoute(label);
+                                deleteSelectedRoute(routeID);
                             }
                         });
 
@@ -369,7 +369,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function deleteSelectedRoute(routeName) {
+    function deleteSelectedRoute(routeID) {
 
         console.log('deleteSelectedRoute called');
 
@@ -386,11 +386,8 @@ function initMap() {
             }
         }
 
-        let cleanName = routeName.replace(/[^a-zA-Z0-9]/g, "");
 
-        console.log('logging cleanName after regex ' + cleanName)
-
-        xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/deleteroute/" + cleanName, true);
+        xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/deleteroute/" + routeID, true);
 
         xhr.send(null);
     }

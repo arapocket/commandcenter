@@ -80,7 +80,7 @@ module.exports.saveRoute = function (req, res) {
 };
 
 module.exports.deleteRoute = function (req, res) {
-  RouteModel.deleteRoute(req.params.name, function (err, result) {
+  RouteModel.deleteRoute(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }

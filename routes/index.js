@@ -278,7 +278,7 @@ router.put('/coordinates', CoordinateController.updateCoordinate);
 var RouteController = require('../controllers/Convoyer/RouteController');
 router.get('/routes', RouteController.getAllRoutes);
 router.get('/selectedroute/:name', RouteController.getRouteByName);
-router.delete('/deleteroute/:name', RouteController.deleteRoute);
+router.delete('/deleteroute/:id', RouteController.deleteRoute);
 router.get('/routes/:id', RouteController.getRouteByID);
 router.post('/routes', RouteController.addRoute);
 router.post('/saveroute', RouteController.saveRoute);
