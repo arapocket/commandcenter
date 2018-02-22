@@ -118,6 +118,7 @@ function initMap() {
         showRemoveLastCheckpointButton();
         showSaveRouteButton();
         showLoadRouteButton();
+        showDeleteRouteButton();
 
     }
 
@@ -149,6 +150,7 @@ function initMap() {
         hideRemoveLastCheckpointButton();
         hideSaveRouteButton();
         hideLoadRouteButton();
+        hideDeleteRouteButton();
         showAddButton();
     }
 
@@ -214,6 +216,16 @@ function initMap() {
         loadRouteButton.style.display = 'block';
     }
 
+    function hideDeleteRouteButton() {
+        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
+        deleteRouteButton.style.display = 'none';
+    }
+
+    function showDeleteRouteButton() {
+        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
+        deleteRouteButton.style.display = 'block';
+    }
+
     function onSaveRouteAll() {
 
         bootbox.prompt("Enter a name for the route.", function (result) {
@@ -260,6 +272,7 @@ function initMap() {
                 hideRemoveLastCheckpointButton();
                 hideSaveRouteButton();
                 hideLoadRouteButton();
+                hideDeleteRouteButton();
                 showAddButton();
 
                 bootbox.alert('Route has been saved for later!');
