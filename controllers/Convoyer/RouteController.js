@@ -25,20 +25,6 @@ module.exports.getRouteByID = function (req, res) {
 };
 
 
-module.exports.getRouteByName = function (req, res) {
-  RouteModel.getRouteByName(req.params.name, function (err, result) {
-
-    // console.log('logging req.body from controller ' + JSON.stringify(req.body))
-
-    if (err) {
-      res.json(err);
-    }
-    else {
-      res.json(result);
-    }
-  });
-};
-
 module.exports.getCurrentRoutes = function (req, res) {
   RouteModel.getCurrentRoutes(req.params.id, function (err, result) {
     if (err) {

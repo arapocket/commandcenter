@@ -326,7 +326,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function onDeleteRoute(){
+    function onDeleteRoute() {
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -371,8 +371,6 @@ function initMap() {
 
     function deleteSelectedRoute(routeID) {
 
-        console.log('deleteSelectedRoute called');
-
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -383,11 +381,12 @@ function initMap() {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 let json = JSON.parse(xhr.responseText);
+                deleteRoute(routeID);
+
             }
         }
 
-
-        xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/deleteroute/" + routeID, true);
+        xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
 
         xhr.send(null);
     }
@@ -418,6 +417,27 @@ function initMap() {
 
         xhr.send(null);
 
+    }
+
+
+    function deleteRoute(routeID) {
+
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+            }
+        }
+
+        xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/" + routeID, true);
+
+        xhr.send(null);
     }
 
     function postCheckpoints(routeID) {
@@ -452,6 +472,7 @@ function initMap() {
 
         }
     }
+
 
     function loadCurrentRoute(routeID) {
 

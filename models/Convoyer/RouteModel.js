@@ -80,33 +80,6 @@ module.exports.getRouteByID = function (id, callback) {
     });
 }
 
-module.exports.getRouteByName = function (name, callback) {
-    db.createConnection(function (err, reslt) {
-        if (err) {
-            console.log("Error while performing common connect query: " + err);
-            callback(err, null);
-        } else {
-            //process the i/o after successful connect.  Connection object returned in callback
-            var connection = reslt;
-
-            // console.log('logging Route.RouteName ' + Route.RouteName)
-
-            var strSQL = " Select * from route where RouteName = '" + name + "';";
-            connection.query(strSQL, function (err, rows, fields) {
-                if (!err) {
-                    connection.end();
-                    callback(null, rows);
-
-                } else {
-                    console.log("error with the select routeroute query");
-                    connection.end();
-                    callback(err, rows);
-                }
-            });
-        }
-    });
-}
-
 module.exports.addRoute = function (Route, callback) {
 
     db.createConnection(function (err, reslt) {
@@ -117,7 +90,7 @@ module.exports.addRoute = function (Route, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.CurrentRoute + ", '" + Route.GuardID +  "');";
+            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.CurrentRoute + ", '" + Route.GuardID + "');";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -143,7 +116,7 @@ module.exports.saveRoute = function (Route, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.CurrentRoute + ", '" +  "');";
+            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.CurrentRoute + ", '" + "');";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -160,46 +133,27 @@ module.exports.saveRoute = function (Route, callback) {
 }
 
 module.exports.deleteRoute = function (id, callback) {
-
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            console.log("Error while performing common connect query: " + err);
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-
-            // here we set all other routes to 0
-            var strSQL = "DELETE FROM checkpoint WHERE RouteID = '" + id + "';";
+            var strSQL = " DELETE FROM route WHERE RouteID = " + id + ";";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
-                    // connection.end();
+                    connection.end();
                     callback(null, rows);
-                    // here we will set our selected route to 1
-                    var strSQL2 = "DELETE FROM route WHERE RouteID = '" + id + "';";
-                    connection.query(strSQL2, function (err, rows, fields) {
-                        if (!err) {
-                            connection.end();
-                            callback(null, rows);
-                        } else {
-                            console.log('error with the select routeroute query');
-                            connection.end();
-                            callback(err, rows);
-                        }
-
-                    });
-
 
                 } else {
-                    console.log('error with the select routeroute query');
                     connection.end();
                     callback(err, rows);
                 }
             });
         }
     });
-
 }
 
 module.exports.updateRoute = function (Route, callback) {
@@ -216,7 +170,7 @@ module.exports.updateRoute = function (Route, callback) {
             console.log('logging Route from updateRoute ' + JSON.stringify(Route));
 
             // here we set all other routes to 0
-            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID +  "';";
+            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
@@ -259,7 +213,7 @@ module.exports.disableRoutes = function (Route, callback) {
 
 
             // here we set all other routes to 0
-            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID +  "';";
+            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
