@@ -481,7 +481,7 @@ function initMap() {
 
     }
 
-    function createIncidentMarkers(incidents,iconsBase) {
+    function createIncidentMarkers(incidents, iconsBase) {
 
         for (let i = 0; i < incidents.length; i++) {
             var lat = incidents[i].lat;
@@ -680,7 +680,7 @@ function initMap() {
     }
 
     function onTrashRoute(route, id) {
-        
+
         console.log('logging id from onTrashRoute ' + id);
 
 
@@ -821,7 +821,7 @@ function initMap() {
             } else {
 
 
-                let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
+                let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
 
 
                 console.log('onSaveRoute called');
@@ -942,12 +942,13 @@ function initMap() {
                     for (i = 0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let buttonClass = 'btn-primary';
-
+                        let routeID = json[i].RouteID
                         routeButtons.push({
                             label: label,
                             className: buttonClass,
                             callback: function () {
-                                loadSelectedRoute(label, route)
+                                setCurrentRoute(json[0], route);
+                                loadCurrentRoute(json[0].RouteID, route);
                             }
                         });
 
@@ -964,38 +965,6 @@ function initMap() {
         }
 
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/", true);
-
-        xhr.send(null);
-    }
-
-    function loadSelectedRoute(routeName, route) {
-
-        console.log('loadSelectedRoute called');
-
-
-        var xhr = new XMLHttpRequest();
-
-        if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                let json = JSON.parse(xhr.responseText);
-                if (json.length > 0) {
-                    let routeID = json[0].RouteID;
-                    setCurrentRoute(json[0], route);
-                    loadCurrentRoute(json[0].RouteID, route);
-                }
-            }
-        }
-
-        let cleanName = routeName.replace(/[^a-zA-Z0-9]/g, "");
-
-        console.log('logging cleanName after regex ' + cleanName)
-
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/" + cleanName, true);
 
         xhr.send(null);
     }
@@ -1079,10 +1048,10 @@ function initMap() {
             saveRouteButton.style.display = 'none';
             loadRouteButton.style.display = 'none';
             endPatrolButton.style.display = 'none';
-        } catch(e) {
+        } catch (e) {
 
         }
-        
+
 
         onTrashRoute(route, id);
 
@@ -1167,7 +1136,7 @@ function initMap() {
     }
 
     // $%$%
-    function loadRouteOnMap(checkpoints,route) {
+    function loadRouteOnMap(checkpoints, route) {
 
         route.setPath([]);
 
