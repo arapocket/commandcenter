@@ -147,9 +147,7 @@ function initMap() {
 
     }
 
-    function onTrashRoute(map, route, id) {
-
-        console.log('logging id from onTrashRoute ' + id);
+    function onTrashRoute(map, route) {
 
 
         google.maps.event.clearListeners(map, 'click');
@@ -159,7 +157,7 @@ function initMap() {
         // route.setPath([]);
         // route.setMap(map);
 
-        loadRoute(map, route, id);
+        loadRoute(map, route);
 
     }
 
@@ -342,9 +340,6 @@ function initMap() {
 
     function loadSelectedRoute(routeName, map, route) {
 
-        console.log('loadSelectedRoute called');
-
-
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -357,7 +352,6 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
-                    setCurrentRoute(json[0], map, route);
                     loadCurrentRoute(json[0].RouteID, map, route);
                 }
             }
@@ -372,7 +366,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function loadRoute(map, route, id) {
+    function loadRoute(map, route) {
 
         var xhr = new XMLHttpRequest();
 
@@ -397,65 +391,6 @@ function initMap() {
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes/" + id, true);
 
         xhr.send(null);
-
-    }
-
-    function setCurrentRoute(routeData, map, route) {
-
-        let currentGuard = localStorage.getItem("currentGuard");
-
-        console.log('logging currentGuard from setCurrentRoute ' + currentGuard);
-
-        let xhr = new XMLHttpRequest();
-
-        if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
-
-        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/setcurrentroute", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
-
-
-        xhr.send(JSON.stringify({
-            "CurrentRoute": 1,
-            "NotCurrentRoute": 0,
-            "RouteID": routeData.RouteID,
-            "GuardID": currentGuard
-        }));
-
-
-        let id = currentGuard;
-
-        let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
-
-        let removeLastCheckpointButton = parent.document.getElementById("removeLastCheckpointButton" + id);
-
-        let saveRouteButton = parent.document.getElementById("saveRouteButton" + id);
-
-        let loadRouteButton = parent.document.getElementById("loadRouteButton" + id);
-
-        let editRouteButton = parent.document.getElementById('editRouteButton' + id);
-
-        let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
-
-        let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
-
-        try {
-            editRouteButton.style.display = 'none';
-            trashRouteButton.style.display = 'none';
-            clearCheckpointsButton.style.display = 'none';
-            removeLastCheckpointButton.style.display = 'none';
-            saveRouteButton.style.display = 'none';
-            loadRouteButton.style.display = 'none';
-            endPatrolButton.style.display = 'none';
-        } catch (e) {
-
-        }
-
-
-        onTrashRoute(map, route, id);
-
 
     }
 
@@ -494,7 +429,6 @@ function initMap() {
 
     function loadCurrentRoute(routeID, map, route) {
 
-        console.log('loadCurrentRoute called ');
 
         var xhr = new XMLHttpRequest();
 
@@ -520,20 +454,26 @@ function initMap() {
 
     function loadRouteOnMap(checkpoints, map, route) {
 
-        route.setPath([]);
-
-        if (checkpoints.length > 0) {
-            for (let i = 0; i < checkpoints.length; i++) {
-                var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
-                route.getPath().push(latLng);
+        try {
+            route.setPath([]);
+            if (checkpoints.length > 0) {
+                for (let i = 0; i < checkpoints.length; i++) {
+                    var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
+                    route.getPath().push(latLng);
+                }
             }
+
+            map.setCenter({
+                lat: checkpoints[0].lat,
+                lng: checkpoints[0].lng
+            });
+        }
+        catch (err) {
+            console.log('catch called ' + err);
+
         }
 
-        
-        map.setCenter({
-            lat: checkpoints[0].lat,
-            lng: checkpoints[0].lng
-        });
+
 
     }
 
