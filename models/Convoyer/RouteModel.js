@@ -158,7 +158,8 @@ module.exports.saveRoute = function (Route, callback) {
         }
     });
 }
-module.exports.updateRoute = function (id, callback) {
+
+module.exports.deleteRoute = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
