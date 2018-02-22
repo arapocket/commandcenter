@@ -234,7 +234,7 @@ function initMap() {
             } else {
 
 
-                let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
+                let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
 
                 google.maps.event.clearListeners(map, 'click');
                 google.maps.event.clearListeners(route, 'click');
@@ -298,13 +298,14 @@ function initMap() {
                     let routeButtons = [];
                     for (i = 0; i < json.length; i++) {
                         let label = json[i].RouteName;
+                        let routeID = json[i].RouteID;
                         let buttonClass = 'btn-primary';
 
                         routeButtons.push({
                             label: label,
                             className: buttonClass,
                             callback: function () {
-                                loadSelectedRoute(label)
+                                loadCurrentRoute(routeID);
                             }
                         });
 
@@ -364,34 +365,6 @@ function initMap() {
         }
 
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/", true);
-
-        xhr.send(null);
-    }
-
-    function loadSelectedRoute(routeName) {
-
-        var xhr = new XMLHttpRequest();
-
-        if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                let json = JSON.parse(xhr.responseText);
-                if (json.length > 0) {
-                    let routeID = json[0].RouteID;
-                    loadCurrentRoute(json[0].RouteID);
-                }
-            }
-        }
-
-        let cleanName = routeName.replace(/[^a-zA-Z0-9]/g, "");
-
-        console.log('logging cleanName after regex ' + cleanName)
-
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/" + cleanName, true);
 
         xhr.send(null);
     }
