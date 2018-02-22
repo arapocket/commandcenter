@@ -16,7 +16,7 @@ module.exports.getRouteEditorMap = (function (req, res) {
             if (err) {
 
             } else {
-              res.render('RouteEditorMapView', { title: 'Route Editor Map', getAllGuardsResult: getAllGuardsResult, getAllRoutesResult: getAllRoutesResult });
+              res.render('RouteEditorMapView', { title: 'Route Editor Map', getAllGuardsResult: getAllGuardsResult, getAllRoutesResult: getAllRoutesResult, getAllPatrolAreasResult: getAllPatrolAreasResult });
             }
           })
 
