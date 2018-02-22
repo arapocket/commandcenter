@@ -177,7 +177,7 @@ module.exports.deleteRoute = function (id, callback) {
                     // connection.end();
                     callback(null, rows);
                     // here we will set our selected route to 1
-                    var strSQL = "DELETE FROM route WHERE RouteID = '" + id + "';";
+                    var strSQL2 = "DELETE FROM route WHERE RouteID = '" + id + "';";
                     connection.query(strSQL2, function (err, rows, fields) {
                         if (!err) {
                             connection.end();
