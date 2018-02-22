@@ -1,13 +1,13 @@
-var RouteEditor = require('../models/RouteEditorModel');
+var RouteEditorModel = require('../models/Convoyer/RouteEditorModel');
 
 module.exports.getRouteEditor = (function (req, res) {
 
 
-  RouteEditor.getAllRoutes(function (err, getAllRoutesResult) {
+  RouteEditorModel.getAllRoutes(function (err, getAllRoutesResult) {
     if (err) {
       res.json(err);
     } else {
-      RouteEditor.getAllGuards(function (err, getAllGuardsResult) {
+      RouteEditorModel.getAllGuards(function (err, getAllGuardsResult) {
         if (err) {
           res.json(err);
         } else {

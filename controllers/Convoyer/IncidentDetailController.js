@@ -1,14 +1,14 @@
-var IncidentDetail = require('../models/IncidentDetail');
+var IncidentDetailModel = require('../models/Convoyer/IncidentDetailModel');
 
 module.exports.getIncidentDetails = (function (req, res) {
 
-  IncidentDetail.getIncidentByID(req.params.id, function (err, getIncidentResult) {
+  IncidentDetailModel.getIncidentByID(req.params.id, function (err, getIncidentResult) {
 
     if (err) {
       res.json(err);
     }
     else {
-      res.render('incidentdetails', { title: 'Incident Details', getIncidentResult: getIncidentResult });
+      res.render('IncidentDetailView', { title: 'Incident Details', getIncidentResult: getIncidentResult });
 
     }
   });
@@ -16,13 +16,13 @@ module.exports.getIncidentDetails = (function (req, res) {
 
 module.exports.getIncidentPreview = (function (req, res) {
 
-  IncidentDetail.getIncidentByID(req.params.id, function (err, getIncidentResult) {
+  IncidentDetailModel.getIncidentByID(req.params.id, function (err, getIncidentResult) {
 
     if (err) {
       res.json(err);
     }
     else {
-      res.render('incidentpreview', { title: 'Incident Preview', getIncidentResult: getIncidentResult });
+      res.render('IncidentPreviewView', { title: 'Incident Preview', getIncidentResult: getIncidentResult });
 
     }
   });

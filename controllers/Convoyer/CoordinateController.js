@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Coordinate = require('../models/Coordinate');
+var CoordinateModel = require('../models/Convoyer/CoordinateModel');
 
 module.exports.getAllCoordinates = function (req, res) {
-  Coordinate.getAllCoordinates(function (err, result) {
+  CoordinateModel.getAllCoordinates(function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -14,7 +14,7 @@ module.exports.getAllCoordinates = function (req, res) {
 };
 
 module.exports.getCoordinateByID = function (req, res) {
-  Coordinate.getCoordinateByID(req.params.id, function (err, result) {
+  CoordinateModel.getCoordinateByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -25,7 +25,7 @@ module.exports.getCoordinateByID = function (req, res) {
 };
 
 module.exports.addCoordinate = function (req, res) {
-  Coordinate.addCoordinate(req.body, function (err, result) {
+  CoordinateModel.addCoordinate(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -36,7 +36,7 @@ module.exports.addCoordinate = function (req, res) {
 };
 
 module.exports.deleteCoordinate = function (req, res) {
-  Coordinate.deleteCoordinate(req.params.id, function (err, result) {
+  CoordinateModel.deleteCoordinate(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -47,7 +47,7 @@ module.exports.deleteCoordinate = function (req, res) {
 };
 
 module.exports.updateCoordinate = function (req, res) {
-  Coordinate.updateCoordinate(req.body, function (err, result) {
+  CoordinateModel.updateCoordinate(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

@@ -337,7 +337,7 @@ function initMap() {
         }
 
         socket.on('location ' + id, function (location) {
-            console.log('location heard from configureMap()');
+            console.log('location heard from convoyerMapScript()');
             console.log(location);
             continuePath(patrol, location);
         });

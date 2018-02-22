@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Checkpoint = require('../models/Checkpoint');
+var CheckpointModel = require('../models/Convoyer/CheckpointModel');
 
 module.exports.getAllCheckpoints = function (req, res) {
-  Checkpoint.getAllCheckpoints(function (err, result) {
+  CheckpointModel.getAllCheckpoints(function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -14,7 +14,7 @@ module.exports.getAllCheckpoints = function (req, res) {
 };
 
 module.exports.getCheckpointByID = function (req, res) {
-  Checkpoint.getCheckpointByID(req.params.id, function (err, result) {
+  CheckpointModel.getCheckpointByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -25,7 +25,7 @@ module.exports.getCheckpointByID = function (req, res) {
 };
 
 module.exports.addCheckpoint = function (req, res) {
-  Checkpoint.addCheckpoint(req.body, function (err, result) {
+  CheckpointModel.addCheckpoint(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -36,7 +36,7 @@ module.exports.addCheckpoint = function (req, res) {
 };
 
 module.exports.deleteCheckpoint = function (req, res) {
-  Checkpoint.deleteCheckpoint(req.params.id, function (err, result) {
+  CheckpointModel.deleteCheckpoint(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -47,7 +47,7 @@ module.exports.deleteCheckpoint = function (req, res) {
 };
 
 module.exports.updateCheckpoint = function (req, res) {
-  Checkpoint.updateCheckpoint(req.params.id,req.body, function (err, result) {
+  CheckpointModel.updateCheckpoint(req.params.id,req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

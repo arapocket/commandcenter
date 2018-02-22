@@ -1,45 +1,45 @@
-var GuardPatrol = require('../models/GuardPatrol');
+var ConvoyerModel = require('../models/Convoyer/ConvoyerModel');
 
-module.exports.getAllGuardPatrols = (function (req, res) {
+module.exports.getConvoyer = (function (req, res) {
 
-  GuardPatrol.getAllGuards(function (err, getAllGuardsResult) {
+  ConvoyerModel.getAllGuards(function (err, getAllGuardsResult) {
 
     if (err) {
       res.json(err);
     }
     else {
 
-      GuardPatrol.getCurrentCoords(function (err, getCurrentCoordsResult) {
+      ConvoyerModel.getCurrentCoords(function (err, getCurrentCoordsResult) {
         if (err) {
           res.json(err);
         }
         else {
-          GuardPatrol.getAllIncidents(function (err, getAllIncidentsResult) {
+          ConvoyerModel.getAllIncidents(function (err, getAllIncidentsResult) {
             if (err) {
               res.json(err);
             }
             else {
-              GuardPatrol.getCurrentLocations(function (err, getCurrentLocationsResult) {
+              ConvoyerModel.getCurrentLocations(function (err, getCurrentLocationsResult) {
                 if (err) {
                   res.json(err);
                 }
                 else {
-                  GuardPatrol.getCurrentPatrols(function (err, getCurrentPatrolsResult) {
+                  ConvoyerModel.getCurrentPatrols(function (err, getCurrentPatrolsResult) {
                     if (err) {
                       res.json(err);
                     }
                     else {
-                      GuardPatrol.getCurrentRoutes(function (err, getCurrentRoutesResult) {
+                      ConvoyerModel.getCurrentRoutes(function (err, getCurrentRoutesResult) {
                         if (err) {
                           res.json(err);
                         } else {
-                          GuardPatrol.getCurrentCheckpoints(function (err, getCurrentCheckpointsResult) {
+                          ConvoyerModel.getCurrentCheckpoints(function (err, getCurrentCheckpointsResult) {
                             if (err) {
                               res.json(err);
                             } else {
                               console.log('logging getallguards from guardpatrols');
                               console.log(getAllGuardsResult);
-                              res.render('guardpatrols', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
+                              res.render('ConvoyerView', { title: 'Convoyer Live View', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
                       
                             }
                           });
@@ -59,7 +59,7 @@ module.exports.getAllGuardPatrols = (function (req, res) {
 
 module.exports.getActiveGuards = (function (req, res) {
 
-  GuardPatrol.getAllGuards(function (err, getAllGuardsResult) {
+  ConvoyerModel.getAllGuards(function (err, getAllGuardsResult) {
 
     if (err) {
       res.json(err);
@@ -74,7 +74,7 @@ module.exports.getActiveGuards = (function (req, res) {
 
 module.exports.getGuardsForNotifications = (function (req, res) {
 
-  GuardPatrol.getGuardsForNotifications(function (err, getGuardsResult) {
+  ConvoyerModel.getGuardsForNotifications(function (err, getGuardsResult) {
 
     if (err) {
       res.json(err);

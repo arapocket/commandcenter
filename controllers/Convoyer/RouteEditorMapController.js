@@ -1,13 +1,13 @@
-var RouteEditor = require('../models/RouteEditorMapModel');
+var RouteEditorMapModel = require('../models/Convoyer/RouteEditorMapModel');
 
 module.exports.getRouteEditorMap = (function (req, res) {
 
 
-  RouteEditor.getAllRoutes(function (err, getAllRoutesResult) {
+  RouteEditorMapModel.getAllRoutes(function (err, getAllRoutesResult) {
     if (err) {
       res.json(err);
     } else {
-      RouteEditor.getAllGuards(function (err, getAllGuardsResult) {
+      RouteEditorMapModel.getAllGuards(function (err, getAllGuardsResult) {
         if (err) {
           res.json(err);
         } else {

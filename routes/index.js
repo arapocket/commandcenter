@@ -56,7 +56,7 @@ router.get('/badgesActive', badges.badgesActive);
 router.get('/badgesInactive', badges.badgesInactive);
 
 
-// Routes for EVENTS
+// RouteController for EVENTS
 // show events list
 router.get('/events', events.eventsHome);
 // show event Add form
@@ -93,46 +93,41 @@ router.get('/userDelete/:userName', users.userGetOneForDelete);
 router.post('/userDelete/:userName', users.userDeleteOne);
 
 
-/************************************************************************
- * ======================================================================
- * // ###### Mon Jan 22 11:35:45 PST 2018 ARA
- * routes for adding a guard to FoxWatch
- * ======================================================================
- *************************************************************************/
+//#############################################################################################
+//#############################################################################################
+//############################### CONVOYER CONTROLLERS ########################################
+//#############################################################################################
+//#############################################################################################
 
-var Guards = require('../controllers/Guards');
+var GuardController = require('../controllers/Convoyer/GuardController');
 
-router.post('/guardauth', Guards.authenticateGuard);
+router.post('/guardauth', GuardController.authenticateGuard);
 
-router.get('/guardlist', Guards.guardList);
+router.get('/guardlist', GuardController.guardList);
 
-router.get('/guardAdd', Guards.guardAdd);
-router.post('/guardAdd', Guards.guardAddToDb);
+router.get('/guardAdd', GuardController.guardAdd);
+router.post('/guardAdd', GuardController.guardAddToDb);
 
-router.get('/guardModify/:GuardID', Guards.getGuardByID);
-router.post('/guardModify/:GuardID', Guards.updateGuard);
-router.get('/guardDelete/:GuardID', Guards.getGuardForDelete);
-router.post('/guardDelete/:GuardID', Guards.deleteGuard);
-
-
-router.get('/guards', Guards.getAllGuards);
-router.get('/guards/:id', Guards.getGuardByID);
-router.get('/getGuard/:username', Guards.getGuardByUsername);
-router.put('/guards', Guards.updateGuardLogin);
-router.put('/addDeviceToken', Guards.addDeviceToken);
+router.get('/guardModify/:GuardID', GuardController.getGuardByID);
+router.post('/guardModify/:GuardID', GuardController.updateGuard);
+router.get('/guardDelete/:GuardID', GuardController.getGuardForDelete);
+router.post('/guardDelete/:GuardID', GuardController.deleteGuard);
 
 
-// router.delete('/guards/:id', Guards.deleteGuard);
-// router.put('/guards', Guards.updateGuard);
-
-/**
- *  ======================================================================
- * 
- */
+router.get('/guards', GuardController.getAllGuards);
+router.get('/guards/:id', GuardController.getGuardByID);
+router.get('/getGuard/:username', GuardController.getGuardByUsername);
+router.put('/guards', GuardController.updateGuardLogin);
+router.put('/addDeviceToken', GuardController.addDeviceToken);
 
 
+//#############################################################################################
+//#############################################################################################
+//############################### CONVOYER CONTROLLERS END ####################################
+//#############################################################################################
+//#############################################################################################
 
-// Routes for VERIFY (records of scans through the verify app)
+// RouteController for VERIFY (records of scans through the verify app)
 // show events list
 router.get('/verifyRecords', verify.verifyHome);
 
@@ -221,65 +216,75 @@ router.get('/logout', function (req, res) {
 
 
 
-//////////////////////////////////###### Fri Oct 6 22:42:24 PDT 2017 ARA
+//#############################################################################################
+//#############################################################################################
+//############################### CONVOYER CONTROLLERS ########################################
+//#############################################################################################
+//#############################################################################################
 
-var RouteEditor = require('../controllers/RouteEditorController');
-router.get('/routeeditor', RouteEditor.getRouteEditor);
+var RouteEditorController = require('../controllers/Convoyer//RouteEditorController');
+router.get('/routeeditor', RouteEditorController.getRouteEditor);
 
-var RouteEditorMap = require('../controllers/RouteEditorMapController');
-router.get('/routeeditormap', RouteEditorMap.getRouteEditorMap);
+var RouteEditorMapController = require('../controllers/Convoyer//RouteEditorMapController');
+router.get('/routeeditormap', RouteEditorMapController.getRouteEditorMap);
 
-var GuardPatrols = require('../controllers/GuardPatrols');
-router.get('/guardpatrols', GuardPatrols.getAllGuardPatrols);
-router.get('/activeguards', GuardPatrols.getActiveGuards);
-router.get('/guardnotifications', GuardPatrols.getGuardsForNotifications);
-var ConvoyerMapController = require('../controllers/ConvoyerMapController');
+var ConvoyerController = require('../controllers/Convoyer//ConvoyerController');
+router.get('/convoyerliveview', ConvoyerController.getConvoyer);
+router.get('/activeguards', ConvoyerController.getActiveGuards);
+router.get('/guardnotifications', ConvoyerController.getGuardsForNotifications);
+var ConvoyerMapController = require('../controllers/Convoyer//ConvoyerMapController');
 router.get('/foxmaps', ConvoyerMapController.getAllGuardPatrols);
 
-var IncidentDetails = require('../controllers/IncidentDetails');
-router.get('/incidentdetails/:id', IncidentDetails.getIncidentDetails);
-router.get('/incidentpreview/:id', IncidentDetails.getIncidentPreview);
+var IncidentDetailController = require('../controllers/Convoyer//IncidentDetails');
+router.get('/incidentdetails/:id', IncidentDetailController.getIncidentDetails);
+router.get('/incidentpreview/:id', IncidentDetailController.getIncidentPreview);
 
 
-var Patrols = require('../controllers/Patrols');
-router.get('/patrols', Patrols.getAllPatrols);
-router.get('/patrols/:id', Patrols.getPatrolByID);
-router.post('/patrols', Patrols.addPatrol);
-router.delete('/patrols/:id', Patrols.deletePatrol);
-router.put('/patrols', Patrols.updatePatrol);
+var PatrolController = require('../controllers/Convoyer//PatrolController');
+router.get('/patrols', PatrolController.getAllPatrols);
+router.get('/patrols/:id', PatrolController.getPatrolByID);
+router.post('/patrols', PatrolController.addPatrol);
+router.delete('/patrols/:id', PatrolController.deletePatrol);
+router.put('/patrols', PatrolController.updatePatrol);
 
-var Incidents = require('../controllers/Incidents');
-router.get('/incidents', Incidents.getAllIncidents);
-router.get('/incidents/:id', Incidents.getIncidentByID);
-router.post('/incidents', Incidents.addIncident);
-router.delete('/incidents/:id', Incidents.deleteIncident);
-router.put('/incidents/:id', Incidents.updateIncident);
+var IncidentController = require('../controllers/Convoyer//IncidentController');
+router.get('/incidents', IncidentController.getAllIncidents);
+router.get('/incidents/:id', IncidentController.getIncidentByID);
+router.post('/incidents', IncidentController.addIncident);
+router.delete('/incidents/:id', IncidentController.deleteIncident);
+router.put('/incidents/:id', IncidentController.updateIncident);
 
-var Checkpoints = require('../controllers/Checkpoints');
-router.get('/checkpoints', Checkpoints.getAllCheckpoints);
-router.get('/checkpoints/:id', Checkpoints.getCheckpointByID);
-router.post('/checkpoints', Checkpoints.addCheckpoint);
-router.delete('/checkpoints/:id', Checkpoints.deleteCheckpoint);
-router.put('/checkpoints/:id', Checkpoints.updateCheckpoint);
+var CheckpointController = require('../controllers/Convoyer//CheckpointController');
+router.get('/checkpoints', CheckpointController.getAllCheckpoints);
+router.get('/checkpoints/:id', CheckpointController.getCheckpointByID);
+router.post('/checkpoints', CheckpointController.addCheckpoint);
+router.delete('/checkpoints/:id', CheckpointController.deleteCheckpoint);
+router.put('/checkpoints/:id', CheckpointController.updateCheckpoint);
 
-var Coordinates = require('../controllers/Coordinates');
-router.get('/coordinates', Coordinates.getAllCoordinates);
-router.get('/coordinates/:id', Coordinates.getCoordinateByID);
-router.post('/coordinates', Coordinates.addCoordinate);
-router.delete('/coordinates/:id', Coordinates.deleteCoordinate);
-router.put('/coordinates', Coordinates.updateCoordinate);
+var CoordinateController = require('../controllers/Convoyer//CoordinateController');
+router.get('/coordinates', CoordinateController.getAllCoordinates);
+router.get('/coordinates/:id', CoordinateController.getCoordinateByID);
+router.post('/coordinates', CoordinateController.addCoordinate);
+router.delete('/coordinates/:id', CoordinateController.deleteCoordinate);
+router.put('/coordinates', CoordinateController.updateCoordinate);
 
-var Routes = require('../controllers/Routes');
-router.get('/routes', Routes.getAllRoutes);
-router.get('/selectedroute/:name', Routes.getRouteByName);
-router.get('/routes/:id', Routes.getRouteByID);
-router.post('/routes', Routes.addRoute);
-router.post('/saveroute', Routes.saveRoute);
-router.delete('/routes/:id', Routes.deleteRoute);
-router.put('/setcurrentroute', Routes.updateRoute);
-router.put('/disableroutes', Routes.disableRoutes);
-router.get('/currentroutes/:id', Routes.getCurrentRoutes);
+var RouteController = require('../controllers/Convoyer//RouteController');
+router.get('/routes', RouteController.getAllRoutes);
+router.get('/selectedroute/:name', RouteController.getRouteByName);
+router.get('/routes/:id', RouteController.getRouteByID);
+router.post('/routes', RouteController.addRoute);
+router.post('/saveroute', RouteController.saveRoute);
+router.delete('/routes/:id', RouteController.deleteRoute);
+router.put('/setcurrentroute', RouteController.updateRoute);
+router.put('/disableroutes', RouteController.disableRoutes);
+router.get('/currentroutes/:id', RouteController.getCurrentRoutes);
 
+
+//#############################################################################################
+//#############################################################################################
+//############################### CONVOYER CONTROLLERS END ####################################
+//#############################################################################################
+//#############################################################################################
 
 var createInviteList = require('../controllers/createInviteList');
 router.get('/createinvitelist', createInviteList.createInviteListHome);

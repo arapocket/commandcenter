@@ -1,39 +1,39 @@
-var GuardPatrol = require('../models/ConvoyerMapModel');
+var ConvoyerMapModel = require('../models/Convoyer/ConvoyerMapModel');
 
 module.exports.getAllGuardPatrols = (function (req, res) {
 
-  GuardPatrol.getAllGuards(function (err, getAllGuardsResult) {
+  ConvoyerMapModel.getAllGuards(function (err, getAllGuardsResult) {
 
     if (err) {
       res.json(err);
     }
     else {
 
-      GuardPatrol.getCurrentCoords(function (err, getCurrentCoordsResult) {
+      ConvoyerMapModel.getCurrentCoords(function (err, getCurrentCoordsResult) {
         if (err) {
           res.json(err);
         }
         else {
-          GuardPatrol.getAllIncidents(function (err, getAllIncidentsResult) {
+          ConvoyerMapModel.getAllIncidents(function (err, getAllIncidentsResult) {
             if (err) {
               res.json(err);
             }
             else {
-              GuardPatrol.getCurrentLocations(function (err, getCurrentLocationsResult) {
+              ConvoyerMapModel.getCurrentLocations(function (err, getCurrentLocationsResult) {
                 if (err) {
                   res.json(err);
                 }
                 else {
-                  GuardPatrol.getCurrentPatrols(function (err, getCurrentPatrolsResult) {
+                  ConvoyerMapModel.getCurrentPatrols(function (err, getCurrentPatrolsResult) {
                     if (err) {
                       res.json(err);
                     }
                     else {
-                      GuardPatrol.getCurrentRoutes(function (err, getCurrentRoutesResult) {
+                      ConvoyerMapModel.getCurrentRoutes(function (err, getCurrentRoutesResult) {
                         if (err) {
                           res.json(err);
                         } else {
-                          GuardPatrol.getCurrentCheckpoints(function (err, getCurrentCheckpointsResult) {
+                          ConvoyerMapModel.getCurrentCheckpoints(function (err, getCurrentCheckpointsResult) {
                             if (err) {
                               res.json(err);
                             } else {

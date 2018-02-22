@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Route = require('../models/Route');
+var RouteModel = require('../models/Convoyer/RouteModel');
 
 module.exports.getAllRoutes = function (req, res) {
-  Route.getAllRoutes(function (err, result) {
+  RouteModel.getAllRoutes(function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -14,7 +14,7 @@ module.exports.getAllRoutes = function (req, res) {
 };
 
 module.exports.getRouteByID = function (req, res) {
-  Route.getRouteByID(req.params.id, function (err, result) {
+  RouteModel.getRouteByID(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -26,7 +26,7 @@ module.exports.getRouteByID = function (req, res) {
 
 
 module.exports.getRouteByName = function (req, res) {
-  Route.getRouteByName(req.params.name, function (err, result) {
+  RouteModel.getRouteByName(req.params.name, function (err, result) {
 
     // console.log('logging req.body from controller ' + JSON.stringify(req.body))
 
@@ -40,7 +40,7 @@ module.exports.getRouteByName = function (req, res) {
 };
 
 module.exports.getCurrentRoutes = function (req, res) {
-  Route.getCurrentRoutes(req.params.id, function (err, result) {
+  RouteModel.getCurrentRoutes(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -51,13 +51,13 @@ module.exports.getCurrentRoutes = function (req, res) {
 };
 
 module.exports.addRoute = function (req, res) {
-  Route.addRoute(req.body, function (err, result) {
+  RouteModel.addRoute(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
     else {
       res.json(result);
-      Route.updateRoute(req.body, function (err, res) {
+      RouteModel.updateRoute(req.body, function (err, res) {
         if (res) {
            console.log(res);
         } else {
@@ -69,7 +69,7 @@ module.exports.addRoute = function (req, res) {
 };
 
 module.exports.saveRoute = function (req, res) {
-  Route.saveRoute(req.body, function (err, result) {
+  RouteModel.saveRoute(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -80,7 +80,7 @@ module.exports.saveRoute = function (req, res) {
 };
 
 module.exports.deleteRoute = function (req, res) {
-  Route.deleteRoute(req.params.id, function (err, result) {
+  RouteModel.deleteRoute(req.params.id, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -91,7 +91,7 @@ module.exports.deleteRoute = function (req, res) {
 };
 
 module.exports.updateRoute = function (req, res) {
-  Route.updateRoute(req.body, function (err, result) {
+  RouteModel.updateRoute(req.body, function (err, result) {
     if (err) {
       console.log(err);
     }
@@ -102,7 +102,7 @@ module.exports.updateRoute = function (req, res) {
 };
 
 module.exports.disableRoutes = function (req, res) {
-  Route.disableRoutes(req.body, function (err, result) {
+  RouteModel.disableRoutes(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

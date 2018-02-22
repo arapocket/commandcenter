@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Guard = require('../models/Guard');
+var GuardModel = require('../models/Convoyer/GuardModel');
 var db = require('../models/db');
 var datetime = require('./datetime');
 
@@ -33,7 +33,7 @@ module.exports.guardList = function (req, res) {
            * 
            */
           if (sess.userType == '2') {
-            res.render('guardlist', { title: 'Command Center', username: req.session.username, results });
+            res.render('GuardListView', { title: 'Command Center', username: req.session.username, results });
           } else {
             res.render('Unauthorized', { title: 'Command Center' });
           }
@@ -45,7 +45,7 @@ module.exports.guardList = function (req, res) {
 };
 
 module.exports.getAllGuards = function (req, res) {
-  Guard.getAllGuards(function (err, result) {
+  GuardModel.getAllGuards(function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -92,7 +92,7 @@ module.exports.guardAddToDb = function (req, res) {
           /**
            * Call common handler to hash the password with 'salt' and store both in db
            */
-          var _passData = Guard.saltHashPassword(field2);
+          var _passData = GuardModel.saltHashPassword(field2);
           var _password = _passData.hash
           var _rgen = _passData.salt
           console.log('password returned : ' + _password)
@@ -186,7 +186,7 @@ module.exports.getGuardByID = function (req, res) {
 };
 
 module.exports.getGuardByUsername = function (req, res) {
-  Guard.getGuardByUsername(req.params.username, function (err, result) {
+  GuardModel.getGuardByUsername(req.params.username, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -273,7 +273,7 @@ exports.updateGuard = function (req, res) {
 };
 
 module.exports.updateGuardLogin = function (req, res) {
-  Guard.updateGuardLogin(req.body, function (err, result) {
+  GuardModel.updateGuardLogin(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -284,7 +284,7 @@ module.exports.updateGuardLogin = function (req, res) {
 };
 
 module.exports.addDeviceToken = function (req, res) {
-  Guard.addDeviceToken(req.body, function (err, result) {
+  GuardModel.addDeviceToken(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
@@ -371,7 +371,7 @@ module.exports.deleteGuard = function (req, res) {
 
 module.exports.authenticateGuard = function (req, res) {
 
-  Guard.authenticateUser(req.body, function (err, authResult) {
+  GuardModel.authenticateUser(req.body, function (err, authResult) {
     if (err) {
       console.log(err)
       res.json(err);

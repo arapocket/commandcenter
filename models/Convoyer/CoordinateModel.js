@@ -57,7 +57,7 @@ module.exportsgetCoordinateByID = function (id, callback) {
 }
 
 
-module.exports.addCoordinate = function (Coordinate, callback) {
+module.exports.addCoordinate = function (CoordinateModel, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
@@ -67,7 +67,7 @@ module.exports.addCoordinate = function (Coordinate, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into coordinate values ('" + Coordinate.CoordID + "', '" + Coordinate.Sequence + "', '" + Coordinate.lat + "', '" + Coordinate.lng + "', '" + Coordinate.PatrolID + "', " + Coordinate.CurrentCoord + " );";
+            var strSQL = "Insert into coordinate values ('" + CoordinateModel.CoordID + "', '" + CoordinateModel.Sequence + "', '" + CoordinateModel.lat + "', '" + CoordinateModel.lng + "', '" + CoordinateModel.PatrolID + "', " + CoordinateModel.CurrentCoord + " );";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -113,7 +113,7 @@ module.exports.deleteCoordinate = function (id, callback) {
     });
 }
 
-module.exports.updateCoordinate = function (Coordinate, callback) {
+module.exports.updateCoordinate = function (CoordinateModel, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
@@ -123,7 +123,7 @@ module.exports.updateCoordinate = function (Coordinate, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update currentguards SET CurrentCoord = " + Coordinate.CurrentCoord + " WHERE GuardID = '" + Coordinate.GuardID + "';";
+            var strSQL = "Update currentguards SET CurrentCoord = " + CoordinateModel.CurrentCoord + " WHERE GuardID = '" + CoordinateModel.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

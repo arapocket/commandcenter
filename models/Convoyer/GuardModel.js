@@ -50,7 +50,7 @@ module.exports.getAllGuards = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select guardpatrol query');
+                    console.log('error with the select convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -78,7 +78,7 @@ module.exports.getGuardByID = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select guardpatrol query');
+                    console.log('error with the select convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -103,7 +103,7 @@ module.exports.getGuardByUsername = function (username, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select guardpatrol query');
+                    console.log('error with the select convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -129,7 +129,7 @@ module.exports.addGuard = function (Guard, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select guardpatrol query');
+                    console.log('error with the select convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -155,7 +155,7 @@ module.exports.deleteGuard = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select guardpatrol query');
+                    console.log('error with the select convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -181,7 +181,7 @@ module.exports.updateGuard = function (Guard, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select guardpatrol query');
+                    console.log('error with the select convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -233,7 +233,7 @@ module.exports.addDeviceToken = function (Guard, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select guardpatrol query');
+                    console.log('error with the select convoyer query');
                     connection.end();
                     callback(err, rows);
                 }

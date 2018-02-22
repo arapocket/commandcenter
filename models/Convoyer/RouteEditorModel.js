@@ -20,7 +20,7 @@ module.exports.getAllGuards = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select guardpatrol query');
+                    console.log('error with the select convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
