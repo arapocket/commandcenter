@@ -1,4 +1,4 @@
-var db = require('./db');
+var db = require('../db');
 
 
 // GETS ALL THE GUARDS WITH A CURRENT SHIFT
