@@ -15,7 +15,6 @@ function initMap() {
         rotateControl: false,
     });
 
-
     let routeSeq = {
         repeat: '30px',
         icon: {
@@ -38,40 +37,49 @@ function initMap() {
         icons: [routeSeq]
     })
 
-
-    let addRouteButton = parent.document.getElementById("addRouteButton");
-    let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
-    let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
-    let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
-    let saveRouteButton = parent.document.getElementById('saveRouteButton');
-    let loadRouteButton = parent.document.getElementById('loadRouteButton');
+    setUpButtonListeners();
 
 
-    addRouteButton.addEventListener('click', function (e) {
-        onAddRoute();
-    });
+    function setUpButtonListeners() {
 
-    cancelRouteButton.addEventListener('click', function (e) {
-        onCancelRoute();
-    });
-
-    clearCheckpointsButton.addEventListener('click', function (e) {
-        onClearCheckpoints();
-    })
-
-    removeLastCheckpointButton.addEventListener('click', function (e) {
-        onRemoveLastCheckpoint()
-    });
-
-    saveRouteButton.addEventListener('click', function (e) {
-        onSaveRouteAll()
-    });
-
-    loadRouteButton.addEventListener('click', function (e) {
-        onSelectRoute();
-    });
+        let addRouteButton = parent.document.getElementById("addRouteButton");
+        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+        let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
+        let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
+        let saveRouteButton = parent.document.getElementById('saveRouteButton');
+        let loadRouteButton = parent.document.getElementById('loadRouteButton');
+        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
 
 
+        addRouteButton.addEventListener('click', function (e) {
+            onAddRoute();
+        });
+
+        cancelRouteButton.addEventListener('click', function (e) {
+            onCancelRoute();
+        });
+
+        clearCheckpointsButton.addEventListener('click', function (e) {
+            onClearCheckpoints();
+        })
+
+        removeLastCheckpointButton.addEventListener('click', function (e) {
+            onRemoveLastCheckpoint()
+        });
+
+        saveRouteButton.addEventListener('click', function (e) {
+            onSaveRouteAll()
+        });
+
+        loadRouteButton.addEventListener('click', function (e) {
+            onSelectRoute();
+        });
+
+        deleteRouteButton.addEventListener('click', function (e) {
+            onDeleteRoute();
+        });
+
+    }
 
     function onAddCheckpoint(latLng) {
         route.getPath().push(latLng);
@@ -112,7 +120,6 @@ function initMap() {
         showLoadRouteButton();
 
     }
-
 
     function onTrashRoute() {
 
@@ -305,6 +312,49 @@ function initMap() {
         xhr.send(null);
     }
 
+    function onDeleteRoute(){
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            console.log('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+                if (json.length > 0) {
+
+                    let routeButtons = [];
+                    for (i = 0; i < json.length; i++) {
+                        let label = json[i].RouteName;
+                        let buttonClass = 'btn-primary';
+
+                        routeButtons.push({
+                            label: label,
+                            className: buttonClass,
+                            callback: function () {
+                                deleteSelectedRoute(label);
+                            }
+                        });
+
+                    }
+                    var dialog = bootbox.dialog({
+                        title: 'Delete Route',
+                        message: "<p>Select the route you wish to delete.</p>",
+                        buttons: routeButtons
+                    });
+
+
+                }
+            }
+        }
+
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/", true);
+
+        xhr.send(null);
+    }
+
     function loadSelectedRoute(routeName) {
 
         var xhr = new XMLHttpRequest();
@@ -329,6 +379,30 @@ function initMap() {
         console.log('logging cleanName after regex ' + cleanName)
 
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/selectedroute/" + cleanName, true);
+
+        xhr.send(null);
+    }
+
+    function deleteSelectedRoute(routeName) {
+
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+            }
+        }
+
+        let cleanName = routeName.replace(/[^a-zA-Z0-9]/g, "");
+
+        console.log('logging cleanName after regex ' + cleanName)
+
+        xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/deleteroute/" + cleanName, true);
 
         xhr.send(null);
     }
@@ -418,7 +492,6 @@ function initMap() {
         xhr.send(null);
     }
 
-
     function loadRouteOnMap(checkpoints) {
 
         try {
@@ -453,6 +526,5 @@ function initMap() {
         var newCheckpointID = Math.random().toString(36).substr(2, 9);
         return newCheckpointID;
     }
-
 
 }

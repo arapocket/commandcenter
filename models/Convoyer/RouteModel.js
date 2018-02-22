@@ -133,7 +133,6 @@ module.exports.addRoute = function (Route, callback) {
     });
 }
 
-
 module.exports.saveRoute = function (Route, callback) {
 
     db.createConnection(function (err, reslt) {
@@ -160,7 +159,7 @@ module.exports.saveRoute = function (Route, callback) {
     });
 }
 
-module.exports.deleteRoute = function (id, callback) {
+module.exports.deleteRoute = function (name, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
@@ -170,7 +169,7 @@ module.exports.deleteRoute = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " delete from route where RouteID = " + id + ";";
+            var strSQL = " delete from route where Name = " + name + ";";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
