@@ -398,6 +398,8 @@ function initMap() {
 
     function deleteSelectedRoute(routeName) {
 
+        console.log('deleteSelectedRoute called');
+
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
