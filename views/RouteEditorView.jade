@@ -4,18 +4,7 @@ block content
 												include navbar
 												head
 												.row
-														.col-md-2.col-sm-2.col-xs-12												
-																.panel.panel-default
-																		.panel-heading
-																				h3.panel-title Patrol Area	   
-																		div
-																						table#pickle.table.table-hover.table-striped.table-bordered
-																										thead
-																										tbody
-																										-each guard in getAllRoutesResult
-																																tr.default(id=guard.GuardID)
-																																		td=guard.FirstName 												
-
+														.col-md-2.col-sm-2.col-xs-12
 																			.row
 																											a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
 																												i.fa.fa-plus(aria-hidden='true')
