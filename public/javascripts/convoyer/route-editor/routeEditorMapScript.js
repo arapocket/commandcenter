@@ -3,7 +3,7 @@ function initMap() {
 
 
 
-    var map = new google.maps.Map(document.getElementById('map'), {
+    let map = new google.maps.Map(document.getElementById('map'), {
         zoom: 18,
         center: { lat: 34.050963, lng: -118.256133 },
         mapTypeId: google.maps.MapTypeId.MAP,
@@ -37,40 +37,6 @@ function initMap() {
         strokeWeight: 5,
         icons: [routeSeq]
     })
-
-    let addRouteButton = parent.document.getElementById("addRouteButton");
-    let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
-    let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
-    let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
-    let saveRouteButton = parent.document.getElementById('saveRouteButton');
-    let loadRouteButton = parent.document.getElementById('loadRouteButton');
-
-
-    addRouteButton.addEventListener('click', function (e) {
-        onAddRoute(route);
-    });
-
-    cancelRouteButton.addEventListener('click', function (e) {
-        onCancelRoute(map, route);
-    });
-
-    clearCheckpointsButton.addEventListener('click', function (e) {
-        onClearCheckpoints(route);
-    })
-
-    removeLastCheckpointButton.addEventListener('click', function (e) {
-        onRemoveLastCheckpoint(route)
-    });
-
-    saveRouteButton.addEventListener('click', function (e) {
-        onSaveRouteAll(route, map)
-    });
-
-    loadRouteButton.addEventListener('click', function (e) {
-        onSelectRoute(route, map);
-    });
-
-
 
     function onAddCheckpoint(route, latLng, map) {
         route.getPath().push(latLng);
@@ -486,6 +452,41 @@ function initMap() {
         var newCheckpointID = Math.random().toString(36).substr(2, 9);
         return newCheckpointID;
     }
+
+
+
+
+    let addRouteButton = parent.document.getElementById("addRouteButton");
+    let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+    let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
+    let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
+    let saveRouteButton = parent.document.getElementById('saveRouteButton');
+    let loadRouteButton = parent.document.getElementById('loadRouteButton');
+
+
+    addRouteButton.addEventListener('click', function (e) {
+        onAddRoute(route);
+    });
+
+    cancelRouteButton.addEventListener('click', function (e) {
+        onCancelRoute(map, route);
+    });
+
+    clearCheckpointsButton.addEventListener('click', function (e) {
+        onClearCheckpoints(route);
+    })
+
+    removeLastCheckpointButton.addEventListener('click', function (e) {
+        onRemoveLastCheckpoint(route)
+    });
+
+    saveRouteButton.addEventListener('click', function (e) {
+        onSaveRouteAll(route, map)
+    });
+
+    loadRouteButton.addEventListener('click', function (e) {
+        onSelectRoute(route, map);
+    });
 
 
 
