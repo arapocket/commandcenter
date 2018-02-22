@@ -73,11 +73,11 @@ function initMap() {
 
         });
 
-        createIncidentMarkers(incidents, map, iconsBase);
+        createIncidentMarkers(incidents, iconsBase);
 
-        createGuards(map, locations, coords);
+        createGuards(locations, coords);
 
-        createIncidentButtons(map, incidents);
+        createIncidentButtons(incidents);
 
 
     } else {
@@ -130,31 +130,31 @@ function initMap() {
 
 
     addRouteButton.addEventListener('click', function (e) {
-        onAddRoute(route);
+        onAddRoute();
     });
 
     cancelRouteButton.addEventListener('click', function (e) {
-        onCancelRoute(map, route);
+        onCancelRoute();
     });
 
     clearCheckpointsButton.addEventListener('click', function (e) {
-        onClearCheckpoints(route);
+        onClearCheckpoints();
     })
 
     removeLastCheckpointButton.addEventListener('click', function (e) {
-        onRemoveLastCheckpoint(route)
+        onRemoveLastCheckpoint()
     });
 
     saveRouteButton.addEventListener('click', function (e) {
-        onSaveRouteAll(route, map)
+        onSaveRouteAll()
     });
 
     loadRouteButton.addEventListener('click', function (e) {
-        // onSelectRoute(route, map);
+        onSelectRoute();
     });
 
 
-    function createGuards(map, locations, coords) {
+    function createGuards(locations, coords) {
 
         var guardButtons = [];
 
@@ -191,7 +191,7 @@ function initMap() {
             })
 
             google.maps.event.addListener(route, 'click', function (e) {
-                onAddCheckpoint(route, e.latLng, map);
+                onAddCheckpoint(route, e.latLng);
             });
 
             let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
@@ -212,7 +212,7 @@ function initMap() {
 
             editRouteButton.addEventListener('click', function (e) {
                 console.log('the guard id is: ' + id);
-                onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, map, locations);
+                onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations);
             });
 
             trashRouteButton.addEventListener('click', function (e) {
@@ -225,7 +225,7 @@ function initMap() {
                 loadRouteButton.style.display = 'none';
                 endPatrolButton.style.display = 'none';
 
-                onTrashRoute(map, route, id);
+                onTrashRoute(route, id);
                 showAddButton();
             });
 
@@ -239,11 +239,11 @@ function initMap() {
 
             loadRouteButton.addEventListener('click', function (e) {
 
-                onSelectRoute(map, route);
+                onSelectRoute(route);
             });
 
             saveRouteButton.addEventListener('click', function (e) {
-                onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map, id);
+                onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id);
             });
 
             endPatrolButton.addEventListener('click', function (e) {
@@ -273,7 +273,7 @@ function initMap() {
                         lng: lng
                     });
 
-                    changeButtons(location.GuardID, locations, map, route);
+                    changeButtons(location.GuardID, locations, route);
 
                     localStorage.setItem("currentGuard", id);
                 })
@@ -281,15 +281,15 @@ function initMap() {
                 guardButtons.push(guardButton);
             }
 
-            loadRoute(map, route, id);
+            loadRoute(route, id);
 
-            createGuardMarker(location, locations, map, route, id);
+            createGuardMarker(location, locations, route, id);
 
-            createPatrolPath(location, map, coords, id);
+            createPatrolPath(location, coords, id);
         }
     }
 
-    function createPatrolPath(location, map, coords, id) {
+    function createPatrolPath(location, coords, id) {
 
         let firstName = location.FirstName;
 
@@ -358,7 +358,7 @@ function initMap() {
         patrol.getPath().push(new google.maps.LatLng(lat, lng));
     }
 
-    function changeButtons(GuardID, locations, map, route) {
+    function changeButtons(GuardID, locations, route) {
 
         hideAddButton();
         hideCancelButton();
@@ -406,14 +406,14 @@ function initMap() {
         loadRouteButton.style.display = 'none';
         endPatrolButton.style.display = 'none';
 
-        onTrashRoute(map, route, GuardID);
+        onTrashRoute(route, GuardID);
 
         editRouteButton.style.display = 'block';
         endPatrolButton.style.display = 'block';
 
     }
 
-    function createIncidentButtons(map, incidents) {
+    function createIncidentButtons(incidents) {
 
         var incidentButtons = [];
 
@@ -442,7 +442,7 @@ function initMap() {
 
     }
 
-    function createGuardMarker(location, locations, map, route, id) {
+    function createGuardMarker(location, locations, route, id) {
 
 
         var windowString =
@@ -468,7 +468,7 @@ function initMap() {
         markerWindow.open(map, marker);
         marker.addListener('click', function (e) {
             markerWindow.open(map, marker);
-            changeButtons(id, locations, map, route);
+            changeButtons(id, locations, route);
         });
 
 
@@ -481,7 +481,7 @@ function initMap() {
 
     }
 
-    function createIncidentMarkers(incidents, map, iconsBase) {
+    function createIncidentMarkers(incidents,iconsBase) {
 
         for (let i = 0; i < incidents.length; i++) {
             var lat = incidents[i].lat;
@@ -604,19 +604,19 @@ function initMap() {
 
     }
 
-    function onAddCheckpoint(route, latLng, map) {
+    function onAddCheckpoint(route, latLng) {
         route.getPath().push(latLng);
         route.setMap(map);
     }
 
-    function onClearCheckpoints(route) {
+    function onClearCheckpoints() {
 
         console.log('onClearCheckpoints called');
 
         route.setPath([]);
     }
 
-    function onRemoveLastCheckpoint(route) {
+    function onRemoveLastCheckpoint() {
 
         console.log('onRemoveLastCheckpoint called');
 
@@ -624,19 +624,19 @@ function initMap() {
 
     }
 
-    function onAddRoute(route) {
+    function onAddRoute() {
 
         hideAddButton();
 
         map.addListener('click', function (e) {
-            onAddCheckpoint(route, e.latLng, map);
+            onAddCheckpoint(route, e.latLng);
         });
 
         google.maps.event.addListener(route, 'click', function (e) {
-            onAddCheckpoint(route, e.latLng, map);
+            onAddCheckpoint(route, e.latLng);
         });
 
-        showCancelButton(map, route);
+        showCancelButton();
         showClearCheckpointsButton();
         showRemoveLastCheckpointButton();
         showSaveRouteButton();
@@ -644,7 +644,7 @@ function initMap() {
 
     }
 
-    function onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, map, locations) {
+    function onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations) {
 
 
 
@@ -668,18 +668,18 @@ function initMap() {
         loadRouteButton.style.display = 'block';
 
         map.addListener('click', function (e) {
-            onAddCheckpoint(route, e.latLng, map);
+            onAddCheckpoint(route, e.latLng);
         });
 
         google.maps.event.addListener(route, 'click', function (e) {
-            onAddCheckpoint(route, e.latLng, map);
+            onAddCheckpoint(route, e.latLng);
         });
 
 
 
     }
 
-    function onTrashRoute(map, route, id) {
+    function onTrashRoute(route, id) {
         
         console.log('logging id from onTrashRoute ' + id);
 
@@ -691,11 +691,11 @@ function initMap() {
         // route.setPath([]);
         // route.setMap(map);
 
-        loadRoute(map, route, id);
+        loadRoute(route, id);
 
     }
 
-    function onCancelRoute(map, route) {
+    function onCancelRoute() {
 
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
@@ -812,7 +812,7 @@ function initMap() {
         })
     }
 
-    function onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, map, id) {
+    function onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id) {
 
 
         bootbox.prompt("Enter a name for the route.", function (result) {
@@ -870,7 +870,7 @@ function initMap() {
 
     }
 
-    function onSaveRouteAll(route, map) {
+    function onSaveRouteAll() {
 
         bootbox.prompt("Enter a name for the route.", function (result) {
             if (result === null) {
@@ -925,7 +925,7 @@ function initMap() {
         });
     }
 
-    function onSelectRoute(map, route) {
+    function onSelectRoute() {
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -947,7 +947,7 @@ function initMap() {
                             label: label,
                             className: buttonClass,
                             callback: function () {
-                                loadSelectedRoute(label, map, route)
+                                loadSelectedRoute(label, route)
                             }
                         });
 
@@ -968,7 +968,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function loadSelectedRoute(routeName, map, route) {
+    function loadSelectedRoute(routeName, route) {
 
         console.log('loadSelectedRoute called');
 
@@ -985,8 +985,8 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
-                    setCurrentRoute(json[0], map, route);
-                    loadCurrentRoute(json[0].RouteID, map, route);
+                    setCurrentRoute(json[0], route);
+                    loadCurrentRoute(json[0].RouteID, route);
                 }
             }
         }
@@ -1000,7 +1000,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function loadRoute(map, route, id) {
+    function loadRoute(route, id) {
 
         var xhr = new XMLHttpRequest();
 
@@ -1015,7 +1015,7 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
-                    loadCurrentRoute(routeID, map, route);
+                    loadCurrentRoute(routeID, route);
                 }
 
 
@@ -1030,7 +1030,7 @@ function initMap() {
 
     }
 
-    function setCurrentRoute(routeData, map, route) {
+    function setCurrentRoute(routeData, route) {
 
         let currentGuard = localStorage.getItem("currentGuard");
 
@@ -1084,7 +1084,7 @@ function initMap() {
         }
         
 
-        onTrashRoute(map, route, id);
+        onTrashRoute(route, id);
 
 
     }
@@ -1141,7 +1141,7 @@ function initMap() {
         }
     }
 
-    function loadCurrentRoute(routeID, map, route) {
+    function loadCurrentRoute(routeID, route) {
 
         console.log('loadCurrentRoute called ');
 
@@ -1156,7 +1156,7 @@ function initMap() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 console.log('logging checkpoints response: ' + xhr.responseText);
                 var checkpoints = JSON.parse(xhr.responseText);
-                loadRouteOnMap(checkpoints, map, route);
+                loadRouteOnMap(checkpoints, route);
 
             }
         }
@@ -1167,7 +1167,7 @@ function initMap() {
     }
 
     // $%$%
-    function loadRouteOnMap(checkpoints, map, route) {
+    function loadRouteOnMap(checkpoints,route) {
 
         route.setPath([]);
 
