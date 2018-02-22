@@ -222,53 +222,53 @@ router.get('/logout', function (req, res) {
 //#############################################################################################
 //#############################################################################################
 
-var RouteEditorController = require('../controllers/Convoyer//RouteEditorController');
+var RouteEditorController = require('../controllers/Convoyer/RouteEditorController');
 router.get('/routeeditor', RouteEditorController.getRouteEditor);
 
-var RouteEditorMapController = require('../controllers/Convoyer//RouteEditorMapController');
+var RouteEditorMapController = require('../controllers/Convoyer/RouteEditorMapController');
 router.get('/routeeditormap', RouteEditorMapController.getRouteEditorMap);
 
-var ConvoyerController = require('../controllers/Convoyer//ConvoyerController');
+var ConvoyerController = require('../controllers/Convoyer/ConvoyerController');
 router.get('/convoyerliveview', ConvoyerController.getConvoyer);
 router.get('/activeguards', ConvoyerController.getActiveGuards);
 router.get('/guardnotifications', ConvoyerController.getGuardsForNotifications);
-var ConvoyerMapController = require('../controllers/Convoyer//ConvoyerMapController');
+var ConvoyerMapController = require('../controllers/Convoyer/ConvoyerMapController');
 router.get('/foxmaps', ConvoyerMapController.getAllGuardPatrols);
 
-var IncidentDetailController = require('../controllers/Convoyer//IncidentDetails');
+var IncidentDetailController = require('../controllers/Convoyer/IncidentDetails');
 router.get('/incidentdetails/:id', IncidentDetailController.getIncidentDetails);
 router.get('/incidentpreview/:id', IncidentDetailController.getIncidentPreview);
 
 
-var PatrolController = require('../controllers/Convoyer//PatrolController');
+var PatrolController = require('../controllers/Convoyer/PatrolController');
 router.get('/patrols', PatrolController.getAllPatrols);
 router.get('/patrols/:id', PatrolController.getPatrolByID);
 router.post('/patrols', PatrolController.addPatrol);
 router.delete('/patrols/:id', PatrolController.deletePatrol);
 router.put('/patrols', PatrolController.updatePatrol);
 
-var IncidentController = require('../controllers/Convoyer//IncidentController');
+var IncidentController = require('../controllers/Convoyer/IncidentController');
 router.get('/incidents', IncidentController.getAllIncidents);
 router.get('/incidents/:id', IncidentController.getIncidentByID);
 router.post('/incidents', IncidentController.addIncident);
 router.delete('/incidents/:id', IncidentController.deleteIncident);
 router.put('/incidents/:id', IncidentController.updateIncident);
 
-var CheckpointController = require('../controllers/Convoyer//CheckpointController');
+var CheckpointController = require('../controllers/Convoyer/CheckpointController');
 router.get('/checkpoints', CheckpointController.getAllCheckpoints);
 router.get('/checkpoints/:id', CheckpointController.getCheckpointByID);
 router.post('/checkpoints', CheckpointController.addCheckpoint);
 router.delete('/checkpoints/:id', CheckpointController.deleteCheckpoint);
 router.put('/checkpoints/:id', CheckpointController.updateCheckpoint);
 
-var CoordinateController = require('../controllers/Convoyer//CoordinateController');
+var CoordinateController = require('../controllers/Convoyer/CoordinateController');
 router.get('/coordinates', CoordinateController.getAllCoordinates);
 router.get('/coordinates/:id', CoordinateController.getCoordinateByID);
 router.post('/coordinates', CoordinateController.addCoordinate);
 router.delete('/coordinates/:id', CoordinateController.deleteCoordinate);
 router.put('/coordinates', CoordinateController.updateCoordinate);
 
-var RouteController = require('../controllers/Convoyer//RouteController');
+var RouteController = require('../controllers/Convoyer/RouteController');
 router.get('/routes', RouteController.getAllRoutes);
 router.get('/selectedroute/:name', RouteController.getRouteByName);
 router.get('/routes/:id', RouteController.getRouteByID);
