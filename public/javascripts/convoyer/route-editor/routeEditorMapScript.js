@@ -327,6 +327,7 @@ function initMap() {
     }
 
     function onDeleteRoute() {
+        
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -371,24 +372,39 @@ function initMap() {
 
     function deleteSelectedRoute(routeID) {
 
-        var xhr = new XMLHttpRequest();
+        bootbox.confirm({
+            size: "small",
+            message: "Are you sure you want to delete the route?",
+            callback: function (result) {
+                /* result is a boolean; true = OK, false = Cancel*/
+                if (result) {
 
-        if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
+                    var xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                let json = JSON.parse(xhr.responseText);
-                deleteRoute(routeID);
+                    if (!xhr) {
+                        alert('Giving up :( Cannot create an XMLHTTP instance');
+                        return false;
+                    }
+            
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == XMLHttpRequest.DONE) {
+                            let json = JSON.parse(xhr.responseText);
+                            deleteRoute(routeID);
+            
+                        }
+                    }
+            
+                    xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
+            
+                    xhr.send(null);
+                    
+                } else {
 
+                }
             }
-        }
+        })
 
-        xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
 
-        xhr.send(null);
     }
 
     function loadRoute() {
@@ -419,13 +435,11 @@ function initMap() {
 
     }
 
-
     function deleteRoute(routeID) {
 
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
             return false;
         }
 
@@ -438,6 +452,21 @@ function initMap() {
         xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/" + routeID, true);
 
         xhr.send(null);
+
+        bootbox.alert('Route has been deleted!');
+
+        route.setPath([]);
+
+        hideCancelButton();
+        hideClearCheckpointsButton();
+        hideRemoveLastCheckpointButton();
+        hideSaveRouteButton();
+        hideLoadRouteButton();
+        hideDeleteRouteButton();
+        showAddButton();
+        
+
+
     }
 
     function postCheckpoints(routeID) {
@@ -473,7 +502,6 @@ function initMap() {
         }
     }
 
-
     function loadCurrentRoute(routeID) {
 
 
@@ -500,13 +528,7 @@ function initMap() {
 
     function loadRouteOnMap(checkpoints) {
 
-        try {
-            route.setPath([]);
-        }
-        catch (err) {
-            console.log('catch called ' + err);
-
-        }
+        route.setPath([]);
 
         if (checkpoints.length > 0) {
             for (let i = 0; i < checkpoints.length; i++) {
