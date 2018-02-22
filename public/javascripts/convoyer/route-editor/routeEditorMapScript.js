@@ -398,8 +398,6 @@ function initMap() {
 
         xhr.send(null);
 
-        socket.emit('load route');
-
     }
 
     function setCurrentRoute(routeData, map, route) {
@@ -530,6 +528,13 @@ function initMap() {
                 route.getPath().push(latLng);
             }
         }
+
+        
+        map.setCenter({
+            lat: checkpoints[0].lat,
+            lng: checkpoints[0].lng
+        });
+
     }
 
     function createRouteID() {
