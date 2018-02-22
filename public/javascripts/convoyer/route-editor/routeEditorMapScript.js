@@ -456,23 +456,23 @@ function initMap() {
 
         try {
             route.setPath([]);
-            if (checkpoints.length > 0) {
-                for (let i = 0; i < checkpoints.length; i++) {
-                    var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
-                    route.getPath().push(latLng);
-                }
-            }
-
-            map.setCenter({
-                lat: checkpoints[0].lat,
-                lng: checkpoints[0].lng
-            });
         }
         catch (err) {
             console.log('catch called ' + err);
 
         }
 
+        if (checkpoints.length > 0) {
+            for (let i = 0; i < checkpoints.length; i++) {
+                var latLng = new google.maps.LatLng(checkpoints[i].lat, checkpoints[i].lng);
+                route.getPath().push(latLng);
+            }
+        }
+
+        map.setCenter({
+            lat: checkpoints[0].lat,
+            lng: checkpoints[0].lng
+        });
 
 
     }
