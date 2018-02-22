@@ -11,7 +11,14 @@ module.exports.getRouteEditor = (function (req, res) {
         if (err) {
           res.json(err);
         } else {
-          res.render('RouteEditorView', { title: 'Route Editor', getAllGuardsResult: getAllGuardsResult, getAllRoutesResult: getAllRoutesResult });
+          RouteEditorModel.getAllPatrolAreas(function (err, getAllAreasResult){
+            if (err) {
+              res.json(err);
+            } else {
+              res.render('RouteEditorView', { title: 'Route Editor', getAllGuardsResult: getAllGuardsResult, getAllRoutesResult: getAllRoutesResult, getAllAreasResult: getAllAreasResult });
+            }
+          })
+          
         }
       });
     }

@@ -58,6 +58,36 @@ module.exports.getAllRoutes = function (callback) {
     });
 }
 
+module.exports.getAllPatrolAreas = function (callback) {
+
+
+    //get a connection using the common handler in models/db.js
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = 'SELECT  * FROM patrolarea';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select incident query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+}
+
+
+
 
 
 

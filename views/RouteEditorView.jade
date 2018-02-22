@@ -8,18 +8,16 @@ block content
 																			.row
 																									.panel.panel-default
 																											.panel-heading
-																													h3.panel-title Guards	   
+																													h3.panel-title Patrol Area	   
 																											div
 																															table#pickle.table.table-hover.table-striped.table-bordered
 																																			thead
 																																							tr.default
-																																											th First Name
-																																											th Last Name
+																																											th Name
 																																			tbody
-																																			-each guard in getAllGuardsResult
-																																									tr.default(id=guard.GuardID)
-																																													td=guard.FirstName
-																																													td=guard.LastName
+																																			-each area in getAllPatrolAreasResult
+																																									tr.default(id=area.AreaID)
+																																													td=area.Name
 																			.row
 																											a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
 																												i.fa.fa-plus(aria-hidden='true')
