@@ -138,11 +138,11 @@ function initMap() {
     });
 
     clearCheckpointsButton.addEventListener('click', function (e) {
-        onClearCheckpoints();
+        onClearCheckpoints(route);
     })
 
     removeLastCheckpointButton.addEventListener('click', function (e) {
-        onRemoveLastCheckpoint()
+        onRemoveLastCheckpoint(route)
     });
 
     saveRouteButton.addEventListener('click', function (e) {
@@ -609,14 +609,14 @@ function initMap() {
         route.setMap(map);
     }
 
-    function onClearCheckpoints() {
+    function onClearCheckpoints(route) {
 
         console.log('onClearCheckpoints called');
 
         route.setPath([]);
     }
 
-    function onRemoveLastCheckpoint() {
+    function onRemoveLastCheckpoint(route) {
 
         console.log('onRemoveLastCheckpoint called');
 
