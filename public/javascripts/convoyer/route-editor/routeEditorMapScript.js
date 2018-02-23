@@ -470,7 +470,7 @@ function initMap() {
         setCurrentAreaButton.style.display = 'none';
     }
 
-    function showRouteSetCurrentAreaButton() {
+    function showSetCurrentAreaButton() {
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
         setCurrentAreaButton.style.display = 'block';
     }    
