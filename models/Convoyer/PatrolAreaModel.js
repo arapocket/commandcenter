@@ -67,7 +67,7 @@ module.exports.addPatrolArea = function (PatrolArea, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into patrolarea values ('" + PatrolArea.PatrolAreaID + "', '" + PatrolArea.Description + "', '" + PatrolArea.Type + "', '" + PatrolArea.lat + "', '" + PatrolArea.lng + "', '" + PatrolArea.PatrolID + "', '" + PatrolArea.Media + "');";
+            var strSQL = "Insert into patrolarea values ('" + PatrolArea.AreaID + "', '" + PatrolArea.AreaName + "', '" +  PatrolArea.lat + "', '" + PatrolArea.lng + "', " + PatrolArea.CurrentArea+ ");";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

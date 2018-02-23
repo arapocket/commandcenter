@@ -44,7 +44,6 @@ function initMap() {
 
         
         let addAreaButton = parent.document.getElementById("addAreaButton");
-        let saveAreaButton = parent.document.getElementById('saveAreaButton');
         let deleteAreaButton = parent.document.getElementById('deleteAreaButton');
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
         
@@ -58,10 +57,6 @@ function initMap() {
 
         addAreaButton.addEventListener('click', function (e) {
             onAddArea();
-        });
-
-        saveAreaButton.addEventListener('click', function (e) {
-            onSaveArea()
         });
 
         deleteAreaButton.addEventListener('click', function (e) {
@@ -132,14 +127,22 @@ function initMap() {
         });
 
         let cancelAreaButton = parent.document.getElementById('cancelAreaButton');
+        let saveAreaButton = parent.document.getElementById('saveAreaButton');
 
         cancelAreaButton.addEventListener('click', function (e) {
             onCancelArea(marker);
         });
 
+
+        saveAreaButton.addEventListener('click', function (e) {
+            onSaveArea(marker)
+        });
+
     }
 
-    function onSaveArea() {
+    function onSaveArea(marker) {
+
+        let latLng = marker.getPosition();
 
         bootbox.prompt("Enter a name for the patrol area.", function (result) {
             if (result === null) {
@@ -162,7 +165,9 @@ function initMap() {
                 xhr.send(JSON.stringify({
                     "AreaID": areaID,
                     "AreaName": cleanInput,
-                    "CurrentArea": 0
+                    "CurrentArea": 0,
+                    "lat": latLng.lat(),
+                    "lng": latLng.lng()
                 }));
 
                 hideAreaCancelButton()
@@ -171,7 +176,7 @@ function initMap() {
                 showAreaAddButton();
                 showRouteAddButton();
 
-                bootbox.alert('Area has been saved for later!');
+                bootbox.alert('Area has been saved!');
 
 
             }
