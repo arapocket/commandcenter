@@ -575,7 +575,7 @@ function initMap() {
 
     }
 
-    function hideRouteClearCheckpointsButton() {
+    function hideClearCheckpointsButton() {
         let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
         clearCheckpointsButton.style.display = 'none';
     }
