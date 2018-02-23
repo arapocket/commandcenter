@@ -264,6 +264,7 @@ function initMap() {
                         let label = json[i].Name;
                         let buttonClass = 'btn-primary';
                         let areaID = json[i].AreaID;
+
                         areaButtons.push({
                             label: label,
                             className: buttonClass,
@@ -717,9 +718,12 @@ function initMap() {
                         }
                     }
 
-                    xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + areaID, true);
+                    xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas/" + areaID, true);
 
                     xhr.send(null);
+
+                    bootbox.hideAll();
+                    bootbox.alert('Area has been deleted!');
 
                 } else {
 
