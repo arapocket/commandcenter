@@ -121,6 +121,10 @@ function initMap() {
         icons: [routeSeq]
     })
 
+
+    let routeSaveBoxIsOpen = false;
+    let routeLoadBoxIsOpen = false;
+
     let addRouteButton = parent.document.getElementById("addRouteButton");
     let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
     let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
@@ -813,11 +817,11 @@ function initMap() {
 
     function onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id) {
 
-        
+        routeSaveBoxIsOpen = true;
 
         bootbox.prompt("Enter a name for the route.", function (result) {
             if (result === null) {
-
+                routeSaveBoxIsOpen = false;
             } else {
 
 
@@ -863,6 +867,7 @@ function initMap() {
 
                 bootbox.alert('Route has been set as the current route!');
 
+                routeSaveBoxIsOpen = false;
             }
         });
 
@@ -949,10 +954,16 @@ function initMap() {
                             callback: function () {
                                 setCurrentRoute(routeID, route);
                                 loadCurrentRoute(routeID, route);
+                                routeLoadBoxIsOpen = false;
+                            },
+                            onEscape: function() {
+                                routeLoadBoxIsOpen = false;
                             }
                         });
 
                     }
+                    routeLoadBoxIsOpen = true;
+
                     var dialog = bootbox.dialog({
                         title: 'Select Route',
                         message: "<p>Select the route you wish to load.</p>",

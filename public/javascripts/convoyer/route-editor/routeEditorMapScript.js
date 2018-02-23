@@ -38,6 +38,9 @@ function initMap() {
     })
 
     let areaSaveBoxIsOpen = false;
+    let areaDeleteBoxIsOpen = false;
+    let routeSaveBoxIsOpen = false;
+    let routeDeleteBoxIsOpen = false;
 
     setUpButtonListeners();
 
@@ -305,9 +308,11 @@ function initMap() {
 
     function onSaveRoute() {
 
+        routeSaveBoxIsOpen = true;
+
         bootbox.prompt("Enter a name for the route.", function (result) {
             if (result === null) {
-
+                routeSaveBoxIsOpen = false;
             } else {
 
 
@@ -353,6 +358,7 @@ function initMap() {
 
                 bootbox.alert('Route has been saved for later!');
 
+                routeSaveBoxIsOpen = false;
 
             }
         });
