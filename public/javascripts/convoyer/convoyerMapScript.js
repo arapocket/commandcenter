@@ -121,10 +121,6 @@ function initMap() {
         icons: [routeSeq]
     })
 
-    let routeSaveAllBoxIsOpen = false;
-    let routeSaveBoxIsOpen = false;
-    let routeLoadBoxIsOpen = false;
-
 
     let addRouteButton = parent.document.getElementById("addRouteButton");
     let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
@@ -779,6 +775,9 @@ function initMap() {
     }
 
     function onEndPatrol(id, firstName, endPatrolButton) {
+
+        bootbox.hideAll();
+
         bootbox.confirm({
             size: "small",
             message: "Are you sure you want to end " + firstName + "'s patrol?",
@@ -818,62 +817,61 @@ function initMap() {
 
     function onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id) {
 
+        bootbox.hideAll();
 
-        if (!routeSaveBoxIsOpen){
-            routeSaveBoxIsOpen = true;
-            
-            bootbox.prompt("Enter a name for the route.", function (result) {
-                if (result === null) {
-                    routeSaveBoxIsOpen = false;
-                } else {
-    
-    
-                    let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
-    
-    
-                    console.log('onSaveRoute called');
-                    console.log('for this id ' + id);
-    
-                    editRouteButton.style.display = 'none';
-                    trashRouteButton.style.display = 'none';
-                    clearCheckpointsButton.style.display = 'none';
-                    removeLastCheckpointButton.style.display = 'none';
-                    saveRouteButton.style.display = 'none';
-                    loadRouteButton.style.display = 'none';
-                    google.maps.event.clearListeners(map, 'click');
-                    google.maps.event.clearListeners(route, 'click');
-    
-                    var currentGuard = localStorage.getItem("currentGuard");
-    
-                    var routeID = createRouteID();
-                    var xhr = new XMLHttpRequest();
-    
-                    if (!xhr) {
-                        alert('Giving up :( Cannot create an XMLHTTP instance');
-                        return false;
-                    }
-    
-                    xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes", true);
-    
-                    xhr.setRequestHeader('Content-Type', 'application/json');
-                    xhr.send(JSON.stringify({
-                        "RouteID": routeID,
-                        "RouteName": cleanInput,
-                        "CurrentRoute": 1,
-                        "NotCurrentRoute": 0,
-                        "GuardID": currentGuard
-                    }));
-    
-                    postCheckpoints(route, routeID);
-    
-                    socket.emit('load route');
-    
-                    bootbox.alert('Route has been set as the current route!');
-    
-                    routeSaveBoxIsOpen = false;
+
+        bootbox.prompt("Enter a name for the route.", function (result) {
+            if (result === null) {
+            } else {
+
+
+                let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
+
+
+                console.log('onSaveRoute called');
+                console.log('for this id ' + id);
+
+                editRouteButton.style.display = 'none';
+                trashRouteButton.style.display = 'none';
+                clearCheckpointsButton.style.display = 'none';
+                removeLastCheckpointButton.style.display = 'none';
+                saveRouteButton.style.display = 'none';
+                loadRouteButton.style.display = 'none';
+                google.maps.event.clearListeners(map, 'click');
+                google.maps.event.clearListeners(route, 'click');
+
+                var currentGuard = localStorage.getItem("currentGuard");
+
+                var routeID = createRouteID();
+                var xhr = new XMLHttpRequest();
+
+                if (!xhr) {
+                    alert('Giving up :( Cannot create an XMLHTTP instance');
+                    return false;
                 }
-            });
-        }
+
+                xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes", true);
+
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({
+                    "RouteID": routeID,
+                    "RouteName": cleanInput,
+                    "CurrentRoute": 1,
+                    "NotCurrentRoute": 0,
+                    "GuardID": currentGuard
+                }));
+
+                postCheckpoints(route, routeID);
+
+                socket.emit('load route');
+
+                bootbox.hideAll();
+
+                bootbox.alert('Route has been set as the current route!');
+
+            }
+        });
+
 
 
 
@@ -882,63 +880,61 @@ function initMap() {
 
     function onSaveRouteAll() {
 
-        if (!routeSaveAllBoxIsOpen){
+        bootbox.hideAll();
 
-            routeSaveAllBoxIsOpen = true;
+        bootbox.prompt("Enter a name for the route.", function (result) {
+            if (result === null) {
+            } else {
 
-            bootbox.prompt("Enter a name for the route.", function (result) {
-                if (result === null) {
-                    routeSaveAllBoxIsOpen = false;
-                } else {
-    
-    
-                    let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
-    
-                    google.maps.event.clearListeners(map, 'click');
-                    google.maps.event.clearListeners(route, 'click');
-    
-                    var currentGuard = localStorage.getItem("currentGuard");
-    
-                    var routeID = createRouteID();
-                    var xhr = new XMLHttpRequest();
-    
-                    if (!xhr) {
-                        alert('Giving up :( Cannot create an XMLHTTP instance');
-                        return false;
-                    }
-    
-                    xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/saveroute", true);
-    
-                    xhr.setRequestHeader('Content-Type', 'application/json');
-                    xhr.send(JSON.stringify({
-                        "RouteID": routeID,
-                        "RouteName": cleanInput,
-                        "CurrentRoute": 1
-                    }));
-    
-                    postCheckpoints(route, routeID);
-    
-                    google.maps.event.clearListeners(map, 'click');
-                    google.maps.event.clearListeners(route, 'click');
-    
-                    route.setMap(null);
-                    route.setPath([]);
-                    route.setMap(map);
-    
-                    hideCancelButton()
-                    hideClearCheckpointsButton();
-                    hideRemoveLastCheckpointButton();
-                    hideSaveRouteButton();
-                    hideLoadRouteButton();
-                    showAddButton();
-    
-                    bootbox.alert('Route has been saved for later!');
-                    
-                    routeSaveAllBoxIsOpen = false;
-    
+
+                let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
+
+                google.maps.event.clearListeners(map, 'click');
+                google.maps.event.clearListeners(route, 'click');
+
+                var currentGuard = localStorage.getItem("currentGuard");
+
+                var routeID = createRouteID();
+                var xhr = new XMLHttpRequest();
+
+                if (!xhr) {
+                    alert('Giving up :( Cannot create an XMLHTTP instance');
+                    return false;
                 }
-            });
-        }
+
+                xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/saveroute", true);
+
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({
+                    "RouteID": routeID,
+                    "RouteName": cleanInput,
+                    "CurrentRoute": 1
+                }));
+
+                postCheckpoints(route, routeID);
+
+                google.maps.event.clearListeners(map, 'click');
+                google.maps.event.clearListeners(route, 'click');
+
+                route.setMap(null);
+                route.setPath([]);
+                route.setMap(map);
+
+                hideCancelButton()
+                hideClearCheckpointsButton();
+                hideRemoveLastCheckpointButton();
+                hideSaveRouteButton();
+                hideLoadRouteButton();
+                showAddButton();
+
+                bootbox.hideAll();
+
+                bootbox.alert('Route has been saved for later!');
+
+
+            }
+        });
+
 
 
     }
@@ -967,30 +963,24 @@ function initMap() {
                             callback: function () {
                                 setCurrentRoute(routeID, route);
                                 loadCurrentRoute(routeID, route);
-                                routeLoadBoxIsOpen = false;
-                            },
-                            onEscape: function() {
-                                routeLoadBoxIsOpen = false;
                             }
                         });
 
                     }
-                    
-
-                        if (!routeLoadBoxIsOpen){
-
-                            routeLoadBoxIsOpen = true;
-                            
-                            var dialog = bootbox.dialog({
-                                title: 'Select Route',
-                                message: "<p>Select the route you wish to load.</p>",
-                                buttons: routeButtons
-                            });
-                            
-                        }
 
 
-                    
+                    bootbox.hideAll();
+
+                    var dialog = bootbox.dialog({
+                        title: 'Select Route',
+                        message: "<p>Select the route you wish to load.</p>",
+                        buttons: routeButtons
+                    });
+
+
+
+
+
 
                 }
             }
