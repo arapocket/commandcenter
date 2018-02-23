@@ -626,8 +626,6 @@ function initMap() {
 
     function onAddRoute() {
 
-        hideAddButton();
-
         map.addListener('click', function (e) {
             onAddCheckpoint(route, e.latLng);
         });
@@ -636,6 +634,7 @@ function initMap() {
             onAddCheckpoint(route, e.latLng);
         });
 
+        hideAddButton();
         showCancelButton();
         showClearCheckpointsButton();
         showRemoveLastCheckpointButton();
@@ -814,6 +813,7 @@ function initMap() {
 
     function onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id) {
 
+        
 
         bootbox.prompt("Enter a name for the route.", function (result) {
             if (result === null) {

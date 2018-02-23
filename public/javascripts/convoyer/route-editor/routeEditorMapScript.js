@@ -37,6 +37,8 @@ function initMap() {
         icons: [routeSeq]
     })
 
+    let areaSaveBoxIsOpen = false;
+
     setUpButtonListeners();
 
     function setUpButtonListeners() {
@@ -149,47 +151,55 @@ function initMap() {
 
         let latLng = marker.getPosition();
 
-        bootbox.prompt("Enter a name for the patrol area.", function (result) {
-            if (result === null) {
+        if (!areaSaveBoxIsOpen){
 
-            } else {
+            areaSaveBoxIsOpen = true;
 
-
-                let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
-
-                var areaID = createAreaID();
-                var xhr = new XMLHttpRequest();
-
-                if (!xhr) {
-                    return false;
+            bootbox.prompt("Enter a name for the patrol area.", function (result) {
+                if (result === null) {
+    
+                } else {
+    
+    
+                    let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
+    
+                    var areaID = createAreaID();
+                    var xhr = new XMLHttpRequest();
+    
+                    if (!xhr) {
+                        return false;
+                    }
+    
+                    xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
+    
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify({
+                        "AreaID": areaID,
+                        "AreaName": cleanInput,
+                        "CurrentArea": 0,
+                        "lat": latLng.lat(),
+                        "lng": latLng.lng()
+                    }));
+    
+                    hideAreaCancelButton()
+                    hideAreaSaveButton();
+                    hideAreaDeleteButton();
+                    showAreaAddButton();
+                    showRouteAddButton();
+    
+                    bootbox.alert('Area has been saved!');
+    
+                    areaSaveBoxIsOpen = false;
+                    
+                    window.setTimeout(function () {
+                        parent.location.reload();
+                    }, 2000);
+    
+    
                 }
+            });
+        }
 
-                xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
-
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify({
-                    "AreaID": areaID,
-                    "AreaName": cleanInput,
-                    "CurrentArea": 0,
-                    "lat": latLng.lat(),
-                    "lng": latLng.lng()
-                }));
-
-                hideAreaCancelButton()
-                hideAreaSaveButton();
-                hideAreaDeleteButton();
-                showAreaAddButton();
-                showRouteAddButton();
-
-                bootbox.alert('Area has been saved!');
-
-                window.setTimeout(function () {
-                    parent.location.reload();
-                }, 2000);
-
-
-            }
-        });
     }
 
     function onDeleteArea() {
