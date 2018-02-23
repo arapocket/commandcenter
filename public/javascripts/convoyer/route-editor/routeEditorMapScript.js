@@ -590,7 +590,7 @@ function initMap() {
         removeLastCheckpointButton.style.display = 'none';
     }
 
-    function showRouteRouteRemoveLastCheckpointButton() {
+    function showRemoveLastCheckpointButton() {
         let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
         removeLastCheckpointButton.style.display = 'block';
     }
