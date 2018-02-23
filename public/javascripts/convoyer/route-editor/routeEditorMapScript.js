@@ -110,6 +110,7 @@ function initMap() {
     function onAddArea() {
 
         hideAreaAddButton();
+        hideRouteAddButton();
 
 
         showAreaCancelButton();
@@ -149,6 +150,7 @@ function initMap() {
                 hideAreaSaveButton();
                 hideAreaDeleteButton();
                 showAreaAddButton();
+                showRouteAddButton();
 
                 bootbox.alert('Area has been saved for later!');
 
@@ -208,11 +210,13 @@ function initMap() {
         hideAreaDeleteButton();
         hideSetCurrentAreaButton();
         showAreaAddButton();
+        showRouteAddButton();
     }
 
     function onAddRoute() {
 
         hideRouteAddButton();
+        hideAreaAddButton();
 
         map.addListener('click', function (e) {
             onAddCheckpoint(e.latLng);
@@ -297,6 +301,7 @@ function initMap() {
                 hideRouteLoadButton();
                 hideRouteDeleteButton();
                 showRouteAddButton();
+                showAreaAddButton();
 
                 bootbox.alert('Route has been saved for later!');
 
@@ -409,6 +414,7 @@ function initMap() {
         hideRouteLoadButton();
         hideRouteDeleteButton();
         showRouteAddButton();
+        showAreaDeleteButton();
     }
 
     function hideAreaAddButton() {
@@ -634,6 +640,7 @@ function initMap() {
         hideRouteLoadButton();
         hideRouteDeleteButton();
         showRouteAddButton();
+        showAreaAddButton();
 
 
 
