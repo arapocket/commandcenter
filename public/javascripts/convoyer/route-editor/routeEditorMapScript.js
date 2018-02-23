@@ -213,6 +213,10 @@ function initMap() {
         showRouteAddButton();
     }
 
+    function onSetCurrentArea(){
+        
+    }
+
     function onAddRoute() {
 
         hideRouteAddButton();
