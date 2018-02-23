@@ -558,7 +558,7 @@ function initMap() {
         addRouteButton.style.display = 'none'
     }
 
-    function showRouteRouteAddButton() {
+    function showRouteAddButton() {
         let addRouteButton = parent.document.getElementById('addRouteButton');
         addRouteButton.style.display = 'block'
     }
@@ -600,7 +600,7 @@ function initMap() {
         saveRouteButton.style.display = 'none';
     }
 
-    function showRouteRouteSaveButton() {
+    function showRouteSaveButton() {
         let saveRouteButton = parent.document.getElementById('saveRouteButton');
         saveRouteButton.style.display = 'block';
     }
@@ -610,7 +610,7 @@ function initMap() {
         loadRouteButton.style.display = 'none';
     }
 
-    function showRouteRouteLoadButton() {
+    function showRouteLoadButton() {
         let loadRouteButton = parent.document.getElementById('loadRouteButton');
         loadRouteButton.style.display = 'block';
     }
@@ -620,7 +620,7 @@ function initMap() {
         deleteRouteButton.style.display = 'none';
     }
 
-    function showRouteRouteDeleteButton() {
+    function showRouteDeleteButton() {
         let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
         deleteRouteButton.style.display = 'block';
     }
