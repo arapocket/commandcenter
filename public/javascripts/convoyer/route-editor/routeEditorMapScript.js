@@ -46,7 +46,8 @@ function initMap() {
         let addAreaButton = parent.document.getElementById("addAreaButton");
         let deleteAreaButton = parent.document.getElementById('deleteAreaButton');
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
-        
+        let cancelAreaButton = parent.document.getElementById('cancelAreaButton');
+
         let addRouteButton = parent.document.getElementById("addRouteButton");
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
@@ -65,6 +66,10 @@ function initMap() {
 
         setCurrentAreaButton.addEventListener('click', function (e) {
             onSetCurrentArea();
+        });
+
+        cancelAreaButton.addEventListener('click', function (e) {
+            onCancelArea();
         });
         
         addRouteButton.addEventListener('click', function (e) {
@@ -130,7 +135,8 @@ function initMap() {
         let saveAreaButton = parent.document.getElementById('saveAreaButton');
 
         cancelAreaButton.addEventListener('click', function (e) {
-            onCancelArea(marker);
+            google.maps.event.clearListeners(map, 'click');
+            marker.setMap(null);
         });
 
 
@@ -227,11 +233,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function onCancelArea(marker) {
-
-        google.maps.event.clearListeners(map, 'click');
-
-        marker.setMap(null);
+    function onCancelArea() {
         
         hideAreaCancelButton()
         hideAreaSaveButton();
