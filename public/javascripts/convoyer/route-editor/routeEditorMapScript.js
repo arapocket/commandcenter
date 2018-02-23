@@ -367,9 +367,9 @@ function initMap() {
                 hideRouteCancelButton()
                 hideClearCheckpointsButton();
                 hideRemoveLastCheckpointButton();
-                hideSaveRouteButton();
-                hideLoadRouteButton();
-                hideDeleteRouteButton();
+                hideRouteSaveButton();
+                hideRouteLoadButton();
+                hideRouteDeleteButton();
                 showRouteAddButton();
 
                 bootbox.alert('Route has been saved for later!');
@@ -479,7 +479,7 @@ function initMap() {
         hideRouteCancelButton()
         hideClearCheckpointsButton();
         hideRemoveLastCheckpointButton();
-        hideSaveRouteButton();
+        hideRouteSaveButton();
         hideLoadRouteButton();
         hideDeleteRouteButton();
         showRouteAddButton();
