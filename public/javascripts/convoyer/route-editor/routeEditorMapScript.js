@@ -111,19 +111,12 @@ function initMap() {
 
         hideAreaAddButton();
 
-        map.addListener('click', function (e) {
-            // onAddCheckpoint(e.latLng);
-        });
-
-        google.maps.event.addListener(route, 'click', function (e) {
-            // onAddCheckpoint(e.latLng);
-        });
 
         showAreaCancelButton();
         showAreaSaveButton();
         showAreaLoadButton();
         showAreaDeleteButton();
-        showRouteSetCurrentAreaButton();
+        showSetCurrentAreaButton();
 
     }
 
@@ -136,9 +129,6 @@ function initMap() {
 
 
                 let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
-
-                // google.maps.event.clearListeners(map, 'click');
-                // google.maps.event.clearListeners(route, 'click');
 
                 var areaID = createAreaID();
                 var xhr = new XMLHttpRequest();
@@ -156,13 +146,6 @@ function initMap() {
                     "CurrentArea": 0
                 }));
 
-                // google.maps.event.clearListeners(map, 'click');
-                // google.maps.event.clearListeners(route, 'click');
-
-                route.setMap(null);
-                route.setPath([]);
-                route.setMap(map);
-
                 hideAreaCancelButton()
                 hideAreaSaveButton();
                 hideAreaLoadButton();
@@ -174,50 +157,6 @@ function initMap() {
 
             }
         });
-    }
-
-    function onSelectArea() {
-        var xhr = new XMLHttpRequest();
-
-        if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                let json = JSON.parse(xhr.responseText);
-                if (json.length > 0) {
-
-                    let routeButtons = [];
-                    for (i = 0; i < json.length; i++) {
-                        let label = json[i].AreaName;
-                        let routeID = json[i].AreaID;
-                        let buttonClass = 'btn-primary';
-
-                        routeButtons.push({
-                            label: label,
-                            className: buttonClass,
-                            callback: function () {
-                                loadCurrentArea(routeID);
-                            }
-                        });
-
-                    }
-                    var dialog = bootbox.dialog({
-                        title: 'Select Area',
-                        message: "<p>Select the route you wish to load.</p>",
-                        buttons: routeButtons
-                    });
-
-
-                }
-            }
-        }
-
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/", true);
-
-        xhr.send(null);
     }
 
     function onDeleteArea() {
@@ -234,24 +173,24 @@ function initMap() {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
 
-                    let routeButtons = [];
+                    let areaButtons = [];
                     for (i = 0; i < json.length; i++) {
                         let label = json[i].AreaName;
                         let buttonClass = 'btn-primary';
-                        let routeID = json[i].AreaID;
-                        routeButtons.push({
+                        let areaID = json[i].AreaID;
+                        areaButtons.push({
                             label: label,
                             className: buttonClass,
                             callback: function () {
-                                deleteSelectedArea(routeID);
+                                deleteSelectedArea(areaID);
                             }
                         });
 
                     }
                     var dialog = bootbox.dialog({
                         title: 'Delete Area',
-                        message: "<p>Select the route you wish to delete.</p>",
-                        buttons: routeButtons
+                        message: "<p>Select the area you wish to delete.</p>",
+                        buttons: areaButtons
                     });
 
 
@@ -259,19 +198,12 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/", true);
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas/", true);
 
         xhr.send(null);
     }
 
     function onCancelArea() {
-
-        google.maps.event.clearListeners(map, 'click');
-        google.maps.event.clearListeners(route, 'click');
-
-        route.setMap(null);
-        route.setPath([]);
-        route.setMap(map);
 
         hideAreaCancelButton()
         hideAreaSaveButton();
