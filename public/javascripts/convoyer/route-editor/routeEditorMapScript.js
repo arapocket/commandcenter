@@ -114,7 +114,6 @@ function initMap() {
 
         showAreaCancelButton();
         showAreaSaveButton();
-        showAreaLoadButton();
         showAreaDeleteButton();
         showSetCurrentAreaButton();
 
@@ -148,7 +147,6 @@ function initMap() {
 
                 hideAreaCancelButton()
                 hideAreaSaveButton();
-                hideAreaLoadButton();
                 hideAreaDeleteButton();
                 showAreaAddButton();
 
@@ -207,7 +205,6 @@ function initMap() {
 
         hideAreaCancelButton()
         hideAreaSaveButton();
-        hideAreaLoadButton();
         hideAreaDeleteButton();
         showAreaAddButton();
     }
@@ -443,16 +440,6 @@ function initMap() {
     function showAreaSaveButton() {
         let saveAreaButton = parent.document.getElementById('saveAreaButton');
         saveAreaButton.style.display = 'block';
-    }
-
-    function hideAreaLoadButton() {
-        let loadAreaButton = parent.document.getElementById('loadAreaButton');
-        loadAreaButton.style.display = 'none';
-    }
-
-    function showAreaLoadButton() {
-        let loadAreaButton = parent.document.getElementById('loadAreaButton');
-        loadAreaButton.style.display = 'block';
     }
 
     function hideAreaDeleteButton() {
