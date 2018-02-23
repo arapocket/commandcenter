@@ -41,6 +41,8 @@ function initMap() {
     let areaDeleteBoxIsOpen = false;
     let routeSaveBoxIsOpen = false;
     let routeDeleteBoxIsOpen = false;
+    let markerIsOnMap = false;
+
 
     setUpButtonListeners();
 
@@ -123,6 +125,8 @@ function initMap() {
 
     function onAddAreaMarker(latLng) {
 
+        markerIsOnMap = true;
+
         google.maps.event.clearListeners(map, 'click');
 
         let marker = new google.maps.Marker({
@@ -141,11 +145,16 @@ function initMap() {
         cancelAreaButton.addEventListener('click', function (e) {
             google.maps.event.clearListeners(map, 'click');
             marker.setMap(null);
+            markerIsOnMap = false;
         });
 
 
         saveAreaButton.addEventListener('click', function (e) {
-            onSaveArea(marker)
+            
+            if (markerIsOnMap){
+                onSaveArea(marker)
+            }
+            
         });
 
     }

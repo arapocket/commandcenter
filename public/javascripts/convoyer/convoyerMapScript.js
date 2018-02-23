@@ -125,6 +125,7 @@ function initMap() {
     let routeSaveBoxIsOpen = false;
     let routeLoadBoxIsOpen = false;
 
+
     let addRouteButton = parent.document.getElementById("addRouteButton");
     let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
     let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
