@@ -163,7 +163,7 @@ function initMap() {
                 route.setPath([]);
                 route.setMap(map);
 
-                hideCancelButton()
+                hideRouteCancelButton()
                 hideClearCheckpointsButton();
                 hideRemoveLastCheckpointButton();
                 hideSaveAreaButton();
@@ -275,7 +275,7 @@ function initMap() {
         route.setPath([]);
         route.setMap(map);
 
-        hideCancelButton()
+        hideRouteCancelButton()
         hideClearCheckpointsButton();
         hideRemoveLastCheckpointButton();
         hideSaveAreaButton();
@@ -364,7 +364,7 @@ function initMap() {
                 route.setPath([]);
                 route.setMap(map);
 
-                hideCancelButton()
+                hideRouteCancelButton()
                 hideClearCheckpointsButton();
                 hideRemoveLastCheckpointButton();
                 hideSaveRouteButton();
@@ -476,7 +476,7 @@ function initMap() {
         route.setPath([]);
         route.setMap(map);
 
-        hideCancelButton()
+        hideRouteCancelButton()
         hideClearCheckpointsButton();
         hideRemoveLastCheckpointButton();
         hideSaveRouteButton();
@@ -712,12 +712,12 @@ function initMap() {
 
         route.setPath([]);
 
-        hideCancelButton();
+        hideRouteCancelButton();
         hideClearCheckpointsButton();
         hideRemoveLastCheckpointButton();
-        hideSaveRouteButton();
-        hideLoadRouteButton();
-        hideDeleteRouteButton();
+        hideRouteSaveButton();
+        hideRouteLoadButton();
+        hideRouteDeleteButton();
         showRouteAddButton();
 
 
