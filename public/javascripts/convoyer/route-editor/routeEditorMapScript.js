@@ -125,7 +125,7 @@ function initMap() {
 
     }
 
-    function onAddAreaMarker(latLng);{
+    function onAddAreaMarker(latLng){
 
 
     let marker = new google.maps.Marker({
