@@ -184,6 +184,10 @@ function initMap() {
 
                 bootbox.alert('Area has been saved!');
 
+                window.setTimeout(function () {
+                    parent.location.reload();
+                }, 2000);
+
 
             }
         });
