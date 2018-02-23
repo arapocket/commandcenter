@@ -157,8 +157,6 @@ function initMap() {
 
     function createGuards(locations, coords) {
 
-        var guardButtons = [];
-
         for (let i = 0; i < locations.length; i++) {
 
             console.log('looping once');
@@ -279,7 +277,6 @@ function initMap() {
                     localStorage.setItem("currentGuard", id);
                 })
 
-                guardButtons.push(guardButton);
             }
 
             loadRoute(route, id);

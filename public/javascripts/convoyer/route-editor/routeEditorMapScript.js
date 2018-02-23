@@ -42,6 +42,11 @@ function initMap() {
 
     setUpButtonListeners();
 
+    setUpAreaButtons();
+
+
+
+
     function setUpButtonListeners() {
 
 
@@ -102,6 +107,36 @@ function initMap() {
             onDeleteRoute();
         });
 
+    }
+
+    function setUpAreaButtons() {
+
+        for (let i = 0; i < areas.length; i++) {
+
+            let id = area.AreaID;
+
+            let areaButton = parent.document.getElementById(id);
+
+            if (areaButton != null || areaButton != undefined) {
+
+                let lat = area.lat;
+                let lng = area.lng;
+
+                areaButton.addEventListener('click', function (e) {
+
+                    console.log(areaButton.id + ' clicked');
+
+                    map.setCenter({
+                        lat: lat,
+                        lng: lng
+                    });
+
+                })
+
+            }
+
+
+        }
     }
 
     function onAddArea() {
