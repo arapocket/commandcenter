@@ -261,7 +261,7 @@ function initMap() {
 
                     let areaButtons = [];
                     for (i = 0; i < json.length; i++) {
-                        let label = json[i].AreaName;
+                        let label = json[i].Name;
                         let buttonClass = 'btn-primary';
                         let areaID = json[i].AreaID;
                         areaButtons.push({
