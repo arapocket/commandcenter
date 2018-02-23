@@ -419,8 +419,8 @@ function initMap() {
     }
 
     function showAreaAddButton() {
-        let addRouteButton = parent.document.getElementById('addRouteButton');
-        addRouteButton.style.display = 'block'
+        let addAreaButton = parent.document.getElementById('addAreaButton');
+        addAreaButton.style.display = 'block'
     }
 
     function hideAreaCancelButton() {
@@ -429,40 +429,40 @@ function initMap() {
     }
 
     function showAreaCancelButton() {
-        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
-        cancelRouteButton.style.display = 'block';
+        let cancelAreaButton = parent.document.getElementById('cancelAreaButton');
+        cancelAreaButton.style.display = 'block';
 
 
     }
 
     function hideAreaSaveButton() {
-        let saveRouteButton = parent.document.getElementById('saveRouteButton');
-        saveRouteButton.style.display = 'none';
+        let saveAreaButton = parent.document.getElementById('saveAreaButton');
+        saveAreaButton.style.display = 'none';
     }
 
     function showAreaSaveButton() {
-        let saveRouteButton = parent.document.getElementById('saveRouteButton');
-        saveRouteButton.style.display = 'block';
+        let saveAreaButton = parent.document.getElementById('saveAreaButton');
+        saveAreaButton.style.display = 'block';
     }
 
     function hideAreaLoadButton() {
-        let loadRouteButton = parent.document.getElementById('loadRouteButton');
-        loadRouteButton.style.display = 'none';
+        let loadAreaButton = parent.document.getElementById('loadAreaButton');
+        loadAreaButton.style.display = 'none';
     }
 
     function showAreaLoadButton() {
-        let loadRouteButton = parent.document.getElementById('loadRouteButton');
-        loadRouteButton.style.display = 'block';
+        let loadAreaButton = parent.document.getElementById('loadAreaButton');
+        loadAreaButton.style.display = 'block';
     }
 
     function hideAreaDeleteButton() {
-        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
-        deleteRouteButton.style.display = 'none';
+        let deleteAreaButton = parent.document.getElementById('deleteAreaButton');
+        deleteAreaButton.style.display = 'none';
     }
 
     function showAreaDeleteButton() {
-        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
-        deleteRouteButton.style.display = 'block';
+        let deleteAreaButton = parent.document.getElementById('deleteAreaButton');
+        deleteAreaButton.style.display = 'block';
     }
 
     function hideSetCurrentAreaButton() {
