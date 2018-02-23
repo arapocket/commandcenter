@@ -492,8 +492,8 @@ function initMap() {
     }
 
     function hideAreaCancelButton() {
-        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
-        cancelRouteButton.style.display = 'none';
+        let cancelAreaButton = parent.document.getElementById('cancelAreaButton');
+        cancelAreaButton.style.display = 'none';
     }
 
     function showAreaCancelButton() {
