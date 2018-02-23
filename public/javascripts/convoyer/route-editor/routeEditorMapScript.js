@@ -129,7 +129,7 @@ function initMap() {
 
 
     let marker = new google.maps.Marker({
-        position: { lat: latLng.lat, lng: latLng.lng },
+        position: latLng,
         map: map,
         animation: google.maps.Animation.DROP,
     });
