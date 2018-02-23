@@ -42,6 +42,13 @@ function initMap() {
 
     function setUpButtonListeners() {
 
+        
+        let addAreaButton = parent.document.getElementById("addAreaButton");
+        let cancelAreaButton = parent.document.getElementById('cancelAreaButton');
+        let saveAreaButton = parent.document.getElementById('saveAreaButton');
+        let deleteAreaButton = parent.document.getElementById('deleteAreaButton');
+        let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
+        
         let addRouteButton = parent.document.getElementById("addRouteButton");
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
@@ -50,7 +57,26 @@ function initMap() {
         let loadRouteButton = parent.document.getElementById('loadRouteButton');
         let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
 
+        addAreaButton.addEventListener('click', function (e) {
+            onAddArea();
+        });
 
+        cancelAreaButton.addEventListener('click', function (e) {
+            onCancelArea();
+        });
+
+        saveAreaButton.addEventListener('click', function (e) {
+            onSaveArea()
+        });
+
+        deleteAreaButton.addEventListener('click', function (e) {
+            onDeleteArea();
+        });
+
+        setCurrentAreaButton.addEventListener('click', function (e) {
+            onSetCurrentArea();
+        });
+        
         addRouteButton.addEventListener('click', function (e) {
             onAddRoute();
         });
@@ -68,7 +94,7 @@ function initMap() {
         });
 
         saveRouteButton.addEventListener('click', function (e) {
-            onSaveRouteAll()
+            onSaveRoute()
         });
 
         loadRouteButton.addEventListener('click', function (e) {
@@ -81,24 +107,181 @@ function initMap() {
 
     }
 
-    function onAddCheckpoint(latLng) {
-        route.getPath().push(latLng);
-        route.setMap(map);
+    function onAddArea() {
+
+        hideAreaAddButton();
+
+        map.addListener('click', function (e) {
+            // onAddCheckpoint(e.latLng);
+        });
+
+        google.maps.event.addListener(route, 'click', function (e) {
+            // onAddCheckpoint(e.latLng);
+        });
+
+        showAreaCancelButton();
+        showAreaSaveButton();
+        showAreaLoadButton();
+        showAreaDeleteButton();
+        showSetCurrentAreaButton();
+
     }
 
-    function onClearCheckpoints() {
+    function onSaveArea() {
 
-        console.log('onClearCheckpoints called');
+        bootbox.prompt("Enter a name for the patrol area.", function (result) {
+            if (result === null) {
 
+            } else {
+
+
+                let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
+
+                // google.maps.event.clearListeners(map, 'click');
+                // google.maps.event.clearListeners(route, 'click');
+
+                var areaID = createAreaID();
+                var xhr = new XMLHttpRequest();
+
+                if (!xhr) {
+                    return false;
+                }
+
+                xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
+
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({
+                    "AreaID": areaID,
+                    "AreaName": cleanInput,
+                    "CurrentArea": 0
+                }));
+
+                // google.maps.event.clearListeners(map, 'click');
+                // google.maps.event.clearListeners(route, 'click');
+
+                route.setMap(null);
+                route.setPath([]);
+                route.setMap(map);
+
+                hideCancelButton()
+                hideClearCheckpointsButton();
+                hideRemoveLastCheckpointButton();
+                hideSaveAreaButton();
+                hideLoadAreaButton();
+                hideDeleteAreaButton();
+                showAddButton();
+
+                bootbox.alert('Area has been saved for later!');
+
+
+            }
+        });
+    }
+
+    function onSelectArea() {
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+                if (json.length > 0) {
+
+                    let routeButtons = [];
+                    for (i = 0; i < json.length; i++) {
+                        let label = json[i].AreaName;
+                        let routeID = json[i].AreaID;
+                        let buttonClass = 'btn-primary';
+
+                        routeButtons.push({
+                            label: label,
+                            className: buttonClass,
+                            callback: function () {
+                                loadCurrentArea(routeID);
+                            }
+                        });
+
+                    }
+                    var dialog = bootbox.dialog({
+                        title: 'Select Area',
+                        message: "<p>Select the route you wish to load.</p>",
+                        buttons: routeButtons
+                    });
+
+
+                }
+            }
+        }
+
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/", true);
+
+        xhr.send(null);
+    }
+
+    function onDeleteArea() {
+
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            console.log('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+                if (json.length > 0) {
+
+                    let routeButtons = [];
+                    for (i = 0; i < json.length; i++) {
+                        let label = json[i].AreaName;
+                        let buttonClass = 'btn-primary';
+                        let routeID = json[i].AreaID;
+                        routeButtons.push({
+                            label: label,
+                            className: buttonClass,
+                            callback: function () {
+                                deleteSelectedArea(routeID);
+                            }
+                        });
+
+                    }
+                    var dialog = bootbox.dialog({
+                        title: 'Delete Area',
+                        message: "<p>Select the route you wish to delete.</p>",
+                        buttons: routeButtons
+                    });
+
+
+                }
+            }
+        }
+
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routes/", true);
+
+        xhr.send(null);
+    }
+
+    function onCancelArea() {
+
+        google.maps.event.clearListeners(map, 'click');
+        google.maps.event.clearListeners(route, 'click');
+
+        route.setMap(null);
         route.setPath([]);
-    }
+        route.setMap(map);
 
-    function onRemoveLastCheckpoint() {
-
-        console.log('onRemoveLastCheckpoint called');
-
-        route.getPath().pop();
-
+        hideCancelButton()
+        hideClearCheckpointsButton();
+        hideRemoveLastCheckpointButton();
+        hideSaveAreaButton();
+        hideLoadAreaButton();
+        hideDeleteAreaButton();
+        showAddButton();
     }
 
     function onAddRoute() {
@@ -122,111 +305,27 @@ function initMap() {
 
     }
 
-    function onTrashRoute() {
-
-
-        google.maps.event.clearListeners(map, 'click');
-        google.maps.event.clearListeners(route, 'click');
-
-        // route.setMap(null);
-        // route.setPath([]);
-        // route.setMap(map);
-
-        loadRoute();
-
-    }
-
-    function onCancelRoute() {
-
-        google.maps.event.clearListeners(map, 'click');
-        google.maps.event.clearListeners(route, 'click');
-
-        route.setMap(null);
-        route.setPath([]);
+    function onAddCheckpoint(latLng) {
+        route.getPath().push(latLng);
         route.setMap(map);
-
-        hideCancelButton()
-        hideClearCheckpointsButton();
-        hideRemoveLastCheckpointButton();
-        hideSaveRouteButton();
-        hideLoadRouteButton();
-        hideDeleteRouteButton();
-        showAddButton();
     }
 
-    function hideAddButton() {
-        let addRouteButton = parent.document.getElementById('addRouteButton');
-        addRouteButton.style.display = 'none'
+    function onClearCheckpoints() {
+
+        console.log('onClearCheckpoints called');
+
+        route.setPath([]);
     }
 
-    function showAddButton() {
-        let addRouteButton = parent.document.getElementById('addRouteButton');
-        addRouteButton.style.display = 'block'
-    }
+    function onRemoveLastCheckpoint() {
 
-    function hideCancelButton() {
-        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
-        cancelRouteButton.style.display = 'none';
-    }
+        console.log('onRemoveLastCheckpoint called');
 
-    function showCancelButton() {
-        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
-        cancelRouteButton.style.display = 'block';
-
+        route.getPath().pop();
 
     }
 
-    function hideClearCheckpointsButton() {
-        let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
-        clearCheckpointsButton.style.display = 'none';
-    }
-
-    function showClearCheckpointsButton() {
-        let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
-        clearCheckpointsButton.style.display = 'block';
-    }
-
-    function hideRemoveLastCheckpointButton() {
-        let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
-        removeLastCheckpointButton.style.display = 'none';
-    }
-
-    function showRemoveLastCheckpointButton() {
-        let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
-        removeLastCheckpointButton.style.display = 'block';
-    }
-
-    function hideSaveRouteButton() {
-        let saveRouteButton = parent.document.getElementById('saveRouteButton');
-        saveRouteButton.style.display = 'none';
-    }
-
-    function showSaveRouteButton() {
-        let saveRouteButton = parent.document.getElementById('saveRouteButton');
-        saveRouteButton.style.display = 'block';
-    }
-
-    function hideLoadRouteButton() {
-        let loadRouteButton = parent.document.getElementById('loadRouteButton');
-        loadRouteButton.style.display = 'none';
-    }
-
-    function showLoadRouteButton() {
-        let loadRouteButton = parent.document.getElementById('loadRouteButton');
-        loadRouteButton.style.display = 'block';
-    }
-
-    function hideDeleteRouteButton() {
-        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
-        deleteRouteButton.style.display = 'none';
-    }
-
-    function showDeleteRouteButton() {
-        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
-        deleteRouteButton.style.display = 'block';
-    }
-
-    function onSaveRouteAll() {
+    function onSaveRoute() {
 
         bootbox.prompt("Enter a name for the route.", function (result) {
             if (result === null) {
@@ -238,8 +337,6 @@ function initMap() {
 
                 google.maps.event.clearListeners(map, 'click');
                 google.maps.event.clearListeners(route, 'click');
-
-                var currentGuard = localStorage.getItem("currentGuard");
 
                 var routeID = createRouteID();
                 var xhr = new XMLHttpRequest();
@@ -327,7 +424,7 @@ function initMap() {
     }
 
     function onDeleteRoute() {
-        
+
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -370,6 +467,159 @@ function initMap() {
         xhr.send(null);
     }
 
+    function onCancelRoute() {
+
+        google.maps.event.clearListeners(map, 'click');
+        google.maps.event.clearListeners(route, 'click');
+
+        route.setMap(null);
+        route.setPath([]);
+        route.setMap(map);
+
+        hideCancelButton()
+        hideClearCheckpointsButton();
+        hideRemoveLastCheckpointButton();
+        hideSaveRouteButton();
+        hideLoadRouteButton();
+        hideDeleteRouteButton();
+        showAddButton();
+    }
+
+    function hideAreaAddButton() {
+        let addRouteButton = parent.document.getElementById('addRouteButton');
+        addRouteButton.style.display = 'none'
+    }
+
+    function showAreaAddButton() {
+        let addRouteButton = parent.document.getElementById('addRouteButton');
+        addRouteButton.style.display = 'block'
+    }
+
+    function hideAreaCancelButton() {
+        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+        cancelRouteButton.style.display = 'none';
+    }
+
+    function showAreaCancelButton() {
+        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+        cancelRouteButton.style.display = 'block';
+
+
+    }
+
+    function hideAreaSaveRButton() {
+        let saveRouteButton = parent.document.getElementById('saveRouteButton');
+        saveRouteButton.style.display = 'none';
+    }
+
+    function showAreaSaveButton() {
+        let saveRouteButton = parent.document.getElementById('saveRouteButton');
+        saveRouteButton.style.display = 'block';
+    }
+
+    function hideAreaLoadButton() {
+        let loadRouteButton = parent.document.getElementById('loadRouteButton');
+        loadRouteButton.style.display = 'none';
+    }
+
+    function showAreaLoadButton() {
+        let loadRouteButton = parent.document.getElementById('loadRouteButton');
+        loadRouteButton.style.display = 'block';
+    }
+
+    function hideAreaDeleteButton() {
+        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
+        deleteRouteButton.style.display = 'none';
+    }
+
+    function showAreaDeleteButton() {
+        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
+        deleteRouteButton.style.display = 'block';
+    }
+
+    function hideSetCurrentAreaButton() {
+        let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
+        setCurrentAreaButton.style.display = 'none';
+    }
+
+    function showAreaDeleteButton() {
+        let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
+        setCurrentAreaButton.style.display = 'block';
+    }
+
+
+    function hideRouteAddButton() {
+        let addRouteButton = parent.document.getElementById('addRouteButton');
+        addRouteButton.style.display = 'none'
+    }
+
+    function showRouteAddButton() {
+        let addRouteButton = parent.document.getElementById('addRouteButton');
+        addRouteButton.style.display = 'block'
+    }
+
+    function hideRouteCancelButton() {
+        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+        cancelRouteButton.style.display = 'none';
+    }
+
+    function showRouteCancelButton() {
+        let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
+        cancelRouteButton.style.display = 'block';
+
+
+    }
+
+    function hideRouteClearCheckpointsButton() {
+        let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
+        clearCheckpointsButton.style.display = 'none';
+    }
+
+    function showRouteClearCheckpointsButton() {
+        let clearCheckpointsButton = parent.document.getElementById('clearCheckpointsButton');
+        clearCheckpointsButton.style.display = 'block';
+    }
+
+    function hideRouteRemoveLastCheckpointButton() {
+        let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
+        removeLastCheckpointButton.style.display = 'none';
+    }
+
+    function showRouteRemoveLastCheckpointButton() {
+        let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton');
+        removeLastCheckpointButton.style.display = 'block';
+    }
+
+    function hideRouteSaveButton() {
+        let saveRouteButton = parent.document.getElementById('saveRouteButton');
+        saveRouteButton.style.display = 'none';
+    }
+
+    function showRouteSaveButton() {
+        let saveRouteButton = parent.document.getElementById('saveRouteButton');
+        saveRouteButton.style.display = 'block';
+    }
+
+    function hideRouteLoadButton() {
+        let loadRouteButton = parent.document.getElementById('loadRouteButton');
+        loadRouteButton.style.display = 'none';
+    }
+
+    function showRouteLoadButton() {
+        let loadRouteButton = parent.document.getElementById('loadRouteButton');
+        loadRouteButton.style.display = 'block';
+    }
+
+    function hideRouteDeleteButton() {
+        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
+        deleteRouteButton.style.display = 'none';
+    }
+
+    function showRouteDeleteButton() {
+        let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
+        deleteRouteButton.style.display = 'block';
+    }
+
     function deleteSelectedRoute(routeID) {
 
         bootbox.confirm({
@@ -385,19 +635,19 @@ function initMap() {
                         alert('Giving up :( Cannot create an XMLHTTP instance');
                         return false;
                     }
-            
+
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == XMLHttpRequest.DONE) {
                             let json = JSON.parse(xhr.responseText);
                             deleteRoute(routeID);
-            
+
                         }
                     }
-            
+
                     xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
-            
+
                     xhr.send(null);
-                    
+
                 } else {
 
                 }
@@ -464,7 +714,7 @@ function initMap() {
         hideLoadRouteButton();
         hideDeleteRouteButton();
         showAddButton();
-        
+
 
 
     }
@@ -548,6 +798,11 @@ function initMap() {
     function createRouteID() {
         var newRouteID = Math.random().toString(36).substr(2, 9);
         return newRouteID;
+    }
+
+    function createAreaID() {
+        var newAreaID = Math.random().toString(36).substr(2, 9);
+        return newAreaID;
     }
 
     function createCheckpointID() {
