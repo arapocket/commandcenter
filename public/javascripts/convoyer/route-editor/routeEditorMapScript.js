@@ -157,7 +157,7 @@ function initMap() {
 
             bootbox.prompt("Enter a name for the patrol area.", function (result) {
                 if (result === null) {
-    
+                    areaSaveBoxIsOpen = false;
                 } else {
     
     
@@ -190,7 +190,7 @@ function initMap() {
                     bootbox.alert('Area has been saved!');
     
                     areaSaveBoxIsOpen = false;
-                    
+
                     window.setTimeout(function () {
                         parent.location.reload();
                     }, 2000);
