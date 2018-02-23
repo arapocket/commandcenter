@@ -819,6 +819,7 @@ function initMap() {
 
 
         if (!routeSaveBoxIsOpen){
+            routeSaveBoxIsOpen = true;
             bootbox.prompt("Enter a name for the route.", function (result) {
                 if (result === null) {
                     routeSaveBoxIsOpen = false;
@@ -870,8 +871,6 @@ function initMap() {
                     routeSaveBoxIsOpen = false;
                 }
             });
-
-            routeSaveBoxIsOpen = true;
         }
 
 
