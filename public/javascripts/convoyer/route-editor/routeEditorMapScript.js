@@ -694,6 +694,42 @@ function initMap() {
 
     }
 
+    function deleteSelectedArea(areaID) {
+
+        bootbox.hideAll();
+
+        bootbox.confirm({
+            size: "small",
+            message: "Are you sure you want to delete the area?",
+            callback: function (result) {
+                /* result is a boolean; true = OK, false = Cancel*/
+                if (result) {
+
+                    var xhr = new XMLHttpRequest();
+
+                    if (!xhr) {
+                        return false;
+                    }
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == XMLHttpRequest.DONE) {
+                            let json = JSON.parse(xhr.responseText);
+                        }
+                    }
+
+                    xhr.open("DELETE", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/checkpoints/" + areaID, true);
+
+                    xhr.send(null);
+
+                } else {
+
+                }
+            }
+        })
+
+
+    }
+
     function loadRoute() {
 
         var xhr = new XMLHttpRequest();
