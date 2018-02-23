@@ -542,6 +542,11 @@ function initMap() {
         setCurrentAreaButton.style.display = 'none';
     }
 
+    function showSetCurrentAreaButton() {
+        let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
+        setCurrentAreaButton.style.display = 'block';
+    }    
+
     function showAreaDeleteButton() {
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
         setCurrentAreaButton.style.display = 'block';
