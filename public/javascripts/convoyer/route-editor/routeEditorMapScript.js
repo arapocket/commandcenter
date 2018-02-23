@@ -113,6 +113,7 @@ function initMap() {
 
         for (let i = 0; i < areas.length; i++) {
 
+            let area = areas[i];
             let id = area.AreaID;
 
             let areaButton = parent.document.getElementById(id);
