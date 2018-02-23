@@ -978,12 +978,15 @@ function initMap() {
                     
 
                         if (!routeLoadBoxIsOpen){
+
+                            routeLoadBoxIsOpen = true;
+                            
                             var dialog = bootbox.dialog({
                                 title: 'Select Route',
                                 message: "<p>Select the route you wish to load.</p>",
                                 buttons: routeButtons
                             });
-                            routeLoadBoxIsOpen = true;
+                            
                         }
 
 

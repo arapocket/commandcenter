@@ -150,11 +150,11 @@ function initMap() {
 
 
         saveAreaButton.addEventListener('click', function (e) {
-            
-            if (markerIsOnMap){
+
+            if (markerIsOnMap) {
                 onSaveArea(marker)
             }
-            
+
         });
 
     }
@@ -163,7 +163,7 @@ function initMap() {
 
         let latLng = marker.getPosition();
 
-        if (!areaSaveBoxIsOpen){
+        if (!areaSaveBoxIsOpen) {
 
             areaSaveBoxIsOpen = true;
 
@@ -171,19 +171,19 @@ function initMap() {
                 if (result === null) {
                     areaSaveBoxIsOpen = false;
                 } else {
-    
-    
+
+
                     let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
-    
+
                     var areaID = createAreaID();
                     var xhr = new XMLHttpRequest();
-    
+
                     if (!xhr) {
                         return false;
                     }
-    
+
                     xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
-    
+
                     xhr.setRequestHeader('Content-Type', 'application/json');
                     xhr.send(JSON.stringify({
                         "AreaID": areaID,
@@ -192,22 +192,22 @@ function initMap() {
                         "lat": latLng.lat(),
                         "lng": latLng.lng()
                     }));
-    
+
                     hideAreaCancelButton()
                     hideAreaSaveButton();
                     hideAreaDeleteButton();
                     showAreaAddButton();
                     showRouteAddButton();
-    
+
                     bootbox.alert('Area has been saved!');
-    
+
                     areaSaveBoxIsOpen = false;
 
                     window.setTimeout(function () {
                         parent.location.reload();
                     }, 2000);
-    
-    
+
+
                 }
             });
         }
@@ -317,60 +317,66 @@ function initMap() {
 
     function onSaveRoute() {
 
-        routeSaveBoxIsOpen = true;
+        
 
-        bootbox.prompt("Enter a name for the route.", function (result) {
-            if (result === null) {
-                routeSaveBoxIsOpen = false;
-            } else {
+        if (!routeSaveBoxIsOpen){
 
-
-                let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
-
-                google.maps.event.clearListeners(map, 'click');
-                google.maps.event.clearListeners(route, 'click');
-
-                var routeID = createRouteID();
-                var xhr = new XMLHttpRequest();
-
-                if (!xhr) {
-                    alert('Giving up :( Cannot create an XMLHTTP instance');
-                    return false;
+            routeSaveBoxIsOpen = true;
+            
+            bootbox.prompt("Enter a name for the route.", function (result) {
+                if (result === null) {
+                    routeSaveBoxIsOpen = false;
+                } else {
+    
+    
+                    let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
+    
+                    google.maps.event.clearListeners(map, 'click');
+                    google.maps.event.clearListeners(route, 'click');
+    
+                    var routeID = createRouteID();
+                    var xhr = new XMLHttpRequest();
+    
+                    if (!xhr) {
+                        alert('Giving up :( Cannot create an XMLHTTP instance');
+                        return false;
+                    }
+    
+                    xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/saveroute", true);
+    
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify({
+                        "RouteID": routeID,
+                        "RouteName": cleanInput,
+                        "CurrentRoute": 1
+                    }));
+    
+                    postCheckpoints(routeID);
+    
+                    google.maps.event.clearListeners(map, 'click');
+                    google.maps.event.clearListeners(route, 'click');
+    
+                    route.setMap(null);
+                    route.setPath([]);
+                    route.setMap(map);
+    
+                    hideRouteCancelButton()
+                    hideClearCheckpointsButton();
+                    hideRemoveLastCheckpointButton();
+                    hideRouteSaveButton();
+                    hideRouteLoadButton();
+                    hideRouteDeleteButton();
+                    showRouteAddButton();
+                    showAreaAddButton();
+    
+                    bootbox.alert('Route has been saved for later!');
+    
+                    routeSaveBoxIsOpen = false;
+    
                 }
+            });
+        }
 
-                xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/saveroute", true);
-
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify({
-                    "RouteID": routeID,
-                    "RouteName": cleanInput,
-                    "CurrentRoute": 1
-                }));
-
-                postCheckpoints(routeID);
-
-                google.maps.event.clearListeners(map, 'click');
-                google.maps.event.clearListeners(route, 'click');
-
-                route.setMap(null);
-                route.setPath([]);
-                route.setMap(map);
-
-                hideRouteCancelButton()
-                hideClearCheckpointsButton();
-                hideRemoveLastCheckpointButton();
-                hideRouteSaveButton();
-                hideRouteLoadButton();
-                hideRouteDeleteButton();
-                showRouteAddButton();
-                showAreaAddButton();
-
-                bootbox.alert('Route has been saved for later!');
-
-                routeSaveBoxIsOpen = false;
-
-            }
-        });
     }
 
     function onSelectRoute() {
@@ -441,15 +447,27 @@ function initMap() {
                             className: buttonClass,
                             callback: function () {
                                 deleteSelectedRoute(routeID);
+                                routeDeleteBoxIsOpen = false;
+                            },
+                            onEscape: function () {
+                                routeDeleteBoxIsOpen = false;
                             }
                         });
 
                     }
-                    var dialog = bootbox.dialog({
-                        title: 'Delete Route',
-                        message: "<p>Select the route you wish to delete.</p>",
-                        buttons: routeButtons
-                    });
+
+                    if (!routeDeleteBoxIsOpen) {
+
+                        routeDeleteBoxIsOpen = true;
+
+                        var dialog = bootbox.dialog({
+                            title: 'Delete Route',
+                            message: "<p>Select the route you wish to delete.</p>",
+                            buttons: routeButtons
+                        });
+
+                    }
+
 
 
                 }
