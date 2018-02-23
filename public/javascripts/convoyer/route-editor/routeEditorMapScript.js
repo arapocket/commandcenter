@@ -39,7 +39,6 @@ function initMap() {
 
     setUpButtonListeners();
 
-
     function setUpButtonListeners() {
 
 
@@ -504,11 +503,6 @@ function initMap() {
     }
 
     function showSetCurrentAreaButton() {
-        let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
-        setCurrentAreaButton.style.display = 'block';
-    }
-
-    function showAreaDeleteButton() {
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
         setCurrentAreaButton.style.display = 'block';
     }
