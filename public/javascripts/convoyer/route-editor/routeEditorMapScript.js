@@ -113,10 +113,30 @@ function initMap() {
         hideRouteAddButton();
 
 
+        map.addListener('click', function (e) {
+            onAddAreaMarker(e.latLng);
+        });
+
+
         showAreaCancelButton();
         showAreaSaveButton();
         showAreaDeleteButton();
         showSetCurrentAreaButton();
+
+    }
+
+    function onAddAreaMarker(latLng);{
+
+
+    let marker = new google.maps.Marker({
+        position: { lat: latLng.lat, lng: latLng.lng },
+        map: map,
+        animation: google.maps.Animation.DROP,
+    });
+
+    
+    // marker.addListener('click', function (e) {
+    // });
 
     }
 
