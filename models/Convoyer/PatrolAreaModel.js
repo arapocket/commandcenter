@@ -93,7 +93,7 @@ module.exports.deletePatrolArea = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' delete from patrolarea where PatrolAreaID = ' + id + ';';
+            var strSQL = ' delete from patrolarea where AreaID = "' + id + '";';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
