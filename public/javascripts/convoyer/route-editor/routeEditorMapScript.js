@@ -42,7 +42,7 @@ function initMap() {
 
     function setUpButtonListeners() {
 
-        
+
         let addAreaButton = parent.document.getElementById("addAreaButton");
         let deleteAreaButton = parent.document.getElementById('deleteAreaButton');
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
@@ -71,7 +71,7 @@ function initMap() {
         cancelAreaButton.addEventListener('click', function (e) {
             onCancelArea();
         });
-        
+
         addRouteButton.addEventListener('click', function (e) {
             onAddRoute();
         });
@@ -117,7 +117,7 @@ function initMap() {
 
     }
 
-    function onAddAreaMarker(latLng){
+    function onAddAreaMarker(latLng) {
 
         google.maps.event.clearListeners(map, 'click');
 
@@ -238,7 +238,7 @@ function initMap() {
     }
 
     function onCancelArea() {
-        
+
         hideAreaCancelButton()
         hideAreaSaveButton();
         hideAreaDeleteButton();
@@ -249,8 +249,7 @@ function initMap() {
 
     }
 
-    function onSetCurrentArea(){
-
+    function onSetCurrentArea() {
     }
 
     function onAddRoute() {
@@ -507,7 +506,7 @@ function initMap() {
     function showSetCurrentAreaButton() {
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
         setCurrentAreaButton.style.display = 'block';
-    }    
+    }
 
     function showAreaDeleteButton() {
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
