@@ -238,15 +238,26 @@ function initMap() {
                             className: buttonClass,
                             callback: function () {
                                 deleteSelectedArea(areaID);
+                                areaDeleteBoxIsOpen = false;
+                            },
+                            onEscape: function() {
+                                areaDeleteBoxIsOpen = false;
                             }
                         });
 
                     }
-                    var dialog = bootbox.dialog({
-                        title: 'Delete Area',
-                        message: "<p>Select the area you wish to delete.</p>",
-                        buttons: areaButtons
-                    });
+
+                    if (!areaDeleteBoxIsOpen){
+
+                        areaDeleteBoxIsOpen = true;
+
+                        let dialog = bootbox.dialog({
+                            title: 'Delete Area',
+                            message: "<p>Select the area you wish to delete.</p>",
+                            buttons: areaButtons
+                        });
+    
+                    }
 
 
                 }
@@ -322,7 +333,7 @@ function initMap() {
         if (!routeSaveBoxIsOpen){
 
             routeSaveBoxIsOpen = true;
-            
+
             bootbox.prompt("Enter a name for the route.", function (result) {
                 if (result === null) {
                     routeSaveBoxIsOpen = false;
