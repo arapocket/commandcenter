@@ -414,8 +414,8 @@ function initMap() {
     }
 
     function hideAreaAddButton() {
-        let addRouteButton = parent.document.getElementById('addRouteButton');
-        addRouteButton.style.display = 'none'
+        let addAreaButton = parent.document.getElementById('addAreaButton');
+        addAreaButton.style.display = 'none'
     }
 
     function showAreaAddButton() {
@@ -479,7 +479,6 @@ function initMap() {
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
         setCurrentAreaButton.style.display = 'block';
     }
-
 
     function hideRouteAddButton() {
         let addRouteButton = parent.document.getElementById('addRouteButton');
