@@ -226,12 +226,16 @@ function initMap() {
 
     function onCancelArea() {
 
+        google.maps.event.clearListeners(map, 'click');
+        
         hideAreaCancelButton()
         hideAreaSaveButton();
         hideAreaDeleteButton();
         hideSetCurrentAreaButton();
         showAreaAddButton();
         showRouteAddButton();
+
+
     }
 
     function onSetCurrentArea(){
