@@ -724,6 +724,9 @@ function initMap() {
 
                     bootbox.hideAll();
                     bootbox.alert('Area has been deleted!');
+                    window.setTimeout(function () {
+                        parent.location.reload();
+                    }, 2000);
 
                 } else {
 
