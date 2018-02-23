@@ -214,7 +214,7 @@ function initMap() {
     }
 
     function onSetCurrentArea(){
-        
+
     }
 
     function onAddRoute() {
@@ -418,7 +418,6 @@ function initMap() {
         hideRouteLoadButton();
         hideRouteDeleteButton();
         showRouteAddButton();
-        showAreaDeleteButton();
     }
 
     function hideAreaAddButton() {
