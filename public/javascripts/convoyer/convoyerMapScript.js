@@ -121,7 +121,7 @@ function initMap() {
         icons: [routeSeq]
     })
 
-
+    let routeSaveAllBoxIsOpen = false;
     let routeSaveBoxIsOpen = false;
     let routeLoadBoxIsOpen = false;
 
@@ -820,6 +820,7 @@ function initMap() {
 
         if (!routeSaveBoxIsOpen){
             routeSaveBoxIsOpen = true;
+            
             bootbox.prompt("Enter a name for the route.", function (result) {
                 if (result === null) {
                     routeSaveBoxIsOpen = false;
@@ -880,57 +881,65 @@ function initMap() {
 
     function onSaveRouteAll() {
 
-        bootbox.prompt("Enter a name for the route.", function (result) {
-            if (result === null) {
+        if (!routeSaveAllBoxIsOpen){
 
-            } else {
+            routeSaveAllBoxIsOpen = true;
 
-
-                let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
-
-                google.maps.event.clearListeners(map, 'click');
-                google.maps.event.clearListeners(route, 'click');
-
-                var currentGuard = localStorage.getItem("currentGuard");
-
-                var routeID = createRouteID();
-                var xhr = new XMLHttpRequest();
-
-                if (!xhr) {
-                    alert('Giving up :( Cannot create an XMLHTTP instance');
-                    return false;
+            bootbox.prompt("Enter a name for the route.", function (result) {
+                if (result === null) {
+                    routeSaveAllBoxIsOpen = false;
+                } else {
+    
+    
+                    let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
+    
+                    google.maps.event.clearListeners(map, 'click');
+                    google.maps.event.clearListeners(route, 'click');
+    
+                    var currentGuard = localStorage.getItem("currentGuard");
+    
+                    var routeID = createRouteID();
+                    var xhr = new XMLHttpRequest();
+    
+                    if (!xhr) {
+                        alert('Giving up :( Cannot create an XMLHTTP instance');
+                        return false;
+                    }
+    
+                    xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/saveroute", true);
+    
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify({
+                        "RouteID": routeID,
+                        "RouteName": cleanInput,
+                        "CurrentRoute": 1
+                    }));
+    
+                    postCheckpoints(route, routeID);
+    
+                    google.maps.event.clearListeners(map, 'click');
+                    google.maps.event.clearListeners(route, 'click');
+    
+                    route.setMap(null);
+                    route.setPath([]);
+                    route.setMap(map);
+    
+                    hideCancelButton()
+                    hideClearCheckpointsButton();
+                    hideRemoveLastCheckpointButton();
+                    hideSaveRouteButton();
+                    hideLoadRouteButton();
+                    showAddButton();
+    
+                    bootbox.alert('Route has been saved for later!');
+                    
+                    routeSaveAllBoxIsOpen = false;
+    
                 }
-
-                xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/saveroute", true);
-
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify({
-                    "RouteID": routeID,
-                    "RouteName": cleanInput,
-                    "CurrentRoute": 1
-                }));
-
-                postCheckpoints(route, routeID);
-
-                google.maps.event.clearListeners(map, 'click');
-                google.maps.event.clearListeners(route, 'click');
-
-                route.setMap(null);
-                route.setPath([]);
-                route.setMap(map);
-
-                hideCancelButton()
-                hideClearCheckpointsButton();
-                hideRemoveLastCheckpointButton();
-                hideSaveRouteButton();
-                hideLoadRouteButton();
-                showAddButton();
-
-                bootbox.alert('Route has been saved for later!');
+            });
+        }
 
 
-            }
-        });
     }
 
     function onSelectRoute() {
