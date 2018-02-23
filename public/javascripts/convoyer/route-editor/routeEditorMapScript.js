@@ -37,6 +37,12 @@ function initMap() {
         icons: [routeSeq]
     })
 
+    let marker = new google.maps.Marker({
+        position: { lat: 34.050963, lng: -118.256133 },
+        map: map,
+        animation: google.maps.Animation.DROP,
+    });
+
     setUpButtonListeners();
 
 
@@ -117,7 +123,6 @@ function initMap() {
             onAddAreaMarker(e.latLng);
         });
 
-
         showAreaCancelButton();
         showAreaSaveButton();
         showAreaDeleteButton();
@@ -128,14 +133,10 @@ function initMap() {
     function onAddAreaMarker(latLng){
 
 
-    let marker = new google.maps.Marker({
-        position: latLng,
-        map: map,
-        animation: google.maps.Animation.DROP,
-    });
-
+        marker.setPosition(latLng);
     
     // marker.addListener('click', function (e) {
+        
     // });
 
     }
