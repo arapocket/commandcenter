@@ -163,13 +163,11 @@ function initMap() {
                 route.setPath([]);
                 route.setMap(map);
 
-                hideRouteCancelButton()
-                hideClearCheckpointsButton();
-                hideRemoveLastCheckpointButton();
-                hideSaveAreaButton();
-                hideLoadAreaButton();
-                hideDeleteAreaButton();
-                showRouteAddButton();
+                hideAreaCancelButton()
+                hideAreaSaveButton();
+                hideAreaLoadButton();
+                hideAreaDeleteButton();
+                showAreaAddButton();
 
                 bootbox.alert('Area has been saved for later!');
 
@@ -275,13 +273,11 @@ function initMap() {
         route.setPath([]);
         route.setMap(map);
 
-        hideRouteCancelButton()
-        hideClearCheckpointsButton();
-        hideRemoveLastCheckpointButton();
-        hideSaveAreaButton();
-        hideLoadAreaButton();
-        hideDeleteAreaButton();
-        showRouteAddButton();
+        hideAreaCancelButton()
+        hideAreaSaveButton();
+        hideAreaLoadButton();
+        hideAreaDeleteButton();
+        showAreaAddButton();
     }
 
     function onAddRoute() {
@@ -480,8 +476,8 @@ function initMap() {
         hideClearCheckpointsButton();
         hideRemoveLastCheckpointButton();
         hideRouteSaveButton();
-        hideLoadRouteButton();
-        hideDeleteRouteButton();
+        hideRouteLoadButton();
+        hideRouteDeleteButton();
         showRouteAddButton();
     }
 
@@ -490,7 +486,7 @@ function initMap() {
         addRouteButton.style.display = 'none'
     }
 
-    function showRouteAreaAddButton() {
+    function showAreaAddButton() {
         let addRouteButton = parent.document.getElementById('addRouteButton');
         addRouteButton.style.display = 'block'
     }
@@ -500,19 +496,19 @@ function initMap() {
         cancelRouteButton.style.display = 'none';
     }
 
-    function showRouteAreaCancelButton() {
+    function showAreaCancelButton() {
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         cancelRouteButton.style.display = 'block';
 
 
     }
 
-    function hideAreaSaveRButton() {
+    function hideAreaSaveButton() {
         let saveRouteButton = parent.document.getElementById('saveRouteButton');
         saveRouteButton.style.display = 'none';
     }
 
-    function showRouteAreaSaveButton() {
+    function showAreaSaveButton() {
         let saveRouteButton = parent.document.getElementById('saveRouteButton');
         saveRouteButton.style.display = 'block';
     }
@@ -522,7 +518,7 @@ function initMap() {
         loadRouteButton.style.display = 'none';
     }
 
-    function showRouteAreaLoadButton() {
+    function showAreaLoadButton() {
         let loadRouteButton = parent.document.getElementById('loadRouteButton');
         loadRouteButton.style.display = 'block';
     }
@@ -532,7 +528,7 @@ function initMap() {
         deleteRouteButton.style.display = 'none';
     }
 
-    function showRouteAreaDeleteButton() {
+    function showAreaDeleteButton() {
         let deleteRouteButton = parent.document.getElementById('deleteRouteButton');
         deleteRouteButton.style.display = 'block';
     }
