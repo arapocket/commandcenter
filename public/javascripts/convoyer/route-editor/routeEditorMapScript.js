@@ -119,10 +119,10 @@ function initMap() {
             // onAddCheckpoint(e.latLng);
         });
 
-        showRouteAreaCancelButton();
-        showRouteAreaSaveButton();
-        showRouteAreaLoadButton();
-        showRouteAreaDeleteButton();
+        showAreaCancelButton();
+        showAreaSaveButton();
+        showAreaLoadButton();
+        showAreaDeleteButton();
         showRouteSetCurrentAreaButton();
 
     }
@@ -543,7 +543,7 @@ function initMap() {
         setCurrentAreaButton.style.display = 'block';
     }    
 
-    function showRouteAreaDeleteButton() {
+    function showAreaDeleteButton() {
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
         setCurrentAreaButton.style.display = 'block';
     }
