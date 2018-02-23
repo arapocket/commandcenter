@@ -44,7 +44,6 @@ function initMap() {
 
         
         let addAreaButton = parent.document.getElementById("addAreaButton");
-        let cancelAreaButton = parent.document.getElementById('cancelAreaButton');
         let saveAreaButton = parent.document.getElementById('saveAreaButton');
         let deleteAreaButton = parent.document.getElementById('deleteAreaButton');
         let setCurrentAreaButton = parent.document.getElementById('setCurrentAreaButton');
@@ -59,10 +58,6 @@ function initMap() {
 
         addAreaButton.addEventListener('click', function (e) {
             onAddArea();
-        });
-
-        cancelAreaButton.addEventListener('click', function (e) {
-            onCancelArea();
         });
 
         saveAreaButton.addEventListener('click', function (e) {
@@ -111,16 +106,14 @@ function initMap() {
 
         hideAreaAddButton();
         hideRouteAddButton();
-
-
-        map.addListener('click', function (e) {
-            onAddAreaMarker(e.latLng);
-        });
-
         showAreaCancelButton();
         showAreaSaveButton();
         showAreaDeleteButton();
         showSetCurrentAreaButton();
+
+        map.addListener('click', function (e) {
+            onAddAreaMarker(e.latLng);
+        });
 
     }
 
@@ -138,6 +131,11 @@ function initMap() {
             marker.setPosition(e.latLng);
         });
 
+        let cancelAreaButton = parent.document.getElementById('cancelAreaButton');
+
+        cancelAreaButton.addEventListener('click', function (e) {
+            onCancelArea(marker);
+        });
 
     }
 
@@ -224,9 +222,11 @@ function initMap() {
         xhr.send(null);
     }
 
-    function onCancelArea() {
+    function onCancelArea(marker) {
 
         google.maps.event.clearListeners(map, 'click');
+
+        marker.setMap(null);
         
         hideAreaCancelButton()
         hideAreaSaveButton();
