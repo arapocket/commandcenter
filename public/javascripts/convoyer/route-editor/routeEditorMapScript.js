@@ -418,6 +418,7 @@ function initMap() {
         hideRouteLoadButton();
         hideRouteDeleteButton();
         showRouteAddButton();
+        showAreaAddButton();
     }
 
     function hideAreaAddButton() {
