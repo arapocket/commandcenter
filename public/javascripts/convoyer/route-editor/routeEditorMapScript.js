@@ -238,18 +238,13 @@ function initMap() {
                             className: buttonClass,
                             callback: function () {
                                 deleteSelectedArea(areaID);
-                                areaDeleteBoxIsOpen = false;
-                            },
-                            onEscape: function() {
-                                areaDeleteBoxIsOpen = false;
                             }
                         });
 
                     }
 
-                    if (!areaDeleteBoxIsOpen){
+                        bootbox.hideAll();
 
-                        areaDeleteBoxIsOpen = true;
 
                         let dialog = bootbox.dialog({
                             title: 'Delete Area',
@@ -257,7 +252,7 @@ function initMap() {
                             buttons: areaButtons
                         });
     
-                    }
+                    
 
 
                 }
@@ -458,10 +453,8 @@ function initMap() {
                             className: buttonClass,
                             callback: function () {
                                 deleteSelectedRoute(routeID);
-                                routeDeleteBoxIsOpen = false;
                             },
                             onEscape: function () {
-                                routeDeleteBoxIsOpen = false;
                             }
                         });
 
