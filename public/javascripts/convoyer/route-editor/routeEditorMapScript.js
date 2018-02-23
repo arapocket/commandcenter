@@ -206,6 +206,7 @@ function initMap() {
         hideAreaCancelButton()
         hideAreaSaveButton();
         hideAreaDeleteButton();
+        hideSetCurrentAreaButton();
         showAreaAddButton();
     }
 
