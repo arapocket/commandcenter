@@ -347,11 +347,11 @@ function initMap() {
                         message: "<p>Set an area for live view to focus on.</p>",
                         buttons: areaButtons
                     });
-
-
                 }
             }
         }
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas/" , true);
 
@@ -369,7 +369,6 @@ function initMap() {
         }
 
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.send(JSON.stringify({
             "CurrentArea": 1,
