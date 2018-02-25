@@ -353,7 +353,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas/", true);
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas/", true);
 
         xhr.send(null);
  
