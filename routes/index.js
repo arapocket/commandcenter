@@ -259,7 +259,7 @@ router.get('/patrolareas', PatrolAreaController.getAllPatrolAreas);
 router.get('/patrolareas/:id', PatrolAreaController.getPatrolAreaByID);
 router.post('/patrolareas', PatrolAreaController.addPatrolArea);
 router.delete('/patrolareas/:id', PatrolAreaController.deletePatrolArea);
-router.put('/patrolareas/:id', PatrolAreaController.updatePatrolArea);
+router.put('/patrolareas', PatrolAreaController.updatePatrolArea);
 
 var CheckpointController = require('../controllers/Convoyer/CheckpointController');
 router.get('/checkpoints', CheckpointController.getAllCheckpoints);
