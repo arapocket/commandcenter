@@ -109,7 +109,7 @@ module.exports.deletePatrolArea = function (id, callback) {
     });
 }
 
-module.exports.updatePatrolArea = function (id, PatrolArea, callback) {
+module.exports.updatePatrolArea = function (PatrolArea, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
@@ -119,14 +119,29 @@ module.exports.updatePatrolArea = function (id, PatrolArea, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'Update patrolarea set Description = ' + PatrolArea.Description + ', Type = ' + PatrolArea.Type + ', lat = ' + PatrolArea.lat + ', lng = ' + PatrolArea.lng + ', PatrolID = ' + PatrolArea.PatrolID + ', WHERE PatrolAreaID =  ' + PatrolArea.PatrolAreaID + ';';
+            
+            var strSQL = "Update patrolarea SET CurrentArea = " + PatrolArea.NotCurrentArea + " WHERE NOT AreaID = '" + PatrolArea.AreaID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
-                    connection.end();
+                    // connection.end();
                     callback(null, rows);
+                    // here we will set our selected route to 1
+                    var strSQL2 = "Update patrolarea SET CurrentArea = " + PatrolArea.CurrentArea + " WHERE AreaID = '" + PatrolArea.AreaID + "';";
+                    connection.query(strSQL2, function (err, rows, fields) {
+                        if (!err) {
+                            connection.end();
+                            callback(null, rows);
+                        } else {
+                            console.log('error with the select routeroute query');
+                            connection.end();
+                            callback(err, rows);
+                        }
+
+                    });
+
 
                 } else {
-                    console.log('error with the select patrolareapatrol query');
+                    console.log('error with the select routeroute query');
                     connection.end();
                     callback(err, rows);
                 }

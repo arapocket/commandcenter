@@ -309,6 +309,73 @@ function initMap() {
     }
 
     function onSetCurrentArea() {
+
+
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            console.log('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+                if (json.length > 0) {
+
+                    let areaButtons = [];
+                    for (i = 0; i < json.length; i++) {
+                        let label = json[i].Name;
+                        let buttonClass = 'btn-primary';
+                        let areaID = json[i].AreaID;
+
+                        areaButtons.push({
+                            label: label,
+                            className: buttonClass,
+                            callback: function () {
+                                setSelectedAreaAsCurrent(areaID);
+                            }
+                        });
+
+                    }
+
+                    bootbox.hideAll();
+
+
+                    let dialog = bootbox.dialog({
+                        title: 'Delete Area',
+                        message: "<p>Select the area you wish to set as the current area for live view.</p>",
+                        buttons: areaButtons
+                    });
+
+
+                }
+            }
+        }
+
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas/", true);
+
+        xhr.send(null);
+ 
+    }
+
+
+    function setSelectedAreaAsCurrent(areaID){
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.send(JSON.stringify({
+            "CurrentArea": 1,
+            "NotCurrentArea": 0,
+            "AreaID": areaID
+        }));       
     }
 
     function onAddRoute() {

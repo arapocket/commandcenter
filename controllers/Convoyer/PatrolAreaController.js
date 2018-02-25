@@ -47,7 +47,7 @@ module.exports.deletePatrolArea = function (req, res) {
 };
 
 module.exports.updatePatrolArea = function (req, res) {
-  PatrolAreaModel.updatePatrolArea(req.params.id,req.body, function (err, result) {
+  PatrolAreaModel.updatePatrolArea(req.body, function (err, result) {
     if (err) {
       res.json(err);
     }
