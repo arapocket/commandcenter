@@ -343,8 +343,8 @@ function initMap() {
 
 
                     let dialog = bootbox.dialog({
-                        title: 'Delete Area',
-                        message: "<p>Select the area you wish to set as the current area for live view.</p>",
+                        title: 'Select Current Area',
+                        message: "<p>Set an area for live view to focus on.</p>",
                         buttons: areaButtons
                     });
 
