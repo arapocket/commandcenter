@@ -311,56 +311,40 @@ function initMap() {
     function onSetCurrentArea() {
 
 
-        var xhr = new XMLHttpRequest();
-
-        if (!xhr) {
-            console.log('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == XMLHttpRequest.DONE) {
-                let json = JSON.parse(xhr.responseText);
-                if (json.length > 0) {
-
-                    let areaButtons = [];
-                    for (i = 0; i < json.length; i++) {
-                        let label = json[i].Name;
-                        let buttonClass = 'btn-primary';
-                        let areaID = json[i].AreaID;
-
-                        areaButtons.push({
-                            label: label,
-                            className: buttonClass,
-                            callback: function () {
-                                setSelectedAreaAsCurrent(areaID);
-                            }
-                        });
-
-                    }
-
-                    bootbox.hideAll();
 
 
-                    let dialog = bootbox.dialog({
-                        title: 'Select Current Area',
-                        message: "<p>Set an area for live view to focus on.</p>",
-                        buttons: areaButtons
-                    });
+        let areaButtons = [];
+        for (i = 0; i < areas.length; i++) {
+            let label = areas[i].Name;
+            let buttonClass = 'btn-primary';
+            let areaID = areas[i].AreaID;
+
+            areaButtons.push({
+                label: label,
+                className: buttonClass,
+                callback: function () {
+                    setSelectedAreaAsCurrent(areaID);
                 }
-            }
+            });
+
         }
 
+        bootbox.hideAll();
 
-        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas/" , true);
-        xhr.setRequestHeader('Content-Type', 'application/json');
 
-        xhr.send(null);
- 
+        let dialog = bootbox.dialog({
+            title: 'Select Current Area',
+            message: "<p>Set an area for live view to focus on.</p>",
+            buttons: areaButtons
+        });
+
+
+
+
     }
 
 
-    function setSelectedAreaAsCurrent(areaID){
+    function setSelectedAreaAsCurrent(areaID) {
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -369,13 +353,14 @@ function initMap() {
         }
 
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
+
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.send(JSON.stringify({
             "CurrentArea": 1,
             "NotCurrentArea": 0,
             "AreaID": areaID
-        }));       
+        }));
     }
 
     function onAddRoute() {
