@@ -351,9 +351,9 @@ function initMap() {
             }
         }
 
-        xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas/" , true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.send(null);
  
