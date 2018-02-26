@@ -9,7 +9,7 @@ function imageError() {
 
 function initMap() {
 
-let area = area[0];
+console.log('logging area ' +  area);
 
     let center = {lat: area.lat, lng: area.lng}
 
