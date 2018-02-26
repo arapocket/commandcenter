@@ -67,7 +67,7 @@ module.exports.addPatrol = function (Patrol, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var date = datetime.syncCurrentDateTimeforDB();
+            let date = datetime.syncCurrentDateTimeforDB();
 
             var strSQL = "Insert into patrol values ('" + Patrol.PatrolID + "', '" + Patrol.GuardID + "', " + Patrol.CurrentPatrol + ", '" + date + "', ''  );";
             connection.query(strSQL, function (err, rows, fields) {
@@ -121,7 +121,9 @@ module.exports.updatePatrol = function (Patrol, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update patrol SET CurrentPatrol = " + Patrol.CurrentPatrol + " WHERE GuardID =  '" + Patrol.GuardID + "';";
+            let date = datetime.syncCurrentDateTimeforDB();
+
+            var strSQL = "Update patrol SET CurrentPatrol = " + Patrol.CurrentPatrol + ", End = '" + date + "' WHERE GuardID =  '" + Patrol.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
