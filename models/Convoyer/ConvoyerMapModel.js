@@ -213,7 +213,7 @@ module.exports.getCurrentArea = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT * FROM patrolareas WHERE CurrentArea = 1;';
+            var strSQL = 'SELECT * FROM patrolarea WHERE CurrentArea = 1;';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
