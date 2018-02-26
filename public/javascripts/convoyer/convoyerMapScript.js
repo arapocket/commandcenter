@@ -950,7 +950,7 @@ function initMap() {
                 if (json.length > 0) {
 
                     let routeButtons = [];
-                    for (i = 0; i < json.length; i++) {
+                    for (let i = 0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let buttonClass = 'btn-primary';
                         let routeID = json[i].RouteID

@@ -1,11 +1,17 @@
 
 function initMap() {
 
+let center = { lat: 34.050963, lng: -118.256133 };
+    for (let i = 0 ; i < areas.length ; i ++ ){
+        if (areas[i].CurrentArea == 1){
+            center = {lat: areas[i].lat, lng: areas[i].lng}
+        }
+    }
 
 
     let map = new google.maps.Map(document.getElementById('map'), {
         zoom: 18,
-        center: { lat: 34.050963, lng: -118.256133 },
+        center: center,
         mapTypeId: google.maps.MapTypeId.MAP,
         streetViewControl: false,
         clickableIcons: false,
@@ -260,7 +266,7 @@ function initMap() {
                 if (json.length > 0) {
 
                     let areaButtons = [];
-                    for (i = 0; i < json.length; i++) {
+                    for (let i =0; i < json.length; i++) {
                         let label = json[i].Name;
                         let buttonClass = 'btn-primary';
                         let areaID = json[i].AreaID;
@@ -311,7 +317,7 @@ function initMap() {
     function onSetCurrentArea() {
 
         let areaButtons = [];
-        for (i = 0; i < areas.length; i++) {
+        for (let i =0; i < areas.length; i++) {
             let label = areas[i].Name;
             let buttonClass = 'btn-primary';
             let areaID = areas[i].AreaID;
@@ -479,7 +485,7 @@ function initMap() {
                 if (json.length > 0) {
 
                     let routeButtons = [];
-                    for (i = 0; i < json.length; i++) {
+                    for (let i =0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let routeID = json[i].RouteID;
                         let buttonClass = 'btn-primary';
@@ -527,7 +533,7 @@ function initMap() {
                 if (json.length > 0) {
 
                     let routeButtons = [];
-                    for (i = 0; i < json.length; i++) {
+                    for (let i =0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let buttonClass = 'btn-primary';
                         let routeID = json[i].RouteID;
