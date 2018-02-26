@@ -1,5 +1,5 @@
 var db = require('../db');
-
+var datetime = require('../../controllers/datetime');
 
 
 module.exports.getAllPatrols = function (callback) {
@@ -67,7 +67,9 @@ module.exports.addPatrol = function (Patrol, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into patrol values ('" + Patrol.PatrolID + "', '" + Patrol.GuardID + "', " + Patrol.CurrentPatrol + ");";
+            var date = datetime.syncCurrentDateTimeforDB();
+
+            var strSQL = "Insert into patrol values ('" + Patrol.PatrolID + "', '" + Patrol.GuardID + "', " + Patrol.CurrentPatrol + ", '" + date + "', ''  );";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
