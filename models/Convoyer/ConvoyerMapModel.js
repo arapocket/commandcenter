@@ -201,6 +201,35 @@ module.exports.getCurrentCheckpoints = function (callback) {
 }
 
 
+// GET THE CURRENT PARTROL AREA, AS SET IN THE ROUTE EDITOR
+module.exports.getCurrentArea = function (callback) {
+
+    //get a connection using the common handler in models/db.js
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = 'SELECT * FROM patrolareas WHERE CurrentArea = 1;';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the select checkpoint query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+}
+
+
 
 
 

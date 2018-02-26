@@ -9,6 +9,10 @@ function imageError() {
 
 function initMap() {
 
+let area = area[0];
+
+    let center = {lat: area.lat, lng: area.lng}
+
     var socket = io();
 
     const COLORS = [
@@ -84,7 +88,7 @@ function initMap() {
 
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 18,
-            center: { lat: 34.050963, lng: -118.256133 },
+            center: center,
             mapTypeId: google.maps.MapTypeId.MAP,
             streetViewControl: false,
             clickableIcons: false,
