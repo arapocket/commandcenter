@@ -123,7 +123,7 @@ module.exports.updatePatrol = function (Patrol, callback) {
 
             let date = datetime.syncCurrentDateTimeforDB();
 
-            var strSQL = "Update patrol SET CurrentPatrol = " + Patrol.CurrentPatrol + ", End = '" + date + "' WHERE GuardID =  '" + Patrol.GuardID + "';";
+            var strSQL = "Update patrol SET CurrentPatrol = " + Patrol.CurrentPatrol + ", End = '" + date + "' WHERE PatrolID =  '" + Patrol.PatrolID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

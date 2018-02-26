@@ -554,7 +554,7 @@ function patrolPut(data, socket) {
   const querystring = require('querystring');
 
   const postData = querystring.stringify({
-    'GuardID': data.GuardID,
+    'PatrolID': data.PatrolID,
     'CurrentPatrol': 0
   });
 
