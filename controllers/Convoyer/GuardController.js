@@ -67,7 +67,7 @@ exports.guardAdd = function (req, res) {
      * Only show the users screen if user has privilege
      */
     if (sess.userType == '2') {
-      res.render('guardAdd', { title: 'Command Center' });
+      res.render('GuardAddView', { title: 'Command Center' });
     } else {
       res.render('Unauthorized', { title: 'Command Center' });
     }
@@ -175,7 +175,7 @@ module.exports.getGuardByID = function (req, res) {
             res.render('guardlist', { title: 'Command Center' });
           } else {
             connection.end();
-            res.render('guardModify', { title: 'Command Center', results });
+            res.render('GuardModifyView', { title: 'Command Center', results });
 
 
           };
@@ -322,7 +322,7 @@ module.exports.getGuardForDelete = function (req, res) {
             res.render('guardList', { title: 'Command Center' });
           } else {
             connection.end();
-            res.render('guardDelete', { title: 'Command Center', results });
+            res.render('GuardDeleteView', { title: 'Command Center', results });
 
 
           };
