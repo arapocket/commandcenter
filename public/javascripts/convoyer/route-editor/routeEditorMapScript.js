@@ -353,16 +353,11 @@ function initMap() {
         xhr.setRequestHeader('Content-Type', 'application/json');
 
 
-
-        window.setTimeout(function () {
-            
-        xhr.send(JSON.stringify({
+        xhr.send({
             "CurrentArea": 1,
             "NotCurrentArea": 0,
-            "AreaID": areaID
-        }));
-        
-        }, 10000);
+            "AreaID": areaID}
+        );
 
     }
 
