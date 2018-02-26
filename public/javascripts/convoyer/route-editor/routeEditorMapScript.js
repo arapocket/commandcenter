@@ -365,6 +365,11 @@ let center = { lat: 34.050963, lng: -118.256133 };
             "AreaID": areaID
         }));
 
+
+        bootbox.hideAll();
+
+        bootbox.alert('Current area has been set!');
+
     }
 
     function onAddRoute() {
