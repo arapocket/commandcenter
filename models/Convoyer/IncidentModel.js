@@ -1,4 +1,5 @@
 var db = require('../db');
+var datetime = require('../../controllers/datetime');
 
 
 
@@ -67,7 +68,9 @@ module.exports.addIncident = function (Incident, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into incident values ('" + Incident.IncidentID + "', '" + Incident.Description + "', '" + Incident.Type + "', '" + Incident.lat + "', '" + Incident.lng + "', '" + Incident.PatrolID + "', '" + Incident.Media + "');";
+            var date = datetime.syncCurrentDateTimeforDB();
+
+            var strSQL = "Insert into incident values ('" + Incident.IncidentID + "', '" + Incident.Description + "', '" + Incident.Type + "', '" + Incident.lat + "', '" + Incident.lng + "', '" + Incident.PatrolID + "', '" + Incident.Media + "', '" + date + "' );";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
