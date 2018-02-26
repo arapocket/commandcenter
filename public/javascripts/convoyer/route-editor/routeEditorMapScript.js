@@ -343,10 +343,6 @@ function initMap() {
     function setSelectedAreaAsCurrent(areaID) {
         let xhr = new XMLHttpRequest();
 
-
-        xhr.setRequestHeader('Content-Type', 'application/json');
-
-
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
             return false;
@@ -354,12 +350,20 @@ function initMap() {
 
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
 
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
+
+
+        window.setTimeout(function () {
+            
         xhr.send(JSON.stringify({
             "CurrentArea": 1,
             "NotCurrentArea": 0,
             "AreaID": areaID
         }));
+        
+        }, 10000);
+
     }
 
     function onAddRoute() {
