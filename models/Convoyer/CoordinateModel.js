@@ -1,4 +1,5 @@
 var db = require('../db');
+var datetime = require('../datetime');
 
 
 
@@ -66,8 +67,10 @@ module.exports.addCoordinate = function (CoordinateModel, callback) {
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
+            var date = datetime.syncCurrentDateTimeforDB();
 
-            var strSQL = "Insert into coordinate values ('" + CoordinateModel.CoordID + "', '" + CoordinateModel.Sequence + "', '" + CoordinateModel.lat + "', '" + CoordinateModel.lng + "', '" + CoordinateModel.PatrolID + "', " + CoordinateModel.CurrentCoord + " );";
+
+            var strSQL = "Insert into coordinate values ('" + CoordinateModel.CoordID + "', '" + CoordinateModel.Sequence + "', '" + CoordinateModel.lat + "', '" + CoordinateModel.lng + "', '" + CoordinateModel.PatrolID + "', " + CoordinateModel.CurrentCoord + ", '" + date + "' );";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
