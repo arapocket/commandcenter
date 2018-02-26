@@ -9,9 +9,11 @@ function imageError() {
 
 function initMap() {
 
-console.log('logging area ' +  JSON.stringify(area));
+// console.log('logging area ' +  JSON.stringify(area));
 
-    let center = {lat: area.lat, lng: area.lng}
+let currentArea = area[0];
+
+    let center = {lat: currentArea.lat, lng: currentArea.lng}
 
     var socket = io();
 
