@@ -124,7 +124,7 @@ module.exports.updatePatrolArea = function (PatrolArea, callback) {
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
-                    callback(null, rows);
+                    // callback(null, rows);
                     // here we will set our selected route to 1
                     var strSQL2 = "Update patrolarea SET CurrentArea = " + PatrolArea.CurrentArea + " WHERE AreaID = '" + PatrolArea.AreaID + "';";
                     connection.query(strSQL2, function (err, rows, fields) {
