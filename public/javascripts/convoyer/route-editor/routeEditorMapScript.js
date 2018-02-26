@@ -207,7 +207,7 @@ function initMap() {
                 let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
 
                 var areaID = createAreaID();
-                var xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest();
 
                 if (!xhr) {
                     return false;
@@ -247,7 +247,7 @@ function initMap() {
 
     function onDeleteArea() {
 
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
         if (!xhr) {
             console.log('Giving up :( Cannot create an XMLHTTP instance');
@@ -345,7 +345,7 @@ function initMap() {
 
 
     function setSelectedAreaAsCurrent(areaID) {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -422,7 +422,7 @@ function initMap() {
                 google.maps.event.clearListeners(route, 'click');
 
                 var routeID = createRouteID();
-                var xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest();
 
                 if (!xhr) {
                     alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -468,7 +468,7 @@ function initMap() {
     }
 
     function onSelectRoute() {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -516,7 +516,7 @@ function initMap() {
 
     function onDeleteRoute() {
 
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
         if (!xhr) {
             console.log('Giving up :( Cannot create an XMLHTTP instance');
@@ -719,7 +719,7 @@ function initMap() {
                 /* result is a boolean; true = OK, false = Cancel*/
                 if (result) {
 
-                    var xhr = new XMLHttpRequest();
+                    let xhr = new XMLHttpRequest();
 
                     if (!xhr) {
                         alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -758,7 +758,7 @@ function initMap() {
                 /* result is a boolean; true = OK, false = Cancel*/
                 if (result) {
 
-                    var xhr = new XMLHttpRequest();
+                    let xhr = new XMLHttpRequest();
 
                     if (!xhr) {
                         return false;
@@ -791,7 +791,7 @@ function initMap() {
 
     function loadRoute() {
 
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
@@ -819,7 +819,7 @@ function initMap() {
 
     function deleteRoute(routeID) {
 
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
         if (!xhr) {
             return false;
@@ -890,7 +890,7 @@ function initMap() {
     function loadCurrentRoute(routeID) {
 
 
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
