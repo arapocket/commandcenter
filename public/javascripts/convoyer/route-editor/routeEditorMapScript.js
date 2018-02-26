@@ -354,9 +354,9 @@ function initMap() {
 
 
         xhr.send({
-            "CurrentArea": 1,
-            "NotCurrentArea": 0,
-            "AreaID": areaID}
+            CurrentArea: 1,
+            NotCurrentArea: 0,
+            AreaID: areaID}
         );
 
     }
