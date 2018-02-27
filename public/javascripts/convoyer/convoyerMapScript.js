@@ -1233,7 +1233,7 @@ function initMap() {
             try {
                 parent.document.getElementById("timer").innerHTML = "Refreshing in " + count + " seconds";
             } catch (err){
-
+                console.log(err);
             }
 
             
