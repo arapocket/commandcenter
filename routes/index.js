@@ -242,6 +242,7 @@ router.get('/patrolreplay/:id', PatrolReplayMapController.getPatrolReplayMap);
 
 var IncidentDetailController = require('../controllers/Convoyer/IncidentDetailController');
 router.get('/incidentdetails/:id', IncidentDetailController.getIncidentDetails);
+router.get('/incidentdetailsmap/:id', IncidentDetailController.getIncidentDetailsForMap);
 router.get('/incidentpreview/:id', IncidentDetailController.getIncidentPreview);
 
 
