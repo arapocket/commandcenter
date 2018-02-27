@@ -39,16 +39,19 @@ function initMap() {
     });
 
     socket.on('first location', function (incident) {
-        window.setTimeout(function () {
-            parent.location.reload();
-        }, 10000);
+        // window.setTimeout(function () {
+        //     parent.location.reload();
+        // }, 10000);
+        refreshPage(10);
     });
 
     socket.on('user left', function (incident) {
 
-        window.setTimeout(function () {
-            parent.location.reload();
-        }, 10000);
+        // window.setTimeout(function () {
+        //     parent.location.reload();
+        // }, 10000);
+        refreshPage(10);
+        
 
 
     });
