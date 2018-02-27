@@ -51,7 +51,7 @@ function initMap() {
         //     parent.location.reload();
         // }, 10000);
         refreshPage(10);
-        
+
 
 
     });
@@ -221,45 +221,50 @@ function initMap() {
 
             let addRouteButton = parent.document.getElementById('addRouteButton')
 
-            editRouteButton.addEventListener('click', function (e) {
-                console.log('the guard id is: ' + id);
-                onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations);
-            });
+            try {
+                editRouteButton.addEventListener('click', function (e) {
+                    console.log('the guard id is: ' + id);
+                    onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations);
+                });
 
-            trashRouteButton.addEventListener('click', function (e) {
+                trashRouteButton.addEventListener('click', function (e) {
 
-                editRouteButton.style.display = 'none';
-                trashRouteButton.style.display = 'none';
-                clearCheckpointsButton.style.display = 'none';
-                removeLastCheckpointButton.style.display = 'none';
-                saveRouteButton.style.display = 'none';
-                loadRouteButton.style.display = 'none';
-                endPatrolButton.style.display = 'none';
+                    editRouteButton.style.display = 'none';
+                    trashRouteButton.style.display = 'none';
+                    clearCheckpointsButton.style.display = 'none';
+                    removeLastCheckpointButton.style.display = 'none';
+                    saveRouteButton.style.display = 'none';
+                    loadRouteButton.style.display = 'none';
+                    endPatrolButton.style.display = 'none';
 
-                onTrashRoute(route, id);
-                showAddButton();
-            });
+                    onTrashRoute(route, id);
+                    showAddButton();
+                });
 
-            clearCheckpointsButton.addEventListener('click', function (e) {
-                onClearCheckpoints(route);
-            })
+                clearCheckpointsButton.addEventListener('click', function (e) {
+                    onClearCheckpoints(route);
+                })
 
-            removeLastCheckpointButton.addEventListener('click', function (e) {
-                onRemoveLastCheckpoint(route)
-            });
+                removeLastCheckpointButton.addEventListener('click', function (e) {
+                    onRemoveLastCheckpoint(route)
+                });
 
-            loadRouteButton.addEventListener('click', function (e) {
+                loadRouteButton.addEventListener('click', function (e) {
 
-                onSelectRoute(route);
-            });
+                    onSelectRoute(route);
+                });
 
-            saveRouteButton.addEventListener('click', function (e) {
-                onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id);
-            });
+                saveRouteButton.addEventListener('click', function (e) {
+                    onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id);
+                });
 
-            endPatrolButton.addEventListener('click', function (e) {
-                onEndPatrol(id, firstName, endPatrolButton);
-            });
+                endPatrolButton.addEventListener('click', function (e) {
+                    onEndPatrol(id, firstName, endPatrolButton);
+                });
+            } catch (err) {
+
+            }
+
 
 
             let guardButton = parent.document.getElementById(id);
@@ -1166,7 +1171,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    
+
     function loadRouteOnMap(checkpoints, route) {
 
         route.setPath([]);
@@ -1211,23 +1216,27 @@ function initMap() {
         return COLORS[index];
     }
 
-    function refreshPage(seconds){
-        
-        var count=seconds;
+    function refreshPage(seconds) {
 
-        var counter=setInterval(timer, 1000);
-        
-        function timer()
-        {
-          count=count-1;
-          if (count <= 0)
-          {
-             clearInterval(counter);
-             parent.location.reload();
+        var count = seconds;
+
+        var counter = setInterval(timer, 1000);
+
+        function timer() {
+            count = count - 1;
+            if (count <= 0) {
+                clearInterval(counter);
+                parent.location.reload();
+
+            }
+
+            try {
+                parent.document.getElementById("timer").innerHTML = "Refreshing in " + count + " seconds";
+            } catch (err){
+
+            }
+
             
-          }
-        
-          parent.document.getElementById("timer").innerHTML= "Refreshing in " + count + " seconds"; 
 
         }
     }
