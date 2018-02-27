@@ -9,11 +9,11 @@ function imageError() {
 
 function initMap() {
 
-// console.log('logging area ' +  JSON.stringify(area));
+    // console.log('logging area ' +  JSON.stringify(area));
 
-let currentArea = area[0];
+    let currentArea = area[0];
 
-    let center = {lat: currentArea.lat, lng: currentArea.lng}
+    let center = { lat: currentArea.lat, lng: currentArea.lng }
 
     var socket = io();
 
@@ -30,9 +30,12 @@ let currentArea = area[0];
 
     socket.on('incident', function (incident) {
         createIncidentMarker(incident);
-        window.setTimeout(function () {
-            parent.location.reload();
-        }, 10000);
+        // window.setTimeout(function () {
+        //     parent.location.reload();
+        // }, 10000);
+
+        refreshPage(10);
+
     });
 
     socket.on('first location', function (incident) {
@@ -1160,7 +1163,7 @@ let currentArea = area[0];
         xhr.send(null);
     }
 
-    // $%$%
+    
     function loadRouteOnMap(checkpoints, route) {
 
         route.setPath([]);
@@ -1205,5 +1208,25 @@ let currentArea = area[0];
         return COLORS[index];
     }
 
+    function refreshPage(seconds){
+        
+        var count=seconds;
+
+        var counter=setInterval(timer, 1000);
+        
+        function timer()
+        {
+          count=count-1;
+          if (count <= 0)
+          {
+             clearInterval(counter);
+             parent.location.reload();
+            
+          }
+        
+          parent.document.getElementById("timer").innerHTML= "Refreshing in " + count + " seconds"; 
+
+        }
+    }
 
 }
