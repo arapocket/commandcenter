@@ -69,7 +69,7 @@ module.exports.addPatrol = function (Patrol, callback) {
 
             let date = datetime.syncCurrentDateTimeforDB();
 
-            var strSQL = "Insert into patrol values ('" + Patrol.PatrolID + "', '" + Patrol.GuardID + "', " + Patrol.CurrentPatrol + ", '" + date + "', ''  );";
+            var strSQL = "Insert into patrol values ('" + Patrol.PatrolID + "', '" + Patrol.GuardID + "', " + Patrol.CurrentPatrol + ", '" + date + "', '', '', ''  );";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
