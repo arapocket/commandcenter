@@ -1219,11 +1219,14 @@ function initMap() {
     }
 
     function refreshPage(seconds) {
-        alreadyCalled = true;
+        
 
         if (alreadyCalled){
             return;
         }
+
+        alreadyCalled = true;
+        
         var count = seconds;
 
         var counter = setInterval(timer, 1000);
