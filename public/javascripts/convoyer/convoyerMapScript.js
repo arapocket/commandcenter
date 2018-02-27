@@ -1220,7 +1220,7 @@ function initMap() {
           if (count <= 0)
           {
              clearInterval(counter);
-             parent.location.reload();
+            //  parent.location.reload();
             
           }
         
