@@ -1,4 +1,4 @@
-var PatrolReplayMapModel = require('../../models/Convoyer/RouteEditorMapModel');
+var PatrolReplayMapModel = require('../../models/Convoyer/PatrolReplayMapModel');
 
 module.exports.getPatrolReplayMap = (function (req, res) {
 
