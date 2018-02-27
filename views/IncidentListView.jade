@@ -23,7 +23,8 @@ block content
 									td=result.Type
 									td=result.FirstName
 									td=result.LastName
-									a.td=result.Media
+									td=result.Media
+										a(href="/incidentdetails/#{result.IncidentID}")
 				script.
 					$(document).ready(function() {
 					$('#pickle').DataTable();
