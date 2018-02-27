@@ -154,6 +154,7 @@ module.exports.getAllIncidentsByGuard = function (){
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
+                    console.log('line 157 in IncidentModel');
                     callback(null, rows);
 
                 } else {
