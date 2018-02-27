@@ -6,7 +6,7 @@ html(lang='en')
 		script( src='/javascripts/bootbox.min.js' )
 		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
 		meta(charset='UTF-8')
-		title Route Editor
+		title Patrol Replay
 		style.
 			#map {
 			height: 100%;
@@ -21,12 +21,10 @@ html(lang='en')
 	body
 		#map
 		script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCuuEBG2qsNl6WRWo9093Abz4MEvv3QayU')
-		script(src='/javascripts/convoyer/route-editor/routeEditorMapScript.js')
+		script(src='/javascripts/convoyer/patrol-replay/patrolReplayMapScript.js')
 		script.
 				var mapElement = document.getElementById('map');
-				var guards = !{ JSON.stringify(getAllGuardsResult) };
-				var routes = !{ JSON.stringify(getAllRoutesResult) }; 
-				var areas = !{ JSON.stringify(getAllPatrolAreasResult) }; 
+				var results = !{ JSON.stringify(getPatrolReplayMapResult) };
 				initMap();
 																				
 

@@ -64,6 +64,19 @@ module.exports.getAllGuardPatrols = (function (req, res) {
   });
 });
 
+module.exports.getPatrolReplay = (function (req, res) {
+
+  ConvoyerMapModel.getPatrolReplay(function (err, getPatrolReplayResult) {
+
+    if (err){
+
+    } else {
+      res.render('PatrolReplayView', { title: 'Patrol Replay', getPatrolReplayResult: getPatrolReplayResult});
+    }
+
+  });
+    
+
 
 
 

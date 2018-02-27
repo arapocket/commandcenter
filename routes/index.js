@@ -232,8 +232,13 @@ var ConvoyerController = require('../controllers/Convoyer/ConvoyerController');
 router.get('/convoyerliveview', ConvoyerController.getConvoyer);
 router.get('/activeguards', ConvoyerController.getActiveGuards);
 router.get('/guardnotifications', ConvoyerController.getGuardsForNotifications);
+
 var ConvoyerMapController = require('../controllers/Convoyer/ConvoyerMapController');
 router.get('/foxmaps', ConvoyerMapController.getAllGuardPatrols);
+
+
+var PatrolReplayMapController = require('../controllers/Convoyer/PatrolReplayMapController');
+router.get('/patrolreplay/:id', PatrolReplayMapController.getPatrolReplayMap);
 
 var IncidentDetailController = require('../controllers/Convoyer/IncidentDetailController');
 router.get('/incidentdetails/:id', IncidentDetailController.getIncidentDetails);
