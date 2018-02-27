@@ -1244,6 +1244,10 @@ function initMap() {
                 parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
             } catch (err){
                 console.log(err);
+                
+                        window.setTimeout(function () {
+                            parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
+        }, 2000);
             }
 
             
