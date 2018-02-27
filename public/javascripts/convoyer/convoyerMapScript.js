@@ -1226,7 +1226,7 @@ function initMap() {
         }
 
         alreadyCalled = true;
-        
+
         var count = seconds;
 
         var counter = setInterval(timer, 1000);
@@ -1235,7 +1235,7 @@ function initMap() {
             count = count - 1;
             if (count <= 0) {
                 clearInterval(counter);
-                parent.location.reload();
+                // parent.location.reload();
 
             }
 
