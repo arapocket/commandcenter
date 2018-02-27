@@ -32,27 +32,27 @@ function initMap() {
 
     socket.on('incident', function (incident) {
         createIncidentMarker(incident);
-        // window.setTimeout(function () {
-        //     parent.location.reload();
-        // }, 10000);
+        window.setTimeout(function () {
+            parent.location.reload();
+        }, 1000);
 
-        refreshPage(10);
+        // refreshPage(10);
 
     });
 
     socket.on('first location', function (incident) {
-        // window.setTimeout(function () {
-        //     parent.location.reload();
-        // }, 10000);
-        refreshPage(10);
+        window.setTimeout(function () {
+            parent.location.reload();
+        }, 1000);
+        // refreshPage(10);
     });
 
     socket.on('user left', function (incident) {
 
-        // window.setTimeout(function () {
-        //     parent.location.reload();
-        // }, 10000);
-        refreshPage(10);
+        window.setTimeout(function () {
+            parent.location.reload();
+        }, 1000);
+        // refreshPage(10);
 
 
 
@@ -1244,10 +1244,6 @@ function initMap() {
                 parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
             } catch (err) {
                 console.log(err);
-
-                window.setTimeout(function () {
-                    parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
-                }, 2000);
             }
 
 
