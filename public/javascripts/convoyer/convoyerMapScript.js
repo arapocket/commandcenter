@@ -1231,6 +1231,7 @@ function initMap() {
             }
 
             try {
+                console.log(parent.document.getElementById("refreshtimer"))
                 parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
             } catch (err){
                 console.log(err);
