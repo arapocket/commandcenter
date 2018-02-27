@@ -140,7 +140,7 @@ module.exports.updateIncident = function (id, Incident, callback) {
 }
 
 
-module.exports.getAllIncidentsByGuard = function (){
+module.exports.getAllIncidentsByGuard = function (callback){
 
     db.createConnection(function (err, reslt) {
         if (err) {
