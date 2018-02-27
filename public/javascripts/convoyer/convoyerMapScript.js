@@ -1219,9 +1219,9 @@ function initMap() {
     }
 
     function refreshPage(seconds) {
-        
 
-        if (alreadyCalled){
+
+        if (alreadyCalled) {
             return;
         }
 
@@ -1235,22 +1235,22 @@ function initMap() {
             count = count - 1;
             if (count <= 0) {
                 clearInterval(counter);
-                // parent.location.reload();
+                parent.location.reload();
 
             }
 
             try {
                 console.log(parent.document.getElementById("refreshtimer"))
                 parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
-            } catch (err){
+            } catch (err) {
                 console.log(err);
-                
-                        window.setTimeout(function () {
-                            parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
-        }, 2000);
+
+                window.setTimeout(function () {
+                    parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
+                }, 2000);
             }
 
-            
+
 
         }
     }
