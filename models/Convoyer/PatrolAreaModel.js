@@ -6,7 +6,7 @@ module.exports.getAllPatrolAreas = function (callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -19,7 +19,7 @@ module.exports.getAllPatrolAreas = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrolareapatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -34,7 +34,7 @@ module.exports.getAllPatrolAreas = function (callback) {
 module.exports.getPatrolAreaByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -47,7 +47,7 @@ module.exports.getPatrolAreaByID = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrolareapatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -61,7 +61,7 @@ module.exports.addPatrolArea = function (PatrolArea, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -74,7 +74,7 @@ module.exports.addPatrolArea = function (PatrolArea, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrolareapatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -87,7 +87,7 @@ module.exports.deletePatrolArea = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -100,7 +100,7 @@ module.exports.deletePatrolArea = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrolareapatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -113,7 +113,7 @@ module.exports.updatePatrolArea = function (PatrolArea, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -132,7 +132,7 @@ module.exports.updatePatrolArea = function (PatrolArea, callback) {
                             connection.end();
                             callback(null, rows);
                         } else {
-                            console.log('error with the select routeroute query');
+                            console.log('error with the query');
                             connection.end();
                             callback(err, rows);
                         }
@@ -141,7 +141,7 @@ module.exports.updatePatrolArea = function (PatrolArea, callback) {
 
 
                 } else {
-                    console.log('error with the select routeroute query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }

@@ -117,13 +117,27 @@ module.exports.getGuardsForNotifications = (function (req, res) {
 
 
     // *************    SHOW ALL INCIDENTS ON MAP
+/**
+ 
+ 
+    CREATE VIEW allincidents
+    AS SELECT i.IncidentID, i.Description, i.Type, i.lat, i.lng, p.CurrentPatrol, i.Media, i.Time, p.PatrolID, p.GuardID
+    FROM incident i
+    INNER JOIN patrol p ON i.PatrolID = p.PatrolID;
 
-    // CREATE VIEW allincidents
-    // AS SELECT i.IncidentID, i.Description, i.Type, i.lat, i.lng, p.CurrentPatrol, i.Media
-    // FROM incident i
-    // INNER JOIN patrol p ON i.PatrolID = p.PatrolID;
+    // *************    SHOW ALL INCIDENTS AND GUARD
+*/
+    /**
+     
+    CREATE VIEW incidentsbyguard
+    AS SELECT i.IncidentID, i.Description, i.Type, i.lat, i.lng, i.CurrentPatrol, i.Media, i.Time, i.PatrolID,
+    g.GuardID, g.UserName, g.FirstName, g.LastName, g.EmpID, g.Status, g.UserEmail, g.DeviceToken, g.LoggedIn
 
-    // SELECT IncidentID, Description, Type, lat,  lng, CurrentPatrol FROM allincidents WHERE CurrentPatrol = 1;
+    FROM allincidents i
+    INNER JOIN guard g ON i.GuardID = g.GuardID
+      
+     
+     */
 
     // *************    SHOW ALL ROUTES ON MAP 
 

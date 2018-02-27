@@ -7,7 +7,7 @@ module.exports.getAllCoordinates = function (callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -20,7 +20,7 @@ module.exports.getAllCoordinates = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select coordinatepatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -35,7 +35,7 @@ module.exports.getAllCoordinates = function (callback) {
 module.exportsgetCoordinateByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -48,7 +48,7 @@ module.exportsgetCoordinateByID = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select coordinatepatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -62,7 +62,7 @@ module.exports.addCoordinate = function (CoordinateModel, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -91,7 +91,7 @@ module.exports.deleteCoordinate = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -106,7 +106,7 @@ module.exports.deleteCoordinate = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with deleteCoordinate query');
+                    console.log('error with query');
                     console.log(err);
                     connection.end();
                     callback(err, rows);
@@ -120,7 +120,7 @@ module.exports.updateCoordinate = function (CoordinateModel, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -133,7 +133,7 @@ module.exports.updateCoordinate = function (CoordinateModel, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select coordinatepatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }

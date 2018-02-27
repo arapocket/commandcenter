@@ -55,7 +55,6 @@ module.exports.getAllGuards = function (req, res) {
   });
 };
 
-
 exports.guardAdd = function (req, res) {
   sess = req.session;
   // don't let nameless people view the dashboard, redirect them back to the homepage
@@ -80,7 +79,7 @@ module.exports.guardAddToDb = function (req, res) {
 
   db.createConnection(function (err, reslt) {
     if (err) {
-      console.log('Error while performing common connect query: ' + err);
+      
       callback(err, null);
     } else {
       var connection = reslt;
@@ -148,8 +147,6 @@ module.exports.guardAddToDb = function (req, res) {
 
 };
 
-
-
 module.exports.getGuardByID = function (req, res) {
 
   sess = req.session;
@@ -159,7 +156,7 @@ module.exports.getGuardByID = function (req, res) {
 
     db.createConnection(function (err, reslt) {
       if (err) {
-        console.log('Error while performing common connect query: ' + err);
+        
         callback(err, null);
       } else {
         var connection = reslt;
@@ -196,14 +193,13 @@ module.exports.getGuardByUsername = function (req, res) {
   });
 };
 
-
 exports.updateGuard = function (req, res) {
   sess = req.session;
   var name = req.query.name;
 
   db.createConnection(function (err, reslt) {
     if (err) {
-      console.log('Error while performing common connect query: ' + err);
+      
       callback(err, null);
     } else {
       var connection = reslt;
@@ -294,7 +290,6 @@ module.exports.addDeviceToken = function (req, res) {
   });
 };
 
-
 module.exports.getGuardForDelete = function (req, res) {
 
   sess = req.session;
@@ -305,7 +300,7 @@ module.exports.getGuardForDelete = function (req, res) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
       if (err) {
-        console.log('Error while performing common connect query: ' + err);
+        
         callback(err, null);
       } else {
         //process the i/o after successful connect.  Connection object returned in callback
@@ -330,7 +325,7 @@ module.exports.getGuardForDelete = function (req, res) {
       }
     });
   };
-}; //end of handler
+};
 
 module.exports.deleteGuard = function (req, res) {
 
@@ -342,7 +337,7 @@ module.exports.deleteGuard = function (req, res) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
       if (err) {
-        console.log('Error while performing common connect query: ' + err);
+        
         callback(err, null);
       } else {
         //process the i/o after successful connect.  Connection object returned in callback
@@ -381,7 +376,7 @@ module.exports.authenticateGuard = function (req, res) {
 
   });
 
-}; // feb--end of exports home
+};
 
 
 

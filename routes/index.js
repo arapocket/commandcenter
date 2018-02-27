@@ -253,6 +253,9 @@ router.get('/incidents/:id', IncidentController.getIncidentByID);
 router.post('/incidents', IncidentController.addIncident);
 router.delete('/incidents/:id', IncidentController.deleteIncident);
 router.put('/incidents/:id', IncidentController.updateIncident);
+router.get('/incidentlist', IncidentController.incidentList);
+
+
 
 var PatrolAreaController = require('../controllers/Convoyer/PatrolAreaController');
 router.get('/patrolareas', PatrolAreaController.getAllPatrolAreas);

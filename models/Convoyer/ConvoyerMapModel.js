@@ -6,7 +6,7 @@ module.exports.getAllGuards = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -19,7 +19,7 @@ module.exports.getAllGuards = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -35,7 +35,7 @@ module.exports.getAllIncidents = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -48,7 +48,7 @@ module.exports.getAllIncidents = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incident query');
+                    console.log('error with the incident query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -64,7 +64,7 @@ module.exports.getCurrentLocations = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -77,7 +77,7 @@ module.exports.getCurrentLocations = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incident query');
+                    console.log('error with the incident query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -93,7 +93,7 @@ module.exports.getCurrentPatrols = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -106,7 +106,7 @@ module.exports.getCurrentPatrols = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrol query');
+                    console.log('error with the patrol query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -121,7 +121,7 @@ module.exports.getCurrentCoords = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -134,7 +134,7 @@ module.exports.getCurrentCoords = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select coord query');
+                    console.log('error with the coord query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -150,7 +150,7 @@ module.exports.getCurrentRoutes = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -163,7 +163,7 @@ module.exports.getCurrentRoutes = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select route query');
+                    console.log('error with the route query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -178,7 +178,7 @@ module.exports.getCurrentCheckpoints = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -191,7 +191,7 @@ module.exports.getCurrentCheckpoints = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select checkpoint query');
+                    console.log('error with the checkpoint query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -207,7 +207,7 @@ module.exports.getCurrentArea = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -220,7 +220,7 @@ module.exports.getCurrentArea = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select checkpoint query');
+                    console.log('error with the checkpoint query');
                     connection.end();
                     callback(err, rows);
                 }

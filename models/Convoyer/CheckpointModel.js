@@ -19,7 +19,7 @@ module.exports.getAllCheckpoints = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select checkpointpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -47,7 +47,7 @@ module.exports.getCheckpointByID = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select checkpointpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -75,7 +75,7 @@ module.exports.getCurrentCheckpoints = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select checkpointpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -101,7 +101,7 @@ module.exports.addCheckpoint = function (Checkpoint, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select checkpointpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -127,7 +127,7 @@ module.exports.deleteCheckpoint = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select checkpointpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -152,7 +152,7 @@ module.exports.updateCheckpoint = function (id, Checkpoint, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select checkpointpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }

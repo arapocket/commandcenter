@@ -19,7 +19,7 @@ module.exports.getAllRoutes = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log("error with the select routeroute query");
+                    console.log("error with the query");
                     connection.end();
                     callback(err, rows);
                 }
@@ -46,7 +46,7 @@ module.exports.getCurrentRoutes = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log("error with the select routeroute query");
+                    console.log("error with the query");
                     connection.end();
                     callback(err, rows);
                 }
@@ -71,7 +71,7 @@ module.exports.getRouteByID = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log("error with the select routeroute query");
+                    console.log("error with the query");
                     connection.end();
                     callback(err, rows);
                 }
@@ -97,7 +97,7 @@ module.exports.addRoute = function (Route, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log("error with the select routeroute query");
+                    console.log("error with the query");
                     connection.end();
                     callback(err, rows);
                 }
@@ -123,7 +123,7 @@ module.exports.saveRoute = function (Route, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log("error with the select routeroute query");
+                    console.log("error with the query");
                     connection.end();
                     callback(err, rows);
                 }
@@ -160,7 +160,7 @@ module.exports.updateRoute = function (Route, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -182,7 +182,7 @@ module.exports.updateRoute = function (Route, callback) {
                             connection.end();
                             callback(null, rows);
                         } else {
-                            console.log('error with the select routeroute query');
+                            console.log('error with the query');
                             connection.end();
                             callback(err, rows);
                         }
@@ -191,7 +191,7 @@ module.exports.updateRoute = function (Route, callback) {
 
 
                 } else {
-                    console.log('error with the select routeroute query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -205,7 +205,7 @@ module.exports.disableRoutes = function (Route, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -219,7 +219,7 @@ module.exports.disableRoutes = function (Route, callback) {
                     // connection.end();
                     callback(null, rows);
                 } else {
-                    console.log('error with the select routeroute query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }

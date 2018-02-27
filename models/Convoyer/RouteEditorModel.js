@@ -6,7 +6,7 @@ module.exports.getAllGuards = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -20,7 +20,7 @@ module.exports.getAllGuards = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -36,7 +36,7 @@ module.exports.getAllRoutes = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -49,7 +49,7 @@ module.exports.getAllRoutes = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incident query');
+                    console.log('error with the incident query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -64,7 +64,7 @@ module.exports.getAllPatrolAreas = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -77,7 +77,7 @@ module.exports.getAllPatrolAreas = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incident query');
+                    console.log('error with the incident query');
                     connection.end();
                     callback(err, rows);
                 }

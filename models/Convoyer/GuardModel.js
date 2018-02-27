@@ -37,7 +37,7 @@ module.exports.getAllGuards = function (callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -50,7 +50,7 @@ module.exports.getAllGuards = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -65,7 +65,7 @@ module.exports.getAllGuards = function (callback) {
 module.exports.getGuardByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -78,7 +78,7 @@ module.exports.getGuardByID = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -90,7 +90,7 @@ module.exports.getGuardByID = function (id, callback) {
 module.exports.getGuardByUsername = function (username, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -103,7 +103,7 @@ module.exports.getGuardByUsername = function (username, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -116,7 +116,7 @@ module.exports.addGuard = function (Guard, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -129,7 +129,7 @@ module.exports.addGuard = function (Guard, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -142,7 +142,7 @@ module.exports.deleteGuard = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -155,7 +155,7 @@ module.exports.deleteGuard = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -168,7 +168,7 @@ module.exports.updateGuard = function (Guard, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -181,7 +181,7 @@ module.exports.updateGuard = function (Guard, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -194,7 +194,7 @@ module.exports.updateGuardLogin = function (Guard, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -206,7 +206,7 @@ module.exports.updateGuardLogin = function (Guard, callback) {
                     connection.end();
                     callback(null, rows);
                 } else {
-                    console.log('error with the select patrolpatrol query');
+                    console.log('error with the patrolpatrol query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -220,7 +220,7 @@ module.exports.addDeviceToken = function (Guard, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -233,7 +233,7 @@ module.exports.addDeviceToken = function (Guard, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select convoyer query');
+                    console.log('error with the convoyer query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -265,7 +265,7 @@ module.exports.authenticateUser = function (Guard, callback) {
      */
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback

@@ -7,7 +7,7 @@ module.exports.getAllIncidents = function (callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -20,7 +20,7 @@ module.exports.getAllIncidents = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incidentpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -35,7 +35,7 @@ module.exports.getAllIncidents = function (callback) {
 module.exports.getIncidentByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -48,7 +48,7 @@ module.exports.getIncidentByID = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incidentpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -62,7 +62,7 @@ module.exports.addIncident = function (Incident, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -77,7 +77,7 @@ module.exports.addIncident = function (Incident, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incidentpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -90,7 +90,7 @@ module.exports.deleteIncident = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -103,7 +103,7 @@ module.exports.deleteIncident = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incidentpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -116,7 +116,7 @@ module.exports.updateIncident = function (id, Incident, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -129,7 +129,7 @@ module.exports.updateIncident = function (id, Incident, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select incidentpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -139,6 +139,33 @@ module.exports.updateIncident = function (id, Incident, callback) {
 
 }
 
+
+module.exports.getAllIncidentsByGuard = function (){
+
+    db.createConnection(function (err, reslt) {
+        if (err) {
+            
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = reslt;
+
+            var strSQL = 'SELECT * FROM incidentsbyguard;';
+            connection.query(strSQL, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the query');
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+
+}
 
 
 

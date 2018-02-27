@@ -6,7 +6,7 @@ module.exports.getAllPatrols = function (callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -19,7 +19,7 @@ module.exports.getAllPatrols = function (callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrolpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -34,7 +34,7 @@ module.exports.getAllPatrols = function (callback) {
 module.exportsgetPatrolByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -47,7 +47,7 @@ module.exportsgetPatrolByID = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrolpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -61,7 +61,7 @@ module.exports.addPatrol = function (Patrol, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -76,7 +76,7 @@ module.exports.addPatrol = function (Patrol, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrolpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -89,7 +89,7 @@ module.exports.deletePatrol = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -102,7 +102,7 @@ module.exports.deletePatrol = function (id, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the select patrolpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
@@ -115,7 +115,7 @@ module.exports.updatePatrol = function (Patrol, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            console.log('Error while performing common connect query: ' + err);
+            
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -129,7 +129,7 @@ module.exports.updatePatrol = function (Patrol, callback) {
                     connection.end();
                     callback(null, rows);
                 } else {
-                    console.log('error with the select patrolpatrol query');
+                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
