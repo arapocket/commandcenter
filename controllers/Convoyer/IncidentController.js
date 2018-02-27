@@ -58,12 +58,12 @@ module.exports.updateIncident = function (req, res) {
 };
 
 module.exports.incidentList = function (req, res) {
-  IncidentModel.getAllIncidentsByGuard(function (err, result) {
+  IncidentModel.getAllIncidentsByGuard(function (err, results) {
     if (err) {
       res.json(err);
     }
     else {
-      res.render('IncidentListView', { title: 'Incident List', result: result });
+      res.render('IncidentListView', { title: 'Incident List', results: results });
     }
   });
 };
