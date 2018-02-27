@@ -22,9 +22,12 @@
     +nav_item_dropdown("#")(label="Convoyer")
         +nav_item("/convoyerliveview") Live View
         +nav_item("/routeeditor") Route Editor
-        +nav_item("/incidentlist") Incidents
+        +nav_divider
+        +nav_item("/patrollist") Patrol History
+        +nav_item("/incidentlist") Incident History
+        +nav_divider
+        +nav_item("/guardList") Guards
         +nav_item("/guardAdd") Add Guard
-        +nav_item("/guardList") Guard List
     +nav_item_dropdown("#")(label="Administration")
         +nav_item("/devices") Device List
         +nav_item("/connections") Connections list

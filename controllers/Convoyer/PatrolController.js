@@ -57,5 +57,15 @@ module.exports.deletePatrol = function (req, res) {
   });
 };
 
+module.exports.patrolList = function (req, res) {
+  PatrolModel.patrolList(function (err, results) {
+    if (err) {
+      res.json(err);
+    }
+    else {
+      res.render('PatrolListView', { title: 'Patrol History', results: results });
+    }
+  });
+};
 
 

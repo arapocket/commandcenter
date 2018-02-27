@@ -167,7 +167,7 @@ INNER JOIN guard g ON p.GuardID = g.GuardID
     /*
 
 CREATE VIEW currentguards
-AS SELECT  c.CurrentCoord, l.CurrentPatrol,  l.FirstName,  l.LastName,  l.DeviceToken,  l.GuardID, l.PatrolID, c.lat, c.lng
+AS SELECT  c.Sequence, c.Time, l.LoggedIn, l.FirstName,  l.LastName, c.CurrentCoord, l.CurrentPatrol, l.GuardID, l.PatrolID, l.DeviceToken, c.lat, c.lng
 FROM currentlocations l
 INNER JOIN coordinate c ON l.PatrolID = c.PatrolID 
 

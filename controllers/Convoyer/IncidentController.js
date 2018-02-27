@@ -63,7 +63,7 @@ module.exports.incidentList = function (req, res) {
       res.json(err);
     }
     else {
-      res.render('IncidentListView', { title: 'Incident List', results: results });
+      res.render('IncidentListView', { title: 'Incident History', results: results });
     }
   });
 };
