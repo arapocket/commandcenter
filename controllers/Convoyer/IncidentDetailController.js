@@ -8,7 +8,7 @@ module.exports.getIncidentDetails = (function (req, res) {
       res.json(err);
     }
     else {
-      res.render('IncidentDetailView', { title: 'Incident Details', getIncidentResult: getIncidentResult });
+      res.render('IncidentDetailViewForMap', { title: 'Incident Details', getIncidentResult: getIncidentResult });
 
     }
   });
