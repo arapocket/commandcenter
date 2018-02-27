@@ -15,6 +15,8 @@ function initMap() {
 
     let center = { lat: currentArea.lat, lng: currentArea.lng }
 
+    let alreadyCalled = false;
+
     var socket = io();
 
     const COLORS = [
@@ -1217,7 +1219,11 @@ function initMap() {
     }
 
     function refreshPage(seconds) {
+        alreadyCalled = true;
 
+        if (alreadyCalled){
+            return;
+        }
         var count = seconds;
 
         var counter = setInterval(timer, 1000);
