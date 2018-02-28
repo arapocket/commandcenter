@@ -16,17 +16,20 @@ html(lang='en')
 						i.fa.fa-hand-o-left(aria-hidden='true')
 						| &nbsp Go Back
 	.row						
-		.col-md-6.col-sm-6.col-xs-6
-			img#incidentPhoto(src="",  width = "80%", height = "80%", display = 'none')
-			video#incidentVideo(src="",  width = "80%", height = "80%", display = "none" autoplay = "" loop = "true" )
-		.col-md-6.col-sm-6.col-xs-6
+		.col-md-12.col-sm-12.col-xs-12
 			-each incident in getIncidentResult
 				table#pickle.table.table-hover.table-striped.table-bordered
 					thead
 						tr.default
 							th=incident.Type
 						tr.default
-							th=incident.Description
+							th=incident.Description	
+	.row
+		.col-md-4.col-sm-4.col-xs-12	
+		.col-md-4.col-sm-4.col-xs-12
+			img#incidentPhoto(src="",  width = "80%", height = "80%", display = 'none')
+			video#incidentVideo(src="",  width = "80%", height = "80%", display = "none" autoplay = "" loop = "true" )
+		.col-md-4.col-sm-4.col-xs-12
 			script(src='/javascripts/convoyer/renderIncidentDetails.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
