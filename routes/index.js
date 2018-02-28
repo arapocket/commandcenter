@@ -237,8 +237,11 @@ var ConvoyerMapController = require('../controllers/Convoyer/ConvoyerMapControll
 router.get('/foxmaps', ConvoyerMapController.getAllGuardPatrols);
 
 
+var PatrolReplayController = require('../controllers/Convoyer/PatrolReplayController');
+router.get('/patrolreplay/:id', PatrolReplayController.getPatrolReplay);
+
 var PatrolReplayMapController = require('../controllers/Convoyer/PatrolReplayMapController');
-router.get('/patrolreplay/:id', PatrolReplayMapController.getPatrolReplayMap);
+router.get('/patrolreplaymap/:id', PatrolReplayMapController.getPatrolReplayMap);
 
 var IncidentDetailController = require('../controllers/Convoyer/IncidentDetailController');
 router.get('/incidentdetails/:id', IncidentDetailController.getIncidentDetails);
