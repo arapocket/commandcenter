@@ -25,11 +25,9 @@ html(lang='en')
 						tr.default
 							th=incident.Description	
 	.row
-		.col-md-4.col-sm-4.col-xs-12	
 		.col-md-4.col-sm-4.col-xs-12
 			img#incidentPhoto(src="",  width = "80%", height = "80%", display = 'none')
 			video#incidentVideo(src="",  width = "80%", height = "80%", display = "none" autoplay = "" loop = "true" )
-		.col-md-4.col-sm-4.col-xs-12
 			script(src='/javascripts/convoyer/renderIncidentDetails.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
