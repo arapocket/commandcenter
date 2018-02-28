@@ -21,7 +21,13 @@ $(function () {
 
   var messageHistory = JSON.parse(localStorage.getItem("messageHistory"));
 
-  addChatMessage(messageHistory);
+  for (let i = 0 ; i < messageHistory.length ; i++ )
+  {
+    console.log('logging a message history')
+    console.log(messageHistory[i]);
+  }
+  
+  // addChatMessage(messageHistory);
 
   // Prompt for setting a username
   var username = '';
