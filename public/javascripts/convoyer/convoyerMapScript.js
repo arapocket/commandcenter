@@ -9,8 +9,6 @@ function imageError() {
 
 function initMap() {
 
-    // console.log('logging area ' +  JSON.stringify(area));
-
     let currentArea = area[0];
 
     let center = { lat: currentArea.lat, lng: currentArea.lng }
@@ -24,7 +22,6 @@ function initMap() {
         '#58dc00', '#a8f07a', '#4ae8c4',
         '#3b88eb'
     ];
-
 
     console.log("initMap called");
 

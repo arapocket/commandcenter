@@ -3,7 +3,7 @@ $(function () {
   console.log("socket stuff called");
 
   var socket = io();
-  
+
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
@@ -19,6 +19,8 @@ $(function () {
   var $inputMessage = $('.inputMessage'); // Input message input box
   var $chatPage = $('.chat.page'); // The chatroom page
 
+  var messageHistory = JSON.parse(localStorage.getItem("messageHistory"));
+
 
   // Prompt for setting a username
   var username = '';
@@ -30,11 +32,11 @@ $(function () {
 
 
 
-let sendMessageButton = parent.document.getElementById('sendMessageButton');
+  let sendMessageButton = parent.document.getElementById('sendMessageButton');
 
-sendMessageButton.addEventListener('click', function () {
-  sendMessage();
-})
+  sendMessageButton.addEventListener('click', function () {
+    sendMessage();
+  })
 
 
 
@@ -116,6 +118,7 @@ sendMessageButton.addEventListener('click', function () {
     data.typing = true;
     data.message = 'is typing';
     addChatMessage(data);
+
   }
 
   // Removes the visual chat typing message
@@ -251,6 +254,10 @@ sendMessageButton.addEventListener('click', function () {
     console.log('message heard');
 
     addChatMessage(data);
+
+    messageHistory = messageHistory + data;
+
+    localStorage.setItem("messageHistory", JSON.stringify(messageHistory));
   });
 
   // Whenever the server emits 'user joined', log it in the chat body
