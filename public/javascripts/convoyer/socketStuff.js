@@ -266,7 +266,7 @@ $(function () {
     messageHistory = messageHistory + data;
 
     console.log('logging messageHistory from socket.on(message)');
-    console.log(JSON.stringify(messageHistory));
+    console.log(JSON.parse(messageHistory));
 
     localStorage.setItem("messageHistory", JSON.stringify(messageHistory));
   });
