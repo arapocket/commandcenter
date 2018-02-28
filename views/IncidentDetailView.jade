@@ -19,11 +19,13 @@ html(lang='en')
 		.col-md-12.col-sm-12.col-xs-12
 			-each incident in getIncidentResult
 				table#pickle.table.table-hover.table-striped.table-bordered
-					thead
-						.panel
-							.panel
-								h3.panel-title=incident.Type
-									th=incident.Description	
+								thead
+								tbody
+								-each incident in getAllIncidentsResult
+														tr.default
+																td=incident.Type 
+														tr.default
+																td=incident.Description
 	.row
 		.col-md-4.col-sm-4.col-xs-12
 			img#incidentPhoto(src="",  width = "80%", height = "80%", display = 'none')
