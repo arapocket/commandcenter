@@ -1057,7 +1057,7 @@ function initMap() {
         xhr.send(JSON.stringify({
             "CurrentRoute": 1,
             "NotCurrentRoute": 0,
-            "RouteID": routeData,
+            "RouteID": routeID,
             "GuardID": currentGuard
         }));
 
