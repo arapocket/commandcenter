@@ -1037,7 +1037,7 @@ function initMap() {
 
     }
 
-    function setCurrentRoute(routeData, route) {
+    function setCurrentRoute(routeID, route) {
 
         let currentGuard = localStorage.getItem("currentGuard");
 
@@ -1053,12 +1053,11 @@ function initMap() {
         xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/setcurrentroute", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
-        console.log('logging route data from setCurrentRoute ' + routeData);
 
         xhr.send(JSON.stringify({
             "CurrentRoute": 1,
             "NotCurrentRoute": 0,
-            "RouteID": routeData.RouteID,
+            "RouteID": routeData,
             "GuardID": currentGuard
         }));
 
