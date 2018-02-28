@@ -21,8 +21,8 @@ html(lang='en')
 						i.fa.fa-hand-o-left(aria-hidden='true')
 						| &nbsp Go Back
 		.col-md-6.col-sm-6.col-xs-12
-			img#incidentPhoto(src="",  width = "50%", height = "500", align = "center", display = 'none')
-			video#incidentVideo(src="",  width = "50%", height = "500", align = "center" display = "none" autoplay = "" loop = "true" )
+			img#incidentPhoto(src="",  width = "50%", height = "500", display = 'none')
+			video#incidentVideo(src="",  width = "50%", height = "500", display = "none" autoplay = "" loop = "true" )
 		.col-md-6.col-sm-6.col-xs-12
 			-each incident in getIncidentResult
 				table#pickle.table.table-hover.table-striped.table-bordered
