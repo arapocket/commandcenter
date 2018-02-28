@@ -12,9 +12,8 @@ block content
 																div
 																				table#pickle.table.table-hover.table-striped.table-bordered
 																								thead
-																								-each result in getPatrolReplayResult
-																												tr.default(id=result.CoordID)
-																																th=result.lat																																									
+																												tr.default(id=#{getPatrolReplayResult[0].PatrolID})
+																																th=#{getPatrolReplayResult[0].FirstName}																																									
 			.col-md-9.col-sm-9.col-xs-12			  
 					object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolreplaymap/#{getPatrolReplayResult[0].PatrolID}', width='100%', height='500', type='text/html')															
 					script.
