@@ -27,12 +27,11 @@ html(lang='en')
 			.row
 									.panel.panel-default
 											.panel-heading
-											-each incident in getIncidentResult
-													h3.panel-title=incident.Type   
+													h3.panel-title=getIncidentResult.Type   
 															table#pickle.table.table-hover.table-striped.table-bordered
 																			thead
 																							tr.default
-																											th=incident.Description
+																											th=getIncidentResult.Description
 			script(src='/javascripts/convoyer/renderIncidentDetails.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
