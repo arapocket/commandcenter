@@ -19,7 +19,12 @@ $(function () {
   var $inputMessage = $('.inputMessage'); // Input message input box
   var $chatPage = $('.chat.page'); // The chatroom page
 
+  console.log('logging messageHistory before parse');
+  console.log(localStorage.getItem("messageHistory"));
+
+  console.log(messageHistory);
   var messageHistory = JSON.parse(localStorage.getItem("messageHistory"));
+
 
   console.log('logging messageHistory');
   console.log(messageHistory);
@@ -270,7 +275,7 @@ $(function () {
     console.log('logging data from socket.on(message)');
     console.log(data);
 
-    messageHistory = messageHistory + data;
+    messageHistory.push(data);
 
 
     localStorage.setItem("messageHistory", JSON.stringify(messageHistory));
