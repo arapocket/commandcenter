@@ -2,20 +2,21 @@ include mixins
 extends layout
 block content   
 	include navbar
-	head	
-		.col-md-2.col-sm-2.col-xs-12
-				.panel.panel-default
-					.panel-heading
-						h3.panel-title Patrol Replay
-							thead
-								tr.default(id=getPatrolReplayResult[0].LastName)
-									th=getPatrolReplayResult[0].FirstName																																								
-								tr.default(id=getPatrolReplayResult[0].Time)
-									th=getPatrolReplayResult[0].Time																																											
-		.col-md-9.col-sm-9.col-xs-12			  
-				object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolreplaymap/#{getPatrolReplayResult[0].PatrolID}', width='100%', height='500', type='text/html')															
-				script.
-						var mapElement = document.getElementById('map');
-						var results = !{ JSON.stringify(getPatrolReplayResult) };
-						console.log('logging patrol replay results:');
-						console.log(results);
+	head
+		.row	
+            .col-md-2.col-sm-2.col-xs-12
+                    .panel.panel-default
+                        .panel-heading
+                            h3.panel-title Patrol Replay
+                                thead
+                                    tr.default(id=getPatrolReplayResult[0].LastName)
+                                        th=getPatrolReplayResult[0].FirstName																																								
+                                    tr.default(id=getPatrolReplayResult[0].Time)
+                                        th=getPatrolReplayResult[0].Time																																											
+            .col-md-9.col-sm-9.col-xs-12			  
+                    object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolreplaymap/#{getPatrolReplayResult[0].PatrolID}', width='100%', height='500', type='text/html')															
+                    script.
+                            var mapElement = document.getElementById('map');
+                            var results = !{ JSON.stringify(getPatrolReplayResult) };
+                            console.log('logging patrol replay results:');
+                            console.log(results);
