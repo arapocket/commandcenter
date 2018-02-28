@@ -261,11 +261,12 @@ $(function () {
   // Whenever the server emits 'message', update the chat body
   socket.on('message', function (data) {
 
-    console.log('message heard');
-
     addChatMessage(data);
 
     messageHistory = messageHistory + data;
+
+    console.log('logging messageHistory from socket.on(message)');
+    console.log(messageHistory);
 
     localStorage.setItem("messageHistory", JSON.stringify(messageHistory));
   });
