@@ -43,7 +43,7 @@ function initMap() {
     socket.on('first location', function (incident) {
         window.setTimeout(function () {
             parent.location.reload();
-        }, 1000);
+        }, 2000);
         // refreshPage(10);
     });
 
