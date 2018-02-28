@@ -87,11 +87,11 @@ function initMap() {
 
         });
 
-        createIncidentMarkers(incidents, iconsBase);
+        createIncidentMarkers();
 
-        createGuards(locations, coords);
+        createGuards();
 
-        createIncidentButtons(incidents);
+        createIncidentButtons();
 
 
     } else {
@@ -169,7 +169,7 @@ function initMap() {
     });
 
 
-    function createGuards(locations, coords) {
+    function createGuards() {
 
         for (let i = 0; i < locations.length; i++) {
 
@@ -430,7 +430,7 @@ function initMap() {
 
     }
 
-    function createIncidentButtons(incidents) {
+    function createIncidentButtons() {
 
         var incidentButtons = [];
 
@@ -498,7 +498,7 @@ function initMap() {
 
     }
 
-    function createIncidentMarkers(incidents, iconsBase) {
+    function createIncidentMarkers() {
 
         for (let i = 0; i < incidents.length; i++) {
             var lat = incidents[i].lat;
