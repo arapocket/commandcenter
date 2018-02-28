@@ -263,10 +263,15 @@ $(function () {
 
     addChatMessage(data);
 
-    messageHistory = messageHistory + data;
 
     console.log('logging messageHistory from socket.on(message)');
-    console.log(JSON.parse(messageHistory));
+    console.log(messageHistory);
+
+    console.log('logging data from socket.on(message)');
+    console.log(data);
+
+    messageHistory = messageHistory + data;
+
 
     localStorage.setItem("messageHistory", JSON.stringify(messageHistory));
   });
