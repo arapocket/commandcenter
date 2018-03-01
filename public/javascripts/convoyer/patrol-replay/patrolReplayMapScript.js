@@ -68,24 +68,24 @@ function initMap() {
 
         for (let i = 0; i < results.length; i++) {
 
-            let latLng = new google.maps.LatLng(results[i].lat, results[i].lng);
-            if (i > 0) {
-                let lastLocation = new google.maps.LatLng(results[i - 1].lat, results[i - 1].lng);
-                let locAccurate = locationIsAccurate(latLng, lastLocation);
-                if (locAccurate) {
-                    window.setTimeout(function () {
+            window.setTimeout(function () {
+
+
+
+                let latLng = new google.maps.LatLng(results[i].lat, results[i].lng);
+                if (i > 0) {
+                    let lastLocation = new google.maps.LatLng(results[i - 1].lat, results[i - 1].lng);
+                    let locAccurate = locationIsAccurate(latLng, lastLocation);
+                    if (locAccurate) {
                         patrol.getPath().push(latLng);
-                    }, 1000);
+                    } else {
+                        patrol.getPath().pop();
+                    }
                 } else {
-                    patrol.getPath().pop();
-                }
-            } else {
-                window.setTimeout(function () {
                     patrol.getPath().push(latLng);
-                }, 1000);
 
-            }
-
+                }
+            }, 1000);
         }
 
     }
