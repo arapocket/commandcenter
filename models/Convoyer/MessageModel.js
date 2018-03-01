@@ -43,7 +43,7 @@ module.exports.addMessage = function (Message, callback) {
 
             let date = datetime.syncCurrentDateTimeforDB();
 
-            var strSQL = "Insert into message values ('" + Message.MessageID + "', '" + Message.Message + "', '" + Message.GuardID + "', '" + date + ");";
+            var strSQL = "Insert into message values ('" + Message.MessageID + "', '" + Message.Message + "', '" + Message.GuardID + "', '" + date + "');";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
