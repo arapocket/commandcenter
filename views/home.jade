@@ -19,7 +19,7 @@ html
         //- Bootswatch Theme
         //-link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.0/flatly/bootstrap.min.css", rel="stylesheet")
         link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
-   
+        +bootswatch("Flatly")  
     body(style="padding-bottom:10rem;")
         .container   
             .jumbotron
@@ -46,9 +46,5 @@ html
                     button.btn.btn-lg.btn-primary(type="submit") Log in now
                     br
                     br
-
-            
-
             h5(style="color: #CC3300;") #{sess.error}
             include footer
-+bootswatch("Flatly")  
