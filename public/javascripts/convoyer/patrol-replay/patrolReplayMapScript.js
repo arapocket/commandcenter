@@ -67,11 +67,10 @@ function initMap() {
 
 
         for (let i = 0; i < results.length; i++) {
+            let multiplier = 0
 
             window.setTimeout(function () {
-
-
-
+                multiplier++;
                 let latLng = new google.maps.LatLng(results[i].lat, results[i].lng);
                 if (i > 0) {
                     let lastLocation = new google.maps.LatLng(results[i - 1].lat, results[i - 1].lng);
@@ -85,7 +84,7 @@ function initMap() {
                     patrol.getPath().push(latLng);
 
                 }
-            }, 1000);
+            }, 1000 * multiplier);
         }
 
     }
