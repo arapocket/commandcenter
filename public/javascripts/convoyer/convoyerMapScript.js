@@ -855,7 +855,7 @@ function initMap() {
 
                 var currentGuard = localStorage.getItem("currentGuard");
 
-                var routeID = createRouteID();
+                var routeID = createID();
                 var xhr = new XMLHttpRequest();
 
                 if (!xhr) {
@@ -907,7 +907,7 @@ function initMap() {
 
                 var currentGuard = localStorage.getItem("currentGuard");
 
-                var routeID = createRouteID();
+                var routeID = createID();
                 var xhr = new XMLHttpRequest();
 
                 if (!xhr) {
@@ -1120,7 +1120,7 @@ function initMap() {
         console.log("logging coords:");
         console.log(coords);
         for (let latLng of coords) {
-            let checkpointID = createCheckpointID();
+            let checkpointID = createID();
 
             let xhr = new XMLHttpRequest();
 
@@ -1183,14 +1183,9 @@ function initMap() {
         }
     }
 
-    function createRouteID() {
-        var newRouteID = Math.random().toString(36).substr(2, 9);
-        return newRouteID;
-    }
-
-    function createCheckpointID() {
-        var newCheckpointID = Math.random().toString(36).substr(2, 9);
-        return newCheckpointID;
+    function createID() {
+        var newID = Math.random().toString(36).substr(2, 9);
+        return newID;
     }
 
     function getPathColor(username) {

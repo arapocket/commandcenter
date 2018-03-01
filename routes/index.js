@@ -264,8 +264,6 @@ router.delete('/incidents/:id', IncidentController.deleteIncident);
 router.put('/incidents/:id', IncidentController.updateIncident);
 router.get('/incidentlist', IncidentController.incidentList);
 
-
-
 var PatrolAreaController = require('../controllers/Convoyer/PatrolAreaController');
 router.get('/patrolareas', PatrolAreaController.getAllPatrolAreas);
 router.get('/patrolareas/:id', PatrolAreaController.getPatrolAreaByID);
@@ -297,6 +295,9 @@ router.put('/setcurrentroute', RouteController.updateRoute);
 router.put('/disableroutes', RouteController.disableRoutes);
 router.get('/currentroutes/:id', RouteController.getCurrentRoutes);
 
+var MessageController = require('../controllers/Convoyer/MessageController');
+router.get('/messages', MessageController.getAllMessages);
+router.post('/messages', MessageController.addMessage);
 
 //#############################################################################################
 //#############################################################################################

@@ -19,23 +19,7 @@ $(function () {
   var $inputMessage = $('.inputMessage'); // Input message input box
   var $chatPage = $('.chat.page'); // The chatroom page
 
-  console.log('logging messageHistory before parse');
-  console.log(localStorage.getItem("messageHistory"));
 
-  console.log(messageHistory);
-  var messageHistory = JSON.parse(localStorage.getItem("messageHistory"));
-
-
-  console.log('logging messageHistory');
-  console.log(messageHistory);
-
-  // for (let i = 0 ; i < messageHistory.length ; i++ )
-  // {
-  //   console.log('logging a message history')
-  //   console.log(messageHistory[i]);
-  // }
-
-  // addChatMessage(messageHistory);
 
   // Prompt for setting a username
   var username = '';
@@ -95,6 +79,8 @@ $(function () {
       // tell server to execute 'message' and send along one parameter
       socket.emit('new message', message);
     }
+
+    postMessage(message);
   }
 
   // Log a message
@@ -218,6 +204,32 @@ $(function () {
     return COLORS[index];
   }
 
+  function postMessage(message){
+
+    var xhr = new XMLHttpRequest();
+
+    if (!xhr) {
+        return false;
+    }
+
+    xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages", true);
+
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.send(JSON.stringify({
+        "MessageID": createID(),
+        "Message": message,
+        "GuardID": 'GREYFOX'
+    }));
+
+  }
+
+  function createID() {
+    var newID = Math.random().toString(36).substr(2, 9);
+    return newID;
+}
+
+
   // Keyboard events
 
   $window.keydown(function (event) {
@@ -268,17 +280,6 @@ $(function () {
 
     addChatMessage(data);
 
-
-    console.log('logging messageHistory from socket.on(message)');
-    console.log(messageHistory);
-
-    console.log('logging data from socket.on(message)');
-    console.log(data);
-
-    messageHistory.push(data);
-
-
-    localStorage.setItem("messageHistory", JSON.stringify(messageHistory));
   });
 
   // Whenever the server emits 'user joined', log it in the chat body
