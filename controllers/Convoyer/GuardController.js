@@ -182,17 +182,6 @@ module.exports.getGuardByID = function (req, res) {
   };
 };
 
-module.exports.getGuardByUsername = function (req, res) {
-  GuardModel.getGuardByUsername(req.params.username, function (err, result) {
-    if (err) {
-      res.json(err);
-    }
-    else {
-      res.json(result);
-    }
-  });
-};
-
 exports.updateGuard = function (req, res) {
   sess = req.session;
   var name = req.query.name;

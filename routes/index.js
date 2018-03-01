@@ -116,7 +116,6 @@ router.post('/guardDelete/:GuardID', GuardController.deleteGuard);
 
 router.get('/guards', GuardController.getAllGuards);
 router.get('/guards/:id', GuardController.getGuardByID);
-router.get('/getGuard/:username', GuardController.getGuardByUsername);
 router.put('/guards', GuardController.updateGuardLogin);
 router.put('/addDeviceToken', GuardController.addDeviceToken);
 
