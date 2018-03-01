@@ -65,10 +65,9 @@ function initMap() {
             icons: [patrolSeq]
         })
 
+        let multiplier = 2;
 
         for (let i = 0; i < results.length; i++) {
-            let multiplier = 0
-
             window.setTimeout(function () {
                 multiplier++;
                 let latLng = new google.maps.LatLng(results[i].lat, results[i].lng);
