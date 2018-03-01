@@ -2,8 +2,6 @@ $(function () {
 
   getMessages();
 
-  console.log("socket stuff called");
-
   var socket = io();
 
   var FADE_TIME = 150; // ms
@@ -108,8 +106,6 @@ $(function () {
   // Sets the client's username
   function setUsername() {
 
-    console.log('setUsername called');
-
     username = "GREYFOX";
     socket.emit('add user', username);
   }
@@ -117,13 +113,9 @@ $(function () {
   // Sends a chat messages
   function sendMessage() {
 
-    console.log('sendMessage called');
-
     var message = $inputMessage.val();
     // Prevent markup from being injected into the message
     message = cleanInput(message);
-
-    console.log('logging message ' + message)
 
     // if there is a non-empty message and a socket connection
     if (message && connected) {
@@ -147,6 +139,10 @@ $(function () {
 
   // Adds the visual chat message to the message list
   function addChatMessage(data, options) {
+
+    console.log('logging data from addChatMessage ')
+    console.log(data);
+
     // Don't fade the message in if there is an 'X was typing'
     var $typingMessages = getTypingMessages(data);
     options = options || {};
@@ -320,7 +316,6 @@ $(function () {
   // Whenever the server emits 'login', log the login message
   socket.on('login', function (data) {
 
-    console.log('login heard');
 
     connected = true;
     // Display the welcome message

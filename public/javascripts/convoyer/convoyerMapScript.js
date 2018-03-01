@@ -1,11 +1,4 @@
 
-function imageError() {
-
-    console.log('image error called');
-    // let incidentImage = document.getElementById('incidentImage');
-    // incidentImage.style.display = 'none';
-
-}
 
 function initMap() {
 
@@ -23,7 +16,6 @@ function initMap() {
         '#3b88eb'
     ];
 
-    console.log("initMap called");
 
     var iconsBase = "http://maps.google.com/mapfiles/"
 
@@ -57,10 +49,6 @@ function initMap() {
 
     if (locations.length > 0) {
 
-        console.log('logging locations');
-        console.log(locations);
-        console.log('logging locations[0]');
-        console.log(locations[0]);
 
         let firstLocationLat = locations[0].lat;
         let firstLocationLng = locations[0].lng;
@@ -170,8 +158,6 @@ function initMap() {
 
         for (let i = 0; i < locations.length; i++) {
 
-            console.log('looping once');
-
             let location = locations[i];
             let id = location.GuardID;
             let firstName = location.FirstName;
@@ -222,7 +208,6 @@ function initMap() {
 
             try {
                 editRouteButton.addEventListener('click', function (e) {
-                    console.log('the guard id is: ' + id);
                     onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations);
                 });
 
@@ -281,7 +266,6 @@ function initMap() {
 
                 guardButton.addEventListener('click', function (e) {
 
-                    console.log(guardButton.id + ' clicked');
 
                     map.setCenter({
                         lat: lat,
@@ -336,8 +320,7 @@ function initMap() {
                 let latLng = new google.maps.LatLng(coords[i].lat, coords[i].lng);
                 if (i > 0) {
                     let lastLocation = new google.maps.LatLng(coords[i - 1].lat, coords[i - 1].lng);
-                    console.log(latLng.lat());
-                    console.log(lastLocation.lat());
+
                     let locAccurate = locationIsAccurate(latLng, lastLocation);
                     if (locAccurate) {
                         patrol.getPath().push(latLng);
@@ -351,8 +334,7 @@ function initMap() {
         }
 
         socket.on('location ' + id, function (location) {
-            console.log('location heard from convoyerMapScript()');
-            console.log(location);
+
             continuePath(patrol, location);
         });
 
@@ -362,9 +344,6 @@ function initMap() {
 
     function continuePath(patrol, location) {
 
-        // console.log('continue path called');
-
-        // console.log(location.location.coords);
 
         let lat = location.location.coords.latitude;
         let lng = location.location.coords.longitude;
@@ -431,9 +410,6 @@ function initMap() {
 
         var incidentButtons = [];
 
-        console.log('logging incidents inside createIncidentButtons');
-        console.log(incidents);
-
         for (let i = 0; i < incidents.length; i++) {
             let incident = incidents[i];
             let incidentButton = parent.document.getElementById(incident.IncidentID);
@@ -441,7 +417,6 @@ function initMap() {
 
             incidentButton.addEventListener('click', function (e) {
 
-                console.log('incident listener called');
 
                 map.setCenter({
                     lat: incident.lat,
@@ -468,9 +443,6 @@ function initMap() {
             disableAutoPan: true
         });
 
-
-        console.log("here's a guard location");
-        console.log(location);
         var lat = location.lat;
         var lng = location.lng;
         let marker = new google.maps.Marker({
@@ -501,8 +473,6 @@ function initMap() {
             var lat = incidents[i].lat;
             var lng = incidents[i].lng;
 
-            console.log("logging IncidentID");
-            console.log(incidents[i].IncidentID);
 
             let windowString = '';
 
@@ -554,11 +524,8 @@ function initMap() {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
-                console.log('logging incident GET response: ' + xhr.responseText);
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
-                    console.log('logging json from Incident GET');
-                    console.log(json);
                     loadIncidentMarker(json);
                 }
             }
@@ -622,14 +589,11 @@ function initMap() {
 
     function onClearCheckpoints(route) {
 
-        console.log('onClearCheckpoints called');
-
         route.setPath([]);
     }
 
     function onRemoveLastCheckpoint(route) {
 
-        console.log('onRemoveLastCheckpoint called');
 
         route.getPath().pop();
 
@@ -691,15 +655,8 @@ function initMap() {
 
     function onTrashRoute(route, id) {
 
-        console.log('logging id from onTrashRoute ' + id);
-
-
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
-
-        // route.setMap(null);
-        // route.setPath([]);
-        // route.setMap(map);
 
         loadRoute(route, id);
 
@@ -836,10 +793,6 @@ function initMap() {
 
 
                 let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
-
-
-                console.log('onSaveRoute called');
-                console.log('for this id ' + id);
 
                 editRouteButton.style.display = 'none';
                 trashRouteButton.style.display = 'none';
@@ -1012,7 +965,6 @@ function initMap() {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
-                console.log('logging currentroutes response: ' + xhr.responseText);
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
                     let routeID = json[0].RouteID;
@@ -1034,8 +986,6 @@ function initMap() {
     function setCurrentRoute(routeID, route) {
 
         let currentGuard = localStorage.getItem("currentGuard");
-
-        console.log('logging currentGuard from setCurrentRoute ' + currentGuard);
 
         let xhr = new XMLHttpRequest();
 
@@ -1111,11 +1061,9 @@ function initMap() {
 
     function postCheckpoints(route, routeID) {
         let s = 0;
-        console.log("logging route:");
-        console.log(route);
+
         let coords = route.getPath().getArray();
-        console.log("logging coords:");
-        console.log(coords);
+
         for (let latLng of coords) {
             let checkpointID = createID();
 
@@ -1144,8 +1092,6 @@ function initMap() {
 
     function loadCurrentRoute(routeID, route) {
 
-        console.log('loadCurrentRoute called ');
-
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {
@@ -1155,7 +1101,6 @@ function initMap() {
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState == XMLHttpRequest.DONE) {
-                console.log('logging checkpoints response: ' + xhr.responseText);
                 var checkpoints = JSON.parse(xhr.responseText);
                 loadRouteOnMap(checkpoints, route);
 
@@ -1229,10 +1174,8 @@ function initMap() {
             }
 
             try {
-                console.log(parent.document.getElementById("refreshtimer"))
                 parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
             } catch (err) {
-                console.log(err);
             }
 
 
