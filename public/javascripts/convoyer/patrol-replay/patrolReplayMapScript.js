@@ -3,21 +3,11 @@ function initMap() {
 
     let guard = results[0];
     let center = { lat: guard.lat, lng: guard.lng };
-
-    let guardPosition = {lat: guard.lat, lng: guard.lng};
-
-
-    let marker = new google.maps.Marker({
-        position: guardPosition,
-        map: map,
-        animation: google.maps.Animation.DROP,
-    });
-
+    let guardPosition = { lat: guard.lat, lng: guard.lng };
     const COLORS = [
         '#e21400', '#f8a700', '#f78b00',
         '#58dc00', '#a8f07a', '#4ae8c4',
-        '#3b88eb'
-    ];
+        '#3b88eb'];
 
     var iconsBase = "http://maps.google.com/mapfiles/"
 
@@ -31,6 +21,12 @@ function initMap() {
         mapTypeControl: true,
         panControl: false,
         rotateControl: false,
+    });
+
+    let marker = new google.maps.Marker({
+        position: guardPosition,
+        map: map,
+        animation: google.maps.Animation.DROP,
     });
 
 
