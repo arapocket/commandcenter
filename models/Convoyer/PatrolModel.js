@@ -126,7 +126,7 @@ module.exports.updatePatrol = function (Patrol, callback) {
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
-                    callback(null, rows);
+                    // callback(null, rows);
                     
                     let date = datetime.syncCurrentDateTimeforDB();
 
