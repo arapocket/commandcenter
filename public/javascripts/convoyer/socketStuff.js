@@ -1,5 +1,8 @@
 $(function () {
 
+
+  getMessages();
+
   console.log("socket stuff called");
 
   var socket = io();
@@ -38,6 +41,28 @@ $(function () {
   })
 
 
+
+  function getMessages(){
+    var xhr = new XMLHttpRequest();
+
+    if (!xhr) {
+        return false;
+    }
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            let json = JSON.parse(xhr.responseText);
+            if (json.length > 0) {
+                console.log('logging json from getMessages');
+                console.log(json);
+            }
+        }
+    }
+
+    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages/" , true);
+
+    xhr.send(null);
+  }
 
   function addParticipantsMessage(data) {
     var message = '';
@@ -204,12 +229,12 @@ $(function () {
     return COLORS[index];
   }
 
-  function postMessage(message){
+  function postMessage(message) {
 
     var xhr = new XMLHttpRequest();
 
     if (!xhr) {
-        return false;
+      return false;
     }
 
     xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages", true);
@@ -217,9 +242,9 @@ $(function () {
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.send(JSON.stringify({
-        "MessageID": createID(),
-        "Message": message,
-        "GuardID": 'GREYFOX'
+      "MessageID": createID(),
+      "Message": message,
+      "GuardID": 'GREYFOX'
     }));
 
   }
@@ -227,7 +252,7 @@ $(function () {
   function createID() {
     var newID = Math.random().toString(36).substr(2, 9);
     return newID;
-}
+  }
 
 
   // Keyboard events

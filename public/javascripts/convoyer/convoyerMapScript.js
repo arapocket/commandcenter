@@ -543,9 +543,6 @@ function initMap() {
 
     function createIncidentMarker(incident) {
 
-        // console.log('logging incident from createIncidentMarker');
-        // console.log(incident);
-
         let incidentID = incident.incident;
 
         var xhr = new XMLHttpRequest();
