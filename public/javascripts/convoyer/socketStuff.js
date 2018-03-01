@@ -39,59 +39,35 @@ $(function () {
 
 
 
-  function getMessages(){
-    var xhr = new XMLHttpRequest();
+  // function getMessages(){
+  //   var xhr = new XMLHttpRequest();
 
-    if (!xhr) {
-        return false;
-    }
+  //   if (!xhr) {
+  //       return false;
+  //   }
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            let json = JSON.parse(xhr.responseText);
-            if (json.length > 0) {
-                console.log('logging json from getMessages');
-                console.log(json);
-                for (let i = 0 ; i < json.length ; i ++){
-                  
-                  let username = getGuardName();
-                  let messageID = json[i].MessageID;
-                  let message = json[i].Message;
-
-                  addChatMessage({"username": username, "message": message});
-                }
-            }
-        }
-    }
-
-    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages/" , true);
-
-    xhr.send(null);
-  }
+  //   xhr.onreadystatechange = function () {
+  //       if (xhr.readyState == XMLHttpRequest.DONE) {
+  //           let json = JSON.parse(xhr.responseText);
+  //           if (json.length > 0) {
+  //               console.log('logging json from getMessages');
+  //               console.log(json);
+  //               for (let i = 0 ; i < json.length ; i ++){ 
+  //                 let messageID = json[i].MessageID;
+  //                 let message = json[i].Message;
 
 
-  function getGuardName(guardID){
-    var xhr = new XMLHttpRequest();
+  //                 addChatMessage({"username": username, "message": message});
+  //               }
+  //           }
+  //       }
+  //   }
 
-    if (!xhr) {
-        return false;
-    }
+  //   xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages/" , true);
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            let json = JSON.parse(xhr.responseText);
-            if (json.length > 0) {
-              let guardName = json[0].FirstName;
-              return guardName;
-            }
-        }
-    }
+  //   xhr.send(null);
+  // }
 
-    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/guards/" + guardID , true);
-
-    xhr.send(null);
-
-  }
   
   function addParticipantsMessage(data) {
     var message = '';
