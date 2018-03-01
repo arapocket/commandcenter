@@ -59,8 +59,8 @@ $(function () {
                   let username = getGuardName();
                   let messageID = json[i].MessageID;
                   let message = json[i].Message;
-                  
-                  addChatMessage({username: username, message: message});
+
+                  addChatMessage({"username": username, "message": message});
                 }
             }
         }
