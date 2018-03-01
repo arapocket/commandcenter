@@ -1,6 +1,6 @@
 $(function () {
 
-  // getMessages();
+  getMessages();
 
   var socket = io();
 
