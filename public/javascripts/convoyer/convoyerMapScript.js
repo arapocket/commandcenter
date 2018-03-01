@@ -768,7 +768,8 @@ function initMap() {
 
                     xhr.send(JSON.stringify({
                         "CurrentPatrol": 0,
-                        "GuardID": id
+                        "GuardID": id,
+                        'PatrolID': ''
                     }));
 
                     coordPut(id);
