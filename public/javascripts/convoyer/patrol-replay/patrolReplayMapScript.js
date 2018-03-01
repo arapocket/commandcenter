@@ -4,6 +4,8 @@ function initMap() {
     let guard = results[0];
     let center = { lat: guard.lat, lng: guard.lng };
 
+    let guardPosition = {lat: guard.lat, lng: guard.lng};
+
     const COLORS = [
         '#e21400', '#f8a700', '#f78b00',
         '#58dc00', '#a8f07a', '#4ae8c4',
@@ -32,7 +34,7 @@ function initMap() {
     function createGuardMarker() {
 
         let marker = new google.maps.Marker({
-            position: { lat: guard.lat, lng: guard.lng },
+            position: guardPosition,
             map: map,
             animation: google.maps.Animation.DROP,
         });
@@ -76,14 +78,16 @@ function initMap() {
                     let locAccurate = locationIsAccurate(latLng, lastLocation);
                     if (locAccurate) {
                         patrol.getPath().push(latLng);
+                        guardPosition = latLng;
                     } else {
                         patrol.getPath().pop();
                     }
                 } else {
                     patrol.getPath().push(latLng);
+                    guardPosition = latLng;
 
                 }
-            }, 1000 * multiplier);
+            }, 500 * multiplier);
         }
 
     }
