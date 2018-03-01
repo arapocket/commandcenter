@@ -73,12 +73,17 @@ function initMap() {
                         let lastLocation = new google.maps.LatLng(results[i - 1].lat, results[i - 1].lng);
                         let locAccurate = locationIsAccurate(latLng, lastLocation);
                         if (locAccurate) {
-                            patrol.getPath().push(latLng);
+                            setInterval(function() {
+                                patrol.getPath().push(latLng);
+                            }, 1000);
                         } else {
                             patrol.getPath().pop();
                         }
                     } else {
-                        patrol.getPath().push(latLng);
+                        setInterval(function() {
+                            patrol.getPath().push(latLng);
+                        }, 1000);
+                        
                     }
                 
             }
