@@ -395,11 +395,11 @@ function setSocketListeners(socket) {
     });
 
     if (socket.username != 'GREYFOX') {
-    // echo globally (all clients) that a person has connected
-    socket.broadcast.emit('user joined', {
-      username: socket.username,
-      numUsers: numUsers
-    });
+      // echo globally (all clients) that a person has connected
+      socket.broadcast.emit('user joined', {
+        username: socket.username,
+        numUsers: numUsers
+      });
     }
   });
 
@@ -440,24 +440,24 @@ function setSocketListeners(socket) {
     });
   })
 
-    // when first location is heard.. emit this so command center is refreshed
-    socket.on('first location', function (location) {
-      console.log('first location heard');
-      console.log(location);
-      socket.broadcast.emit('first location', {
-        location: location
-      });
-    })
+  // when first location is heard.. emit this so command center is refreshed
+  socket.on('first location', function (location) {
+    console.log('first location heard');
+    console.log(location);
+    socket.broadcast.emit('first location', {
+      location: location
+    });
+  })
 
-  
-    // when a new incident is reported.. emit this
-    socket.on('new incident', function (incident) {
-      console.log('new incident heard');
-      console.log(incident);
-      socket.broadcast.emit('incident', {
-        incident: incident
-      });
-    })
+
+  // when a new incident is reported.. emit this
+  socket.on('new incident', function (incident) {
+    console.log('new incident heard');
+    console.log(incident);
+    socket.broadcast.emit('incident', {
+      incident: incident
+    });
+  })
 
   socket.on('patrol start', function (data) {
     console.log('patrol start test');
@@ -467,7 +467,7 @@ function setSocketListeners(socket) {
   })
 
   socket.on('ended patrol', function (data) {
-    console.log('ended patrol heard from app.js');
+    console.log('ended patrol heard in app.js');
     console.log('logging the data we got');
     console.log(data);
     patrolPut(data, socket);
@@ -482,12 +482,12 @@ function setSocketListeners(socket) {
       --numUsers;
 
 
-      if (socket.username != 'GREYFOX'){
-      // echo globally that this client has left
-      socket.broadcast.emit('user left', {
-        username: socket.username,
-        numUsers: numUsers
-      });
+      if (socket.username != 'GREYFOX') {
+        // echo globally that this client has left
+        socket.broadcast.emit('user left', {
+          username: socket.username,
+          numUsers: numUsers
+        });
       }
 
     }
@@ -555,7 +555,8 @@ function patrolPut(data, socket) {
 
   const postData = querystring.stringify({
     'PatrolID': data.PatrolID,
-    'CurrentPatrol': 0
+    'CurrentPatrol': 0,
+    'GuardID': data.GuardID
   });
 
   const options = {

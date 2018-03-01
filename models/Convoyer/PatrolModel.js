@@ -121,13 +121,29 @@ module.exports.updatePatrol = function (Patrol, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            let date = datetime.syncCurrentDateTimeforDB();
-
-            var strSQL = "Update patrol SET CurrentPatrol = " + Patrol.CurrentPatrol + ", End = '" + date + "' WHERE PatrolID =  '" + Patrol.PatrolID + "';";
+            // here we set all other Patrols to 0
+            var strSQL = "Update Patrol SET CurrentPatrol = " + Patrol.CurrentPatrol + " WHERE GuardID = '" + Patrol.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
-                    connection.end();
+                    // connection.end();
                     callback(null, rows);
+                    
+                    let date = datetime.syncCurrentDateTimeforDB();
+
+                    var strSQL2 = "Update Patrol SET End = '" + date + "' WHERE PatrolID = '" + Patrol.PatrolID + "';";
+                    connection.query(strSQL2, function (err, rows, fields) {
+                        if (!err) {
+                            connection.end();
+                            callback(null, rows);
+                        } else {
+                            console.log('error with the query');
+                            connection.end();
+                            callback(err, rows);
+                        }
+
+                    });
+
+
                 } else {
                     console.log('error with the query');
                     connection.end();
