@@ -39,36 +39,35 @@ $(function () {
 
 
 
-  function getMessages(){
+  function getMessages() {
     var xhr = new XMLHttpRequest();
 
     if (!xhr) {
-        return false;
+      return false;
     }
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            let json = JSON.parse(xhr.responseText);
-            if (json.length > 0) {
-                console.log('logging json from getMessages');
-                console.log(json);
-                for (let i = 0 ; i < json.length ; i ++){ 
-                  let messageID = json[i].MessageID;
-                  let message = json[i].Message;
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        let json = JSON.parse(xhr.responseText);
+        if (json.length > 0) {
+          console.log('logging json from getMessages');
+          console.log(json);
+          for (let i = 0; i < json.length; i++) {
+            let username = json[i].FirstName;
+            let message = json[i].Message;
 
-
-                  addChatMessage({"username": username, "message": message});
-                }
-            }
+            addChatMessage({ "username": username, "message": message });
+          }
         }
+      }
     }
 
-    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages/" , true);
+    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages/", true);
 
     xhr.send(null);
   }
 
-  
+
   function addParticipantsMessage(data) {
     var message = '';
     if (data.numUsers === 1) {
