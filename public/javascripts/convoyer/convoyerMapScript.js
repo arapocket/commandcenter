@@ -55,10 +55,7 @@ function initMap() {
 
         if (incidents.length > 0) {
             firstLocationLat = incidents[0].lat;
-            firstLocationLng = incidents[0].lng;
-
-            center = { lat: incidents[0].lat, lng: incidents[0].lng }
-
+            firstLocationLng = incidents[0].lng;            
         }
 
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -84,8 +81,7 @@ function initMap() {
     } else {
 
         if (incidents.length > 0) {
-            firstLocationLat = incidents[0].lat;
-            firstLocationLng = incidents[0].lng;
+            center = { lat: incidents[0].lat, lng: incidents[0].lng }
         }
 
         var map = new google.maps.Map(document.getElementById('map'), {
