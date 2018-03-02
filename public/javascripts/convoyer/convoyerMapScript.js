@@ -468,7 +468,7 @@ function initMap() {
         for (let i = 0; i < incidents.length; i++) {
             var lat = incidents[i].lat;
             var lng = incidents[i].lng;
-
+            let incidentID = incidents[i].IncidentID;
 
             let windowString = '';
 
@@ -493,6 +493,7 @@ function initMap() {
                 maxWidth: 160,
                 disableAutoPan: true
             });
+            
 
             let marker = new google.maps.Marker({
                 position: { lat: lat, lng: lng },
@@ -500,7 +501,15 @@ function initMap() {
                 icon: iconsBase + "kml/pal3/icon59.png",
                 animation: google.maps.Animation.DROP
             });
-            markerWindow.open(map, marker);
+
+
+            let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
+
+            if (!alreadyOpenedWindow){
+                markerWindow.open(map, marker);
+                localStorage.setItem("alreadyOpenedWindow " + incidentID, true);
+            }
+
             marker.addListener('click', function (e) {
                 markerWindow.open(map, marker);
             });
@@ -571,7 +580,10 @@ function initMap() {
             icon: iconsBase + "kml/pal3/icon59.png",
             animation: google.maps.Animation.DROP
         });
+
         markerWindow.open(map, marker);
+
+
         marker.addListener('click', function (e) {
             markerWindow.open(map, marker);
         });
