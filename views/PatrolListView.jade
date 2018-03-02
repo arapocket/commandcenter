@@ -24,7 +24,9 @@ block content
 									td=result.LastName
 				script.
 					$(document).ready(function() {
-					$('#pickle').DataTable();
+					$('#pickle').DataTable({
+						"order" : [2, 'desc']
+					});
 					});
 				script.
 					$(document).ready(function() {
