@@ -23,7 +23,7 @@ function initMap() {
         createIncidentMarker(incident);
         window.setTimeout(function () {
             parent.location.reload();
-        }, 1000);
+        }, 3000);
     });
 
     socket.on('first location', function (incident) {
