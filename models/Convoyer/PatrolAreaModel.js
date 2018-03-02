@@ -6,7 +6,7 @@ module.exports.getAllPatrolAreas = function (callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -34,7 +34,7 @@ module.exports.getAllPatrolAreas = function (callback) {
 module.exports.getPatrolAreaByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -61,13 +61,13 @@ module.exports.addPatrolArea = function (PatrolArea, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into patrolarea values ('" + PatrolArea.AreaID + "', '" + PatrolArea.AreaName + "', '" +  PatrolArea.lat + "', '" + PatrolArea.lng + "', " + PatrolArea.CurrentArea+ ");";
+            var strSQL = "Insert into patrolarea values ('" + PatrolArea.AreaID + "', '" + PatrolArea.AreaName + "', '" + PatrolArea.lat + "', '" + PatrolArea.lng + "', " + PatrolArea.CurrentArea + ");";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -87,7 +87,7 @@ module.exports.deletePatrolArea = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -113,13 +113,13 @@ module.exports.updatePatrolArea = function (PatrolArea, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            
+
             var strSQL = "Update patrolarea SET CurrentArea = " + PatrolArea.NotCurrentArea + " WHERE NOT AreaID = '" + PatrolArea.AreaID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {

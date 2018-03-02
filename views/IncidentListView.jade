@@ -26,7 +26,9 @@ block content
 									td=result.Media
 				script.
 					$(document).ready(function() {
-					$('#pickle').DataTable();
+					$('#pickle').DataTable({
+						"order" : [1, 'asc']
+					});
 					});
 				script.
 					$(document).ready(function() {
