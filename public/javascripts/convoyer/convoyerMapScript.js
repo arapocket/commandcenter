@@ -254,7 +254,9 @@ function initMap() {
                 });
 
                 guardButton.addEventListener('click', function (e) {
+                    localStorage.setItem("currentGuard", id);
 
+                    localStorage.setItem("alreadyOpenedWindow " + id, true);
 
                     map.setCenter({
                         lat: lat,
@@ -263,7 +265,7 @@ function initMap() {
 
                     changeButtons(location.GuardID, locations, route);
 
-                    localStorage.setItem("currentGuard", id);
+                    
                 })
 
             }
@@ -402,11 +404,11 @@ function initMap() {
         for (let i = 0; i < incidents.length; i++) {
             let incident = incidents[i];
             let incidentButton = parent.document.getElementById(incident.IncidentID);
-
+            let incidentID = incidents[i].IncidentID;
 
             incidentButton.addEventListener('click', function (e) {
 
-
+                localStorage.setItem("alreadyOpenedWindow " + incidentID, true);
                 map.setCenter({
                     lat: incident.lat,
                     lng: incident.lng
@@ -441,14 +443,14 @@ function initMap() {
         });
 
         let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + id);
-        if (!alreadyOpenedWindow){
+        if (!alreadyOpenedWindow) {
             markerWindow.open(map, marker);
-            localStorage.setItem("alreadyOpenedWindow " + id, true);
         }
-        
-        
+
+
 
         marker.addListener('click', function (e) {
+            localStorage.setItem("alreadyOpenedWindow " + id, true);
             markerWindow.open(map, marker);
             changeButtons(id, locations, route);
         });
@@ -493,7 +495,7 @@ function initMap() {
                 maxWidth: 160,
                 disableAutoPan: true
             });
-            
+
 
             let marker = new google.maps.Marker({
                 position: { lat: lat, lng: lng },
@@ -505,12 +507,12 @@ function initMap() {
 
             let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
 
-            if (!alreadyOpenedWindow){
+            if (!alreadyOpenedWindow) {
                 markerWindow.open(map, marker);
-                localStorage.setItem("alreadyOpenedWindow " + incidentID, true);
             }
 
             marker.addListener('click', function (e) {
+                localStorage.setItem("alreadyOpenedWindow " + incidentID, true);
                 markerWindow.open(map, marker);
             });
         }
