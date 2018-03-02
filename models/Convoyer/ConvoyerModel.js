@@ -6,7 +6,7 @@ module.exports.getAllGuards = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -34,7 +34,7 @@ module.exports.getGuardsForNotifications = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -57,7 +57,6 @@ module.exports.getGuardsForNotifications = function (callback) {
     });
 }
 
-
 // GETS ALL THE INCIDENTS IN THE CURRENT SHIFT
 module.exports.getAllIncidents = function (callback) {
 
@@ -65,7 +64,7 @@ module.exports.getAllIncidents = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -94,7 +93,7 @@ module.exports.getCurrentLocations = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -119,11 +118,10 @@ module.exports.getCurrentLocations = function (callback) {
 // GETS ALL THE PATROLS IN THE CURRENT SHIFT
 module.exports.getCurrentPatrols = function (callback) {
 
-
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -151,7 +149,7 @@ module.exports.getCurrentCoords = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -180,7 +178,7 @@ module.exports.getCurrentRoutes = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -208,7 +206,7 @@ module.exports.getCurrentCheckpoints = function (callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
