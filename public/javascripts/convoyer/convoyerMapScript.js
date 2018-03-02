@@ -440,7 +440,14 @@ function initMap() {
             animation: google.maps.Animation.DROP,
         });
 
-        markerWindow.open(map, marker);
+        let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + id);
+        if (!alreadyOpenedWindow){
+            markerWindow.open(map, marker);
+            localStorage.setItem("alreadyOpenedWindow " + id, true);
+        }
+        
+        
+
         marker.addListener('click', function (e) {
             markerWindow.open(map, marker);
             changeButtons(id, locations, route);
