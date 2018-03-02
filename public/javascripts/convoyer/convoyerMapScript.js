@@ -56,6 +56,9 @@ function initMap() {
         if (incidents.length > 0) {
             firstLocationLat = incidents[0].lat;
             firstLocationLng = incidents[0].lng;
+
+            center = { lat: incidents[0].lat, lng: incidents[0].lng }
+
         }
 
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -80,6 +83,11 @@ function initMap() {
 
     } else {
 
+        if (incidents.length > 0) {
+            firstLocationLat = incidents[0].lat;
+            firstLocationLng = incidents[0].lng;
+        }
+
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 18,
             center: center,
@@ -92,9 +100,6 @@ function initMap() {
             rotateControl: false,
         });
 
-        // 34.050963, -118.256133
-        // var mapSpace = document.getElementById('map');
-        // mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
 
     createIncidentMarkers();
