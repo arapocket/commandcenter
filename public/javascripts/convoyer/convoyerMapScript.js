@@ -24,16 +24,12 @@ function initMap() {
         window.setTimeout(function () {
             parent.location.reload();
         }, 1000);
-
-        // refreshPage(10);
-
     });
 
     socket.on('first location', function (incident) {
         window.setTimeout(function () {
             parent.location.reload();
         }, 2000);
-        // refreshPage(10);
     });
 
     socket.on('user left', function (incident) {
@@ -41,10 +37,6 @@ function initMap() {
         window.setTimeout(function () {
             parent.location.reload();
         }, 1000);
-        // refreshPage(10);
-
-
-
     });
 
     if (locations.length > 0) {
@@ -55,7 +47,7 @@ function initMap() {
 
         if (incidents.length > 0) {
             firstLocationLat = incidents[0].lat;
-            firstLocationLng = incidents[0].lng;            
+            firstLocationLng = incidents[0].lng;
         }
 
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -68,15 +60,9 @@ function initMap() {
             mapTypeControl: true,
             panControl: false,
             rotateControl: false,
-
-
         });
 
-
         createGuards();
-
-
-
 
     } else {
 
@@ -637,7 +623,6 @@ function initMap() {
 
         }
 
-        // editRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'block';
         clearCheckpointsButton.style.display = 'block';
         removeLastCheckpointButton.style.display = 'block';

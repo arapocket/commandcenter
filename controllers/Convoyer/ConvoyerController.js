@@ -155,7 +155,7 @@ module.exports.getGuardsForNotifications = (function (req, res) {
     /*
 
 CREATE VIEW currentlocations
-AS SELECT p.CurrentPatrol, g.FirstName, g.LastName, g.DeviceToken, g.GuardID, p.PatrolID
+AS SELECT p.CurrentPatrol, p.Start, p.End, g.FirstName, g.LastName, g.DeviceToken, g.GuardID, p.PatrolID, g.LoggedIn
 FROM patrol p
 INNER JOIN guard g ON p.GuardID = g.GuardID 
 
@@ -167,7 +167,7 @@ INNER JOIN guard g ON p.GuardID = g.GuardID
     /*
 
 CREATE VIEW currentguards
-AS SELECT  c.Sequence, c.Time, l.LoggedIn, l.FirstName,  l.LastName, c.CurrentCoord, l.CurrentPatrol, l.GuardID, l.PatrolID, l.DeviceToken, c.lat, c.lng
+AS SELECT  c.Sequence, l.Start, l.End, l.LoggedIn, l.FirstName,  l.LastName, c.CurrentCoord, l.CurrentPatrol, l.GuardID, l.PatrolID, l.DeviceToken, c.lat, c.lng
 FROM currentlocations l
 INNER JOIN coordinate c ON l.PatrolID = c.PatrolID 
 
