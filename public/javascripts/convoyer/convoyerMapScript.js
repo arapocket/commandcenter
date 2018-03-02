@@ -72,11 +72,10 @@ function initMap() {
 
         });
 
-        createIncidentMarkers();
 
         createGuards();
 
-        createIncidentButtons();
+
 
 
     } else {
@@ -97,6 +96,9 @@ function initMap() {
         // var mapSpace = document.getElementById('map');
         // mapSpace.innerHTML = '<object width="100%" height="100%" data="/locationerror.html"></object>';
     }
+
+    createIncidentMarkers();
+    createIncidentButtons();
 
     let routeSeq = {
         repeat: '30px',
