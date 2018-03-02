@@ -80,7 +80,7 @@ function initMap() {
                     marker.setPosition(latLng);
 
                 }
-            }, 500 * multiplier);
+            }, 250 * multiplier);
         }
 
     }
