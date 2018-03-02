@@ -482,13 +482,12 @@ function setSocketListeners(socket) {
       --numUsers;
 
 
-      if (socket.username != 'GREYFOX') {
-        // echo globally that this client has left
-        socket.broadcast.emit('user left', {
-          username: socket.username,
-          numUsers: numUsers
-        });
-      }
+
+      // echo globally that this client has left
+      socket.broadcast.emit('user left', {
+        username: socket.username,
+        numUsers: numUsers
+      });
 
     }
 
