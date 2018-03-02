@@ -29,9 +29,9 @@ html(lang='en')
 														tr.default
 																td=incident.Time 														
 	.row
-		.col-md-12.col-sm-12.col-xs-12
-			img#incidentPhoto(src="",  width = "50%", height = "50%", display = 'none', text-align = 'center')
-			video#incidentVideo(src="",  width = "50%", height = "50%", display = "none" autoplay = "" loop = "true", text-align = 'center')
+		.col-md-12.col-sm-12.col-xs-12.center-block
+			img#incidentPhoto(src="",  width = "50%", height = "50%", display = 'none')
+			video#incidentVideo(src="",  width = "50%", height = "50%", display = "none" autoplay = "" loop = "true")
 			script(src='/javascripts/convoyer/renderIncidentDetails.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
