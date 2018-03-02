@@ -30,8 +30,8 @@ html(lang='en')
 																td=incident.Time 														
 	.row
 		.col-md-12.col-sm-12.col-xs-12
-			img#incidentPhoto(src="",  width = "50%", height = "50%", display = 'none')
-			video#incidentVideo(src="",  width = "50%", height = "50%", display = "none" autoplay = "" loop = "true" )
+			img#incidentPhoto(src="",  width = "50%", height = "50%", display = 'none', align = 'center')
+			video#incidentVideo(src="",  width = "50%", height = "50%", display = "none" autoplay = "" loop = "true" , align = 'center' )
 			script(src='/javascripts/convoyer/renderIncidentDetails.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
