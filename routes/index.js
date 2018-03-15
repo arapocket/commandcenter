@@ -118,6 +118,8 @@ router.get('/guards', GuardController.getAllGuards);
 router.get('/guards/:id', GuardController.getGuardByID);
 router.put('/guards', GuardController.updateGuardLogin);
 router.put('/addDeviceToken', GuardController.addDeviceToken);
+router.get('/getGuard/:username', Guards.getGuardByUsername);
+
 
 
 //#############################################################################################
