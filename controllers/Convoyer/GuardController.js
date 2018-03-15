@@ -368,7 +368,7 @@ module.exports.authenticateGuard = function (req, res) {
 };
 
 module.exports.getGuardByUsername = function (req, res) {
-  Guard.getGuardByUsername(req.params.username, function (err, result) {
+  GuardModel.getGuardByUsername(req.params.username, function (err, result) {
     if (err) {
       res.json(err);
     }
