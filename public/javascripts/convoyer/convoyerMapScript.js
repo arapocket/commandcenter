@@ -117,7 +117,6 @@ function initMap() {
     let saveRouteButton = parent.document.getElementById('saveRouteButton');
     let loadRouteButton = parent.document.getElementById('loadRouteButton');
 
-
     addRouteButton.addEventListener('click', function (e) {
         onAddRoute();
     });
@@ -141,7 +140,6 @@ function initMap() {
     loadRouteButton.addEventListener('click', function (e) {
         onSelectRoute();
     });
-
 
     function createGuards() {
 
@@ -189,6 +187,8 @@ function initMap() {
 
             let editRouteButton = parent.document.getElementById('editRouteButton' + id);
 
+            let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + id);
+
             let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
 
             let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
@@ -197,7 +197,11 @@ function initMap() {
 
             try {
                 editRouteButton.addEventListener('click', function (e) {
-                    onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations);
+                    onEditRoute(route, queueRoutesButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations);
+                });
+
+                queueRoutesButton.addEventListener('click', function (e) {
+                    onQueueRoutes();
                 });
 
                 trashRouteButton.addEventListener('click', function (e) {
@@ -228,7 +232,7 @@ function initMap() {
                 });
 
                 saveRouteButton.addEventListener('click', function (e) {
-                    onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id);
+                    onSaveRoute(route, queueRoutesButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id);
                 });
 
                 endPatrolButton.addEventListener('click', function (e) {
@@ -355,7 +359,8 @@ function initMap() {
             var id = locations[i].GuardID;
 
             let hideTrashButton = parent.document.getElementById('trashRouteButton' + id);
-            let hideAddButton = parent.document.getElementById('editRouteButton' + id);
+            let hideEditButton = parent.document.getElementById('editRouteButton' + id);
+            let hideQueueButton = parent.document.getElementById('queueRoutesButton' + id);
             let hideClearButton = parent.document.getElementById('clearCheckpointsButton' + id)
             let hideRemoveButton = parent.document.getElementById('removeLastCheckpointButton' + id);
             let hideSaveButton = parent.document.getElementById('saveRouteButton' + id);
@@ -363,7 +368,8 @@ function initMap() {
             let hidePatrolButton = parent.document.getElementById('endPatrolButton' + id);
 
             hideTrashButton.style.display = 'none';
-            hideAddButton.style.display = 'none';
+            hideEditButton.style.display = 'none';
+            hideQueueButton.style.display = 'none';
             hideClearButton.style.display = 'none';
             hideRemoveButton.style.display = 'none';
             hideSaveButton.style.display = 'none';
@@ -375,6 +381,7 @@ function initMap() {
 
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
         let editRouteButton = parent.document.getElementById('editRouteButton' + GuardID);
+        let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + GuardID);
         let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
         let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton' + GuardID);
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
@@ -382,7 +389,6 @@ function initMap() {
         let endPatrolButton = parent.document.getElementById('endPatrolButton' + GuardID)
 
 
-        editRouteButton.style.display = 'none';
         trashRouteButton.style.display = 'none';
         clearCheckpointsButton.style.display = 'none';
         removeLastCheckpointButton.style.display = 'none';
@@ -393,6 +399,7 @@ function initMap() {
         onTrashRoute(route, GuardID);
 
         editRouteButton.style.display = 'block';
+        queueRoutesButton.style.display = 'block';
         endPatrolButton.style.display = 'block';
 
     }
@@ -628,20 +635,18 @@ function initMap() {
 
     }
 
-    function onEditRoute(route, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations) {
-
-
+    function onEditRoute(route, queueRoutesButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations) {
 
         for (let i = 0; i < locations.length; i++) {
             var id = locations[i].GuardID;
 
             var addButton = parent.document.getElementById('editRouteButton' + id);
-            var endButton = parent.document.getElementById('endPatrolButton' + id)
+            var endButton = parent.document.getElementById('endPatrolButton' + id);
+            var queueButton = parent.document.getElementById('queueRoutesButton' + id);
 
             addButton.style.display = 'none';
             endButton.style.display = 'none';
-
-
+            queueButton.style.display = 'none';
         }
 
         trashRouteButton.style.display = 'block';
@@ -657,13 +662,13 @@ function initMap() {
         google.maps.event.addListener(route, 'click', function (e) {
             onAddCheckpoint(route, e.latLng);
         });
+    }
 
-
+    function onQueueRoutes(){
 
     }
 
     function onTrashRoute(route, id) {
-
         google.maps.event.clearListeners(map, 'click');
         google.maps.event.clearListeners(route, 'click');
 
@@ -792,7 +797,7 @@ function initMap() {
         })
     }
 
-    function onSaveRoute(route, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id) {
+    function onSaveRoute(route, queueRoutesButton, editRouteButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, loadRouteButton, saveRouteButton, id) {
 
         bootbox.hideAll();
 
@@ -805,6 +810,7 @@ function initMap() {
                 let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
 
                 editRouteButton.style.display = 'none';
+                queueRoutesButton.style.display = 'none';
                 trashRouteButton.style.display = 'none';
                 clearCheckpointsButton.style.display = 'none';
                 removeLastCheckpointButton.style.display = 'none';
@@ -844,11 +850,6 @@ function initMap() {
 
             }
         });
-
-
-
-
-
     }
 
     function onSaveRouteAll() {
@@ -858,8 +859,6 @@ function initMap() {
         bootbox.prompt("Enter a name for the route.", function (result) {
             if (result === null) {
             } else {
-
-
                 let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
 
                 google.maps.event.clearListeners(map, 'click');
@@ -1028,12 +1027,15 @@ function initMap() {
 
         let editRouteButton = parent.document.getElementById('editRouteButton' + id);
 
+        let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + id);
+
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
 
         let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
 
         try {
             editRouteButton.style.display = 'none';
+            queueRoutesButton.style.display = 'none';
             trashRouteButton.style.display = 'none';
             clearCheckpointsButton.style.display = 'none';
             removeLastCheckpointButton.style.display = 'none';
