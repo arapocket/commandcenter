@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "babel src -d lib"
+    "build": "babel ./public/javascripts -d lib"
   },
   "dependencies": {
     "apn": "^2.1.5",
