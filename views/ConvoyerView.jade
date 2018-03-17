@@ -70,6 +70,18 @@ block content
 																												i.fa.fa-list-ol(aria-hidden='true')
 																												| &nbsp Queue Routes																												
 																			.row
+																											a.btn.btn-default.btn-block(id='addQueueButton' + location.GuardID, style='display: none ! important;')
+																												i.fa.fa-plus(aria-hidden='true')
+																												| &nbsp Add Route To Queue
+																			.row
+																											a.btn.btn-default.btn-block(id='removeQueueButton' + location.GuardID, style='display: none ! important;')
+																												i.fa.fa-minus(aria-hidden='true')
+																												| &nbsp Remove Route From Queue																																																																																																																																																																								
+																			.row
+																											a.btn.btn-default.btn-block(id='cancelQueueButton' + location.GuardID, style='display: none ! important;')
+																												i.fa.fa-hand-point-left(aria-hidden='true')
+																												| &nbsp Cancel Route Queue																												
+																			.row
 																											a.btn.btn-default.btn-block(id='clearCheckpointsButton' + location.GuardID, style='display: none ! important;')
 																												i.fa.fa-eraser(aria-hidden='true')
 																												| &nbsp Clear All Checkpoints																			

@@ -189,6 +189,12 @@ function initMap() {
 
             let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + id);
 
+            let addQueueButton = parent.document.getElementById('addQueueButton' + id);
+
+            let removeQueueButton = parent.document.getElementById('removeQueueButton' + id);
+            
+            let cancelQueueButton = parent.document.getElementById('cancelQueueButton' + id);
+
             let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
 
             let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
@@ -201,7 +207,19 @@ function initMap() {
                 });
 
                 queueRoutesButton.addEventListener('click', function (e) {
-                    onQueueRoutes();
+                    onQueueRoutes(queueRoutesButton, addQueueButton, removeQueueButton, cancelQueueButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations);
+                });
+
+                addQueueButton.addEventListener('click', function (e) {
+                   onAddQueue(); 
+                });
+
+                removeQueueButton.addEventListener('click', function (e) {
+                    onRemoveQueue();
+                });
+
+                cancelQueueButton.addEventListener('click', function (e) {
+                   onCancelQueue(); 
                 });
 
                 trashRouteButton.addEventListener('click', function (e) {
@@ -664,7 +682,35 @@ function initMap() {
         });
     }
 
-    function onQueueRoutes(){
+    function onQueueRoutes(queueRoutesButton, addQueueButton, removeQueueButton, cancelQueueButton, trashRouteButton, clearCheckpointsButton, removeLastCheckpointButton, saveRouteButton, loadRouteButton, locations) {
+
+        for (let i = 0; i < locations.length; i++) {
+            var id = locations[i].GuardID;
+
+            var addButton = parent.document.getElementById('editRouteButton' + id);
+            var endButton = parent.document.getElementById('endPatrolButton' + id);
+            var queueRoutesButton = parent.document.getElementById('queueRoutesButton' + id);
+
+            addButton.style.display = 'none';
+            endButton.style.display = 'none';
+            queueRoutesButton.style.display = 'none';
+        }
+
+        addQueueButton.style.display = 'block';
+        removeQueueButton.style.display = 'block';
+        cancelQueueButton.style.display = 'block';
+
+    }
+
+    function onAddQueue(){
+
+    }
+
+    function onRemoveQueue(){
+
+    }
+
+    function onCancelQueue(){
 
     }
 
