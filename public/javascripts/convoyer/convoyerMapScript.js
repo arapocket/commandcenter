@@ -260,8 +260,6 @@ function initMap() {
 
             }
 
-
-
             let guardButton = parent.document.getElementById(id);
 
             if (guardButton != null || guardButton != undefined) {
