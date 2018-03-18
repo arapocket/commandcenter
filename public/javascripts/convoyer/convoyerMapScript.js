@@ -211,7 +211,7 @@ function initMap() {
                 });
 
                 addQueueButton.addEventListener('click', function (e) {
-                   onAddQueue(); 
+                    onAddQueue(); 
                 });
 
                 removeQueueButton.addEventListener('click', function (e) {
@@ -219,7 +219,10 @@ function initMap() {
                 });
 
                 cancelQueueButton.addEventListener('click', function (e) {
-                   onCancelQueue(); 
+                    queueRoutesButton.style.display = 'none';
+                    addQueueButton.style.display = 'none';
+                    removeQueueButton.style.display = 'none';
+                    showAddButton();
                 });
 
                 trashRouteButton.addEventListener('click', function (e) {
@@ -705,10 +708,6 @@ function initMap() {
     }
 
     function onRemoveQueue(){
-
-    }
-
-    function onCancelQueue(){
 
     }
 
