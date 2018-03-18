@@ -222,6 +222,8 @@ function initMap() {
                     queueRoutesButton.style.display = 'none';
                     addQueueButton.style.display = 'none';
                     removeQueueButton.style.display = 'none';
+                    cancelQueueButton.style.display = 'none';
+
                     showAddButton();
                 });
 
