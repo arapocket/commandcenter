@@ -758,8 +758,11 @@ function initMap() {
 
         localStorage.setItem(currentGuard + ' que position', parseInt(queuePosition + 1) );
 
-        console.log('logging the queue position');
+        
         let newPosition = localStorage.getItem(currentGuard + ' que position');
+
+        console.log('logging the queue position');
+        console.log(newPosition);
 
         /** TODO
          * add controller and model and route for addtoqueue
@@ -796,6 +799,10 @@ function initMap() {
 
         let editRouteButton = parent.document.getElementById('editRouteButton' + id);
 
+        let addQueueButton = parent.document.getElementById('addQueueButton' + id);
+
+        let removeQueueButton = parent.document.getElementById('removeQueueButton' + id);
+
         let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + id);
 
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
@@ -805,12 +812,17 @@ function initMap() {
         try {
             editRouteButton.style.display = 'none';
             queueRoutesButton.style.display = 'none';
+            addQueueButton.style.display = 'none';
+            removeQueueButton.style.display = 'none';
             trashRouteButton.style.display = 'none';
             clearCheckpointsButton.style.display = 'none';
             removeLastCheckpointButton.style.display = 'none';
             saveRouteButton.style.display = 'none';
             loadRouteButton.style.display = 'none';
             endPatrolButton.style.display = 'none';
+
+            addRouteButton.style.display = 'block';
+            
         } catch (e) {
 
         }
