@@ -1,5 +1,3 @@
-
-
 function initMap() {
 
     let currentArea = area[0];
@@ -402,6 +400,9 @@ function initMap() {
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + GuardID);
         let editRouteButton = parent.document.getElementById('editRouteButton' + GuardID);
         let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + GuardID);
+        let addQueueButton = parent.document.getElementById('addQueueButton' + GuardID);
+        let removeQueueButton = parent.document.getElementById('removeQueueButton' + GuardID);
+        let cancelQueueButton = parent.document.getElementById('cancelQueueButton' + GuardID);
         let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
         let removeLastCheckpointButton = parent.document.getElementById('removeLastCheckpointButton' + GuardID);
         let saveRouteButton = parent.document.getElementById('saveRouteButton' + GuardID);
@@ -415,6 +416,9 @@ function initMap() {
         saveRouteButton.style.display = 'none';
         loadRouteButton.style.display = 'none';
         endPatrolButton.style.display = 'none';
+        addQueueButton.style.display = 'none';
+        removeQueueButton.style.display = 'none';
+        cancelQueueButton.style.display = 'none';
 
         onTrashRoute(route, GuardID);
 
@@ -749,7 +753,6 @@ function initMap() {
 
     }
 
-
     function onAddRouteToQueue(routeID){
 
         let currentGuard = localStorage.getItem("currentGuard");
@@ -832,9 +835,7 @@ function initMap() {
 
     }
 
-
     function onRemoveQueue(){
-
     }
 
     function onTrashRoute(route, id) {
@@ -1138,8 +1139,6 @@ function initMap() {
                     let routeID = json[0].RouteID;
                     loadCurrentRoute(routeID, route);
                 }
-
-
             }
         }
 
