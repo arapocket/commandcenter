@@ -739,7 +739,7 @@ function initMap() {
                     bootbox.hideAll();
 
                     var dialog = bootbox.dialog({
-                        title: 'Select Route',
+                        title: 'Add To Queue',
                         message: "<p>Select the route you wish to add to the queue.</p>",
                         buttons: routeButtons
                     });
@@ -836,6 +836,52 @@ function initMap() {
     }
 
     function onRemoveQueue(){
+
+        let currentGuard = localStorage.getItem("currentGuard");
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                let json = JSON.parse(xhr.responseText);
+                if (json.length > 0) {
+
+                    let routeButtons = [];
+                    for (let i = 0; i < json.length; i++) {
+                        let label = json[i].RouteName;
+                        let buttonClass = 'btn-primary';
+                        let routeID = json[i].RouteID
+                        routeButtons.push({
+                            label: label,
+                            className: buttonClass,
+                            callback: function () {
+                                onRemoveRouteFromQueue(routeID);
+                            }
+                        });
+                    }
+
+                    bootbox.hideAll();
+
+                    var dialog = bootbox.dialog({
+                        title: 'Remove From Queue',
+                        message: "<p>Select the route you wish to remove from the queue.</p>",
+                        buttons: routeButtons
+                    });
+                }
+            }
+        }
+
+        xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/currentroutes/" + currentGuard, true);
+
+        xhr.send(null);
+    }
+
+    function onRemoveRouteFromQueue(routeID){
+
     }
 
     function onTrashRoute(route, id) {
