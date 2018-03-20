@@ -759,31 +759,29 @@ function initMap() {
         localStorage.setItem(currentGuard + ' que position', parseInt(queuePosition + 1) );
 
         console.log('logging the queue position');
-        console.log(localStorage.getItem(currentGuard + ' que position'));
+        let newPosition = localStorage.getItem(currentGuard + ' que position');
 
         /** TODO
-         *  set queueposition in local storage
          * add controller and model and route for addtoqueue
-         * add to queuepositon here
 
          */
 
-        // let xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
 
-        // if (!xhr) {
-        //     alert('Giving up :( Cannot create an XMLHTTP instance');
-        //     return false;
-        // }
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
 
-        // xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/addtoqueue", true);
-        // xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/queueroute", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
 
-        // xhr.send(JSON.stringify({
-        //     "QueuePosition": 1,
-        //     "RouteID": routeID,
-        //     "GuardID": currentGuard
-        // }));
+        xhr.send(JSON.stringify({
+            "QueuePosition": newPosition,
+            "RouteID": routeID,
+            "GuardID": currentGuard
+        }));
 
 
         let id = currentGuard;

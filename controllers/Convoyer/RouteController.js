@@ -24,7 +24,6 @@ module.exports.getRouteByID = function (req, res) {
   });
 };
 
-
 module.exports.getCurrentRoutes = function (req, res) {
   RouteModel.getCurrentRoutes(req.params.id, function (err, result) {
     if (err) {
@@ -87,6 +86,17 @@ module.exports.updateRoute = function (req, res) {
   });
 };
 
+module.exports.queueRoute = function (req, res) {
+  RouteModel.queueRoute(req.body, function (err, result) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log(result);
+    }
+  });
+};
+
 module.exports.disableRoutes = function (req, res) {
   RouteModel.disableRoutes(req.body, function (err, result) {
     if (err) {
@@ -97,4 +107,6 @@ module.exports.disableRoutes = function (req, res) {
     }
   });
 };
+
+
 
