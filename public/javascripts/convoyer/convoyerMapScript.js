@@ -727,26 +727,18 @@ function initMap() {
                             label: label,
                             className: buttonClass,
                             callback: function () {
-
+                                onAddRouteToQueue(routeID);
                             }
                         });
-
                     }
-
 
                     bootbox.hideAll();
 
                     var dialog = bootbox.dialog({
                         title: 'Select Route',
-                        message: "<p>Select the route you wish to the queue.</p>",
+                        message: "<p>Select the route you wish to add to the queue.</p>",
                         buttons: routeButtons
                     });
-
-
-
-
-
-
                 }
             }
         }
@@ -756,6 +748,76 @@ function initMap() {
         xhr.send(null);
 
     }
+
+
+    function onAddRouteToQueue(routeID){
+
+        let currentGuard = localStorage.getItem("currentGuard");
+
+        let queuePosition = localStorage.getItem(currentGuard + ' que position');
+
+        localStorage.setItem(currentGuard + ' que position', queuePosition + 1);
+
+        console.log('logging the queue position');
+        console.log(localStorage.getItem(currentGuard + ' que position'));
+
+        /** TODO
+         *  set queueposition in local storage
+         * add controller and model and route for addtoqueue
+         * add to queuepositon here
+
+
+        // let xhr = new XMLHttpRequest();
+
+        // if (!xhr) {
+        //     alert('Giving up :( Cannot create an XMLHTTP instance');
+        //     return false;
+        // }
+
+        // xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/addtoqueue", true);
+        // xhr.setRequestHeader('Content-Type', 'application/json');
+
+
+        // xhr.send(JSON.stringify({
+        //     "QueuePosition": 1,
+        //     "RouteID": routeID,
+        //     "GuardID": currentGuard
+        // }));
+
+
+        let id = currentGuard;
+
+        let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
+
+        let removeLastCheckpointButton = parent.document.getElementById("removeLastCheckpointButton" + id);
+
+        let saveRouteButton = parent.document.getElementById("saveRouteButton" + id);
+
+        let loadRouteButton = parent.document.getElementById("loadRouteButton" + id);
+
+        let editRouteButton = parent.document.getElementById('editRouteButton' + id);
+
+        let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + id);
+
+        let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
+
+        let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
+
+        try {
+            editRouteButton.style.display = 'none';
+            queueRoutesButton.style.display = 'none';
+            trashRouteButton.style.display = 'none';
+            clearCheckpointsButton.style.display = 'none';
+            removeLastCheckpointButton.style.display = 'none';
+            saveRouteButton.style.display = 'none';
+            loadRouteButton.style.display = 'none';
+            endPatrolButton.style.display = 'none';
+        } catch (e) {
+
+        }
+
+    }
+
 
     function onRemoveQueue(){
 
@@ -1031,21 +1093,12 @@ function initMap() {
                         });
 
                     }
-
-
                     bootbox.hideAll();
-
                     var dialog = bootbox.dialog({
                         title: 'Select Route',
                         message: "<p>Select the route you wish to load.</p>",
                         buttons: routeButtons
                     });
-
-
-
-
-
-
                 }
             }
         }
@@ -1214,7 +1267,6 @@ function initMap() {
 
         xhr.send(null);
     }
-
 
     function loadRouteOnMap(checkpoints, route) {
 
