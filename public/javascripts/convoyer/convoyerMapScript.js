@@ -882,6 +882,70 @@ function initMap() {
 
     function onRemoveRouteFromQueue(routeID){
 
+        let currentGuard = localStorage.getItem("currentGuard");
+
+        let xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/queueroute", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+
+        xhr.send(JSON.stringify({
+            "QueuePosition": 0,
+            "RouteID": routeID,
+            "GuardID": currentGuard
+        }));
+
+
+        let id = currentGuard;
+
+        let clearCheckpointsButton = parent.document.getElementById("clearCheckpointsButton" + id);
+
+        let removeLastCheckpointButton = parent.document.getElementById("removeLastCheckpointButton" + id);
+
+        let saveRouteButton = parent.document.getElementById("saveRouteButton" + id);
+
+        let loadRouteButton = parent.document.getElementById("loadRouteButton" + id);
+
+        let editRouteButton = parent.document.getElementById('editRouteButton' + id);
+
+        let addQueueButton = parent.document.getElementById('addQueueButton' + id);
+
+        let removeQueueButton = parent.document.getElementById('removeQueueButton' + id);
+
+        let cancelQueueButton = parent.document.getElementById('cancelQueueButton' + id);
+
+        let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + id);
+
+        let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
+
+        let endPatrolButton = parent.document.getElementById('endPatrolButton' + id)
+
+        try {
+            editRouteButton.style.display = 'none';
+            queueRoutesButton.style.display = 'none';
+            addQueueButton.style.display = 'none';
+            removeQueueButton.style.display = 'none';
+            cancelQueueButton.style.display = 'none';
+            trashRouteButton.style.display = 'none';
+            clearCheckpointsButton.style.display = 'none';
+            removeLastCheckpointButton.style.display = 'none';
+            saveRouteButton.style.display = 'none';
+            loadRouteButton.style.display = 'none';
+            endPatrolButton.style.display = 'none';
+
+            addRouteButton.style.display = 'block';
+
+        } catch (e) {
+
+        }
+
+
     }
 
     function onTrashRoute(route, id) {
