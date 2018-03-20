@@ -754,9 +754,9 @@ function initMap() {
 
         let currentGuard = localStorage.getItem("currentGuard");
 
-        let queuePosition = localStorage.getItem(currentGuard + ' que position');
+        let queuePosition = parseInt(localStorage.getItem(currentGuard + ' que position'));
 
-        localStorage.setItem(currentGuard + ' que position', queuePosition + 1);
+        localStorage.setItem(currentGuard + ' que position', parseInt(queuePosition + 1) );
 
         console.log('logging the queue position');
         console.log(localStorage.getItem(currentGuard + ' que position'));
