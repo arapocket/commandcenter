@@ -766,6 +766,7 @@ function initMap() {
          * add controller and model and route for addtoqueue
          * add to queuepositon here
 
+         */
 
         // let xhr = new XMLHttpRequest();
 
