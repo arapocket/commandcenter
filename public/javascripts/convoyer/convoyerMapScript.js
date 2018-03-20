@@ -803,6 +803,8 @@ function initMap() {
 
         let removeQueueButton = parent.document.getElementById('removeQueueButton' + id);
 
+        let cancelQueueButton = parent.document.getElementById('cancelQueueButton' + id);
+
         let queueRoutesButton = parent.document.getElementById('queueRoutesButton' + id);
 
         let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
@@ -814,6 +816,7 @@ function initMap() {
             queueRoutesButton.style.display = 'none';
             addQueueButton.style.display = 'none';
             removeQueueButton.style.display = 'none';
+            cancelQueueButton.style.display = 'none';
             trashRouteButton.style.display = 'none';
             clearCheckpointsButton.style.display = 'none';
             removeLastCheckpointButton.style.display = 'none';
@@ -822,7 +825,7 @@ function initMap() {
             endPatrolButton.style.display = 'none';
 
             addRouteButton.style.display = 'block';
-            
+
         } catch (e) {
 
         }
