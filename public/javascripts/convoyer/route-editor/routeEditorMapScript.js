@@ -444,7 +444,7 @@ let center = { lat: 34.050963, lng: -118.256133 };
                 xhr.send(JSON.stringify({
                     "RouteID": routeID,
                     "RouteName": cleanInput,
-                    "CurrentRoute": 1
+                    "QueuePosition": 0
                 }));
 
                 postCheckpoints(routeID);

@@ -879,8 +879,7 @@ function initMap() {
                 xhr.send(JSON.stringify({
                     "RouteID": routeID,
                     "RouteName": cleanInput,
-                    "CurrentRoute": 1,
-                    "NotCurrentRoute": 0,
+                    "QueuePosition": 1,
                     "GuardID": currentGuard
                 }));
 
@@ -924,7 +923,7 @@ function initMap() {
                 xhr.send(JSON.stringify({
                     "RouteID": routeID,
                     "RouteName": cleanInput,
-                    "CurrentRoute": 1
+                    "QueuePosition": 0
                 }));
 
                 postCheckpoints(route, routeID);
@@ -1052,8 +1051,7 @@ function initMap() {
 
 
         xhr.send(JSON.stringify({
-            "CurrentRoute": 1,
-            "NotCurrentRoute": 0,
+            "QueuePosition": 1,
             "RouteID": routeID,
             "GuardID": currentGuard
         }));

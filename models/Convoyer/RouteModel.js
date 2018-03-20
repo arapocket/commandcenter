@@ -39,7 +39,7 @@ module.exports.getCurrentRoutes = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Select * from route where CurrentRoute =  1 AND GuardID = '" + id + "' ;";
+            var strSQL = "Select * from route where QueuePosition =  1 AND GuardID = '" + id + "' ;";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -90,7 +90,7 @@ module.exports.addRoute = function (Route, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.CurrentRoute + ", '" + Route.GuardID + "');";
+            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.QueuePosition + ", '" + Route.GuardID + "');";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -116,7 +116,7 @@ module.exports.saveRoute = function (Route, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.CurrentRoute + ", '" + "');";
+            var strSQL = "Insert into route values ('" + Route.RouteID + "', '" + Route.RouteName + "', " + Route.QueuePosition + ", '" + "');";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -170,13 +170,13 @@ module.exports.updateRoute = function (Route, callback) {
             console.log('logging Route from updateRoute ' + JSON.stringify(Route));
 
             // here we set all other routes to 0
-            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID + "';";
+            var strSQL = "Update route SET QueuePosition = 0  WHERE GuardID = '" + Route.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
                     callback(null, rows);
                     // here we will set our selected route to 1
-                    var strSQL2 = "Update route SET CurrentRoute = " + Route.CurrentRoute + ", GuardID = '" + Route.GuardID + "' WHERE RouteID = '" + Route.RouteID + "';";
+                    var strSQL2 = "Update route SET QueuePosition = " + Route.QueuePosition + ", GuardID = '" + Route.GuardID + "' WHERE RouteID = '" + Route.RouteID + "';";
                     connection.query(strSQL2, function (err, rows, fields) {
                         if (!err) {
                             connection.end();
@@ -213,7 +213,7 @@ module.exports.disableRoutes = function (Route, callback) {
 
 
             // here we set all other routes to 0
-            var strSQL = "Update route SET CurrentRoute = " + Route.NotCurrentRoute + " WHERE GuardID = '" + Route.GuardID + "';";
+            var strSQL = "Update route SET QueuePosition = 0 WHERE GuardID = '" + Route.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
