@@ -39,7 +39,7 @@ module.exports.getCurrentRoutes = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Select * from route where QueuePosition >  0 AND GuardID = '" + id + "' ;";
+            var strSQL = "Select * from route where QueuePosition >  0 AND GuardID = '" + id + "' ORDER BY QueuePosition ASC ;";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
