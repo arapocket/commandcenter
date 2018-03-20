@@ -106,11 +106,11 @@ module.exports.getAllGuardPatrols = (function (req, res) {
 
 
     // CREATE VIEW allcheckpoints
-    // AS SELECT c.Sequence, c.lat, c.lng, r.CurrentRoute, r.RouteID
+    // AS SELECT c.Sequence, c.lat, c.lng, r.QueuePosition, r.RouteID
     // FROM checkpoint c
     // INNER JOIN route r ON c.RouteID = r.RouteID;
 
-    // SELECT Sequence, lat, lng, CurrentRoute FROM allcheckpoints WHERE CurrentRoute = 1;
+    // SELECT Sequence, lat, lng, QueuePosition FROM allcheckpoints WHERE QueuePosition = 1;
 
 
     //=========================== VERIFIED SQL STATEMENTS √ =====================================

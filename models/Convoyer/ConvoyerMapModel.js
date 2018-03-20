@@ -156,7 +156,7 @@ module.exports.getCurrentRoutes = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT RouteID FROM route WHERE CurrentRoute = 1;';
+            var strSQL = 'SELECT RouteID FROM route WHERE QueuePosition = 1;';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -184,7 +184,7 @@ module.exports.getCurrentCheckpoints = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT Sequence, lat, lng, RouteID FROM allcheckpoints WHERE CurrentRoute = 1 ORDER BY Sequence ASC;';
+            var strSQL = 'SELECT Sequence, lat, lng, RouteID FROM allcheckpoints WHERE QueuePosition = 1 ORDER BY Sequence ASC;';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
