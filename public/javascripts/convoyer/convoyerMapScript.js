@@ -22,7 +22,7 @@ function initMap() {
     socket.on('incident', function (incident) {
         window.setTimeout(function () {
             parent.location.reload();
-        }, 10000);
+        }, 1000);
     });
 
     socket.on('first location', function (incident) {
