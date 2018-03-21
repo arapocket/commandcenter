@@ -135,7 +135,7 @@ function initMap() {
     });
 
     loadRouteButton.addEventListener('click', function (e) {
-        onSelectRoute();
+        onSelectRoute(route);
     });
 
     function createGuards() {
@@ -189,7 +189,7 @@ function initMap() {
             let addQueueButton = parent.document.getElementById('addQueueButton' + id);
 
             let removeQueueButton = parent.document.getElementById('removeQueueButton' + id);
-            
+
             let cancelQueueButton = parent.document.getElementById('cancelQueueButton' + id);
 
             let trashRouteButton = parent.document.getElementById('trashRouteButton' + id);
@@ -208,7 +208,7 @@ function initMap() {
                 });
 
                 addQueueButton.addEventListener('click', function (e) {
-                    onAddQueue(); 
+                    onAddQueue();
                 });
 
                 removeQueueButton.addEventListener('click', function (e) {
@@ -287,7 +287,7 @@ function initMap() {
 
                     changeButtons(location.GuardID, locations, route);
 
-                    
+
                 })
 
             }
@@ -708,7 +708,7 @@ function initMap() {
 
     }
 
-    function onAddQueue(){
+    function onAddQueue() {
 
         var xhr = new XMLHttpRequest();
 
@@ -753,15 +753,15 @@ function initMap() {
 
     }
 
-    function onAddRouteToQueue(routeID){
+    function onAddRouteToQueue(routeID) {
 
         let currentGuard = localStorage.getItem("currentGuard");
 
         let queuePosition = parseInt(localStorage.getItem(currentGuard + ' que position'));
 
-        localStorage.setItem(currentGuard + ' que position', parseInt(queuePosition + 1) );
+        localStorage.setItem(currentGuard + ' que position', parseInt(queuePosition + 1));
 
-        
+
         let newPosition = localStorage.getItem(currentGuard + ' que position');
 
         console.log('logging the queue position');
@@ -835,7 +835,7 @@ function initMap() {
 
     }
 
-    function onRemoveQueue(){
+    function onRemoveQueue() {
 
         let currentGuard = localStorage.getItem("currentGuard");
         var xhr = new XMLHttpRequest();
@@ -880,7 +880,7 @@ function initMap() {
         xhr.send(null);
     }
 
-    function onRemoveRouteFromQueue(routeID){
+    function onRemoveRouteFromQueue(routeID) {
 
         let currentGuard = localStorage.getItem("currentGuard");
 
@@ -991,8 +991,6 @@ function initMap() {
     function showCancelButton() {
         let cancelRouteButton = parent.document.getElementById('cancelRouteButton');
         cancelRouteButton.style.display = 'block';
-
-
     }
 
     function hideClearCheckpointsButton() {
@@ -1190,7 +1188,7 @@ function initMap() {
 
     }
 
-    function onSelectRoute() {
+    function onSelectRoute(route) {
         var xhr = new XMLHttpRequest();
 
         if (!xhr) {

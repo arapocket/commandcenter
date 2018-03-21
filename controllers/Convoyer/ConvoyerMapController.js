@@ -112,6 +112,22 @@ module.exports.getAllGuardPatrols = (function (req, res) {
 
     // SELECT Sequence, lat, lng, QueuePosition FROM allcheckpoints WHERE QueuePosition = 1;
 
+/**
+ 
+
+    CREATE VIEW lastcardswipes
+    AS SELECT iClassNumber, MAX(AttendDate) AS LastSwipeDate FROM mobss.attendance
+    GROUP BY iClassNumber
+
+    CREATE VIEW people_lastcardswipes
+    AS SELECT l.iClassNumber AS BadgeID, p.LastName, p.FirstName, l.LastSwipeDate
+    FROM people p
+    INNER JOIN lastcardswipes l ON p.iClassNumber = l.iClassNumber
+
+
+ */
+
+
 
     //=========================== VERIFIED SQL STATEMENTS √ =====================================
 
