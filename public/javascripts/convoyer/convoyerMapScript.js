@@ -9,9 +9,9 @@ function initMap() {
     var socket = io();
 
     const COLORS = [
-        '#e21400', '#f8a700', '#f78b00',
-        '#58dc00', '#a8f07a', '#4ae8c4',
-        '#3b88eb'
+        '#e21400', '#f78b00',
+        '#58dc00', '#f800cd',
+        '#3b88eb', '#8357ec'
     ];
 
 
