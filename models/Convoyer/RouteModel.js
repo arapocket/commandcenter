@@ -211,7 +211,7 @@ module.exports.queueRoute = function (Route, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update route SET QueuePosition = 0  WHERE RouteID = '" + Route.RouteID + "';";
+            var strSQL = "Update route SET QueuePosition = " + Route.QueuePosition + "  WHERE RouteID = '" + Route.RouteID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
