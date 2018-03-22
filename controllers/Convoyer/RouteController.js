@@ -89,9 +89,11 @@ module.exports.updateRoute = function (req, res) {
 module.exports.queueRoute = function (req, res) {
   RouteModel.queueRoute(req.body, function (err, result) {
     if (err) {
+      res.json(err);
       console.log(err);
     }
     else {
+      res.json(results;
       console.log(result);
     }
   });
