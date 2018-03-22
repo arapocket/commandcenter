@@ -93,7 +93,7 @@ module.exports.queueRoute = function (req, res) {
       console.log(err);
     }
     else {
-      res.json(results;
+      res.json(result);
       console.log(result);
     }
   });
