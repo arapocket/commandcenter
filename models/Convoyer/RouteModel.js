@@ -202,7 +202,7 @@ module.exports.updateRoute = function (Route, callback) {
 }
 
 
-module.exports.queueRoute = function (id, callback) {
+module.exports.queueRoute = function (Route, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
             console.log("Error while performing common connect query: " + err);
