@@ -201,19 +201,16 @@ module.exports.updateRoute = function (Route, callback) {
 
 }
 
-module.exports.queueRoute = function (Route, callback) {
 
+module.exports.queueRoute = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-
+            console.log("Error while performing common connect query: " + err);
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
-            
-            console.log('logging Route from queueRoute ' + JSON.stringify(Route));
 
-            // here we set all other routes to 0
             var strSQL = "Update route SET QueuePosition = " + Route.QueuePosition + "  WHERE RouteID = '" + Route.RouteID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
@@ -221,15 +218,15 @@ module.exports.queueRoute = function (Route, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the query');
                     connection.end();
                     callback(err, rows);
                 }
             });
         }
     });
-
 }
+
+
 
 module.exports.disableRoutes = function (Route, callback) {
 
