@@ -160,7 +160,7 @@ module.exports.updateRoute = function (Route, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -205,13 +205,12 @@ module.exports.queueRoute = function (Route, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
-
-
+            
             console.log('logging Route from queueRoute ' + JSON.stringify(Route));
 
             // here we set all other routes to 0
@@ -236,7 +235,7 @@ module.exports.disableRoutes = function (Route, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback

@@ -779,7 +779,7 @@ function initMap() {
             return false;
         }
 
-        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/queueroute", true);
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routequeue", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
 
@@ -891,7 +891,7 @@ function initMap() {
             return false;
         }
 
-        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/queueroute", true);
+        xhr.open("PUT", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/routequeue", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
 

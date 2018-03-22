@@ -295,7 +295,7 @@ router.delete('/routes/:id', RouteController.deleteRoute);
 router.put('/setcurrentroute', RouteController.updateRoute);
 router.put('/disableroutes', RouteController.disableRoutes);
 router.get('/currentroutes/:id', RouteController.getCurrentRoutes);
-router.put('/queueroute', RouteController.queueRoute);
+router.put('/routequeue', RouteController.queueRoute);
 
 var MessageController = require('../controllers/Convoyer/MessageController');
 router.get('/messages', MessageController.getAllMessages);
