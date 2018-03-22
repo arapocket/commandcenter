@@ -170,7 +170,7 @@ module.exports.updateRoute = function (Route, callback) {
             console.log('logging Route from updateRoute ' + JSON.stringify(Route));
 
             // here we set all other routes to 0
-            var strSQL = "Update route SET QueuePosition = 0, GuardID = '" + Route.GuardID + "'  WHERE GuardID = '" + Route.GuardID + "';";
+            var strSQL = "Update route SET QueuePosition = 0  WHERE GuardID = '" + Route.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     // connection.end();
@@ -211,7 +211,7 @@ module.exports.queueRoute = function (Route, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update route SET QueuePosition = " + Route.QueuePosition + "  WHERE RouteID = '" + Route.RouteID + "';";
+            var strSQL = "Update route SET QueuePosition = " + Route.QueuePosition + ", GuardID = '" + Route.GuardID + "'  WHERE RouteID = '" + Route.RouteID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
