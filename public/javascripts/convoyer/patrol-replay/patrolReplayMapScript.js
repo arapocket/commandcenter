@@ -32,6 +32,7 @@ function initMap() {
 
     createPatrolPath();
     createIncidentMarkers();
+    createGuardButton();
 
     function createPatrolPath() {
 
@@ -135,6 +136,26 @@ function initMap() {
                 localStorage.setItem("alreadyOpenedWindow " + incidentID, true);
                 markerWindow.open(map, marker);
             });
+        }
+    }
+
+    function createGuardButton(){
+
+        let guardButton = parent.document.getElementById(guard.GuardID);
+
+        if (guardButton != null || guardButton != undefined) {
+
+            let lat = location.lat;
+            let lng = location.lng;
+
+            guardButton.addEventListener('click', function (e) {
+
+                map.setCenter({
+                    lat: lat,
+                    lng: lng
+                });
+            })
+
         }
     }
 
