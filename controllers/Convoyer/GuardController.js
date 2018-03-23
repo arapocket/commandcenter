@@ -340,7 +340,7 @@ module.exports.deleteGuard = function (req, res) {
             console.log(err)
             connection.end();
             //sess.error = 'There was a problem updating the mobss database: '+err;
-            res.render('guardList', { title: 'Command Center' });
+            res.render('GuardListView', { title: 'Command Center' });
           } else {
             connection.end();
             res.status(301).redirect('/guardList');
