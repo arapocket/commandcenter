@@ -97,7 +97,7 @@ function initMap() {
 
             if (incidents[i].Media != 'none') {
                 windowString = `<div style = " background-color: #252525 !important;top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; min-height: 120px !important; padding-top: 10px; ` +
-                `display: block !important;;"><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> `
+                `display: block !important;"><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> `
 
             } else {
                 windowString = `
