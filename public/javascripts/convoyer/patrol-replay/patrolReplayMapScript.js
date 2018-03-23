@@ -31,7 +31,7 @@ function initMap() {
 
 
     createPatrolPath();
-
+    createIncidentMarkers();
 
     function createPatrolPath() {
 
@@ -85,6 +85,58 @@ function initMap() {
 
     }
 
+    function createIncidentMarkers() {
+
+        for (let i = 0; i < incidents.length; i++) {
+            var lat = incidents[i].lat;
+            var lng = incidents[i].lng;
+            let incidentID = incidents[i].IncidentID;
+
+            let windowString = '';
+
+            if (incidents[i].Media != 'none') {
+                windowString = `
+                <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
+                <h6 style="color:#404040"> 
+                ` + incidents[i].Description + `
+                </h6> ` +
+                    `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
+
+            } else {
+                windowString = `
+                <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
+                <h6 style="color:#404040"> 
+                ` + incidents[i].Description + `
+                </h6> `
+            }
+
+            let markerWindow = new google.maps.InfoWindow({
+                content: windowString,
+                maxWidth: 160,
+                disableAutoPan: true
+            });
+
+
+            let marker = new google.maps.Marker({
+                position: { lat: lat, lng: lng },
+                map: map,
+                icon: iconsBase + "kml/pal3/icon59.png",
+                animation: google.maps.Animation.DROP
+            });
+
+
+            let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
+
+            if (!alreadyOpenedWindow) {
+                markerWindow.open(map, marker);
+            }
+
+            marker.addListener('click', function (e) {
+                localStorage.setItem("alreadyOpenedWindow " + incidentID, true);
+                markerWindow.open(map, marker);
+            });
+        }
+    }
 
     function getPathColor(username) {
         // Compute hash code
@@ -96,6 +148,8 @@ function initMap() {
         var index = Math.abs(hash % COLORS.length);
         return COLORS[index];
     }
+
+
 
 
 }

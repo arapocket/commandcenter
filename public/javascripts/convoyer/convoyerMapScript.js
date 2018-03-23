@@ -1136,7 +1136,7 @@ function initMap() {
         bootbox.prompt("Enter a name for the route.", function (result) {
             if (result === null) {
             } else {
-                let cleanInput = result.replace(/[^a-zA-Z0-9]/g, "");
+                let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
 
                 google.maps.event.clearListeners(map, 'click');
                 google.maps.event.clearListeners(route, 'click');

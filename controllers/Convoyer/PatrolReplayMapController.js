@@ -7,8 +7,14 @@ module.exports.getPatrolReplayMap = (function (req, res) {
     if (err) {
       // res.json(err);
     } else {
-     
-              res.render('PatrolReplayMapView', { title: 'Patrol Replay Map', getPatrolReplayMapResult: getPatrolReplayMapResult});
+      
+      PatrolReplayMapModel.getIncidents(req.params.id, function (err, getIncidentsResult){
+        if (err){
+          //res.json(err)
+        } else {
+          res.render('PatrolReplayMapView', { title: 'Patrol Replay Map', getPatrolReplayMapResult: getPatrolReplayMapResult, getIncidentsResult: getIncidentsResult});
+        }
+      })              
             }
           })
 
