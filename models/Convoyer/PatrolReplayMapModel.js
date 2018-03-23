@@ -14,7 +14,7 @@ module.exports.getPatrolReplayMap = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT  * FROM currentguards WHERE PatrolID = "' + id + '" ORDER BY Sequence ;';
+            var strSQL = 'SELECT  * FROM patrol_guard_coordinate WHERE PatrolID = "' + id + '" ORDER BY Sequence ;';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

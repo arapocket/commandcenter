@@ -10,7 +10,7 @@ module.exports.getIncidentByID = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = " Select * from allincidents where IncidentID = '" + id + "';";
+            var strSQL = " Select * from coordinate_patrol where IncidentID = '" + id + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

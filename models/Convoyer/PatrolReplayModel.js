@@ -14,7 +14,7 @@ module.exports.getPatrolReplay = function (id, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT  * FROM currentguards WHERE PatrolID = "' + id + '";';
+            var strSQL = 'SELECT  * FROM patrol_guard_coordinate WHERE PatrolID = "' + id + '";';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

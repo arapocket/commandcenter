@@ -12,7 +12,7 @@ module.exports.getAllMessages = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' Select * from messageandguard ORDER BY Time; ';
+            var strSQL = ' Select * from message_guard ORDER BY Time; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

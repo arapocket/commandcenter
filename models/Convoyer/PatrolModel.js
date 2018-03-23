@@ -165,7 +165,7 @@ module.exports.patrolList = function (callback){
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT * FROM currentguards GROUP BY PatrolID;';
+            var strSQL = 'SELECT * FROM patrol_guard_coordinate GROUP BY PatrolID;';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -185,3 +185,10 @@ module.exports.patrolList = function (callback){
 
 
 
+
+/**
+TABLES NEEDED FOR PATROL LIST:
+
+patrol, guard, incident 
+
+ */

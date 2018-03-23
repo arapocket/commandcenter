@@ -12,7 +12,7 @@ module.exports.getAllGuards = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol, CurrentCoord FROM currentguards WHERE CurrentCoord = 1 AND CurrentPatrol = 1 GROUP BY GuardID; ';
+            var strSQL = ' SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol, CurrentCoord FROM patrol_guard_coordinate WHERE CurrentCoord = 1 AND CurrentPatrol = 1 GROUP BY GuardID; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     console.log(rows);
@@ -40,7 +40,7 @@ module.exports.getGuardsForNotifications = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol, CurrentCoord FROM currentguards WHERE CurrentPatrol = 1 GROUP BY GuardID; ';
+            var strSQL = ' SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol, CurrentCoord FROM patrol_guard_coordinate WHERE CurrentPatrol = 1 GROUP BY GuardID; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     console.log(rows);
@@ -70,7 +70,7 @@ module.exports.getAllIncidents = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT IncidentID, Description, Type, lat,  lng, CurrentPatrol, IncidentID FROM allincidents WHERE CurrentPatrol = 1';
+            var strSQL = 'SELECT IncidentID, Description, Type, lat,  lng, CurrentPatrol, IncidentID FROM coordinate_patrol WHERE CurrentPatrol = 1';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -99,7 +99,7 @@ module.exports.getCurrentLocations = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT lat, lng, GuardID, FirstName, LastName, DeviceToken, PatrolID FROM currentguards WHERE CurrentCoord = 1 AND CurrentPatrol = 1';
+            var strSQL = 'SELECT lat, lng, GuardID, FirstName, LastName, DeviceToken, PatrolID FROM patrol_guard_coordinate WHERE CurrentCoord = 1 AND CurrentPatrol = 1';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -155,7 +155,7 @@ module.exports.getCurrentCoords = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT Sequence, lat, lng, PatrolID FROM allcoords WHERE CurrentPatrol = 1 ORDER BY Sequence ASC;';
+            var strSQL = 'SELECT Sequence, lat, lng, PatrolID FROM coordinate_patrol WHERE CurrentPatrol = 1 ORDER BY Sequence ASC;';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -212,7 +212,7 @@ module.exports.getCurrentCheckpoints = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT Sequence, lat, lng, RouteID FROM allcheckpoints WHERE QueuePosition = 1 ORDER BY Sequence ASC;';
+            var strSQL = 'SELECT Sequence, lat, lng, RouteID FROM checkpoint_route WHERE QueuePosition = 1 ORDER BY Sequence ASC;';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

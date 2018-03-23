@@ -126,7 +126,7 @@ module.exports.updateCoordinate = function (CoordinateModel, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update currentguards SET CurrentCoord = " + CoordinateModel.CurrentCoord + " WHERE GuardID = '" + CoordinateModel.GuardID + "';";
+            var strSQL = "Update patrol_guard_coordinate SET CurrentCoord = " + CoordinateModel.CurrentCoord + " WHERE GuardID = '" + CoordinateModel.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
