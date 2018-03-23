@@ -531,7 +531,7 @@ function initMap() {
             let marker = new google.maps.Marker({
                 position: { lat: lat, lng: lng },
                 map: map,
-                icon: iconsBase + "kml/pal3/icon59.png",
+                icon: "../../images/warning.png",
                 animation: google.maps.Animation.DROP
             });
 
@@ -610,7 +610,7 @@ function initMap() {
         let marker = new google.maps.Marker({
             position: { lat: lat, lng: lng },
             map: map,
-            icon: iconsBase + "kml/pal3/icon59.png",
+            icon: "../../images/warning.png",
             animation: google.maps.Animation.DROP
         });
 
