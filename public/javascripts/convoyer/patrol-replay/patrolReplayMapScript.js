@@ -32,7 +32,7 @@ function initMap() {
 
     createPatrolPath();
     createIncidentMarkers();
-    createGuardButton();
+    createIncidentButtons();
 
     function createPatrolPath() {
 
@@ -139,24 +139,26 @@ function initMap() {
         }
     }
 
-    function createGuardButton(){
+    function createIncidentButtons() {
 
-        let guardButton = parent.document.getElementById(guard.GuardID);
+        var incidentButtons = [];
 
-        if (guardButton != null || guardButton != undefined) {
+        for (let i = 0; i < incidents.length; i++) {
+            let incident = incidents[i];
+            let incidentButton = parent.document.getElementById(incident.IncidentID);
+            let incidentID = incidents[i].IncidentID;
 
-            let lat = location.lat;
-            let lng = location.lng;
-
-            guardButton.addEventListener('click', function (e) {
+            incidentButton.addEventListener('click', function (e) {
 
                 map.setCenter({
-                    lat: lat,
-                    lng: lng
+                    lat: incident.lat,
+                    lng: incident.lng
                 });
             })
 
+            incidentButtons.push(incidentButton);
         }
+
     }
 
     function getPathColor(username) {
