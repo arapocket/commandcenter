@@ -232,7 +232,6 @@ module.exports.saltHashPassword = function (userpassword) {
 
 };
 
-
 module.exports.authenticateUser = function (Guard, callback) {
 
     /**
