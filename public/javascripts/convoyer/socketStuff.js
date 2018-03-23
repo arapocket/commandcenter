@@ -294,7 +294,7 @@ $(function () {
 
     connected = true;
     // Display the welcome message
-    var message = "Welcome to FOXCHAT.";
+    var message = "CONVOYER CHAT.";
     log(message, {
       prepend: true
     });
