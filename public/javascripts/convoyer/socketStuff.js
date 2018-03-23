@@ -81,7 +81,7 @@ $(function () {
   // Sets the client's username
   function setUsername() {
 
-    username = "GREYFOX";
+    username = "DISPATCH";
     socket.emit('add user', username);
   }
 
@@ -246,7 +246,7 @@ $(function () {
     xhr.send(JSON.stringify({
       "MessageID": createID(),
       "Message": message,
-      "GuardID": 'GREYFOX'
+      "GuardID": 'DISPATCH'
     }));
 
   }

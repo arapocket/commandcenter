@@ -337,7 +337,7 @@ function setSocketListeners(socket) {
   note.sound = "ping.aiff";
   note.badge = 0;
   note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
-  note.payload = { 'messageFrom': 'GREYFOX' };
+  note.payload = { 'messageFrom': 'DISPATCH' };
   note.topic = "mobss.foxwatch";
 
   /*
@@ -362,7 +362,7 @@ function setSocketListeners(socket) {
     // we tell the client to execute 'new message'
 
     if (socket.username == null) {
-      socket.username = "FOX"
+      socket.username = "UNKNOWN USER"
     }
     socket.broadcast.emit('message', {
       username: socket.username,
@@ -394,7 +394,7 @@ function setSocketListeners(socket) {
       numUsers: numUsers
     });
 
-    if (socket.username != 'GREYFOX') {
+    if (socket.username != 'DISPATCH') {
       // echo globally (all clients) that a person has connected
       socket.broadcast.emit('user joined', {
         username: socket.username,
