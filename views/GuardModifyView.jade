@@ -9,10 +9,10 @@ block content
 						.form-group
 							label.col-lg-2.control-label(for='inputEmail') User name
 							.col-lg-10
-								input#inputUsername.form-control(type='text', name='userName', required='')
+								input#inputUsername.form-control(type='text', name='userName', value=results[0].UserName, required='')
 							label.col-lg-2.control-label(for='inputEmail') Password
 							.col-lg-10
-								input#inputUsername.form-control(type='text', name='password', value=results[0].Password, required='')						
+								input#inputUsername.form-control(type='text', name='password', required='')						
 							label.col-lg-2.control-label(for='inputEmail') GuardID
 							.col-lg-10
 								input#inputID.form-control(type='text', disabled='', name='guardID', value=results[0].GuardID, required='')                            
