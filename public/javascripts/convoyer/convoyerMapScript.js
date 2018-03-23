@@ -587,7 +587,7 @@ function initMap() {
 
         if (incident.Media != 'none') {
             windowString = `
-            <h5 style="color:#D20202">`  + incident.Type + `</h5>
+            <h5 style="color:#D20202">Incident Type: `  + incident.Type + `</h5>
             <h6 style="color:#404040"> 
             ` + incident.Description + `
             </h6> ` +
@@ -595,7 +595,7 @@ function initMap() {
 
         } else {
             windowString = `
-            <h5 style="color:#D20202">`  + incident.Type + `</h5>
+            <h5 style="color:#D20202">Incident Type: `  + incident.Type + `</h5>
             <h6 style="color:#404040"> 
             ` + incident.Description + `
             </h6> `
