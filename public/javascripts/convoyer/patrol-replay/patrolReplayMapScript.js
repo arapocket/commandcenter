@@ -106,11 +106,13 @@ function initMap() {
                 </h6> `
             }
 
-            let markerWindow = new google.maps.InfoWindow({
-                content: windowString,
-                maxWidth: 160,
-                disableAutoPan: true
-            });
+            // let markerWindow = new google.maps.InfoWindow({
+            //     content: windowString,
+            //     maxWidth: 160,
+            //     disableAutoPan: true
+            // });
+
+
 
 
             let marker = new google.maps.Marker({
@@ -121,15 +123,30 @@ function initMap() {
             });
 
 
+            let infoWindow = new SnazzyInfoWindow({
+                marker: marker,
+                maxWidth: 160,
+                content: windowString,
+                backgroundColor: 'black',
+                shadow: {
+                    h: '0px',
+                    v: '3px',
+                    blur: '6px',
+                    spread: '0px',
+                    opacity: 0.5,
+                    color: '#000'
+                }
+            });
+
             let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
 
             if (!alreadyOpenedWindow) {
-                markerWindow.open(map, marker);
+                infoWindow.open(map, marker);
             }
 
             marker.addListener('click', function (e) {
                 localStorage.setItem("alreadyOpenedWindow " + incidentID, true);
-                markerWindow.open(map, marker);
+                infoWindow.open(map, marker);
             });
         }
     }
