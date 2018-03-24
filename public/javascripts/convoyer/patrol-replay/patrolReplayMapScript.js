@@ -96,7 +96,12 @@ function initMap() {
             let windowString = '';
 
             if (incidents[i].Media != 'none') {
-                windowString = `<div> asdasdadsdasd<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> `
+                windowString = ` 
+                <h5 style="color:#D20202">Incident Type: `  + incidents[i].Type + `</h5>
+                <h6 style="color:#404040"> 
+                ` + incidents[i].Description + `
+                </h6> 
+                <div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> `
 
             } else {
                 windowString = `
