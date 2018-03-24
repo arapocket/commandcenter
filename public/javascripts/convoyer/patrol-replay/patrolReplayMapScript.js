@@ -98,10 +98,10 @@ function initMap() {
             if (incidents[i].Media != 'none') {
                 windowString = ` 
                 <h5 style="color:#D20202">Incident Type: `  + incidents[i].Type + `</h5>
-                <h6 style="color:#404040"> 
+                <h6 style="color:#fff"> 
                 ` + incidents[i].Description + `
                 </h6> 
-                <div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> `
+                `
 
             } else {
                 windowString = `
