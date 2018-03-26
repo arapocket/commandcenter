@@ -97,15 +97,13 @@ function initMap() {
 
             if (incidents[i].Media != 'none') {
 
-
-                
-
-                // windowString = `Incident Type: ` + incidents[i].Type + ` 
-                //     ` + incidents[i].Description + `
-                //     <a href ='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/` + incidents[i].IncidentID + `' ><img src = 'https://s3-us-west-2.amazonaws.com/foxwatch/` + incidents[i].IncidentID; `' >`;
+                windowString = `<h3>Incident Type: ` + incidents[i].Type + ` </h3> <hr>
+                    <p>` + incidents[i].Description + `</p>
+                    <a href ='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/` + incidents[i].IncidentID + `' ><img src = 'https://s3-us-west-2.amazonaws.com/foxwatch/` + incidents[i].IncidentID; `' >`;
 
             } else {
-                windowString = `Incident Type: <br>` + incidents[i].Type + ` <br>` + incidents[i].Description;
+                windowString = `<h3>Incident Type: ` + incidents[i].Type + ` </h3> <hr>
+                <p>` + incidents[i].Description + `</p>`
             }
 
             // let markerWindow = new google.maps.InfoWindow({
@@ -113,9 +111,6 @@ function initMap() {
             //     maxWidth: 160,
             //     disableAutoPan: true
             // });
-
-
-
 
             let marker = new google.maps.Marker({
                 position: { lat: lat, lng: lng },
@@ -127,10 +122,7 @@ function initMap() {
 
             let infoWindow = new SnazzyInfoWindow({
                 marker: marker,
-                content: '<h1>Styling with SCSS</h1>' +
-                '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id urna eu sem fringilla ultrices.</p>' +
-                '<hr>' +
-                '<em>Snazzy Info Window</em>'
+                content: windowString
             });
 
             let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
