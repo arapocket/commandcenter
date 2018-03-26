@@ -469,7 +469,7 @@ function initMap() {
             disableAutoPan: true,
             shadow: {
                 h: '0px',
-                v: '3px',
+                v: '100px',
                 blur: '6px',
                 spread: '0px',
                 opacity: 0.5,
