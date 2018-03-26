@@ -515,11 +515,11 @@ function initMap() {
             let windowString = '';
 
             if (incidents[i].Media != 'none') {
-                windowString = `<h3>` + incidents[i].Type + ` </h3> 
+                windowString = `<h3 style="text-align: center">` + incidents[i].Type + ` </h3> 
                     <p>` + incidents[i].Description + `</p> <div text-align = 'center'> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
                     `;
             } else {
-                windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
+                windowString = `<h3 style="text-align: center">` + incidents[i].Type + ` </h3> <hr>
                 <p>` + incidents[i].Description + `</p>`
             }
 
@@ -564,7 +564,7 @@ function initMap() {
             if (xhr.readyState == XMLHttpRequest.DONE) {
                 let json = JSON.parse(xhr.responseText);
                 if (json.length > 0) {
-                    loadIncidentMarker(json);
+                    // loadIncidentMarker(json);
                 }
             }
         }
@@ -575,54 +575,54 @@ function initMap() {
 
     }
 
-    function loadIncidentMarker(json) {
+    // function loadIncidentMarker(json) {
 
-        let incident = json[0];
+    //     let incident = json[0];
 
-        var lat = incident.lat;
-        var lng = incident.lng;
-
-
-        let windowString = '';
-
-        if (incident.Media != 'none') {
-            windowString = `
-            <h5 style="color:#D20202">Incident Type: `  + incident.Type + `</h5>
-            <h6 style="color:#404040"> 
-            ` + incident.Description + `
-            </h6> ` +
-                `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
-
-        } else {
-            windowString = `
-            <h5 style="color:#D20202">Incident Type: `  + incident.Type + `</h5>
-            <h6 style="color:#404040"> 
-            ` + incident.Description + `
-            </h6> `
-        }
+    //     var lat = incident.lat;
+    //     var lng = incident.lng;
 
 
-        let marker = new google.maps.Marker({
-            position: { lat: lat, lng: lng },
-            map: map,
-            icon: "../../images/warning.png",
-            animation: google.maps.Animation.DROP
-        });
+    //     let windowString = '';
+
+    //     if (incident.Media != 'none') {
+    //         windowString = `
+    //         <h5 style="color:#D20202">Incident Type: `  + incident.Type + `</h5>
+    //         <h6 style="color:#404040"> 
+    //         ` + incident.Description + `
+    //         </h6> ` +
+    //             `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
+
+    //     } else {
+    //         windowString = `
+    //         <h5 style="color:#D20202">Incident Type: `  + incident.Type + `</h5>
+    //         <h6 style="color:#404040"> 
+    //         ` + incident.Description + `
+    //         </h6> `
+    //     }
 
 
-        let markerWindow = new SnazzyInfoWindow({
-            marker: marker,
-            content: windowString
-        });
+    //     let marker = new google.maps.Marker({
+    //         position: { lat: lat, lng: lng },
+    //         map: map,
+    //         icon: "../../images/warning.png",
+    //         animation: google.maps.Animation.DROP
+    //     });
 
-        markerWindow.open(map, marker);
+
+    //     let markerWindow = new SnazzyInfoWindow({
+    //         marker: marker,
+    //         content: windowString
+    //     });
+
+    //     markerWindow.open(map, marker);
 
 
-        marker.addListener('click', function (e) {
-            markerWindow.open(map, marker);
-        });
+    //     marker.addListener('click', function (e) {
+    //         markerWindow.open(map, marker);
+    //     });
 
-    }
+    // }
 
     function onAddCheckpoint(route, latLng) {
         route.getPath().push(latLng);
