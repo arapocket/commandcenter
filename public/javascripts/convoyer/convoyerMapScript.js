@@ -465,7 +465,7 @@ function initMap() {
 
         var windowString =
             `
-        <h3 style="color:#D20202">`  + location.FirstName + `</h3>`;
+        <h3 style="text-align: center">`  + location.FirstName + `</h3>`;
 
 
         var lat = location.lat;
