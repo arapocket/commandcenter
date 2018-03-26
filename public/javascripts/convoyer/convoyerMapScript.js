@@ -467,11 +467,6 @@ function initMap() {
             `
         <h5 style="color:#D20202">`  + location.FirstName + `</h5>`;
 
-        let markerWindow = new google.maps.InfoWindow({
-            content: windowString,
-            disableAutoPan: true,
-
-        });
 
         var lat = location.lat;
         var lng = location.lng;
@@ -481,6 +476,11 @@ function initMap() {
             animation: google.maps.Animation.DROP,
         });
 
+        let markerWindow = new SnazzyInfoWindow({
+            marker: marker,
+            content: windowString
+        });
+        
         let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + id);
         if (!alreadyOpenedWindow) {
             markerWindow.open(map, marker);
@@ -600,17 +600,18 @@ function initMap() {
             </h6> `
         }
 
-        let markerWindow = new google.maps.InfoWindow({
-            content: windowString,
-            maxWidth: 160,
-            disableAutoPan: true
-        });
 
         let marker = new google.maps.Marker({
             position: { lat: lat, lng: lng },
             map: map,
             icon: "../../images/warning.png",
             animation: google.maps.Animation.DROP
+        });
+
+
+        let markerWindow = new SnazzyInfoWindow({
+            marker: marker,
+            content: windowString
         });
 
         markerWindow.open(map, marker);
