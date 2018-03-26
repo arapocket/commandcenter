@@ -57,7 +57,6 @@
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
-  border-radius: 3px;
   overflow: hidden;
   z-index: 2; }
 
@@ -68,8 +67,7 @@
   padding: 60px;
   color: #fff;
   background-color: #000; }
-  .si-has-border .si-content-wrapper {
-    border: 8px solid #2b3031; }
+   
 
 .si-content {
   overflow: auto; }
@@ -92,17 +90,10 @@
   .si-close-button:hover, .si-close-button:focus {
     opacity: 1; }
 
-[class*='si-pointer-border'] {
-  position: absolute;
-  border: 15px solid transparent;
-  z-index: 3; }
-
 [class*='si-pointer-bg'] {
   position: relative;
-  border: 15px solid transparent;
   z-index: 4; }
-  .si-has-border [class*='si-pointer-bg'] {
-    border-width: 12px; }
+
 
 .si-pointer-border-top,
 .si-pointer-border-bottom {
@@ -119,22 +110,11 @@
 .si-pointer-top {
   border-bottom: 0; }
 
-.si-pointer-border-top {
-  bottom: 0;
-  border-top-color: #2b3031; }
-
 .si-pointer-bg-top {
   border-top-color: #fff; }
   .si-has-border .si-pointer-bg-top {
     top: -8px;
     margin-bottom: 3px; }
-
-.si-pointer-bottom {
-  border-top: 0; }
-
-.si-pointer-border-bottom {
-  top: 0;
-  border-bottom-color: #2b3031; }
 
 .si-pointer-bg-bottom {
   border-bottom-color: #fff; }
@@ -145,9 +125,6 @@
 .si-pointer-left {
   border-right: 0; }
 
-.si-pointer-border-left {
-  right: 0;
-  border-left-color: #2b3031; }
 
 .si-pointer-bg-left {
   border-left-color: #fff; }
@@ -157,10 +134,6 @@
 
 .si-pointer-right {
   border-left: 0; }
-
-.si-pointer-border-right {
-  left: 0;
-  border-right-color: #2b3031; }
 
 .si-pointer-bg-right {
   border-right-color: #fff; }
