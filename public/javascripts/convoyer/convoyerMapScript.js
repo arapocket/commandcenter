@@ -483,7 +483,7 @@ function initMap() {
                 h: '0px',
                 v: '10px',
                 blur: '6px',
-                spread: '100px',
+                spread: '20px',
                 opacity: 0.5,
                 color: '#000'
             }
