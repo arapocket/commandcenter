@@ -132,6 +132,7 @@ function initMap() {
                 marker: marker,
                 content: windowString,
                 backgroundColor: 'black',
+                maxWidth: 400,
                 shadow: {
                     h: '0px',
                     v: '3px',
