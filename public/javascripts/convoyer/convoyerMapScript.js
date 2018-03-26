@@ -467,14 +467,7 @@ function initMap() {
         let markerWindow = new google.maps.InfoWindow({
             content: windowString,
             disableAutoPan: true,
-            shadow: {
-                h: '1000px',
-                v: '1000px',
-                blur: '1000px',
-                spread: '1000px',
-                opacity: 0.5,
-                color: '#000'
-            }
+            
         });
 
         var lat = location.lat;
@@ -518,8 +511,8 @@ function initMap() {
             let windowString = '';
 
             if (incidents[i].Media != 'none') {
-                windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
-                    <p>` + incidents[i].Description + `</p> <div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
+                windowString = `<h3>` + incidents[i].Type + ` </h3> 
+                    <p>` + incidents[i].Description + `</p> <div> <hr> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
                     `;
             } else {
                 windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
