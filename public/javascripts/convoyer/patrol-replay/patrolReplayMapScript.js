@@ -96,10 +96,10 @@ function initMap() {
             let windowString = '';
 
             if (incidents[i].Media != 'none') {
-                windowString = ` Incident Type: <br>`  + incidents[i].Type + ` <br>` + incidents[i].Description + ` `
+                windowString = `Incident Type: <br>`  + incidents[i].Type + ` <br>` + incidents[i].Description;
 //<div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
             } else {
-                windowString = ` <div>Incident Type: `  + incidents[i].Type + `</div> <div> ` + incidents[i].Description + `</div> `
+                windowString = `Incident Type: <br>`  + incidents[i].Type + ` <br>` + incidents[i].Description;
             }
 
             // let markerWindow = new google.maps.InfoWindow({
@@ -123,14 +123,6 @@ function initMap() {
                 marker: marker,
                 content: windowString,
                 backgroundColor: 'black',
-                shadow: {
-                    h: '0px',
-                    v: '3px',
-                    blur: '6px',
-                    spread: '0px',
-                    opacity: 0.5,
-                    color: '#000'
-                },
                 border: false
             });
 
