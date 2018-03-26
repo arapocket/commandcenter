@@ -481,7 +481,7 @@ function initMap() {
             content: windowString,
             shadow: {
                 h: '0px',
-                v: '100px',
+                v: '10px',
                 blur: '6px',
                 spread: '0px',
                 opacity: 0.5,
