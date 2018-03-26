@@ -468,10 +468,10 @@ function initMap() {
             content: windowString,
             disableAutoPan: true,
             shadow: {
-                h: '0px',
-                v: '100px',
-                blur: '6px',
-                spread: '0px',
+                h: '1000px',
+                v: '1000px',
+                blur: '1000px',
+                spread: '1000px',
                 opacity: 0.5,
                 color: '#000'
             }
