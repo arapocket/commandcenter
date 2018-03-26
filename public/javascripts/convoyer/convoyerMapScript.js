@@ -465,7 +465,7 @@ function initMap() {
 
         var windowString =
             `
-        <h5 style="color:#D20202">`  + location.FirstName + `</h5>`;
+        <h3 style="color:#D20202">`  + location.FirstName + `</h3>`;
 
 
         var lat = location.lat;
@@ -480,7 +480,7 @@ function initMap() {
             marker: marker,
             content: windowString
         });
-        
+
         let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + id);
         if (!alreadyOpenedWindow) {
             markerWindow.open(map, marker);
