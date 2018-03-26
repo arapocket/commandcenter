@@ -127,7 +127,7 @@ function initMap() {
                 marker: marker,
                 content: windowString,
                 backgroundColor: 'black',
-                maxWidth: 1000000,
+                maxWidth: 100000,
                 maxHeight: 100000,
                 border: false
             });
