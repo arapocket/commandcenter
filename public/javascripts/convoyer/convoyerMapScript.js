@@ -512,7 +512,7 @@ function initMap() {
 
             if (incidents[i].Media != 'none') {
                 windowString = `<h3>` + incidents[i].Type + ` </h3> 
-                    <p>` + incidents[i].Description + `</p> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='500px' height='500px' type='text/html'> <object/> 
+                    <p>` + incidents[i].Description + `</p> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='1000px' type='text/html'> <object/> 
                     `;
             } else {
                 windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
