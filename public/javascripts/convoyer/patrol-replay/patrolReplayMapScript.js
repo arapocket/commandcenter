@@ -100,11 +100,11 @@ function initMap() {
             
             if (incidents[i].Media != 'none') {
                 windowString = `<h3  style="text-align: center">` + incidents[i].Type + ` </h3> 
-                    <p style="text-align: center>` + incidents[i].Description + `</p> <div text-align = 'center'> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
+                    <div style="text-align: center> <p>` + incidents[i].Description + `</p> </div> <div text-align = 'center'> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
                     `;
             } else {
                 windowString = `<h3  style="text-align: center">` + incidents[i].Type + ` </h3> <hr>
-                <p style="text-align: center>` + incidents[i].Description + `</p>`
+                <div style="text-align: center> <p>` + incidents[i].Description + `</p></div>`
             }
 
             let marker = new google.maps.Marker({
