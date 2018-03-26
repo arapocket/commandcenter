@@ -128,7 +128,8 @@
   max-width: 200%;
   max-height: 200%;
   padding: 60px;
-  background-color: #fff; }
+  color: #fff;
+  background-color: #000; }
   .si-has-border .si-content-wrapper {
     border: 8px solid #2b3031; }
 
