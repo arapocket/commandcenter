@@ -130,11 +130,7 @@ function initMap() {
                 content: '<h1>Styling with SCSS</h1>' +
                 '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id urna eu sem fringilla ultrices.</p>' +
                 '<hr>' +
-                '<em>Snazzy Info Window</em>',
-                backgroundColor: 'black',
-                maxWidth: 100000,
-                maxHeight: 100000,
-                border: false
+                '<em>Snazzy Info Window</em>'
             });
 
             let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
