@@ -105,10 +105,10 @@ function initMap() {
 //<div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
             } else {
                 windowString = `
-                <h5 style="color:#D20202">Incident Type: `  + incidents[i].Type + `</h5>
-                <h6 style="color:#404040"> 
+                <div style="color:#D20202">Incident Type: `  + incidents[i].Type + `</div>
+                <div style="color:#404040"> 
                 ` + incidents[i].Description + `
-                </h6> `
+                </div> `
             }
 
             // let markerWindow = new google.maps.InfoWindow({
@@ -130,20 +130,18 @@ function initMap() {
 
             let infoWindow = new SnazzyInfoWindow({
                 marker: marker,
-                placement: 'right',
-                offset: {
-                    left: '20px'
-                },
                 content: windowString,
-                showCloseButton: false,
-                closeOnMapClick: false,
-                padding: '48px',
-                backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                border: false,
-                borderRadius: '0px',
-                shadow: false,
-                fontColor: '#fff',
-                fontSize: '15px'
+                backgroundColor: 'black',
+                maxWidth: 400,
+                shadow: {
+                    h: '0px',
+                    v: '3px',
+                    blur: '6px',
+                    spread: '0px',
+                    opacity: 0.5,
+                    color: '#000'
+                },
+                border: false
             });
 
             let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
