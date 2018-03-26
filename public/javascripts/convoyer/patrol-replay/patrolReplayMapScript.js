@@ -130,18 +130,20 @@ function initMap() {
 
             let infoWindow = new SnazzyInfoWindow({
                 marker: marker,
-                content: windowString,
-                backgroundColor: 'black',
-                maxWidth: 400,
-                shadow: {
-                    h: '0px',
-                    v: '3px',
-                    blur: '6px',
-                    spread: '0px',
-                    opacity: 0.5,
-                    color: '#000'
+                placement: 'right',
+                offset: {
+                    left: '20px'
                 },
-                border: false
+                content: windowString,
+                showCloseButton: false,
+                closeOnMapClick: false,
+                padding: '48px',
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                border: false,
+                borderRadius: '0px',
+                shadow: false,
+                fontColor: '#fff',
+                fontSize: '15px'
             });
 
             let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
