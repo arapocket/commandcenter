@@ -98,8 +98,7 @@ function initMap() {
             if (incidents[i].Media != 'none') {
 
                 windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
-                    <p>` + incidents[i].Description + `</p> <img src = 'https://s3-us-west-2.amazonaws.com/foxwatch/` + incidents[i].IncidentID; `' >
-                    <div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
+                    <p>` + incidents[i].Description + `</p> <div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
                     `;
 
             } else {
