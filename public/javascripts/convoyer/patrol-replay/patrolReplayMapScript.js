@@ -98,9 +98,11 @@ function initMap() {
             if (incidents[i].Media != 'none') {
 
 
-                windowString = `Incident Type: ` + incidents[i].Type + ` 
-                    ` + incidents[i].Description + `
-                    <a href ='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/` + incidents[i].IncidentID + `' ><img src = 'https://s3-us-west-2.amazonaws.com/foxwatch/` + incidents[i].IncidentID; `' >`;
+                
+
+                // windowString = `Incident Type: ` + incidents[i].Type + ` 
+                //     ` + incidents[i].Description + `
+                //     <a href ='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/` + incidents[i].IncidentID + `' ><img src = 'https://s3-us-west-2.amazonaws.com/foxwatch/` + incidents[i].IncidentID; `' >`;
 
             } else {
                 windowString = `Incident Type: <br>` + incidents[i].Type + ` <br>` + incidents[i].Description;
@@ -125,7 +127,10 @@ function initMap() {
 
             let infoWindow = new SnazzyInfoWindow({
                 marker: marker,
-                content: windowString,
+                content: '<h1>Styling with SCSS</h1>' +
+                '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id urna eu sem fringilla ultrices.</p>' +
+                '<hr>' +
+                '<em>Snazzy Info Window</em>',
                 backgroundColor: 'black',
                 maxWidth: 100000,
                 maxHeight: 100000,
