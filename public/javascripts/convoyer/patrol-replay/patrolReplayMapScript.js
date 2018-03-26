@@ -96,7 +96,17 @@ function initMap() {
             let windowString = '';
 
             if (incidents[i].Media != 'none') {
-                windowString = `Incident Type: <br>`  + incidents[i].Type + ` <br>` + incidents[i].Description;
+
+                if (incidents[i].Media == 'photo') {
+                    windowString = `Incident Type: <br>`  + incidents[i].Type + ` <br>` + incidents[i].Description + `
+                    <a href ='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/` + incident[0].IncidentID + `' ><img src = 'https://s3-us-west-2.amazonaws.com/foxwatch/` + incident[0].IncidentID;`' >`;
+                } 
+
+                if (incidents[i].Media == 'video') {
+                    windowString = `Incident Type: <br>`  + incidents[i].Type + ` <br>` + incidents[i].Description + `
+                    <a href ='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetails/` + incident[0].IncidentID + `' ><img src = 'https://s3-us-west-2.amazonaws.com/foxwatch/` + incident[0].IncidentID;`' >`;
+                }
+                // windowString = `Incident Type: <br>`  + incidents[i].Type + ` <br>` + incidents[i].Description;
 //<div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
             } else {
                 windowString = `Incident Type: <br>`  + incidents[i].Type + ` <br>` + incidents[i].Description;
