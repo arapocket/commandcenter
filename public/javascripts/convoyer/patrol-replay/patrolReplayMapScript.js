@@ -96,19 +96,10 @@ function initMap() {
             let windowString = '';
 
             if (incidents[i].Media != 'none') {
-                windowString = ` 
-                <div style="color:#D20202">Incident Type: `  + incidents[i].Type + `</div>
-                <div style="color:#fff"> 
-                ` + incidents[i].Description + `
-                </div> 
-                `
+                windowString = ` <div>Incident Type: `  + incidents[i].Type + `</div> <div> ` + incidents[i].Description + `</div> `
 //<div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
             } else {
-                windowString = `
-                <div style="color:#D20202">Incident Type: `  + incidents[i].Type + `</div>
-                <div style="color:#404040"> 
-                ` + incidents[i].Description + `
-                </div> `
+                windowString = ` <div>Incident Type: `  + incidents[i].Type + `</div> <div> ` + incidents[i].Description + `</div> `
             }
 
             // let markerWindow = new google.maps.InfoWindow({
