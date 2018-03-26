@@ -105,12 +105,6 @@ function initMap() {
                 <p>` + incidents[i].Description + `</p>`
             }
 
-            // let markerWindow = new google.maps.InfoWindow({
-            //     content: windowString,
-            //     maxWidth: 160,
-            //     disableAutoPan: true
-            // });
-
             let marker = new google.maps.Marker({
                 position: { lat: lat, lng: lng },
                 map: map,

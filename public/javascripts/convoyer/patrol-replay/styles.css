@@ -111,13 +111,13 @@
   border-bottom: 0; }
 
 .si-pointer-bg-top {
-  border-top-color: #fff; }
+  border-top-color: #000; }
   .si-has-border .si-pointer-bg-top {
     top: -8px;
     margin-bottom: 3px; }
 
 .si-pointer-bg-bottom {
-  border-bottom-color: #fff; }
+  border-bottom-color: #000; }
   .si-has-border .si-pointer-bg-bottom {
     bottom: -8px;
     margin-top: 3px; }
@@ -127,7 +127,7 @@
 
 
 .si-pointer-bg-left {
-  border-left-color: #fff; }
+  border-left-color: #000; }
   .si-has-border .si-pointer-bg-left {
     left: -8px;
     margin-right: 3px; }
@@ -136,7 +136,7 @@
   border-left: 0; }
 
 .si-pointer-bg-right {
-  border-right-color: #fff; }
+  border-right-color: #000; }
   .si-has-border .si-pointer-bg-right {
     right: -8px;
     margin-left: 3px; }
