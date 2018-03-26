@@ -466,7 +466,15 @@ function initMap() {
 
         let markerWindow = new google.maps.InfoWindow({
             content: windowString,
-            disableAutoPan: true
+            disableAutoPan: true,
+            shadow: {
+                h: '0px',
+                v: '3px',
+                blur: '6px',
+                spread: '0px',
+                opacity: 0.5,
+                color: '#000'
+            }
         });
 
         var lat = location.lat;
