@@ -478,15 +478,7 @@ function initMap() {
 
         let markerWindow = new SnazzyInfoWindow({
             marker: marker,
-            content: windowString,
-            shadow: {
-                h: '0px',
-                v: '10px',
-                blur: '6px',
-                spread: '20px',
-                opacity: 0.5,
-                color: '#000'
-            }
+            content: windowString
         });
 
         let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + id);
