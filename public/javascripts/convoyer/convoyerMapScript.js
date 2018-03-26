@@ -479,8 +479,9 @@ function initMap() {
         let markerWindow = new SnazzyInfoWindow({
             marker: marker,
             content: windowString,
+            maxWidth: 10,
             shadow: {
-                h: '0px',
+                h: '100px',
                 v: '10px',
                 blur: '6px',
                 spread: '0px',
