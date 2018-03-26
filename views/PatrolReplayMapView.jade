@@ -1,10 +1,6 @@
 doctype html
 html(lang='en')
 	head
-		script( src='/javascripts/jquery-3.1.1.min.js' )
-		script( src='/bootstrap/js/bootstrap.min.js' )
-		script( src='/javascripts/bootbox.min.js' )
-		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
 		link(href="/snazzy-info-window-master/dist/snazzy-info-window.min.css", rel="stylesheet")
 		link(href="/javascripts/convoyer/patrol-replay/styles.css", rel="stylesheet")
 		meta(charset='UTF-8')
@@ -25,7 +21,6 @@ html(lang='en')
 		script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCuuEBG2qsNl6WRWo9093Abz4MEvv3QayU')
 		script(src='/snazzy-info-window-master/dist/snazzy-info-window.min.js')
 		script(src='/javascripts/convoyer/patrol-replay/patrolReplayMapScript.js')
-		script(src='/javascripts/convoyer/locationIsAccurate.js')
 		script.
 				var mapElement = document.getElementById('map');
 				var results = !{ JSON.stringify(getPatrolReplayMapResult) };
