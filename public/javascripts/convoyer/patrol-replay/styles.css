@@ -63,12 +63,11 @@
   z-index: 2; }
 
 .si-content-wrapper {
-  width: 200%;
+  width: 150%;
   height: 200%;
   max-width: 200%;
   max-height: 200%;
   color: #000;
-  padding: 60px;
   background-color: #fff; }
   .si-has-border .si-content-wrapper {
     border: 8px solid #2b3031; }
@@ -176,7 +175,6 @@ html {
 body {
   height: 100%;
   margin: 0; }
-
 
 .si-wrapper-top {
   max-width: 300px; }
