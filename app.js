@@ -481,13 +481,14 @@ function setSocketListeners(socket) {
     if (addedUser) {
       --numUsers;
 
-
-
+      if (socket.username != 'DISPATCH'){
       // echo globally that this client has left
       socket.broadcast.emit('user left', {
         username: socket.username,
         numUsers: numUsers
-      });
+      });        
+      }
+
 
     }
 
