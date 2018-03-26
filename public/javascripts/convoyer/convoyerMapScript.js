@@ -506,26 +506,13 @@ function initMap() {
             let windowString = '';
 
             if (incidents[i].Media != 'none') {
-                windowString = `
-                <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
-                <h6 style="color:#404040"> 
-                ` + incidents[i].Description + `
-                </h6> ` +
-                    `<object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
-
+                windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
+                    <p>` + incidents[i].Description + `</p> <div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
+                    `;
             } else {
-                windowString = `
-                <h5 style="color:#D20202">`  + incidents[i].Type + `</h5>
-                <h6 style="color:#404040"> 
-                ` + incidents[i].Description + `
-                </h6> `
+                windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
+                <p>` + incidents[i].Description + `</p>`
             }
-
-            let markerWindow = new google.maps.InfoWindow({
-                content: windowString,
-                maxWidth: 160,
-                disableAutoPan: true
-            });
 
 
             let marker = new google.maps.Marker({
@@ -535,6 +522,10 @@ function initMap() {
                 animation: google.maps.Animation.DROP
             });
 
+            let markerWindow = new SnazzyInfoWindow({
+                marker: marker,
+                content: windowString
+            });
 
             let alreadyOpenedWindow = localStorage.getItem('alreadyOpenedWindow ' + incidentID);
 
