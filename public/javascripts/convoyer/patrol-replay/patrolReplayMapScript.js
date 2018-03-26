@@ -13,7 +13,7 @@ function initMap() {
     var mapStyle = [{ 'featureType': 'administrative', 'elementType': 'labels.text.fill', 'stylers': [{ 'color': '#444444' }] }, { 'featureType': 'landscape', 'elementType': 'all', 'stylers': [{ 'color': '#f2f2f2' }] }, { 'featureType': 'poi', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'road', 'elementType': 'all', 'stylers': [{ 'saturation': -100 }, { 'lightness': 45 }] }, { 'featureType': 'road.highway', 'elementType': 'all', 'stylers': [{ 'visibility': 'simplified' }] }, { 'featureType': 'road.arterial', 'elementType': 'labels.icon', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'transit', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'water', 'elementType': 'all', 'stylers': [{ 'color': '#4f595d' }, { 'visibility': 'on' }] }];
 
     let map = new google.maps.Map(document.getElementById('map'), {
-        style: mapStyle,
+        styles: mapStyle,
         zoom: 18,
         center: center,
         mapTypeId: google.maps.MapTypeId.MAP,
@@ -97,12 +97,11 @@ function initMap() {
 
             let windowString = '';
 
+            
             if (incidents[i].Media != 'none') {
-
-                windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
-                    <p>` + incidents[i].Description + `</p> <div><object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div> 
+                windowString = `<h3>` + incidents[i].Type + ` </h3> 
+                    <p>` + incidents[i].Description + `</p> <div text-align = 'center'> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
                     `;
-
             } else {
                 windowString = `<h3>` + incidents[i].Type + ` </h3> <hr>
                 <p>` + incidents[i].Description + `</p>`
