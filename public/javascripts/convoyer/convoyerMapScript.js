@@ -481,10 +481,10 @@ function initMap() {
             content: windowString,
             maxWidth: 10,
             shadow: {
-                h: '100px',
+                h: '0px',
                 v: '10px',
                 blur: '6px',
-                spread: '0px',
+                spread: '100px',
                 opacity: 0.5,
                 color: '#000'
             }
