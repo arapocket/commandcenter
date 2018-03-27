@@ -45,13 +45,6 @@ function initMap() {
                 <div style="text-align: center"> <p>` + incident.Description + `</p></div>`
         }
 
-        let marker = new google.maps.Marker({
-            position: { lat: lat, lng: lng },
-            map: map,
-            icon: "../../images/warning.png",
-            animation: google.maps.Animation.DROP
-        });
-
 
         let infoWindow = new SnazzyInfoWindow({
             marker: marker,
