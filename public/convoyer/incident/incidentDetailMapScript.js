@@ -21,7 +21,7 @@ function initMap() {
     });
 
     let marker = new google.maps.Marker({
-        position: guardPosition,
+        position: center,
         map: map,
         animation: google.maps.Animation.DROP,
         icon: "../../images/warning.png",
