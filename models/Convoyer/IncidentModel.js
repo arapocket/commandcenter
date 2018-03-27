@@ -150,7 +150,7 @@ module.exports.getAllIncidentsByGuard = function (callback){
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = 'SELECT * FROM incident_patrol_guard;';
+            var strSQL = 'SELECT * FROM patrol_incident_guard;';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

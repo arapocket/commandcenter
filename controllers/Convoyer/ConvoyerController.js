@@ -129,7 +129,7 @@ module.exports.getGuardsForNotifications = (function (req, res) {
 */
     /**
      
-    CREATE VIEW incident_patrol_guard
+    CREATE VIEW patrol_incident_guard
     AS SELECT i.IncidentID, i.Description, i.Type, i.lat, i.lng, i.CurrentPatrol, i.Media, i.Time, i.PatrolID,
     g.GuardID, g.UserName, g.FirstName, g.LastName, g.EmpID, g.Status, g.UserEmail, g.DeviceToken, g.LoggedIn
 
