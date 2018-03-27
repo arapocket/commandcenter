@@ -13,6 +13,7 @@ block content
 							th End Time
 							th First Name
 							th Last Name
+							th Incidents
 					tbody
 						-each result in results
 							tr
@@ -22,6 +23,7 @@ block content
 									td=result.End
 									td=result.FirstName
 									td=result.LastName
+									td=result.IncidentCount
 				script.
 					$(document).ready(function() {
 					$('#pickle').DataTable({
