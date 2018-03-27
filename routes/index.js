@@ -248,6 +248,8 @@ var IncidentDetailController = require('../controllers/Convoyer/IncidentDetailCo
 router.get('/incidentdetails/:id', IncidentDetailController.getIncidentDetails);
 router.get('/incidentpreview/:id', IncidentDetailController.getIncidentPreview);
 
+var IncidentDetailMapController = require('../controllers/Convoyer/IncidentDetailMapController');
+router.get('/incidentdetailmap/:id', IncidentDetailMapController.getIncidentDetailMap);
 
 var PatrolController = require('../controllers/Convoyer/PatrolController');
 router.get('/patrols', PatrolController.getAllPatrols);

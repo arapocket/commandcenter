@@ -17,8 +17,6 @@ function initMap() {
     ];
 
 
-    var iconsBase = "http://maps.google.com/mapfiles/"
-
     socket.on('incident', function (incident) {
         window.setTimeout(function () {
             parent.location.reload();

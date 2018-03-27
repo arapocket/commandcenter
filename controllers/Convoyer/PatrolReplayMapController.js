@@ -7,7 +7,6 @@ module.exports.getPatrolReplayMap = (function (req, res) {
     if (err) {
       // res.json(err);
     } else {
-      
       PatrolReplayMapModel.getIncidents(req.params.id, function (err, getIncidentsResult){
         if (err){
           //res.json(err)
@@ -17,7 +16,5 @@ module.exports.getPatrolReplayMap = (function (req, res) {
       })              
             }
           })
-
-
         });
 

@@ -2,7 +2,7 @@ doctype html
 html(lang='en')
 	head
 		link(href="/snazzy-info-window-master/dist/snazzy-info-window.min.css", rel="stylesheet")
-		link(href="/convoyer/patrol-replay/styles.css", rel="stylesheet")
+		link(href="/convoyer/incident/styles.css", rel="stylesheet")
 		meta(charset='UTF-8')
 		title Incident Map
 		style.
@@ -14,12 +14,11 @@ html(lang='en')
 		#map
 		script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCuuEBG2qsNl6WRWo9093Abz4MEvv3QayU')
 		script(src='/snazzy-info-window-master/dist/snazzy-info-window.min.js')
-		script(src='/convoyer/patrol-replay/patrolReplayMapScript.js')
+		script(src='/convoyer/incident/incidentDetailMapScript.js')
 		script(src='/convoyer/locationIsAccurate.js')
 		script.
 				var mapElement = document.getElementById('map');
-				var results = !{ JSON.stringify(getPatrolReplayMapResult) };
-				var incidents = !{ JSON.stringify(getIncidentsResult) };
+				var results = !{ JSON.stringify(getIncidentDetailMapResult) };
 				initMap();
 																				
 
