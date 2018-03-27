@@ -1,4 +1,4 @@
-function renderIncidentDetails(){
+function incidentDetailScript(){
 
     let incidentPhoto = document.getElementById("incidentPhoto");
     let incidentVideo = document.getElementById('incidentVideo');

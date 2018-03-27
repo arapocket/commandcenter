@@ -1,6 +1,6 @@
-function renderIncidentPreview() {
+function incidentPreviewScript() {
 
-    console.log('rendering incident media type from renderIncidentPreview');
+    console.log('rendering incident media type from incidentPreviewScript');
     console.log(incident[0].Media);
 
     let imageAnchor = document.getElementById('imageAnchor');
