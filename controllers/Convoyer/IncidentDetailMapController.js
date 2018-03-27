@@ -3,7 +3,7 @@ var IncidentDetailMapModel = require('../../models/Convoyer/IncidentDetailMapMod
 module.exports.getIncidentDetailMap = (function (req, res) {
 
 
-    IncidentDetailMapModel.get(req.params.id, function (err, getIncidentDetailMapResult) {
+    IncidentDetailMapModel.getIncidentDetailMap(req.params.id, function (err, getIncidentDetailMapResult) {
         if (err) {
             // res.json(err);
         } else {
