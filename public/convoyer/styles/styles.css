@@ -5,7 +5,7 @@
 
   .scrollable-table {  
     position: relative;
-    height: 150px !important;
+    height: 120px !important;
     overflow: scroll;
     background-color: #2b3031
   }
