@@ -63,24 +63,24 @@ body {
 // the full markup and available classes.
 
 .si-wrapper-top {
-    max-width: 300px;
+    max-width: 1000px;
 
     @media (min-width: 600px) {
-        max-width: 400px;
+        max-width: 1000px;
     }
 
     @media (min-width: 992px) {
-        max-width: 500px;
+        max-width: 2000px;
     }
 }
 
 .si-frame {
-    @media (max-width: 991px) {
-        padding: 50px;
+    @media (max-width: 2000px) {
+        padding: 0px;
     }
 
-    @media (max-width: 599px) {
-        padding: 40px;
+    @media (max-width: 1000px) {
+        padding: 0px;
     }
 }
 
