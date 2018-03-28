@@ -71,8 +71,6 @@
   .si-has-border .si-content-wrapper {
     border: 8px solid #2b3031; }
 
-.si-content {
-  overflow: auto; }
 
 .si-close-button {
   position: absolute;
