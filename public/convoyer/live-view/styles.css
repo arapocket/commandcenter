@@ -64,8 +64,8 @@
 
 .si-content-wrapper {
   width: 100%;
-  max-width: 200%;
-  max-height: 200%;
+  max-width: 1000%;
+  max-height: 1000%;
   color: #000;
   background-color: #fff; }
   .si-has-border .si-content-wrapper {
