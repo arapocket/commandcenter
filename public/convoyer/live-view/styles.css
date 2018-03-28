@@ -269,12 +269,12 @@ body {
 
 @media (max-width: 2000px) {
   .si-frame {
-    padding: 50px;
+    padding: 10px;
   }
 }
 @media (max-width: 1000px) {
   .si-frame {
-    padding: 40px;
+    padding: 10px;
   }
 }
 
