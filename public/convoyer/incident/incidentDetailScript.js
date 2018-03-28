@@ -1,5 +1,7 @@
 function incidentDetailScript(){
 
+    console.log('incidentDetailScript called');
+
     let incidentPhoto = document.getElementById("incidentPhoto");
     let incidentVideo = document.getElementById('incidentVideo');
 
