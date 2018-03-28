@@ -76,11 +76,11 @@ body {
 
 .si-frame {
     @media (max-width: 2000px) {
-        padding: 10px;
+        padding: 20px;
     }
 
     @media (max-width: 1000px) {
-        padding: 10px;
+        padding: 20px;
     }
 }
 
@@ -99,8 +99,8 @@ body {
 
 .si-content {
     h1 {
-        margin: 0 0 50px;
-        padding: 10px 0;
+        margin: 0 0 10px;
+        padding: 0px 0;
         border-top: 2px solid $si-border-color;
         border-bottom: 2px solid $si-border-color;
         font-family: 'Montserrat', sans-serif;

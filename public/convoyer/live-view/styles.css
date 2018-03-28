@@ -269,12 +269,12 @@ body {
 
 @media (max-width: 2000px) {
   .si-frame {
-    padding: 10px;
+    padding: 20px;
   }
 }
 @media (max-width: 1000px) {
   .si-frame {
-    padding: 10px;
+    padding: 20px;
   }
 }
 
@@ -284,8 +284,8 @@ body {
 }
 
 .si-content h1 {
-  margin: 0 0 50px;
-  padding: 10px 0;
+  margin: 0 0 10px;
+  padding: 0px 0;
   border-top: 2px solid #2b3031;
   border-bottom: 2px solid #2b3031;
   font-family: "Montserrat", sans-serif;
