@@ -184,6 +184,7 @@
   border-top-color: #fff;
 }
 .si-has-border .si-pointer-bg-top {
+  top: -8px;
   margin-bottom: 3px;
 }
 
