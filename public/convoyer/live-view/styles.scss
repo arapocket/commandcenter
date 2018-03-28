@@ -98,6 +98,8 @@ body {
 // Add styles to the content set in index.js.
 
 .si-content {
+    white-space: nowrap;
+
     h1 {
         margin: 0 0 10px;
         padding: 0px 0;
