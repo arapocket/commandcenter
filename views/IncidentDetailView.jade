@@ -32,6 +32,10 @@ html(lang='en')
 		.col-md-4.col-sm-4.col-xs-4.col-md-offset-4.col-sm-offset-4.col-xs-offset-4
 			img#incidentPhoto(src="",  width = "100%", height = "100%", display = 'none')
 			video#incidentVideo(src="",  width = "100%", height = "100%", display = "none" autoplay = "" loop = "true")
+	.row
+		.col-md-12.col-sm-12.col-xs-12
+				object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetailmap/#{getIncidentResult[0].IncidentID}', width='100%', height='600', type='text/html')
+				
 			script(src='/convoyer/incident/incidentDetailScript.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
