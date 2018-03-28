@@ -10,9 +10,9 @@ html(lang='en')
 			}
 	body
 			a(id = 'imageAnchor' href='' target="_parent")		
-				img#incidentPhoto(src="", width = "100px", height = "100px", display = 'none')
+				img#incidentPhoto(src="", width = "200px", height = "200px", display = 'none')
 			a(id = 'videoAnchor' href='' target="_parent")		
-				video#incidentVideo(src="", width = "100px", height = "100px", display = "none", autoplay = "", loop = "true" )
+				video#incidentVideo(src="", width = "200px", height = "200px", display = "none", autoplay = "", loop = "true" )
 			script(src='/convoyer/incident/incidentPreviewScript.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
