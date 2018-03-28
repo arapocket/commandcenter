@@ -4,7 +4,7 @@ block content
 												include navbar
 												head
 														.col-md-2.col-sm-2.col-xs-12
-																.row.row.with-margin
+																.row.with-margin
 																	a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
 																		i.fa.fa-map-signs(aria-hidden='true')
 																		| &nbsp Create New Route
@@ -24,7 +24,7 @@ block content
 																	a.btn.btn-default.btn-block(id='saveRouteButton', style='display: none ! important;')
 																		i.fa.fa-floppy-o(aria-hidden='true')
 																		| &nbsp Save Template
-																.row.row.with-margin
+																.row
 																	a.btn.btn-default.btn-block(id='loadRouteButton', style='display: none ! important;')
 																		i.fa.fa-cloud-download(aria-hidden='true')
 																		| &nbsp Load Template
@@ -70,7 +70,7 @@ block content
 																		a.btn.btn-default.btn-block(id='loadRouteButton' + location.GuardID, style='display: none ! important;')
 																			i.fa.fa-cloud-download(aria-hidden='true')
 																			| &nbsp Load Template
-																	.row.row.with-margin
+																	.row
 																		a.btn.btn-danger.btn-block(id='endPatrolButton' + location.GuardID, style='display: none ! important;')
 																			i.fa.fa-hand-paper-o(aria-hidden='true')
 																			| &nbsp End Patrol
@@ -89,7 +89,7 @@ block content
 																																	tr.default(id=guard.GuardID)
 																																					td=guard.FirstName
 																																					td=guard.LastName
-																.row.with-margin
+																.row
 																	.panel.panel-default
 																			.panel-heading
 																					h3.panel-title Incidents	   
