@@ -1,6 +1,7 @@
 doctype html
 html(lang='en')
 	head
+		link(href="/convoyer/styles/styles.css", rel="stylesheet")
 		meta(charset='UTF-8')
 		title Incident Preview
 		style.
@@ -9,9 +10,9 @@ html(lang='en')
 			}
 	body
 			a(id = 'imageAnchor' href='' target="_parent")		
-				img#incidentPhoto(src="", width = "100%", height = "100%", display = 'none')
+				img.with-margin#incidentPhoto(src="", width = "100%", height = "100%", display = 'none')
 			a(id = 'videoAnchor' href='' target="_parent")		
-				video#incidentVideo(src="", width = "100%", height = "100%", display = "none", autoplay = "", loop = "true" )
+				video.with-margin#incidentVideo(src="", width = "100%", height = "100%", display = "none", autoplay = "", loop = "true" )
 			script(src='/convoyer/incident/incidentPreviewScript.js')
 			script.
 					var incident = !{ JSON.stringify(getIncidentResult) };
