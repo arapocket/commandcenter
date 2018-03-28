@@ -2,3 +2,8 @@
   .with-margin {
     margin-bottom: 20px;
   }
+
+  .scrollable-table {  
+    height: 100px !important;
+    overflow: scroll;
+  }
