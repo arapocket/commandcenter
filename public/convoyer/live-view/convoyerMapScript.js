@@ -12,10 +12,10 @@ function initMap() {
 
 
     const guardcontainer = parent.document.querySelector('#guardcontainer');
-    const ps = new PerfectScrollbar(guardcontainer);
+    const guardPS = new PerfectScrollbar(guardcontainer);
 
     const incidentcontainer = parent.document.querySelector('#incidentcontainer');
-    const ps = new PerfectScrollbar(incidentcontainer);
+    const incidentPS = new PerfectScrollbar(incidentcontainer);
 
     const COLORS = [
         '#e21400', '#f78b00',
