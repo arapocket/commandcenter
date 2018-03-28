@@ -11,8 +11,11 @@ function initMap() {
     var mapStyle = [{ 'featureType': 'administrative', 'elementType': 'labels.text.fill', 'stylers': [{ 'color': '#444444' }] }, { 'featureType': 'landscape', 'elementType': 'all', 'stylers': [{ 'color': '#f2f2f2' }] }, { 'featureType': 'poi', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'road', 'elementType': 'all', 'stylers': [{ 'saturation': -100 }, { 'lightness': 45 }] }, { 'featureType': 'road.highway', 'elementType': 'all', 'stylers': [{ 'visibility': 'simplified' }] }, { 'featureType': 'road.arterial', 'elementType': 'labels.icon', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'transit', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'water', 'elementType': 'all', 'stylers': [{ 'color': '#4f595d' }, { 'visibility': 'on' }] }];
 
 
-    const container = parent.document.querySelector('#container');
-    const ps = new PerfectScrollbar(container);
+    const guardcontainer = parent.document.querySelector('#guardcontainer');
+    const ps = new PerfectScrollbar(guardcontainer);
+
+    const incidentcontainer = parent.document.querySelector('#incidentcontainer');
+    const ps = new PerfectScrollbar(incidentcontainer);
 
     const COLORS = [
         '#e21400', '#f78b00',
