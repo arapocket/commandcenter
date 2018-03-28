@@ -35,11 +35,10 @@ html(lang='en')
 	.row
 		.col-md-12.col-sm-12.col-xs-12
 				object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentdetailmap/#{getIncidentResult[0].IncidentID}', width='100%', height='600', type='text/html')
-				
-			script(src='/convoyer/incident/incidentDetailScript.js')
-			script.
-					var incident = !{ JSON.stringify(getIncidentResult) };
-					incidentDetailScript();
+	script(src='/convoyer/incident/incidentDetailScript.js')
+	script.
+			var incident = !{ JSON.stringify(getIncidentResult) };
+			incidentDetailScript();
 									
 
 
