@@ -463,7 +463,7 @@ function initMap() {
 
         var windowString =
             `
-        <h3 style="text-align: center">`  + location.FirstName + `</h3>`;
+        <h3>`  + location.FirstName + `</h3>`;
 
 
         var lat = location.lat;
@@ -512,12 +512,12 @@ function initMap() {
             let windowString = '';
 
             if (incidents[i].Media != 'none') {
-                windowString = `<h3 style="text-align: center">` + incidents[i].Type + ` </h3> 
-                    <div style="text-align: center"> <p>` + incidents[i].Description + `</p> </div> <div text-align = 'center'> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
+                windowString = `<h3 >` + incidents[i].Type + ` </h3> 
+                    <div> <p>` + incidents[i].Description + `</p> </div> <div text-align = 'center'> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
                     `;
             } else {
-                windowString = `<h3 style="text-align: center">` + incidents[i].Type + ` </h3>
-                <div style="text-align: center"> <p>` + incidents[i].Description + `</p></div>`
+                windowString = `<h3 >` + incidents[i].Type + ` </h3>
+                <div > <p>` + incidents[i].Description + `</p></div>`
             }
 
 
