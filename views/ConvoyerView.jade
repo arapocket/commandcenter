@@ -31,81 +31,79 @@ block content
 																																-each incident in getAllIncidentsResult
 																																						tr.default(id=incident.IncidentID)
 																																								td=incident.Type 
-																			.row
-																											a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
-																												i.fa.fa-map-signs(aria-hidden='true')
-																												| &nbsp Create New Route																		
-																			.row
-																											a.btn.btn-default.btn-block(id='cancelRouteButton', style='display: none ! important;')
-																												i.fa.fa-trash(aria-hidden='true')
-																												| &nbsp Cancel Route Add
-																			.row
-																											a.btn.btn-default.btn-block(id='clearCheckpointsButton', style='display: none ! important;')
-																												i.fa.fa-eraser(aria-hidden='true')
-																												| &nbsp Clear All Checkpoints																			
-																			.row
-																											a.btn.btn-default.btn-block(id='removeLastCheckpointButton', style='display: none ! important;')
-																												i.fa.fa-undo(aria-hidden='true')
-																												| &nbsp Remove Last Checkpoint
-																			.row
-																											a.btn.btn-default.btn-block(id='saveRouteButton', style='display: none ! important;')
-																												i.fa.fa-floppy-o(aria-hidden='true')
-																												| &nbsp Save Template
-																			.row
-																											a.btn.btn-default.btn-block(id='loadRouteButton', style='display: none ! important;')
-																												i.fa.fa-cloud-download(aria-hidden='true')
-																												| &nbsp Load Template		
-																		-each location in getCurrentLocationsResult																																																
-																			.row
-																											a.btn.btn-default.btn-block(id='trashRouteButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-trash(aria-hidden='true')
-																												| &nbsp Cancel Route Edit																			
+																.row
+																								a.btn.btn-default.btn-block(id='addRouteButton', style='display: block ! important;')
+																									i.fa.fa-map-signs(aria-hidden='true')
+																									| &nbsp Create New Route																		
+																.row
+																								a.btn.btn-default.btn-block(id='cancelRouteButton', style='display: none ! important;')
+																									i.fa.fa-trash(aria-hidden='true')
+																									| &nbsp Cancel Route Add
+																.row
+																								a.btn.btn-default.btn-block(id='clearCheckpointsButton', style='display: none ! important;')
+																									i.fa.fa-eraser(aria-hidden='true')
+																									| &nbsp Clear All Checkpoints																			
+																.row
+																								a.btn.btn-default.btn-block(id='removeLastCheckpointButton', style='display: none ! important;')
+																									i.fa.fa-undo(aria-hidden='true')
+																									| &nbsp Remove Last Checkpoint
+																.row
+																								a.btn.btn-default.btn-block(id='saveRouteButton', style='display: none ! important;')
+																									i.fa.fa-floppy-o(aria-hidden='true')
+																									| &nbsp Save Template
+																.row
+																								a.btn.btn-default.btn-block(id='loadRouteButton', style='display: none ! important;')
+																									i.fa.fa-cloud-download(aria-hidden='true')
+																									| &nbsp Load Template		
+															-each location in getCurrentLocationsResult																																																
+																.row
+																								a.btn.btn-default.btn-block(id='trashRouteButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-trash(aria-hidden='true')
+																									| &nbsp Cancel Route Edit																			
 
-																			.row
-																											a.btn.btn-default.btn-block(id='editRouteButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-map-signs(aria-hidden='true')
-																												| &nbsp Edit Live Route
-																			.row
-																											a.btn.btn-default.btn-block(id='queueRoutesButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-list-ol(aria-hidden='true')
-																												| &nbsp Queue Routes																												
-																			.row
-																											a.btn.btn-default.btn-block(id='addQueueButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-plus(aria-hidden='true')
-																												| &nbsp Add To Queue
-																			.row
-																											a.btn.btn-default.btn-block(id='removeQueueButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-minus(aria-hidden='true')
-																												| &nbsp Remove From Queue																																																																																																																																																																								
-																			.row
-																											a.btn.btn-default.btn-block(id='cancelQueueButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-trash(aria-hidden='true')
-																												| &nbsp Cancel Route Queue																												
-																			.row
-																											a.btn.btn-default.btn-block(id='clearCheckpointsButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-eraser(aria-hidden='true')
-																												| &nbsp Clear All Checkpoints																			
-																			.row
-																											a.btn.btn-default.btn-block(id='removeLastCheckpointButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-undo(aria-hidden='true')
-																												| &nbsp Remove Last Checkpoint
-																			.row
-																											a.btn.btn-default.btn-block(id='saveRouteButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-floppy-o(aria-hidden='true')
-																												| &nbsp Set Route As Current
-																			.row
-																											a.btn.btn-default.btn-block(id='loadRouteButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-cloud-download(aria-hidden='true')
-																												| &nbsp Load Template
-																			.row
-																											a.btn.btn-danger.btn-block(id='endPatrolButton' + location.GuardID, style='display: none ! important;')
-																												i.fa.fa-hand-paper-o(aria-hidden='true')
-																												| &nbsp End Patrol
-																			.row																												
-																											.card.mb-3
-																												h3.card-header(id='refreshtimer')
-
-																											
+																.row
+																								a.btn.btn-default.btn-block(id='editRouteButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-map-signs(aria-hidden='true')
+																									| &nbsp Edit Live Route
+																.row
+																								a.btn.btn-default.btn-block(id='queueRoutesButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-list-ol(aria-hidden='true')
+																									| &nbsp Queue Routes																												
+																.row
+																								a.btn.btn-default.btn-block(id='addQueueButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-plus(aria-hidden='true')
+																									| &nbsp Add To Queue
+																.row
+																								a.btn.btn-default.btn-block(id='removeQueueButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-minus(aria-hidden='true')
+																									| &nbsp Remove From Queue																																																																																																																																																																								
+																.row
+																								a.btn.btn-default.btn-block(id='cancelQueueButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-trash(aria-hidden='true')
+																									| &nbsp Cancel Route Queue																												
+																.row
+																								a.btn.btn-default.btn-block(id='clearCheckpointsButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-eraser(aria-hidden='true')
+																									| &nbsp Clear All Checkpoints																			
+																.row
+																								a.btn.btn-default.btn-block(id='removeLastCheckpointButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-undo(aria-hidden='true')
+																									| &nbsp Remove Last Checkpoint
+																.row
+																								a.btn.btn-default.btn-block(id='saveRouteButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-floppy-o(aria-hidden='true')
+																									| &nbsp Set Route As Current
+																.row
+																								a.btn.btn-default.btn-block(id='loadRouteButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-cloud-download(aria-hidden='true')
+																									| &nbsp Load Template
+																.row
+																								a.btn.btn-danger.btn-block(id='endPatrolButton' + location.GuardID, style='display: none ! important;')
+																									i.fa.fa-hand-paper-o(aria-hidden='true')
+																									| &nbsp End Patrol
+																.row																												
+																								.card.mb-3
+																									h3.card-header(id='refreshtimer')
 														.col-md-7.col-sm-7.col-xs-12			  
 																object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/convoyerlivemap', width='100%', height='500', type='text/html')
 														.col-md-3.col-sm-3.col-xs-12  
