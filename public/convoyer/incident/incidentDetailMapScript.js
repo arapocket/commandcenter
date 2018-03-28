@@ -34,29 +34,29 @@ function initMap() {
 
         let incidentID = incident.IncidentID;
 
-        let windowString = '';
+        // let windowString = '';
 
-        if (incident.Media != 'none') {
-            windowString = `<h3  style="text-align: center">` + incident.Type + ` </h3> 
-                    <div style="text-align: center"> <p>` + incident.Description + `</p> </div> <div text-align = 'center'> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
-                    `;
-        } else {
-            windowString = `<h3  style="text-align: center">` + incident.Type + ` </h3> 
-                <div style="text-align: center"> <p>` + incident.Description + `</p></div>`
-        }
-
-
-        let infoWindow = new SnazzyInfoWindow({
-            marker: marker,
-            content: windowString
-        });
-
-        infoWindow.open(map, marker);
+        // if (incident.Media != 'none') {
+        //     windowString = `<h3  style="text-align: center">` + incident.Type + ` </h3> 
+        //             <div style="text-align: center"> <p>` + incident.Description + `</p> </div> <div text-align = 'center'> <object id = 'map' data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
+        //             `;
+        // } else {
+        //     windowString = `<h3  style="text-align: center">` + incident.Type + ` </h3> 
+        //         <div style="text-align: center"> <p>` + incident.Description + `</p></div>`
+        // }
 
 
-        marker.addListener('click', function (e) {
-            infoWindow.open(map, marker);
-        });
+        // let infoWindow = new SnazzyInfoWindow({
+        //     marker: marker,
+        //     content: windowString
+        // });
+
+        // infoWindow.open(map, marker);
+
+
+        // marker.addListener('click', function (e) {
+        //     infoWindow.open(map, marker);
+        // });
 
     }
 
