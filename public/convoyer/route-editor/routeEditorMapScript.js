@@ -177,10 +177,11 @@ function initMap() {
     function onAddArea() {
 
         addAreaButton.style.display = 'none'
+        deleteAreaButton.style.display = 'none';
         addRouteButton.style.display = 'none'
+        deleteRouteButton.style.display = 'none';
         cancelAreaButton.style.display = 'block';
         saveAreaButton.style.display = 'block';
-        deleteAreaButton.style.display = 'block';
         setCurrentAreaButton.style.display = 'block';
 
         map.addListener('click', function (e) {
@@ -257,9 +258,10 @@ function initMap() {
 
                 cancelAreaButton.style.display = 'none';
                 saveAreaButton.style.display = 'none';
-                deleteAreaButton.style.display = 'none';
                 addAreaButton.style.display = 'block'
-                addRouteButton.style.display = 'block';
+                deleteAreaButton.style.display = 'block';
+                addRouteButton.style.display = 'block'
+                deleteRouteButton.style.display = 'block';
 
                 bootbox.hideAll();
                 bootbox.alert('Area has been saved!');
@@ -328,12 +330,13 @@ function initMap() {
 
     function onCancelArea() {
 
-        cancelAreaButton.style.display='none';
+        cancelAreaButton.style.display = 'none';
         saveAreaButton.style.display = 'none';
-        deleteAreaButton.style.display = 'none';
         setCurrentAreaButton.style.display = 'none';
         addAreaButton.style.display = 'block'
-        addRouteButton.style.display = 'block';
+        deleteAreaButton.style.display = 'block';
+        addRouteButton.style.display = 'block'
+        deleteRouteButton.style.display = 'block';
 
 
     }
@@ -398,8 +401,10 @@ function initMap() {
 
     function onAddRoute() {
 
-        addRouteButton.style.display = 'none'
         addAreaButton.style.display = 'none'
+        deleteAreaButton.style.display = 'none';
+        addRouteButton.style.display = 'none'
+        deleteRouteButton.style.display = 'none';
 
         map.addListener('click', function (e) {
             onAddCheckpoint(e.latLng);
@@ -414,7 +419,6 @@ function initMap() {
         removeLastCheckpointButton.style.display = 'block';
         saveRouteButton.style.display = 'block';
         loadRouteButton.style.display = 'block';
-        deleteRouteButton.style.display = 'block';
 
     }
 
@@ -485,9 +489,10 @@ function initMap() {
                 removeLastCheckpointButton.style.display = 'none';
                 saveRouteButton.style.display = 'none';
                 loadRouteButton.style.display = 'none';
-                deleteRouteButton.style.display = 'none';
-                addRouteButton.style.display = 'block';
                 addAreaButton.style.display = 'block'
+                deleteAreaButton.style.display = 'block';
+                addRouteButton.style.display = 'block'
+                deleteRouteButton.style.display = 'block';
 
                 bootbox.hideAll();
 
@@ -614,9 +619,10 @@ function initMap() {
         removeLastCheckpointButton.style.display = 'none';
         saveRouteButton.style.display = 'none';
         loadRouteButton.style.display = 'none';
-        deleteRouteButton.style.display = 'none';
-        addRouteButton.style.display = 'block';
         addAreaButton.style.display = 'block'
+        deleteAreaButton.style.display = 'block';
+        addRouteButton.style.display = 'block'
+        deleteRouteButton.style.display = 'block';
     }
 
     function deleteSelectedRoute(routeID) {
@@ -749,7 +755,7 @@ function initMap() {
         bootbox.hideAll();
 
         bootbox.alert('Route has been deleted!');
-        
+
         window.setTimeout(function () {
             parent.location.reload();
         }, 2000);
@@ -761,9 +767,10 @@ function initMap() {
         removeLastCheckpointButton.style.display = 'none';
         saveRouteButton.style.display = 'none';
         loadRouteButton.style.display = 'none';
-        deleteRouteButton.style.display = 'none';
-        addRouteButton.style.display = 'block';
         addAreaButton.style.display = 'block'
+        deleteAreaButton.style.display = 'block';
+        addRouteButton.style.display = 'block'
+        deleteRouteButton.style.display = 'block';
 
 
 
