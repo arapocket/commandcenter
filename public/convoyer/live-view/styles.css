@@ -139,7 +139,7 @@
   cursor: pointer;
   opacity: 0.7;
   appearance: none;
-  color: black;
+  color: black; 
 }
 .si-close-button:hover, .si-close-button:focus {
   opacity: 1;
