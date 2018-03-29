@@ -12,7 +12,7 @@
   position: absolute;
   align-items: center;
   font-size: 18px;
-  font-color: black;
+  font-color: black !important;
   cursor: default;
 }
 
