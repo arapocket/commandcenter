@@ -264,7 +264,6 @@ function initMap() {
                 bootbox.hideAll();
                 bootbox.alert('Area has been saved!');
 
-
                 window.setTimeout(function () {
                     parent.location.reload();
                 }, 2000);
@@ -493,6 +492,10 @@ function initMap() {
                 bootbox.hideAll();
 
                 bootbox.alert('Route has been saved for later!');
+
+                window.setTimeout(function () {
+                    parent.location.reload();
+                }, 2000);
 
 
             }
@@ -746,6 +749,10 @@ function initMap() {
         bootbox.hideAll();
 
         bootbox.alert('Route has been deleted!');
+        
+        window.setTimeout(function () {
+            parent.location.reload();
+        }, 2000);
 
         route.setPath([]);
 
