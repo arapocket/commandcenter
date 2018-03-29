@@ -8,13 +8,13 @@ function initMap() {
     const areaContainer = parent.document.querySelector('#areaContainer');
     const areaPS = new PerfectScrollbar(areaContainer);
 
-    // const routeContainer = parent.document.querySelector('#routeContainer');
-    // const routePS = new PerfectScrollbar(routeContainer);
+    const routeContainer = parent.document.querySelector('#routeContainer');
+    const routePS = new PerfectScrollbar(routeContainer);
 
-let center = { lat: 34.050963, lng: -118.256133 };
-    for (let i = 0 ; i < areas.length ; i ++ ){
-        if (areas[i].CurrentArea == 1){
-            center = {lat: areas[i].lat, lng: areas[i].lng}
+    let center = { lat: 34.050963, lng: -118.256133 };
+    for (let i = 0; i < areas.length; i++) {
+        if (areas[i].CurrentArea == 1) {
+            center = { lat: areas[i].lat, lng: areas[i].lng }
         }
     }
 
@@ -277,7 +277,7 @@ let center = { lat: 34.050963, lng: -118.256133 };
                 if (json.length > 0) {
 
                     let areaButtons = [];
-                    for (let i =0; i < json.length; i++) {
+                    for (let i = 0; i < json.length; i++) {
                         let label = json[i].Name;
                         let buttonClass = 'btn-primary';
                         let areaID = json[i].AreaID;
@@ -328,7 +328,7 @@ let center = { lat: 34.050963, lng: -118.256133 };
     function onSetCurrentArea() {
 
         let areaButtons = [];
-        for (let i =0; i < areas.length; i++) {
+        for (let i = 0; i < areas.length; i++) {
             let label = areas[i].Name;
             let buttonClass = 'btn-primary';
             let areaID = areas[i].AreaID;
@@ -501,7 +501,7 @@ let center = { lat: 34.050963, lng: -118.256133 };
                 if (json.length > 0) {
 
                     let routeButtons = [];
-                    for (let i =0; i < json.length; i++) {
+                    for (let i = 0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let routeID = json[i].RouteID;
                         let buttonClass = 'btn-primary';
@@ -549,7 +549,7 @@ let center = { lat: 34.050963, lng: -118.256133 };
                 if (json.length > 0) {
 
                     let routeButtons = [];
-                    for (let i =0; i < json.length; i++) {
+                    for (let i = 0; i < json.length; i++) {
                         let label = json[i].RouteName;
                         let buttonClass = 'btn-primary';
                         let routeID = json[i].RouteID;
