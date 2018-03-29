@@ -167,7 +167,7 @@ function initMap() {
                 routeButton.addEventListener('click', function (e) {
 
                     console.log(routeButton.id + ' clicked');
-                    loadCurrentRoute(routeID);
+                    loadCurrentRoute(id);
                 })
             }
         }
