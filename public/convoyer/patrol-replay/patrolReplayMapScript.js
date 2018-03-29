@@ -1,6 +1,11 @@
 
 function initMap() {
 
+
+    const incidentContainer = parent.document.querySelector('#incidentContainer');
+    const incidentPS = new PerfectScrollbar(incidentContainer);
+
+
     let guard = results[0];
     let center = { lat: guard.lat, lng: guard.lng };
     let guardPosition = { lat: guard.lat, lng: guard.lng };
@@ -8,7 +13,7 @@ function initMap() {
         '#e21400', '#f8a700', '#f78b00',
         '#58dc00', '#a8f07a', '#4ae8c4',
         '#3b88eb'];
-
+        
     var mapStyle = [{ 'featureType': 'administrative', 'elementType': 'labels.text.fill', 'stylers': [{ 'color': '#444444' }] }, { 'featureType': 'landscape', 'elementType': 'all', 'stylers': [{ 'color': '#f2f2f2' }] }, { 'featureType': 'poi', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'road', 'elementType': 'all', 'stylers': [{ 'saturation': -100 }, { 'lightness': 45 }] }, { 'featureType': 'road.highway', 'elementType': 'all', 'stylers': [{ 'visibility': 'simplified' }] }, { 'featureType': 'road.arterial', 'elementType': 'labels.icon', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'transit', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'water', 'elementType': 'all', 'stylers': [{ 'color': '#4f595d' }, { 'visibility': 'on' }] }];
 
     let map = new google.maps.Map(document.getElementById('map'), {
