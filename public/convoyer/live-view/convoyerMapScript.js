@@ -12,7 +12,7 @@ function initMap() {
 
 
     const guardContainer = parent.document.querySelector('#guardContainer');
-    const guardPS = new PerfectScrollbar(guardcontainer);
+    const guardPS = new PerfectScrollbar(guardContainer);
 
     const incidentContainer = parent.document.querySelector('#incidentContainer');
     const incidentPS = new PerfectScrollbar(incidentContainer);
