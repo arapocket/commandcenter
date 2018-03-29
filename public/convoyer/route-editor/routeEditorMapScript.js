@@ -8,8 +8,8 @@ function initMap() {
     const areaContainer = parent.document.querySelector('#areaContainer');
     const areaPS = new PerfectScrollbar(areaContainer);
 
-    const routeContainer = parent.document.querySelector('#routeContainer');
-    const routePS = new PerfectScrollbar(routeContainer);
+    // const routeContainer = parent.document.querySelector('#routeContainer');
+    // const routePS = new PerfectScrollbar(routeContainer);
 
 let center = { lat: 34.050963, lng: -118.256133 };
     for (let i = 0 ; i < areas.length ; i ++ ){
