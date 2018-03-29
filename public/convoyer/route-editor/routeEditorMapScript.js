@@ -1,8 +1,6 @@
 
 function initMap() {
 
-
-
     var mapStyle = [{ 'featureType': 'administrative', 'elementType': 'labels.text.fill', 'stylers': [{ 'color': '#444444' }] }, { 'featureType': 'landscape', 'elementType': 'all', 'stylers': [{ 'color': '#f2f2f2' }] }, { 'featureType': 'poi', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'road', 'elementType': 'all', 'stylers': [{ 'saturation': -100 }, { 'lightness': 45 }] }, { 'featureType': 'road.highway', 'elementType': 'all', 'stylers': [{ 'visibility': 'simplified' }] }, { 'featureType': 'road.arterial', 'elementType': 'labels.icon', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'transit', 'elementType': 'all', 'stylers': [{ 'visibility': 'off' }] }, { 'featureType': 'water', 'elementType': 'all', 'stylers': [{ 'color': '#4f595d' }, { 'visibility': 'on' }] }];
 
     const areaContainer = parent.document.querySelector('#areaContainer');
@@ -17,7 +15,6 @@ function initMap() {
             center = { lat: areas[i].lat, lng: areas[i].lng }
         }
     }
-
 
     let map = new google.maps.Map(document.getElementById('map'), {
         styles: mapStyle,
@@ -56,13 +53,11 @@ function initMap() {
 
     let markerIsOnMap = false;
 
-
     setUpButtonListeners();
 
     setUpAreaButtons();
 
-
-
+    setUpRouteButtons();
 
     function setUpButtonListeners() {
 
@@ -154,6 +149,26 @@ function initMap() {
             }
 
 
+        }
+    }
+
+    function setUpRouteButtons() {
+
+        for (let i = 0; i < routes.length; i++) {
+
+            let route = routes[i];
+            let id = route.RouteID;
+
+            let routeButton = parent.document.getElementById(id);
+
+            if (routeButton != null || routeButton != undefined) {
+
+
+                routeButton.addEventListener('click', function (e) {
+
+                    console.log(routeButton.id + ' clicked');
+                })
+            }
         }
     }
 
