@@ -62,7 +62,7 @@ $(function () {
       }
     }
 
-    xhr.open("GET", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages/", true);
+    xhr.open("GET", "http://ec2-54-187-16-98.us-west-2.compute.amazonaws.com:3000/messages/", true);
 
     xhr.send(null);
   }
@@ -239,7 +239,7 @@ $(function () {
       return false;
     }
 
-    xhr.open("POST", "http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/messages", true);
+    xhr.open("POST", "http://ec2-54-187-16-98.us-west-2.compute.amazonaws.com:3000/messages", true);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
 

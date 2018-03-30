@@ -37,7 +37,7 @@ block content
 																														tr.default(id=incident.IncidentID)
 																																td=incident.Type
 			.col-md-10.col-sm-10.col-xs-12
-					object#map(data='http://ec2-34-210-155-178.us-west-2.compute.amazonaws.com:3000/patrolreplaymap/#{getPatrolReplayResult[0].PatrolID}', width='100%', height='600', type='text/html')															
+					object#map(data='http://ec2-54-187-16-98.us-west-2.compute.amazonaws.com:3000/patrolreplaymap/#{getPatrolReplayResult[0].PatrolID}', width='100%', height='600', type='text/html')															
 					script.
 							var mapElement = document.getElementById('map');
 							var results = !{ JSON.stringify(getPatrolReplayResult)};
