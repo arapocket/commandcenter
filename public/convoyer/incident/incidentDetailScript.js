@@ -13,14 +13,14 @@ function incidentDetailScript(){
 
     if (incident[0].Media == 'photo') {
         
-        incidentPhoto.src = "https://s3-us-west-2.amazonaws.com/foxwatch/" + incident[0].IncidentID;
+        incidentPhoto.src = "https://s3-us-west-2.amazonaws.com/convoyer/" + incident[0].IncidentID;
         incidentPhoto.style.display = 'block';
         incidentVideo.style.display = 'none';
     }
 
     if (incident[0].Media == 'video') {
         
-        incidentVideo.src = "https://s3-us-west-2.amazonaws.com/foxwatch/" + incident[0].IncidentID;
+        incidentVideo.src = "https://s3-us-west-2.amazonaws.com/convoyer/" + incident[0].IncidentID;
         incidentVideo.style.display = 'block';
         incidentPhoto.style.display = 'none';
     }
