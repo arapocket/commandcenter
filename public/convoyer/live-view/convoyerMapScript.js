@@ -55,7 +55,7 @@ function initMap() {
         }
 
         // Snazzy Map Style - https://snazzymaps.com/style/6618/cladme
-        
+
 
         var map = new google.maps.Map(document.getElementById('map'), {
             styles: mapStyle,

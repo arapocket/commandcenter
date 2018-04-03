@@ -1,4 +1,5 @@
 var express = require('express');
+var helmet = require('helmet')
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -42,6 +43,7 @@ if (process.env.CC_SSL == "YES") {
 
 var app = express();
 
+app.use(helmet());
 
 // which index file to use
 var routes = require('./routes/index');
@@ -481,12 +483,12 @@ function setSocketListeners(socket) {
     if (addedUser) {
       --numUsers;
 
-      if (socket.username != 'DISPATCH'){
-      // echo globally that this client has left
-      socket.broadcast.emit('user left', {
-        username: socket.username,
-        numUsers: numUsers
-      });        
+      if (socket.username != 'DISPATCH') {
+        // echo globally that this client has left
+        socket.broadcast.emit('user left', {
+          username: socket.username,
+          numUsers: numUsers
+        });
       }
 
 
