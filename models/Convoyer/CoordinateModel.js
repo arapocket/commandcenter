@@ -58,7 +58,7 @@ module.exportsgetCoordinateByID = function (id, callback) {
 }
 
 
-module.exports.addCoordinate = function (CoordinateModel, callback) {
+module.exports.addCoordinate = function (Coordinate, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
@@ -70,7 +70,7 @@ module.exports.addCoordinate = function (CoordinateModel, callback) {
             var date = datetime.syncCurrentDateTimeforDB();
 
 
-            var strSQL = "Insert into coordinate values ('" + CoordinateModel.CoordID + "', '" + CoordinateModel.Sequence + "', '" + CoordinateModel.lat + "', '" + CoordinateModel.lng + "', '" + CoordinateModel.PatrolID + "', " + CoordinateModel.CurrentCoord + ", '" + date + "' );";
+            var strSQL = "Insert into coordinate values ('" + Coordinate.CoordID + "', '" + Coordinate.Sequence + "', '" + Coordinate.lat + "', '" + Coordinate.lng + "', '" + Coordinate.PatrolID + "', " + Coordinate.CurrentCoord + ", '" + date + "' );";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -116,7 +116,7 @@ module.exports.deleteCoordinate = function (id, callback) {
     });
 }
 
-module.exports.updateCoordinate = function (CoordinateModel, callback) {
+module.exports.updateCoordinate = function (Coordinate, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
@@ -126,7 +126,7 @@ module.exports.updateCoordinate = function (CoordinateModel, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = "Update patrol_guard_coordinate SET CurrentCoord = " + CoordinateModel.CurrentCoord + " WHERE GuardID = '" + CoordinateModel.GuardID + "';";
+            var strSQL = "Update patrol_guard_coordinate SET CurrentCoord = " + Coordinate.CurrentCoord + " WHERE GuardID = '" + Coordinate.GuardID + "';";
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
