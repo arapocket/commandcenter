@@ -764,7 +764,7 @@ function initMap() {
 
         let queuePosition = parseInt(localStorage.getItem(currentGuard + ' que position'));
 
-        if (queuePosition != null || queuePosition != undefined || queuePosition != 0 || queuePosition != NaN){
+        if (queuePosition != null && queuePosition != undefined && queuePosition != 0 && queuePosition != NaN){
             localStorage.setItem(currentGuard + ' que position', parseInt(queuePosition + 1));
         } else {
             localStorage.setItem(currentGuard + ' que position', 2);   
