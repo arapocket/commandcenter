@@ -42,6 +42,14 @@ function initMap() {
             ]
         },
         {
+            "featureType": "administrative.country",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
             "featureType": "administrative.land_parcel",
             "elementType": "labels.text.fill",
             "stylers": [
@@ -51,11 +59,75 @@ function initMap() {
             ]
         },
         {
+            "featureType": "administrative.locality",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "administrative.neighborhood",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "administrative.province",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape.man_made",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "landscape.natural",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
             "featureType": "poi",
             "elementType": "geometry",
             "stylers": [
                 {
-                    "color": "#eeeeee"
+                    "color": "#cb8b8c"
+                },
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "geometry.fill",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "geometry.stroke",
+            "stylers": [
+                {
+                    "color": "#06ee00"
+                },
+                {
+                    "visibility": "on"
                 }
             ]
         },
@@ -65,6 +137,38 @@ function initMap() {
             "stylers": [
                 {
                     "color": "#757575"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.attraction",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.business",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.government",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.medical",
+            "stylers": [
+                {
+                    "visibility": "on"
                 }
             ]
         },
@@ -83,6 +187,30 @@ function initMap() {
             "stylers": [
                 {
                     "color": "#9e9e9e"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.place_of_worship",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.school",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "poi.sports_complex",
+            "stylers": [
+                {
+                    "visibility": "on"
                 }
             ]
         },
@@ -146,6 +274,25 @@ function initMap() {
             "stylers": [
                 {
                     "color": "#eeeeee"
+                }
+            ]
+        },
+        {
+            "featureType": "transit.station.airport",
+            "stylers": [
+                {
+                    "visibility": "on"
+                }
+            ]
+        },
+        {
+            "featureType": "water",
+            "stylers": [
+                {
+                    "color": "#0082ff"
+                },
+                {
+                    "visibility": "on"
                 }
             ]
         },
