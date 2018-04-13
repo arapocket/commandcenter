@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var ConvoyerMapModel = require('../../models/Convoyer/ConvoyerMapModel');
 
 module.exports.getAllGuardPatrols = (function (req, res) {
@@ -43,7 +45,7 @@ module.exports.getAllGuardPatrols = (function (req, res) {
                               if (err){
                                 res.json(err)
                               } else {
-                                res.render('ConvoyerMapView', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult, getCurrentAreaResult: getCurrentAreaResult});
+                                res.render('ConvoyerMapView', { title: 'Guard Map', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult, getCurrentAreaResult: getCurrentAreaResult, mapKey: process.env.MAP_KEY});
                               }
                             })
 
