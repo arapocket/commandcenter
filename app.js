@@ -321,6 +321,11 @@ function setSocketListeners(socket) {
 
   const apn = require("apn");
 
+console.log('logging APN credentials');
+console.log(process.env.APN_KEY);
+console.log(process.env.APN_KEYID);
+console.log(process.env.APN_TEAMID);
+  
   const notificationOptions = {
     token: {
       key: process.env.APN_KEY,
@@ -329,6 +334,7 @@ function setSocketListeners(socket) {
     },
     production: false
   };
+
 
   var apnProvider = new apn.Provider(notificationOptions);
 
