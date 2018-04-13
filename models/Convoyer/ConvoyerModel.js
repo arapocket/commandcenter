@@ -40,7 +40,7 @@ module.exports.getGuardsForNotifications = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol, CurrentCoord FROM patrol_guard_coordinate WHERE CurrentPatrol = 1 GROUP BY GuardID; ';
+            var strSQL = ' SELECT FirstName, LastName, DeviceToken, GuardID, CurrentPatrol FROM patrol_guard WHERE CurrentPatrol = 1 GROUP BY GuardID; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     console.log(rows);
