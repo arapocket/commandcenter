@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var IncidentDetailMapModel = require('../../models/Convoyer/IncidentDetailMapModel');
 
 module.exports.getIncidentDetailMap = (function (req, res) {
@@ -7,7 +9,7 @@ module.exports.getIncidentDetailMap = (function (req, res) {
         if (err) {
             // res.json(err);
         } else {
-            res.render('IncidentDetailMapView', { title: 'Incident Detail Map', getIncidentDetailMapResult: getIncidentDetailMapResult});
+            res.render('IncidentDetailMapView', { title: 'Incident Detail Map', getIncidentDetailMapResult: getIncidentDetailMapResult, mapKey: process.env.MAP_KEY});
 
         }
     })

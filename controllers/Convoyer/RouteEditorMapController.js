@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 var RouteEditorMapModel = require('../../models/Convoyer/RouteEditorMapModel');
 
 module.exports.getRouteEditorMap = (function (req, res) {
@@ -16,7 +18,7 @@ module.exports.getRouteEditorMap = (function (req, res) {
             if (err) {
 
             } else {
-              res.render('RouteEditorMapView', { title: 'Route Editor Map', getAllGuardsResult: getAllGuardsResult, getAllRoutesResult: getAllRoutesResult, getAllPatrolAreasResult: getAllPatrolAreasResult });
+              res.render('RouteEditorMapView', { title: 'Route Editor Map', getAllGuardsResult: getAllGuardsResult, getAllRoutesResult: getAllRoutesResult, getAllPatrolAreasResult: getAllPatrolAreasResult, mapKey: process.env.MAP_KEY });
             }
           })
 
