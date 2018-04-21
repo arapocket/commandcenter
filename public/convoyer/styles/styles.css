@@ -10,3 +10,10 @@
     background-color: #2b3031
   }
 
+  .scrollable-table-large {  
+    position: relative;
+    height: 500px !important;
+    overflow: scroll;
+    background-color: #2b3031
+  }
+
