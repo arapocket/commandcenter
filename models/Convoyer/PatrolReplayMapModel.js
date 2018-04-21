@@ -5,13 +5,11 @@ var db = require('../db');
 module.exports.getPatrolReplayMap = function (id, callback) {
 
 
-    //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
-            //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
             var strSQL = 'SELECT  * FROM patrol_guard_coordinate WHERE PatrolID = "' + id + '" ORDER BY Sequence ;';
@@ -37,7 +35,7 @@ module.exports.getIncidents = function (id, callback) {
     //get a connection using the common handler in models/db.js
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback

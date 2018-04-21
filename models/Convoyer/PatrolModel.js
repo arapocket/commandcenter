@@ -31,7 +31,7 @@ module.exports.getAllPatrols = function (callback) {
 }
 
 
-module.exportsgetPatrolByID = function (id, callback) {
+module.exports.getPatrolByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
             
@@ -181,14 +181,3 @@ module.exports.patrolList = function (callback){
     });
 
 }
-
-
-
-
-
-/**
-TABLES NEEDED FOR PATROL LIST:
-
-patrol, guard, incident 
-
- */
