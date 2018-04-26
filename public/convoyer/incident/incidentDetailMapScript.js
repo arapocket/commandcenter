@@ -227,7 +227,7 @@ function initMap() {
 
         // if (incident.Media != 'none') {
         //     windowString = `<h3  style="text-align: center">` + incident.Type + ` </h3> 
-        //             <div style="text-align: center"> <p>` + incident.Description + `</p> </div> <div text-align = 'center'> <object id = 'map' data='http://ec2-54-187-16-98.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
+        //             <div style="text-align: center"> <p>` + incident.Description + `</p> </div> <div text-align = 'center'> <object id = 'map' data='http://ec2-54-212-237-195.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> </div>
         //             `;
         // } else {
         //     windowString = `<h3  style="text-align: center">` + incident.Type + ` </h3> 
