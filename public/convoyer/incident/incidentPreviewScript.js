@@ -19,7 +19,7 @@ function incidentPreviewScript() {
 
         console.log('photo called');
 
-        imageAnchor.href = "http://ec2-54-212-237-195.us-west-2.compute.amazonaws.com:3000/incidentdetails/" + incident[0].IncidentID
+        imageAnchor.href = "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/incidentdetails/" + incident[0].IncidentID
         incidentPhoto.src = "https://s3-us-west-2.amazonaws.com/convoyer/" + incident[0].IncidentID;
         incidentPhoto.style.display = 'block';
         incidentVideo.style.display = 'none';
@@ -29,7 +29,7 @@ function incidentPreviewScript() {
 
         console.log('video called');
 
-        videoAnchor.href = "http://ec2-54-212-237-195.us-west-2.compute.amazonaws.com:3000/incidentdetails/" + incident[0].IncidentID
+        videoAnchor.href = "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/incidentdetails/" + incident[0].IncidentID
         incidentVideo.src = "https://s3-us-west-2.amazonaws.com/convoyer/" + incident[0].IncidentID;
         incidentVideo.style.display = 'block';
         incidentPhoto.style.display = 'none';

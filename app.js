@@ -260,7 +260,7 @@ function initializeSockets(socket) {
 function getDevices(socket) {
 
 
-  http.get('http://ec2-54-212-237-195.us-west-2.compute.amazonaws.com:3000/guardnotifications', (res) => {
+  http.get('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/guardnotifications', (res) => {
     const { statusCode } = res;
     const contentType = res.headers['content-type'];
 
@@ -522,7 +522,7 @@ function patrolPost(data, socket) {
   });
 
   const options = {
-    hostname: 'ec2-54-212-237-195.us-west-2.compute.amazonaws.com',
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
     port: 3000,
     path: '/patrols',
     method: 'POST',
@@ -567,7 +567,7 @@ function patrolPut(data, socket) {
   });
 
   const options = {
-    hostname: 'ec2-54-212-237-195.us-west-2.compute.amazonaws.com',
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
     port: 3000,
     path: '/patrols',
     method: 'PUT',
