@@ -434,7 +434,7 @@ function initMap() {
                     return false;
                 }
 
-                xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
+                xhr.open("POST", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
 
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify({
@@ -512,7 +512,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/patrolareas/", true);
+        xhr.open("GET", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/patrolareas/", true);
 
         xhr.send(null);
     }
@@ -570,7 +570,7 @@ function initMap() {
             return false;
         }
 
-        xhr.open("PUT", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
+        xhr.open("PUT", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/patrolareas", true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -655,7 +655,7 @@ function initMap() {
                     return false;
                 }
 
-                xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/saveroute", true);
+                xhr.open("POST", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/saveroute", true);
 
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify({
@@ -738,7 +738,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/routes/", true);
+        xhr.open("GET", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/routes/", true);
 
         xhr.send(null);
     }
@@ -789,7 +789,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/routes/", true);
+        xhr.open("GET", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/routes/", true);
 
         xhr.send(null);
     }
@@ -840,7 +840,7 @@ function initMap() {
                         }
                     }
 
-                    xhr.open("DELETE", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
+                    xhr.open("DELETE", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
 
                     xhr.send(null);
 
@@ -876,7 +876,7 @@ function initMap() {
                         }
                     }
 
-                    xhr.open("DELETE", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/patrolareas/" + areaID, true);
+                    xhr.open("DELETE", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/patrolareas/" + areaID, true);
 
                     xhr.send(null);
 
@@ -917,7 +917,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/currentroutes/" + id, true);
+        xhr.open("GET", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/currentroutes/" + id, true);
 
         xhr.send(null);
 
@@ -937,7 +937,7 @@ function initMap() {
             }
         }
 
-        xhr.open("DELETE", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/routes/" + routeID, true);
+        xhr.open("DELETE", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/routes/" + routeID, true);
 
         xhr.send(null);
 
@@ -982,7 +982,7 @@ function initMap() {
                 return false;
             }
 
-            xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/checkpoints", true);
+            xhr.open("POST", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/checkpoints", true);
 
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify({
@@ -1017,7 +1017,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
+        xhr.open("GET", "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
 
         xhr.send(null);
     }

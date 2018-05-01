@@ -38,6 +38,6 @@ backButton.addEventListener('click', function (e) {
 
 function backToMap(){
 
-    window.location.href = "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/convoyerlivemap";
+    window.location.href = "http://ec2-52-33-195-216.us-west-2.compute.amazonaws.com:3000/convoyerlivemap";
     
 }

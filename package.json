@@ -23,6 +23,7 @@
     "moment": "^2.22.0",
     "morgan": "~1.7.0",
     "mysql": "^2.14.1",
+    "node-bebop": "^0.6.0",
     "node-datetime": "^2.0.3",
     "nodemailer": "^4.1.2",
     "opn": "^5.0.0",
