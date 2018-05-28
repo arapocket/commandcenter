@@ -1653,9 +1653,6 @@ function initMap() {
                 parent.document.getElementById("refreshtimer").innerHTML = "Refreshing in " + count + " seconds";
             } catch (err) {
             }
-
-
-
         }
     }
 

@@ -251,10 +251,7 @@ io.on('connection', function (socket) {
 
 
 function initializeSockets(socket) {
-
-
   getDevices(socket);
-
 }
 
 function getDevices(socket) {
