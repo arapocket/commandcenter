@@ -1,13 +1,10 @@
-include mixins
-extends layout
-block content   
-
+doctype html
+html(lang='en')
+	head
+		block content   
 			include navbar
-
-			
 			h3 Create Invite List
 			br
-
 			div
 				table#pickle.table.table-hover.table-striped.table-bordered
 					thead
@@ -38,15 +35,6 @@ block content
 										td=result.Title
 										td=result.imageName
 
-				script.
-					$(document).ready(function() {
-					$('#pickle').DataTable({
-					order: [[2, 'asc']],
-						"columnDefs": [
-							{ "orderable": false, "targets": 0 }
-						]
-					});
-					}); 
 				script(src='/javascripts/createInviteList.js')
 				script.
 					var results = !{ JSON.stringify(results) };
