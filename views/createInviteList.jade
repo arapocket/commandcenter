@@ -53,14 +53,6 @@ html
 										td=result.Title
 										td=result.imageName
 
-				script.
-					jQuery(function($){
-						$('#modal-example-1').footable({
-							"useParentWidth": true,
-							"columns": $.get('columns.json'),
-							"rows": $.get('rows.json')
-						});
-					});					
 				script(src='/javascripts/createInviteList.js')
 				script.
 					var results = !{ JSON.stringify(results) };
