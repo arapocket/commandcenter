@@ -16,6 +16,7 @@ console.log('loadScripts called');
             })
 
             checkboxes.push(checkbox);
+            console.log('pushed checkbox to array');
         }
     }
 
