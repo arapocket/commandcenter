@@ -25,90 +25,34 @@ html
 			br
 			
 			div
-				table.table(data-filtering='true')
+				table#modal-example-1.table.table-hover.table-striped.table-bordered(data-paging = 'true' data-filtering="true")
 					thead
-						tr
-							th(data-breakpoints='xs') ID
-							th First Name
+						tr.warning
+							th
+								#checkallbox
+									input.form-check-input(type='checkbox' value ='')
+							th
 							th Last Name
-							th(data-breakpoints='xs') Job Title
-							th(data-breakpoints='xs sm') Started On
-							th(data-breakpoints='xs sm md') Date of Birth
-							th(data-type='html', data-breakpoints='xs sm md') Info
+							th First Name
+							th Cardnumber
+							th Employee Id
+							th Email
+							th Title
+							th Image File
 					tbody
-						tr
-							td 1
-							td Dennise
-							td Fuhrman
-							td High School History Teacher
-							td November 8th 2011
-							td July 25th 1960
-							td
-								a(href='#placeholder') Info link
-						tr
-							td 2
-							td Elodia
-							td Weisz
-							td Wallpaperer Helper
-							td October 15th 2010
-							td March 30th 1982
-							td
-								a(href='#placeholder') Info link
-						tr
-							td 3
-							td Raeann
-							td Haner
-							td Internal Medicine Nurse Practitioner
-							td November 28th 2013
-							td February 26th 1966
-							td
-								a(href='#placeholder') Info link
-						tr
-							td 4
-							td Junie
-							td Landa
-							td Offbearer
-							td October 31st 2010
-							td March 29th 1966
-							td
-								a(href='#placeholder') Info link
-						tr
-							td 5
-							td Solomon
-							td Bittinger
-							td Roller Skater
-							td December 29th 2011
-							td September 22nd 1964
-							td
-								a(href='#placeholder') Info link
-						tr
-							td 6
-							td Bar
-							td Lewis
-							td Clown
-							td November 12th 2012
-							td August 4th 1991
-							td
-								a(href='#placeholder') Info link
-						tr
-							td 7
-							td Usha
-							td Leak
-							td Ships Electronic Warfare Officer
-							td August 14th 2012
-							td November 20th 1979
-							td
-								a(href='#placeholder') Info link
-						tr
-							td 8
-							td Lorriane
-							td Cooke
-							td Technical Services Librarian
-							td September 21st 2010
-							td April 7th 1969
-							td
-								a(href='#placeholder') Info link
-
+						-each result in results
+								tr
+									td
+										input.form-check-input(type='checkbox' value=result.EmpID id=result.EmpID )
+									td
+										a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
+									td=result.LastName
+									td=result.FirstName
+									td=result.iClassNumber
+									td=result.EmpID
+									td=result.EmailAddr
+									td=result.Title
+									td=result.imageName
 
 				script(src='/javascripts/createInviteList.js')
 				script.
