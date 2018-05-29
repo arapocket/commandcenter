@@ -25,7 +25,7 @@ html
 			br
 			
 			div
-				table#modal-example-1.table.table-hover.table-striped.table-bordered( data-filtering="true")
+				table#modal-example-1.table.table-hover.table-striped.table-bordered(data-paging = 'true' data-filtering="true")
 					thead
 						tr.warning
 							th
@@ -42,17 +42,17 @@ html
 					tbody
 						-each result in results
 								tr
-										td
-												input.form-check-input(type='checkbox' value=result.EmpID id=result.EmpID )
-										td
-											a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
-										td=result.LastName
-										td=result.FirstName
-										td=result.iClassNumber
-										td=result.EmpID
-										td=result.EmailAddr
-										td=result.Title
-										td=result.imageName
+									td
+										input.form-check-input(type='checkbox' value=result.EmpID id=result.EmpID )
+									td
+										a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
+									td=result.LastName
+									td=result.FirstName
+									td=result.iClassNumber
+									td=result.EmpID
+									td=result.EmailAddr
+									td=result.Title
+									td=result.imageName
 
 				script(src='/javascripts/createInviteList.js')
 				script.
