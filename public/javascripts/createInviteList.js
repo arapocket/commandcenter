@@ -11,7 +11,7 @@ console.log('loadScripts called');
 
         if (checkbox != null || checkbox != undefined) {
 
-            checkbox.addEventListener('change', function (e) {
+            checkbox.addEventListener('click', function (e) {
                 console.log('a checkbox clicked');
             })
 
