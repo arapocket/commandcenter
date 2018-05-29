@@ -19,11 +19,13 @@ html
 			br
 			
 			div
-				table#pickle.table.table-hover.table-striped.table-bordered( data-paging="true" data-filtering = 'true')
+				table#pickle.table.table-hover.table-striped.table-bordered( data-paging="true"  data-filtering = 'true')
 					thead
 						tr.warning
-							th Select
-							th Badge Detail
+							th Select All
+								#checkallbox
+									input.form-check-input(type='checkbox' value ='')
+							th
 							th Last Name
 							th First Name
 							th Cardnumber
