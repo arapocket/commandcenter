@@ -1,5 +1,6 @@
 function loadScripts() {
 
+console.log('loadScripts called');
 
     var checkboxes = [];
 
