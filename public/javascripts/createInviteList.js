@@ -11,12 +11,11 @@ console.log('loadScripts called');
 
         if (checkbox != null || checkbox != undefined) {
 
-            checkbox.addEventListener('click', function (e) {
+            checkbox.addEventListener('change', function (e) {
                 console.log('a checkbox clicked');
             })
 
             checkboxes.push(checkbox);
-            console.log('pushed checkbox to array');
         }
     }
 
