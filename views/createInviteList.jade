@@ -11,10 +11,10 @@ html
 		script(type="text/javascript" src="/footable/js/footable.min.js")
 		link(rel='stylesheet', href='/font-awesome-4.7.0/css/font-awesome.min.css')
 		link(rel='stylesheet', href='/stylesheets/dropdowns.css')
-		link(rel='stylesheet', href='/convoyer/styles/styles.css')
 		link(rel='stylesheet', href='/perfect-scrollbar/css/perfect-scrollbar.css')
 		link(rel='stylesheet', href='/footable/css/footable.bootstrap.css')
 		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
+		link(rel='stylesheet', href='/convoyer/styles/styles.css')
 
 		block content   
 
@@ -24,7 +24,7 @@ html
 			br
 			
 			div
-				table#modal-example-1.table.table-hover.table-striped.table-bordered
+				table#modal-example-1.table.table-hover.table-striped.table-bordered(data-paging = 'true')
 					thead
 						tr.warning
 							th
@@ -55,6 +55,13 @@ html
 
 				script(src='/javascripts/createInviteList.js')
 				script.
+					jQuery(function($){
+						$('.table').footable({
+							"columns": $.get('columns.json'),
+							"rows": $.get('rows.json')
+						});
+					});				
+				script.			
 					var results = !{ JSON.stringify(results) };
 					loadScripts();
 								
