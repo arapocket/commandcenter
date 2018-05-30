@@ -1,6 +1,6 @@
 function loadScripts() {
 
-console.log('loadScripts called');
+    console.log('loadScripts called');
 
     var checkboxes = [];
 
@@ -52,5 +52,22 @@ console.log('loadScripts called');
         console.log(e);
     }
 
+    var addButton = document.getElementById('addButton');
+    addButton.addEventListener('click', function (e) {
+        addButtonPressed();
+    });
+
+    var removeButton = document.getElementById('removeButton');
+    removeButton.addEventListener('click', function (e) {
+        removeButtonPressed();
+    });
+
+    function addButtonPressed() {
+        console.log('addButtonPressed');
+    }
+
+    function removeButtonPressed() {
+        console.log('removeButtonPressed');
+    }
 
 }
