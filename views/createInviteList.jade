@@ -50,6 +50,37 @@ html
 							a.btn.btn-default.btn-block
 								i.fa.fa-plus(aria-hidden='true')
 								| &nbsp Add To List
+				table#pickle.table.table-hover.table-striped.table-bordered(data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
+					thead
+						tr.warning
+							th#checkallbox(data-field="state" data-checkbox="true" data-sortable= "true")
+							th
+							th(data-sortable= "true") Last Name
+							th(data-sortable= "true") First Name
+							th(data-sortable= "true") Cardnumber
+							th(data-sortable= "true") Employee Id
+							th(data-sortable= "true") Email
+							th(data-sortable= "true") Title
+							th(data-sortable= "true") Image File
+					tbody
+						-each result in results
+								tr
+									td(id=result.EmpID )
+									td
+										a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
+									td=result.LastName
+									td=result.FirstName
+									td=result.iClassNumber
+									td=result.EmpID
+									td=result.EmailAddr
+									td=result.Title
+									td=result.imageName
+			.row
+				.col-md-12.col-sm-12.col-xs-12
+					#backButton
+							a.btn.btn-default.btn-block
+								i.fa.fa-plus(aria-hidden='true')
+								| &nbsp Add To List			
 				script(src='/javascripts/createInviteList.js')
 				script.
 					var results = !{ JSON.stringify(results) };
