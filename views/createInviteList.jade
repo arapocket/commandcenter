@@ -9,7 +9,7 @@ html
 		script( src='/bootstrap-table/bootstrap-table.min.js' )
 		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
 		link(href="/bootstrap-table/bootstrap-table.min.css", rel="stylesheet")
-		
+		link(rel='stylesheet', href='/font-awesome-4.7.0/css/font-awesome.min.css')
 
 		block content   
 
@@ -44,6 +44,12 @@ html
 									td=result.EmailAddr
 									td=result.Title
 									td=result.imageName
+			.row
+				.col-md-12.col-sm-12.col-xs-12
+					#backButton
+							a.btn.btn-default.btn-block
+								i.fa.fa-hand-o-left(aria-hidden='true')
+								| &nbsp Go Back				
 				script(src='/javascripts/createInviteList.js')
 				script.
 					var results = !{ JSON.stringify(results) };
