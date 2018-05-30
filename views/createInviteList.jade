@@ -22,9 +22,7 @@ html
 				table#pickle.table.table-hover.table-striped.table-bordered(data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
 					thead
 						tr.warning
-							th 
-								#checkallbox
-									input.form-check-input(type='checkbox' value ='')
+							th#checkallbox(data-field="state" data-checkbox="true")
 							th
 							th Last Name
 							th First Name
@@ -36,7 +34,7 @@ html
 					tbody
 						-each result in results
 								tr
-									td(checkbox="true" id=result.EmpID )
+									td(id=result.EmpID )
 									td
 										a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
 									td=result.LastName
