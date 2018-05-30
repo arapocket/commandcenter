@@ -19,17 +19,17 @@ console.log('loadScripts called');
         }
     }
 
-    var checkallbox = document.getElementById('checkallbox');
+    var headerCheckBoxAdded = document.getElementById('headerCheckBoxAdded');
 
     try {
-        checkallbox.addEventListener('click', function (e) {
-            console.log('checkallbox clicked');
+        headerCheckBoxAdded.addEventListener('click', function (e) {
+            console.log('headerCheckBoxAdded clicked');
 
             console.log('logging checkboxes array');
             console.log(checkboxes);
 
-            if (checkallbox.hasAttribute('checked')) {
-                checkallbox.removeAttribute('checked');
+            if (headerCheckBoxAdded.hasAttribute('checked')) {
+                headerCheckBoxAdded.removeAttribute('checked');
 
                 console.log('has attribute');
                 for (i = 0; i < checkboxes.length; i++) {
@@ -37,7 +37,7 @@ console.log('loadScripts called');
 
                 }
             } else {
-                checkallbox.setAttribute('checked', '');
+                headerCheckBoxAdded.setAttribute('checked', '');
 
                 console.log('doesnt haz attribute');
                 for (i = 0; i < checkboxes.length; i++) {

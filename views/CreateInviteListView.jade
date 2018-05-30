@@ -19,10 +19,10 @@ html
 			br
 			
 			div
-				table#pickle.table.table-hover.table-striped.table-bordered(data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
+				table#addTable.table.table-hover.table-striped.table-bordered(data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
 					thead
 						tr.warning
-							th#checkallbox(data-field="state" data-checkbox="true" data-sortable= "true")
+							th#headerCheckBoxAdded(data-field="state" data-checkbox="true" data-sortable= "true")
 							th
 							th(data-sortable= "true") Last Name
 							th(data-sortable= "true") First Name
@@ -46,17 +46,17 @@ html
 									td=result.imageName
 			.row
 				.col-md-12.col-sm-12.col-xs-12
-					#backButton
+					#addButton
 							a.btn.btn-default.btn-block
 								i.fa.fa-plus(aria-hidden='true')
 								| &nbsp Add To List
 			br
 			br								
 			div
-				table#pickle.table.table-hover.table-striped.table-bordered(data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
+				table#addedTable.table.table-hover.table-striped.table-bordered(data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
 					thead
 						tr.warning
-							th#checkallbox(data-field="state" data-checkbox="true" data-sortable= "true")
+							th#headerCheckBoxAdded(data-field="state" data-checkbox="true" data-sortable= "true")
 							th
 							th(data-sortable= "true") Last Name
 							th(data-sortable= "true") First Name
@@ -66,21 +66,21 @@ html
 							th(data-sortable= "true") Title
 							th(data-sortable= "true") Image File
 					tbody
-						-each result in results
+						-each entry in added
 								tr
-									td(id=result.EmpID )
+									td(id=entry.EmpID )
 									td
-										a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
-									td=result.LastName
-									td=result.FirstName
-									td=result.iClassNumber
-									td=result.EmpID
-									td=result.EmailAddr
-									td=result.Title
-									td=result.imageName
+										a(href="/badgeDetail/#{entry.iClassNumber}") Badge Detail
+									td=entry.LastName
+									td=entry.FirstName
+									td=entry.iClassNumber
+									td=entry.EmpID
+									td=entry.EmailAddr
+									td=entry.Title
+									td=entry.imageName
 			.row
 				.col-md-12.col-sm-12.col-xs-12
-					#backButton
+					#removeButton
 							a.btn.btn-default.btn-block
 								i.fa.fa-minus(aria-hidden='true')
 								| &nbsp Remove From List
@@ -98,5 +98,6 @@ html
 				script(src='/javascripts/CreateInviteListScript.js')
 				script.
 					var results = !{ JSON.stringify(results) };
+					var added = [];
 					loadScripts();
 								
