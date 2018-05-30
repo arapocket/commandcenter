@@ -309,7 +309,7 @@ router.post('/messages', MessageController.addMessage);
 //#############################################################################################
 //#############################################################################################
 
-var createInviteList = require('../controllers/createInviteList');
+var createInviteList = require('../controllers/CreateInviteListController');
 router.get('/createinvitelist', createInviteList.createInviteListHome);
 
 
