@@ -102,7 +102,7 @@ html
 								var table = document.getElementById("addedTable");
 								var tr = document.createElement("tr");
 								var td = document.createElement("td");
-								var txt = document.createTextNode(row);
+								var txt = document.createTextNode(JSON.stringify(row));
 								td.appendChild(txt);
 								tr.appendChild(td);
 								table.appendChild(tr);							
