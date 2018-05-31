@@ -107,9 +107,10 @@ html
 						var results = !{ JSON.stringify(results) };
 						loadScripts();
 						$(function () {
-							$('#addTable').on('check.bs.table', function()
+							$('#addTable').on('check.bs.table', function(row, $element)
 							{
-								alert('checked');                      
+								console.log(row);
+								console.log($element);
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
