@@ -62,6 +62,7 @@ function loadScripts() {
         removeButtonPressed();
     });
 
+
     function addButtonPressed() {
         console.log('addButtonPressed');
     }
