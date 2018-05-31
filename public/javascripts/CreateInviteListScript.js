@@ -71,24 +71,4 @@ function loadScripts() {
         console.log('removeButtonPressed');
     }
 
-
-    $(function () {
-        $('#addTable').on('check.bs.table', function()
-        {
-             alert('checked');                      
-        });
-        $('#addTable').on('uncheck.bs.table', function()
-        {
-             alert('unchecked');                      
-        });
-        $('#addTable').on('check-all.bs.table', function()
-        {
-             alert('all checked');                      
-        });
-        $('#addTable').on('uncheck-all.bs.table', function()
-        {
-             alert('all unchecked');                      
-        });
-     });
-
 }
