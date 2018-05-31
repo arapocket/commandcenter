@@ -63,7 +63,6 @@ html
 							thead
 								tr.warning
 									th#headerCheckBoxAdded(data-field="state" data-checkbox="true" data-sortable= "true")
-									th
 									th(data-sortable= "true") Last Name
 									th(data-sortable= "true") First Name
 									th(data-sortable= "true") Cardnumber
@@ -99,7 +98,7 @@ html
 							{
 								console.log(row);
 								console.log($element);
-								$('#removeTable tbody').append('<tr class="child"><td></td><td></td><td>LastName</td><td>FirstName</td><td>Cardnumber</td><td>Employee Id</td><td>Email</td><td>Title</td><td>Image Title</td></tr>');							
+								$('#removeTable tbody').append('<tr class="child"><td></td><td>LastName</td><td>FirstName</td><td>Cardnumber</td><td>Employee Id</td><td>Email</td><td>Title</td><td>Image Title</td></tr>');							
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
