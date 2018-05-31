@@ -99,13 +99,7 @@ html
 							{
 								console.log(row);
 								console.log($element);
-								var table = document.getElementById("addedTable");
-								var tr = document.createElement("tr");
-								var td = document.createElement("td");
-								var txt = document.createTextNode(JSON.stringify(row));
-								td.appendChild(txt);
-								tr.appendChild(td);
-								table.appendChild(tr);							
+								$('#removeTable tbody').append(row);							
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
