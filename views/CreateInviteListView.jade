@@ -100,11 +100,10 @@ html
 								console.log(row);
 								console.log($element);
 								var addTable = document.getElementById("addTable");
-								//- var tr = document.createElement("tr");
-								//- var td = document.createElement("td");
-								
-								//- td.appendChild(txt);
-								//- tr.appendChild(td);
+								var tr = document.createElement("tr");
+								var td = document.createElement("td");
+								td.appendChild(row);
+								tr.appendChild(td);
 								addTable.appendChild(row);								
 							});
 							$('#addTable').on('uncheck.bs.table', function()
