@@ -99,12 +99,13 @@ html
 							{
 								console.log(row);
 								console.log($element);
-								var addTable = document.getElementById("addTable");
+								var table = document.getElementById("addTable");
 								var tr = document.createElement("tr");
 								var td = document.createElement("td");
-								td.appendChild('fuck');
+								var txt = document.createTextNode("some value");
+								td.appendChild(txt);
 								tr.appendChild(td);
-								addTable.appendChild(tr);								
+								table.appendChild(tr);							
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
