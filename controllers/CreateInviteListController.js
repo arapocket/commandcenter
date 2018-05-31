@@ -21,9 +21,8 @@ exports.createInviteListHome = function (req, res) {
           //use alternate views based on data load. Using JS datatables, HTML must load comletely before
           //the page renders
           if (results.length < 5000) {
-            var added = []
             //regular Js datatables high functionality search and pagination  
-            res.render('CreateInviteListView', { title: 'Command Center - Create Invite List', username: req.session.username, results, added });
+            res.render('CreateInviteListView', { title: 'Command Center - Create Invite List', username: req.session.username, results });
           } else {
             //plain table and browser search only  
             res.render('cardholdersLarge', { title: 'Command Center - Cardholders', username: req.session.username, results });

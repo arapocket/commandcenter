@@ -72,18 +72,6 @@ html
 									th(data-sortable= "true") Title
 									th(data-sortable= "true") Image File
 							tbody
-								-each entry in added
-										tr
-											td(id=entry.EmpID )
-											td
-												a(href="/badgeDetail/#{entry.iClassNumber}") Badge Detail
-											td=entry.LastName
-											td=entry.FirstName
-											td=entry.iClassNumber
-											td=entry.EmpID
-											td=entry.EmailAddr
-											td=entry.Title
-											td=entry.imageName
 				br
 				.row
 					.col-md-4.col-sm-12.col-xs-12.col-md-offset-4
@@ -105,7 +93,6 @@ html
 					script(src='/javascripts/CreateInviteListScript.js')
 					script.
 						var results = !{ JSON.stringify(results) };
-						var added = !{ JSON.stringify(added) };
 						console.log(added);
 						loadScripts();
 						$(function () {
@@ -113,7 +100,6 @@ html
 							{
 								console.log(row);
 								console.log($element);
-								added.push(row);
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
