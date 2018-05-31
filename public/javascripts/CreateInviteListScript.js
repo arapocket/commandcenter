@@ -71,4 +71,10 @@ function loadScripts() {
         console.log('removeButtonPressed');
     }
 
+    var selectedRows = $table.bootstrapTable('getSelections');
+    console.log('logging selectedRows');
+    console.log(selectedRows);
+
+
+
 }
