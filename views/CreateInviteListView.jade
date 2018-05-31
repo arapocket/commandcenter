@@ -99,18 +99,25 @@ html
 							{
 								console.log(row);
 								console.log($element);
+								var addTable = document.getElementById("addTable");
+								//- var tr = document.createElement("tr");
+								//- var td = document.createElement("td");
+								
+								//- td.appendChild(txt);
+								//- tr.appendChild(td);
+								addTable.appendChild($element);								
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
-								alert('unchecked');                      
+								//- alert('unchecked');                      
 							});
 							$('#addTable').on('check-all.bs.table', function()
 							{
-								alert('all checked');                      
+								//- alert('all checked');                      
 							});
 							$('#addTable').on('uncheck-all.bs.table', function()
 							{
-								alert('all unchecked');                      
+								//- alert('all unchecked');                      
 							});
 						});						
 									
