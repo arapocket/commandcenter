@@ -28,13 +28,13 @@ html
 								tr.warning
 									th#headerCheckBoxAdded(data-field="state" data-checkbox="true" data-sortable= "true")
 									th
-									th(data-sortable= "true") Last Name
-									th(data-sortable= "true") First Name
-									th(data-sortable= "true") Cardnumber
-									th(data-sortable= "true") Employee Id
-									th(data-sortable= "true") Email
-									th(data-sortable= "true") Title
-									th(data-sortable= "true") Image File
+									th(data-field="LastName"data-sortable= "true" ) Last Name
+									th(data-field="FirstName" data-sortable= "true") First Name
+									th(data-field="Cardnumber" data-sortable= "true") Cardnumber
+									th(data-field="ID" data-sortable= "true") Employee Id
+									th(data-field="Email" data-sortable= "true") Email
+									th(data-field="Title" data-sortable= "true") Title
+									th(data-field="ImageFile" data-sortable= "true") Image File
 							tbody
 								-each result in results
 										tr
@@ -63,13 +63,13 @@ html
 							thead
 								tr.warning
 									th#headerCheckBoxAdded(data-field="state" data-checkbox="true" data-sortable= "true")
-									th(data-sortable= "true") Last Name
-									th(data-sortable= "true") First Name
-									th(data-sortable= "true") Cardnumber
-									th(data-sortable= "true") Employee Id
-									th(data-sortable= "true") Email
-									th(data-sortable= "true") Title
-									th(data-sortable= "true") Image File
+									th(data-field="LastName"data-sortable= "true" ) Last Name
+									th(data-field="FirstName" data-sortable= "true") First Name
+									th(data-field="Cardnumber" data-sortable= "true") Cardnumber
+									th(data-field="ID" data-sortable= "true") Employee Id
+									th(data-field="Email" data-sortable= "true") Email
+									th(data-field="Title" data-sortable= "true") Title
+									th(data-field="ImageFile" data-sortable= "true") Image File
 							tbody
 				br
 				.row
@@ -103,7 +103,7 @@ html
 									FirstName: 'dick',
 									Cardnumber: $element[3]									
 								})
-								$('#removeTable').bootstrapTable('append', {data});
+								$('#removeTable').bootstrapTable('append', {row});
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
