@@ -98,7 +98,12 @@ html
 							{
 								console.log(row);
 								console.log($element);
-								$('#removeTable').bootstrapTable('append', row);
+								var data = ({
+									LastName:$element[1], 
+									FirstName: $element[2],
+									Cardnumber: $element[3]									
+								})
+								$('#removeTable').bootstrapTable('append', {row});
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
