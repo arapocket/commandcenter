@@ -100,8 +100,12 @@ html
 								console.log($element);
 								var data = ({
 									LastName:$element.LastName, 
-									FirstName: 'dick',
-									Cardnumber: $element[3]									
+									FirstName: $element.FirstName,
+									Cardnumber: $element.Cardnumber,
+									ID: $element.ID,
+									Email: $element.Email,
+									Title: $element.LastName.Title,
+									ImageFile: $element.ImageFile								
 								})
 								$('#removeTable').bootstrapTable('append', data);
 							});
