@@ -120,6 +120,7 @@ html
 									var ids = $.map(removeTable.bootstrapTable('getSelections'), function (row) {
 										return row.id;
 									});
+									console.log(ids);
 									removeTable.bootstrapTable('remove', {
 										field: 'LastName',
 										values: ids
@@ -127,7 +128,7 @@ html
 							});
 							removeTable.on('check-all.bs.table', function(rows)	
 							{
-								console.log(rows);			  
+								console.log(rows);		  
 							});							
 						});						
 									
