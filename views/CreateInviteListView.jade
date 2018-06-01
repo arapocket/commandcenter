@@ -99,11 +99,11 @@ html
 								console.log(row);
 								console.log($element);
 								var data = ({
-									LastName:'cock', 
+									LastName:$element.LastName, 
 									FirstName: 'dick',
 									Cardnumber: $element[3]									
 								})
-								$('#removeTable').bootstrapTable('append', {row});
+								$('#removeTable').bootstrapTable('append', row);
 							});
 							$('#addTable').on('uncheck.bs.table', function()
 							{
