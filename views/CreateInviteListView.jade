@@ -37,7 +37,7 @@ html
 									th(data-field="ImageFile" data-sortable= "true") Image File
 							tbody
 								-each result in results
-										tr
+										tr(data-uniqueid=result.EmpID)
 											td(id=result.EmpID )
 											td
 												a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
@@ -110,6 +110,7 @@ html
 									ImageFile: $element.ImageFile								
 								})
 								removeTable.bootstrapTable('append', data);
+								addTable.bootstrapTable('removeByUniqueId', $element.ID);
 							});
 							addTable.on('check-all.bs.table', function(rows)	
 							{
@@ -117,14 +118,7 @@ html
 							});
 							removeTable.on('check.bs.table', function(row, $element)
 							{
-									var ids = $.map(removeTable.bootstrapTable('getSelections'), function (row) {
-										return row.id;
-									});
-									console.log(ids);
-									removeTable.bootstrapTable('remove', {
-										field: 'LastName',
-										values: ids
-									});				
+								console.log(row);
 							});
 							removeTable.on('check-all.bs.table', function(rows)	
 							{
