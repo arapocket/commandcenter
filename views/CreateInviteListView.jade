@@ -112,5 +112,24 @@ html
 							{
 								//- alert('all unchecked');                      
 							});
+
+							$('#removeTable').on('check.bs.table', function(row, $element)
+							{
+								console.log(row);
+								console.log($element);
+								$('#removeTable tbody').append('<tr class="child"><td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td><td>LastName</td><td>FirstName</td><td>Cardnumber</td><td>Employee Id</td><td>Email</td><td>Title</td><td>Image Title</td></tr>');							
+							});
+							$('#removeTable').on('uncheck.bs.table', function()
+							{
+								//- alert('unchecked');                      
+							});
+							$('#removeTable').on('check-all.bs.table', function()
+							{
+								//- alert('all checked');                      
+							});
+							$('#removeTable').on('uncheck-all.bs.table', function()
+							{
+								//- alert('all unchecked');                      
+							});							
 						});						
 									
