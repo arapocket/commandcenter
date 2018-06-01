@@ -94,7 +94,9 @@ html
 						var results = !{ JSON.stringify(results) };
 						loadScripts();
 						$(function () {
-							$('#addTable').on('check.bs.table', function(row, $element)
+							var addTable = $('#addTable');
+							var removeTable = $('#removeTable');
+							addTable.on('check.bs.table', function(row, $element)
 							{
 								console.log(row);
 								console.log($element);
@@ -107,21 +109,25 @@ html
 									Title: $element.Title,
 									ImageFile: $element.ImageFile								
 								})
-								$('#removeTable').bootstrapTable('append', data);
+								removeTable.bootstrapTable('append', data);
 							});
-							$('#addTable').on('uncheck.bs.table', function()
+							addTable.on('check-all.bs.table', function(rows)	
 							{
-								//- alert('unchecked');					  
+								console.log(rows);			  
 							});
-							$('#addTable').on('check-all.bs.table', function()
+							removeTable.on('check.bs.table', function(row, $element)
 							{
-								//- alert('all checked');					  
+									var ids = $.map(removeTable.bootstrapTable('getSelections'), function (row) {
+										return row.id;
+									});
+									$table.bootstrapTable('remove', {
+										field: 'LastName',
+										values: ids
+									});				
 							});
-							$('#addTable').on('uncheck-all.bs.table', function()
+							removeTable.on('check-all.bs.table', function(rows)	
 							{
-								//- alert('all unchecked');					  
-							});
-
-							
+								console.log(rows);			  
+							});							
 						});						
 									
