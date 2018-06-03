@@ -7,11 +7,11 @@ module.exports.getRouteEditorMap = (function (req, res) {
 
   RouteEditorMapModel.getAllRoutes(function (err, getAllRoutesResult) {
     if (err) {
-      // res.json(err);
+      res.end();
     } else {
       RouteEditorMapModel.getAllGuards(function (err, getAllGuardsResult) {
         if (err) {
-          // res.json(err);
+          res.end();
         } else {
 
           RouteEditorMapModel.getAllPatrolAreas(function (err, getAllPatrolAreasResult) {

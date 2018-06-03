@@ -47,7 +47,7 @@ module.exports.deleteCheckpoint = function (req, res) {
 };
 
 module.exports.updateCheckpoint = function (req, res) {
-  CheckpointModel.updateCheckpoint(req.params.id,req.body, function (err, result) {
+  CheckpointModel.updateCheckpoint(req.params.id, req.body, function (err, result) {
     if (err) {
       res.json(err);
     }

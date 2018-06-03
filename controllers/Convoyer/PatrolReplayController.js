@@ -5,7 +5,7 @@ module.exports.getPatrolReplay = (function (req, res) {
 
   PatrolReplayModel.getPatrolReplay(req.params.id, function (err, getPatrolReplayResult) {
     if (err) {
-      // res.json(err);
+      res.end();
     } else {
 
       PatrolReplayModel.getIncidents(req.params.id, function (err, getIncidentsResult) {

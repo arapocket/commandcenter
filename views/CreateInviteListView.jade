@@ -38,7 +38,7 @@ html
 							tbody
 								-each result in results
 										tr(data-uniqueid=result.EmpID)
-											td(id=result.EmpID )
+											td
 											td
 												a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
 											td=result.LastName
