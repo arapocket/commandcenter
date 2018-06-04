@@ -1,5 +1,7 @@
 $(function () {
 
+  console.log('socketStuff called');
+
   getMessages();
 
   var socket = io();
