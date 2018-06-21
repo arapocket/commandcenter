@@ -23,31 +23,16 @@ html
 				div
 				.row
 					.col-md-10.col-sm-12.col-xs-12.col-md-offset-1				
-						table#addTable.table.table-hover.table-striped.table-bordered(data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
+						table#addTable.table.table-hover.table-striped.table-bordered(data-unique-id="id" data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
 							thead
 								tr.warning
 									th#headerCheckBoxAdded(data-field="state" data-checkbox="true" data-sortable= "true")
-									th
 									th(data-field="LastName" data-sortable= "true" ) Last Name
 									th(data-field="FirstName" data-sortable= "true") First Name
 									th(data-field="Cardnumber" data-sortable= "true") Cardnumber
 									th(data-field="ID" data-sortable= "true") Employee Id
 									th(data-field="Email" data-sortable= "true") Email
 									th(data-field="Title" data-sortable= "true") Title
-									th(data-field="ImageFile" data-sortable= "true") Image File
-							tbody
-								-each result in results
-										tr(data-uniqueid=result.EmpID)
-											td
-											td
-												a(href="/badgeDetail/#{result.iClassNumber}") Badge Detail
-											td=result.LastName
-											td=result.FirstName
-											td=result.iClassNumber
-											td=result.EmpID
-											td=result.EmailAddr
-											td=result.Title
-											td=result.imageName
 				.row
 					.col-md-4.col-sm-12.col-xs-12.col-md-offset-4
 						#addButton
@@ -69,7 +54,6 @@ html
 									th(data-field="ID" data-sortable= "true") Employee Id
 									th(data-field="Email" data-sortable= "true") Email
 									th(data-field="Title" data-sortable= "true") Title
-									th(data-field="ImageFile" data-sortable= "true") Image File
 							tbody
 				br
 				.row
@@ -96,21 +80,23 @@ html
 						$(function () {
 							var addTable = $('#addTable');
 							var removeTable = $('#removeTable');
+							var results = !{ JSON.stringify(results) };
+							for (i = 0 ; i < results.length ; i ++ ){
+							var result = results[i]
+							addTable.bootstrapTable('append', {id: result.EmpID, LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.Cardnumber, ID: result.EmpID, Email: result.Email, Title: result.Title});
+							}
 							addTable.on('check.bs.table', function(row, $element)
 							{
-								console.log(row);
-								console.log($element);
 								var data = ({
 									LastName:$element.LastName, 
 									FirstName: $element.FirstName,
 									Cardnumber: $element.Cardnumber,
-									ID: $element.ID,
+									ID: $element.id,
 									Email: $element.Email,
 									Title: $element.Title,
-									ImageFile: $element.ImageFile								
 								})
+								addTable.bootstrapTable('removeByUniqueId',$element.ID);
 								removeTable.bootstrapTable('append', data);
-								addTable.bootstrapTable('removeByUniqueId', $element.ID);
 							});
 							addTable.on('check-all.bs.table', function(rows)	
 							{
