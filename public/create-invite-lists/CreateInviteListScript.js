@@ -18,12 +18,12 @@ function loadScripts() {
         bootbox.prompt("Enter a name for the invite list.", function (nameInput) {
             if (nameInput === null) {
             } else {
-
+                let cleanNameInput = nameInput.replace(/[^a-zA-Z0-9 ]/g, "");
                 bootbox.prompt('Enter a description for the invite list.'), function (descriptionInput) {
                     if (descriptionInput === null) {
 
                     } else {
-                        let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
+                        let cleanDescriptionInput = descriptionInput.replace(/[^a-zA-Z0-9 ]/g, "");
 
                         let xhr = new XMLHttpRequest();
 
@@ -37,15 +37,15 @@ function loadScripts() {
                         xhr.setRequestHeader('Content-Type', 'application/json');
                         xhr.send(JSON.stringify({
                             "InvitationListID": invitationListID,
-                            "ListName": nameInput,
-                            "ListComment": descriptionInput
+                            "ListName": cleanNameInput,
+                            "ListComment": cleanDescriptionInput
                         }));
 
                         for (i = 0; i < dataArray.length; i++) {
 
                             postList(dataArray[i]);
                         }
-                        
+
                         bootbox.hideAll();
 
                         bootbox.alert('Invite list has been created!');
