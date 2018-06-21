@@ -19,22 +19,30 @@ function loadScripts() {
 
     function postList(person) {
 
-        console.log(person);
-        
-        // var xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
+        var invitationListID = createID();
 
-        // if (!xhr) {
-        //     alert('Giving up :( Cannot create an XMLHTTP instance');
-        //     return false;
-        // }
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
 
-        // xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/createinvitelist", true);
+        xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/createinvitelist", true);
 
-        // xhr.setRequestHeader('Content-Type', 'application/json');
-        // xhr.send(JSON.stringify({
-        //     'InvitationListID': 999,
-        //     'BadgeNumber': person.iClassNumber  
-        // }));
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            'InvitationListID': invitationListID,
+            'BadgeNumber': person.iClassNumber,
+            'LastName': person.LastName,
+            'FirstName': person.FirstName,
+            'EmailAddress': person.EmailAddress
+
+        }));
+    }
+
+    function createID() {
+        var newID = Math.random().toString(36).substr(2, 9);
+        return newID;
     }
 
 }

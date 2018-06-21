@@ -1,4 +1,7 @@
 var db = require('./db');
+var datetime = require('./datetime');
+
+var time = datetime.syncCurrentDateTimeforDB();
 
 
 
@@ -13,7 +16,7 @@ module.exports.createInviteList = function (Body, callback) {
             var connection = res;
 
             var queryFields = '(InvitationListID, BadgeNumber, LastName, FirstName, EmailAddress, UpdateTime)';
-            var queryValues = '("'+ Body.InvitationListID +'", "'+ Body.BadgeNumber +'", "'+ Body.LastName +'", "'+ Body.FirstName +'", "'+ Body.EmailAddress +'", "'+ Body.UpdateTime + '")';
+            var queryValues = '("'+ Body.InvitationListID +'", "'+ Body.BadgeNumber +'", "'+ Body.LastName +'", "'+ Body.FirstName +'", "'+ Body.EmailAddress +'", "'+ time + '")';
             var query = 'INSERT INTO invitees '+queryFields +' VALUES ' + queryValues;
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
