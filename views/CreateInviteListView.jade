@@ -67,7 +67,7 @@ html
 							var results = !{ JSON.stringify(results) };
 							for (i = 0 ; i < results.length ; i ++ ){
 							var result = results[i]
-							addTable.bootstrapTable('append', {LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.Cardnumber, ID: result.EmpID, Email: result.Email, Title: result.Title});
+							addTable.bootstrapTable('append', {LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.iClassNumber, ID: result.EmpID, Email: result.Email, Title: result.Title});
 							}
 							addTable.on('check.bs.table', function(row, $element)
 							{
