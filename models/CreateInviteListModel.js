@@ -24,7 +24,8 @@ module.exports.createInviteList = function (Body, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the query');
+                    console.log('error with the createInviteList query');
+                    console.log(err);
                     connection.end();
                     callback(err, rows);
                 }
