@@ -5,7 +5,8 @@ function loadScripts() {
     createButton.addEventListener('click', function () {
         console.log('logging dataArray')
         console.log(dataArray);
-
+        var invitationListID = createID();
+        
         for (i = 0 ; i < dataArray.length ; i++) {
             postList(dataArray[i]);
         }
@@ -20,7 +21,6 @@ function loadScripts() {
     function postList(person) {
 
         var xhr = new XMLHttpRequest();
-        var invitationListID = createID();
 
         if (!xhr) {
             alert('Giving up :( Cannot create an XMLHTTP instance');
