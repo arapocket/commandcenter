@@ -1,5 +1,5 @@
 var db = require('../models/db');
-var CreateInviteListModel = require('../../models/CheckpointModel');
+var CreateInviteListModel = require('../../models/CreateInviteListModel');
 
 exports.createInviteListHome = function (req, res) {
   sess = req.session;
