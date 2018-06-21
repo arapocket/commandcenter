@@ -1,12 +1,12 @@
 function loadScripts() {
 
     var createButton = document.getElementById('createButton');
-
+    var invitationListID = ''
     createButton.addEventListener('click', function () {
         console.log('logging dataArray')
         console.log(dataArray);
-        var invitationListID = createID();
-        
+        invitationListID = createID();
+
         for (i = 0 ; i < dataArray.length ; i++) {
             postList(dataArray[i]);
         }
