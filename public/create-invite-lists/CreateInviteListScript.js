@@ -18,12 +18,12 @@ function loadScripts() {
         bootbox.prompt("Enter a name for the invite list.", function (nameInput) {
             if (nameInput === null) {
             } else {
-                let cleanNameInput = nameInput.replace(/[^a-zA-Z0-9 ]/g, "");
+                var cleanNameInput = nameInput.replace(/[^a-zA-Z0-9 ]/g, "");
                 bootbox.prompt('Enter a description for the invite list.', function (descriptionInput) {
                     if (descriptionInput === null) {
 
                     } else {
-                        let cleanDescriptionInput = descriptionInput.replace(/[^a-zA-Z0-9 ]/g, "");
+                        var cleanDescriptionInput = descriptionInput.replace(/[^a-zA-Z0-9 ]/g, "");
 
                         let xhr = new XMLHttpRequest();
 
