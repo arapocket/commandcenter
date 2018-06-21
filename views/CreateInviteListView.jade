@@ -60,6 +60,7 @@ html
 					script(src='/create-invite-lists/CreateInviteListScript.js')
 					script.
 						var results = !{ JSON.stringify(results) };
+						var dataArray = [];
 						loadScripts();
 						$(function () {
 							var addTable = $('#addTable');
@@ -81,6 +82,7 @@ html
 								})
 								addTable.bootstrapTable('removeByUniqueId',$element.ID);
 								removeTable.bootstrapTable('append', data);
+								dataArray.push(data);
 							});
 							addTable.on('check-all.bs.table', function(rows)	
 							{
