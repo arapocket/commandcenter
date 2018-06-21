@@ -4,6 +4,7 @@ function loadScripts() {
 
     createButton.addEventListener('click', function () {
         postList();
+        consoleo.log('logging dataArray')
         console.log(dataArray);
     })
 
