@@ -19,7 +19,7 @@ function loadScripts() {
             if (nameInput === null) {
             } else {
                 let cleanNameInput = nameInput.replace(/[^a-zA-Z0-9 ]/g, "");
-                bootbox.prompt('Enter a description for the invite list.'), function (descriptionInput) {
+                bootbox.prompt('Enter a description for the invite list.', function (descriptionInput) {
                     if (descriptionInput === null) {
 
                     } else {
@@ -50,7 +50,7 @@ function loadScripts() {
 
                         bootbox.alert('Invite list has been created!');
                     }
-                }
+                });
 
             }
         });
