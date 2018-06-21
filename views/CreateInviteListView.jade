@@ -23,7 +23,7 @@ html
 				div
 				.row
 					.col-md-10.col-sm-12.col-xs-12.col-md-offset-1				
-						table#addTable.table.table-hover.table-striped.table-bordered(data-unique-id="id" data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
+						table#addTable.table.table-hover.table-striped.table-bordered(data-unique-id="ID" data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
 							thead
 								tr.warning
 									th#headerCheckBoxAdded(data-field="state" data-checkbox="true" data-sortable= "true")
@@ -38,7 +38,7 @@ html
 				div
 				.row
 					.col-md-10.col-sm-12.col-xs-12.col-md-offset-1		
-						table#removeTable.table.table-hover.table-striped.table-bordered(data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
+						table#removeTable.table.table-hover.table-striped.table-bordered(data-unique-id="ID" data-toggle="table" data-search="true" data-pagination="true" data-page-list="[10, 25, 50, 100, ALL]")
 							thead
 								tr.warning
 									th#headerCheckBoxAdded(data-field="state" data-checkbox="true" data-sortable= "true")
@@ -51,10 +51,6 @@ html
 							tbody
 				br
 				div
-				br
-				br
-				br
-				br
 				.row
 					.col-md-4.col-sm-12.col-xs-12.col-md-offset-4
 						#createButton
@@ -71,7 +67,7 @@ html
 							var results = !{ JSON.stringify(results) };
 							for (i = 0 ; i < results.length ; i ++ ){
 							var result = results[i]
-							addTable.bootstrapTable('append', {id: result.EmpID, LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.Cardnumber, ID: result.EmpID, Email: result.Email, Title: result.Title});
+							addTable.bootstrapTable('append', {LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.Cardnumber, ID: result.EmpID, Email: result.Email, Title: result.Title});
 							}
 							addTable.on('check.bs.table', function(row, $element)
 							{
@@ -79,7 +75,7 @@ html
 									LastName:$element.LastName, 
 									FirstName: $element.FirstName,
 									Cardnumber: $element.Cardnumber,
-									ID: $element.id,
+									ID: $element.ID,
 									Email: $element.Email,
 									Title: $element.Title,
 								})
@@ -88,11 +84,20 @@ html
 							});
 							addTable.on('check-all.bs.table', function(rows)	
 							{
-								console.log(rows);			  
+								console.log(rows);
 							});
 							removeTable.on('check.bs.table', function(row, $element)
 							{
-								console.log(row);
+								var data = ({
+									LastName:$element.LastName, 
+									FirstName: $element.FirstName,
+									Cardnumber: $element.Cardnumber,
+									ID: $element.ID,
+									Email: $element.Email,
+									Title: $element.Title,
+								})
+								removeTable.bootstrapTable('removeByUniqueId',$element.ID);
+								addTable.bootstrapTable('append', data);								
 							});
 							removeTable.on('check-all.bs.table', function(rows)	
 							{
