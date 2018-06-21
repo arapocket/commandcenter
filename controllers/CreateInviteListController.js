@@ -1,4 +1,5 @@
 var db = require('../models/db');
+var CreateInviteListModel = require('../../models/CheckpointModel');
 
 exports.createInviteListHome = function (req, res) {
   sess = req.session;
@@ -31,6 +32,22 @@ exports.createInviteListHome = function (req, res) {
       }
     });
             //res.render('cardholders', { title: 'Command Center 360 - ' });
+      }
+};
+
+exports.createInviteList = function (req, res) {
+  sess = req.session;
+      // don't let nameless people view the dashboard, redirect them back to the homepage
+      if (typeof sess.username == 'undefined') res.redirect('/');
+      else {
+    CreateInviteListModel.createInviteList(req.body, function (err, createInviteListResult) {
+      if (err) {
+        res.json(err);
+      }
+      else {
+        res.json(createInviteListResult);
+      }
+    });
       }
 };
 
