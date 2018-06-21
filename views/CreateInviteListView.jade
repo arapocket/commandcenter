@@ -60,8 +60,7 @@ html
 					script(src='/create-invite-lists/CreateInviteListScript.js')
 					script.
 						var results = !{ JSON.stringify(results) };
-						var dataArray = [];
-						loadScripts();
+						var dataArray = [];						
 						$(function () {
 							var addTable = $('#addTable');
 							var removeTable = $('#removeTable');
@@ -105,5 +104,6 @@ html
 							{
 								console.log(rows);		  
 							});							
-						});						
+						});	
+						loadScripts();					
 									
