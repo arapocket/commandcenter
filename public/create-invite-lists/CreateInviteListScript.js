@@ -7,15 +7,54 @@ function loadScripts() {
         console.log(dataArray);
         invitationListID = createID();
 
-        for (i = 0 ; i < dataArray.length ; i++) {
-            postList(dataArray[i]);
-        }
+        prompt();
 
-        
     })
 
 
+    function prompt() {
+        bootbox.hideAll();
 
+        bootbox.prompt("Enter a name for the invite list.", function (nameInput) {
+            if (nameInput === null) {
+            } else {
+
+                bootbox.prompt('Enter a description for the invite list.'), function (descriptionInput) {
+                    if (descriptionInput === null) {
+
+                    } else {
+                        let cleanInput = result.replace(/[^a-zA-Z0-9 ]/g, "");
+
+                        let xhr = new XMLHttpRequest();
+
+                        if (!xhr) {
+                            alert('Giving up :( Cannot create an XMLHTTP instance');
+                            return false;
+                        }
+
+                        xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/saveroute", true);
+
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                        xhr.send(JSON.stringify({
+                            "InvitationListID": invitationListID,
+                            "ListName": nameInput,
+                            "ListComment": descriptionInput
+                        }));
+
+                        for (i = 0; i < dataArray.length; i++) {
+
+                            postList(dataArray[i]);
+                        }
+                        
+                        bootbox.hideAll();
+
+                        bootbox.alert('Invite list has been created!');
+                    }
+                }
+
+            }
+        });
+    }
 
 
     function postList(person) {

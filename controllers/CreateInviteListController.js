@@ -35,17 +35,25 @@ exports.createInviteListHome = function (req, res) {
       }
 };
 
-exports.createInviteList = function (req, res) {
+exports.postInviteList = function (req, res) {
   sess = req.session;
       // don't let nameless people view the dashboard, redirect them back to the homepage
       if (typeof sess.username == 'undefined') res.redirect('/');
       else {
-    CreateInviteListModel.createInviteList(req.body, function (err, createInviteListResult) {
+    CreateInviteListModel.postInviteList(req.body, function (err, postInviteListResult) {
       if (err) {
-        res.json(err);
+        res.end();
       }
       else {
-        res.json(createInviteListResult);
+        CreateInviteListModel.postInvitees(req.body, function (err, postInviteesResult) {
+
+          if (err) {
+            res.end();
+          } else {
+            res.end();
+          }
+
+        });
       }
     });
       }

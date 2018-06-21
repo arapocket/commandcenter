@@ -3,9 +3,36 @@ var datetime = require('../controllers/datetime');
 
 var time = datetime.syncCurrentDateTimeforDB();
 
+module.exports.postInviteList = function (Body, callback) {
 
+    db.createConnection(function (err, res) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = res;
 
-module.exports.createInviteList = function (Body, callback) {
+            var queryFields = '(InvitationListID, ListName, ListComment, UpdateTime)';
+            var queryValues = '("'+ Body.InvitationListID +'", "'+ Body.ListName +'", "'+ Body.ListComment +'","'+ time + '")';
+            var query = 'INSERT INTO invitees '+queryFields +' VALUES ' + queryValues;
+            connection.query(query, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the createInviteList query');
+                    console.log(err);
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+}
+
+module.exports.postInvitees = function (Body, callback) {
 
     db.createConnection(function (err, res) {
         if (err) {
