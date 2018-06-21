@@ -32,7 +32,7 @@ function loadScripts() {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
             'InvitationListID': invitationListID,
-            'BadgeNumber': person.iClassNumber,
+            'BadgeNumber': person.Cardnumber,
             'LastName': person.LastName,
             'FirstName': person.FirstName,
             'EmailAddress': person.EmailAddress
