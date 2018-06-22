@@ -56,7 +56,7 @@ exports.postInvitee = function (req, res) {
 }
 
 module.exports.getLastInviteList = function (req, res) {
-  CheckpointModel.getLastInviteList(function (err, getLastInviteListResult) {
+  InviteListModel.getLastInviteList(function (err, getLastInviteListResult) {
     if (err) {
       res.json(err);
     }
