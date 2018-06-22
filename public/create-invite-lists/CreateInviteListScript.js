@@ -63,6 +63,28 @@ function loadScripts() {
 
 
     function getLastInviteList() {
+
+        let xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/lastinvitelist", true);
+
+        xhr.send(null);
+
+        xhr.onload = function () {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            }
+        };
+
+
+
         // for (i = 0; i < dataArray.length; i++) {
 
         //     postList(dataArray[i]);
