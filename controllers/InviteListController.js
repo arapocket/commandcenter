@@ -46,7 +46,7 @@ exports.postInviteList = function (req, res) {
 }
 
 exports.postInvitee = function (req, res) {
-  InviteListModel.postInvitees(req.body, function (err, postInviteeResult) {
+  InviteListModel.postInvitee(req.body, function (err, postInviteeResult) {
     if (err) {
       res.json(err);
     } else {
