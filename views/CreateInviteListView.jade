@@ -70,6 +70,9 @@ html
 							var result = results[i]
 							addTable.bootstrapTable('append', {LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.iClassNumber, ID: result.EmpID, Email: result.Email, Title: result.Title});
 							}
+							addTable.bootstrapTable('refreshOptions', {
+								pageSize:10
+							});
 							addTable.on('check.bs.table', function(row, $element)
 							{
 								var data = ({
