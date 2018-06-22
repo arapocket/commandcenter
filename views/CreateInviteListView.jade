@@ -72,10 +72,7 @@ html
 							}
 							addTable.bootstrapTable('refreshOptions', {
 								pageSize:10
-							});
-							removeTable.bootstrapTable('refreshOptions', {
-								pageSize:10
-							});							
+							});			
 							addTable.on('check.bs.table', function(row, $element)
 							{
 								var data = ({
@@ -89,6 +86,9 @@ html
 								addTable.bootstrapTable('removeByUniqueId',$element.ID);
 								removeTable.bootstrapTable('append', data);
 								dataArray.push(data);
+							removeTable.bootstrapTable('refreshOptions', {
+								pageSize:10
+							});												
 							});
 							addTable.on('check-all.bs.table', function(rows)	
 							{
@@ -109,7 +109,9 @@ html
 								removeTable.bootstrapTable('append', data);
 								dataArray.push(data);																
 								}
-
+							removeTable.bootstrapTable('refreshOptions', {
+								pageSize:10
+							});												
 							});
 							removeTable.on('check.bs.table', function(row, $element)
 							{
