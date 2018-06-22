@@ -1,11 +1,9 @@
 function loadScripts() {
 
     var createButton = document.getElementById('createButton');
-    var invitationListID = ''
     createButton.addEventListener('click', function () {
         console.log('logging dataArray')
         console.log(dataArray);
-        invitationListID = createID();
 
         prompt();
 
@@ -36,7 +34,6 @@ function loadScripts() {
 
                         xhr.setRequestHeader('Content-Type', 'application/json');
                         xhr.send(JSON.stringify({
-                            "InvitationListID": invitationListID,
                             "ListName": cleanNameInput,
                             "ListComment": cleanDescriptionInput
                         }));
@@ -81,20 +78,22 @@ function loadScripts() {
                     console.log(xhr.responseText);
                     var json = JSON.parse(xhr.responseText);
                     console.log(json);
+                    var listID = json[0].InvitationListID;
+                    for (i = 0; i < dataArray.length; i++) {
+
+                        postList(dataArray[i], listID);
+                    }
                 }
             }
         };
 
 
 
-        // for (i = 0; i < dataArray.length; i++) {
 
-        //     postList(dataArray[i]);
-        // }
     }
 
 
-    function postList(person) {
+    function postList(person, listID) {
 
         var xhr = new XMLHttpRequest();
 
@@ -107,7 +106,7 @@ function loadScripts() {
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
-            'InvitationListID': invitationListID,
+            'InvitationListID': listID,
             'BadgeNumber': person.Cardnumber,
             'LastName': person.LastName,
             'FirstName': person.FirstName,
