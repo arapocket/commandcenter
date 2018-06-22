@@ -41,10 +41,21 @@ function loadScripts() {
                             "ListComment": cleanDescriptionInput
                         }));
 
-                        for (i = 0; i < dataArray.length; i++) {
+                        xhr.onload = function () {
+                            if (xhr.readyState === xhr.DONE) {
+                                if (xhr.status === 200) {
+                                    console.log('logging post invitelist res');
+                                    console.log(xhr.response);
+                                    console.log(xhr.responseText);
+                                    // for (i = 0; i < dataArray.length; i++) {
 
-                            postList(dataArray[i]);
-                        }
+                                    //     postList(dataArray[i]);
+                                    // }
+                                }
+                            }
+                        };
+                        
+
 
                         bootbox.hideAll();
 
