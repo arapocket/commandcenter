@@ -311,7 +311,7 @@ router.post('/messages', MessageController.addMessage);
 
 var InviteListController = require('../controllers/InviteListController');
 router.get('/createinvitelist', InviteListController.createInviteListHome);
-router.post('/createinvitelist', InviteListController.postInviteList)
+router.post('/postinvitelist', InviteListController.postInviteList)
 router.post('/postinvitee', InviteListController.postInvitee)
 
 
