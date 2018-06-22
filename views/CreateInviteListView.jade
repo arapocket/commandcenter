@@ -89,7 +89,9 @@ html
 							});
 							addTable.on('check-all.bs.table', function(rows)	
 							{
-								console.log(rows);
+								var selections = addTable.bootstrapTable('getSelections');
+								console.log(selections);
+
 							});
 							removeTable.on('check.bs.table', function(row, $element)
 							{
