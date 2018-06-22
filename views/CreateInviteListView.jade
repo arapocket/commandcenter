@@ -71,7 +71,8 @@ html
 							addTable.bootstrapTable('append', {LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.iClassNumber, ID: result.EmpID, Email: result.Email, Title: result.Title});
 							}
 							addTable.bootstrapTable('refreshOptions', {
-								pageSize:10
+								pageSize:10,
+								sortName: LastName
 							});			
 							addTable.on('check.bs.table', function(row, $element)
 							{
