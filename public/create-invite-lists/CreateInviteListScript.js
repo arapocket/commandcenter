@@ -79,7 +79,7 @@ function loadScripts() {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200) {
                     console.log(xhr.responseText);
-                    var invitationListID = xhr.responseText[0].InvitationListID;
+                    var invitationListID = xhr.response[0].InvitationListID;
                     console.log(invitationListID);
                 }
             }
