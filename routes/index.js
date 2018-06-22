@@ -309,10 +309,10 @@ router.post('/messages', MessageController.addMessage);
 //#############################################################################################
 //#############################################################################################
 
-var CreateInviteListController = require('../controllers/CreateInviteListController');
-router.get('/createinvitelist', CreateInviteListController.createInviteListHome);
-router.post('/createinvitelist', CreateInviteListController.postInviteList)
-router.post('/postinvitee', CreateInviteListController.postInvitee)
+var InviteListController = require('../controllers/InviteListController');
+router.get('/createinvitelist', InviteListController.createInviteListHome);
+router.post('/createinvitelist', InviteListController.postInviteList)
+router.post('/postinvitee', InviteListController.postInvitee)
 
 
 

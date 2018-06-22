@@ -1,5 +1,5 @@
 var db = require('../models/db');
-var CreateInviteListModel = require('../models/CreateInviteListModel');
+var InviteListModel = require('../models/InviteListModel');
 
 exports.createInviteListHome = function (req, res) {
   sess = req.session;
@@ -36,7 +36,7 @@ exports.createInviteListHome = function (req, res) {
 };
 
 exports.postInviteList = function (req, res) {
-  CreateInviteListModel.postInviteList(req.body, function (err, postInviteListResult) {
+  InviteListModel.postInviteList(req.body, function (err, postInviteListResult) {
     if (err) {
       res.json(err);
     } else {
@@ -46,7 +46,7 @@ exports.postInviteList = function (req, res) {
 }
 
 exports.postInvitee = function (req, res) {
-  CreateInviteListModel.postInvitees(req.body, function (err, postInviteeResult) {
+  InviteListModel.postInvitees(req.body, function (err, postInviteeResult) {
     if (err) {
       res.json(err);
     } else {
