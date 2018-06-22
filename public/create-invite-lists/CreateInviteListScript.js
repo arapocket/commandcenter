@@ -32,7 +32,7 @@ function loadScripts() {
                             return false;
                         }
 
-                        xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/saveroute", true);
+                        xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/postinvitelist", true);
 
                         xhr.setRequestHeader('Content-Type', 'application/json');
                         xhr.send(JSON.stringify({
@@ -66,7 +66,7 @@ function loadScripts() {
             return false;
         }
 
-        xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/createinvitelist", true);
+        xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/postinvitee", true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({

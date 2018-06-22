@@ -32,7 +32,7 @@ module.exports.postInviteList = function (Body, callback) {
     });
 }
 
-module.exports.postInvitees = function (Body, callback) {
+module.exports.postInvitee = function (Body, callback) {
 
     db.createConnection(function (err, res) {
         if (err) {

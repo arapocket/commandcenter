@@ -3,9 +3,9 @@ var CreateInviteListModel = require('../models/CreateInviteListModel');
 
 exports.createInviteListHome = function (req, res) {
   sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') res.redirect('/');
+  else {
 
     db.createConnection(function (err, reslt) {
       if (err) {
@@ -31,31 +31,26 @@ exports.createInviteListHome = function (req, res) {
         });
       }
     });
-            //res.render('cardholders', { title: 'Command Center 360 - ' });
-      }
+    //res.render('cardholders', { title: 'Command Center 360 - ' });
+  }
 };
 
 exports.postInviteList = function (req, res) {
-  sess = req.session;
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') res.redirect('/');
-      else {
-    CreateInviteListModel.postInviteList(req.body, function (err, postInviteListResult) {
-      if (err) {
-        res.end();
-      }
-      else {
-        CreateInviteListModel.postInvitees(req.body, function (err, postInviteesResult) {
+  CreateInviteListModel.postInviteList(req.body, function (err, postInviteListResult) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(res);
+    }
+  })
+}
 
-          if (err) {
-            res.end();
-          } else {
-            res.end();
-          }
-
-        });
-      }
-    });
-      }
-};
-
+exports.postInvitee = function (req, res) {
+  CreateInviteListModel.postInvitees(req.body, function (err, postInviteeResult) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(res);
+    }
+  })
+}
