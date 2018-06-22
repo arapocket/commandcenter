@@ -87,6 +87,10 @@ html
 								addTable.bootstrapTable('removeByUniqueId',$element.ID);
 								removeTable.bootstrapTable('append', data);
 								dataArray.push(data);
+							addTable.bootstrapTable('refreshOptions', {
+								pageSize:10,
+								sortName: 'LastName'
+							});											
 							removeTable.bootstrapTable('refreshOptions', {
 								pageSize:10
 							});												
@@ -110,6 +114,10 @@ html
 								removeTable.bootstrapTable('append', data);
 								dataArray.push(data);																
 								}
+							addTable.bootstrapTable('refreshOptions', {
+								pageSize:10,
+								sortName: 'LastName'
+							});											
 							removeTable.bootstrapTable('refreshOptions', {
 								pageSize:10
 							});												
@@ -125,7 +133,14 @@ html
 									Title: $element.Title,
 								})
 								removeTable.bootstrapTable('removeByUniqueId',$element.ID);
-								addTable.bootstrapTable('append', data);								
+								addTable.bootstrapTable('append', data);
+							addTable.bootstrapTable('refreshOptions', {
+								pageSize:10,
+								sortName: 'LastName'
+							});		
+							removeTable.bootstrapTable('refreshOptions', {
+								pageSize:10
+							});																																			
 							});
 							removeTable.on('check-all.bs.table', function(rows)	
 							{
