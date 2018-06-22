@@ -14,8 +14,8 @@ module.exports.postInviteList = function (Body, callback) {
             var connection = res;
 
             var queryFields = '(InvitationListID, ListName, ListComment, UpdateTime)';
-            var queryValues = '"'+ Body.ListName +'", "'+ Body.ListComment +'","'+ time + '")';
-            var query = 'INSERT INTO invitelist '+ queryFields +' VALUES (LAST_INSERT_ID(),' + queryValues;
+            var queryValues = '("'+ Body.InvitationListID +'", "'+ Body.ListName +'", "'+ Body.ListComment +'","'+ time + '")';
+            var query = 'INSERT INTO invitelist '+ queryFields +' VALUES ' + queryValues;
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -43,8 +43,8 @@ module.exports.postInvitee = function (Body, callback) {
             var connection = res;
 
             var queryFields = '(InvitationListID, BadgeNumber, LastName, FirstName, EmailAddress, UpdateTime)';
-            var queryValues = '"'+ Body.BadgeNumber +'", "'+ Body.LastName +'", "'+ Body.FirstName +'", "'+ Body.EmailAddress +'", "'+ time + '")';
-            var query = 'INSERT INTO invitees '+queryFields +' VALUES (LAST_INSERT_ID(),' + queryValues;
+            var queryValues = '("'+ Body.InvitationListID +'", "'+ Body.BadgeNumber +'", "'+ Body.LastName +'", "'+ Body.FirstName +'", "'+ Body.EmailAddress +'", "'+ time + '")';
+            var query = 'INSERT INTO invitees '+queryFields +' VALUES ' + queryValues;
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -60,6 +60,5 @@ module.exports.postInvitee = function (Body, callback) {
         }
     });
 }
-
 
 
