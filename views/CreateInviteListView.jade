@@ -92,6 +92,21 @@ html
 								var selections = addTable.bootstrapTable('getSelections');
 								console.log(selections);
 
+								for (i = 0 ; i < selections.length ; i++){
+									var selection = selections[i];
+								var data = ({
+									LastName:selection.LastName, 
+									FirstName: selection.FirstName,
+									Cardnumber: selection.Cardnumber,
+									ID: selection.ID,
+									Email: selection.Email,
+									Title: selection.Title,
+								})	
+								addTable.bootstrapTable('removeByUniqueId',selection.ID);
+								removeTable.bootstrapTable('append', data);
+								dataArray.push(data);																
+								}
+
 							});
 							removeTable.on('check.bs.table', function(row, $element)
 							{
