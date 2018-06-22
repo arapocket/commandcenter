@@ -73,7 +73,7 @@ module.exports.getLastInviteList = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = res;
 
-            var query = 'SELECT LAST_INSERT_ID() FROM invitelist';
+            var query = 'SELECT * FROM invitelist ORDER BY InvitationListID desc LIMIT 1;';
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
