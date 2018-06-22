@@ -40,7 +40,7 @@ exports.postInviteList = function (req, res) {
     if (err) {
       res.json(err);
     } else {
-      res.json(res);
+      res.json(postInviteListResult);
     }
   })
 }
@@ -50,7 +50,7 @@ exports.postInvitee = function (req, res) {
     if (err) {
       res.json(err);
     } else {
-      res.json(res);
+      res.json(postInviteeResult);
     }
   })
 }

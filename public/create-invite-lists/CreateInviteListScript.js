@@ -78,6 +78,7 @@ function loadScripts() {
 
         }));
     }
+    
 
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
