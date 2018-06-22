@@ -14,8 +14,8 @@ module.exports.postInviteList = function (Body, callback) {
             var connection = res;
 
             var queryFields = '(InvitationListID, ListName, ListComment, UpdateTime)';
-            var queryValues = '("'+ Body.InvitationListID +'", "'+ Body.ListName +'", "'+ Body.ListComment +'","'+ time + '")';
-            var query = 'INSERT INTO invitelist '+ queryFields +' VALUES ' + queryValues;
+            var queryValues = '"'+ Body.ListName +'", "'+ Body.ListComment +'","'+ time + '")';
+            var query = 'INSERT INTO invitelist '+ queryFields +' VALUES (LAST_INSERT_ID(),' + queryValues;
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
