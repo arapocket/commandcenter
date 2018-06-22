@@ -44,17 +44,11 @@ function loadScripts() {
                         xhr.onload = function () {
                             if (xhr.readyState === xhr.DONE) {
                                 if (xhr.status === 200) {
-                                    console.log('logging post invitelist res');
-                                    console.log(xhr.response);
-                                    console.log(xhr.responseText);
-                                    // for (i = 0; i < dataArray.length; i++) {
-
-                                    //     postList(dataArray[i]);
-                                    // }
+                                    getLastInviteList();
                                 }
                             }
                         };
-                        
+
 
 
                         bootbox.hideAll();
@@ -65,6 +59,14 @@ function loadScripts() {
 
             }
         });
+    }
+
+
+    function getLastInviteList() {
+        // for (i = 0; i < dataArray.length; i++) {
+
+        //     postList(dataArray[i]);
+        // }
     }
 
 
@@ -89,7 +91,7 @@ function loadScripts() {
 
         }));
     }
-    
+
 
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);

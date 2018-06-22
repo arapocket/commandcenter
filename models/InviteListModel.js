@@ -61,4 +61,31 @@ module.exports.postInvitee = function (Body, callback) {
     });
 }
 
+module.exports.getLastInviteList = function (callback) {
+
+    db.createConnection(function (err, res) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = res;
+
+            var query = 'SELECT LAST_INSERT_ID() FROM invitelist';
+            connection.query(query, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the getLastInviteList query');
+                    console.log(err);
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+}
+
 
