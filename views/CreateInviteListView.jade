@@ -61,7 +61,6 @@ html
 					script(src='/create-invite-lists/CreateInviteListScript.js')
 					script.
 						var results = !{ JSON.stringify(results) };
-						var dataArray = [];						
 						$(function () {
 							var addTable = $('#addTable');
 							var removeTable = $('#removeTable');
@@ -86,7 +85,6 @@ html
 								})
 								addTable.bootstrapTable('removeByUniqueId',$element.ID);
 								removeTable.bootstrapTable('append', data);
-								dataArray.push(data);
 							addTable.bootstrapTable('refreshOptions', {
 								pageSize:10,
 								sortName: 'LastName'
@@ -112,7 +110,6 @@ html
 								})	
 								addTable.bootstrapTable('removeByUniqueId',selection.ID);
 								removeTable.bootstrapTable('append', data);
-								dataArray.push(data);																
 								}
 							addTable.bootstrapTable('refreshOptions', {
 								pageSize:10,
@@ -144,7 +141,29 @@ html
 							});
 							removeTable.on('check-all.bs.table', function(rows)	
 							{
-								console.log(rows);		  
+								var selections = removeTable.bootstrapTable('getSelections');
+								console.log(selections);
+
+								for (i = 0 ; i < selections.length ; i++){
+									var selection = selections[i];
+								var data = ({
+									LastName:selection.LastName, 
+									FirstName: selection.FirstName,
+									Cardnumber: selection.Cardnumber,
+									ID: selection.ID,
+									Email: selection.Email,
+									Title: selection.Title,
+								})	
+								removeTable.bootstrapTable('removeByUniqueId',selection.ID);
+								addTable.bootstrapTable('append', data);
+								}
+							addTable.bootstrapTable('refreshOptions', {
+								pageSize:10,
+								sortName: 'LastName'
+							});											
+							removeTable.bootstrapTable('refreshOptions', {
+								pageSize:10
+							});										
 							});							
 						});	
 						loadScripts();					
