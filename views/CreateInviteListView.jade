@@ -141,7 +141,7 @@ html
 							removeTable.bootstrapTable('refreshOptions', {
 								pageSize:10
 							});	
-							dataArray.push([]);
+							dataArray = [];
 							var newData = removeTable.bootstrapTable('getData');
 							dataArray.push(newData);
 							});
@@ -162,7 +162,7 @@ html
 								})	
 								removeTable.bootstrapTable('removeByUniqueId',selection.ID);
 								addTable.bootstrapTable('append', data);
-								dataArray.push([]);
+								dataArray = [];
 								var newData = removeTable.bootstrapTable('getData');
 								dataArray.push(newData);
 								}
