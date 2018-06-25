@@ -61,6 +61,7 @@ html
 					script(src='/create-invite-lists/CreateInviteListScript.js')
 					script.
 						var results = !{ JSON.stringify(results) };
+						var dataArray = [];						
 						$(function () {
 							var addTable = $('#addTable');
 							var removeTable = $('#removeTable');
@@ -85,6 +86,7 @@ html
 								})
 								addTable.bootstrapTable('removeByUniqueId',$element.ID);
 								removeTable.bootstrapTable('append', data);
+								dataArray.push(data);
 							addTable.bootstrapTable('refreshOptions', {
 								pageSize:10,
 								sortName: 'LastName'
@@ -110,6 +112,7 @@ html
 								})	
 								addTable.bootstrapTable('removeByUniqueId',selection.ID);
 								removeTable.bootstrapTable('append', data);
+								dataArray.push(data);																
 								}
 							addTable.bootstrapTable('refreshOptions', {
 								pageSize:10,
@@ -131,13 +134,16 @@ html
 								})
 								removeTable.bootstrapTable('removeByUniqueId',$element.ID);
 								addTable.bootstrapTable('append', data);
-							addTable.bootstrapTable('refreshOptions', {
+								addTable.bootstrapTable('refreshOptions', {
 								pageSize:10,
 								sortName: 'LastName'
 							});		
 							removeTable.bootstrapTable('refreshOptions', {
 								pageSize:10
-							});																																			
+							});	
+							dataArray.push([]);
+							var newData = removeTable.bootstrapTable('getData');
+							dataArray.push(newData);
 							});
 							removeTable.on('check-all.bs.table', function(rows)	
 							{
@@ -156,6 +162,9 @@ html
 								})	
 								removeTable.bootstrapTable('removeByUniqueId',selection.ID);
 								addTable.bootstrapTable('append', data);
+								dataArray.push([]);
+								var newData = removeTable.bootstrapTable('getData');
+								dataArray.push(newData);
 								}
 							addTable.bootstrapTable('refreshOptions', {
 								pageSize:10,
