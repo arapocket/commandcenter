@@ -19,6 +19,16 @@ function loadScripts() {
     function newButtonPressed(){
         templateButton.style.display = 'none';
         newButton.style.display = 'none';
+
+        var xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/createinvitelist", true);
+        xhr.send(null);
     }
 
 }
