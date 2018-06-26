@@ -86,10 +86,6 @@ function loadScripts() {
                 }
             }
         };
-
-
-
-
     }
 
 

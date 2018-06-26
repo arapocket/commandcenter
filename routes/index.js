@@ -312,9 +312,9 @@ router.post('/messages', MessageController.addMessage);
 var InviteListController = require('../controllers/InviteListController');
 router.get('/createinvitelist', InviteListController.createInviteListHome);
 router.get('/lastinvitelist', InviteListController.getLastInviteList);
-router.post('/postinvitelist', InviteListController.postInviteList)
-router.post('/postinvitee', InviteListController.postInvitee)
-
+router.post('/postinvitelist', InviteListController.postInviteList);
+router.post('/postinvitee', InviteListController.postInvitee);
+router.get('/invitelistcreator', InviteListController.renderPage);
 
 
 

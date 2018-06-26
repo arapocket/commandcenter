@@ -1,0 +1,35 @@
+include mixins
+doctype
+html
+	head
+		title Command Center 5.0
+		script( src='/javascripts/jquery-3.1.1.min.js' )				
+		script( src='/popper.js' )
+		script( src='/bootstrap/js/bootstrap.min.js' )
+		script( src='/bootstrap-table/bootstrap-table.min.js' )
+		link(href="/bootstrap/css/bootstrap.min.css", rel="stylesheet")
+		link(href="/bootstrap-table/bootstrap-table.min.css", rel="stylesheet")
+		link(rel='stylesheet', href='/font-awesome-4.7.0/css/font-awesome.min.css')
+		script( src='/javascripts/bootbox.min.js' )
+
+	body(style="padding-bottom:10rem;")
+		.container   
+			block content
+
+				include navbar
+						
+				h3 Create Invite List
+				br
+				
+				div
+				.row
+					.col-md-6.col-sm-6.col-xs-6
+						#newButton
+								a.btn.btn-default.btn-block
+									i.fa.fa-check(aria-hidden='true')
+									| &nbsp Create New
+					.col-md-6.col-sm-6.col-xs-6
+						#templateButton
+								a.btn.btn-default.btn-block
+									i.fa.fa-check(aria-hidden='true')
+									| &nbsp Create From Template						
