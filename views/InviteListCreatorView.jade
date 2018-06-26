@@ -11,6 +11,7 @@ html
 		link(href="/bootstrap-table/bootstrap-table.min.css", rel="stylesheet")
 		link(rel='stylesheet', href='/font-awesome-4.7.0/css/font-awesome.min.css')
 		script( src='/javascripts/bootbox.min.js' )
+		script( src='/create-invite-lists/InviteListCreatorScript.js' )
 
 	body(style="padding-bottom:10rem;")
 		.container   
@@ -32,4 +33,6 @@ html
 						#templateButton
 								a.btn.btn-default.btn-block
 									i.fa.fa-bookmark(aria-hidden='true')
-									| &nbsp Create From Template						
+									| &nbsp Create From Template
+				script.
+					loadScripts();						
