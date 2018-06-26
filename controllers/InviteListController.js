@@ -88,7 +88,7 @@ exports.renderPage = function (req, res) {
           //the page renders
           if (results.length < 5000) {
             //regular Js datatables high functionality search and pagination  
-            res.render('InviteListCreator', { title: 'Command Center - Create Invite List', username: req.session.username, results });
+            res.render('InviteListCreatorView', { title: 'Command Center - Create Invite List', username: req.session.username, results });
           } else {
             //plain table and browser search only  
             res.render('cardholdersLarge', { title: 'Command Center - Cardholders', username: req.session.username, results });
