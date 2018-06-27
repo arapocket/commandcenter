@@ -13,7 +13,8 @@ function loadScripts() {
     }
 
     function startButtonPressed(){
-        jumbotronContent.innerHTML = "<p> Who is this invite list for? </p> <input> </input>"
+        jumbotronContent.innerHTML = `<p> Who is this invite list for? </p> <input> </input> 
+        <button class ="btn-primary btn-lg">Next</button>`
 
     }
 
