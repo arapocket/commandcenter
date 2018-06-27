@@ -34,6 +34,10 @@ html
 									th(data-field="ID" data-sortable= "true") Employee Id
 									th(data-field="Email" data-sortable= "true") Email
 									th(data-field="Title" data-sortable= "true") Title
+									th(data-field="Department" data-sortable= "true") Department
+									th(data-field="Division" data-sortable= "true") Division
+									th(data-field="SiteLocation" data-sortable= "true") SiteLocation
+									th(data-field="Building" data-sortable= "true") Building									
 				br
 				br								
 				div
@@ -49,6 +53,10 @@ html
 									th(data-field="ID" data-sortable= "true") Employee Id
 									th(data-field="Email" data-sortable= "true") Email
 									th(data-field="Title" data-sortable= "true") Title
+									th(data-field="Department" data-sortable= "true") Department
+									th(data-field="Division" data-sortable= "true") Division
+									th(data-field="SiteLocation" data-sortable= "true") SiteLocation
+									th(data-field="Building" data-sortable= "true") Building
 							tbody
 				br
 				div
@@ -68,7 +76,7 @@ html
 							var results = !{ JSON.stringify(results) };
 							for (i = 0 ; i < results.length ; i ++ ){
 							var result = results[i]
-							addTable.bootstrapTable('append', {LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.iClassNumber, ID: result.EmpID, Email: result.Email, Title: result.Title});
+							addTable.bootstrapTable('append', {LastName: result.LastName, FirstName: result.FirstName, Cardnumber: result.iClassNumber, ID: result.EmpID, Email: result.Email, Title: result.Title, Department: result.Department, Division: result.Division, SiteLocation: result.SiteLocation, Building: result.Building});
 							}
 							addTable.bootstrapTable('refreshOptions', {
 								pageSize:10,
@@ -83,6 +91,10 @@ html
 									ID: $element.ID,
 									Email: $element.Email,
 									Title: $element.Title,
+									Department: $element.Department,
+									Division: $element.Division,
+									SiteLocation: $element.SiteLocation,
+									Building: $element.Building
 								})
 								addTable.bootstrapTable('removeByUniqueId',$element.ID);
 								removeTable.bootstrapTable('append', data);
@@ -109,6 +121,10 @@ html
 									ID: selection.ID,
 									Email: selection.Email,
 									Title: selection.Title,
+									Department: selection.Department,
+									Division: selection.Division,
+									SiteLocation: selection.SiteLocation,
+									Building: selection.Building								
 								})	
 								addTable.bootstrapTable('removeByUniqueId',selection.ID);
 								removeTable.bootstrapTable('append', data);
@@ -131,6 +147,10 @@ html
 									ID: $element.ID,
 									Email: $element.Email,
 									Title: $element.Title,
+									Department: $element.Department,
+									Division: $element.Division,
+									SiteLocation: $element.SiteLocation,
+									Building: $element.Building								
 								})
 								removeTable.bootstrapTable('removeByUniqueId',$element.ID);
 								addTable.bootstrapTable('append', data);
@@ -159,6 +179,10 @@ html
 									ID: selection.ID,
 									Email: selection.Email,
 									Title: selection.Title,
+									Department: selection.Department,
+									Division: selection.Division,
+									SiteLocation: selection.SiteLocation,
+									Building: selection.Building
 								})	
 								removeTable.bootstrapTable('removeByUniqueId',selection.ID);
 								addTable.bootstrapTable('append', data);
