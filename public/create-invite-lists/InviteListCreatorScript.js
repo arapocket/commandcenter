@@ -39,6 +39,7 @@ function loadScripts() {
             groupDropdown.style.display = 'none';
             backButton.style.display = 'none'
             button.innerText = 'Begin'
+            comment.innerText = 'You can follow this wizard to quickly create an invite list.'
         } 
         else if (question == 1){
             groupDropdown.style.display = 'block';

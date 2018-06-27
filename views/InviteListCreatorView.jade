@@ -23,7 +23,7 @@ html
 						.row
 							.col-md-9
 								h4(id='header') Guided List Creator
-								p(id='comment') You can follow this wizard to quickly create an invite list
+								p(id='comment') You can follow this wizard to quickly create an invite list.
 								form
 									fieldset
 										.form-group.row
@@ -35,8 +35,10 @@ html
 												option(value='SiteLocation') a SiteLocation
 												option(value='Building') a Building
 												option(value='Custom') a Custom Group
-											button.btn.btn-default.btn-block.btn-outline-secondary(id = 'backButton' type='button' style = 'display: none') Back	
-											button.btn.btn-default.btn-block.btn-outline-secondary(id = 'button' type='button') Next
+											.col-md-6
+												button.btn.btn-default.btn-block.btn-outline-secondary(id = 'backButton' type='button' style = 'display: none') Back	
+											.col-md-6
+												button.btn.btn-default.btn-block.btn-outline-secondary(id = 'button' type='button') Next
 										
 				script(src='/create-invite-lists/InviteListCreatorScript.js')
 				script.
