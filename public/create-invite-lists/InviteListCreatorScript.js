@@ -8,6 +8,10 @@ function loadScripts() {
 
     var input = document.getElementById('input');
 
+    var header = document.getElementById('header')
+    
+    var comment = document.getElementById('comment')
+
     var question = 0;
 
     function createID() {
@@ -21,6 +25,7 @@ function loadScripts() {
             input.style.display = 'block';
             button.innerText = 'Next'
             question++;
+            comment.innerText = 'Who is this list for?'
         } else if (question == 1){
             question++
         } else if (question ==2){
