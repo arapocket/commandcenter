@@ -13,7 +13,8 @@ function loadScripts() {
     }
 
     function startButtonPressed(){
-        jumbotronContent.innerHTML = "<p> cock </p>"
+        jumbotronContent.innerHTML = "<p> Who is this invite list for? </p> <input> </input>"
+
     }
 
 }
