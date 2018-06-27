@@ -28,11 +28,14 @@ html
 								h4(id='header') Guided List Creator
 								p(id='comment') You can follow this wizard to quickly create an invite list	
 								.input-group.mb-3
-									input.form-control(id = 'input' type='text', placeholder="", aria-label="Recipient's username", aria-describedby='basic-addon2' style = 'display: none')
-									.input-group-append
-										button.btn-primary.btn-block.btn-outline-secondary(id = 'button' type='button') Next								
-
-								
+									.input-group-prepend
+										button.btn.btn-outline-secondary(id = 'button' type='button') Next
+									select#groupDropdown.custom-select(style = 'display: none')
+										option(selected='') Choose...
+										option(value='Department') a Department
+										option(value='Division') a Division
+										option(value='SiteLocation') a SiteLocation
+										option(value='Building') a Building
 				script(src='/create-invite-lists/InviteListCreatorScript.js')
 				script.
 					loadScripts()		

@@ -6,7 +6,7 @@ function loadScripts() {
     })
 
 
-    var input = document.getElementById('input');
+    var groupDropdown = document.getElementById('groupDropdown');
 
     var header = document.getElementById('header')
     
@@ -22,7 +22,7 @@ function loadScripts() {
     function buttonPressed(){
 
         if (question == 0){
-            input.style.display = 'block';
+            groupDropdown.style.display = 'block';
             button.innerText = 'Next'
             question++;
             comment.innerText = 'Who is this list for?'
