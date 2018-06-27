@@ -5,7 +5,6 @@ function loadScripts() {
         buttonPressed();
     })
 
-    var jumbotronContent = document.getElementById('jumbotronContent')
 
     var input = document.getElementById('input');
 
@@ -19,15 +18,12 @@ function loadScripts() {
     function buttonPressed(){
 
         if (question == 0){
-            jumbotronContent.innerText = "Which group is this invite list for?";
             input.style.display = 'block';
             button.innerText = 'Next'
             question++;
         } else if (question == 1){
-            jumbotronContent.innerText = "Dick?";
             question++
         } else if (question ==2){
-            jumbotronContent.innerText = "Jaj?";
         }
 
 
