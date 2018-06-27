@@ -48,6 +48,7 @@ function loadScripts() {
             question++;
             comment.innerText = 'You are making a list for ' + groupDropdown.value;            
         } else if (question ==2){
+            
         }
 
     }
