@@ -21,19 +21,21 @@ html
 				br
 				
 				div
-					.row
-						.col-md-9
-							h4(id='header') Guided List Creator
-							p(id='comment') You can follow this wizard to quickly create an invite list	
-							.input-group.mb-3
-								.input-group-append
-									button.btn.btn-default.btn-block.btn-outline-secondary(id = 'button' type='button') Next
-								select#groupDropdown.custom-select(style = 'display: none')
-									option(selected='') Choose...
-									option(value='Department') a Department
-									option(value='Division') a Division
-									option(value='SiteLocation') a SiteLocation
-									option(value='Building') a Building
+				.row
+					.jumbotron
+						.row
+							.col-md-9
+								h4(id='header') Guided List Creator
+								p(id='comment') You can follow this wizard to quickly create an invite list	
+								.input-group.mb-3
+									.input-group-append
+										button.btn.btn-default.btn-block.btn-outline-secondary(id = 'button' type='button') Next
+									select#groupDropdown.custom-select(style = 'display: none')
+										option(selected='') Choose...
+										option(value='Department') a Department
+										option(value='Division') a Division
+										option(value='SiteLocation') a SiteLocation
+										option(value='Building') a Building
 				script(src='/create-invite-lists/InviteListCreatorScript.js')
 				script.
 					loadScripts()		
