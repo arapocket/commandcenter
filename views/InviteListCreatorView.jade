@@ -23,15 +23,19 @@ html
 						.row
 							.col-md-9
 								h4(id='header') Guided List Creator
-								p(id='comment') You can follow this wizard to quickly create an invite list	
-								.input-group.mb-3
-									select#groupDropdown.custom-select-lg(style = 'display: none')
-										option(selected='') Choose...
-										option(value='Department') a Department
-										option(value='Division') a Division
-										option(value='SiteLocation') a SiteLocation
-										option(value='Building') a Building
-									button.btn.btn-default.btn-block.btn-outline-secondary(id = 'button' type='button') Next
+								p(id='comment') You can follow this wizard to quickly create an invite list
+								form
+									fieldset
+										.form-group.row
+										.form-group
+											label(for='exampleSelect1') Example select
+											select#groupDropdown.form-control
+												option(selected='') Choose...
+												option(value='Department') a Department
+												option(value='Division') a Division
+												option(value='SiteLocation') a SiteLocation
+												option(value='Building') a Building
+											button.btn.btn-default.btn-block.btn-outline-secondary(id = 'button' type='button') Next
 										
 				script(src='/create-invite-lists/InviteListCreatorScript.js')
 				script.
