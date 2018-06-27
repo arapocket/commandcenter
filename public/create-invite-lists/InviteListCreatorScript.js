@@ -5,13 +5,15 @@ function loadScripts() {
         startButtonPressed();
     })
 
+    var buttonDiv = document.getElementById('buttonDiv')
+
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
         return newID;
     }
 
     function startButtonPressed(){
-        startButton.innerHTML = "<p> cock </p>"
+        buttonDiv.innerHTML = "<p> cock </p>"
     }
 
 }
