@@ -1,8 +1,8 @@
 function loadScripts() {
 
-    var startButton = document.getElementById('startButton');
-    startButton.addEventListener('click', function () {
-        startButtonPressed();
+    var button = document.getElementById('button');
+    button.addEventListener('click', function () {
+        buttonPressed();
     })
 
     var jumbotronContent = document.getElementById('jumbotronContent')
@@ -14,9 +14,10 @@ function loadScripts() {
         return newID;
     }
 
-    function startButtonPressed(){
+    function buttonPressed(){
         jumbotronContent.style.display = 'none';
         input.style.display = 'block';
+        button.innerText('Next')
     }
 
 }
