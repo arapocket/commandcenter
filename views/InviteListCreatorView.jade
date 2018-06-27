@@ -28,13 +28,38 @@ html
 								h4(id='header') Guided List Creator
 								p(id='comment') You can follow this wizard to quickly create an invite list	
 								.input-group.mb-3
-									select#groupDropdown.custom-select-lg(style = 'display: none')
+									.input-group-prepend
+										label.input-group-text(for='inputGroupSelect01') Options
+									select#inputGroupSelect01.custom-select
 										option(selected='') Choose...
-										option(value='Department') a Department
-										option(value='Division') a Division
-										option(value='SiteLocation') a SiteLocation
-										option(value='Building') a Building
-									button.btn.btn-default.btn-block.btn-outline-secondary(id = 'button' type='button') Next
+										option(value='1') One
+										option(value='2') Two
+										option(value='3') Three
+								.input-group.mb-3
+									select#inputGroupSelect02.custom-select
+										option(selected='') Choose...
+										option(value='1') One
+										option(value='2') Two
+										option(value='3') Three
+									.input-group-append
+										label.input-group-text(for='inputGroupSelect02') Options
+								.input-group.mb-3
+									.input-group-prepend
+										button.btn.btn-outline-secondary(type='button') Button
+									select#inputGroupSelect03.custom-select
+										option(selected='') Choose...
+										option(value='1') One
+										option(value='2') Two
+										option(value='3') Three
+								.input-group
+									select#inputGroupSelect04.custom-select
+										option(selected='') Choose...
+										option(value='1') One
+										option(value='2') Two
+										option(value='3') Three
+									.input-group-append
+										button.btn.btn-outline-secondary(type='button') Button
+
 										
 				script(src='/create-invite-lists/InviteListCreatorScript.js')
 				script.
