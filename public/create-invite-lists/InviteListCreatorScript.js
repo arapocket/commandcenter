@@ -5,6 +5,11 @@ function loadScripts() {
         buttonPressed();
     })
 
+    var backButton = document.getElementById('backButton');
+    backButton.addEventListener('click', function () {
+        backButtonPressed();
+    })
+
 
     var groupDropdown = document.getElementById('groupDropdown');
 
@@ -19,18 +24,31 @@ function loadScripts() {
         return newID;
     }
 
-    function buttonPressed(){
+    function backButtonPressed(){
+        question--;
+        checkQuestion();
+    }
 
+    function buttonPressed(){
+        question++
+        checkQuestion();
+    }
+
+    function checkQuestion(){
         if (question == 0){
             groupDropdown.style.display = 'block';
+            backButton.style.display = 'none';
             button.innerText = 'Next'
             question++;
             comment.innerText = 'Who is this list for?'
         } else if (question == 1){
-            question++
+            groupDropdown.style.display = 'none';
+            backButton.style.display = 'block';
+            button.innerText = 'Next'
+            question++;
+            comment.innerText = 'You are making a list for ' + groupDropdown.value;            
         } else if (question ==2){
         }
-
 
     }
 
