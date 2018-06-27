@@ -35,19 +35,22 @@ function loadScripts() {
     }
 
     function checkQuestion(){
-        if (question == 0){
+        if (question ==0){
+            groupDropdown.style.display = 'none';
+            backButton.style.display = 'none'
+            button.innerText = 'Begin'
+        } 
+        else if (question == 1){
             groupDropdown.style.display = 'block';
-            backButton.style.display = 'none';
+            backButton.style.display = 'block';
             button.innerText = 'Next'
-            question++;
             comment.innerText = 'Who is this list for?'
-        } else if (question == 1){
+        } else if (question == 2){
             groupDropdown.style.display = 'none';
             backButton.style.display = 'block';
             button.innerText = 'Next'
-            question++;
             comment.innerText = 'You are making a list for ' + groupDropdown.value;            
-        } else if (question ==2){
+        } else if (question == 3){
             
         }
 
