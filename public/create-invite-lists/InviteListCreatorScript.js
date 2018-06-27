@@ -7,15 +7,16 @@ function loadScripts() {
 
     var jumbotronContent = document.getElementById('jumbotronContent')
 
+    var input = document.getElementById('input');
+
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
         return newID;
     }
 
     function startButtonPressed(){
-        jumbotronContent.innerHTML = `<p> Who is this invite list for? </p> <input> </input> 
-        <button class ="btn-primary btn-lg">Next</button>`
-
+        jumbotronContent.style.display = 'none';
+        input.style.display = 'block';
     }
 
 }
