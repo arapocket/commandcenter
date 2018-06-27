@@ -50,7 +50,7 @@ function loadScripts() {
             groupDropdown.style.display = 'none';
             backButton.style.display = 'block';
             button.innerText = 'Next'
-            comment.innerText = 'You are making a list for ' + groupDropdown.value;            
+            comment.innerText = 'You are making a list for ' + groupDropdown.innerText;            
         } else if (question == 3){
             
         }
