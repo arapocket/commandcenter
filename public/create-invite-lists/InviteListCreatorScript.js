@@ -5,7 +5,7 @@ function loadScripts() {
         startButtonPressed();
     })
 
-    var buttonDiv = document.getElementById('buttonDiv')
+    var jumbotronContent = document.getElementById('jumbotronContent')
 
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
@@ -13,7 +13,7 @@ function loadScripts() {
     }
 
     function startButtonPressed(){
-        buttonDiv.innerHTML = "<p> cock </p>"
+        jumbotronContent.innerHTML = "<p> cock </p>"
     }
 
 }
