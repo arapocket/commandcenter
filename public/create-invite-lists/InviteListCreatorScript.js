@@ -15,7 +15,7 @@ function loadScripts() {
     }
 
     function buttonPressed(){
-        jumbotronContent.style.display = 'none';
+        jumbotronContent.innerText = "Which group is this invite list for?";
         input.style.display = 'block';
         button.innerText('Next')
     }
