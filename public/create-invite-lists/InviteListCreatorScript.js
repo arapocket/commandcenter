@@ -81,6 +81,8 @@ function loadScripts() {
         else if (question == 1){
             groupDropdown.style.display = 'block';
             backButton.style.display = 'block';
+            noButton.style.display = 'none'
+            yesButton.style.display = 'none'
 
             button.innerText = 'Next'
             comment.innerText = 'What do you want to add to the list?'
@@ -89,8 +91,6 @@ function loadScripts() {
             selectionDropdown.style.display = 'none';
             backButton.style.display = 'block';
             button.style.display = 'block';
-            noButton.style.display = 'none'
-            yesButton.style.display = 'none'
 
             button.innerText = 'Next'
             comment.innerText = 'You are making a list for a ' + groupDropdown.value + '.';
