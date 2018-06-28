@@ -126,7 +126,7 @@ function loadScripts() {
 
         if (question == 4) {
             if (yesSelected) {
-                question = 2;
+                question = 1;
                 checkQuestion();
             } else {
                 question++;
