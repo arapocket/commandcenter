@@ -52,23 +52,29 @@ function loadScripts() {
         if (question ==0){
             groupDropdown.style.display = 'none';
             backButton.style.display = 'none'
+            
             button.innerText = 'Begin'
             comment.innerText = 'You can follow this wizard to quickly create an invite list.'
         } 
         else if (question == 1){
             groupDropdown.style.display = 'block';
             backButton.style.display = 'block';
+
             button.innerText = 'Next'
             comment.innerText = 'Who is this list for?'
         } else if (question == 2){
             groupDropdown.style.display = 'none';
+            selectionDropdown.style.display = 'none';
             backButton.style.display = 'block';
+
             button.innerText = 'Next'
             comment.innerText = 'You are making a list for a ' + groupDropdown.value + '.';
             group = groupDropdown.value;
         } else if (question == 3){
-            comment.innerText = 'Which ' + group + ' do you want to add?'
             selectionDropdown.style.display = 'block';
+
+            comment.innerText = 'Which ' + group + ' do you want to add?'
+            
         }
     }
 
