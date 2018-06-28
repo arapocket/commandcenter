@@ -62,7 +62,7 @@ function loadScripts() {
             groupDropdown.style.display = 'none';
             backButton.style.display = 'block';
             button.innerText = 'Next'
-            comment.innerText = 'You are making a list for a ' + groupDropdown.value;
+            comment.innerText = 'You are making a list for a ' + groupDropdown.value + '.';
             group = groupDropdown.value;
         } else if (question == 3){
             groupDropdown.style.display = 'block';
