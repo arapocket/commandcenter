@@ -122,6 +122,7 @@ function loadScripts() {
     function checkOption(){
 
         console.log(question);
+        console.log(yesSelected);
 
         if (question == 4) {
             if (yesSelected) {
