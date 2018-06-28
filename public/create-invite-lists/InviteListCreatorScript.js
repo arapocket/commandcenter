@@ -19,6 +19,8 @@ function loadScripts() {
 
     var question = 0;
 
+    var group = '';
+
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
         return newID;
@@ -60,9 +62,13 @@ function loadScripts() {
             groupDropdown.style.display = 'none';
             backButton.style.display = 'block';
             button.innerText = 'Next'
-            comment.innerText = 'You are making a list for ' + groupDropdown.value;            
+            comment.innerText = 'You are making a list for a ' + groupDropdown.value;
+            group = groupDropdown.value;
         } else if (question == 3){
-            
+            groupDropdown.style.display = 'block';
+            groupDropdown.empty();
+            button.innerText = 'Next'
+            comment.innerText = 'Which ' + group + ' do you want to add?'    
         }
 
     }
