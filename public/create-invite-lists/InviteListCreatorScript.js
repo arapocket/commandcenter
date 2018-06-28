@@ -81,6 +81,7 @@ function loadScripts() {
         else if (question == 1){
             groupDropdown.style.display = 'block';
             backButton.style.display = 'block';
+            button.style.display = 'block';
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
 
