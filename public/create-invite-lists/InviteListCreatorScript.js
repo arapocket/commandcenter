@@ -13,6 +13,8 @@ function loadScripts() {
 
     var groupDropdown = document.getElementById('groupDropdown');
 
+    var selectionDropdown = document.getElementById('selectionDropdown');
+
     var header = document.getElementById('header')
     
     var comment = document.getElementById('comment')
@@ -65,12 +67,9 @@ function loadScripts() {
             comment.innerText = 'You are making a list for a ' + groupDropdown.value + '.';
             group = groupDropdown.value;
         } else if (question == 3){
-            groupDropdown.style.display = 'block';
-            $(groupDropdown).empty();
-            button.innerText = 'Next'
-            comment.innerText = 'Which ' + group + ' do you want to add?'    
+            comment.innerText = 'Which ' + group + ' do you want to add?'
+            selectionDropdown.style.display = 'block';
         }
-
     }
 
 }

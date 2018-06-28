@@ -13,7 +13,7 @@ html
 		script( src='/javascripts/bootbox.min.js' )
 
 	body(style="padding-bottom:10rem;")
-		.container   
+		.container
 			block content
 				include navbar
 				br
@@ -35,11 +35,12 @@ html
 												option(id = 'dropdown 3' value='Site Location') a Site Location
 												option(id = 'dropdown 4' value='Building') a Building
 												option(id = 'dropdown 5' value='Custom Group') a Custom Group
+											select#selectionDropdown.form-control(style = 'display: none')
+												option(id = 'dropdown 0' selected='' value='') Choose...												
 											.col-md-6
-												button.btn.btn-default.btn-block.btn-outline-secondary(id = 'backButton' type='button' style = 'display: none') Back	
+												button.btn.btn-default.btn-block.btn-outline-secondary(id = 'backButton' type='button' style = 'display: none') Back
 											.col-md-6
 												button.btn.btn-default.btn-block.btn-outline-secondary(id = 'button' type='button') Next
-										
 				script(src='/create-invite-lists/InviteListCreatorScript.js')
 				script.
-					loadScripts()		
+					loadScripts()
