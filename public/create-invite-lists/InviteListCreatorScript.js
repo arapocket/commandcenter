@@ -66,7 +66,7 @@ function loadScripts() {
             group = groupDropdown.value;
         } else if (question == 3){
             groupDropdown.style.display = 'block';
-            groupDropdown.empty();
+            $(groupDropdown).empty();
             button.innerText = 'Next'
             comment.innerText = 'Which ' + group + ' do you want to add?'    
         }
