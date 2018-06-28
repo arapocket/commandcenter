@@ -88,6 +88,9 @@ function loadScripts() {
             groupDropdown.style.display = 'none';
             selectionDropdown.style.display = 'none';
             backButton.style.display = 'block';
+            button.style.display = 'block';
+            noButton.style.display = 'none'
+            yesButton.style.display = 'none'
 
             button.innerText = 'Next'
             comment.innerText = 'You are making a list for a ' + groupDropdown.value + '.';
