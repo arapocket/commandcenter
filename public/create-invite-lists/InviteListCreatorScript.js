@@ -120,6 +120,9 @@ function loadScripts() {
     }
 
     function checkOption(){
+
+        console.log(question);
+
         if (question == 5) {
             if (yesSelected) {
                 question == 2;
