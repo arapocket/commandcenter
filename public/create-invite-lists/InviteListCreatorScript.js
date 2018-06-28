@@ -30,8 +30,18 @@ function loadScripts() {
     }
 
     function buttonPressed(){
-        question++
-        checkQuestion();
+        
+        if (question ==1) {
+            if (groupDropdown.value == ''){
+                bootbox.alert('Please select a choice from the dropdown.')
+            } else {
+                question ++
+                checkQuestion();
+            }
+        } else {
+            question++;
+            checkQuestion();
+        }
     }
 
     function checkQuestion(){
