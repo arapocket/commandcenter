@@ -10,6 +10,16 @@ function loadScripts() {
         backButtonPressed();
     })
 
+    var yesButton = document.getElementById('yesButton');
+    yesButton.addEventListener('click', function () {
+        yesButtonPressed();
+    })
+
+    var noButton = document.getElementById('noButton');
+    noButton.addEventListener('click', function () {
+        noButtonPressed();
+    })
+
 
     var groupDropdown = document.getElementById('groupDropdown');
 
@@ -23,9 +33,21 @@ function loadScripts() {
 
     var group = '';
 
+    var yesSelected = true;
+
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
         return newID;
+    }
+
+    function yesButtonPressed(){
+        yesSelected = true;
+        checkOption();
+    }
+
+    function noButtonPressed(){
+        yesSelected = false;
+        checkOption();
     }
 
     function backButtonPressed(){
@@ -52,7 +74,7 @@ function loadScripts() {
         if (question ==0){
             groupDropdown.style.display = 'none';
             backButton.style.display = 'none'
-            
+
             button.innerText = 'Begin'
             comment.innerText = 'You can follow this wizard to quickly create an invite list.'
         } 
@@ -61,7 +83,7 @@ function loadScripts() {
             backButton.style.display = 'block';
 
             button.innerText = 'Next'
-            comment.innerText = 'Who is this list for?'
+            comment.innerText = 'What do you want to add to the list?'
         } else if (question == 2){
             groupDropdown.style.display = 'none';
             selectionDropdown.style.display = 'none';
@@ -71,10 +93,38 @@ function loadScripts() {
             comment.innerText = 'You are making a list for a ' + groupDropdown.value + '.';
             group = groupDropdown.value;
         } else if (question == 3){
+            backButton.style.display = 'block'
+            button.style.display = 'block';
             selectionDropdown.style.display = 'block';
+            noButton.style.display = 'none'
+            yesButton.style.display = 'none'
 
             comment.innerText = 'Which ' + group + ' do you want to add?'
+        } else if (question == 4){
+            backButton.style.display = 'none'
+            button.style.display = 'none';
+            selectionDropdown.style.display = 'none';
+            noButton.style.display = 'block'
+            yesButton.style.display = 'block'
+
+            comment.innerText = 'Do you want to add any other groups?'
+        } else if (question == 5){
+            noButton.style.display = 'none'
+            yesButton.style.display = 'none'
             
+            comment.innerText = 'Titties';
+        }
+    }
+
+    function checkOption(){
+        if (question == 4) {
+            if (yesSelected) {
+                question == 2;
+                checkQuestion();
+            } else {
+                question++;
+                checkQuestion();
+            }
         }
     }
 
