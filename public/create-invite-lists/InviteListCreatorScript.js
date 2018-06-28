@@ -111,7 +111,7 @@ function loadScripts() {
             yesButton.style.display = 'block'
 
             comment.innerText = 'Do you want to add any other groups?'
-        } else if (question == 6){
+        } else if (question == 5){
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
             
@@ -123,7 +123,7 @@ function loadScripts() {
 
         console.log(question);
 
-        if (question == 5) {
+        if (question == 4) {
             if (yesSelected) {
                 question == 2;
                 checkQuestion();
