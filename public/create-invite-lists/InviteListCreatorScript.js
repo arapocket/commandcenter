@@ -33,7 +33,7 @@ function loadScripts() {
 
     var group = '';
 
-    var yesSelected = true;
+    var yesSelected = false;
 
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
@@ -111,7 +111,7 @@ function loadScripts() {
             yesButton.style.display = 'block'
 
             comment.innerText = 'Do you want to add any other groups?'
-        } else if (question == 5){
+        } else if (question == 6){
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
             
@@ -120,7 +120,7 @@ function loadScripts() {
     }
 
     function checkOption(){
-        if (question == 4) {
+        if (question == 5) {
             if (yesSelected) {
                 question == 2;
                 checkQuestion();
