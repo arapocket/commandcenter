@@ -40,6 +40,8 @@ function loadScripts() {
 
     var peopleList = [];
 
+    var tableDiv = document.getElementById('tableDiv');
+
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
         return newID;
@@ -103,9 +105,10 @@ function loadScripts() {
         } else if (question == 2) {
             groupCategoryDropdown.style.display = 'none';
             groupNameDropdown.style.display = 'none';
+            tableDiv.style.display = 'none';
             backButton.style.display = 'block';
             button.style.display = 'block';
-
+            
             button.innerText = 'Next'
             comment.innerText = 'You are making a list for a ' + groupCategoryDropdown.value + '.';
             groupCategory = groupCategoryDropdown.value;
@@ -118,6 +121,7 @@ function loadScripts() {
             groupNameDropdown.style.display = 'block';
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
+            tableDiv.style.display = 'block';
 
             comment.innerText = 'Which ' + groupCategory + ' do you want to add?'
         } else if (question == 4) {
