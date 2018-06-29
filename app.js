@@ -647,7 +647,7 @@ auth.getAccessToken().then(function (token) {
 
 
 function getPeopleFromDB() {
-  http.get('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:8001/microsoftgraph', (res) => {
+  http.get('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/microsoftgraph', (res) => {
 
 
     const { statusCode } = res;
@@ -746,7 +746,7 @@ function addPersonToDB(contact){
 
   const options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
-    port: 8001,
+    port: 3000,
     path: '/microsoftgraph',
     method: 'POST',
     headers: {
