@@ -132,8 +132,6 @@ function loadScripts() {
         } else if (question == 5){
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
-            question == 0;
-            checkQuestion();
             prompt();
         }
     }
@@ -344,6 +342,18 @@ function loadScripts() {
             'EmailAddress': person.EmailAddress
 
         }));
+
+
+        xhr.onload = function () {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    question == 0;
+                    checkQuestion();            
+                }
+            }
+        };
+
+
     }
 
 }
