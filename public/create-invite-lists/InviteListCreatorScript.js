@@ -386,6 +386,10 @@ function loadScripts() {
                     var json = JSON.parse(xhr.responseText);
                     console.log(json);
                     var listID = json[0].InvitationListID;
+
+                    console.log('logging peopleList');
+                    console.log(peopleList);
+
                     for (i = 0; i < peopleList.length; i++) {
                         postList(peopleList[i][0], listID);
                     }
