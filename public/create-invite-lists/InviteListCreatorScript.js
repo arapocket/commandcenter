@@ -31,7 +31,9 @@ function loadScripts() {
 
     var question = 0;
 
-    var group = '';
+    var groupCategory = '';
+
+    var groupName = '';
 
     var yesSelected = false;
 
@@ -95,7 +97,7 @@ function loadScripts() {
 
             button.innerText = 'Next'
             comment.innerText = 'You are making a list for a ' + groupCategoryDropdown.value + '.';
-            group = groupCategoryDropdown.value;
+            groupCategory = groupCategoryDropdown.value;
         } else if (question == 3){
 
             getGroups();
@@ -106,8 +108,11 @@ function loadScripts() {
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
 
-            comment.innerText = 'Which ' + group + ' do you want to add?'
+            comment.innerText = 'Which ' + groupCategory + ' do you want to add?'
         } else if (question == 4){
+            groupName = groupNameDropdown.value;
+            getPeople();
+
             backButton.style.display = 'none'
             button.style.display = 'none';
             groupNameDropdown.style.display = 'none';
@@ -157,6 +162,30 @@ function loadScripts() {
         } else if (group == 'Building'){
 
         }
+    }
+
+    function getPeople(){
+
+        let xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/invitelistcreator/" + groupCategory + '/' + groupName , true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(null);
+
+        xhr.onload = function () {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    bootbox.alert(xhr.response)
+                }
+            }
+        };
+
     }
 
 }

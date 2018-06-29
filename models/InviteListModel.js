@@ -114,7 +114,7 @@ module.exports.getGroups = function (Body, callback) {
     })
 }
 
-module.exports.getPeopleByGroup = function (Body, callback) {
+module.exports.getPeopleByGroup = function (GroupCategory, GroupName, callback) {
     db.createConnection(function (err, res) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);
@@ -123,7 +123,7 @@ module.exports.getPeopleByGroup = function (Body, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = res;
 
-            var query = 'SELECT * FROM people WHERE ' + Body.GroupCategory + '= "' + Body.GroupName + '";'
+            var query = 'SELECT * FROM people WHERE ' + GroupCategory + '= "' + GroupName + '";'
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

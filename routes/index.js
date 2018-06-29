@@ -315,7 +315,8 @@ router.get('/lastinvitelist', InviteListController.getLastInviteList);
 router.post('/postinvitelist', InviteListController.postInviteList);
 router.post('/postinvitee', InviteListController.postInvitee);
 router.get('/invitelistcreator', InviteListController.renderInviteCreator);
-
+router.get('/invitelistcreator', InviteListController.renderInviteCreator);
+router.get('/invitelistcreator/:groupCategory/:groupName', InviteListController.renderInviteCreator);
 
 
 
