@@ -156,7 +156,7 @@ function loadScripts() {
     function getGroups(){
         if (groupCategory == 'Department'){
 
-            for (i = 0 ; i < groupNameDropdown.length; i++){
+            for (i = groupNameDropdown.options.length - 1 ; i >= 0; i--){
                 groupNameDropdown.remove[i];
             }
 
