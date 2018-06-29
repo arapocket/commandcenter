@@ -273,11 +273,7 @@ function loadScripts() {
                     var json = JSON.parse(xhr.responseText);
 
                     for (i = 0; i < json.length; i++) {
-                        var person = json[i];
-
-                        console.log('logging person');
-                        console.log(person);
-
+                        let person = json[i];
                         var data = ({
 
                             LastName: person.LastName,
@@ -398,6 +394,8 @@ function loadScripts() {
     }
 
     function postList(person, listID) {
+        console.log('logging person');
+        console.log(person);
 
         var xhr = new XMLHttpRequest();
 
