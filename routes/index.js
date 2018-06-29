@@ -316,7 +316,7 @@ router.post('/postinvitelist', InviteListController.postInviteList);
 router.post('/postinvitee', InviteListController.postInvitee);
 router.get('/invitelistcreator', InviteListController.renderInviteCreator);
 router.get('/invitelistcreator', InviteListController.renderInviteCreator);
-router.get('/invitelistcreator/:groupCategory/:groupName', InviteListController.renderInviteCreator);
+router.get('/invitelistcreator/:groupCategory/:groupName', InviteListController.getPeopleByGroup);
 
 
 

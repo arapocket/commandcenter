@@ -122,7 +122,7 @@ exports.renderInviteCreator = function (req, res) {
 
 }
 
-exports.getPeople = function(req,res){
+exports.getPeopleByGroup = function(req,res){
   InviteListModel.getPeopleByGroup(req.params.groupCategory, req.params.groupName, function (err, getPeopleByGroupResult){
     if (err){
       res.json(err);
