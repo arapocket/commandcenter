@@ -145,7 +145,7 @@ function loadScripts() {
     }
 
     function getGroups(){
-        if (group == 'Department'){
+        if (groupCategory == 'Department'){
 
             for (i = 0 ; i < departments.length; i++){
                 var option = document.createElement("option");
@@ -155,11 +155,11 @@ function loadScripts() {
             }
 
                 
-        } else if (group =='Division'){
+        } else if (groupCategory =='Division'){
 
-        } else if (group =='Site Location'){
+        } else if (groupCategory =='Site Location'){
 
-        } else if (group == 'Building'){
+        } else if (groupCategory == 'Building'){
 
         }
     }
