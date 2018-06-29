@@ -157,7 +157,7 @@ function loadScripts() {
         if (groupCategory == 'Department'){
 
             for (i = groupNameDropdown.options.length - 1 ; i >= 0; i--){
-                groupNameDropdown.remove[i];
+                groupNameDropdown.remove(i));
             }
 
             for (i = 0 ; i < departments.length; i++){
