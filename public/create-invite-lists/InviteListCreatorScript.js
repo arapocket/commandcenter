@@ -351,7 +351,7 @@ function loadScripts() {
         xhr.onload = function () {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200) {
-                    question == 0;
+                    question = 0;
                     checkQuestion();            
                 }
             }
