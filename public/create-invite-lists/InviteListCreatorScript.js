@@ -42,7 +42,8 @@ function loadScripts() {
 
     var tableDiv = document.getElementById('tableDiv');
 
-    var table = document.getElementById('table');
+
+    var table = $('#table');
 
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
