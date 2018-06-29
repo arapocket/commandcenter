@@ -1,5 +1,6 @@
 function loadScripts() {
 
+
     var button = document.getElementById('button');
     button.addEventListener('click', function () {
         buttonPressed();
@@ -231,13 +232,8 @@ function loadScripts() {
                     var json = JSON.parse(xhr.responseText);
 
                     for (i = 0; i < json.length; i++) {
-
-                        var newItem = json[i];
-                        
-                        peopleList.indexOf(newItem) === -1 ? peopleList.push(newItem) : console.log("This item already exists");
-                                         
+                        var person = json[i];
                     }
-
                     console.log(peopleList);
 
                 }
