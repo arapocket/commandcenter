@@ -59,7 +59,7 @@ function loadScripts() {
 
     function buttonPressed(){
         
-        if (question ==1) {
+        if (question ==1 || question == 3) {
             if (groupCategoryDropdown.value == ''){
                 bootbox.alert('Please select a choice from the dropdown.')
             } else {
@@ -80,7 +80,7 @@ function loadScripts() {
             button.innerText = 'Begin'
             comment.innerText = 'You can follow this wizard to quickly create an invite list.'
         } 
-        else if (question == 1){
+        else if (question == 1 ){
             groupCategoryDropdown.style.display = 'block';
             backButton.style.display = 'block';
             button.style.display = 'block';
