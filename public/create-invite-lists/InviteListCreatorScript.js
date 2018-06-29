@@ -21,9 +21,9 @@ function loadScripts() {
     })
 
 
-    var groupDropdown = document.getElementById('groupDropdown');
+    var groupCategoryDropdown = document.getElementById('groupCategoryDropdown');
 
-    var selectionDropdown = document.getElementById('selectionDropdown');
+    var groupNameDropdown = document.getElementById('groupNameDropdown');
 
     var header = document.getElementById('header')
     
@@ -58,7 +58,7 @@ function loadScripts() {
     function buttonPressed(){
         
         if (question ==1) {
-            if (groupDropdown.value == ''){
+            if (groupCategoryDropdown.value == ''){
                 bootbox.alert('Please select a choice from the dropdown.')
             } else {
                 question ++
@@ -72,14 +72,14 @@ function loadScripts() {
 
     function checkQuestion(){
         if (question ==0){
-            groupDropdown.style.display = 'none';
+            groupCategoryDropdown.style.display = 'none';
             backButton.style.display = 'none'
 
             button.innerText = 'Begin'
             comment.innerText = 'You can follow this wizard to quickly create an invite list.'
         } 
         else if (question == 1){
-            groupDropdown.style.display = 'block';
+            groupCategoryDropdown.style.display = 'block';
             backButton.style.display = 'block';
             button.style.display = 'block';
             noButton.style.display = 'none'
@@ -88,21 +88,21 @@ function loadScripts() {
             button.innerText = 'Next'
             comment.innerText = 'What do you want to add to the list?'
         } else if (question == 2){
-            groupDropdown.style.display = 'none';
-            selectionDropdown.style.display = 'none';
+            groupCategoryDropdown.style.display = 'none';
+            groupNameDropdown.style.display = 'none';
             backButton.style.display = 'block';
             button.style.display = 'block';
 
             button.innerText = 'Next'
-            comment.innerText = 'You are making a list for a ' + groupDropdown.value + '.';
-            group = groupDropdown.value;
+            comment.innerText = 'You are making a list for a ' + groupCategoryDropdown.value + '.';
+            group = groupCategoryDropdown.value;
         } else if (question == 3){
 
             getGroups();
 
             backButton.style.display = 'block'
             button.style.display = 'block';
-            selectionDropdown.style.display = 'block';
+            groupNameDropdown.style.display = 'block';
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
 
@@ -110,7 +110,7 @@ function loadScripts() {
         } else if (question == 4){
             backButton.style.display = 'none'
             button.style.display = 'none';
-            selectionDropdown.style.display = 'none';
+            groupNameDropdown.style.display = 'none';
             noButton.style.display = 'block'
             yesButton.style.display = 'block'
 
@@ -146,7 +146,7 @@ function loadScripts() {
                 var option = document.createElement("option");
                 option.text = departments[i].Department;
                 option.value = departments[i].Department;
-                groupDropdown.appendChild(option);
+                groupNameDropdown.appendChild(option);
             }
 
                 
