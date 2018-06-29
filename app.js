@@ -538,6 +538,8 @@ var ccNameArray = [];
 var ccPhoneArray = [];
 var matches = [];
 
+console.log('are we getting to microsoft graph section')
+
 // Get an access token for the app.
 auth.getAccessToken().then(function (token) {
   // Get all of the users in the tenant.
