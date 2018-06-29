@@ -177,8 +177,8 @@ function loadScripts() {
 
             for (i = 0 ; i < divisions.length; i++){
                 var option = document.createElement("option");
-                option.text = divisions[i].Department;
-                option.value = divisions[i].Department;
+                option.text = divisions[i].Division;
+                option.value = divisions[i].Division;
                 groupNameDropdown.appendChild(option);
             }            
 
@@ -190,8 +190,8 @@ function loadScripts() {
 
             for (i = 0 ; i < siteLocations.length; i++){
                 var option = document.createElement("option");
-                option.text = siteLocations[i].Department;
-                option.value = siteLocations[i].Department;
+                option.text = siteLocations[i].SiteLocation;
+                option.value = siteLocations[i].SiteLocation;
                 groupNameDropdown.appendChild(option);
             }    
 
@@ -203,8 +203,8 @@ function loadScripts() {
 
             for (i = 0 ; i < buildings.length; i++){
                 var option = document.createElement("option");
-                option.text = buildings[i].Department;
-                option.value = buildings[i].Department;
+                option.text = buildings[i].Building;
+                option.value = buildings[i].Building;
                 groupNameDropdown.appendChild(option);
             }    
 
