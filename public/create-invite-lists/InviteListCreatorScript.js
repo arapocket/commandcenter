@@ -313,9 +313,13 @@ function loadScripts() {
                     var json = JSON.parse(xhr.responseText);
                     console.log(json);
                     var listID = json[0].InvitationListID;
-                    for (i = 0; i < peopleList.length; i++) {
 
-                        postList(peopleList[i], listID);
+                    var uniqueItems = Array.from(new Set(peopleList))
+                    console.log('logging uniqueItems');
+                    console.log(uniqueItems);
+
+                    for (i = 0; i < uniqueItems.length; i++) {
+                        postList(uniqueItems[i], listID);
                     }
                 }
             }
