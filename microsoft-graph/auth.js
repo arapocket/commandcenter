@@ -36,6 +36,8 @@ var requestParams = {
 
   // Make a request to the token issuing endpoint.
   request.post({ url: process.env.MICROSOFT_GRAPH_ENDPOINT, form: requestParams }, function (err, response, body) {
+
+    console.log(body);
     var parsedBody = JSON.parse(body);
 
     if (err) {
