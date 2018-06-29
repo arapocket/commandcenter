@@ -330,10 +330,6 @@ function loadScripts() {
 
     }
 
-    function postInvites() {
-
-    }
-
     function prompt() {
         bootbox.hideAll();
 
@@ -406,8 +402,8 @@ function loadScripts() {
                     console.log('logging peopleList');
                     console.log(peopleList);
 
-                    for (i = 0; i < peopleList.length; i++) {
-                        postList(peopleList[i][0], listID);
+                    for (i = 0; i < peopleList[0].length; i++) {
+                        postList(peopleList[0][i], listID);
                     }
                 }
             }
