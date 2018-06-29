@@ -386,7 +386,7 @@ function loadScripts() {
                     console.log(json);
                     var listID = json[0].InvitationListID;
                     for (i = 0; i < peopleList.length; i++) {
-                        postList(peopleList[i], listID);
+                        postList(peopleList[i][0], listID);
                     }
                 }
             }
