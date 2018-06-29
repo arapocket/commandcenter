@@ -318,7 +318,14 @@ router.get('/invitelistcreator', InviteListController.renderInviteCreator);
 router.get('/invitelistcreator', InviteListController.renderInviteCreator);
 router.get('/invitelistcreator/:groupCategory/:groupName', InviteListController.getPeopleByGroup);
 
+//############################################################ MICROSOFT GRAPH
 
+var MicrosoftGraphController = require('../controllers/MicrosoftGraphController');
+
+router.get('/microsoftgraph', MicrosoftGraphController.getPeople);
+router.post('/microsoftgraph', MicrosoftGraphController.addPerson);
+
+//############################################################ MICROSOFT GRAPH
 
 
 module.exports = router;

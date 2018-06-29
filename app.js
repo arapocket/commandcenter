@@ -596,6 +596,192 @@ function patrolPut(data, socket) {
   req.end();
 
 
+// ######################################################### MICROSOFT GRAPH API
+
+
+var auth = require('./microsoft-graph/auth');
+var graph = require('./microsoft-graph/graph');
+var findMatches = require('./findMatches');
+
+var exchangeArray = [];
+var ccArray = [];
+var exchangeNameArray = [];
+var exchangePhoneArray = [];
+var ccNameArray = [];
+var ccPhoneArray = [];
+var matches = [];
+
+// Get an access token for the app.
+auth.getAccessToken().then(function (token) {
+  // Get all of the users in the tenant.
+  graph.getContacts(token)
+    .then(function (contacts) {
+      // Create an event on each user's calendar.
+      console.log(contacts);
+
+      for (var i = 0; i < contacts.length; i++) {
+
+        let currentContact = contacts[i];
+
+        // add contact to db;
+
+        addPersonToDB(currentContact);
+
+
+        // exchangeArray.push({
+        //   name: currentContact.givenName + ' ' + currentContact.surname,
+        //   phone: currentContact.mobilePhone
+        // });
+
+      }
+
+      // getPeopleFromDB();
+
+    }, function (error) {
+      console.error('>>> Error getting users: ' + error);
+    });
+}, function (error) {
+  console.error('>>> Error getting access token: ' + error);
+});
+
+
+
+function getPeopleFromDB() {
+  http.get('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:8001/microsoftgraph', (res) => {
+
+
+    const { statusCode } = res;
+    const contentType = res.headers['content-type'];
+
+    let error;
+    if (statusCode !== 200) {
+      error = new Error('Request Failed.\n' +
+        `Status Code: ${statusCode}`);
+    } else if (!/^application\/json/.test(contentType)) {
+      error = new Error('Invalid content-type.\n' +
+        `Expected application/json but received ${contentType}`);
+    }
+    if (error) {
+      console.error(error.message);
+      // consume response data to free up memory
+      res.resume();
+      return;
+    }
+
+    res.setEncoding('utf8');
+    let rawData = '';
+    res.on('data', (chunk) => { rawData += chunk; });
+    res.on('end', () => {
+      try {
+
+        const parsedData = JSON.parse(rawData);
+
+
+
+        for (var i = 0; i < parsedData.length; i++) {
+
+          let currentPerson = parsedData[i];
+
+          ccArray.push({
+            name: currentPerson.FirstName + ' ' + currentPerson.LastName,
+            phone: currentPerson.Phone
+          });
+        }
+
+        console.log(exchangeArray.length);
+        console.log(ccArray.length);
+
+        for (var i = 0; i < exchangeArray.length; i++) {
+          exchangeNameArray.push(exchangeArray[i].name);
+        }
+        for (var i = 0; i < exchangeArray.length; i++) {
+          exchangePhoneArray.push(exchangeArray[i].phone);
+        }
+        for (var i = 0; i < ccArray.length; i++) {
+          ccNameArray.push(ccArray[i].name);
+        }
+        for (var i = 0; i < ccArray.length; i++) {
+          ccPhoneArray.push(ccArray[i].phone);
+        }
+
+        nameMatches = findMatches.find(exchangeNameArray, ccNameArray);
+
+        for (var i = 0; i < nameMatches.length; i++) {
+          console.log('logging a match');
+          console.log(nameMatches[i]);
+          addPhoneToDB(nameMatches[i]);
+        }
+
+      } catch (e) {
+        console.error(e.message);
+      }
+    });
+  }).on('error', (e) => {
+    console.error(`Got error: ${e.message}`);
+  });
+
+}
+
+
+function addPhoneToDB(name) {
+
+  // query db for name
+
+
+
+  // add phone to name
+
+}
+
+function addPersonToDB(contact){
+
+
+  const querystring = require('querystring');
+
+  const json = querystring.stringify({
+    'FirstName': contact.givenName,
+    'LastName': contact.surname,
+    'Phone': contact.mobilePhone
+  });
+
+  const options = {
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    port: 8001,
+    path: '/microsoftgraph',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': Buffer.byteLength(json)
+    }
+  };
+
+  const req = http.request(options, (res) => {
+    console.log(`STATUS: ${res.statusCode}`);
+    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
+      console.log(`BODY: ${chunk}`);
+    });
+    res.on('end', () => {
+      console.log('No more data in response.');
+    });
+  });
+
+  req.on('error', (e) => {
+    console.error(`problem with request: ${e.message}`);
+  });
+
+  // write data to request body
+  req.write(json);
+  req.end();
+
+
+}
+
+
+// ######################################################### MICROSOFT GRAPH API
+
+
 }
 
 
