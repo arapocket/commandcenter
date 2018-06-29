@@ -126,6 +126,7 @@ function loadScripts() {
             groupCategoryDropdown.style.display = 'none';
             backButton.style.display = 'none'
             button.style.display = 'block';
+            tableDiv.style.display = 'none';
 
             button.innerText = 'Begin'
             comment.innerText = 'You can follow this wizard to quickly create an invite list.'
