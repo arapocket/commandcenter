@@ -98,6 +98,8 @@ function loadScripts() {
             group = groupDropdown.value;
         } else if (question == 3){
 
+            getGroups();
+
             backButton.style.display = 'block'
             button.style.display = 'block';
             selectionDropdown.style.display = 'block';
@@ -137,27 +139,21 @@ function loadScripts() {
         }
     }
 
-    function getGroup(){
-        let xhr = new XMLHttpRequest();
+    function getGroups(){
+        if (group == 'Department'){
 
-        if (!xhr) {
-            alert('Giving up :( Cannot create an XMLHTTP instance');
-            return false;
-        }
-
-        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/getinvitegroups", true);
-
-        xhr.setRequestHeader('Content-Type', 'application/json');
-        xhr.send(null);
-
-        xhr.onload = function () {
-            if (xhr.readyState === xhr.DONE) {
-                if (xhr.status === 200) {
-                    
-                }
+            for (i = 0 ; i < departments.length; i++){
+                groupDropdown.appendChild(departments[i].Department);
             }
-        };
 
+                
+        } else if (group =='Division'){
+
+        } else if (group =='Site Location'){
+
+        } else if (group == 'Building'){
+
+        }
     }
 
 }
