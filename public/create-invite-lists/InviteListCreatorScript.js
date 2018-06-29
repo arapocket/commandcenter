@@ -278,9 +278,9 @@ function loadScripts() {
 
                             LastName: person.LastName,
                             FirstName: person.FirstName,
-                            Cardnumber: person.Cardnumber,
-                            ID: person.iClassNumber,
-                            Email: person.Email,
+                            Cardnumber: person.iClassNumber,
+                            ID: person.EmpID,
+                            Email: person.EmailAddr,
                             Title: person.Title,
                             Department: person.Department,
                             Division: person.Division,
@@ -407,10 +407,10 @@ function loadScripts() {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
             'InvitationListID': listID,
-            'BadgeNumber': person.iClassNumber,
+            'BadgeNumber': person.ID,
             'LastName': person.LastName,
             'FirstName': person.FirstName,
-            'EmailAddress': person.EmailAddr
+            'EmailAddress': person.Email
 
         }));
 
