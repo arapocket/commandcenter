@@ -156,11 +156,14 @@ function loadScripts() {
     function getGroups(){
         if (groupCategory == 'Department'){
 
+            for (i = 0 ; i < groupNameDropdown.length; i++){
+                groupNameDropdown.options[i] = null;
+            }
+
             for (i = 0 ; i < departments.length; i++){
                 var option = document.createElement("option");
                 option.text = departments[i].Department;
                 option.value = departments[i].Department;
-                groupNameDropdown.empty();
                 groupNameDropdown.appendChild(option);
             }
 
