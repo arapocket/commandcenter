@@ -56,23 +56,27 @@ function loadScripts() {
         peopleList = [];
         var newData = table.bootstrapTable('getData');
         peopleList.push(newData);
+        table.bootstrapTable('refreshOptions', {
+            pageSize: 10,
+            sortName: 'LastName'
+        });
     });
 
     table.on('check-all.bs.table', function (rows) {
         var selections = table.bootstrapTable('getSelections');
 
         for (i = 0; i < selections.length; i++) {
-
+            var selection = selections[i];
             table.bootstrapTable('removeByUniqueId', selection.ID);
             peopleList = [];
             var newData = table.bootstrapTable('getData');
             peopleList.push(newData);
         }
+        table.bootstrapTable('refreshOptions', {
+            pageSize: 10,
+            sortName: 'LastName'
+        });
 
-    });
-    table.bootstrapTable('refreshOptions', {
-        pageSize: 10,
-        sortName: 'LastName'
     });
 
     function createID() {
@@ -295,7 +299,12 @@ function loadScripts() {
                         var newData = table.bootstrapTable('getData');
                         peopleList.push(newData);
 
+
                     }
+                    table.bootstrapTable('refreshOptions', {
+                        pageSize: 10,
+                        sortName: 'LastName'
+                    });
                     console.log(peopleList);
 
                 }
