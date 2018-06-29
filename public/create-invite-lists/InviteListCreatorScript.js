@@ -60,7 +60,7 @@ function loadScripts() {
     function buttonPressed(){
         
         if (question ==1 || question == 3) {
-            if (groupCategoryDropdown.value == ''){
+            if (groupCategoryDropdown.value == '' || 'Choose...'){
                 bootbox.alert('Please select a choice from the dropdown.')
             } else {
                 question ++
