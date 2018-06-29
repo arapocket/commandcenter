@@ -34,7 +34,6 @@ html
 												option(id = 'dropdown 2' value='Division') a Division
 												option(id = 'dropdown 3' value='Site Location') a Site Location
 												option(id = 'dropdown 4' value='Building') a Building
-												option(id = 'dropdown 5' value='Custom Group') a Custom Group
 											select#selectionDropdown.form-control(style = 'display: none')
 												option(id = 'dropdown 0' selected='' value='') Choose...												
 											.col-md-6
@@ -45,4 +44,8 @@ html
 												button.btn.btn-default.btn-block.btn-outline-secondary(id = 'yesButton' type='button' style = 'display: none') Yes
 				script(src='/create-invite-lists/InviteListCreatorScript.js')
 				script.
+					var departments = !{ JSON.stringify(getDepartmentsResult) };		
+					var divisions = !{ JSON.stringify(getDivisionsResult) };
+					var siteLocations = !{ JSON.stringify(getSiteLocationsResult) };
+					var buildings = !{ JSON.stringify(getBuildingsResult) };
 					loadScripts()

@@ -96,25 +96,41 @@ exports.renderPage = function (req, res) {
   }
 };
 
-exports.renderInviteCreator = function (req,res){
+exports.renderInviteCreator = function (req, res) {
 
   sess = req.session;
   // don't let nameless people view the dashboard, redirect them back to the homepage
   if (typeof sess.username == 'undefined') res.redirect('/');
   else {
-    InviteListModel.getGroups(req.body, function (err, getGetGroupsResult){
-      if (err){
+
+    let json = {
+      GroupCategory: 'Department'
+    }
+
+    InviteListModel.getGroups(json, function (err, getDepartmentsResult) {
+      if (err) {
         res.end()
       } else {
-        InviteListModel.getPeopleByGroup(req.body, function (err, getPeopleByGroupResults){
+        InviteListModel.getGroups(json, function (err, getDivisionsResult) {
           if (err) {
-  
+            res.end()
           } else {
-            res.render('InviteListCreatorView', { title: 'Command Center - Create Invite List', username: req.session.username, results });
+            InviteListModel.getGroups(json, function (err, getSiteLocationsResult) {
+              if (err) {
+                InviteListModel.getGroups(json, function (err, getBuildingsResult) {
+                  if (err){
+                  } else {
+                    res.render('InviteListCreatorView', { title: 'Command Center - Create Invite List', username: req.session.username, getDepartmentsResult, getDivisionsResult, getSiteLocationsResult, getBuildingsResult });
+                  }
+                })
+              } else {
+
+              }
+            })
           }
         })
       }
-  
+
     })
   }
 
