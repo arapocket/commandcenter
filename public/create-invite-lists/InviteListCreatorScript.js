@@ -97,6 +97,7 @@ function loadScripts() {
             comment.innerText = 'You are making a list for a ' + groupDropdown.value + '.';
             group = groupDropdown.value;
         } else if (question == 3){
+
             backButton.style.display = 'block'
             button.style.display = 'block';
             selectionDropdown.style.display = 'block';
@@ -134,6 +135,29 @@ function loadScripts() {
                 checkQuestion();
             }
         }
+    }
+
+    function getGroup(){
+        let xhr = new XMLHttpRequest();
+
+        if (!xhr) {
+            alert('Giving up :( Cannot create an XMLHTTP instance');
+            return false;
+        }
+
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/getinvitegroups", true);
+
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(null);
+
+        xhr.onload = function () {
+            if (xhr.readyState === xhr.DONE) {
+                if (xhr.status === 200) {
+                    
+                }
+            }
+        };
+
     }
 
 }
