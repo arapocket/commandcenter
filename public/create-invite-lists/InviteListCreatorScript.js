@@ -37,6 +37,8 @@ function loadScripts() {
 
     var yesSelected = false;
 
+    var peopleList = [];
+
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
         return newID;
@@ -188,8 +190,15 @@ function loadScripts() {
         xhr.onload = function () {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200) {
-                    console.log('logging getPeople xhr.responseText')
-                    console.log(xhr.responseText)
+
+                    var json = JSON.parse(xhr.responseText);
+                    
+                    for (i = 0; i< json.length ; i++){
+                        peopleList.push(json[i]);
+                    }
+
+                    console.log(peopleList);
+
                 }
             }
         };
