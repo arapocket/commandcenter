@@ -127,7 +127,8 @@ exports.renderInviteCreator = function (req, res) {
 
             InviteListModel.getGroups(json, function (err, getSiteLocationsResult) {
               if (err) {
-
+                res.end()
+              } else {
                 let json = {
                   GroupCategory: 'Building'
                 }                
@@ -138,8 +139,6 @@ exports.renderInviteCreator = function (req, res) {
                     res.render('InviteListCreatorView', { title: 'Command Center - Create Invite List', username: req.session.username, getDepartmentsResult, getDivisionsResult, getSiteLocationsResult, getBuildingsResult });
                   }
                 })
-              } else {
-
               }
             })
           }
