@@ -314,7 +314,7 @@ router.get('/createinvitelist', InviteListController.createInviteListHome);
 router.get('/lastinvitelist', InviteListController.getLastInviteList);
 router.post('/postinvitelist', InviteListController.postInviteList);
 router.post('/postinvitee', InviteListController.postInvitee);
-router.get('/invitelistcreator', InviteListController.renderPage);
+router.get('/invitelistcreator', InviteListController.renderInviteCreator);
 
 
 
