@@ -274,6 +274,10 @@ function loadScripts() {
 
                     for (i = 0; i < json.length; i++) {
                         var person = json[i];
+
+                        console.log('logging person');
+                        console.log(person);
+
                         var data = ({
 
                             LastName: person.LastName,
