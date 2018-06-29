@@ -50,7 +50,7 @@ function loadScripts() {
 
 
     table.on('check-all.bs.table', function () {
-        clearTable();
+        clearSelections();
     });
 
 
@@ -76,7 +76,7 @@ function loadScripts() {
         });
     }
 
-    function clearTable() {
+    function clearSelections() {
         var selections = table.bootstrapTable('getSelections');
 
         for (i = 0; i < selections.length; i++) {
@@ -92,6 +92,20 @@ function loadScripts() {
             sortName: 'LastName'
         });
 
+    }
+
+    function clearAll(){
+        var data = table.bootstrapTable('getData');
+
+        for (i = 0; i < data.length; i++) {
+            var selection = data[i];
+            table.bootstrapTable('removeByUniqueId', selection.ID);
+        }
+        peopleList = [];
+        table.bootstrapTable('refreshOptions', {
+            pageSize: 10,
+            sortName: 'LastName'
+        });
     }
 
     function createID() {
@@ -142,7 +156,7 @@ function loadScripts() {
             backButton.style.display = 'none'
             button.style.display = 'block';
             tableDiv.style.display = 'none';
-            clearTable();
+            clearAll();
 
             button.innerText = 'Begin'
             comment.innerText = 'You can follow this wizard to quickly create an invite list.'
