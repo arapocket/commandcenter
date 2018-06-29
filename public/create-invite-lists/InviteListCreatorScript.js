@@ -59,8 +59,15 @@ function loadScripts() {
 
     function buttonPressed(){
         
-        if (question ==1 || question == 3) {
-            if (groupCategoryDropdown.value == '' || 'Choose...'){
+        if (question ==1) {
+            if (groupCategoryDropdown.value == ''){
+                bootbox.alert('Please select a choice from the dropdown.')
+            } else {
+                question ++
+                checkQuestion();
+            }
+        } else if (question ==3){
+            if (groupNameDropdown.value == 'Choose...'){
                 bootbox.alert('Please select a choice from the dropdown.')
             } else {
                 question ++
