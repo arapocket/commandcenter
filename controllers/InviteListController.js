@@ -111,12 +111,27 @@ exports.renderInviteCreator = function (req, res) {
       if (err) {
         res.end()
       } else {
+
+        let json = {
+          GroupCategory: 'Divison'
+        }
+
         InviteListModel.getGroups(json, function (err, getDivisionsResult) {
           if (err) {
             res.end()
           } else {
+
+            let json = {
+              GroupCategory: 'SiteLocation'
+            }
+
             InviteListModel.getGroups(json, function (err, getSiteLocationsResult) {
               if (err) {
+
+                let json = {
+                  GroupCategory: 'Building'
+                }                
+
                 InviteListModel.getGroups(json, function (err, getBuildingsResult) {
                   if (err){
                   } else {
