@@ -271,11 +271,11 @@ function setSocketListeners(socket) {
 
   const apn = require("apn");
 
-console.log('logging APN credentials');
-console.log(process.env.APN_KEY);
-console.log(process.env.APN_KEYID);
-console.log(process.env.APN_TEAMID);
-  
+  console.log('logging APN credentials');
+  console.log(process.env.APN_KEY);
+  console.log(process.env.APN_KEYID);
+  console.log(process.env.APN_TEAMID);
+
   const notificationOptions = {
     token: {
       key: process.env.APN_KEY,
@@ -408,7 +408,7 @@ console.log(process.env.APN_TEAMID);
   })
 
   socket.on('patrol start', function (data) {
-    
+
     patrolPost(data, socket);
   })
 
@@ -523,6 +523,8 @@ function patrolPut(data, socket) {
   req.end();
 
 
+}
+
 // ######################################################### MICROSOFT GRAPH API
 
 
@@ -538,14 +540,14 @@ var ccNameArray = [];
 var ccPhoneArray = [];
 var matches = [];
 
-console.log('are we getting to microsoft graph section')
+
 
 // Get an access token for the app.
 auth.getAccessToken().then(function (token) {
   // Get all of the users in the tenant.
   graph.getContacts(token)
     .then(function (contacts) {
-      
+
       console.log(contacts);
 
       for (var i = 0; i < contacts.length; i++) {
@@ -662,7 +664,7 @@ function addPhoneToDB(name) {
 
 }
 
-function addPersonToDB(contact){
+function addPersonToDB(contact) {
 
 
   const querystring = require('querystring');
@@ -704,9 +706,6 @@ function addPersonToDB(contact){
 
 
 // ######################################################### MICROSOFT GRAPH API
-
-
-}
 
 
 
