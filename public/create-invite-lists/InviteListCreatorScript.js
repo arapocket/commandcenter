@@ -336,10 +336,10 @@ function loadScripts() {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
             'InvitationListID': listID,
-            'BadgeNumber': person.Cardnumber,
+            'BadgeNumber': person.iClassNumber,
             'LastName': person.LastName,
             'FirstName': person.FirstName,
-            'EmailAddress': person.EmailAddress
+            'EmailAddress': person.EmailAddr
 
         }));
 
