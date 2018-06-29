@@ -188,7 +188,8 @@ function loadScripts() {
         xhr.onload = function () {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200) {
-                    bootbox.alert(xhr.responseText);
+                    console.log('logging getPeople xhr.responseText')
+                    console.log(xhr.responseText)
                 }
             }
         };
