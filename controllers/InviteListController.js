@@ -113,7 +113,7 @@ exports.renderInviteCreator = function (req, res) {
       } else {
 
         let json = {
-          GroupCategory: 'Divison'
+          GroupCategory: 'Division'
         }
 
         InviteListModel.getGroups(json, function (err, getDivisionsResult) {
