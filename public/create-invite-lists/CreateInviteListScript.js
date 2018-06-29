@@ -4,8 +4,8 @@ function loadScripts() {
     createButton.addEventListener('click', function () {
         console.log('logging dataArray')
         console.log(dataArray);
-
         prompt();
+
 
     })
 
