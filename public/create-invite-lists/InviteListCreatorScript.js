@@ -26,7 +26,7 @@ function loadScripts() {
     var groupNameDropdown = document.getElementById('groupNameDropdown');
 
     var header = document.getElementById('header')
-    
+
     var comment = document.getElementById('comment')
 
     var question = 0;
@@ -44,35 +44,35 @@ function loadScripts() {
         return newID;
     }
 
-    function yesButtonPressed(){
+    function yesButtonPressed() {
         yesSelected = true;
         checkOption();
     }
 
-    function noButtonPressed(){
+    function noButtonPressed() {
         yesSelected = false;
         checkOption();
     }
 
-    function backButtonPressed(){
+    function backButtonPressed() {
         question--;
         checkQuestion();
     }
 
-    function buttonPressed(){
-        
-        if (question ==1) {
-            if (groupCategoryDropdown.value == ''){
+    function buttonPressed() {
+
+        if (question == 1) {
+            if (groupCategoryDropdown.value == '') {
                 bootbox.alert('Please select a choice from the dropdown.')
             } else {
-                question ++
+                question++
                 checkQuestion();
             }
-        } else if (question ==3){
-            if (groupNameDropdown.value == ''){
+        } else if (question == 3) {
+            if (groupNameDropdown.value == '') {
                 bootbox.alert('Please select a choice from the dropdown.')
             } else {
-                question ++
+                question++
                 checkQuestion();
             }
         } else {
@@ -81,16 +81,16 @@ function loadScripts() {
         }
     }
 
-    function checkQuestion(){
-        if (question ==0){
+    function checkQuestion() {
+        if (question == 0) {
             groupCategoryDropdown.style.display = 'none';
             backButton.style.display = 'none'
             button.style.display = 'block';
 
             button.innerText = 'Begin'
             comment.innerText = 'You can follow this wizard to quickly create an invite list.'
-        } 
-        else if (question == 1 ){
+        }
+        else if (question == 1) {
             groupCategoryDropdown.style.display = 'block';
             backButton.style.display = 'block';
             button.style.display = 'block';
@@ -99,7 +99,7 @@ function loadScripts() {
 
             button.innerText = 'Next'
             comment.innerText = 'What do you want to add to the list?'
-        } else if (question == 2){
+        } else if (question == 2) {
             groupCategoryDropdown.style.display = 'none';
             groupNameDropdown.style.display = 'none';
             backButton.style.display = 'block';
@@ -108,7 +108,7 @@ function loadScripts() {
             button.innerText = 'Next'
             comment.innerText = 'You are making a list for a ' + groupCategoryDropdown.value + '.';
             groupCategory = groupCategoryDropdown.value;
-        } else if (question == 3){
+        } else if (question == 3) {
 
             getGroups();
 
@@ -119,7 +119,7 @@ function loadScripts() {
             yesButton.style.display = 'none'
 
             comment.innerText = 'Which ' + groupCategory + ' do you want to add?'
-        } else if (question == 4){
+        } else if (question == 4) {
             groupName = groupNameDropdown.value;
             getPeople();
 
@@ -130,14 +130,14 @@ function loadScripts() {
             yesButton.style.display = 'block'
 
             comment.innerText = 'Do you want to add any other groups?'
-        } else if (question == 5){
+        } else if (question == 5) {
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
             prompt();
         }
     }
 
-    function checkOption(){
+    function checkOption() {
 
         console.log(question);
         console.log(yesSelected);
@@ -153,64 +153,64 @@ function loadScripts() {
         }
     }
 
-    function getGroups(){
-        if (groupCategory == 'Department'){
+    function getGroups() {
+        if (groupCategory == 'Department') {
 
-            for (i = groupNameDropdown.options.length - 1 ; i >= 0; i--){
+            for (i = groupNameDropdown.options.length - 1; i >= 0; i--) {
                 groupNameDropdown.remove(i);
             }
 
-            for (i = 0 ; i < departments.length; i++){
+            for (i = 0; i < departments.length; i++) {
                 var option = document.createElement("option");
                 option.text = departments[i].Department;
                 option.value = departments[i].Department;
                 groupNameDropdown.appendChild(option);
             }
 
-                
-        } else if (groupCategory =='Division'){
 
-            for (i = groupNameDropdown.options.length - 1 ; i >= 0; i--){
+        } else if (groupCategory == 'Division') {
+
+            for (i = groupNameDropdown.options.length - 1; i >= 0; i--) {
                 groupNameDropdown.remove(i);
             }
 
-            for (i = 0 ; i < divisions.length; i++){
+            for (i = 0; i < divisions.length; i++) {
                 var option = document.createElement("option");
                 option.text = divisions[i].Division;
                 option.value = divisions[i].Division;
                 groupNameDropdown.appendChild(option);
-            }            
+            }
 
-        } else if (groupCategory =='Site Location'){
+        } else if (groupCategory == 'Site Location') {
 
-            for (i = groupNameDropdown.options.length - 1 ; i >= 0; i--){
+            for (i = groupNameDropdown.options.length - 1; i >= 0; i--) {
                 groupNameDropdown.remove(i);
             }
 
-            for (i = 0 ; i < siteLocations.length; i++){
+            for (i = 0; i < siteLocations.length; i++) {
                 var option = document.createElement("option");
                 option.text = siteLocations[i].SiteLocation;
                 option.value = siteLocations[i].SiteLocation;
                 groupNameDropdown.appendChild(option);
-            }    
+            }
 
-        } else if (groupCategory == 'Building'){
+        } else if (groupCategory == 'Building') {
 
-            for (i = groupNameDropdown.options.length - 1 ; i >= 0; i--){
+            for (i = groupNameDropdown.options.length - 1; i >= 0; i--) {
                 groupNameDropdown.remove(i);
             }
 
-            for (i = 0 ; i < buildings.length; i++){
+            for (i = 0; i < buildings.length; i++) {
                 var option = document.createElement("option");
                 option.text = buildings[i].Building;
                 option.value = buildings[i].Building;
                 groupNameDropdown.appendChild(option);
-            }    
+            }
 
         }
     }
 
-    function getPeople(){
+    function getPeople() {
 
         let xhr = new XMLHttpRequest();
 
@@ -219,7 +219,7 @@ function loadScripts() {
             return false;
         }
 
-        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/invitelistcreator/" + groupCategory + '/' + groupName , true);
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/invitelistcreator/" + groupCategory + '/' + groupName, true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(null);
@@ -229,9 +229,13 @@ function loadScripts() {
                 if (xhr.status === 200) {
 
                     var json = JSON.parse(xhr.responseText);
-                    
-                    for (i = 0; i< json.length ; i++){
-                        peopleList.push(json[i]);
+
+                    for (i = 0; i < json.length; i++) {
+
+                        var newItem = json[i];
+                        
+                        peopleList.indexOf(newItem) === -1 ? peopleList.push(newItem) : console.log("This item already exists");
+                                         
                     }
 
                     console.log(peopleList);
@@ -242,7 +246,7 @@ function loadScripts() {
 
     }
 
-    function postInvites(){
+    function postInvites() {
 
     }
 
@@ -293,7 +297,7 @@ function loadScripts() {
             }
         });
     }
-    
+
     function getLastInviteList() {
 
         let xhr = new XMLHttpRequest();
@@ -314,13 +318,8 @@ function loadScripts() {
                     var json = JSON.parse(xhr.responseText);
                     console.log(json);
                     var listID = json[0].InvitationListID;
-
-                    var uniqueItems = Array.from(new Set(peopleList))
-                    console.log('logging uniqueItems');
-                    console.log(uniqueItems);
-
-                    for (i = 0; i < uniqueItems.length; i++) {
-                        postList(uniqueItems[i], listID);
+                    for (i = 0; i < peopleList.length; i++) {
+                        postList(peopleList[i], listID);
                     }
                 }
             }
@@ -353,7 +352,7 @@ function loadScripts() {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200) {
                     question = 0;
-                    checkQuestion();            
+                    checkQuestion();
                 }
             }
         };
