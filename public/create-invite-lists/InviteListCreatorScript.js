@@ -67,7 +67,7 @@ function loadScripts() {
                 checkQuestion();
             }
         } else if (question ==3){
-            if (groupNameDropdown.value == 'Choose...'){
+            if (groupNameDropdown.value == ''){
                 bootbox.alert('Please select a choice from the dropdown.')
             } else {
                 question ++
