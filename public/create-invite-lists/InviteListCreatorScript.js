@@ -42,6 +42,8 @@ function loadScripts() {
 
     var tableDiv = document.getElementById('tableDiv');
 
+    var table = document.getElementById('table');
+
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
         return newID;
@@ -237,6 +239,22 @@ function loadScripts() {
 
                     for (i = 0; i < json.length; i++) {
                         var person = json[i];
+                        var data = ({
+
+                            LastName:person.LastName, 
+                            FirstName: person.FirstName,
+                            Cardnumber: person.Cardnumber,
+                            ID: person.iClassNumber,
+                            Email: person.Email,
+                            Title: person.Title,
+                            Department: person.Department,
+                            Division: person.Division,
+                            SiteLocation: person.SiteLocation,
+                            Building: person.Building
+                        })	
+
+                        table.bootstrapTable('append', data);
+
                     }
                     console.log(peopleList);
 
