@@ -160,6 +160,7 @@ function loadScripts() {
                 var option = document.createElement("option");
                 option.text = departments[i].Department;
                 option.value = departments[i].Department;
+                groupNameDropdown.empty();
                 groupNameDropdown.appendChild(option);
             }
 
