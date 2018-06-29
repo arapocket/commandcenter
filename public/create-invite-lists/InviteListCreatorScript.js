@@ -181,7 +181,7 @@ function loadScripts() {
         xhr.onload = function () {
             if (xhr.readyState === xhr.DONE) {
                 if (xhr.status === 200) {
-                    bootbox.alert(xhr.response)
+                    bootbox.alert('cock')
                 }
             }
         };
