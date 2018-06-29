@@ -96,37 +96,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 
 
 app.use('/', routes);
 
-// var option = {
-//   setHeaders: function (res, path, stat) {
-//     res.set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE1MTQ0OTEzOTN9.CwxysSiYQLIF8JdQ6_f0MmkuoJ-3GuQYrBLquAhmvDU')
-//   }
-// }
-
-// var jwt = require('jsonwebtoken');
-// var token = jwt.sign({ foo: 'bar' }, 'secret');
-// console.log('logging token');
-// console.log(token);
-
-// var expressJwt = require('express-jwt');
-// app.use('/', expressJwt({
-//   secret: 'secret',
-//   getToken: function fromHeaderOrQuerystring (req) {
-//       if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-//           return req.headers.authorization.split(' ')[1   ];
-//       } else if (req.query && req.query.token) {
-//           return req.query.token;
-//       }
-//       return null;
-//   }
-// }).unless({path: ['/']}),
-// routes );
-
-//////////////////////////////////////////////////////////////////////////
-
-
-//app.use('/users', users);
-
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
@@ -281,24 +250,12 @@ function getDevices(socket) {
     res.on('data', (chunk) => { rawData += chunk; });
     res.on('end', () => {
       try {
-        console.log('logging data before it parses');
-        console.log(rawData);
-
         const parsedData = JSON.parse(rawData);
-        console.log('C. logging parsed data');
-        console.log(parsedData);
-        tokens = [];
-        console.log('logging parsedData.length')
-        console.log(parsedData.length);
-        for (var i = 0; i < parsedData.length; i++) {
-          // console.log('logging a guard device token ');
-          // console.log(parsedData[i].DeviceToken);
-          tokens.push(parsedData[i].DeviceToken);
-          console.log('pushed a token');
 
+        tokens = [];
+        for (var i = 0; i < parsedData.length; i++) {
+          tokens.push(parsedData[i].DeviceToken);
         }
-        console.log('I. logging tokens from getDevices()');
-        console.log(tokens);
         setSocketListeners(socket);
 
       } catch (e) {
@@ -306,15 +263,11 @@ function getDevices(socket) {
       }
     });
   }).on('error', (e) => {
-    console.error(`Got error: ${e.message}`);
   });
 
 }
 
 function setSocketListeners(socket) {
-
-
-  console.log('setSocketListeners called')
 
   const apn = require("apn");
 
@@ -387,9 +340,6 @@ console.log(process.env.APN_TEAMID);
   socket.on('add user', function (username) {
     if (addedUser) return;
 
-    console.log('add user heard');
-
-
     // we store the username in the socket session for this client
     socket.username = username;
     ++numUsers;
@@ -423,7 +373,6 @@ console.log(process.env.APN_TEAMID);
 
   // when the End Patrol buttons is pressed.. do this
   socket.on('stop', function (id) {
-    console.log('stop being emitted, the id is ' + id)
     socket.broadcast.emit('patrol stop ' + id, {
       id: id
     });
@@ -437,8 +386,6 @@ console.log(process.env.APN_TEAMID);
 
   // when a location is updated.. emit this so patrol path is drawn
   socket.on('new location', function (location) {
-    // console.log('new location heard');
-    // console.log(location);
     socket.broadcast.emit('location ' + location.guardID, {
       location: location
     });
@@ -446,8 +393,7 @@ console.log(process.env.APN_TEAMID);
 
   // when first location is heard.. emit this so command center is refreshed
   socket.on('first location', function (location) {
-    console.log('first location heard');
-    console.log(location);
+
     socket.broadcast.emit('first location', {
       location: location
     });
@@ -456,24 +402,18 @@ console.log(process.env.APN_TEAMID);
 
   // when a new incident is reported.. emit this
   socket.on('new incident', function (incident) {
-    console.log('new incident heard');
-    console.log(incident);
     socket.broadcast.emit('incident', {
       incident: incident
     });
   })
 
   socket.on('patrol start', function (data) {
-    console.log('patrol start test');
-    console.log('logging the data we got');
-    console.log(data);
+    
     patrolPost(data, socket);
   })
 
   socket.on('ended patrol', function (data) {
-    console.log('ended patrol heard in app.js');
-    console.log('logging the data we got');
-    console.log(data);
+
     patrolPut(data, socket);
   })
 
@@ -508,10 +448,6 @@ function patrolPost(data, socket) {
   const querystring = require('querystring');
 
 
-  console.log('logging the patrolID and guardID in patrolPost');
-  console.log(data.PatrolID);
-  console.log(data.GuardID);
-
   const postData = querystring.stringify({
     'PatrolID': data.PatrolID,
     'GuardID': data.GuardID,
@@ -530,20 +466,15 @@ function patrolPost(data, socket) {
   };
 
   const req = http.request(options, (res) => {
-    console.log(`STATUS: ${res.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`);
     });
     res.on('end', () => {
-      console.log('No more data in response.');
-      // initializeSockets(socket);
     });
   });
 
   req.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
   });
 
   // write data to request body
@@ -575,20 +506,16 @@ function patrolPut(data, socket) {
   };
 
   const req = http.request(options, (res) => {
-    console.log(`STATUS: ${res.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`);
     });
     res.on('end', () => {
-      console.log('No more data in response.');
-      // initializeSockets(socket);
+
     });
   });
 
   req.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
+
   });
 
   // write data to request body
@@ -616,7 +543,7 @@ auth.getAccessToken().then(function (token) {
   // Get all of the users in the tenant.
   graph.getContacts(token)
     .then(function (contacts) {
-      // Create an event on each user's calendar.
+      
       console.log(contacts);
 
       for (var i = 0; i < contacts.length; i++) {
@@ -756,19 +683,14 @@ function addPersonToDB(contact){
   };
 
   const req = http.request(options, (res) => {
-    console.log(`STATUS: ${res.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
-      console.log(`BODY: ${chunk}`);
     });
     res.on('end', () => {
-      console.log('No more data in response.');
     });
   });
 
   req.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
   });
 
   // write data to request body
