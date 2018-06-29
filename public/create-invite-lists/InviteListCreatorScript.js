@@ -1,5 +1,6 @@
 function loadScripts() {
 
+    /////////////////////////////////////////// Global Variables
 
     var button = document.getElementById('button');
     button.addEventListener('click', function () {
@@ -20,7 +21,6 @@ function loadScripts() {
     noButton.addEventListener('click', function () {
         noButtonPressed();
     })
-
 
     var groupCategoryDropdown = document.getElementById('groupCategoryDropdown');
 
@@ -45,8 +45,22 @@ function loadScripts() {
     var table = $('#table');
 
     table.on('check.bs.table', function (row, $element) {
+        clearRow($element)
+    });
 
-        table.bootstrapTable('removeByUniqueId', $element.ID);
+
+    table.on('check-all.bs.table', function () {
+        clearTable();
+    });
+
+
+
+
+    /////////////////////////////////////////// Functions
+
+    function clearRow(row) {
+
+        table.bootstrapTable('removeByUniqueId', row.ID);
         table.bootstrapTable('refreshOptions', {
             pageSize: 10,
             sortName: 'LastName'
@@ -60,24 +74,25 @@ function loadScripts() {
             pageSize: 10,
             sortName: 'LastName'
         });
-    });
+    }
 
-    table.on('check-all.bs.table', function (rows) {
+    function clearTable() {
         var selections = table.bootstrapTable('getSelections');
 
         for (i = 0; i < selections.length; i++) {
             var selection = selections[i];
             table.bootstrapTable('removeByUniqueId', selection.ID);
-            peopleList = [];
-            var newData = table.bootstrapTable('getData');
-            peopleList.push(newData);
         }
+        peopleList = [];
+        var newData = table.bootstrapTable('getData');
+        peopleList.push(newData);
+
         table.bootstrapTable('refreshOptions', {
             pageSize: 10,
             sortName: 'LastName'
         });
 
-    });
+    }
 
     function createID() {
         var newID = Math.random().toString(36).substr(2, 9);
@@ -127,6 +142,7 @@ function loadScripts() {
             backButton.style.display = 'none'
             button.style.display = 'block';
             tableDiv.style.display = 'none';
+            clearTable();
 
             button.innerText = 'Begin'
             comment.innerText = 'You can follow this wizard to quickly create an invite list.'
