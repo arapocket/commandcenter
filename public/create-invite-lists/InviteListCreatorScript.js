@@ -292,7 +292,7 @@ function loadScripts() {
             return false;
         }
 
-        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/invitelistcreator/" + groupCategory + '/' + groupName, true);
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/listwizard/" + groupCategory + '/' + groupName, true);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(null);
