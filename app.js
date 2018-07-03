@@ -537,52 +537,54 @@ var ccNameArray = [];
 var ccPhoneArray = [];
 var matches = [];
 
+function callAPIForGroups(){
+  auth.getAccessToken().then(function (token) {
+    // Get all of the users in the tenant.
+    graph.getGroups(token)
+      .then(function (groups) {
+  
+        for (var i = 0; i < groups.length; i++) {
+  
+          let currentGroup = groups[i];
+  
+          console.log(currentGroup.id)
+  
+        }
+  
+  
+      }, function (error) {
+        console.error('>>> Error getting groups: ' + error);
+      });
+  }, function (error) {
+    console.error('>>> Error getting access token: ' + error);
+  });
+  
+}
 
-
-// Get an access token for the app.
-// auth.getAccessToken().then(function (token) {
-//   // Get all of the users in the tenant.
-//   graph.getContacts(token)
-//     .then(function (contacts) {
-//       console.log(contacts);
-//       for (var i = 0; i < contacts.length; i++) {
-//         let currentContact = contacts[i];
-//         // add contact to db;
-//         addPersonToDB(currentContact);
-//         // exchangeArray.push({
-//         //   name: currentContact.givenName + ' ' + currentContact.surname,
-//         //   phone: currentContact.mobilePhone
-//         // });
-//       }
-//       // getPeopleFromDB();
-//     }, function (error) {
-//       console.error('>>> Error getting users: ' + error);
-//     });
-// }, function (error) {
-//   console.error('>>> Error getting access token: ' + error);
-// });
-
-
-auth.getAccessToken().then(function (token) {
-  // Get all of the users in the tenant.
-  graph.getGroups(token)
-    .then(function (groups) {
-
-      for (var i = 0; i < groups.length; i++) {
-
-        let currentGroup = groups[i];
-
-        console.log(currentGroup.id)
-
-      }
-
-
-    }, function (error) {
-      console.error('>>> Error getting groups: ' + error);
-    });
-}, function (error) {
-  console.error('>>> Error getting access token: ' + error);
-});
+function callAPIForPeople() {
+  // Get an access token for the app.
+  auth.getAccessToken().then(function (token) {
+    // Get all of the users in the tenant.
+    graph.getContacts(token)
+      .then(function (contacts) {
+        console.log(contacts);
+        for (var i = 0; i < contacts.length; i++) {
+          let currentContact = contacts[i];
+          // add contact to db;
+          addPersonToDB(currentContact);
+          // exchangeArray.push({
+          //   name: currentContact.givenName + ' ' + currentContact.surname,
+          //   phone: currentContact.mobilePhone
+          // });
+        }
+        // getPeopleFromDB();
+      }, function (error) {
+        console.error('>>> Error getting users: ' + error);
+      });
+  }, function (error) {
+    console.error('>>> Error getting access token: ' + error);
+  });
+}
 
 function getPeopleFromDB() {
   http.get('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/microsoftgraph', (res) => {
