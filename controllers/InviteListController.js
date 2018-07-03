@@ -66,7 +66,6 @@ module.exports.getLastInviteList = function (req, res) {
   });
 };
 
-
 exports.renderInviteCreator = function (req, res) {
 
   sess = req.session;
@@ -107,7 +106,7 @@ exports.renderInviteCreator = function (req, res) {
                 InviteListModel.getGroups(json, function (err, getBuildingsResult) {
                   if (err){
                   } else {
-                    res.render('InviteListCreatorView', { title: 'Command Center - Create Invite List', username: req.session.username, getDepartmentsResult, getDivisionsResult, getSiteLocationsResult, getBuildingsResult });
+                    res.render('ListWizardView', { title: 'Command Center - Create Invite List', username: req.session.username, getDepartmentsResult, getDivisionsResult, getSiteLocationsResult, getBuildingsResult });
                   }
                 })
               }
