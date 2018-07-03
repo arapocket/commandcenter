@@ -92,42 +92,6 @@ router.post('/userModify/:userName', users.userUpdateOne);
 router.get('/userDelete/:userName', users.userGetOneForDelete);
 router.post('/userDelete/:userName', users.userDeleteOne);
 
-
-//#############################################################################################
-//#############################################################################################
-//############################### CONVOYER CONTROLLERS 1 of 2 #################################
-//#############################################################################################
-//#############################################################################################
-
-var GuardController = require('../controllers/Convoyer/GuardController');
-
-router.post('/guardauth', GuardController.authenticateGuard);
-
-router.get('/guardlist', GuardController.guardList);
-
-router.get('/guardAdd', GuardController.guardAdd);
-router.post('/guardAdd', GuardController.guardAddToDb);
-
-router.get('/guardModify/:GuardID', GuardController.getGuardByID);
-router.post('/guardModify/:GuardID', GuardController.updateGuard);
-router.get('/guardDelete/:GuardID', GuardController.getGuardForDelete);
-router.post('/guardDelete/:GuardID', GuardController.deleteGuard);
-
-
-router.get('/guards', GuardController.getAllGuards);
-router.get('/guards/:id', GuardController.getGuardByID);
-router.put('/guards', GuardController.updateGuardLogin);
-router.put('/addDeviceToken', GuardController.addDeviceToken);
-router.get('/getGuard/:username', GuardController.getGuardByUsername);
-
-
-
-//#############################################################################################
-//#############################################################################################
-//############################### CONVOYER CONTROLLERS END ####################################
-//#############################################################################################
-//#############################################################################################
-
 // RouteController for VERIFY (records of scans through the verify app)
 // show events list
 router.get('/verifyRecords', verify.verifyHome);
@@ -217,11 +181,27 @@ router.get('/logout', function (req, res) {
 
 
 
-//#############################################################################################
-//#############################################################################################
-//############################### CONVOYER CONTROLLERS 2 of 2 #################################
-//#############################################################################################
-//#############################################################################################
+//############################################### Convoyer ############################################################
+var GuardController = require('../controllers/Convoyer/GuardController');
+
+router.post('/guardauth', GuardController.authenticateGuard);
+
+router.get('/guardlist', GuardController.guardList);
+
+router.get('/guardAdd', GuardController.guardAdd);
+router.post('/guardAdd', GuardController.guardAddToDb);
+
+router.get('/guardModify/:GuardID', GuardController.getGuardByID);
+router.post('/guardModify/:GuardID', GuardController.updateGuard);
+router.get('/guardDelete/:GuardID', GuardController.getGuardForDelete);
+router.post('/guardDelete/:GuardID', GuardController.deleteGuard);
+
+
+router.get('/guards', GuardController.getAllGuards);
+router.get('/guards/:id', GuardController.getGuardByID);
+router.put('/guards', GuardController.updateGuardLogin);
+router.put('/addDeviceToken', GuardController.addDeviceToken);
+router.get('/getGuard/:username', GuardController.getGuardByUsername);
 
 var RouteEditorController = require('../controllers/Convoyer/RouteEditorController');
 router.get('/routeeditor', RouteEditorController.getRouteEditor);
@@ -302,30 +282,30 @@ router.put('/queueroute', RouteController.queueRoute);
 var MessageController = require('../controllers/Convoyer/MessageController');
 router.get('/messages', MessageController.getAllMessages);
 router.post('/messages', MessageController.addMessage);
+//############################################### Convoyer END ############################################################
 
-//#############################################################################################
-//#############################################################################################
-//############################### CONVOYER CONTROLLERS END ####################################
-//#############################################################################################
-//#############################################################################################
 
+//############################################### Invite List ############################################################
 var InviteListController = require('../controllers/InviteListController');
 router.get('/createinvitelist', InviteListController.createInviteListHome);
 router.get('/lastinvitelist', InviteListController.getLastInviteList);
 router.post('/postinvitelist', InviteListController.postInviteList);
 router.post('/postinvitee', InviteListController.postInvitee);
-router.get('/listwizard', InviteListController.renderInviteCreator);
-router.get('/listwizard', InviteListController.renderInviteCreator);
+router.get('/listwizard', InviteListController.renderListWizard);
+router.get('/listwizard', InviteListController.renderListWizard);
 router.get('/listwizard/:groupCategory/:groupName', InviteListController.getPeopleByGroup);
+router.post('/listwizard', InviteListController.postDistributionList);
+//############################################### Invite List END ############################################################
 
-//############################################################ MICROSOFT GRAPH
+
+//############################################### Microsoft Graph ############################################################
 
 var MicrosoftGraphController = require('../controllers/MicrosoftGraphController');
 
 router.get('/microsoftgraph', MicrosoftGraphController.getPeople);
 router.post('/microsoftgraph', MicrosoftGraphController.addPerson);
 
-//############################################################ MICROSOFT GRAPH
+//############################################### Microsoft Graph END ############################################################
 
 
 module.exports = router;

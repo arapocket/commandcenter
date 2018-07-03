@@ -91,9 +91,6 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: false, parameterLimit: 
 
 
 
-
-///////////////////////////////// ###### Thu Dec 28 10:16:09 PST 2017 ARA
-
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -547,27 +544,17 @@ var matches = [];
 //   // Get all of the users in the tenant.
 //   graph.getContacts(token)
 //     .then(function (contacts) {
-
 //       console.log(contacts);
-
 //       for (var i = 0; i < contacts.length; i++) {
-
 //         let currentContact = contacts[i];
-
 //         // add contact to db;
-
 //         addPersonToDB(currentContact);
-
-
 //         // exchangeArray.push({
 //         //   name: currentContact.givenName + ' ' + currentContact.surname,
 //         //   phone: currentContact.mobilePhone
 //         // });
-
 //       }
-
 //       // getPeopleFromDB();
-
 //     }, function (error) {
 //       console.error('>>> Error getting users: ' + error);
 //     });
@@ -584,7 +571,7 @@ auth.getAccessToken().then(function (token) {
       for (var i = 0; i < groups.length; i++) {
 
         let currentGroup = groups[i];
-        
+
         console.log(currentGroup.id)
 
       }
@@ -596,8 +583,6 @@ auth.getAccessToken().then(function (token) {
 }, function (error) {
   console.error('>>> Error getting access token: ' + error);
 });
-
-
 
 function getPeopleFromDB() {
   http.get('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/microsoftgraph', (res) => {
@@ -674,7 +659,6 @@ function getPeopleFromDB() {
   });
 
 }
-
 
 function addPhoneToDB(name) {
 

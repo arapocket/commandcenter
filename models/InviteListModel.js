@@ -97,7 +97,7 @@ module.exports.getGroups = function (Body, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = res;
 
-            var query = 'SELECT ' + Body.GroupCategory +  ' FROM people GROUP BY '   + Body.GroupCategory + ';';
+            var query = 'SELECT ' + Body.GroupCategory + ' FROM people GROUP BY ' + Body.GroupCategory + ';';
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
@@ -138,6 +138,36 @@ module.exports.getPeopleByGroup = function (GroupCategory, GroupName, callback) 
             });
         }
     })
+}
+
+module.exports.truncateDistributionList = function (callback){
+    db.createConnection(function (err, res) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = res;
+
+            var query = 'TRUNCATE TABLE distribution_list';
+            connection.query(query, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the getLastInviteList query');
+                    console.log(err);
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });
+}
+
+module.exports.postDistributionList = function (Body, callback){
+    
 }
 
 

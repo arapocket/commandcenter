@@ -66,47 +66,65 @@ module.exports.getLastInviteList = function (req, res) {
   });
 };
 
-exports.renderInviteCreator = function (req, res) {
+exports.renderListWizard = function (req, res) {
 
   sess = req.session;
   // don't let nameless people view the dashboard, redirect them back to the homepage
   if (typeof sess.username == 'undefined') res.redirect('/');
   else {
-
     let json = {
       GroupCategory: 'Department'
     }
-
     InviteListModel.getGroups(json, function (err, getDepartmentsResult) {
       if (err) {
         res.end()
       } else {
-
         let json = {
           GroupCategory: 'Division'
         }
-
         InviteListModel.getGroups(json, function (err, getDivisionsResult) {
           if (err) {
             res.end()
           } else {
-
             let json = {
               GroupCategory: 'SiteLocation'
             }
-
             InviteListModel.getGroups(json, function (err, getSiteLocationsResult) {
               if (err) {
                 res.end()
               } else {
                 let json = {
                   GroupCategory: 'Building'
-                }                
-
+                }
                 InviteListModel.getGroups(json, function (err, getBuildingsResult) {
-                  if (err){
+                  if (err) {
                   } else {
-                    res.render('ListWizardView', { title: 'Command Center - Create Invite List', username: req.session.username, getDepartmentsResult, getDivisionsResult, getSiteLocationsResult, getBuildingsResult });
+                    var auth = require('../microsoft-graph/auth');
+                    var graph = require('../microsoft-graph/graph');
+                    var findMatches = require('../findMatches');
+
+
+                    auth.getAccessToken().then(function (token) {
+                      // Get all of the users in the tenant.
+                      graph.getGroups(token)
+                        .then(function (groups) {
+
+                          for (var i = 0; i < groups.length; i++) {
+
+                            let currentGroup = groups[i];
+
+                            console.log(currentGroup.id)
+
+                          }
+
+                          res.render('ListWizardView', { title: 'Command Center - Create Invite List', username: req.session.username, getDepartmentsResult, getDivisionsResult, getSiteLocationsResult, getBuildingsResult });
+                        }, function (error) {
+                          console.error('>>> Error getting groups: ' + error);
+                        });
+                    }, function (error) {
+                      console.error('>>> Error getting access token: ' + error);
+                    });
+
                   }
                 })
               }
@@ -114,19 +132,48 @@ exports.renderInviteCreator = function (req, res) {
           }
         })
       }
-
     })
   }
-
-
 }
 
-exports.getPeopleByGroup = function(req,res){
-  InviteListModel.getPeopleByGroup(req.params.groupCategory, req.params.groupName, function (err, getPeopleByGroupResult){
-    if (err){
+
+
+exports.getPeopleByGroup = function (req, res) {
+  InviteListModel.getPeopleByGroup(req.params.groupCategory, req.params.groupName, function (err, getPeopleByGroupResult) {
+    if (err) {
       res.json(err);
     } else {
       res.json(getPeopleByGroupResult)
     }
   })
+}
+
+exports.postDistributionList = function (req, res) {
+  var auth = require('../microsoft-graph/auth');
+  var graph = require('../microsoft-graph/graph');
+  var findMatches = require('../findMatches');
+
+
+  auth.getAccessToken().then(function (token) {
+    // Get all of the users in the tenant.
+    graph.getGroups(token)
+      .then(function (groups) {
+
+        for (var i = 0; i < groups.length; i++) {
+
+          let currentGroup = groups[i];
+
+          console.log(currentGroup.id)
+
+        }
+
+
+      }, function (error) {
+        console.error('>>> Error getting groups: ' + error);
+      });
+  }, function (error) {
+    console.error('>>> Error getting access token: ' + error);
+  });
+
+
 }

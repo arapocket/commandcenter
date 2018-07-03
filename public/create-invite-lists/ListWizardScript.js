@@ -94,7 +94,7 @@ function loadScripts() {
 
     }
 
-    function clearAll(){
+    function clearAll() {
         var data = table.bootstrapTable('getData');
 
         for (i = 0; i < data.length; i++) {
@@ -183,6 +183,7 @@ function loadScripts() {
         } else if (question == 3) {
 
             getGroups();
+            
 
             backButton.style.display = 'block'
             button.style.display = 'block';
