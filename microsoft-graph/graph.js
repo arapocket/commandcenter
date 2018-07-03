@@ -137,6 +137,8 @@ graph.getGroups = function (token) {
   return deferred.promise;
 }
 
+//get groups, then for each group create an invite list
+
 graph.getGroupMembers = function (token) {
 
 }

@@ -581,8 +581,6 @@ auth.getAccessToken().then(function (token) {
   graph.getGroups(token)
     .then(function (groups) {
 
-      // console.log(groups);
-
       for (var i = 0; i < groups.length; i++) {
 
         let currentGroup = groups[i];
