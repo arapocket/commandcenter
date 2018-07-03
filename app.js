@@ -196,11 +196,11 @@ if (process.env.CC_SSL == "YES") {
 
 
 /*
-=====================================================================
-=====================================================================
-              ###### Wed Oct 4 18:39:53 PDT 2017 ARA
-=====================================================================
-=====================================================================
+==========================================================================================================================================
+==========================================================================================================================================
+              ###### ARA
+==========================================================================================================================================
+==========================================================================================================================================
 **/
 
 
@@ -525,7 +525,7 @@ function patrolPut(data, socket) {
 
 }
 
-// ######################################################### MICROSOFT GRAPH API
+// ###################### MICROSOFT GRAPH API ##################################################################################################################################
 
 
 var auth = require('./microsoft-graph/auth');
@@ -543,33 +543,57 @@ var matches = [];
 
 
 // Get an access token for the app.
+// auth.getAccessToken().then(function (token) {
+//   // Get all of the users in the tenant.
+//   graph.getContacts(token)
+//     .then(function (contacts) {
+
+//       console.log(contacts);
+
+//       for (var i = 0; i < contacts.length; i++) {
+
+//         let currentContact = contacts[i];
+
+//         // add contact to db;
+
+//         addPersonToDB(currentContact);
+
+
+//         // exchangeArray.push({
+//         //   name: currentContact.givenName + ' ' + currentContact.surname,
+//         //   phone: currentContact.mobilePhone
+//         // });
+
+//       }
+
+//       // getPeopleFromDB();
+
+//     }, function (error) {
+//       console.error('>>> Error getting users: ' + error);
+//     });
+// }, function (error) {
+//   console.error('>>> Error getting access token: ' + error);
+// });
+
+
 auth.getAccessToken().then(function (token) {
   // Get all of the users in the tenant.
-  graph.getContacts(token)
-    .then(function (contacts) {
+  graph.getGroups(token)
+    .then(function (groups) {
 
-      console.log(contacts);
+      console.log(groups);
 
-      for (var i = 0; i < contacts.length; i++) {
+      for (var i = 0; i < groups.length; i++) {
 
-        let currentContact = contacts[i];
-
-        // add contact to db;
-
-        addPersonToDB(currentContact);
-
-
-        // exchangeArray.push({
-        //   name: currentContact.givenName + ' ' + currentContact.surname,
-        //   phone: currentContact.mobilePhone
-        // });
+        let currentGroup = groups[i];
+        
+        console.log(currentGroup.id)
 
       }
 
-      // getPeopleFromDB();
 
     }, function (error) {
-      console.error('>>> Error getting users: ' + error);
+      console.error('>>> Error getting groups: ' + error);
     });
 }, function (error) {
   console.error('>>> Error getting access token: ' + error);
@@ -705,7 +729,7 @@ function addPersonToDB(contact) {
 }
 
 
-// ######################################################### MICROSOFT GRAPH API
+// ###################### MICROSOFT GRAPH API END ##################################################################################################################################
 
 
 

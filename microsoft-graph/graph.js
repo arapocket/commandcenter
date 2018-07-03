@@ -21,7 +21,7 @@ graph.getContacts = function (token) {
   // append the following to users if you want only specific columns
   //?$select=id,displayName
 
-  request.get(process.env.MICROSOFT_GRAPH_CONTACTS_ENDPOINT , {
+  request.get(process.env.MICROSOFT_GRAPH_CONTACTS_ENDPOINT, {
     auth: {
       bearer: token
     }
@@ -112,5 +112,33 @@ graph.createEvent = function (token, users) {
     });
   }
 };
+
+graph.getGroups = function (token) {
+  var deferred = Q.defer();
+
+
+  request.get(process.env.MICROSOFT_GRAPH_CONTACTS_ENDPOINT, {
+    auth: {
+      bearer: token
+    }
+  }, function (err, response, body) {
+    var parsedBody = JSON.parse(body);
+
+    if (err) {
+      deferred.reject(err);
+    } else if (parsedBody.error) {
+      deferred.reject(parsedBody.error.message);
+    } else {
+      // The value of the body will be an array of all users.
+      deferred.resolve(parsedBody.value);
+    }
+  });
+
+  return deferred.promise;
+}
+
+graph.getGroupMembers = function (token) {
+
+}
 
 module.exports = graph;
