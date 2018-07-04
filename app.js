@@ -204,6 +204,8 @@ if (process.env.CC_SSL == "YES") {
 var app = express();
 var io = require('socket.io')(server);
 let tokens = [];
+const querystring = require('querystring');
+var request = require('request');
 
 // Chatroom
 
@@ -223,7 +225,7 @@ function initializeSockets(socket) {
 function getDevices(socket) {
 
 
-  http.get('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/guardnotifications', (res) => {
+  http.get(process.env.SERVER_ADDRESS + '/guardnotifications', (res) => {
     const { statusCode } = res;
     const contentType = res.headers['content-type'];
 
@@ -442,7 +444,6 @@ function patrolPost(data, socket) {
 
   console.log('A. patrolPost called');
 
-  const querystring = require('querystring');
 
 
   const postData = querystring.stringify({
@@ -483,7 +484,6 @@ function patrolPost(data, socket) {
 
 function patrolPut(data, socket) {
 
-  const querystring = require('querystring');
 
   const postData = querystring.stringify({
     'PatrolID': data.PatrolID,
@@ -529,6 +529,7 @@ var auth = require('./microsoft-graph/auth');
 var graph = require('./microsoft-graph/graph');
 var findMatches = require('./findMatches');
 
+
 var exchangeArray = [];
 var ccArray = [];
 var exchangeNameArray = [];
@@ -537,28 +538,31 @@ var ccNameArray = [];
 var ccPhoneArray = [];
 var matches = [];
 
-function callAPIForGroups(){
+
+clearDistributionLists();
+
+function callAPIForGroups() {
   auth.getAccessToken().then(function (token) {
     // Get all of the users in the tenant.
     graph.getGroups(token)
       .then(function (groups) {
-  
+
         for (var i = 0; i < groups.length; i++) {
-  
+
           let currentGroup = groups[i];
-  
+
           console.log(currentGroup.id)
-  
+
         }
-  
-  
+
+
       }, function (error) {
         console.error('>>> Error getting groups: ' + error);
       });
   }, function (error) {
     console.error('>>> Error getting access token: ' + error);
   });
-  
+
 }
 
 function callAPIForPeople() {
@@ -587,7 +591,7 @@ function callAPIForPeople() {
 }
 
 function getPeopleFromDB() {
-  http.get('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/microsoftgraph', (res) => {
+  http.get(process.env.SERVER_ADDRESS + '/microsoftgraph', (res) => {
 
 
     const { statusCode } = res;
@@ -659,23 +663,9 @@ function getPeopleFromDB() {
   }).on('error', (e) => {
     console.error(`Got error: ${e.message}`);
   });
-
-}
-
-function addPhoneToDB(name) {
-
-  // query db for name
-
-
-
-  // add phone to name
-
 }
 
 function addPersonToDB(contact) {
-
-
-  const querystring = require('querystring');
 
   const json = querystring.stringify({
     'FirstName': contact.givenName,
@@ -712,6 +702,55 @@ function addPersonToDB(contact) {
 
 }
 
+function addGroupToDB(data) {
+
+  const postData = querystring.stringify({
+    'ListID': data.ListID,
+    'ListName': data.ListName
+  });
+
+  const options = {
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    port: 3000,
+    path: '/listwizard',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': Buffer.byteLength(postData)
+    }
+  };
+
+  const req = http.request(options, (res) => {
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
+    });
+    res.on('end', () => {
+
+    });
+  });
+
+  req.on('error', (e) => {
+
+  });
+
+  // write data to request body
+  req.write(postData);
+  req.end();
+
+}
+
+function clearDistributionLists() {
+
+request.del(process.env.SERVER_ADDRESS + "/listwizard", function (err, res, body){
+  if (err){
+
+  } else {
+    console.log(res);
+    callAPIForGroups();
+  }
+})
+
+}
 
 // ###################### MICROSOFT GRAPH API END ##################################################################################################################################
 
