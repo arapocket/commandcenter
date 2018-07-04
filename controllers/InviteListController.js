@@ -124,8 +124,14 @@ exports.getPeopleByGroup = function (req, res) {
 }
 
 exports.postDistributionList = function (req, res) {
-
-    }
+InviteListModel.postDistributionList(req.body, function (err, postDistributionListResult){
+  if (err){
+    res.json(err);
+  } else {
+    res.json(postDistributionListResult);
+  }
+})
+}
 
 
 exports.truncateDistributionList = function (req, res){
