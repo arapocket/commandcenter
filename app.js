@@ -717,6 +717,8 @@ function addPersonToDB(contact) {
 
 function addGroupToDB(data) {
 
+  console.log('addGroupToDB called');
+
   const postData = querystring.stringify({
     'ListID': data.ListID,
     'ListName': data.ListName
