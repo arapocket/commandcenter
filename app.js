@@ -554,12 +554,12 @@ function callAPIForGroups() {
 
           console.log(currentGroup)
 
-          // let json = {
-          //   ListID: createRandom.create(),
-          //   ListName: 
-          // }
+          let json = {
+            ListID: currentGroup.id,
+            ListName: currentGroup.displayName
+          }
 
-          // addGroupToDB(current)
+          addGroupToDB(currentGroup);
 
         }
 
