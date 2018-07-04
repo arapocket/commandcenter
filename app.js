@@ -559,7 +559,7 @@ function callAPIForGroups() {
           //   ListName: 
           // }
 
-          // addGroupToDB(curren)
+          // addGroupToDB(current)
 
         }
 

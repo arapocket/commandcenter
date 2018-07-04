@@ -1,4 +1,4 @@
-var randomNum = 0;
+var createRandom = '';
 
 
 createRandom.create = function () {
