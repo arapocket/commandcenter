@@ -563,7 +563,7 @@ function callAPIForGroups() {
           console.log(json.ListID);
           console.log(json.ListName);
 
-          addGroupToDB(currentGroup);
+          addGroupToDB(json);
 
         }
 
