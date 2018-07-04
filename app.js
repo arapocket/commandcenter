@@ -555,8 +555,8 @@ function callAPIForGroups() {
           console.log(currentGroup)
 
           let json = {
-            ListID: currentGroup.id,
-            ListName: currentGroup.displayName
+            ListID: JSON.stringify(currentGroup.id),
+            ListName: JSON.stringify(currentGroup.displayName)
           }
 
           addGroupToDB(currentGroup);
