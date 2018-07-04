@@ -528,6 +528,7 @@ function patrolPut(data, socket) {
 var auth = require('./microsoft-graph/auth');
 var graph = require('./microsoft-graph/graph');
 var findMatches = require('./findMatches');
+var createRandom = require('./createRandom');
 
 
 var exchangeArray = [];
@@ -551,7 +552,14 @@ function callAPIForGroups() {
 
           let currentGroup = groups[i];
 
-          console.log(currentGroup.id)
+          console.log(currentGroup)
+
+          // let json = {
+          //   ListID: createRandom.create(),
+          //   ListName: 
+          // }
+
+          // addGroupToDB(curren)
 
         }
 
@@ -562,6 +570,11 @@ function callAPIForGroups() {
   }, function (error) {
     console.error('>>> Error getting access token: ' + error);
   });
+
+}
+
+
+function createRandomNumber(){
 
 }
 
@@ -745,9 +758,9 @@ function clearDistributionLists() {
 
 request.del(process.env.SERVER_ADDRESS + "/listwizard", function (err, res, body){
   if (err){
-    console.log(err)
+    // console.log(err)
   } else {
-    console.log(res);
+    // console.log(res);
     callAPIForGroups();
   }
 })

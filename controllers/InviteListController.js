@@ -125,36 +125,6 @@ exports.getPeopleByGroup = function (req, res) {
 
 exports.postDistributionList = function (req, res) {
 
-
-      var auth = require('../microsoft-graph/auth');
-      var graph = require('../microsoft-graph/graph');
-      var findMatches = require('../findMatches');
-
-
-      auth.getAccessToken().then(function (token) {
-        // Get all of the users in the tenant.
-        graph.getGroups(token)
-          .then(function (groups) {
-
-            for (var i = 0; i < groups.length; i++) {
-
-              let currentGroup = groups[i];
-
-              console.log(currentGroup.id)
-
-              InviteListModel.postDistributionLists(json, function (err, postDistributionListResult) {
-                if (err) {
-                  res.end();
-                } else {
-                }
-              })
-            }
-          }, function (error) {
-            console.error('>>> Error getting groups: ' + error);
-          });
-      }, function (error) {
-        console.error('>>> Error getting access token: ' + error);
-      });
     }
 
 
