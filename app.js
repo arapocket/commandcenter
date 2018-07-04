@@ -559,6 +559,10 @@ function callAPIForGroups() {
             ListName: JSON.stringify(currentGroup.displayName)
           }
 
+          console.log('logging the json for posting group');
+          console.log(json.ListID);
+          console.log(json.ListName);
+
           addGroupToDB(currentGroup);
 
         }
