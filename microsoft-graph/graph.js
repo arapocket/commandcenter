@@ -117,7 +117,7 @@ graph.getGroups = function (token) {
   var deferred = Q.defer();
 
 
-  request.get(process.env.MICROSOFT_GRAPH_CONTACTS_ENDPOINT, {
+  request.get(process.env.MICROSOFT_GRAPH_GROUPS_ENDPOINT, {
     auth: {
       bearer: token
     }
