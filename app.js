@@ -744,12 +744,11 @@ function addGroupToDB(data) {
     res.on('data', (chunk) => {
     });
     res.on('end', () => {
-
+      
     });
   });
 
   req.on('error', (e) => {
-
   });
 
   // write data to request body
@@ -771,6 +770,10 @@ request.del(process.env.SERVER_ADDRESS + "/listwizard", function (err, res, body
   }
 })
 
+}
+
+function postMembers(){
+  console.log('postMembers called');
 }
 
 // ###################### MICROSOFT GRAPH API END ##################################################################################################################################
