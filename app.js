@@ -744,7 +744,7 @@ function addGroupToDB(data) {
     res.on('data', (chunk) => {
     });
     res.on('end', () => {
-      
+      postMembers();
     });
   });
 
