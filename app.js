@@ -782,7 +782,7 @@ function callAPIForMembers(listData) {
         console.log(members);
 
       }, function (error) {
-        console.error('>>> Error getting groups: ' + error);
+        console.error('>>> Error getting members: ' + error);
       });
   }, function (error) {
     console.error('>>> Error getting access token: ' + error);

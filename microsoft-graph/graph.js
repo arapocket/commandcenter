@@ -160,6 +160,9 @@ graph.getGroupMembers = function (token, groupID) {
     }
   });
 
+  console.log('logging getGroupMembers result ');
+  console.log(deferred.promise);
+
   return deferred.promise;
 }
 
