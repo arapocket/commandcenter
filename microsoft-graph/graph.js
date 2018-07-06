@@ -141,9 +141,11 @@ graph.getGroups = function (token) {
 
 graph.getGroupMembers = function (token, groupID) {
   var deferred = Q.defer();
+  var endpoint = process.env.MICROSOFT_GRAPH_GROUPS_ENDPOINT + '/' + groupID + '/members';
 
-
-  request.get(process.env.MICROSOFT_GRAPH_GROUPS_ENDPOINT + '/' + groupID + '/members', {
+  console.log(endpoint);
+  
+  request.get(endpoint, {
     auth: {
       bearer: token
     }
