@@ -765,7 +765,7 @@ function callAPIForMembers(data) {
 
   auth.getAccessToken().then(function (token) {
     // Get all of the users in the tenant.
-    graph.getGroupMembers(token, data.ListID )
+    graph.getGroupMembers(token, data.ListID)
       .then(function (members) {
 
         for (var i = 0; i < members.length; i++) {
@@ -776,8 +776,16 @@ function callAPIForMembers(data) {
           console.log('logging member');
           console.log(currentMember);
 
-          let json = {
+          let personData = {
+            'MemberID': CreateRandom.create(),
+            'ListID': data.ListID,
+            'LastName': currentMember.surname,
+            'FirstName': currentMember.givenName,
+            'EmailAddress': currentMember.mail,
+            'NotificationNumber': personData.mobilePhone
           }
+
+          postMember(personData);
 
         }
 
@@ -790,15 +798,6 @@ function callAPIForMembers(data) {
 }
 
 function postMember(personData) {
-
-  const postData = querystring.stringify({
-    'MemberID': CreateRandom.create(),
-    'ListID': personData.ListID,
-    'LastName': personData.LastName,
-    'FirstName': personData.FirstName,
-    'EmailAddress': personData.EmailAddress,
-    'NotificationNumber': personData.NotificationNumber
-  });
 
   const options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
@@ -823,7 +822,7 @@ function postMember(personData) {
   });
 
   // write data to request body
-  req.write(postData);
+  req.write(personData);
   req.end();
 }
 
