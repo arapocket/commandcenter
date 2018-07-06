@@ -734,6 +734,7 @@ function callAPIForGroups() {
 
 function postList(data) {
 
+
   console.log('postList called');
 
   const listData = querystring.stringify({
@@ -759,7 +760,7 @@ function postList(data) {
     });
     res.on('end', () => {
 
-      callAPIForMembers(listData);
+      callAPIForMembers(data);
     });
   });
 
@@ -772,14 +773,14 @@ function postList(data) {
 
 }
 
-function callAPIForMembers(listData) {
+function callAPIForMembers(data) {
 
   console.log('logging listData');
-  console.log(listData.ListID);
+  console.log(data.ListID);
 
   auth.getAccessToken().then(function (token) {
     // Get all of the users in the tenant.
-    graph.getGroupMembers(token, listData.ListID )
+    graph.getGroupMembers(token, data.ListID )
       .then(function (members) {
 
         console.log('logging members');
