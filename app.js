@@ -528,7 +528,7 @@ function patrolPut(data, socket) {
 var auth = require('./microsoft-graph/auth');
 var graph = require('./microsoft-graph/graph');
 var findMatches = require('./findMatches');
-var createRandom = require('./createRandom');
+var CreateRandom = require('./CreateRandom');
 
 
 var exchangeArray = [];
@@ -542,46 +542,8 @@ var matches = [];
 
 clearDistributionLists();
 
-function callAPIForGroups() {
-  auth.getAccessToken().then(function (token) {
-    // Get all of the users in the tenant.
-    graph.getGroups(token)
-      .then(function (groups) {
 
-        for (var i = 0; i < groups.length; i++) {
-
-          let currentGroup = groups[i];
-
-          console.log(currentGroup)
-
-          let json = {
-            ListID: currentGroup.id,
-            ListName: currentGroup.displayName
-          }
-
-          console.log('logging the json for posting group');
-          console.log(json.ListID);
-          console.log(json.ListName);
-
-          addGroupToDB(json);
-
-        }
-
-
-      }, function (error) {
-        console.error('>>> Error getting groups: ' + error);
-      });
-  }, function (error) {
-    console.error('>>> Error getting access token: ' + error);
-  });
-
-}
-
-
-function createRandomNumber(){
-
-}
-
+// ******************************** BELOW 3: For adding people to DB
 function callAPIForPeople() {
   // Get an access token for the app.
   auth.getAccessToken().then(function (token) {
@@ -592,7 +554,7 @@ function callAPIForPeople() {
         for (var i = 0; i < contacts.length; i++) {
           let currentContact = contacts[i];
           // add contact to db;
-          addPersonToDB(currentContact);
+          postPerson(currentContact);
           // exchangeArray.push({
           //   name: currentContact.givenName + ' ' + currentContact.surname,
           //   phone: currentContact.mobilePhone
@@ -637,8 +599,6 @@ function getPeopleFromDB() {
 
         const parsedData = JSON.parse(rawData);
 
-
-
         for (var i = 0; i < parsedData.length; i++) {
 
           let currentPerson = parsedData[i];
@@ -682,7 +642,7 @@ function getPeopleFromDB() {
   });
 }
 
-function addPersonToDB(contact) {
+function postPerson(contact) {
 
   const json = querystring.stringify({
     'FirstName': contact.givenName,
@@ -719,13 +679,126 @@ function addPersonToDB(contact) {
 
 }
 
-function addGroupToDB(data) {
+// ******************************** BELOW 4: For adding distribution lists
 
-  console.log('addGroupToDB called');
+function clearDistributionLists() {
 
-  const postData = querystring.stringify({
+  console.log('clearDistributionLists called');
+
+  request.del(process.env.SERVER_ADDRESS + "/listwizard", function (err, res, body) {
+    if (err) {
+      // console.log(err)
+    } else {
+      // console.log(res);
+      callAPIForGroups();
+    }
+  })
+
+}
+
+function callAPIForGroups() {
+  auth.getAccessToken().then(function (token) {
+    // Get all of the users in the tenant.
+    graph.getGroups(token)
+      .then(function (groups) {
+
+        for (var i = 0; i < groups.length; i++) {
+
+          let currentGroup = groups[i];
+
+          console.log(currentGroup)
+
+          let json = {
+            ListID: currentGroup.id,
+            ListName: currentGroup.displayName,
+
+          }
+
+          console.log('logging the json for posting group');
+          console.log(json.ListID);
+          console.log(json.ListName);
+
+          postList(json);
+
+        }
+
+
+      }, function (error) {
+        console.error('>>> Error getting groups: ' + error);
+      });
+  }, function (error) {
+    console.error('>>> Error getting access token: ' + error);
+  });
+
+}
+
+function postList(data) {
+
+  console.log('postList called');
+
+  const listData = querystring.stringify({
     'ListID': data.ListID,
     'ListName': data.ListName
+  });
+
+
+  const options = {
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    port: 3000,
+    path: '/listwizard',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': Buffer.byteLength(listData)
+    }
+  };
+
+  const req = http.request(options, (res) => {
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
+    });
+    res.on('end', () => {
+
+      callAPIForMembers(listData);
+    });
+  });
+
+  req.on('error', (e) => {
+  });
+
+  // write data to request body
+  req.write(listData);
+  req.end();
+
+}
+
+function callAPIForMembers(listData) {
+  auth.getAccessToken().then(function (token) {
+    // Get all of the users in the tenant.
+    graph.getGroupMembers(token, listData.ListID )
+      .then(function (members) {
+
+        console.log('logging members');
+        console.log(members);
+
+      }, function (error) {
+        console.error('>>> Error getting groups: ' + error);
+      });
+  }, function (error) {
+    console.error('>>> Error getting access token: ' + error);
+  });
+}
+
+function postMember(personData) {
+  console.log('postList called');
+
+  const postData = querystring.stringify({
+    'MemberID': CreateRandom.create(),
+    'ListID': personData.ListID,
+    'LastName': personData.LastName,
+    'FirstName': personData.FirstName,
+    'EmailAddress': personData.EmailAddress,
+    'NotificationNumber': personData.NotificationNumber
   });
 
   const options = {
@@ -744,7 +817,6 @@ function addGroupToDB(data) {
     res.on('data', (chunk) => {
     });
     res.on('end', () => {
-      postMembers();
     });
   });
 
@@ -754,26 +826,6 @@ function addGroupToDB(data) {
   // write data to request body
   req.write(postData);
   req.end();
-
-}
-
-function clearDistributionLists() {
-
-  console.log('clearDistributionLists called');
-
-request.del(process.env.SERVER_ADDRESS + "/listwizard", function (err, res, body){
-  if (err){
-    // console.log(err)
-  } else {
-    // console.log(res);
-    callAPIForGroups();
-  }
-})
-
-}
-
-function postMembers(){
-  console.log('postMembers called');
 }
 
 // ###################### MICROSOFT GRAPH API END ##################################################################################################################################

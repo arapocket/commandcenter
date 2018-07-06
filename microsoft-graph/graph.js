@@ -139,8 +139,28 @@ graph.getGroups = function (token) {
 
 //get groups, then for each group create an invite list
 
-graph.getGroupMembers = function (token) {
+graph.getGroupMembers = function (token, groupID) {
+  var deferred = Q.defer();
 
+
+  request.get(process.env.MICROSOFT_GRAPH_GROUPS_ENDPOINT + '/' + groupID + '/members', {
+    auth: {
+      bearer: token
+    }
+  }, function (err, response, body) {
+    var parsedBody = JSON.parse(body);
+
+    if (err) {
+      deferred.reject(err);
+    } else if (parsedBody.error) {
+      deferred.reject(parsedBody.error.message);
+    } else {
+      // The value of the body will be an array of all users.
+      deferred.resolve(parsedBody.value);
+    }
+  });
+
+  return deferred.promise;
 }
 
 module.exports = graph;

@@ -140,6 +140,9 @@ module.exports.getPeopleByGroup = function (GroupCategory, GroupName, callback) 
     })
 }
 
+//*************************** Microsoft Graph API Methods ************************************ */
+
+
 module.exports.truncateDistributionList = function (callback){
     db.createConnection(function (err, res) {
         if (err) {
@@ -185,6 +188,34 @@ module.exports.postDistributionList = function (Body, callback){
 
                 } else {
                     console.log('error with the postDistributionList query');
+                    console.log(err);
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    });   
+}
+
+module.exports.postDistributionListMembers = function (Body, callback){
+    db.createConnection(function (err, res) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = res;
+
+            var queryFields = '(MemberID,ListID, LastName, FirstName, EmailAddress, NotificationNumber )';
+            var queryValues = '("' + Body.ListID + '", "' + Body.ListName + '")';
+            var query = 'INSERT INTO distribution_list_member ' + queryFields + ' VALUES ' + queryValues;
+            connection.query(query, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the postDistributionListMembers query');
                     console.log(err);
                     connection.end();
                     callback(err, rows);

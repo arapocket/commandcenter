@@ -111,8 +111,6 @@ exports.renderListWizard = function (req, res) {
   }
 }
 
-
-
 exports.getPeopleByGroup = function (req, res) {
   InviteListModel.getPeopleByGroup(req.params.groupCategory, req.params.groupName, function (err, getPeopleByGroupResult) {
     if (err) {
@@ -123,23 +121,37 @@ exports.getPeopleByGroup = function (req, res) {
   })
 }
 
-exports.postDistributionList = function (req, res) {
-InviteListModel.postDistributionList(req.body, function (err, postDistributionListResult){
-  if (err){
-    res.json(err);
-  } else {
-    res.json(postDistributionListResult);
-  }
-})
-}
 
+//*************************** Microsoft Graph API Methods ************************************ */
 
-exports.truncateDistributionList = function (req, res){
-  InviteListModel.truncateDistributionList(function (err,truncateListResult){
-    if (err){
+exports.truncateDistributionList = function (req, res) {
+  InviteListModel.truncateDistributionList(function (err, truncateListResult) {
+    if (err) {
       res.json(err);
     } else {
       res.json(truncateListResult);
     }
   })
 }
+
+exports.postDistributionList = function (req, res) {
+  InviteListModel.postDistributionList(req.body, function (err, postDistributionListResult) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(postDistributionListResult);
+    }
+  })
+}
+
+exports.postDistributionListMembers = function (req, res) {
+  InviteListModel.postDistributionListMembers(req.body, function (err, postDistributionListMembersResult) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(postDistributionListMembersResult);
+    }
+  })
+}
+
+
