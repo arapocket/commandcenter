@@ -550,7 +550,6 @@ function callAPIForPeople() {
     // Get all of the users in the tenant.
     graph.getContacts(token)
       .then(function (contacts) {
-        console.log(contacts);
         for (var i = 0; i < contacts.length; i++) {
           let currentContact = contacts[i];
           // add contact to db;
@@ -609,8 +608,6 @@ function getPeopleFromDB() {
           });
         }
 
-        console.log(exchangeArray.length);
-        console.log(ccArray.length);
 
         for (var i = 0; i < exchangeArray.length; i++) {
           exchangeNameArray.push(exchangeArray[i].name);
@@ -628,8 +625,7 @@ function getPeopleFromDB() {
         nameMatches = findMatches.find(exchangeNameArray, ccNameArray);
 
         for (var i = 0; i < nameMatches.length; i++) {
-          console.log('logging a match');
-          console.log(nameMatches[i]);
+
           addPhoneToDB(nameMatches[i]);
         }
 
@@ -683,13 +679,10 @@ function postPerson(contact) {
 
 function clearDistributionLists() {
 
-  console.log('clearDistributionLists called');
 
   request.del(process.env.SERVER_ADDRESS + "/listwizard", function (err, res, body) {
     if (err) {
-      // console.log(err)
     } else {
-      // console.log(res);
       callAPIForGroups();
     }
   })
@@ -706,17 +699,12 @@ function callAPIForGroups() {
 
           let currentGroup = groups[i];
 
-          console.log(currentGroup)
 
           let json = {
             ListID: currentGroup.id,
             ListName: currentGroup.displayName,
 
           }
-
-          console.log('logging the json for posting group');
-          console.log(json.ListID);
-          console.log(json.ListName);
 
           postList(json);
 
@@ -735,7 +723,6 @@ function callAPIForGroups() {
 function postList(data) {
 
 
-  console.log('postList called');
 
   const listData = querystring.stringify({
     'ListID': data.ListID,
@@ -775,16 +762,24 @@ function postList(data) {
 
 function callAPIForMembers(data) {
 
-  console.log('logging listData');
-  console.log(data.ListID);
 
   auth.getAccessToken().then(function (token) {
     // Get all of the users in the tenant.
     graph.getGroupMembers(token, data.ListID )
       .then(function (members) {
 
-        console.log('logging members');
-        console.log(members);
+        for (var i = 0; i < members.length; i++) {
+
+          let currentMember = members[i];
+
+
+          console.log('logging member');
+          console.log(currentMember);
+
+          let json = {
+          }
+
+        }
 
       }, function (error) {
         console.error('>>> Error getting members: ' + error);
@@ -795,7 +790,6 @@ function callAPIForMembers(data) {
 }
 
 function postMember(personData) {
-  console.log('postList called');
 
   const postData = querystring.stringify({
     'MemberID': CreateRandom.create(),
