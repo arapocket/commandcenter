@@ -296,7 +296,7 @@ router.get('/listwizard', InviteListController.renderListWizard);
 router.get('/listwizard/:groupCategory/:groupName', InviteListController.getPeopleByGroup);
 router.delete('/distributionlist', InviteListController.truncateDistributionList);
 router.post('/distributionlist', InviteListController.postDistributionList);
-router.post('/distributionlistmembers', InviteListController.postDistributionListMembers);
+router.post('/emailmembers', InviteListController.postDistributionListMembers);
 //############################################### Invite List END ############################################################
 
 
