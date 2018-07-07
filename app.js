@@ -800,6 +800,8 @@ function postMember(personData) {
   console.log('postMembers called');
   let data = personData;
 
+  console.log('we got here');
+
   let options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
     port: 3000,
@@ -811,7 +813,7 @@ function postMember(personData) {
     }
   };
 
-  console.log('we got here');
+  console.log('we got after options');
 
   let req = http.request(options, (res) => {
     res.setEncoding('utf8');
