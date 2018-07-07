@@ -733,9 +733,7 @@ function postList(data) {
     path: '/distributionlist',
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': Buffer.byteLength(listData)
-    }
+      'Content-Type': 'application/x-www-form-urlencoded'    }
   };
 
   const req = http.request(options, (res) => {
