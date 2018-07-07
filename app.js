@@ -795,10 +795,8 @@ function callAPIForMembers(data) {
 
 function postMember(personData) {
 
-  console.log('postMembers called');
-  let data = personData;
+  const data = querystring.stringify(personData);
 
-  console.log('we got here');
 
   const options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
@@ -810,7 +808,6 @@ function postMember(personData) {
     }
   };
 
-  console.log('we got after options');
 
   let req = http.request(options, (res) => {
     res.setEncoding('utf8');
