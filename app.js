@@ -811,6 +811,8 @@ function postMember(personData) {
     }
   };
 
+  console.log('we got here');
+
   let req = http.request(options, (res) => {
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
