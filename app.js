@@ -819,6 +819,7 @@ function postMember(personData) {
   });
 
   req.on('error', (e) => {
+    console.log(e);
   });
 
   // write data to request body
