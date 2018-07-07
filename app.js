@@ -811,7 +811,7 @@ function postMember(personData) {
     }
   };
 
-  const req = http.request(options, (res) => {
+  let req = http.request(options, (res) => {
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
     });
