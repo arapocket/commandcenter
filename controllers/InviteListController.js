@@ -145,6 +145,9 @@ exports.postDistributionList = function (req, res) {
 }
 
 exports.postDistributionListMembers = function (req, res) {
+
+  console.log('postDistrubutionListMembers called');
+  
   InviteListModel.postDistributionListMembers(req.body, function (err, postDistributionListMembersResult) {
     if (err) {
       res.json(err);
