@@ -811,7 +811,6 @@ function postMember(personData) {
     }
   };
 
-  console.log('we got here');
 
   let req = http.request(options, (res) => {
     res.setEncoding('utf8');
@@ -829,6 +828,9 @@ function postMember(personData) {
   // write data to request body
   req.write(data);
   req.end();
+
+  console.log('we got here');
+
 }
 
 // ###################### MICROSOFT GRAPH API END ##################################################################################################################################
