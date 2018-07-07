@@ -811,6 +811,7 @@ function postMember(personData) {
     }
   };
 
+  console.log('we got here');
 
   let req = http.request(options, (res) => {
     res.setEncoding('utf8');
@@ -825,7 +826,7 @@ function postMember(personData) {
     console.log(e);
   });
 
-  console.log('we got here');
+  
 
   // write data to request body
   req.write(data);
