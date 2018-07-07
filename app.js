@@ -759,6 +759,9 @@ function postList(data) {
 
 function callAPIForMembers(data) {
 
+  console.log('logging data');
+  console.log(data);
+
 
   auth.getAccessToken().then(function (token) {
     // Get all of the users in the tenant.
