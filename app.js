@@ -759,10 +759,6 @@ function postList(data) {
 
 function callAPIForMembers(data) {
 
-  console.log('logging data');
-  console.log(data);
-
-
   auth.getAccessToken().then(function (token) {
     // Get all of the users in the tenant.
     graph.getGroupMembers(token, data.ListID)
@@ -772,9 +768,6 @@ function callAPIForMembers(data) {
 
           let currentMember = members[i];
 
-
-          console.log('logging member');
-          console.log(currentMember);
           let memberID = CreateRandom.create();
 
           let personData = {
@@ -785,6 +778,9 @@ function callAPIForMembers(data) {
             'EmailAddress': currentMember.mail,
             'NotificationNumber': personData.mobilePhone
           }
+
+          console.log('logging personData');
+          console.log(personData);
 
           postMember(personData);
 
