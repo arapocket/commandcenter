@@ -798,6 +798,7 @@ function callAPIForMembers(data) {
 function postMember(personData) {
 
   console.log('postMembers called');
+  let data = personData;
 
   const options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
@@ -806,7 +807,7 @@ function postMember(personData) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': Buffer.byteLength(personData)
+      'Content-Length': Buffer.byteLength(data)
     }
   };
 
@@ -823,7 +824,7 @@ function postMember(personData) {
   });
 
   // write data to request body
-  req.write(personData);
+  req.write(data);
   req.end();
 }
 
