@@ -680,7 +680,7 @@ function postPerson(contact) {
 function clearDistributionLists() {
 
 
-  request.del(process.env.SERVER_ADDRESS + "/listwizard", function (err, res, body) {
+  request.del(process.env.SERVER_ADDRESS + "/distributionlist", function (err, res, body) {
     if (err) {
     } else {
       callAPIForGroups();
@@ -733,7 +733,7 @@ function postList(data) {
   const options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
     port: 3000,
-    path: '/listwizard',
+    path: '/distributionlist',
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -802,7 +802,7 @@ function postMember(personData) {
   const options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
     port: 3000,
-    path: '/listwizard',
+    path: '/distributionlistmembers',
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
