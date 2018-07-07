@@ -710,7 +710,6 @@ function callAPIForGroups() {
 
         }
 
-
       }, function (error) {
         console.error('>>> Error getting groups: ' + error);
       });
@@ -721,8 +720,6 @@ function callAPIForGroups() {
 }
 
 function postList(data) {
-
-
 
   const listData = querystring.stringify({
     'ListID': data.ListID,
@@ -775,9 +772,10 @@ function callAPIForMembers(data) {
 
           console.log('logging member');
           console.log(currentMember);
+          let memberID = CreateRandom.create();
 
           let personData = {
-            'MemberID': CreateRandom.create(),
+            'MemberID': memberID,
             'ListID': data.ListID,
             'LastName': currentMember.surname,
             'FirstName': currentMember.givenName,
