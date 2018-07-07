@@ -198,6 +198,9 @@ module.exports.postDistributionList = function (Body, callback){
 }
 
 module.exports.postDistributionListMembers = function (Body, callback){
+
+    console.log('postDistrubutionListMembers called');
+    
     db.createConnection(function (err, res) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);
