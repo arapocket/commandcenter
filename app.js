@@ -799,6 +799,8 @@ function callAPIForMembers(data) {
 
 function postMember(personData) {
 
+  console.log('postMembers called');
+
   const options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
     port: 3000,
