@@ -1,4 +1,4 @@
-var CreateRandom = '';
+var CreateRandom = {}};
 
 
 CreateRandom.create = function () {

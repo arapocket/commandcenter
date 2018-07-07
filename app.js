@@ -769,7 +769,7 @@ function callAPIForMembers(data) {
           let currentMember = members[i];
 
           let memberID = CreateRandom.create();
-          console.log(memberID)
+          console.log(memberID);
 
           let personData = {
             'MemberID': memberID,
