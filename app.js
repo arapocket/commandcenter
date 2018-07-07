@@ -776,7 +776,7 @@ function callAPIForMembers(data) {
             'LastName': currentMember.surname,
             'FirstName': currentMember.givenName,
             'EmailAddress': currentMember.mail,
-            'NotificationNumber': personData.mobilePhone
+            'NotificationNumber': currentMember.mobilePhone
           }
 
           console.log('logging personData');
