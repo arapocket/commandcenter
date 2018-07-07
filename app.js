@@ -820,6 +820,7 @@ function postMember(personData) {
   });
 
   req.on('error', (e) => {
+    console.log('logging error ');
     console.log(e);
   });
 
