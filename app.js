@@ -825,11 +825,13 @@ function postMember(personData) {
     console.log(e);
   });
 
+  console.log('we got here');
+
   // write data to request body
   req.write(data);
   req.end();
 
-  console.log('we got here');
+  
 
 }
 
