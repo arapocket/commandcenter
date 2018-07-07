@@ -208,7 +208,7 @@ module.exports.postDistributionListMembers = function (Body, callback){
             var connection = res;
 
             var queryFields = '(MemberID,ListID, LastName, FirstName, EmailAddress, NotificationNumber )';
-            var queryValues = '("' + Body.ListID + '", "' + Body.ListName + '")';
+            var queryValues = '("' + Body.MemberID + '", "' + Body.ListID + '", "' + Body.LastName + '", "' + Body.FirstName + '", "' + Body.EmailAddress + '", "' + Body.NotificationNumber + '")';
             var query = 'INSERT INTO distribution_list_member ' + queryFields + ' VALUES ' + queryValues;
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
