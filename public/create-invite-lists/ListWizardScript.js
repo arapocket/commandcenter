@@ -418,6 +418,7 @@ function loadScripts() {
 
         bootbox.prompt("Enter a name for the invite list.", function (nameInput) {
             if (nameInput === null) {
+                question--;
             } else {
                 var cleanNameInput = nameInput.replace(/[^a-zA-Z0-9 ]/g, "");
                 bootbox.prompt('Enter a description for the invite list.', function (descriptionInput) {
