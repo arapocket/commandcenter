@@ -319,19 +319,19 @@ function loadScripts() {
             console.log('logging from getDistributionListMembers')
             console.log(person);
 
-            // var data = ({
+            var data = ({
 
-            //     LastName: person.LastName,
-            //     FirstName: person.FirstName,
-            //     Cardnumber: person.iClassNumber,
-            //     ID: person.EmpID,
-            //     Email: person.EmailAddr,
-            //     Title: person.Title,
-            //     Department: person.Department,
-            //     Division: person.Division,
-            //     SiteLocation: person.SiteLocation,
-            //     Building: person.Building
-            // })
+                LastName: person.LastName,
+                FirstName: person.FirstName,
+                Cardnumber: 99999999,
+                ID: 99999999,
+                Email: person.EmailAddress,
+                Title: '',
+                Department: '',
+                Division: '',
+                SiteLocation: '',
+                Building: ''
+            })
 
             // table.bootstrapTable('append', data);
             // table.bootstrapTable('refreshOptions', {
