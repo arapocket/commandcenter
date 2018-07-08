@@ -316,7 +316,7 @@ function loadScripts() {
         for (i = 0; i < distributionListMembers.length; i++) {
             let person = distributionListMembers[i];
             
-            console.log('logging from getDistListMembers')
+            console.log('logging from getDistributionListMembers')
             console.log(person);
 
             // var data = ({
