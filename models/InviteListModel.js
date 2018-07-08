@@ -226,7 +226,7 @@ module.exports.postDistributionListMembers = function (Body, callback){
     });   
 }
 
-module.exports.getDistributionLists = function (Body, callback) {
+module.exports.getDistributionLists = function (callback) {
     db.createConnection(function (err, res) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);
