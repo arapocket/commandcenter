@@ -220,8 +220,6 @@ function loadScripts() {
 
             comment.innerText = 'Do you want to add any other groups?'
         } else if (question == 5) {
-            noButton.style.display = 'none'
-            yesButton.style.display = 'none'
             prompt();
         }
     }
