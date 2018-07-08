@@ -98,8 +98,16 @@ exports.renderListWizard = function (req, res) {
                 }
                 InviteListModel.getGroups(json, function (err, getBuildingsResult) {
                   if (err) {
+                    res.end()
                   } else {
-                    res.render('ListWizardView', { title: 'Command Center - Create Invite List', username: req.session.username, getDepartmentsResult, getDivisionsResult, getSiteLocationsResult, getBuildingsResult });
+                    InviteListModel.getDistributionLists(function (err, getDistributionListsResult){
+                      if (err){
+                        res.end()
+                      } else {
+                        res.render('ListWizardView', { title: 'Command Center - Create Invite List', username: req.session.username, getDepartmentsResult, getDivisionsResult, getSiteLocationsResult, getBuildingsResult, getDistributionListsResult });
+                      }
+                    })
+                    
                   }
                 })
               }

@@ -345,6 +345,10 @@ function loadScripts() {
 
     }
 
+    function getDistributionListMembers(){
+        
+    }
+
     function prompt() {
         bootbox.hideAll();
 

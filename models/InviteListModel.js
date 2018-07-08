@@ -226,6 +226,57 @@ module.exports.postDistributionListMembers = function (Body, callback){
     });   
 }
 
+module.exports.getDistributionLists = function (Body, callback) {
+    db.createConnection(function (err, res) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = res;
+
+            var query = 'SELECT * FROM distribution_list;';
+            connection.query(query, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the getDistributionLists query');
+                    console.log(err);
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    })
+}
+
+module.exports.getDistributionListMembers = function (listID, callback) {
+    db.createConnection(function (err, res) {
+        if (err) {
+            console.log('Error while performing common connect query: ' + err);
+            callback(err, null);
+        } else {
+            //process the i/o after successful connect.  Connection object returned in callback
+            var connection = res;
+
+            var query = 'SELECT * FROM distribution_list_member WHERE ListID = "' + listID + '";'
+            connection.query(query, function (err, rows, fields) {
+                if (!err) {
+                    connection.end();
+                    callback(null, rows);
+
+                } else {
+                    console.log('error with the getPeopleByGroup query');
+                    console.log(err);
+                    connection.end();
+                    callback(err, rows);
+                }
+            });
+        }
+    })
+}
 
 
 /**
