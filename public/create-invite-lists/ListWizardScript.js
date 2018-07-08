@@ -184,6 +184,7 @@ function loadScripts() {
 
             if (groupCategory != 'Office 365 Distribution List') {
                 getGroups();
+                tableDiv.style.display = 'block';
             } else {
                 getDistributionLists();
             }
@@ -195,7 +196,7 @@ function loadScripts() {
             groupNameDropdown.style.display = 'block';
             noButton.style.display = 'none'
             yesButton.style.display = 'none'
-            tableDiv.style.display = 'block';
+            
 
             comment.innerText = 'Which ' + groupCategory + ' do you want to add?'
         } else if (question == 4) {
