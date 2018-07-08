@@ -801,7 +801,7 @@ function postMember(personData) {
   const options = {
     hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
     port: 3000,
-    path: '/emailMembers',
+    path: '/distributionlistmembers',
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'

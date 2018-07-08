@@ -201,7 +201,14 @@ function loadScripts() {
             comment.innerText = 'Which ' + groupCategory + ' do you want to add?'
         } else if (question == 4) {
             groupName = groupNameDropdown.value;
-            getPeople();
+
+            if (groupCategory != 'Office 365 Distribution List') {
+                getPeople();
+                tableDiv.style.display = 'block';
+            } else {
+                getDistributionListMembers();
+            }            
+            
 
             backButton.style.display = 'none'
             button.style.display = 'none';
@@ -305,6 +312,46 @@ function loadScripts() {
 
     }
 
+    function getDistributionListMembers(){
+        for (i = 0; i < distributionListMembers.length; i++) {
+            let person = distributionListMembers[i];
+            
+            console.log('logging from getDistListMembers')
+            console.log(person);
+
+            // var data = ({
+
+            //     LastName: person.LastName,
+            //     FirstName: person.FirstName,
+            //     Cardnumber: person.iClassNumber,
+            //     ID: person.EmpID,
+            //     Email: person.EmailAddr,
+            //     Title: person.Title,
+            //     Department: person.Department,
+            //     Division: person.Division,
+            //     SiteLocation: person.SiteLocation,
+            //     Building: person.Building
+            // })
+
+            // table.bootstrapTable('append', data);
+            // table.bootstrapTable('refreshOptions', {
+            //     pageSize: 10,
+            //     sortName: 'LastName'
+            // });
+
+            // // empty the peopleList incase there are any duplicates, then re-add the data
+            // peopleList = [];
+            // var newData = table.bootstrapTable('getData');
+            // peopleList.push(newData);
+
+
+        }
+        table.bootstrapTable('refreshOptions', {
+            pageSize: 10,
+            sortName: 'LastName'
+        });
+    }
+
     function getPeople() {
 
         let xhr = new XMLHttpRequest();
@@ -366,10 +413,6 @@ function loadScripts() {
 
     }
 
-    function getDistributionListMembers() {
-
-    }
-
     function prompt() {
         bootbox.hideAll();
 
@@ -406,8 +449,6 @@ function loadScripts() {
                             }
                         };
 
-
-
                         bootbox.hideAll();
 
                         bootbox.alert('Invite list has been created!');
@@ -443,14 +484,14 @@ function loadScripts() {
                     console.log(peopleList);
 
                     for (i = 0; i < peopleList[0].length; i++) {
-                        postList(peopleList[0][i], listID);
+                        postInvitee(peopleList[0][i], listID);
                     }
                 }
             }
         };
     }
 
-    function postList(person, listID) {
+    function postInvitee(person, listID) {
         console.log('logging person');
         console.log(person);
 

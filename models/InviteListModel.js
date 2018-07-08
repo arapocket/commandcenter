@@ -252,7 +252,7 @@ module.exports.getDistributionLists = function (callback) {
     })
 }
 
-module.exports.getDistributionListMembers = function (listID, callback) {
+module.exports.getDistributionListMembers = function (callback) {
     db.createConnection(function (err, res) {
         if (err) {
             console.log('Error while performing common connect query: ' + err);
@@ -261,14 +261,14 @@ module.exports.getDistributionListMembers = function (listID, callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = res;
 
-            var query = 'SELECT * FROM distribution_list_member WHERE ListID = "' + listID + '";'
+            var query = 'SELECT * FROM distribution_list_member;';
             connection.query(query, function (err, rows, fields) {
                 if (!err) {
                     connection.end();
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the getPeopleByGroup query');
+                    console.log('error with the getDistributionListMembers query');
                     console.log(err);
                     connection.end();
                     callback(err, rows);
