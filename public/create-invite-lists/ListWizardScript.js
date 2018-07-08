@@ -333,16 +333,16 @@ function loadScripts() {
                 Building: ''
             })
 
-            // table.bootstrapTable('append', data);
-            // table.bootstrapTable('refreshOptions', {
-            //     pageSize: 10,
-            //     sortName: 'LastName'
-            // });
+            table.bootstrapTable('append', data);
+            table.bootstrapTable('refreshOptions', {
+                pageSize: 10,
+                sortName: 'LastName'
+            });
 
-            // // empty the peopleList incase there are any duplicates, then re-add the data
-            // peopleList = [];
-            // var newData = table.bootstrapTable('getData');
-            // peopleList.push(newData);
+            // empty the peopleList incase there are any duplicates, then re-add the data
+            peopleList = [];
+            var newData = table.bootstrapTable('getData');
+            peopleList.push(newData);
 
 
         }
