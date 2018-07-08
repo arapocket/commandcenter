@@ -182,8 +182,13 @@ function loadScripts() {
             groupCategory = groupCategoryDropdown.value;
         } else if (question == 3) {
 
-            getGroups();
-            
+            if (groupCategory != 'Office 365 Distribution List') {
+                getGroups();
+            } else {
+                getDistributionLists();
+            }
+
+
 
             backButton.style.display = 'block'
             button.style.display = 'block';
@@ -284,6 +289,21 @@ function loadScripts() {
         }
     }
 
+    function getDistributionLists() {
+
+
+        for (i = groupNameDropdown.options.length - 1; i >= 0; i--) {
+            groupNameDropdown.remove(i);
+        }
+        for (i = 0; i < distributionLists.length; i++) {
+            var option = document.createElement("option");
+            option.text = distributionLists[i].ListName;
+            option.value = distributionLists[i].ListName;
+            groupNameDropdown.appendChild(option);
+        }
+
+    }
+
     function getPeople() {
 
         let xhr = new XMLHttpRequest();
@@ -345,8 +365,8 @@ function loadScripts() {
 
     }
 
-    function getDistributionListMembers(){
-        
+    function getDistributionListMembers() {
+
     }
 
     function prompt() {
