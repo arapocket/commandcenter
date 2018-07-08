@@ -683,6 +683,18 @@ function clearDistributionLists() {
   request.del(process.env.SERVER_ADDRESS + "/distributionlist", function (err, res, body) {
     if (err) {
     } else {
+      clearDistributionListMembers()
+    }
+  })
+
+}
+
+function clearDistributionListMembers() {
+
+
+  request.del(process.env.SERVER_ADDRESS + "/distributionlistmembers", function (err, res, body) {
+    if (err) {
+    } else {
       callAPIForGroups();
     }
   })

@@ -298,6 +298,7 @@ router.delete('/distributionlist', InviteListController.truncateDistributionList
 router.post('/distributionlist', InviteListController.postDistributionList);
 router.post('/distributionlistmembers', InviteListController.postDistributionListMembers);
 router.get('/distributionlistmembers', InviteListController.getDistributionListMembers);
+router.delete('/distributionlistmembers', InviteListController.truncateDistributionListMembers);
 //############################################### Invite List END ############################################################
 
 

@@ -149,6 +149,16 @@ exports.truncateDistributionList = function (req, res) {
   })
 }
 
+exports.truncateDistributionListMembers = function (req, res) {
+  InviteListModel.truncateDistributionListMembers(function (err, truncateListResult) {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(truncateListResult);
+    }
+  })
+}
+
 exports.postDistributionList = function (req, res) {
   InviteListModel.postDistributionList(req.body, function (err, postDistributionListResult) {
     if (err) {
