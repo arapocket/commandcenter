@@ -68,10 +68,14 @@ fs.readdir( moveFrom, function( err, files ) {
                         return;
                     }
 
-                    if( stat.isFile() )
-                        console.log( "'%s' is a file.", fromPath );
-                    else if( stat.isDirectory() )
-                        console.log( "'%s' is a directory.", fromPath );
+                    if( stat.isFile() ){
+                      // console.log( "'%s' is a file.", fromPath );
+                    }
+                        
+                    else if( stat.isDirectory() ) {
+                      // console.log( "'%s' is a directory.", fromPath );
+                    }
+                        
                     // was 200, 300.  changed to smaller size 7/7/17  
                     sharp(fromPath).resize(100, 150).toFile(toPath, function(err) {
                          if (err) {
