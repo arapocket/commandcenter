@@ -159,10 +159,10 @@ var port = process.env.PORT || 3000;
  * Node defaults to 2 minutes, which is too sort to wait for long inserts.
  * Have only done the for HTTP so far.
  */
-// var server = app.listen(port, function () {
-//   console.log("Listening on " + port);
+var server = app.listen(port, function () {
+  console.log("Listening on " + port);
 
-// });
+});
 
 server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
