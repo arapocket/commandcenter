@@ -23,16 +23,16 @@ exports.photosHome = function (req, res) {
   // feb--don't let nameless people view the page, redirect them back to the homepage
   if (typeof sess.username == 'undefined') {
     res.redirect('/');
-      } else {
+  } else {
 
 
 
-        var name = req.query.name;
+    var name = req.query.name;
     var contents = {
-            about: 'Use this screen to select the CSV file containing your exported PACS data.',
-            contact: 'Command Center will update the MOBSS database with any changes.'
+      about: 'Use this screen to select the CSV file containing your exported PACS data.',
+      contact: 'Command Center will update the MOBSS database with any changes.'
     };
-        //res.render('photos');
+    //res.render('photos');
     res.render('photos', { title: 'Command Center 5.0' + name, username: sess.username, content: contents[name] });
   };
 };
@@ -43,13 +43,12 @@ exports.photosHome = function (req, res) {
 exports.photosIngest = function (req, res) {
 
   if (cluster.isMaster) {
-    cluster.fork();
-    cluster.fork();
-    cluster.fork();
-    cluster.fork();
-    cluster.fork();
-    cluster.fork();
-    cluster.fork();
+    const os = require('os');
+    const cpuCount = os.cpus().length;
+    for (let i = 0; i < cpuCount; i += 1) {
+      // Match the children to CPU physical cores
+      cluster.fork();
+    }
   } else {
     console.log('am i getting into the ingest handler');
     sess = req.session;
@@ -127,7 +126,7 @@ exports.photoCheckProcess = function (req, res) {
   } else {
     //var image = '<img src="public/gas.jpg">'
 
-        db.createConnection(function (err, reslt) {
+    db.createConnection(function (err, reslt) {
       if (err) {
         console.log('Error while pErforming common connect query: ' + err);
         callback(err, null);
@@ -237,9 +236,9 @@ exports.photoCheck = function (req, res) {
 
 
   // don't let nameless people view the page, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') {
+  if (typeof sess.username == 'undefined') {
     res.redirect('/');
-      } else {
+  } else {
 
     sess.empSearch = req.body.empIDSearch;
 
