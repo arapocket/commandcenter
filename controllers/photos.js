@@ -8,7 +8,7 @@ var path = require('path');
 //feb-- image processing
 var sharp = require('sharp');
 var db = require('../models/db');
-const cluster = require('cluster');
+
 
 
 
@@ -42,14 +42,6 @@ exports.photosHome = function (req, res) {
 ///////////////////////////////////////////////////////////////////
 exports.photosIngest = function (req, res) {
 
-  if (cluster.isMaster) {
-    const os = require('os');
-    const cpuCount = os.cpus().length;
-    for (let i = 0; i < cpuCount; i += 1) {
-      // Match the children to CPU physical cores
-      cluster.fork();
-    }
-  } else {
     console.log('am i getting into the ingest handler');
     sess = req.session;
     // Going to need this to be a user input or a parameter.  User selected from and to but with To showing a default to the
@@ -101,10 +93,6 @@ exports.photosIngest = function (req, res) {
         res.render('photos', { title: 'Command Center 360', username: sess.username, success: sess.photosSuccess });
       }
     });
-
-  }
-
-
 
 }; //feb--end of export.photosIngest
 

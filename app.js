@@ -1,3 +1,20 @@
+const cluster = require('cluster');
+
+if (cluster.isMaster){
+  cluster.fork()
+  cluster.fork()
+} else {
+
+
+
+const os = require('os');
+const cpuCount = os.cpus().length;
+for (let i = 0; i < cpuCount; i += 1) {
+  // Match the children to CPU physical cores
+  cluster.fork();
+}
+
+
 var express = require('express');
 var helmet = require('helmet')
 var path = require('path');
@@ -163,8 +180,6 @@ var server = app.listen(port, function () {
   console.log("Listening on " + port);
 
 });
-
-app.listen(3000);
 
 server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
@@ -848,6 +863,6 @@ function postMember(personData) {
 
 // ###################### MICROSOFT GRAPH API END ##################################################################################################################################
 
-
+}
 
 module.exports = app;
