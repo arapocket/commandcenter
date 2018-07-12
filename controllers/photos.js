@@ -75,12 +75,12 @@ exports.photosIngest = function (req, res) {
             }
 
             // was 200, 300.  changed to smaller size 7/7/17  
-            // sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
-            //   if (err) {
-            //     console.log("One of the files is not in expected format (.jpg) " + err);
-            //     return;
-            //   }
-            // });
+            sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
+              if (err) {
+                console.log("One of the files is not in expected format (.jpg) " + err);
+                return;
+              }
+            });
 
           });
         });
