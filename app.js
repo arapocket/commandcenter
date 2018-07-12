@@ -164,6 +164,8 @@ var server = app.listen(port, function () {
 
 });
 
+app.listen(3000);
+
 server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
 
