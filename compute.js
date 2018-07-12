@@ -3,7 +3,7 @@ console.log('compute.js called');
 
 const longComputation = () => {
     let sum = 0;
-    for (let i = 0; i < 1e7; i++) {
+    for (let i = 0; i < 1e5; i++) {
       sum += i;
       console.log(sum);
     };
