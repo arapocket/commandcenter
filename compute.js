@@ -6,6 +6,10 @@ var sharp = require('sharp');
 var moveTo = "./public/photosforreader";
 
 
+if (process.send) {
+  process.send('done');
+}
+
 process.on('message', message => {
   // console.log('message from parent:', message);
 
@@ -38,9 +42,7 @@ process.on('message', message => {
     });
   });
 
-  if (process.send) {
-    process.send('done');
-  }
+
 
   createLogEntry('done');
 
@@ -51,10 +53,5 @@ process.on('message', message => {
     return
 });
 };
-
-
-
-
-
 
 });
