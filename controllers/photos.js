@@ -1,3 +1,5 @@
+var spawn = require('child_process').spawn
+
 //feb--lots of console.log stuff here for debugging purposes
 
 var mysql = require('mysql');
@@ -72,6 +74,18 @@ exports.photosIngest = function (req, res) {
 
             else if (stat.isDirectory()) {
               // console.log( "'%s' is a directory.", fromPath );
+            }
+
+            if (process.argv[2] === 'child') {
+                console.log('inside the child')
+            } else {
+              var child = spawn(process.execPath, [__filename, 'child'],
+            {
+              stdio: 'inherit'
+            })
+
+            console.log('parent')
+
             }
 
             // was 200, 300.  changed to smaller size 7/7/17  
