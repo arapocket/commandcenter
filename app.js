@@ -1,19 +1,3 @@
-const cluster = require('cluster');
-
-if (cluster.isMaster) {
-  const os = require('os');
-  const cpuCount = os.cpus().length;
-  for (let i = 0; i < cpuCount; i += 1) {
-    // Match the children to CPU physical cores
-    cluster.fork();
-  }
-} else {
-
-
-
-
-
-
   var express = require('express');
   var helmet = require('helmet')
   var path = require('path');
@@ -863,6 +847,5 @@ if (cluster.isMaster) {
 
   // ###################### MICROSOFT GRAPH API END ##################################################################################################################################
 
-}
 
 module.exports = app;
