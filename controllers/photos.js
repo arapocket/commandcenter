@@ -64,7 +64,7 @@ exports.photosIngest = function (req, res) {
       const program = path.resolve('compute.js');
       const parameters = [];
       const options = {
-        stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
+        // stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
       };
       const child = fork(program, parameters, options);
       
