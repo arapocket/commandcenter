@@ -6,6 +6,10 @@ var sharp = require('sharp');
 var moveTo = "./public/photosforreader";
 
 
+if (process.send) {
+  process.send('child started');
+}
+
 process.on('message', message => {
   // console.log('message from parent:', message);
 
