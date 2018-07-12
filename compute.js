@@ -19,7 +19,7 @@ console.log('compute.js called');
 
   
   process.on('message', message => {
-    console.log('message from parent:', message);
+    // console.log('message from parent:', message);
   
 
     for (var i = 0 ; i < message.length   ; i++)
