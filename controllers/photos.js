@@ -1,4 +1,5 @@
-var spawn = require('child_process').spawn
+const { fork } = require('child_process');
+
 
 //feb--lots of console.log stuff here for debugging purposes
 
@@ -42,11 +43,7 @@ exports.photosHome = function (req, res) {
 exports.photosIngest = function (req, res) {
 
 
-
-  if (process.argv[2] === 'child') {
-    console.log('inside the child');
-
-    console.log('am i getting into the ingest handler');
+  console.log('am i getting into the ingest handler');
   sess = req.session;
   // Going to need this to be a user input or a parameter.  User selected from and to but with To showing a default to the
   var moveFrom = req.body.directorySource;
@@ -81,14 +78,19 @@ exports.photosIngest = function (req, res) {
             // console.log( "'%s' is a directory.", fromPath );
           }
 
+          const compute = fork('compute.js');
+          compute.send('start');
+          compute.on('message', sum => {
+            res.end(`Sum is ${sum}`);
+          });
 
           // was 200, 300.  changed to smaller size 7/7/17  
-          sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
-            if (err) {
-              console.log("One of the files is not in expected format (.jpg) " + err);
-              return;
-            }
-          });
+          // sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
+          //   if (err) {
+          //     console.log("One of the files is not in expected format (.jpg) " + err);
+          //     return;
+          //   }
+          // });
 
         });
       });
@@ -99,18 +101,6 @@ exports.photosIngest = function (req, res) {
     }
   });
 
-
-  } else {
-    var child = spawn(process.execPath, [__filename, 'child'],
-      {
-        stdio: 'inherit'
-      })
-
-    console.log('parent')
-    res.end();
-  }
-
-  
 }; //feb--end of export.photosIngest
 
 
