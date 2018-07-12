@@ -44,70 +44,73 @@ exports.photosIngest = function (req, res) {
 
 
   if (process.argv[2] === 'child') {
-    console.log('inside the child')
-} else {
-  var child = spawn(process.execPath, [__filename, 'child'],
-{
-  stdio: 'inherit'
-})
-
-console.log('parent')
-
-}
+    console.log('inside the child');
 
     console.log('am i getting into the ingest handler');
-    sess = req.session;
-    // Going to need this to be a user input or a parameter.  User selected from and to but with To showing a default to the
-    var moveFrom = req.body.directorySource;
+  sess = req.session;
+  // Going to need this to be a user input or a parameter.  User selected from and to but with To showing a default to the
+  var moveFrom = req.body.directorySource;
 
-    var moveTo = "./public/photosforreader";
+  var moveTo = "./public/photosforreader";
 
-    // Loop through all the files in the source directory
-    fs.readdir(moveFrom, function (err, files) {
-      if (err) {
-        console.error("Could not list the directory.", err);
-        sess.photosSuccess = null;
-        sess.photosError = 'Directory does not exist or not accessible';
-        res.render('photos', { title: 'Command Center 360', username: sess.username, success: sess.photosSuccess, error: sess.photosError });
-        //process.exit( 1 );
-      } else {
+  // Loop through all the files in the source directory
+  fs.readdir(moveFrom, function (err, files) {
+    if (err) {
+      console.error("Could not list the directory.", err);
+      sess.photosSuccess = null;
+      sess.photosError = 'Directory does not exist or not accessible';
+      res.render('photos', { title: 'Command Center 360', username: sess.username, success: sess.photosSuccess, error: sess.photosError });
+      //process.exit( 1 );
+    } else {
 
-        files.forEach(function (file, index) {
-          var fromPath = path.join(moveFrom, file);
-          var toPath = path.join(moveTo, file);
+      files.forEach(function (file, index) {
+        var fromPath = path.join(moveFrom, file);
+        var toPath = path.join(moveTo, file);
 
-          fs.stat(fromPath, function (error, stat) {
-            if (error) {
-              console.error("Error stating file.", error);
+        fs.stat(fromPath, function (error, stat) {
+          if (error) {
+            console.error("Error stating file.", error);
+            return;
+          }
+
+          if (stat.isFile()) {
+            // console.log( "'%s' is a file.", fromPath );
+          }
+
+          else if (stat.isDirectory()) {
+            // console.log( "'%s' is a directory.", fromPath );
+          }
+
+
+          // was 200, 300.  changed to smaller size 7/7/17  
+          sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
+            if (err) {
+              console.log("One of the files is not in expected format (.jpg) " + err);
               return;
             }
-
-            if (stat.isFile()) {
-              // console.log( "'%s' is a file.", fromPath );
-            }
-
-            else if (stat.isDirectory()) {
-              // console.log( "'%s' is a directory.", fromPath );
-            }
-
-
-            // was 200, 300.  changed to smaller size 7/7/17  
-            sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
-              if (err) {
-                console.log("One of the files is not in expected format (.jpg) " + err);
-                return;
-              }
-            });
-
           });
-        });
-        //feb--finished looping through the directory, so process successful response
-        sess.photosSuccess = 'Photos processed successfully';
-        sess.photosError = null;
-        res.render('photos', { title: 'Command Center 360', username: sess.username, success: sess.photosSuccess });
-      }
-    });
 
+        });
+      });
+      //feb--finished looping through the directory, so process successful response
+      sess.photosSuccess = 'Photos processed successfully';
+      sess.photosError = null;
+      res.render('photos', { title: 'Command Center 360', username: sess.username, success: sess.photosSuccess });
+    }
+  });
+
+
+  } else {
+    var child = spawn(process.execPath, [__filename, 'child'],
+      {
+        stdio: 'inherit'
+      })
+
+    console.log('parent')
+
+  }
+
+  
 }; //feb--end of export.photosIngest
 
 
