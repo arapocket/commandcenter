@@ -63,7 +63,7 @@ exports.photosIngest = function (req, res) {
       var streeng = 'suck it';
       const fork = require('child_process').fork;
       const program = path.resolve('compute.js');
-      const parameters = [streeng];
+      const parameters = [];
       const options = {
         // stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
       };
