@@ -61,7 +61,7 @@ exports.photosIngest = function (req, res) {
     } else {
 
       const compute = fork('compute.js');
-      compute.send('start');
+      compute.send('message');
       compute.on('message', sum => {
         res.end(`Sum is ${sum}`);
       });
