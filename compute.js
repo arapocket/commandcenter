@@ -45,9 +45,9 @@ process.on('message', message => {
   createLogEntry('done');
 
   function createLogEntry ( param ) {  
-    fs.open('./public/reports/photoZip.log', 'a', 666, function( e, id ) {
-    fs.appendFileSync(id, param + "\r\n", null, 'utf8')
-    fs.close(id, function(){});
+    fs.open('./public/reports/photoZip.log', 'a', 666, function( e, fd ) {
+    fs.appendFileSync(fd, param + "\r\n", null, 'utf8')
+    fs.close(fd, function(){});
     return
 });
 };
