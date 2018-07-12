@@ -74,34 +74,7 @@ exports.photosIngest = function (req, res) {
       });
 
 
-      files.forEach(function (file, index) {
-        var fromPath = path.join(moveFrom, file);
-        var toPath = path.join(moveTo, file);
 
-        fs.stat(fromPath, function (error, stat) {
-          if (error) {
-            console.error("Error stating file.", error);
-            return;
-          }
-
-          if (stat.isFile()) {
-            // console.log( "'%s' is a file.", fromPath );
-          }
-
-          else if (stat.isDirectory()) {
-            // console.log( "'%s' is a directory.", fromPath );
-          }
-
-          // was 200, 300.  changed to smaller size 7/7/17  
-          // sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
-          //   if (err) {
-          //     console.log("One of the files is not in expected format (.jpg) " + err);
-          //     return;
-          //   }
-          // });
-
-        });
-      });
       //feb--finished looping through the directory, so process successful response
       sess.photosSuccess = 'Photos processed successfully';
       sess.photosError = null;
