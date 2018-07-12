@@ -1,3 +1,8 @@
+const { fork } = require('child_process');
+var fs = require('fs');
+var path = require('path');
+var sharp = require('sharp');
+
 
 console.log('compute.js called');
 
@@ -15,4 +20,16 @@ console.log('compute.js called');
   
   process.on('message', message => {
     console.log('message from parent:', message);
+    
+    var parsedData = JSON.parse(message);
+
+    for (var i = 0 ; i < parsedData.length   ; i++)
+    {
+      console.log(parsedData[i]);
+    }
+
+
+
+
+    
   });
