@@ -12,7 +12,7 @@ compute.process = function (){
   console.log(sum);
 
 if (process.send) {
-  process.send(streeng);
+  process.send(sum);
 }
 
 
