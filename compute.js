@@ -5,12 +5,16 @@ const longComputation = () => {
     let sum = 0;
     for (let i = 0; i < 1e2; i++) {
       sum += i;
-      console.log(sum);
     };
+    console.log('logging sum');
+    console.log(sum);
     return sum;
   };
   
-  process.on('message', (msg) => {
-    const sum = longComputation();
-    process.send(sum);
+  if (process.send) {
+    process.send("Hello");
+  }
+  
+  process.on('message', message => {
+    console.log('message from parent:', message);
   });
