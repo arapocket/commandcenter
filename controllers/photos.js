@@ -41,6 +41,20 @@ exports.photosHome = function (req, res) {
 ///////////////////////////////////////////////////////////////////
 exports.photosIngest = function (req, res) {
 
+
+
+  if (process.argv[2] === 'child') {
+    console.log('inside the child')
+} else {
+  var child = spawn(process.execPath, [__filename, 'child'],
+{
+  stdio: 'inherit'
+})
+
+console.log('parent')
+
+}
+
     console.log('am i getting into the ingest handler');
     sess = req.session;
     // Going to need this to be a user input or a parameter.  User selected from and to but with To showing a default to the
@@ -76,17 +90,6 @@ exports.photosIngest = function (req, res) {
               // console.log( "'%s' is a directory.", fromPath );
             }
 
-            if (process.argv[2] === 'child') {
-                console.log('inside the child')
-            } else {
-              var child = spawn(process.execPath, [__filename, 'child'],
-            {
-              stdio: 'inherit'
-            })
-
-            console.log('parent')
-
-            }
 
             // was 200, 300.  changed to smaller size 7/7/17  
             sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
