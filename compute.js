@@ -1,3 +1,6 @@
+
+console.log('compute.js called');
+
 const longComputation = () => {
     let sum = 0;
     for (let i = 0; i < 1e9; i++) {
