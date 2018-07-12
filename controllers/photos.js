@@ -60,10 +60,9 @@ exports.photosIngest = function (req, res) {
       //process.exit( 1 );
     } else {
 
-      var streeng = 'suck it';
       const fork = require('child_process').fork;
       const program = path.resolve('compute.js');
-      const parameters = [streeng];
+      const parameters = [];
       const options = {
         // stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
       };
@@ -71,7 +70,7 @@ exports.photosIngest = function (req, res) {
 
       child.on('message', message => {
         console.log('message from child:', message);
-        child.send('Hi');
+        child.send(files);
       });
 
 

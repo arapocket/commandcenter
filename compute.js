@@ -9,7 +9,7 @@ console.log('compute.js called');
     console.log(sum);
   
   if (process.send) {
-    process.send(streeng);
+    process.send(sum);
   }
 
   
