@@ -54,7 +54,7 @@ process.on('message', message => {
   function callback () { createLogEntry('done'); }
 
   function createLogEntry ( param ) {  
-    fs.open('./public/reports/photoZip.log', 'a', 666, function( e, fd ) {
+    fs.open('./public/reports/photoProcess.log', 'a', 666, function( e, fd ) {
     fs.appendFileSync(fd, param + "\r\n", null, 'utf8')
     fs.close(fd, function(){});
     return
