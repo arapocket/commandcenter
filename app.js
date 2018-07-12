@@ -1,6 +1,7 @@
 const cluster = require('cluster');
 
 if (cluster.isMaster){
+  console.log('cluster exists');
   cluster.fork()
   cluster.fork()
 } else {
