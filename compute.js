@@ -13,8 +13,9 @@ if (process.send) {
 process.on('message', message => {
   // console.log('message from parent:', message);
 
-  for (var i = 0 ; i < message.files.length; i ++){
-    let file = message.files[i];
+  var itemsProcessed = 0;
+
+  message.files.forEach(function (file, index) {
     var fromPath = path.join(message.moveFrom, file);
     var toPath = path.join(moveTo, file);
 
@@ -37,22 +38,27 @@ process.on('message', message => {
         if (err) {
           console.log("One of the files is not in expected format (.jpg) " + err);
           return;
+        } else {
+          itemsProcessed++;
+          if(itemsProcessed === message.files.length) {
+            callback();
+          }
         }
       });
 
     });
-  }
+  });
 
+  
 
+  function callback () { createLogEntry('done'); }
 
-  createLogEntry('done');
-
-  function createLogEntry(param) {
-    fs.open('./public/reports/photoZip.log', 'a', 666, function (e, fd) {
-      fs.appendFileSync(fd, param + "\r\n", null, 'utf8')
-      fs.close(fd, function () { });
-      return
-    });
-  };
+  function createLogEntry ( param ) {  
+    fs.open('./public/reports/photoZip.log', 'a', 666, function( e, fd ) {
+    fs.appendFileSync(fd, param + "\r\n", null, 'utf8')
+    fs.close(fd, function(){});
+    return
+});
+};
 
 });
