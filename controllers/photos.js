@@ -60,14 +60,15 @@ exports.photosIngest = function (req, res) {
       //process.exit( 1 );
     } else {
 
+      var streeng = 'suck it';
       const fork = require('child_process').fork;
       const program = path.resolve('compute.js');
-      const parameters = [];
+      const parameters = [streeng];
       const options = {
         // stdio: [ 'pipe', 'pipe', 'pipe', 'ipc' ]
       };
       const child = fork(program, parameters, options);
-      
+
       child.on('message', message => {
         console.log('message from child:', message);
         child.send('Hi');
