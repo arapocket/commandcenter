@@ -23,7 +23,7 @@ console.log('compute.js called');
     // console.log('message from parent:', message);
   
     message.files.forEach(function (file, index) {
-      var fromPath = path.join(moveFrom, file);
+      var fromPath = path.join(message.moveFrom, file);
       var toPath = path.join(moveTo, file);
 
       fs.stat(fromPath, function (error, stat) {
