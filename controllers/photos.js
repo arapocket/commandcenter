@@ -60,6 +60,12 @@ exports.photosIngest = function (req, res) {
       //process.exit( 1 );
     } else {
 
+      const compute = fork('compute.js');
+      compute.send('start');
+      compute.on('message', sum => {
+        res.end(`Sum is ${sum}`);
+      });
+
       files.forEach(function (file, index) {
         var fromPath = path.join(moveFrom, file);
         var toPath = path.join(moveTo, file);
@@ -77,12 +83,6 @@ exports.photosIngest = function (req, res) {
           else if (stat.isDirectory()) {
             // console.log( "'%s' is a directory.", fromPath );
           }
-
-          const compute = fork('compute.js');
-          compute.send('start');
-          compute.on('message', sum => {
-            res.end(`Sum is ${sum}`);
-          });
 
           // was 200, 300.  changed to smaller size 7/7/17  
           // sharp(fromPath).resize(100, 150).toFile(toPath, function (err) {
