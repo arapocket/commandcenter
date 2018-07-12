@@ -20,12 +20,11 @@ console.log('compute.js called');
   
   process.on('message', message => {
     console.log('message from parent:', message);
-    
-    var parsedData = JSON.parse(message);
+  
 
-    for (var i = 0 ; i < parsedData.length   ; i++)
+    for (var i = 0 ; i < message.length   ; i++)
     {
-      console.log(parsedData[i]);
+      console.log(message[i]);
     }
 
 
