@@ -8,11 +8,12 @@ const longComputation = () => {
     };
     console.log('logging sum');
     console.log(sum);
-    if (process.send) {
-      process.send(sum);
-    }
+      return sum;
   };
   
+  if (process.send) {
+    process.send(longComputation);
+  }
 
   
   process.on('message', message => {
