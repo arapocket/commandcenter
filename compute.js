@@ -13,7 +13,8 @@ if (process.send) {
 process.on('message', message => {
   // console.log('message from parent:', message);
 
-  message.files.forEach(function (file, index) {
+  for (var i = 0 ; i < message.files.length; i ++){
+    let file = message.files[i];
     var fromPath = path.join(message.moveFrom, file);
     var toPath = path.join(moveTo, file);
 
@@ -40,16 +41,18 @@ process.on('message', message => {
       });
 
     });
-  });
+  }
+
+
 
   createLogEntry('done');
 
-  function createLogEntry ( param ) {  
-    fs.open('./public/reports/photoZip.log', 'a', 666, function( e, fd ) {
-    fs.appendFileSync(fd, param + "\r\n", null, 'utf8')
-    fs.close(fd, function(){});
-    return
-});
-};
+  function createLogEntry(param) {
+    fs.open('./public/reports/photoZip.log', 'a', 666, function (e, fd) {
+      fs.appendFileSync(fd, param + "\r\n", null, 'utf8')
+      fs.close(fd, function () { });
+      return
+    });
+  };
 
 });
