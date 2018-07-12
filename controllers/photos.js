@@ -107,7 +107,7 @@ exports.photosIngest = function (req, res) {
       })
 
     console.log('parent')
-
+    res.end();
   }
 
   
