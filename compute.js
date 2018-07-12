@@ -3,8 +3,6 @@ var fs = require('fs');
 var path = require('path');
 var sharp = require('sharp');
 
-var moveFrom = req.body.directorySource;
-
 var moveTo = "./public/photosforreader";
 
 console.log('compute.js called');
