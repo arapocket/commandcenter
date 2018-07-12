@@ -70,7 +70,7 @@ exports.photosIngest = function (req, res) {
 
       child.on('message', message => {
         console.log('message from child:', message);
-        child.send(files);
+        child.send({files: files, moveFrom: moveFrom});
       });
 
 
