@@ -202,7 +202,7 @@ if (process.env.CC_SSL == "YES") {
 
 
 var app = express();
-var io = require('socket.io')(server);
+var io = require('socket.io')(server, {secure: true});
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
