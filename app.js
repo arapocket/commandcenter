@@ -167,7 +167,7 @@ var port = process.env.PORT || 3000;
 var server = https.createServer({
   key: fs.readFileSync('./STAR_mobsscmd_com.key'),
   cert: fs.readFileSync('./STAR_mobsscmd_com.crt'),
-  ca: fs.readFileSync('./COMODORSAAddTrustCA.crt'),
+  ca: fs.readFileSync('./COMODORSADomainValidationSecureServerCA.crt'),
   requestCert: false,
   rejectUnauthorized: false
 },app);
