@@ -172,6 +172,9 @@ var server = https.createServer({
   rejectUnauthorized: false
 },app);
 
+server.listen(port);
+
+
 server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
 
@@ -210,7 +213,7 @@ if (process.env.CC_SSL == "YES") {
 
 
 var app = express();
-var io = require('socket.io')(server);
+var io = require('socket.io').listen(server);
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
