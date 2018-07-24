@@ -491,7 +491,7 @@ function patrolPost(data, socket) {
   });
 
   const options = {
-    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    hostname: 'convoyer.mobsscmd.com',
     port: 3000,
     path: '/patrols',
     method: 'POST',
@@ -530,7 +530,7 @@ function patrolPut(data, socket) {
   });
 
   const options = {
-    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    hostname: 'convoyer.mobsscmd.com',
     port: 3000,
     path: '/patrols',
     method: 'PUT',
@@ -684,7 +684,7 @@ function postPerson(contact) {
   });
 
   const options = {
-    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    hostname: 'convoyer.mobsscmd.com',
     port: 3000,
     path: '/microsoftgraph',
     method: 'POST',
@@ -777,7 +777,7 @@ function postList(data) {
 
 
   const options = {
-    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    hostname: 'convoyer.mobsscmd.com',
     port: 3000,
     path: '/distributionlist',
     method: 'POST',
@@ -849,7 +849,7 @@ function postMember(personData) {
 
 
   const options = {
-    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    hostname: 'convoyer.mobsscmd.com',
     port: 3000,
     path: '/distributionlistmembers',
     method: 'POST',
