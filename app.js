@@ -182,7 +182,7 @@ var server = app.listen(port, function () {
 server.listen(port);
 
 if (process.env.CC_SSL == "YES") {
-  secureServer = https.createServer(options, app).listen(443, function () {
+  var secureServer = https.createServer(options, app).listen(443, function () {
     console.log('App listening on port 443!')
   });
 
