@@ -247,7 +247,7 @@ function getDevices(socket) {
   var req = https.request(options, (res) => {
 
     res.on('data', (d) => {
-      d = d.toString('utf8');
+      d = String.fromCharCode.apply(String, data);
       d = JSON.parse(d);
       console.log(d);
       tokens = [];
