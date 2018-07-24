@@ -4,7 +4,7 @@ $(function () {
 
   getMessages();
 
-  var socket = io({secure: true});
+  var socket = io();
 
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
