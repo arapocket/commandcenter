@@ -183,7 +183,7 @@ if (process.env.CC_SSL == "YES") {
 
   });
 
-  // server.listen(port);
+  server.listen(port);
 }
 
 
@@ -207,7 +207,7 @@ server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 **/
 
 
-var io = require('socket.io')(server);
+const io = require('socket.io')(server);
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
