@@ -239,11 +239,9 @@ function getDevices(socket) {
   var options = {
     hostname: 'convoyer.mobsscmd.com',
     port: 443,
-    path: '/guardnotifcations',
+    path: '/guardnotifications',
     method: 'GET',
-    rejectUnauthorized: false, 
-    headers: {
-       }
+    rejectUnauthorized: false
   };
 
   var req = https.request(options, (res) => {
