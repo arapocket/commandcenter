@@ -207,7 +207,7 @@ server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 **/
 
 
-const io = require('socket.io')(server);
+var io = require('socket.io')(server);
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
@@ -223,6 +223,7 @@ io.on('connection', function (socket) {
   console.log('io connected');
 
   if (firstConnection){
+    console.log('is the first connection')
     initializeSockets(socket);
     firstConnection = false;
   }
