@@ -181,25 +181,12 @@ var port = process.env.PORT || 3000;
 
 // server.listen(port);
 
-
+if (process.env.CC_SSL == "YES") {
   server = https.createServer(options, app).listen(443, function () {
     console.log('App listening on port 443!')
   });
 
-  var io = require('socket.io')(server);
-  let tokens = [];
-  const querystring = require('querystring');
-  var request = require('request');
-  
-  // Chatroom
-  
-  var numUsers = 0;
-  
-  io.on('connection', function (socket) {
-      console.log('new socket connection')
-      initializeSockets(socket);
-  });
-
+} 
 
 
 
@@ -223,7 +210,19 @@ server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 **/
 
 
+var io = require('socket.io')(server);
+let tokens = [];
+const querystring = require('querystring');
+var request = require('request');
 
+// Chatroom
+
+var numUsers = 0;
+
+io.on('connection', function (socket) {
+    console.log('new socket connection')
+    initializeSockets(socket);
+});
 
 function initializeSockets(socket) {
   getDevices(socket);
