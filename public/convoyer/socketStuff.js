@@ -83,6 +83,8 @@ $(function () {
   // Sets the client's username
   function setUsername() {
 
+    console.log('setUsername called');
+
     username = "DISPATCH";
     socket.emit('add user', username);
   }
@@ -313,7 +315,6 @@ $(function () {
   socket.on('user joined', function (data) {
     log(data.username + ' joined');
     addParticipantsMessage(data);
-
 
   });
 
