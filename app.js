@@ -248,11 +248,11 @@ function getDevices(socket) {
 
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
-      var data = JSON.parse(chunk);
+      var data = JSON.parse(JSON.stringify(chunk));
       tokens = [];
-      for (var i = 0; i < chunk.length; i++) {
-        console.log(chunk[i]);
-        tokens.push(chunk[i].DeviceToken);
+      for (var i = 0; i < data.length; i++) {
+        console.log(data[i]);
+        tokens.push(data[i].DeviceToken);
       }
       setSocketListeners(socket);
     });
