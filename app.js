@@ -249,11 +249,11 @@ function getDevices(socket) {
     res.on('data', (d) => {
       d = d.toString('utf8');
       console.log(d);
-
+      d = JSON.parse(d);
       tokens = [];
       for (var i = 0; i < d.length; i++) {
         console.log(d[i]);
-        tokens.push(JSON.stringify(d[i].DeviceToken));
+        tokens.push(d[i].DeviceToken);
       }
       setSocketListeners(socket);
 
