@@ -579,7 +579,7 @@ function callAPIForPeople() {
 }
 
 function getPeopleFromDB() {
-  https.get(process.env.SERVER_ADDRESS + '/microsoftgraph', (res) => {
+  http.get(process.env.SERVER_ADDRESS + '/microsoftgraph', (res) => {
 
 
     const { statusCode } = res;
@@ -617,7 +617,6 @@ function getPeopleFromDB() {
             phone: currentPerson.Phone
           });
         }
-
 
         for (var i = 0; i < exchangeArray.length; i++) {
           exchangeNameArray.push(exchangeArray[i].name);
