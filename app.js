@@ -241,6 +241,7 @@ function getDevices(socket) {
     port: 443,
     path: '/guardnotifcations',
     method: 'GET',
+    rejectUnauthorized: false, 
     headers: {
        }
   };
