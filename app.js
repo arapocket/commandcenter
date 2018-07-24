@@ -495,6 +495,7 @@ function patrolPost(data, socket) {
     port: 443,
     path: '/patrols',
     method: 'POST',
+    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(postData)
@@ -536,6 +537,7 @@ function patrolPut(data, socket) {
     port: 443,
     path: '/patrols',
     method: 'PUT',
+    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(postData)
@@ -690,6 +692,7 @@ function postPerson(contact) {
     port: 443,
     path: '/microsoftgraph',
     method: 'POST',
+    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(json)
@@ -783,6 +786,7 @@ function postList(data) {
     port: 443,
     path: '/distributionlist',
     method: 'POST',
+    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -855,6 +859,7 @@ function postMember(personData) {
     port: 443,
     path: '/distributionlistmembers',
     method: 'POST',
+    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
