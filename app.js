@@ -249,6 +249,7 @@ function getDevices(socket) {
   var req = https.request(options, (res) => {
 
     res.on('data', (d) => {
+      d = d.toString('utf8');
       console.log(d);
     });
   });
