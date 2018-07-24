@@ -248,7 +248,7 @@ function getDevices(socket) {
 
     res.on('data', (d) => {
       d = String.fromCharCode.apply(String, d);
-      d = JSON.parse(d);
+      d  = JSON.parse(Buffer.concat(d).toString());
       console.log(d);
       tokens = [];
       for (var i = 0; i < d.length; i++) {
