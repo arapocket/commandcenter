@@ -492,7 +492,7 @@ function patrolPost(data, socket) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 3000,
+    port: 443,
     path: '/patrols',
     method: 'POST',
     headers: {
@@ -531,7 +531,7 @@ function patrolPut(data, socket) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 3000,
+    port: 443,
     path: '/patrols',
     method: 'PUT',
     headers: {
@@ -685,7 +685,7 @@ function postPerson(contact) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 3000,
+    port: 443,
     path: '/microsoftgraph',
     method: 'POST',
     headers: {
@@ -778,7 +778,7 @@ function postList(data) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 3000,
+    port: 443,
     path: '/distributionlist',
     method: 'POST',
     headers: {
@@ -850,7 +850,7 @@ function postMember(personData) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 3000,
+    port: 443,
     path: '/distributionlistmembers',
     method: 'POST',
     headers: {
