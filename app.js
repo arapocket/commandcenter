@@ -220,6 +220,8 @@ var numUsers = 0;
 
 io.on('connection', function (socket) {
 
+  console.log('io connected');
+
   initializeSockets(socket);
 
 });
