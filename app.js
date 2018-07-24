@@ -246,19 +246,20 @@ function getDevices(socket) {
 
   var req = https.request(options, (res) => {
 
-    res.on('data', (d) => {
-      d = String.fromCharCode.apply(String, d);
-      d  = JSON.parse(Buffer.concat(d).toString());
-      console.log(d);
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
       tokens = [];
-      for (var i = 0; i < d.length; i++) {
-        console.log(d[i]);
-        tokens.push(d[i].DeviceToken);
+      for (var i = 0; i < chunk.length; i++) {
+        console.log(chunk[i]);
+        tokens.push(chunk[i].DeviceToken);
       }
       setSocketListeners(socket);
-
+    });
+    res.on('end', () => {
     });
   });
+
+
 
   req.on('error', (e) => {
     console.error(e);
