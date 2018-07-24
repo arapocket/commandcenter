@@ -379,6 +379,9 @@ function setSocketListeners(socket) {
 
   /// when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {
+
+    console.log('add user heard');
+
     if (addedUser) return;
 
     // we store the username in the socket session for this client
@@ -439,7 +442,6 @@ function setSocketListeners(socket) {
       location: location
     });
   })
-
 
   // when a new incident is reported.. emit this
   socket.on('new incident', function (incident) {

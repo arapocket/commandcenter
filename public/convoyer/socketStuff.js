@@ -22,7 +22,6 @@ $(function () {
   var $chatPage = $('.chat.page'); // The chatroom page
 
 
-
   // Prompt for setting a username
   var username = '';
   var connected = true;
@@ -31,15 +30,11 @@ $(function () {
   var $currentInput = $usernameInput.focus();
   setUsername();
 
-
-
   let sendMessageButton = parent.document.getElementById('sendMessageButton');
 
   sendMessageButton.addEventListener('click', function () {
     sendMessage();
   })
-
-
 
   function getMessages() {
     var xhr = new XMLHttpRequest();
@@ -68,7 +63,6 @@ $(function () {
 
     xhr.send(null);
   }
-
 
   function addParticipantsMessage(data) {
     var message = '';
