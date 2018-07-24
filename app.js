@@ -211,7 +211,6 @@ var io = require('socket.io')(server);
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
-var firstConnection = true;
 
 
 // Chatroom
@@ -219,16 +218,7 @@ var firstConnection = true;
 var numUsers = 0;
 
 io.on('connection', function (socket) {
-
-  console.log('io connected');
-
-  if (firstConnection){
-    console.log('is the first connection')
     initializeSockets(socket);
-    firstConnection = false;
-  }
-  
-
 });
 
 function initializeSockets(socket) {
