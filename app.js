@@ -169,17 +169,19 @@ var port = process.env.PORT || 3000;
 //console.log(__dirname);
 //app.use(logger('common', { skip: function(req, res) { return res.statusCode < 400 }, stream: __dirname + '/morgan.log' }));
 
+
+
+// var server = app.listen(port, function () {
+//   console.log("Listening on " + port);
+
+// });
+
+// server.listen(port);
+
 /** 
  * If SSL enabled, create a server instance for SSL
  * 
  */
-
-var server = app.listen(port, function () {
-  console.log("Listening on " + port);
-
-});
-
-server.listen(port);
 
 if (process.env.CC_SSL == "YES") {
   var secureServer = https.createServer(options, app).listen(443, function () {
