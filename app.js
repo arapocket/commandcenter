@@ -171,12 +171,12 @@ var port = process.env.PORT || 3000;
 
 
 
-// var server = app.listen(port, function () {
-//   console.log("Listening on " + port);
+var server = app.listen(port, function () {
+  console.log("Listening on " + port);
 
-// });
+});
 
-// server.listen(port);
+server.listen(port);
 
 /** 
  * If SSL enabled, create a server instance for SSL
@@ -192,7 +192,7 @@ if (process.env.CC_SSL == "YES") {
 
 
 
-// server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
+server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
 // Opens the url in the default browser
 //if (process.env.SETUP_STS == 1){
