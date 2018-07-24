@@ -212,12 +212,12 @@ let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
 
-
 // Chatroom
 
 var numUsers = 0;
 
 io.on('connection', function (socket) {
+    console.log('new socket connection')
     initializeSockets(socket);
 });
 
@@ -228,7 +228,6 @@ function initializeSockets(socket) {
 function getDevices(socket) {
 
   console.log('getDevices called');
-
 
   var options = {
     hostname: 'convoyer.mobsscmd.com',
