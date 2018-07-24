@@ -180,9 +180,9 @@ if (process.env.CC_SSL == "YES") {
 } else {
   var server = app.listen(port, function () {
     console.log("Listening on " + port);
-  
+
   });
-  
+
   server.listen(port);
 }
 
@@ -249,15 +249,22 @@ function getDevices(socket) {
     res.on('data', (d) => {
       d = d.toString('utf8');
       console.log(d);
+
+      tokens = [];
+      for (var i = 0; i < d.length; i++) {
+        tokens.push(parsedData[i].DeviceToken);
+      }
+      setSocketListeners(socket);
+
     });
   });
-  
+
   req.on('error', (e) => {
     console.error(e);
   });
-  
+
   req.end();
-  
+
   // https.get(process.env.SERVER_ADDRESS + '/guardnotifications', (res) => {
   //   const { statusCode } = res;
   //   const contentType = res.headers['content-type'];
