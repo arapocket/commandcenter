@@ -238,7 +238,6 @@ function getDevices(socket) {
 
   var options = {
     hostname: process.env.SERVER_ADDRESS,
-    port: 443,
     path: '/guardnotifcations',
     method: 'GET',
     headers: {
