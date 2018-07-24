@@ -76,7 +76,8 @@ module.exports.addPatrol = function (Patrol, callback) {
                     callback(null, rows);
 
                 } else {
-                    console.log('error with the query');
+                    console.log('error with the addPatrol query');
+                    console.log(err);
                     connection.end();
                     callback(err, rows);
                 }
