@@ -211,6 +211,7 @@ const io = require('socket.io')(server);
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
+var firstConnection = true;
 
 
 // Chatroom
@@ -221,10 +222,13 @@ io.on('connection', function (socket) {
 
   console.log('io connected');
 
-  initializeSockets(socket);
+  if (firstConnection){
+    initializeSockets(socket);
+    firstConnection = false;
+  }
+  
 
 });
-
 
 function initializeSockets(socket) {
   getDevices(socket);
