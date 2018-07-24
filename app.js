@@ -252,7 +252,7 @@ function getDevices(socket) {
 
       tokens = [];
       for (var i = 0; i < d.length; i++) {
-        tokens.push(parsedData[i].DeviceToken);
+        tokens.push(d[i].DeviceToken);
       }
       setSocketListeners(socket);
 
