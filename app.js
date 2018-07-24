@@ -183,7 +183,7 @@ if (process.env.CC_SSL == "YES") {
 
   });
 
-  server.listen(port);
+  // server.listen(port);
 }
 
 
@@ -483,8 +483,6 @@ function patrolPost(data, socket) {
 
 
   console.log('A. patrolPost called');
-
-
 
   const postData = querystring.stringify({
     'PatrolID': data.PatrolID,
