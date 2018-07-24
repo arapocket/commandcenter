@@ -64,7 +64,7 @@ $(function () {
       }
     }
 
-    xhr.open("GET", "https://convoyer.mobsscmd.com/messages/", true);
+    xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/messages/", true);
 
     xhr.send(null);
   }
@@ -241,7 +241,7 @@ $(function () {
       return false;
     }
 
-    xhr.open("POST", "https://convoyer.mobsscmd.com/messages", true);
+    xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/messages", true);
 
     xhr.setRequestHeader('Content-Type', 'application/json');
 

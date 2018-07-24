@@ -709,7 +709,7 @@ function initMap() {
 
             if (incidents[i].Media != 'none') {
                 windowString = `<h3 >` + incidents[i].Type + ` </h3> 
-                    <div> <p>` + incidents[i].Description + `</p> </div> <div> <object id = 'map' data='https://convoyer.mobsscmd.com/incidentpreview/` + incidents[i].IncidentID + `' type='text/html'> <object/> </div>
+                    <div> <p>` + incidents[i].Description + `</p> </div> <div> <object id = 'map' data='http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incidents[i].IncidentID + `' type='text/html'> <object/> </div>
                     `;
             } else {
                 windowString = `<h3 >` + incidents[i].Type + ` </h3>
@@ -762,7 +762,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "https://convoyer.mobsscmd.com/incidents/" + incidentID, true);
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/incidents/" + incidentID, true);
 
         xhr.send(null);
 
@@ -784,7 +784,7 @@ function initMap() {
     //         <h6 style="color:#404040"> 
     //         ` + incident.Description + `
     //         </h6> ` +
-    //             `<object id = 'map' data='https://convoyer.mobsscmd.com/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
+    //             `<object id = 'map' data='http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/incidentpreview/` + incident.IncidentID + `' width='100%' height='100%' type='text/html'> <object/> `
 
     //     } else {
     //         windowString = `
@@ -941,7 +941,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "https://convoyer.mobsscmd.com/routes/", true);
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/routes/", true);
 
         xhr.send(null);
 
@@ -979,7 +979,7 @@ function initMap() {
             return false;
         }
 
-        xhr.open("PUT", "https://convoyer.mobsscmd.com/queueroute", true);
+        xhr.open("PUT", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/queueroute", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
 
@@ -1075,7 +1075,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "https://convoyer.mobsscmd.com/currentroutes/" + currentGuard, true);
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/currentroutes/" + currentGuard, true);
 
         xhr.send(null);
     }
@@ -1091,7 +1091,7 @@ function initMap() {
             return false;
         }
 
-        xhr.open("PUT", "https://convoyer.mobsscmd.com/queueroute", true);
+        xhr.open("PUT", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/queueroute", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
 
@@ -1255,7 +1255,7 @@ function initMap() {
                         return false;
                     }
 
-                    xhr.open("PUT", "https://convoyer.mobsscmd.com/patrols", true);
+                    xhr.open("PUT", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/patrols", true);
                     xhr.setRequestHeader('Content-Type', 'application/json');
 
                     xhr.send(JSON.stringify({
@@ -1307,7 +1307,7 @@ function initMap() {
                     return false;
                 }
 
-                xhr.open("POST", "https://convoyer.mobsscmd.com/routes", true);
+                xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/routes", true);
 
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify({
@@ -1351,7 +1351,7 @@ function initMap() {
                     return false;
                 }
 
-                xhr.open("POST", "https://convoyer.mobsscmd.com/saveroute", true);
+                xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/saveroute", true);
 
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.send(JSON.stringify({
@@ -1426,7 +1426,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "https://convoyer.mobsscmd.com/routes/", true);
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/routes/", true);
 
         xhr.send(null);
     }
@@ -1450,7 +1450,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "https://convoyer.mobsscmd.com/currentroutes/" + id, true);
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/currentroutes/" + id, true);
 
         xhr.send(null);
 
@@ -1469,7 +1469,7 @@ function initMap() {
             return false;
         }
 
-        xhr.open("PUT", "https://convoyer.mobsscmd.com/setcurrentroute", true);
+        xhr.open("PUT", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/setcurrentroute", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
 
@@ -1526,7 +1526,7 @@ function initMap() {
             return false;
         }
 
-        xhr.open("PUT", "https://convoyer.mobsscmd.com/coordinates", true);
+        xhr.open("PUT", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/coordinates", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         xhr.send(JSON.stringify({
@@ -1551,7 +1551,7 @@ function initMap() {
                 return false;
             }
 
-            xhr.open("POST", "https://convoyer.mobsscmd.com/checkpoints", true);
+            xhr.open("POST", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/checkpoints", true);
 
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify({
@@ -1584,7 +1584,7 @@ function initMap() {
             }
         }
 
-        xhr.open("GET", "https://convoyer.mobsscmd.com/checkpoints/" + routeID, true);
+        xhr.open("GET", "http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000/checkpoints/" + routeID, true);
 
         xhr.send(null);
     }
