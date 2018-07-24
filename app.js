@@ -511,6 +511,8 @@ function patrolPost(data, socket) {
   });
 
   req.on('error', (e) => {
+    console.log('logging  patrol post error from app.js ')
+    console.log(e);
   });
 
   // write data to request body
