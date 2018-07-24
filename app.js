@@ -166,7 +166,7 @@ var server = app.listen(port, function () {
 
 });
 
-
+server.listen(port);
 
 server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
@@ -211,7 +211,6 @@ let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
 
-server.listen(port);
 
 // Chatroom
 
