@@ -246,7 +246,6 @@ function getDevices(socket) {
 
   var req = https.request(options, (res) => {
 
-    res.setEncoding('utf8');
     res.on('data', (chunk) => {
       var data = JSON.parse(JSON.stringify(chunk));
       tokens = [];
