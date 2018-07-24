@@ -235,7 +235,7 @@ function getDevices(socket) {
 
   console.log('getDevices called');
 
-  http.get(process.env.SERVER_ADDRESS + '/guardnotifications', (res) => {
+  https.get(process.env.SERVER_ADDRESS + '/guardnotifications', (res) => {
     const { statusCode } = res;
     const contentType = res.headers['content-type'];
 
@@ -579,7 +579,7 @@ function callAPIForPeople() {
 }
 
 function getPeopleFromDB() {
-  http.get(process.env.SERVER_ADDRESS + '/microsoftgraph', (res) => {
+  https.get(process.env.SERVER_ADDRESS + '/microsoftgraph', (res) => {
 
 
     const { statusCode } = res;
