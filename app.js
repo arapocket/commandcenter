@@ -179,6 +179,8 @@ var server = app.listen(port, function () {
 
 });
 
+server.listen(port);
+
 if (process.env.CC_SSL == "YES") {
   server = https.createServer(options, app).listen(443, function () {
     console.log('App listening on port 443!')
@@ -186,7 +188,7 @@ if (process.env.CC_SSL == "YES") {
 } else {
 
 }
-server.listen(port);
+
 
 
 server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
