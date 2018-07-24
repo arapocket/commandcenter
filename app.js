@@ -159,19 +159,12 @@ var port = process.env.PORT || 3000;
  * Node defaults to 2 minutes, which is too sort to wait for long inserts.
  * Have only done the for HTTP so far.
  */
-// var server = app.listen(port, function () {
-//   console.log("Listening on " + port);
 
-// });
 
-var server = https.createServer({
-  key: fs.readFileSync('./STAR_mobsscmd_com.key'),
-  cert: fs.readFileSync('./STAR_mobsscmd_com.crt'),
-  ca: fs.readFileSync('./COMODORSADomainValidationSecureServerCA.crt'),
-  requestCert: false,
-  rejectUnauthorized: false
-},app);
+var server = app.listen(port, function () {
+  console.log("Listening on " + port);
 
+});
 
 
 
