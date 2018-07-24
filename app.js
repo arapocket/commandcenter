@@ -178,10 +178,10 @@ if (process.env.CC_SSL == "YES") {
     console.log('App listening on port 443!')
   });
 } else {
-  // var server = app.listen(port, function () {
-  //   console.log("Listening on " + port);
+  var server = app.listen(port, function () {
+    console.log("Listening on " + port);
 
-  // });
+  });
 
   server.listen(port);
 }
@@ -207,7 +207,6 @@ server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 **/
 
 
-var app = express();
 var io = require('socket.io')(server);
 let tokens = [];
 const querystring = require('querystring');
