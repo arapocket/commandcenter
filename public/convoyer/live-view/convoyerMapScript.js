@@ -6,7 +6,7 @@ function initMap() {
 
     let alreadyCalled = false;
 
-    var socket = io();
+    var socket = io({secure: true});
 
     var mapStyle = [
         {
