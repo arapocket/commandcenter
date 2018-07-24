@@ -233,6 +233,7 @@ function initializeSockets(socket) {
 
 function getDevices(socket) {
 
+  console.log('getDevices called');
 
   http.get(process.env.SERVER_ADDRESS + '/guardnotifications', (res) => {
     const { statusCode } = res;
