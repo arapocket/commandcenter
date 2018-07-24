@@ -127,17 +127,17 @@ if (process.env.SWEEP_SCHED != "OFF") {
   Months: 0-11
   Day of Week: 0-6
   eg: runs 5 days a week at 640PM
-  '00 40 18 * * 1-5'
+  '00 40 18 * * 1-5'
   Six * means runs every second
    */
-  //new CronJob('00 46 12 * * 1-5', function() {
+  //new CronJob('00 46 12 * * 1-5', function() {
 
   //###### Tue Oct 3 07:12:37 PDT 2017  Seperate the photos and data elements of the sweep
   var sweepDataAndPhotos = process.env.SWEEP_SCOPE
 
-  new CronJob('0 36 00 * * 0-6', function () {
+  new CronJob('0 36 00 * * 0-6', function () {
 
-    //new CronJob('* * * * * *', function() {
+    //new CronJob('* * * * * *', function() {
     //###### Tue Oct 3 07:12:37 PDT 2017  Seperate the photos and data elements of the sweep
     beckenbauer.sweeper(sweepDataAndPhotos, function (err, rslt) {
       if (err) { console.log('cron unsuccessful: ' + err); }
@@ -147,7 +147,7 @@ if (process.env.SWEEP_SCHED != "OFF") {
 }
 
 
-// console.log('You will see this message every second');
+// console.log('You will see this message every second');
 //this will allow us to simply add a hardcoded directory daily csv and then it will simply read the latest file in the directory and determine if there has been a change
 //console.log('the path is '+__dirname); // this looks like the application directory
 //console.log('the path is '+__filename); // this is the directory plus app.js
@@ -159,10 +159,12 @@ var port = process.env.PORT || 3000;
  * Node defaults to 2 minutes, which is too sort to wait for long inserts.
  * Have only done the for HTTP so far.
  */
+var server = app.listen(port, function () {
+  console.log("Listening on " + port);
 
+});
 
-
-
+server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
 
 // You can set morgan to log differently depending on your environment
@@ -173,24 +175,13 @@ var port = process.env.PORT || 3000;
  * If SSL enabled, create a server instance for SSL
  * 
  */
-
-// var server = app.listen(port, function () {
-//   console.log("Listening on " + port);
-
-// });
-
-// server.listen(port);
-
 if (process.env.CC_SSL == "YES") {
-  server = https.createServer(options, app).listen(443, function () {
+  https.createServer(options, app).listen(443, function () {
     console.log('App listening on port 443!')
   });
-
-} 
-
+}
 
 
-server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
 // Opens the url in the default browser
 //if (process.env.SETUP_STS == 1){
@@ -210,6 +201,7 @@ server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 **/
 
 
+var app = express();
 var io = require('socket.io')(server);
 let tokens = [];
 const querystring = require('querystring');
@@ -220,9 +212,11 @@ var request = require('request');
 var numUsers = 0;
 
 io.on('connection', function (socket) {
-    console.log('new socket connection')
-    initializeSockets(socket);
+
+  initializeSockets(socket);
+
 });
+
 
 function initializeSockets(socket) {
   getDevices(socket);
@@ -230,77 +224,45 @@ function initializeSockets(socket) {
 
 function getDevices(socket) {
 
-  console.log('getDevices called');
 
-  var options = {
-    hostname: 'convoyer.mobsscmd.com',
-    port: 443,
-    path: '/guardnotifications',
-    method: 'GET',
-    rejectUnauthorized: false
-  };
+  http.get(process.env.SERVER_ADDRESS + '/guardnotifications', (res) => {
+    const { statusCode } = res;
+    const contentType = res.headers['content-type'];
 
-  var req = https.request(options, (res) => {
+    let error;
+    if (statusCode !== 200) {
+      error = new Error('Request Failed.\n' +
+        `Status Code: ${statusCode}`);
+    } else if (!/^application\/json/.test(contentType)) {
+      error = new Error('Invalid content-type.\n' +
+        `Expected application/json but received ${contentType}`);
+    }
+    if (error) {
+      console.error(error.message);
+      // consume response data to free up memory
+      res.resume();
+      return;
+    }
 
-    res.on('data', (chunk) => {
-      var data = JSON.parse(JSON.stringify(chunk));
-      tokens = [];
-      for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
-        tokens.push(data[i].DeviceToken);
-      }
-      setSocketListeners(socket);
-    });
+    res.setEncoding('utf8');
+    let rawData = '';
+    res.on('data', (chunk) => { rawData += chunk; });
     res.on('end', () => {
+      try {
+        const parsedData = JSON.parse(rawData);
+
+        tokens = [];
+        for (var i = 0; i < parsedData.length; i++) {
+          tokens.push(parsedData[i].DeviceToken);
+        }
+        setSocketListeners(socket);
+
+      } catch (e) {
+        console.error(e.message);
+      }
     });
+  }).on('error', (e) => {
   });
-
-
-
-  req.on('error', (e) => {
-    console.error(e);
-  });
-
-  req.end();
-
-  // https.get(process.env.SERVER_ADDRESS + '/guardnotifications', (res) => {
-  //   const { statusCode } = res;
-  //   const contentType = res.headers['content-type'];
-
-  //   let error;
-  //   if (statusCode !== 200) {
-  //     error = new Error('Request Failed.\n' +
-  //       `Status Code: ${statusCode}`);
-  //   } else if (!/^application\/json/.test(contentType)) {
-  //     error = new Error('Invalid content-type.\n' +
-  //       `Expected application/json but received ${contentType}`);
-  //   }
-  //   if (error) {
-  //     console.error(error.message);
-  //     // consume response data to free up memory
-  //     res.resume();
-  //     return;
-  //   }
-
-  //   res.setEncoding('utf8');
-  //   let rawData = '';
-  //   res.on('data', (chunk) => { rawData += chunk; });
-  //   res.on('end', () => {
-  //     try {
-  //       const parsedData = JSON.parse(rawData);
-
-  //       tokens = [];
-  //       for (var i = 0; i < parsedData.length; i++) {
-  //         tokens.push(parsedData[i].DeviceToken);
-  //       }
-  //       setSocketListeners(socket);
-
-  //     } catch (e) {
-  //       console.error(e.message);
-  //     }
-  //   });
-  // }).on('error', (e) => {
-  // });
 
 }
 
@@ -375,9 +337,6 @@ function setSocketListeners(socket) {
 
   /// when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {
-
-    console.log('add user heard');
-
     if (addedUser) return;
 
     // we store the username in the socket session for this client
@@ -439,6 +398,7 @@ function setSocketListeners(socket) {
     });
   })
 
+
   // when a new incident is reported.. emit this
   socket.on('new incident', function (incident) {
     socket.broadcast.emit('incident', {
@@ -471,6 +431,8 @@ function setSocketListeners(socket) {
           numUsers: numUsers
         });
       }
+
+
     }
 
   });
@@ -482,6 +444,8 @@ function patrolPost(data, socket) {
 
   console.log('A. patrolPost called');
 
+
+
   const postData = querystring.stringify({
     'PatrolID': data.PatrolID,
     'GuardID': data.GuardID,
@@ -489,18 +453,17 @@ function patrolPost(data, socket) {
   });
 
   const options = {
-    hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    port: 3000,
     path: '/patrols',
     method: 'POST',
-    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(postData)
     }
   };
 
-  const req = https.request(options, (res) => {
+  const req = http.request(options, (res) => {
 
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
@@ -510,8 +473,6 @@ function patrolPost(data, socket) {
   });
 
   req.on('error', (e) => {
-    console.log('logging  patrol post error from app.js ')
-    console.log(e);
   });
 
   // write data to request body
@@ -531,11 +492,10 @@ function patrolPut(data, socket) {
   });
 
   const options = {
-    hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    port: 3000,
     path: '/patrols',
     method: 'PUT',
-    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(postData)
@@ -648,6 +608,7 @@ function getPeopleFromDB() {
           });
         }
 
+
         for (var i = 0; i < exchangeArray.length; i++) {
           exchangeNameArray.push(exchangeArray[i].name);
         }
@@ -686,11 +647,10 @@ function postPerson(contact) {
   });
 
   const options = {
-    hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    port: 3000,
     path: '/microsoftgraph',
     method: 'POST',
-    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': Buffer.byteLength(json)
@@ -780,11 +740,10 @@ function postList(data) {
 
 
   const options = {
-    hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    port: 3000,
     path: '/distributionlist',
     method: 'POST',
-    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -853,11 +812,10 @@ function postMember(personData) {
 
 
   const options = {
-    hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    hostname: 'ec2-34-215-115-69.us-west-2.compute.amazonaws.com',
+    port: 3000,
     path: '/distributionlistmembers',
     method: 'POST',
-    rejectUnauthorized: false,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     }

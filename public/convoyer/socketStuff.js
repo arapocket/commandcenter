@@ -4,7 +4,7 @@ $(function () {
 
   getMessages();
 
-  var socket = io({secure: true});
+  var socket = io();
 
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
@@ -22,6 +22,7 @@ $(function () {
   var $chatPage = $('.chat.page'); // The chatroom page
 
 
+
   // Prompt for setting a username
   var username = '';
   var connected = true;
@@ -30,11 +31,15 @@ $(function () {
   var $currentInput = $usernameInput.focus();
   setUsername();
 
+
+
   let sendMessageButton = parent.document.getElementById('sendMessageButton');
 
   sendMessageButton.addEventListener('click', function () {
     sendMessage();
   })
+
+
 
   function getMessages() {
     var xhr = new XMLHttpRequest();
@@ -64,6 +69,7 @@ $(function () {
     xhr.send(null);
   }
 
+
   function addParticipantsMessage(data) {
     var message = '';
     if (data.numUsers === 1) {
@@ -76,8 +82,6 @@ $(function () {
 
   // Sets the client's username
   function setUsername() {
-
-    console.log('setUsername called');
 
     username = "DISPATCH";
     socket.emit('add user', username);
@@ -289,6 +293,7 @@ $(function () {
   // Whenever the server emits 'login', log the login message
   socket.on('login', function (data) {
 
+
     connected = true;
     // Display the welcome message
     var message = "CONVOYER CHAT";
@@ -309,6 +314,7 @@ $(function () {
   socket.on('user joined', function (data) {
     log(data.username + ' joined');
     addParticipantsMessage(data);
+
 
   });
 
