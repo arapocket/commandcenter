@@ -180,7 +180,7 @@ var server = app.listen(port, function () {
 });
 
 if (process.env.CC_SSL == "YES") {
-  var server = https.createServer(options, app).listen(443, function () {
+  server = https.createServer(options, app).listen(443, function () {
     console.log('App listening on port 443!')
   });
 } else {
