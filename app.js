@@ -178,10 +178,10 @@ if (process.env.CC_SSL == "YES") {
     console.log('App listening on port 443!')
   });
 } else {
-  var server = app.listen(port, function () {
-    console.log("Listening on " + port);
+  // var server = app.listen(port, function () {
+  //   console.log("Listening on " + port);
 
-  });
+  // });
 
   server.listen(port);
 }
