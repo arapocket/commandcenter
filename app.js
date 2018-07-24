@@ -183,7 +183,7 @@ if (process.env.CC_SSL == "YES") {
 
   });
 
-  // server.listen(port);
+  server.listen(port);
 }
 
 
@@ -501,7 +501,7 @@ function patrolPost(data, socket) {
     }
   };
 
-  const req = http.request(options, (res) => {
+  const req = https.request(options, (res) => {
 
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
