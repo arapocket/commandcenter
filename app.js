@@ -721,6 +721,7 @@ function postPerson(contact) {
 
 function clearDistributionLists() {
 
+  console.log('clearDistributionLists called');
 
   request.del(process.env.SERVER_ADDRESS + "/distributionlist", function (err, res, body) {
     if (err) {
