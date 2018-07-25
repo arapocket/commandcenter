@@ -725,6 +725,7 @@ function clearDistributionLists() {
 
   request.del(process.env.SERVER_ADDRESS + "/distributionlist", function (err, res, body) {
     if (err) {
+      console.log(err);
     } else {
       clearDistributionListMembers()
     }
