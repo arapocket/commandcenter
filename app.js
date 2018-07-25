@@ -734,6 +734,7 @@ function clearDistributionLists() {
 
 function clearDistributionListMembers() {
 
+  console.log('clearDistributionListMembers called');
 
   request.del(process.env.SERVER_ADDRESS + "/distributionlistmembers", function (err, res, body) {
     if (err) {
@@ -745,6 +746,9 @@ function clearDistributionListMembers() {
 }
 
 function callAPIForGroups() {
+
+  console.log('callApiForGroups called');
+
   auth.getAccessToken().then(function (token) {
     // Get all of the users in the tenant.
     graph.getGroups(token)
@@ -851,6 +855,8 @@ function callAPIForMembers(data) {
 }
 
 function postMember(personData) {
+
+  console.log('postMember called');
 
   const data = querystring.stringify(personData);
 
