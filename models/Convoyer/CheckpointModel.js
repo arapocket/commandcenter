@@ -54,8 +54,6 @@ module.exports.getCheckpointByID = function (id, callback) {
     });
 }
 
-
-
 // need to get current routes first >> do this in route model
 module.exports.getCurrentCheckpoints = function (id, callback) {
     db.createConnection(function (err, reslt) {

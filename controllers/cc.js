@@ -29,10 +29,10 @@ exports.home = function (req, res) {
   // if user is not logged in, send them to home page again
   // sess.username is set during the post handler
   console.log('home handler ' + sess.username);
-      if (typeof sess.username == 'undefined') {
+  if (typeof sess.username == 'undefined') {
     res.render('home', { title: 'Command Center', setup });
-        // if user is logged in already, take them straight to the dashboard list
-      } else {
+    // if user is logged in already, take them straight to the dashboard list
+  } else {
 
 
     user.authenticateUser(sess.username, sess.password, function (err, resAu) {
@@ -71,8 +71,8 @@ exports.home_post_handler = function (req, res) {
     sess = req.session;
     sess.username = req.body.username;
     sess.password = req.body.password;
-        // redirect the user to homepage
-        res.redirect('/');
+    // redirect the user to homepage
+    res.redirect('/');
   }
 
 };
@@ -85,10 +85,10 @@ exports.dashboardHome = function (req, res) {
 
   sess = req.session;
   sess.time = '';
-      // don't let nameless people view the dashboard, redirect them back to the homepage
-      if (typeof sess.username == 'undefined') {
+  // don't let nameless people view the dashboard, redirect them back to the homepage
+  if (typeof sess.username == 'undefined') {
     res.redirect('/');
-      } else {
+  } else {
     //get all records from the people table
     var myPool = require('../models/db').pool;
 
@@ -230,22 +230,22 @@ exports.dashboardHome = function (req, res) {
 //////////////////////////////////////
 exports.about = function (req, res) {
   sess = req.session;
-    var name = req.query.name;
+  var name = req.query.name;
 
-    if (typeof sess.username == 'undefined') {
+  if (typeof sess.username == 'undefined') {
     res.redirect('/');
-      } else {
+  } else {
     /**
      * crash test
      */
     //  process.exit(1)
-        var version = 'command center : ' + process.env.VERSION;
+    var version = 'command center : ' + process.env.VERSION;
     var clientname = 'client : ' + process.env.CLIENTNAME;
     var computername = 'server : ' + process.env.COMPUTERNAME;
     var userdomain = 'user domain : ' + process.env.USERDOMAIN;
     var dblocation = 'database : ' + process.env.DB_HOST;
 
-        res.render('about', { title: 'Command Center' + name, username: sess.username, clientname: clientname, computername: computername, userdomain: userdomain, version: version, dblocation: dblocation });
+    res.render('about', { title: 'Command Center' + name, username: sess.username, clientname: clientname, computername: computername, userdomain: userdomain, version: version, dblocation: dblocation });
   }
 };
 
@@ -255,13 +255,13 @@ exports.about = function (req, res) {
 ////////////////////////////////
 exports.unauthorized = function (req, res) {
   sess = req.session;
-    var name = req.query.name;
+  var name = req.query.name;
 
-    if (typeof sess.username == 'undefined') {
+  if (typeof sess.username == 'undefined') {
     res.redirect('/');
-      } else {
+  } else {
 
-        res.render('unauhtorized', { title: 'Command Center' });
+    res.render('unauhtorized', { title: 'Command Center' });
   }
 };
 
