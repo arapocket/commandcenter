@@ -120,7 +120,8 @@ graph.getGroups = function (token) {
   request.get(process.env.MICROSOFT_GRAPH_GROUPS_ENDPOINT, {
     auth: {
       bearer: token
-    }
+    },
+    rejectUnauthorized : false
   }, function (err, response, body) {
     var parsedBody = JSON.parse(body);
 
@@ -148,7 +149,8 @@ graph.getGroupMembers = function (token, groupID) {
   request.get(endpoint, {
     auth: {
       bearer: token
-    }
+    },
+    rejectUnauthorized : false
   }, function (err, response, body) {
     var parsedBody = JSON.parse(body);
 

@@ -764,11 +764,9 @@ function callAPIForGroups() {
 
           let currentGroup = groups[i];
 
-
           let json = {
             ListID: currentGroup.id,
             ListName: currentGroup.displayName,
-
           }
 
           postList(json);
@@ -851,7 +849,6 @@ function callAPIForMembers(data) {
           postMember(personData);
 
         }
-
       }, function (error) {
         console.error('>>> Error getting members: ' + error);
       });
