@@ -188,7 +188,7 @@ if (process.env.CC_SSL == "YES") {
   //   console.log('App listening on port 443!')
   // });
 
-  https.createServer(options, app).listen(443, function () {
+  var secureServer = https.createServer(options, app).listen(443, function () {
     console.log('App listening on port 443!')
   });
 
@@ -216,7 +216,7 @@ server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 **/
 
 
-var io = require('socket.io')(server);
+var io = require('socket.io')(secureServer);
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
