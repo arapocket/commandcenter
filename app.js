@@ -240,7 +240,7 @@ function getDevices(socket) {
 
   var options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    port: 3000,
     path: '/guardnotifications',
     method: 'GET',
     rejectUnauthorized: false
@@ -496,7 +496,7 @@ function patrolPost(data, socket) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    port: 3000,
     path: '/patrols',
     method: 'POST',
     rejectUnauthorized: false,
@@ -538,7 +538,7 @@ function patrolPut(data, socket) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    port: 3000,
     path: '/patrols',
     method: 'PUT',
     rejectUnauthorized: false,
@@ -693,7 +693,7 @@ function postPerson(contact) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    port: 3000,
     path: '/microsoftgraph',
     method: 'POST',
     rejectUnauthorized: false,
@@ -795,7 +795,7 @@ function postList(data) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    port: 3000,
     path: '/distributionlist',
     method: 'POST',
     rejectUnauthorized: false,
@@ -870,7 +870,7 @@ function postMember(personData) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 443,
+    port: 3000,
     path: '/distributionlistmembers',
     method: 'POST',
     rejectUnauthorized: false,
