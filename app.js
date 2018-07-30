@@ -727,7 +727,7 @@ function clearDistributionLists() {
 
   console.log('clearDistributionLists called');
 
-  request.del(process.env.SERVER_ADDRESS + "/distributionlist", function (err, res, body) {
+  request.del({rejectUnauthorized : false},process.env.SERVER_ADDRESS + "/distributionlist", function (err, res, body) {
     if (err) {
       console.log('logging clearDistributionLists error');
       console.log(err);
@@ -742,7 +742,7 @@ function clearDistributionListMembers() {
 
   console.log('clearDistributionListMembers called');
 
-  request.del(process.env.SERVER_ADDRESS + "/distributionlistmembers", function (err, res, body) {
+  request.del({rejectUnauthorized : false},process.env.SERVER_ADDRESS + "/distributionlistmembers", function (err, res, body) {
     if (err) {
     } else {
       callAPIForGroups();
