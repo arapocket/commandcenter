@@ -6,4 +6,5 @@ certificates/
 
 # Environment Variables Files
 *.env
-
+*.crt
+*.key
