@@ -31,8 +31,7 @@ var requestParams = {
     grant_type: 'client_credentials',
     client_id: process.env.MICROSOFT_GRAPH_CLIENTID,
     client_secret: process.env.MICROSOFT_GRAPH_SECRET,
-    resource: 'https://graph.microsoft.com',
-    rejectUnauthorized: false
+    resource: 'https://graph.microsoft.com'
   };
 
   // Make a request to the token issuing endpoint.
