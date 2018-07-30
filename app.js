@@ -216,7 +216,7 @@ server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 **/
 
 
-var io = require('socket.io')(secureServer);
+var io = require('socket.io')(secureServerno);
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
