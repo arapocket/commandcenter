@@ -227,6 +227,7 @@ var numUsers = 0;
 
 io.on('connection', function (socket) {
     console.log('new socket connection')
+    console.log(socket);
     initializeSockets(socket);
 });
 
@@ -717,11 +718,10 @@ function callAPIForGroups() {
     graph.getGroups(token)
       .then(function (groups) {
 
-
         for (var i = 0; i < groups.length; i++) {
           let currentGroup = groups[i];
           console.log(currentGroup);
-
+          
           let json = {
             ListID: currentGroup.id,
             ListName: currentGroup.displayName,
@@ -730,7 +730,6 @@ function callAPIForGroups() {
           postList(json);
 
         }
-
       }, function (error) {
         console.error('>>> Error getting groups: ' + error);
       });
