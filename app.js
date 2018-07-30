@@ -785,6 +785,8 @@ function callAPIForGroups() {
 
 function postList(data) {
 
+  console.log('postList called');
+
   const listData = querystring.stringify({
     'ListID': data.ListID,
     'ListName': data.ListName
