@@ -760,11 +760,10 @@ function callAPIForGroups() {
     graph.getGroups(token)
       .then(function (groups) {
 
-        console.log('then called');
 
         for (var i = 0; i < groups.length; i++) {
-
           let currentGroup = groups[i];
+          console.log(currentGroup);
 
           let json = {
             ListID: currentGroup.id,
