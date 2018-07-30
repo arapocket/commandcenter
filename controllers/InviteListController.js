@@ -160,6 +160,9 @@ exports.truncateDistributionListMembers = function (req, res) {
 }
 
 exports.postDistributionList = function (req, res) {
+
+  console.log('postDistributionList called from InviteListController')
+
   InviteListModel.postDistributionList(req.body, function (err, postDistributionListResult) {
     if (err) {
       res.json(err);
