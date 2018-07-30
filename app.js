@@ -240,7 +240,6 @@ function getDevices(socket) {
 
   var options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 3000,
     path: '/guardnotifications',
     method: 'GET',
     rejectUnauthorized: false
@@ -260,8 +259,6 @@ function getDevices(socket) {
     res.on('end', () => {
     });
   });
-
-
 
   req.on('error', (e) => {
     console.error(e);
@@ -496,7 +493,6 @@ function patrolPost(data, socket) {
 
   const options = {
     hostname: 'convoyer.mobsscmd.com',
-    port: 3000,
     path: '/patrols',
     method: 'POST',
     rejectUnauthorized: false,
