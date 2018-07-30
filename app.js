@@ -727,7 +727,7 @@ function clearDistributionLists() {
 
   console.log('clearDistributionLists called');
 
-  request.del({rejectUnauthorized : false},process.env.SERVER_ADDRESS + "/distributionlist", function (err, res, body) {
+  request.del({rejectUnauthorized : false, uri: process.env.SERVER_ADDRESS + "/distributionlist"}, function (err, res, body) {
     if (err) {
       console.log('logging clearDistributionLists error');
       console.log(err);
