@@ -742,7 +742,7 @@ function clearDistributionListMembers() {
 
   console.log('clearDistributionListMembers called');
 
-  request.del({rejectUnauthorized : false},process.env.SERVER_ADDRESS + "/distributionlistmembers", function (err, res, body) {
+  request.del({rejectUnauthorized : false, uri: process.env.SERVER_ADDRESS + "/distributionlistmembers" }, function (err, res, body) {
     if (err) {
     } else {
       callAPIForGroups();
