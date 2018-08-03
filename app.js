@@ -181,7 +181,7 @@ if (process.env.CC_SSL == "YES") {
     console.log('App listening on port ' + port +  '!')
   });
 
-  server.listen(443);
+  server.listen(8443);
 
 } else {
   var server = app.listen(port, function () {
