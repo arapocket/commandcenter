@@ -33,11 +33,12 @@ var session = require('express-session');
 if (process.env.CC_SSL == "YES") {
   var privateKey = fs.readFileSync(process.env.CERT_NAME + '.key').toString();
   var certificate = fs.readFileSync(process.env.CERT_NAME + '.crt').toString();
+  var ca = fs.readFileSync(process.env.CA + '.crt').toString();
   if (process.env.CERT_PASSPHRASE == "") {
-    var options = { key: privateKey, cert: certificate, requestCert: false, rejectUnauthorized: false };
+    var options = { key: privateKey, cert: certificate, ca: ca, requestCert: false, rejectUnauthorized: false };
   } else {
     var passphrase = process.env.CERT_PASSPHRASE
-    var options = { key: privateKey, cert: certificate, passphrase: passphrase, requestCert: false, rejectUnauthorized: false };
+    var options = { key: privateKey, cert: certificate, passphrase: passphrase, ca: ca, requestCert: false, rejectUnauthorized: false };
   }
 }
 
