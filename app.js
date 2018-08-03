@@ -173,7 +173,6 @@ var port = process.env.PORT || 3000;
 
 var server = app.listen(port, function () {
   console.log("Listening on " + port);
-
 });
 
 server.listen(port);
@@ -188,11 +187,11 @@ if (process.env.CC_SSL == "YES") {
   //   console.log('App listening on port 443!')
   // });
 
-  var secureServer = https.createServer(options, app).listen(443, function () {
+  var secureServer = https.createServer(options, app).listen(3000, function () {
     console.log('App listening on port 443!')
   });
 
-} 
+}
 
 
 
@@ -226,8 +225,8 @@ var request = require('request');
 var numUsers = 0;
 
 io.on('connection', function (socket) {
-    console.log('new socket connection')
-    initializeSockets(socket);
+  console.log('new socket connection')
+  initializeSockets(socket);
 });
 
 function initializeSockets(socket) {
@@ -684,7 +683,7 @@ function clearDistributionLists() {
 
   console.log('clearDistributionLists called');
 
-  request.del({rejectUnauthorized : false, uri: process.env.SERVER_ADDRESS + "/distributionlist"}, function (err, res, body) {
+  request.del({ rejectUnauthorized: false, uri: process.env.SERVER_ADDRESS + "/distributionlist" }, function (err, res, body) {
     if (err) {
       console.log('logging clearDistributionLists error');
       console.log(err);
@@ -699,7 +698,7 @@ function clearDistributionListMembers() {
 
   console.log('clearDistributionListMembers called');
 
-  request.del({rejectUnauthorized : false, uri: process.env.SERVER_ADDRESS + "/distributionlistmembers" }, function (err, res, body) {
+  request.del({ rejectUnauthorized: false, uri: process.env.SERVER_ADDRESS + "/distributionlistmembers" }, function (err, res, body) {
     if (err) {
     } else {
       callAPIForGroups();
@@ -720,7 +719,7 @@ function callAPIForGroups() {
         for (var i = 0; i < groups.length; i++) {
           let currentGroup = groups[i];
           console.log(currentGroup);
-          
+
           let json = {
             ListID: currentGroup.id,
             ListName: currentGroup.displayName,

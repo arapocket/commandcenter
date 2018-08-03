@@ -7,7 +7,7 @@ var crypto = require('crypto')
 ///////////////////////////////////////////////
 
 /**
- * generates randon tring of charcters i.e 'salt'
+ * generates randon string of charcters i.e 'salt'
  */
 
 var genRandomString = function (length) {

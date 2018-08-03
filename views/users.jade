@@ -12,11 +12,11 @@ block content
                     thead
                         tr.primary 
                             th
-                            th User name
-                            th Last name
-                            th First name
-                            th Employee ID
-                            th Email
+                            th Username
+                            th Contact First Name
+                            th Contact Last Name
+                            th Contact Email
+                            th Client ID
                             th Status
                             th Privilege
                             th Updated
@@ -26,11 +26,11 @@ block content
                                     td
                                         a(href="/userModify/#{result.UserName}")  Edit |
                                         a(href="/userDelete/#{result.UserName}")  Delete  
-                                    td=result.UserName
-                                    td=result.LastName
-                                    td=result.FirstName
-                                    td=result.EmpID
-                                    td=result.UserEmail
+                                    td=result.ClientUsername
+                                    td=result.ContactLastName
+                                    td=result.ContactFirstName
+                                    td=result.ContactEmail
+                                    td=result.ClientID
                                     td=result.Status
                                     td=result.PrivLevel
                                     td=result.UpdateTime
