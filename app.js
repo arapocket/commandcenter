@@ -178,11 +178,10 @@ var port = process.env.PORT || 3000;
 
 if (process.env.CC_SSL == "YES") {
 
-  var server = https.createServer(options, app).listen(443, function () {
+  var server = https.createServer(options, app).listen(3000, function () {
     console.log('App listening on port ' + port +  '!')
   });
 
-  server.listen(443);
 
 } else {
   var server = app.listen(port, function () {
