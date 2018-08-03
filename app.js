@@ -181,7 +181,7 @@ if (process.env.CC_SSL == "YES") {
   // });
 
   var secureServer = https.createServer(options, app).listen(3000, function () {
-    console.log('App listening on port 443!')
+    console.log('App listening on port 3000!')
   });
 
 } else {
