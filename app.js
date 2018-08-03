@@ -170,13 +170,6 @@ var port = process.env.PORT || 3000;
 //app.use(logger('common', { skip: function(req, res) { return res.statusCode < 400 }, stream: __dirname + '/morgan.log' }));
 
 
-
-var server = app.listen(port, function () {
-  console.log("Listening on " + port);
-});
-
-server.listen(port);
-
 /** 
  * If SSL enabled, create a server instance for SSL
  * 
@@ -191,6 +184,12 @@ if (process.env.CC_SSL == "YES") {
     console.log('App listening on port 443!')
   });
 
+} else {
+  var server = app.listen(port, function () {
+    console.log("Listening on " + port);
+  });
+
+  server.listen(port);
 }
 
 
