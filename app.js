@@ -176,9 +176,6 @@ var port = process.env.PORT || 3000;
  */
 
 if (process.env.CC_SSL == "YES") {
-  // var secureServer = https.createServer(options, app).listen(443, function () {
-  //   console.log('App listening on port 443!')
-  // });
 
   var secureServer = https.createServer(options, app).listen(3000, function () {
     console.log('App listening on port 3000!')
@@ -212,7 +209,7 @@ if (process.env.CC_SSL == "YES") {
 **/
 
 
-var io = require('socket.io')(secureServer);
+var io = require('socket.io').listen(secureServer);
 let tokens = [];
 const querystring = require('querystring');
 var request = require('request');
