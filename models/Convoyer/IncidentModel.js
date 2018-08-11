@@ -13,7 +13,7 @@ module.exports.getAllIncidents = function (callback) {
             //process the i/o after successful connect.  Connection object returned in callback
             var connection = reslt;
 
-            var strSQL = ' Select * from incident; ';
+            var strSQL = ' SELECT * from incident; ';
             connection.query(strSQL, function (err, rows, fields) {
                 if (!err) {
                     connection.end();

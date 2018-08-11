@@ -162,10 +162,6 @@ var port = process.env.PORT || 3000;
  */
 
 
-
-
-
-
 // You can set morgan to log differently depending on your environment
 //console.log(__dirname);
 //app.use(logger('common', { skip: function(req, res) { return res.statusCode < 400 }, stream: __dirname + '/morgan.log' }));
@@ -176,21 +172,23 @@ var port = process.env.PORT || 3000;
  * 
  */
 
+var server = app.listen(port, function () {
+  console.log("Listening on " + port);
+});
+
+server.listen(port);
+
+server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
+
 if (process.env.CC_SSL == "YES") {
 
   var server = https.createServer(options, app).listen(443, function () {
-    console.log('App listening on port ' + port +  '!')
+    console.log('App listening on port ' + port + '!')
   });
 
 
 } else {
-  var server = app.listen(port, function () {
-    console.log("Listening on " + port);
-  });
 
-  server.listen(port);
-
-  server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 }
 
 // Opens the url in the default browser

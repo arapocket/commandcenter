@@ -7,7 +7,7 @@ module.exports.getAllCoordinates = function (callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -35,7 +35,7 @@ module.exports.getAllCoordinates = function (callback) {
 module.exportsgetCoordinateByID = function (id, callback) {
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -62,7 +62,7 @@ module.exports.addCoordinate = function (Coordinate, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -91,7 +91,7 @@ module.exports.deleteCoordinate = function (id, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
@@ -120,7 +120,7 @@ module.exports.updateCoordinate = function (Coordinate, callback) {
 
     db.createConnection(function (err, reslt) {
         if (err) {
-            
+
             callback(err, null);
         } else {
             //process the i/o after successful connect.  Connection object returned in callback
