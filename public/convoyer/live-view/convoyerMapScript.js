@@ -6,7 +6,7 @@ function initMap() {
 
     let alreadyCalled = false;
 
-    var socket = io('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000');
+    var socket = io();
 
     var mapStyle = [
         {
