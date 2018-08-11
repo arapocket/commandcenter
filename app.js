@@ -172,6 +172,15 @@ var port = process.env.PORT || 3000;
  * 
  */
 
+
+  var server = app.listen(port, function () {
+    console.log("Listening on " + port);
+  });
+
+  server.listen(port);
+
+  server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
+
 if (process.env.CC_SSL == "YES") {
 
   var server = https.createServer(options, app).listen(443, function () {
@@ -181,15 +190,7 @@ if (process.env.CC_SSL == "YES") {
 
 } else {
 
-  console.log('aug 10 is this else being called?');
-
-  var server = app.listen(port, function () {
-    console.log("Listening on " + port);
-  });
-
-  server.listen(port);
-
-  server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
+  
 }
 
 // Opens the url in the default browser
