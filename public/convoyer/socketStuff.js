@@ -4,7 +4,7 @@ $(function () {
 
   getMessages();
 
-  var socket = io();
+  var socket = io('http://ec2-34-215-115-69.us-west-2.compute.amazonaws.com:3000');
 
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
