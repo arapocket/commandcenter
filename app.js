@@ -173,13 +173,13 @@ var port = process.env.PORT || 3000;
  */
 
 
-  var server = app.listen(port, function () {
-    console.log("Listening on " + port);
-  });
+var server = app.listen(port, function () {
+  console.log("Listening on " + port);
+});
 
-  server.listen(port);
+server.listen(port);
 
-  server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
+server.setTimeout(10 * 60 * 1000); // 10 * 60 seconds * 1000 msecs = 10 minutes
 
 if (process.env.CC_SSL == "YES") {
 
@@ -190,7 +190,7 @@ if (process.env.CC_SSL == "YES") {
 
 } else {
 
-  
+
 }
 
 // Opens the url in the default browser
@@ -538,7 +538,7 @@ var ccPhoneArray = [];
 var matches = [];
 
 
-clearDistributionLists();
+// clearDistributionLists();
 
 
 // ******************************** BELOW 3: For adding people to DB

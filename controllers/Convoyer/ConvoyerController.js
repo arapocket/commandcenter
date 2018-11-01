@@ -39,7 +39,7 @@ module.exports.getConvoyer = (function (req, res) {
                             } else {
                               console.log('logging getallguards from guardpatrols');
                               console.log(getAllGuardsResult);
-                              res.render('ConvoyerView', { title: 'Convoyer Live View', getAllGuardsResult: getAllGuardsResult, getCurrentCoordsResult: getCurrentCoordsResult, getAllIncidentsResult: getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
+                              res.render('ConvoyerView', { title: 'Convoyer Live View', getAllGuardsResult, getCurrentCoordsResult, getAllIncidentsResult, getCurrentLocationsResult: getCurrentLocationsResult, getCurrentPatrolsResult: getCurrentPatrolsResult, getCurrentRoutesResult: getCurrentRoutesResult, getCurrentCheckpointsResult: getCurrentCheckpointsResult});
                       
                             }
                           });
